@@ -1107,6 +1107,97 @@ button{font:inherit}
 @media (max-width:1000px){.ar-ps .p2,.ar-ps .p4{display:none}.pr-g{grid-template-columns:minmax(0,1fr)}.ic-in{grid-template-columns:minmax(0,1fr)}.ic-r{height:520px}}
 @media (max-width:600px){.tl ol{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:18px}.tl ol::before{display:none}.ar-ps{display:none}.pr-t{min-height:340px}.ic-u{grid-template-columns:minmax(0,1fr)}}
 
+
+/* ===== v10 ===== */
+.hh{position:relative;z-index:2;text-align:center;padding-bottom:calc(var(--floor) * .55)}
+.ar .hh-t{font:800 clamp(1.9rem,4vw,3.4rem)/1.2 var(--display)!important;letter-spacing:-.02em;margin-top:16px;color:#fff;text-shadow:none;white-space:normal}
+.gb{position:relative;display:block;width:min(1000px,100%);margin:clamp(24px,3vw,36px) auto 0;aspect-ratio:1345/546;filter:drop-shadow(0 0 50px rgba(255,62,165,.28)) drop-shadow(0 40px 40px rgba(0,0,0,.6));transition:transform .3s}
+.gb:hover{transform:translateY(-4px)}
+.gb-s{position:absolute;left:21.1%;top:11.5%;width:57.6%;height:71.1%;overflow:hidden;background:#05061E}
+.gb-s video{width:100%;height:100%;object-fit:cover;display:block}
+.gb-sl{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.12) 0 2px,transparent 2px 4px),linear-gradient(125deg,rgba(255,255,255,.12) 0 12%,transparent 26%)}
+.gb-f{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hh-b{display:flex;justify-content:center;align-items:center;gap:20px 28px;flex-wrap:wrap;margin-top:20px}
+.hh-p{text-align:left;color:#C9CDE8}.hh-p b{font:400 1.3rem var(--pixel);color:#FFD24A}.hh-p s{color:#8A90B8;margin-left:6px}.hh-p span{display:block;font-size:.9rem;margin-top:6px}
+.hh-a{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.hh-a a{display:inline-flex;align-items:center;min-height:48px;padding:0 20px 4px;font:700 1rem var(--display);text-decoration:none;clip-path:polygon(0 4px,4px 4px,4px 0,calc(100% - 4px) 0,calc(100% - 4px) 4px,100% 4px,100% calc(100% - 4px),calc(100% - 4px) calc(100% - 4px),calc(100% - 4px) 100%,4px 100%,4px calc(100% - 4px),0 calc(100% - 4px));transition:transform .1s steps(2)}
+.hh-a a:hover{transform:translateY(2px)}
+.hh-a .b1{background:#FFD24A;color:#0B0720;box-shadow:inset 0 -4px 0 #C28A00}.hh-a .b2{background:#5BC0FF;color:#06123A;box-shadow:inset 0 -4px 0 #1D5FB8}.hh-a .b3{background:#3FDC7E;color:#06240F;box-shadow:inset 0 -4px 0 #1B7F43}
+.ar .ar-kk{margin:0}
+/* cartridges */
+.cg{padding:12px 12px 0}
+.cg-in{background:#0E0A26;color:#fff;padding:clamp(60px,8vw,110px) clamp(16px,4vw,64px);text-align:center}
+.cg-k{font:600 1rem var(--display);color:#7CF29A}
+.cg h2{font:800 clamp(2rem,4.4vw,3.4rem)/1.15 var(--display);letter-spacing:-.02em;margin-top:8px}
+.cg-s{max-width:720px;margin:14px auto 0;color:#C9CDE8;line-height:1.7;font-size:1.05rem}
+.cts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:1120px;margin:48px auto 0;text-align:left}
+.ct{position:relative;background:#2A2470;padding:0 18px 22px;clip-path:polygon(0 0,calc(100% - 28px) 0,100% 28px,100% 100%,0 100%);box-shadow:inset 0 -6px 0 #1A1550;transition:transform .3s}
+.ct:hover{transform:translateY(-6px)}
+.ct-top{display:flex;justify-content:space-between;align-items:center;height:44px;margin:0 -18px;padding:0 40px 0 18px;background:repeating-linear-gradient(90deg,#1F1A5A 0 6px,#2A2470 6px 12px)}
+.ct-top span{font:400 .62rem var(--pixel);color:#fff}.ct-top em{font-style:normal;font:400 .55rem var(--pixel);color:#14102E;background:var(--c);padding:5px 7px}
+.ct-lb{margin-top:14px;background:#fff;padding:8px;box-shadow:0 0 0 4px var(--c)}
+.ct-lb img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.ct h3{font:800 1.35rem var(--display);margin-top:18px}
+.ct p{margin-top:12px;color:#D6D9F0;font-size:.95rem;line-height:1.55}
+.ct small{display:block;font:400 .5rem var(--pixel);color:var(--c);letter-spacing:.06em;margin-bottom:6px}
+.ct-p{padding-top:12px;border-top:3px dashed #3F3896}
+.cg-tr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:1120px;margin:40px auto 0}
+.cg-tr div{display:grid;gap:6px;padding:22px;background:rgba(255,255,255,.05);text-align:left}
+.cg-tr b{font:800 1.6rem var(--display);color:#FFD24A}.cg-tr span{color:#C9CDE8;font-size:.95rem}
+/* plain rectangles, apple style */
+.hp-grid .tile,.pr-in,.pr-t,.mc-in{border-radius:0!important}
+/* results covers */
+.pr-t .bg.grid6{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr)}
+.pr-t .bg.grid6 img{width:100%;height:100%;object-position:50% 30%}
+/* seniors: center focus */
+.mc{padding:12px 12px 0}
+.mc-in{position:relative;overflow:hidden;background:radial-gradient(60% 70% at 50% 60%,#3B1E8C 0%,#160B3E 55%,#0A0716 100%);color:#fff;padding:clamp(60px,7vw,96px) 16px 56px;text-align:center}
+.mc-bg{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);font:800 clamp(4rem,13vw,13rem)/1 var(--display);color:rgba(255,255,255,.05);white-space:nowrap;pointer-events:none;letter-spacing:.02em}
+.mc-h{position:relative}
+.mc-k{font:600 1rem var(--display);color:#FFD24A}
+.mc h2{font:800 clamp(2.2rem,5vw,4rem)/1.1 var(--display);letter-spacing:-.02em;margin-top:8px}
+.mc h2 span{color:#FFD24A}
+.mc-u{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:22px}
+.mc-u button{border:0;cursor:pointer;color:#fff;font:600 .95rem var(--display);padding:9px 16px;border-radius:999px;background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.mc-u b{color:#FFD24A;margin-left:4px}
+.mc-u button[aria-pressed="true"]{background:#fff;color:#0A0716}.mc-u button[aria-pressed="true"] b{color:#B26A00}
+.mc-st{position:relative;height:clamp(380px,36vw,470px);margin-top:28px}
+.mc-c{position:absolute;left:50%;top:50%;margin:0;width:clamp(200px,20vw,280px);cursor:pointer;transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .5s,filter .5s}
+.mc-c img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:18px;box-shadow:0 30px 50px -20px rgba(0,0,0,.8)}
+.mc-c.on img{box-shadow:0 0 0 3px #FFD24A,0 40px 60px -20px rgba(0,0,0,.9)}
+.mc-cap{position:relative;display:flex;justify-content:center;align-items:center;gap:18px;margin-top:10px}
+.mc-cap p{min-width:min(460px,70vw);font-size:1rem;color:rgba(255,255,255,.85)}
+.mc-cap p b{color:#fff}.mc-cap p small{display:block;color:#FFD24A;font-size:.88rem;margin-top:2px}
+.mc-cap button{width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;font-size:1.5rem;cursor:pointer}
+.mc-cap button:hover{background:#fff;color:#0A0716}
+.mc-a{display:inline-block;margin-top:22px;color:#0A0716;background:#fff;font:600 1rem var(--display);text-decoration:none;padding:12px 22px;border-radius:999px}
+/* transitions: courses = a hand of course cards */
+.cf-bg{position:absolute;inset:0;background:radial-gradient(70% 70% at 50% 60%,#2B1D70,#0B0720);opacity:0;animation:fadeIn .25s forwards}
+.pt.out .cf-bg{opacity:1;animation:fadeOut .45s .25s forwards}
+.cf-c{position:absolute;left:50%;top:56%;width:min(210px,30vw);aspect-ratio:3/4;padding:18px;display:flex;flex-direction:column;justify-content:flex-end;border-radius:14px;box-shadow:0 30px 50px -20px rgba(0,0,0,.7),inset 0 0 0 2px rgba(255,255,255,.18);transform-origin:50% 130%;transform:translate(-50%,70vh) rotate(0deg);animation:cfIn .6s cubic-bezier(.2,.9,.3,1.15) var(--dl) forwards}
+.cf-c small{font:400 .5rem var(--pixel);opacity:.8}.cf-c b{font:800 clamp(1rem,2vw,1.4rem)/1.15 var(--display);margin-top:6px}
+@keyframes cfIn{to{transform:translate(-50%,-50%) rotate(var(--r))}}
+.pt.out .cf-c{transform:translate(-50%,-50%) rotate(var(--r));animation:cfOut .55s cubic-bezier(.6,0,.4,1) var(--dl) forwards}
+@keyframes cfOut{to{transform:translate(calc(-50% + var(--x)),-160%) rotate(calc(var(--r) * 3));opacity:0}}
+.cf-t{position:absolute;left:50%;top:14%;transform:translateX(-50%);font:800 clamp(2.6rem,7vw,5rem)/1 var(--display);color:#fff;opacity:0;animation:fadeIn .3s .35s forwards}
+.pt.out .cf-t{opacity:1;animation:fadeOut .2s forwards}
+/* activity = a burst from where you clicked */
+.ev-c{position:absolute;inset:0;clip-path:circle(0 at var(--x) var(--y));animation:evIn .55s cubic-bezier(.7,0,.2,1) forwards}
+.ev-c.a{background:#FF4D6D}.ev-c.b{background:#0B1640;animation-delay:.12s}
+@keyframes evIn{to{clip-path:circle(150% at var(--x) var(--y))}}
+.pt.out .ev-c{clip-path:circle(150% at 50% 50%);animation:evOut .6s cubic-bezier(.7,0,.2,1) forwards}
+.pt.out .ev-c.a{animation-delay:.1s}
+@keyframes evOut{to{clip-path:circle(0 at 50% 50%)}}
+.ev-p{position:absolute;width:12px;height:12px;opacity:0;animation:evP .9s .35s cubic-bezier(.1,.8,.3,1) forwards}
+.ev-p:nth-child(3n){border-radius:50%}.ev-p:nth-child(4n){width:6px;height:16px}
+@keyframes evP{0%{opacity:1;transform:translate(0,0) rotate(0)}100%{opacity:0;transform:translate(var(--tx),var(--ty)) rotate(var(--rot))}}
+.ev-t{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.6);display:grid;justify-items:center;gap:8px;opacity:0;animation:evT .45s .3s cubic-bezier(.3,1.6,.5,1) forwards}
+.ev-t small{font:700 clamp(1rem,2vw,1.3rem) var(--display);color:#FFB81C}.ev-t b{font:800 clamp(3.4rem,10vw,8rem)/1 var(--display);color:#fff}
+@keyframes evT{to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+.pt.out .ev-t{opacity:1;transform:translate(-50%,-50%);animation:fadeOut .2s forwards}
+@media (max-width:1000px){.cts,.cg-tr{grid-template-columns:minmax(0,1fr);max-width:520px}}
+@media (max-width:600px){.ar .hh-t .nw{white-space:normal}.ar .hh-t{font-size:1.7rem!important}.hh-p{text-align:center}.gb{width:112%;margin-left:-6%}.mc-cap p{min-width:0;font-size:.9rem}}
+
 /* ---------- footer ---------- */
 footer{background:var(--alt);font-size:.85rem;color:var(--mute)}
 footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
@@ -1518,47 +1609,34 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
 <div data-view="home">
   <section class="h-hero ar" id="hx">
     <div class="ar-wall" aria-hidden="true"><span class="ar-neon">HAMSTER HUB ARCADE</span></div>
-    <div class="wrap ar-in">
-      <div class="ar-txt">
-        <p class="ar-kk rv">คอร์สปั้นพอร์ต ยื่นมหาลัย · สำหรับ ม.6</p>
-        <h1 class="rv">Port Express</h1>
-        <p class="ar-t rv"><span class="nw">ยังไม่มีพอร์ต?</span> <span class="nw">2 เดือน พร้อมยื่นรอบ Portfolio</span></p>
-        <p class="ar-s rv">ทำเกม 3 งานเข้าพอร์ต ทำแฟ้มพอร์ตกับเทรนเนอร์ และซ้อมสัมภาษณ์กับอาจารย์มหาลัย · <b>5,990 บาท</b> <s>9,990</s></p>
-        <div class="tl rv" aria-label="ปฏิทิน TCAS70 รอบ 1 Portfolio">
-          <p class="tl-h"><span>TCAS70</span> รอบ 1 Portfolio เดินไปพร้อมคอร์ส</p>
-          <ol>
-            <li data-d="2026-08-15"><em>15 ส.ค. 69</em><b>มหาลัยเริ่มเปิดรับรอบ 1</b></li>
-            <li data-d="2026-11-09"><em>9 พ.ย. 69</em><b>เริ่มเรียน Port Express</b></li>
-            <li data-d="2027-01-04"><em>ม.ค. 70</em><b>พอร์ตครบ 3 เกม พร้อมยื่น</b></li>
-            <li data-d="2027-03-10"><em>10 มี.ค. 70</em><b>ประกาศผลรอบ 1</b></li>
-          </ol>
-          <p class="tl-n">แต่ละมหาลัยปิดรับรอบ 1 ไม่พร้อมกัน เช็กวันของคณะที่อยากเข้า · ที่มา: ปฏิทิน TCAS70 ของ ทปอ.</p>
-        </div>
+    <div class="wrap hh">
+      <p class="ar-kk rv">คอร์สปั้นพอร์ต ยื่นมหาลัย · สำหรับ ม.6</p>
+      <h1 class="hh-t rv"><span class="nw">ยังไม่มีพอร์ต?</span> <span class="nw">2 เดือน พร้อมยื่นรอบ Portfolio</span></h1>
+      <div class="hh-b rv">
+        <p class="hh-p"><b>5,990 บาท</b> <s>9,990</s><span>เริ่ม 9 พ.ย. 2569 · เรียน จ พ ศ · 2 เดือน</span></p>
+        <div class="hh-a"><a class="b1" href="#portex">ดูรายละเอียดคอร์ส</a><a class="b2" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">เว็บ Port Express</a><a class="b3" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">ทัก LINE</a></div>
       </div>
-      <div class="ar-m">
-        <div class="ar-ps" aria-hidden="true"><figure class="p1"><img src="img/dek69-6.webp" alt=""><span>จุฬาฯ CEDT</span></figure><figure class="p2"><img src="img/dek69-1.webp" alt=""><span>สจล.</span></figure><figure class="p3"><img src="img/dek69-13.webp" alt=""><span>มหิดล</span></figure><figure class="p4"><img src="img/dek69-11.webp" alt=""><span>เกษตรศาสตร์</span></figure></div><div class="cab c-hero">
-  <div class="cab-hood"><div class="cab-sign"><span class="lamp l"></span><b>PORT EXPRESS</b><span class="lamp r"></span><small>BY HAMSTER HUB</small></div></div>
-  <div class="cab-up"><div class="cab-bez"><div class="cab-scr">
-    <video src="img/portex-banner.mp4" poster="img/portex-poster.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
-    <span class="cab-hud"><em class="pxst">รุ่นใหม่เริ่มเรียน 9 พ.ย. 2569</em><em>1P READY</em></span></div></div></div>
-  <div class="cab-dk">
-    <span class="cab-js" aria-hidden="true"><span class="ball"></span><span class="shaft"></span></span>
-    <a class="cab-b red" href="#portex"><span class="cap"></span><span class="lb">ดูรายละเอียด</span></a>
-    <a class="cab-b blue" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener"><span class="cap"></span><span class="lb">เว็บ Port Express</span></a>
-    <a class="cab-b green" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener"><span class="cap"></span><span class="lb">ทัก LINE</span></a>
-  </div>
-  <div class="cab-lo">
-    <span class="stk s1">ม.6 ยังไม่มีพอร์ต?<b>2 เดือน · 3 เกม</b></span>
-    <div class="cab-door"><span class="lcd">5,990฿</span><small>ปกติ 9,990</small><span class="slots"><span></span><span></span></span><span class="ins">INSERT COIN</span></div>
-    <span class="stk s2">ทันยื่น<b>รอบ Portfolio</b></span>
-  </div>
-  <div class="cab-kick"></div>
-</div></div>
+      <a class="gb rv" href="#portex" aria-label="ดูรายละเอียดคอร์ส Port Express"><span class="gb-s"><video src="img/portex-banner.mp4" poster="img/portex-poster.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video><span class="gb-sl"></span></span><img class="gb-f" src="img/console.webp" alt=""></a>
     </div>
     <div class="ar-floor" aria-hidden="true"></div>
     <div class="hx3" id="hx3" aria-hidden="true"><canvas id="hxCanvas"></canvas><div class="hx-say" id="hxSay"></div></div>
     <p class="ar-tip">ลองกดค้างที่น้องหนูแล้วยกขึ้นมาดูสิ</p>
   </section>
+
+  <section class="cg"><div class="cg-in">
+    <p class="cg-k rv">ทำเกม 3 งาน เข้าแฟ้มพอร์ต</p>
+    <h2 class="rv">ทำไมเกมใช้ยื่นพอร์ตได้</h2>
+    <p class="cg-s rv">คณะสายคอม ไอที และดิจิทัล อยากเห็นผลงานที่น้องลงมือทำเอง เกมหนึ่งเกมโชว์ได้ครบทั้งการเขียนโปรแกรม การออกแบบ และความรับผิดชอบที่ทำงานจนจบ</p>
+    <div class="cts"><article class="ct" style="--c:#D08A4E"><div class="ct-top"><span>GAME 01</span><em>BRONZE</em></div><div class="ct-lb"><img src="img/work-escape-rolling.webp" alt="" loading="lazy"></div>
+  <h3>เกมแรก เล่นแล้วสนุก</h3><p class="ct-g"><small>ได้ทักษะ</small>เขียนโปรแกรมด้วย Unity เป็น และคิดเกมให้คนเล่นแล้วสนุก</p><p class="ct-p"><small>ในพอร์ตบอกกรรมการว่า</small>น้องเขียนโค้ดได้จริง และทำงานจนจบได้</p></article><article class="ct" style="--c:#B9C2D6"><div class="ct-top"><span>GAME 02</span><em>SILVER</em></div><div class="ct-lb"><img src="img/work-slash-speed.webp" alt="" loading="lazy"></div>
+  <h3>เกมที่แตกต่าง ขายได้</h3><p class="ct-g"><small>ได้ทักษะ</small>ออกแบบให้ต่างจากเกมทั่วไป เก็บความรู้สึกตอนเล่น และฝึกพูดนำเสนอ</p><p class="ct-p"><small>ในพอร์ตบอกกรรมการว่า</small>น้องคิดเรื่องผู้เล่น ไม่ได้ทำตามสั่ง</p></article><article class="ct" style="--c:#FFD24A"><div class="ct-top"><span>GAME 03</span><em>GOLD</em></div><div class="ct-lb"><img src="img/work-apocalypis-building.webp" alt="" loading="lazy"></div>
+  <h3>เกมใหญ่ ทำเป็นทีม</h3><p class="ct-g"><small>ได้ทักษะ</small>แบ่งสาย Art / Developer / Director ทำเกมขนาดใหญ่ร่วมกับเพื่อน</p><p class="ct-p"><small>ในพอร์ตบอกกรรมการว่า</small>น้องทำงานเป็นทีมได้ และรู้ว่าตัวเองถนัดอะไร</p></article></div>
+    <div class="cg-tr rv">
+      <div><b>48 คน</b><span>รุ่นพี่ DEK69 ยื่นรอบพอร์ตด้วยผลงานแบบนี้แล้วติด</span></div>
+      <div><b>ทุก 2 สัปดาห์</b><span>อาจารย์มหาวิทยาลัยฟังผลงาน พร้อมซ้อมสัมภาษณ์</span></div>
+      <div><b>5 ครั้ง</b><span>Checkpoint ตรวจงาน บอกชัดว่าต้องแก้อะไร</span></div>
+    </div>
+  </div></section>
 
   <section class="hp-grid"><div class="wrap hg">
     <div class="tile t-afo rv">
@@ -1589,30 +1667,30 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
   <section class="pr"><div class="pr-in">
     <h2 class="rv">ผลลัพธ์ที่วัดได้จริง</h2>
     <div class="pr-g">
-      <a class="pr-t t1 rv" href="#works" data-pane="sen"><span class="bg"><img src="img/dek69-8.webp" alt=""><img src="img/dek69-12.webp" alt=""><img src="img/dek69-16.webp" alt=""></span><b data-count="48">48</b><p>รุ่นพี่ DEK69<br>ติดมหาวิทยาลัยสายคอม</p></a>
-      <a class="pr-t t2 rv" href="#works"><span class="bg"><img src="img/work-eugation-strike.webp" alt=""></span><b data-count="37">37</b><p>ผลงานที่น้องสร้าง<br>และเผยแพร่ให้คนใช้จริง</p></a>
-      <a class="pr-t t3 rv" href="#works" data-pane="nsc"><span class="bg"><img src="img/s-showcase2.webp" alt=""></span><b data-count="12">12</b><p>ผลงานเข้ารอบชิง NSC<br>การแข่งขันซอฟต์แวร์ระดับประเทศ</p></a>
+      <a class="pr-t t1 rv" href="#works" data-pane="sen"><span class="bg grid6"><img src="img/dek69-6.webp" alt=""><img src="img/dek69-1.webp" alt=""><img src="img/dek69-13.webp" alt=""><img src="img/dek69-11.webp" alt=""><img src="img/dek69-9.webp" alt=""><img src="img/dek69-14.webp" alt=""></span><b data-count="48">48</b><p>รุ่นพี่ DEK69<br>ติดมหาวิทยาลัยสายคอม</p></a>
+      <a class="pr-t t2 rv" href="#works"><span class="bg"><img src="img/work-phi-krahang.webp" alt=""></span><b data-count="37">37</b><p>ผลงานที่น้องสร้าง<br>และเผยแพร่ให้คนใช้จริง</p></a>
+      <a class="pr-t t3 rv" href="#works" data-pane="nsc"><span class="bg"><img src="img/s-showcase1.webp" alt="" style="object-position:70% 50%"></span><b data-count="12">12</b><p>ผลงานเข้ารอบชิง NSC<br>การแข่งขันซอฟต์แวร์ระดับประเทศ</p></a>
     </div>
     <p class="pr-src">ข้อมูลจาก 2025 Success Story ของ Hamster Hub</p>
   </div></section>
 
-  <section class="ic">
-    <div class="ic-in">
-      <div class="ic-l">
-        <p class="ic-k rv">DEK69 · รอบ Portfolio</p>
-        <h2 class="rv">ติดแล้ว<br><span>48 คน</span></h2>
-        <p class="ic-s rv">รุ่นพี่ที่ยื่นมหาลัยด้วยผลงานที่ทำกับ Hamster Hub</p>
-        <div class="ic-u rv" role="group" aria-label="ดูตามมหาวิทยาลัย">
-          <button type="button" data-u="k" style="--c:#FF8A3D" aria-pressed="false"><b>24</b><span>สจล.</span></button>
-          <button type="button" data-u="m" style="--c:#7D9BFF" aria-pressed="false"><b>9</b><span>มหิดล</span></button>
-          <button type="button" data-u="c" style="--c:#FF7EB6" aria-pressed="false"><b>8</b><span>จุฬาฯ CEDT</span></button>
-          <button type="button" data-u="u" style="--c:#4FD69C" aria-pressed="false"><b>7</b><span>เกษตรศาสตร์</span></button>
-        </div>
-        <a class="ic-a rv" href="#works" data-pane="sen">ดูรุ่นพี่ทั้งหมด</a>
+  <section class="mc"><div class="mc-in">
+    <p class="mc-bg" aria-hidden="true">CONGRATULATIONS</p>
+    <div class="mc-h">
+      <p class="mc-k rv">DEK69 · รอบ Portfolio</p>
+      <h2 class="rv">รุ่นพี่ติดมหาลัยแล้ว <span>48 คน</span></h2>
+      <div class="mc-u rv" role="group" aria-label="ดูตามมหาวิทยาลัย">
+        <button type="button" data-u="" aria-pressed="true">ทั้งหมด</button>
+        <button type="button" data-u="k" aria-pressed="false">สจล. <b>24</b></button>
+        <button type="button" data-u="m" aria-pressed="false">มหิดล <b>9</b></button>
+        <button type="button" data-u="c" aria-pressed="false">จุฬาฯ <b>8</b></button>
+        <button type="button" data-u="u" aria-pressed="false">เกษตรศาสตร์ <b>7</b></button>
       </div>
-      <div class="ic-r" aria-label="โปสเตอร์รุ่นพี่ DEK69"><div class="ic-pl" id="icPl"></div></div>
     </div>
-  </section>
+    <div class="mc-st" id="mcSt" aria-live="polite"></div>
+    <div class="mc-cap"><button type="button" id="mcP" aria-label="คนก่อนหน้า">‹</button><p id="mcC"></p><button type="button" id="mcN" aria-label="คนถัดไป">›</button></div>
+    <a class="mc-a" href="#works" data-pane="sen">ดูรุ่นพี่ทั้งหมด</a>
+  </div></section>
 
   <section class="ptn"><div class="wrap"><p>จัดกิจกรรมร่วมกับ</p><div class="logos"><img src="img/p-it.webp" alt="คณะเทคโนโลยีสารสนเทศ สจล." loading="lazy"><img src="img/p-iote.webp" alt="IoTE สจล." loading="lazy"><img src="img/p-eduverse.webp" alt="EDUverse" loading="lazy"></div></div></section>
 </div>
@@ -2137,7 +2215,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     var ok=false;try{ok=!!window.THREE&&!!(cv.getContext('webgl')||cv.getContext('experimental-webgl'))}catch(e){}
     if(!ok){hx.classList.add('nogl');return}
     var T=THREE,R=new T.WebGLRenderer({canvas:cv,antialias:true,alpha:true});R.outputEncoding=T.sRGBEncoding;R.setPixelRatio(Math.min(devicePixelRatio||1,2));
-    var S=new T.Scene(),C=new T.OrthographicCamera(-1,1,1,-1,-100,100),L=new T.TextureLoader(),w=1,h=1,bw=1,bh=1,bx=0,by=0,uMin=0,uMax=1,IW=1536,IH=864,V0=.79,V1=.965;
+    var S=new T.Scene(),C=new T.OrthographicCamera(-1,1,1,-1,-100,100),L=new T.TextureLoader(),w=1,h=1,bw=1,bh=1,bx=0,by=0,uMin=0,uMax=1,IW=1536,IH=864,V0=.86,V1=.975;
     function tex(u,cb){var t=L.load(u,function(){cb&&cb(t)});t.encoding=T.sRGBEncoding;t.anisotropy=4;return t}
     function ctex(draw){var c=document.createElement('canvas');c.width=c.height=64;draw(c.getContext('2d'));var t=new T.CanvasTexture(c);t.encoding=T.sRGBEncoding;return t}
     var shT=ctex(function(g){var r=g.createRadialGradient(32,32,2,32,32,32);r.addColorStop(0,'rgba(90,55,20,.42)');r.addColorStop(1,'rgba(90,55,20,0)');g.fillStyle=r;g.fillRect(0,0,64,64)});
@@ -2262,12 +2340,18 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
       tb.forEach(function(b,k){b.setAttribute('aria-selected',String(k===i));var bar=b.querySelector('.bar');bar.style.animation='none';void bar.offsetWidth;bar.style.animation=''})}
     tb.forEach(function(b,k){b.addEventListener('click',function(){go(k)});b.querySelector('.bar').addEventListener('animationend',function(){if(k===i)go(i+1)})});
     sc.addEventListener('pointerenter',function(){sc.classList.add('hold')});sc.addEventListener('pointerleave',function(){sc.classList.remove('hold')});go(0)})();
-  /* seniors: tilted wall of posters, three columns drifting */
-  (function(){var P=document.getElementById('icPl');if(!P)return;var on=null;
-    function card(g){return '<figure><img src="img/dek69-'+g[0]+'.webp" alt="'+g[1]+' '+UN[g[2]]+'" loading="lazy"></figure>'}
-    function build(){var L=G.filter(function(g){return !on||g[2]===on}),a=L.slice();while(a.length<9)a=a.concat(L);var cols=[[],[],[]];a.forEach(function(g,k){cols[k%3].push(g)});
-      P.innerHTML=cols.map(function(c,k){var h=c.map(card).join('');return '<div class="ic-c c'+k+'" style="--d:'+(c.length*5)+'s"><div>'+h+h+'</div></div>'}).join('')}
-    build();document.querySelectorAll('.ic-u button').forEach(function(b){b.addEventListener('click',function(){on=on===b.dataset.u?null:b.dataset.u;document.querySelectorAll('.ic-u button').forEach(function(x){x.setAttribute('aria-pressed',String(x.dataset.u===on))});build()})})})();
+  /* seniors: center-focus carousel that walks by itself */
+  (function(){var st=document.getElementById('mcSt');if(!st)return;var on='',L=[],a=0,tm=0,hold=false;
+    function build(){L=G.filter(function(g){return !on||g[2]===on});a=0;st.innerHTML=L.map(function(g,k){return '<figure class="mc-c" data-k="'+k+'"><img src="img/dek69-'+g[0]+'.webp" alt="'+g[1]+' '+UN[g[2]]+'" loading="lazy"></figure>'}).join('');
+      st.querySelectorAll('.mc-c').forEach(function(c){c.addEventListener('click',function(){go(+c.dataset.k)})});lay()}
+    function lay(){var n=L.length,W=st.offsetWidth||1000,gap=Math.min(240,W*.2);st.querySelectorAll('.mc-c').forEach(function(c,k){var o=k-a;if(o>n/2)o-=n;if(o<-n/2)o+=n;var ab=Math.abs(o);
+      c.style.transform='translate(-50%,-50%) translateX('+(o*gap)+'px) translateY('+(ab%2?28:0)+'px) scale('+(1-Math.min(ab,4)*.12)+')';c.style.zIndex=20-ab;c.style.opacity=ab>3?0:1;c.style.filter='brightness('+(1-Math.min(ab,3)*.18)+')';c.classList.toggle('on',o===0)});
+      var g=L[a];document.getElementById('mcC').innerHTML='<b>'+g[1]+'</b> · '+g[3]+' · '+UN[g[2]]+'<small>จากคอร์ส '+g[4]+'</small>'}
+    function go(k){a=(k+L.length)%L.length;lay();clearInterval(tm);tm=setInterval(function(){if(!hold&&document.querySelector('[data-view="home"].on'))go(a+1)},2800)}
+    st.addEventListener('pointerenter',function(){hold=true});st.addEventListener('pointerleave',function(){hold=false});
+    document.getElementById('mcP').addEventListener('click',function(){go(a-1)});document.getElementById('mcN').addEventListener('click',function(){go(a+1)});
+    document.querySelectorAll('.mc-u button').forEach(function(b){b.addEventListener('click',function(){on=b.dataset.u;document.querySelectorAll('.mc-u button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});build();go(0)})});
+    addEventListener('resize',lay);build();go(0)})();
   /* TCAS timeline: mark where we are */
   (function(){var now=new Date(),li=document.querySelectorAll('.tl li'),k=-1;li.forEach(function(e,n){if(new Date(e.dataset.d+'T00:00:00+07:00')<=now)k=n});
     li.forEach(function(e,n){e.classList.toggle('done',n<k);e.classList.toggle('here',n===k+1)})})();
@@ -2284,18 +2368,21 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
   menuBtn.addEventListener('click',function(){var o=drawer.hidden;drawer.hidden=!o;menuBtn.setAttribute('aria-expanded',String(o))});
   var lastXY=[innerWidth/2,innerHeight/2];document.addEventListener('pointerdown',function(e){lastXY=[e.clientX,e.clientY]},true);
   var pt=document.getElementById('pt'),ptT=0;
-  var PTC={courses:['#5B3FD6','#FFD24A','#0B0720','COURSES','คอร์ส','หลายคอร์ส หลายสไตล์'],portex:['#FF3EA5','#39E0FF','#0B0720','PORT EXPRESS','Port Express','คอร์สปั้นพอร์ต ยื่นมหาลัย'],
-    activity:['#FF4D6D','#FFB81C','#0B1640','EVENTS','กิจกรรม',''],works:['#8A6A1E','#E8C877','#050505','HALL OF FAME','ผลงาน','Class of 2026'],about:['#FF8A3D','#FFE7C2','#16161A','ABOUT US','เกี่ยวกับเรา','Hamster Hub']};
-  function ptBuild(v){var h='',c=PTC[v];
-    if(c){var k=c[5];if(v==='activity'){var nx=document.getElementById('nvNext');k=nx?nx.textContent:''}
-      var row=(c[3]+' · ').repeat(6);
-      h='<span class="gp a" style="--c:'+c[0]+'"></span><span class="gp b" style="--c:'+c[1]+'"></span><span class="gp z" style="--c:'+c[2]+'"><span class="gm r1">'+row+'</span><span class="gm r2">'+row+'</span>'+
-        '<span class="gc'+(v==='works'?' gold':'')+'"><small style="color:'+c[1]+'">'+k+'</small><b>'+c[4]+'</b><span class="gl" style="background:'+c[1]+'"></span></span></span>'}
+  var PTC={courses:1,portex:1,activity:1,works:1,about:1};
+  function ptBuild(v){var h='';
+    if(v==='courses'){var CC=[['Port Express','#5B3FD6','#FFD24A'],['Port70','#FF8A3D','#fff'],['Project Express','#1068DC','#fff'],['National Project','#0B1640','#FFD24A'],['Python Pro Pack','#0D1117','#3FB950']];
+      h='<span class="cf-bg"></span>';CC.forEach(function(c,k){h+='<span class="cf-c" style="--r:'+((k-2)*11)+'deg;--x:'+((k-2)*70)+'vw;--dl:'+(k*.05)+'s;background:'+c[1]+';color:'+c[2]+'"><small>COURSE 0'+(k+1)+'</small><b>'+c[0]+'</b></span>'});h+='<b class="cf-t">คอร์ส</b>'}
+    else if(v==='portex'){var c=14,r=8;for(var y=0;y<r;y++)for(var x=0;x<c;x++)h+='<i style="left:'+(x*100/c)+'%;top:'+(y*100/r)+'%;width:'+(100/c+.2)+'%;height:'+(100/r+.2)+'%;--dl:'+(Math.random()*.32).toFixed(2)+'s"></i>';h+='<b class="pt-px">LOADING...</b>'}
+    else if(v==='activity'){var nx=document.getElementById('nvNext'),x0=lastXY[0],y0=lastXY[1];h='<span class="ev-c a" style="--x:'+x0+'px;--y:'+y0+'px"></span><span class="ev-c b" style="--x:'+x0+'px;--y:'+y0+'px"></span>';
+      for(var k=0;k<26;k++){var an=Math.random()*6.283,d=30+Math.random()*30;h+='<span class="ev-p" style="left:50%;top:50%;--tx:'+(Math.cos(an)*d).toFixed(1)+'vmin;--ty:'+(Math.sin(an)*d).toFixed(1)+'vmin;--rot:'+(Math.random()*720-360).toFixed(0)+'deg;background:'+['#FFB81C','#FF4D6D','#fff','#7CF29A','#5BC0FF'][k%5]+'"></span>'}
+      h+='<span class="ev-t"><small>'+(nx?nx.textContent:'')+'</small><b>กิจกรรม</b></span>'}
+    else if(v==='works'){h='<span class="t5-cu l"></span><span class="t5-cu r"></span><span class="t5-sp"></span>';for(var k=0;k<22;k++)h+='<span class="t5-d" style="left:'+(25+Math.random()*50).toFixed(1)+'%;top:'+(20+Math.random()*60).toFixed(1)+'%;--dl:'+(Math.random()*.6).toFixed(2)+'s;--s:'+(2+Math.random()*4).toFixed(1)+'px"></span>';h+='<b class="t5-hof"><small>HAMSTER HUB · CLASS OF 2026</small><span>HALL OF FAME</span></b>'}
+    else if(v==='about'){h='<span class="pt-band"></span><img class="pt-run" src="img/n-walker.webp" alt="">'}
     else{h='<span class="pt-home"></span><img class="pt-peek" src="img/n-peek.webp" alt="">'}
     pt.className='pt v-'+v;pt.innerHTML=h;void pt.offsetWidth;pt.classList.add('in')}
   var first=true;function route(){var v=(location.hash||'#home').slice(1);if(views.indexOf(v)<0)v='home';
     if(first||reduce){first=false;show();return}
-    clearTimeout(ptT);ptBuild(v);var hold=PTC[v]?900:620;ptT=setTimeout(function(){show();var vw=document.querySelector('[data-view].on');if(vw&&PTC[v]){vw.classList.remove('pg-in');void vw.offsetWidth;vw.classList.add('pg-in')}pt.classList.add('out');ptT=setTimeout(function(){pt.className='pt';pt.innerHTML=''},1150)},hold)}
+    clearTimeout(ptT);ptBuild(v);var hold={courses:950,portex:760,activity:850,works:1050,about:700}[v]||620;ptT=setTimeout(function(){show();var vw=document.querySelector('[data-view].on');if(vw&&PTC[v]){vw.classList.remove('pg-in');void vw.offsetWidth;vw.classList.add('pg-in')}pt.classList.add('out');ptT=setTimeout(function(){pt.className='pt';pt.innerHTML=''},1150)},hold)}
   addEventListener('hashchange',route);route();
 })();
 </script>
