@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Hamster Hub ชุมชนที่เปลี่ยนเด็กมัธยมให้เป็นคนที่กล้าลงมือ เรียนรู้ สร้าง แข่งขัน ตั้งแต่เกม แอป จนถึง IoT">
+<meta name="description" content="Hamster Hub สถาบันสอนทำเกม แอป และ IoT สำหรับเด็กมัธยม สร้างผลงานจริงไว้ยื่นมหาวิทยาลัย">
 <meta property="og:title" content="Hamster Hub">
 <meta property="og:image" content="img/n-hero.webp">
 <link rel="icon" href="img/logo.webp">
@@ -1085,6 +1085,90 @@ footer{font-size:.92rem}
 .pt-sp{position:absolute;font-style:normal;color:#E8C877;font-size:.8rem;opacity:0;animation:spk 1s var(--dl) ease-out forwards}
 @keyframes spk{0%{opacity:0;transform:scale(0)}40%{opacity:1;transform:scale(1.4) rotate(45deg)}100%{opacity:0;transform:translateY(-30px) scale(.4) rotate(120deg)}}
 
+/* ===== v15: clarity first ===== */
+.hx-eb{font:700 1rem var(--display);color:#6B4A00;margin-bottom:10px;text-shadow:0 0 12px #fff}
+.hx h1 .g{color:#9A6400}
+.hx .lead{max-width:34em}
+.offer{pointer-events:auto;margin:24px auto 0;max-width:720px;text-align:left;background:rgba(255,255,255,.94);border-radius:20px;box-shadow:0 18px 40px -22px rgba(60,40,10,.45),inset 0 0 0 1px rgba(0,0,0,.06);padding:16px 16px 12px}
+.of-main{display:grid;gap:4px;text-decoration:none;color:var(--ink)}
+.of-tag{justify-self:start;background:#0B1640;color:#FFB81C;font:700 .78rem var(--display);padding:3px 10px;border-radius:999px}
+.of-t{font:600 1.15rem/1.35 var(--display)}.of-t b{font-weight:800}
+.of-meta{display:flex;flex-wrap:wrap;gap:6px 16px;color:#3A3A44;font-size:.98rem}
+.of-meta>span+span::before{content:"·";margin-right:16px;color:#B0B0B8}
+.of-p s{color:#8E8E96}.of-p b{color:#B4161B;font:800 1.1rem var(--display)}
+.of-cta{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.of-cta a{flex:1 1 180px;display:inline-flex;justify-content:center;align-items:center;min-height:48px;border-radius:12px;font:700 1rem var(--display);text-decoration:none;transition:transform .2s,background .2s}
+.of-b1{background:#0B1640;color:#fff}.of-b1:hover{background:#1A2A6B;transform:translateY(-2px)}
+.of-b2{background:var(--line);color:#fff}.of-b2:hover{transform:translateY(-2px)}
+.of-note{margin:8px 2px 0;font-size:.86rem;color:#5E5E66}
+.hx .quick{display:none}
+.cf-by{display:block;color:#C9C9D0;font:500 1rem var(--display);margin-top:4px}
+.a-next{text-decoration:none;color:#fff}.a-next:hover{background:rgba(255,255,255,.14)}
+.a-live{background:var(--gold);color:#0B1640;animation:none}
+.a-go{font-weight:600;color:#C8CEE6}
+/* course page */
+.cx-top{background:#0E1040;color:#fff;padding:clamp(28px,4vw,48px) 0 clamp(40px,5vw,64px)}
+.cx-grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:clamp(24px,4vw,48px);align-items:start}
+.cx-crumb{font-size:.92rem;color:#AEB4D6}.cx-crumb a{color:#FFD36B;text-decoration:none}
+.cx-main h1{font:800 clamp(2.3rem,4.6vw,3.6rem)/1.15 var(--display);margin:10px 0 0}
+.cx-main h1 span{display:block;font-size:.5em;font-weight:600;color:#FFD36B;margin-top:6px}
+.cx-sum{color:#D6DAF0;font-size:1.08rem;line-height:1.7;max-width:40em;margin-top:14px}
+.cx-facts{list-style:none;padding:0;margin:20px 0 22px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.cx-facts li{background:rgba(255,255,255,.07);border-radius:12px;padding:12px 12px 10px}
+.cx-facts b{display:block;font:700 1.05rem var(--display)}.cx-facts span{font-size:.85rem;color:#AEB4D6}
+.cx-media{border-radius:14px;overflow:hidden;box-shadow:0 0 0 3px #2D3590}
+.cx-buy{position:sticky;top:84px;background:#fff;color:var(--ink);border-radius:18px;padding:22px;box-shadow:0 30px 60px -30px rgba(0,0,0,.7)}
+.cx-price{font-size:1.1rem;margin:0}.cx-price b{font:800 2.6rem/1 var(--display)}.cx-price s{color:#8E8E96;margin-left:8px}
+.cx-save{color:#B4161B;font-weight:600;font-size:.95rem;margin:6px 0 14px}
+.cx-b1{display:flex;justify-content:center;align-items:center;min-height:54px;border-radius:12px;background:var(--line);color:#fff;font:700 1.1rem var(--display);text-decoration:none}
+.cx-b1:hover{filter:brightness(1.06)}
+.cx-note{font-size:.88rem;color:#5E5E66;margin:10px 0 14px}
+.cx-inc{list-style:none;padding:14px 0 0;margin:0;border-top:1px solid #E6E6EA;display:grid;gap:9px;font-size:.95rem}
+.cx-inc li{padding-left:26px;position:relative}.cx-inc li::before{content:"✓";position:absolute;left:0;color:#1E7A4C;font-weight:800}
+.cx-copy{margin-top:16px;width:100%;display:flex;justify-content:space-between;align-items:center;min-height:44px;padding:0 14px;border-radius:10px;border:1px solid #D2D2D7;background:#F5F5F7;font:600 .98rem var(--display);cursor:pointer;color:var(--ink)}
+.cx-copy span{color:#0066CC}
+.cx-tel{font-size:.92rem;color:#5E5E66;margin:10px 0 0}.cx-tel a{color:#0066CC}
+.cx-sec{padding:clamp(56px,7vw,90px) 0}.cx-sec.alt{background:#F5F5F7}.cx-sec.dark{background:#0B1640;color:#fff}
+.cx-narrow{max-width:900px}
+.cx-sec h2{font-size:clamp(1.8rem,3.4vw,2.6rem)}
+.cx-lead{color:var(--mute);font-size:1.08rem;line-height:1.7;margin:12px 0 0}
+.cx-acc{margin-top:28px;display:grid;gap:12px}
+.cx-acc details{border:1px solid #E1E1E6;border-radius:14px;background:#fff;overflow:hidden}
+.cx-acc summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:18px 20px;font-size:1.12rem}
+.cx-acc summary::-webkit-details-marker{display:none}
+.cx-acc summary::after{content:"+";margin-left:auto;font-size:1.4rem;color:#8E8E96;transition:transform .3s}
+.cx-acc details[open] summary::after{transform:rotate(45deg)}
+.cx-acc summary em{font-style:normal;color:#8E8E96;font-size:.9rem}
+.lv{background:var(--c);color:#fff;font:700 .8rem var(--display);padding:4px 10px;border-radius:999px;white-space:nowrap}
+.cx-acc ul{list-style:none;margin:0;padding:0 20px 18px;display:grid;gap:12px}
+.cx-acc li b{display:block;font:700 1.02rem var(--display)}.cx-acc li{color:var(--mute);padding-left:16px;border-left:3px solid #EFE6D2}
+.cx-demo{margin-top:24px;border-radius:14px;overflow:hidden;background:#000}.cx-demo video{display:block;width:100%;aspect-ratio:16/9}
+.cx-link{font-weight:700;color:#0066CC;text-decoration:none}
+.cx-seniors{list-style:none;padding:0;margin:28px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.cx-seniors li{display:grid;gap:2px}
+.cx-seniors img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px;margin-bottom:8px}
+.cx-seniors b{font:700 1.05rem var(--display)}.cx-seniors span{font-size:.9rem;color:var(--ink)}.cx-seniors em{font-style:normal;font-size:.85rem;color:var(--mute)}
+.cx-faq{margin-top:22px;display:grid;gap:10px}
+.cx-faq details{background:#fff;border-radius:12px;padding:0 18px}
+.cx-faq summary{cursor:pointer;padding:16px 0;font:600 1.06rem var(--display)}
+.cx-faq p{margin:0 0 16px;color:var(--mute);line-height:1.7}
+.cx-bar{display:none}
+@media (max-width:900px){
+  .cx-grid{grid-template-columns:minmax(0,1fr)}.cx-buy{position:static}
+  .cx-facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cx-seniors{grid-template-columns:repeat(2,minmax(0,1fr))}
+  [data-view="courses"].on .cx-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:70;align-items:center;justify-content:space-between;gap:12px;padding:10px var(--gl) calc(10px + env(safe-area-inset-bottom,0px));background:#fff;box-shadow:0 -8px 24px -12px rgba(0,0,0,.3)}
+  .cx-bar small{color:var(--mute)}.cx-bar s{color:#8E8E96}
+  .cx-bar a{background:var(--line);color:#fff;font:700 1rem var(--display);padding:12px 22px;border-radius:12px;text-decoration:none}
+  [data-view="courses"].on{padding-bottom:80px}
+  .offer{padding:14px 12px 10px}.of-t{font-size:1.02rem}
+  .of-meta>span+span::before{display:none}.of-meta{gap:2px 14px}
+  .hx{min-height:auto}.hx3{top:auto;height:300px}.hx-copy{padding-bottom:280px}
+  .hx .lead{font-size:1rem}
+}
+
+.ptn-cap{color:var(--mute);font-size:.9rem;margin-top:14px}
+.cprow{border:0;background:none;font:inherit;color:inherit;cursor:pointer;display:grid;justify-items:center;gap:2px}.cprow span{font-size:.8rem;color:#0066CC}
 @media (max-width:900px){
   .nav-in>a.v,.nav-in>.lbtn,.nav-in>.login{display:none}
   .menu{display:grid;place-items:center}
@@ -1109,6 +1193,230 @@ footer{font-size:.92rem}
   .counts,.who4,.halls,.strip3{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){.col,.belt{animation:none}.js .rv{opacity:1;transform:none;transition:none}.bar i{transition:none}}
+
+/* ===== works feed ===== */
+/* ===== ผลงาน — TikTok-style feed (all rules scoped under .tk) ===== */
+.tk{
+  --tk-h: calc(100vh - 64px);
+  --tk-gold:#FFB81C; --tk-ink:#fff; --tk-dim:rgba(255,255,255,.78); --tk-bg:#0B0B0F;
+  --tk-col:1100px; --tk-rail:64px;
+  position:relative; background:#000; color:var(--tk-ink);
+  font-family:"IBM Plex Sans Thai",system-ui,-apple-system,"Segoe UI",sans-serif;
+  height:var(--tk-h); overflow:hidden; isolation:isolate;
+}
+@supports (height:100svh){ .tk{ --tk-h: calc(100svh - 64px); } }
+.tk *,.tk *::before,.tk *::after{ box-sizing:border-box; }
+.tk svg{ width:100%; height:100%; display:block; }
+.tk button{ font:inherit; color:inherit; background:none; border:0; padding:0; cursor:pointer; }
+.tk a{ color:inherit; text-decoration:none; }
+.tk :focus-visible{ outline:2px solid var(--tk-gold); outline-offset:3px; border-radius:10px; }
+
+/* feed = its own scroll container */
+.tk-feed{
+  height:100%; overflow-y:auto; overflow-x:hidden; overscroll-behavior-y:contain;
+  scroll-snap-type:y mandatory; scrollbar-width:none; outline:none;
+}
+.tk-feed::-webkit-scrollbar{ display:none; }
+.tk-item{
+  position:relative; height:var(--tk-h); width:100%; overflow:hidden;
+  scroll-snap-align:start; scroll-snap-stop:always; background:var(--tk-bg);
+}
+
+/* top HUD: progress + counter */
+.tk-hud{
+  position:absolute; z-index:6; top:0; left:0; right:0; pointer-events:none;
+  display:flex; align-items:center; gap:12px;
+  padding:12px max(16px, calc((100% - var(--tk-col)) / 2)) 0;
+  transition:opacity .3s;
+}
+.tk-bars{ flex:1; display:flex; gap:4px; }
+.tk-bars i{ flex:1; height:3px; border-radius:2px; background:rgba(255,255,255,.25); transition:background .25s; }
+.tk-bars i.is-done{ background:rgba(255,255,255,.75); }
+.tk-bars i.is-on{ background:var(--tk-gold); }
+.tk-count{ font-size:13px; font-variant-numeric:tabular-nums; color:var(--tk-dim); text-shadow:0 1px 4px rgba(0,0,0,.6); white-space:nowrap; }
+.tk-count b{ color:#fff; font-weight:600; }
+.tk.is-intro .tk-hud{ opacity:0; }
+
+/* media */
+.tk-bg{
+  position:absolute; inset:-40px; width:calc(100% + 80px); height:calc(100% + 80px);
+  object-fit:cover; filter:blur(28px) brightness(.38) saturate(1.2); transform:scale(1.05);
+  pointer-events:none;
+}
+.tk-stage{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  padding:40px 0 clamp(80px, 26vh, 220px);
+}
+.tk-frame{
+  position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; background:#000;
+  box-shadow:0 20px 60px rgba(0,0,0,.5); touch-action:manipulation;
+}
+.tk-shot,.tk-vid{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; display:block; }
+.tk-vid{ background:transparent; opacity:0; transition:opacity .35s; }
+.tk-vid.is-ready{ opacity:1; }
+.tk-work:not(.has-video) .tk-shot{ animation:tk-kb 22s ease-in-out infinite alternate; transform-origin:30% 40%; }
+.tk-work:not(.has-video):not(.is-active) .tk-shot{ animation-play-state:paused; }
+@keyframes tk-kb{ from{ transform:scale(1) translate(0,0); } to{ transform:scale(1.07) translate(-2%,-1.5%); } }
+
+.tk-play{
+  position:absolute; left:50%; top:50%; width:64px; height:64px; margin:-32px 0 0 -32px;
+  padding:16px 14px 16px 18px; border-radius:50%; background:rgba(0,0,0,.55); color:#fff;
+  backdrop-filter:blur(6px); opacity:0; pointer-events:none; transition:opacity .2s;
+}
+.tk-item.is-paused .tk-play{ opacity:1; pointer-events:auto; }
+
+.tk-shade{
+  position:absolute; inset:auto 0 0 0; height:55%; pointer-events:none;
+  background:linear-gradient(to top, rgba(0,0,0,.82), rgba(0,0,0,.45) 45%, transparent);
+}
+
+/* caption bottom-left */
+.tk-cap{
+  position:absolute; z-index:3; left:16px; right:calc(var(--tk-rail) + 24px); bottom:24px;
+  text-shadow:0 1px 3px rgba(0,0,0,.7), 0 0 18px rgba(0,0,0,.45);
+}
+.tk-who{ margin:0 0 4px; font-size:15px; line-height:1.4; color:var(--tk-dim); }
+.tk-who b{ color:#fff; font-weight:600; margin-right:6px; }
+.tk-who span{ white-space:nowrap; }
+.tk-title{
+  margin:0 0 6px; font-family:"Anuphan","IBM Plex Sans Thai",system-ui,sans-serif;
+  font-weight:700; font-size:clamp(28px, 7.5vw, 46px); line-height:1.1; letter-spacing:-.01em;
+  overflow-wrap:anywhere;
+}
+.tk-desc{ margin:0 0 10px; font-size:15px; line-height:1.5; color:var(--tk-dim); max-width:46ch; }
+.tk-chips{ margin:0; display:flex; flex-wrap:wrap; gap:6px; text-shadow:none; }
+.tk-chip{
+  display:inline-flex; align-items:center; gap:5px; padding:4px 10px; border-radius:999px;
+  font-size:13px; line-height:1.4; background:rgba(255,255,255,.14); color:#fff;
+  backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+}
+.tk-chip em{ font-style:normal; font-weight:600; }
+.tk-award{ background:var(--tk-gold); color:#1a1200; }
+
+/* right action rail */
+.tk-rail{
+  position:absolute; z-index:4; right:10px; bottom:28px; width:var(--tk-rail);
+  display:flex; flex-direction:column; align-items:center; gap:14px;
+}
+.tk-act{ display:flex; flex-direction:column; align-items:center; gap:3px; color:#fff; -webkit-tap-highlight-color:transparent; }
+.tk-act .tk-ic{
+  position:relative; width:48px; height:48px; padding:12px; border-radius:50%;
+  background:rgba(255,255,255,.14); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  transition:transform .15s, background .2s, color .2s;
+}
+.tk-act:hover .tk-ic{ background:rgba(255,255,255,.24); }
+.tk-act:active .tk-ic{ transform:scale(.9); }
+.tk-act small{ font-size:12px; line-height:1.2; text-shadow:0 1px 3px rgba(0,0,0,.8); }
+.tk-mute .tk-i-on{ display:none; }
+.tk-mute[aria-pressed="true"] .tk-i-on{ display:block; }
+.tk-mute[aria-pressed="true"] .tk-i-off{ display:none; }
+.tk-mute[aria-pressed="true"] .tk-ic{ background:var(--tk-gold); color:#1a1200; }
+.tk-like[aria-pressed="true"] .tk-ic{ color:var(--tk-gold); }
+.tk-like.is-pop .tk-ic{ animation:tk-pop .4s ease; }
+@keyframes tk-pop{ 40%{ transform:scale(1.25); } 100%{ transform:scale(1); } }
+
+/* heart burst */
+.tk-burst{ position:absolute; z-index:5; width:0; height:0; pointer-events:none; }
+.tk-burst .tk-bh{
+  position:absolute; width:96px; height:96px; left:-48px; top:-48px; color:var(--tk-gold);
+  filter:drop-shadow(0 4px 14px rgba(0,0,0,.45)); animation:tk-heart .8s cubic-bezier(.2,.9,.3,1.2) forwards;
+}
+.tk-burst i{
+  position:absolute; left:-4px; top:-4px; width:8px; height:8px; border-radius:50%; background:var(--tk-gold);
+  animation:tk-spark .7s ease-out forwards;
+}
+@keyframes tk-heart{ 0%{ transform:scale(.3) rotate(-12deg); opacity:0; } 25%{ transform:scale(1.15) rotate(-8deg); opacity:1; } 60%{ transform:scale(1) rotate(-8deg); opacity:1; } 100%{ transform:scale(1.1) translateY(-60px) rotate(-8deg); opacity:0; } }
+@keyframes tk-spark{ 0%{ transform:translate(0,0) scale(1); opacity:1; } 100%{ transform:translate(var(--dx),var(--dy)) scale(.3); opacity:0; } }
+.tk-act .tk-burst{ left:50%; top:24px; }
+.tk-act .tk-burst .tk-bh{ width:56px; height:56px; left:-28px; top:-28px; }
+
+/* first-item hint */
+.tk-hint{
+  position:absolute; z-index:4; left:50%; top:52px; transform:translateX(-50%); margin:0;
+  display:flex; align-items:center; gap:6px; padding:6px 14px 6px 10px; border-radius:999px;
+  background:rgba(0,0,0,.55); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  font-size:13px; white-space:nowrap; transition:opacity .5s, transform .5s;
+}
+.tk-hint span{ width:16px; height:16px; color:var(--tk-gold); }
+.tk.is-scrolled .tk-hint{ opacity:0; transform:translate(-50%,-8px); pointer-events:none; }
+
+/* intro / outro cards */
+.tk-intro,.tk-outro{ display:flex; align-items:center; justify-content:center; }
+.tk-mosaic{
+  position:absolute; inset:-4%; display:grid; grid-template-columns:repeat(2,1fr); gap:6px;
+  opacity:.28; filter:saturate(.8); transform:rotate(-6deg) scale(1.15); pointer-events:none;
+}
+.tk-mosaic img{ width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:6px; display:block; }
+.tk-intro::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse at center, rgba(11,11,15,.55), rgba(11,11,15,.94) 70%);
+}
+.tk-card{ position:relative; z-index:2; width:100%; max-width:720px; padding:24px 16px; text-align:center; }
+.tk-kicker{ margin:0 0 10px; color:var(--tk-gold); font-size:14px; font-weight:600; letter-spacing:.04em; }
+.tk-h{
+  margin:0 0 14px; font-family:"Anuphan","IBM Plex Sans Thai",system-ui,sans-serif; font-weight:700;
+  font-size:clamp(30px, 8vw, 60px); line-height:1.12; text-wrap:balance;
+}
+.tk-sub{ margin:0 auto 10px; font-size:clamp(16px, 4.2vw, 20px); line-height:1.55; color:#fff; max-width:34em; text-wrap:balance; }
+.tk-note{ margin:0 0 30px; font-size:14px; color:var(--tk-dim); }
+.tk-go{
+  display:inline-flex; flex-direction:column; align-items:center; gap:8px;
+  font-size:16px; font-weight:600; color:#fff;
+}
+.tk-bounce{ width:44px; height:44px; padding:10px; border-radius:50%; background:var(--tk-gold); color:#1a1200; animation:tk-bob 1.6s ease-in-out infinite; }
+@keyframes tk-bob{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(8px); } }
+
+.tk-outro{ background:radial-gradient(ellipse at 50% 0%, #1b1a22, var(--tk-bg) 65%); }
+.tk-outro .tk-card{ max-width:860px; }
+.tk-outro .tk-sub{ font-size:15px; color:var(--tk-dim); margin-bottom:20px; }
+.tk-list{
+  list-style:none; margin:0 0 26px; padding:0; display:flex; flex-wrap:wrap; justify-content:center; gap:8px;
+}
+.tk-list li{ padding:6px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.22); font-size:14px; }
+.tk-btns{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+.tk-btn{
+  display:inline-flex; align-items:center; gap:8px; min-height:46px; padding:0 20px; border-radius:999px;
+  border:1px solid rgba(255,255,255,.35); font-weight:600; font-size:15px;
+}
+.tk-btn svg{ width:18px; height:18px; }
+.tk-btn-main{ background:var(--tk-gold); border-color:var(--tk-gold); color:#1a1200 !important; }
+.tk-btn:hover{ filter:brightness(1.08); }
+
+/* toast */
+.tk-toast{
+  position:absolute; z-index:8; left:50%; bottom:110px; transform:translate(-50%,10px); opacity:0;
+  padding:9px 16px; border-radius:999px; background:rgba(20,20,24,.92); color:#fff; font-size:14px;
+  pointer-events:none; transition:opacity .2s, transform .2s; white-space:nowrap;
+}
+.tk-toast.is-on{ opacity:1; transform:translate(-50%,0); }
+
+/* desktop: centered column, media on top, caption under-left, rail right */
+@media (min-width:900px){
+  .tk{ --tk-rail:72px; }
+  .tk-stage{ padding:44px max(24px, calc((100% - var(--tk-col)) / 2)) 0; align-items:flex-start; justify-content:flex-start; }
+  .tk-frame{
+    width:min(calc(100% - var(--tk-rail) - 24px), calc((var(--tk-h) - 250px) * 16 / 9));
+    border-radius:16px; margin-top:8px;
+  }
+  .tk-cap{ left:max(24px, calc((100% - var(--tk-col)) / 2)); bottom:30px; }
+  .tk-rail{ right:max(24px, calc((100% - var(--tk-col)) / 2)); bottom:auto; top:52px; }
+  .tk-hint{ top:auto; bottom:30px; left:auto; right:max(24px, calc((100% - var(--tk-col)) / 2 + var(--tk-rail) + 24px)); transform:none; }
+  .tk.is-scrolled .tk-hint{ transform:translateY(8px); }
+  .tk-shade{ height:45%; }
+  .tk-mosaic{ grid-template-columns:repeat(4,1fr); gap:10px; }
+  .tk-toast{ bottom:40px; }
+}
+@media (min-width:900px) and (max-height:700px){
+  .tk-frame{ width:min(calc(100% - var(--tk-rail) - 24px), calc((var(--tk-h) - 200px) * 16 / 9)); }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .tk-feed{ scroll-behavior:auto; }
+  .tk-work .tk-shot,.tk-bounce,.tk-like.is-pop .tk-ic{ animation:none !important; }
+  .tk-burst .tk-bh{ animation-duration:.01s; animation-delay:.5s; }
+  .tk-burst i{ display:none; }
+}
+
 </style>
 </head>
 <body>
@@ -1135,11 +1443,18 @@ footer{font-size:.92rem}
 <div data-view="home">
   <section class="hx" id="hx">
     <div class="wrap c hx-copy">
-      <h1 class="rv">ชุมชนที่เปลี่ยนเด็กมัธยม<br>ให้เป็น<span class="rot"><span id="rotw">คนสร้างเกม</span></span></h1>
-      <p class="lead rv">Hamster Hub สอน พาลงมือสร้าง และพาลงสนามจริง ตั้งแต่เกม แอป จนถึง IoT ให้ทุกไอเดียกลายเป็นผลงาน และทุกผลงานพาน้องไปได้ไกลกว่าที่คิด</p>
-      <nav class="quick rv" aria-label="ทางลัด">
-        <a href="#courses">ดูคอร์สที่เปิดรับ</a><a href="#activity">กิจกรรมที่กำลังจะมา</a><a href="#home" data-to="aud">สำหรับผู้ปกครอง</a>
-      </nav>
+      <p class="hx-eb rv">Hamster Hub · สถาบันสอนทำเกม แอป และ IoT สำหรับเด็กมัธยม</p>
+      <h1 class="rv">สอนน้องมัธยมสร้างผลงานจริง<br><span class="g">ไว้ยื่นมหาวิทยาลัย</span></h1>
+      <p class="lead rv">เรียนเป็นคอร์ส ลงแข่ง และเก็บทุกชิ้นเป็นพอร์ต <span class="nw">รุ่นพี่</span> DEK69 ใช้พอร์ตจากที่นี่ติดมหาวิทยาลัยแล้ว 48 คน</p>
+      <div class="offer rv">
+        <a class="of-main" href="#courses">
+          <span class="of-tag">เปิดรับสมัคร</span>
+          <span class="of-t"><b>Port Express</b> คอร์สทำพอร์ตเกม 2 เดือน สำหรับ ม.6</span>
+          <span class="of-meta"><span>เริ่ม 1 ธ.ค. 2569</span><span>เรียน จันทร์ พุธ ศุกร์</span><span class="of-p"><s>9,990</s> <b>5,990 บาท</b></span></span>
+        </a>
+        <div class="of-cta"><a class="of-b1" href="#courses">ดูรายละเอียดคอร์ส</a><a class="of-b2" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">ทัก LINE ถามทีม</a></div>
+        <p class="of-note">จองที่นั่งก่อน ยังไม่ต้องจ่าย คุยกับทีมแล้วค่อยจ่ายงวดแรก</p>
+      </div>
     </div>
     <div class="hx3" id="hx3" aria-hidden="true"><canvas id="hxCanvas"></canvas><div class="hx-say" id="hxSay"></div></div>
   </section>
@@ -1150,8 +1465,8 @@ footer{font-size:.92rem}
     <div class="f4">
       <a class="f4i rv" href="#courses" style="--bg:#FFF1D6;--ac:#B26A00"><span class="pod"><img src="img/n-read.webp" alt="" loading="lazy"><i class="bubble">ไปเรียนกัน!</i></span><span class="w">เรียน</span><span class="d">คอร์สและค่ายที่พาจากศูนย์ ไปถึงพอร์ตที่พร้อมยื่น</span><span class="go">ดูคอร์สทั้งหมด <b>→</b></span></a>
       <a class="f4i rv" href="#works" style="--bg:#E3F3FF;--ac:#1D5FB8"><span class="pod"><img src="img/n-build.webp" alt="" loading="lazy"><i class="bubble">ดูของจริง!</i></span><span class="w">สร้าง</span><span class="d">ผลงานจริง ที่มีคนเล่น คนใช้ และคนจำได้</span><span class="go">ดูผลงาน <b>→</b></span></a>
-      <a class="f4i rv" href="#activity" style="--bg:#FFE6EE;--ac:#B23A68"><span class="pod"><img src="img/n-win.webp" alt="" loading="lazy"><i class="bubble">ลุยเลย!</i></span><span class="w">ลงสนาม</span><span class="d">Game Jam ค่าย และการแข่งขันกับมหาวิทยาลัย ตลอดทั้งปี</span><span class="go">ดูกิจกรรม <b>→</b></span></a>
-      <a class="f4i rv" href="#works" data-go="dek" style="--bg:#E6F7EC;--ac:#1E7A4C"><span class="pod"><img src="img/n-grad.webp" alt="" loading="lazy"><i class="bubble">เจอกันที่มหาลัย!</i></span><span class="w">ไปต่อ</span><span class="d">จากพอร์ตที่เล่าได้ สู่คณะที่ใช่ในมหาวิทยาลัย</span><span class="go">ดูรุ่นพี่ <b>→</b></span></a>
+      <a class="f4i rv" href="#activity" style="--bg:#FFE6EE;--ac:#B23A68"><span class="pod"><img src="img/n-win.webp" alt="" loading="lazy"><i class="bubble">ลุยเลย!</i></span><span class="w">แข่งขัน</span><span class="d">ค่าย และงานแข่งทำเกมในเวลาจำกัด (Game Jam) ที่จัดร่วมกับมหาวิทยาลัย</span><span class="go">ดูกิจกรรม <b>→</b></span></a>
+      <a class="f4i rv" href="#works" data-go="dek" style="--bg:#E6F7EC;--ac:#1E7A4C"><span class="pod"><img src="img/n-grad.webp" alt="" loading="lazy"><i class="bubble">เจอกันที่มหาลัย!</i></span><span class="w">ยื่นมหาลัย</span><span class="d">จากพอร์ตที่เล่าได้ สู่คณะที่ใช่ในมหาวิทยาลัย</span><span class="go">ดูรุ่นพี่ <b>→</b></span></a>
     </div>
   </div></section>
 
@@ -1161,8 +1476,8 @@ footer{font-size:.92rem}
     <div class="inum">
       <div class="rv"><b data-count="37">37</b><span>ผลงาน<br>ที่เผยแพร่แล้ว</span></div>
       <div class="rv"><b data-count="80">80</b><span>ผู้สร้าง<br>ผลงาน</span></div>
-      <div class="rv"><b data-count="12">12</b><span>ผลงาน<br>ถึงรอบ NSC Finalist</span></div>
-      <div class="rv"><b data-count="5">5</b><span>ปี<br>ของ GameJam X</span></div>
+      <div class="rv"><b data-count="12">12</b><span>ผลงานเข้ารอบชิงการแข่งขัน<br>ซอฟต์แวร์ระดับประเทศ (NSC)</span></div>
+      <div class="rv"><b data-count="5">5</b><span>ปีที่จัดงานแข่งทำเกม<br>GameJam X</span></div>
     </div>
   </div></section>
 
@@ -1171,7 +1486,7 @@ footer{font-size:.92rem}
     <p class="eyebrow rv">ตอนนี้ที่ Hamster Hub</p>
     <h2 class="rv">เปิดรับสมัคร และกำลังจะมาถึง</h2>
     <div class="banners">
-      <a class="bn px-bn rv" href="https://www.hamsterhub.co/portex" target="_blank" rel="noopener" aria-label="Port Express คอร์สทำพอร์ต 2 เดือน เปิดหน้าคอร์ส">
+      <a class="bn px-bn rv" href="#courses" aria-label="Port Express คอร์สทำพอร์ต 2 เดือน เปิดหน้าคอร์ส">
         <div class="screen">
           <video class="pxv" src="img/portex-banner.mp4" poster="img/portex-poster.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video><div class="layer scan"></div>
         </div>
@@ -1218,11 +1533,11 @@ footer{font-size:.92rem}
     <div class="wrap">
       <p class="eyebrow rv">ผลงานเด่นประจำปี</p>
       <h2 class="hofmark rv">Hall of Fame 2026</h2>
-      <p class="sub rv" style="color:#C9C9D0">สิบผลงานที่น้องสร้างเอง และทดสอบกับผู้เล่นจริง</p>
+      <p class="sub rv" style="color:#C9C9D0">10 เกมเด่นปี 2569 ที่น้องสร้างเอง และให้คนจริงทดลองเล่น</p>
     </div>
     <div class="cf rv" id="cf" aria-roledescription="carousel" aria-label="ผลงานใน Hall of Fame"><div class="cf-t" id="cfT"></div></div>
     <div class="wrap">
-      <div class="cf-cap"><button class="cf-b" type="button" id="cfPrev" aria-label="ผลงานก่อนหน้า">←</button><p aria-live="polite"><b><span class="cf-r" id="cfR">I</span><span id="cfN">StressStrike</span></b></p><button class="cf-b" type="button" id="cfNext" aria-label="ผลงานถัดไป">→</button></div>
+      <div class="cf-cap"><button class="cf-b" type="button" id="cfPrev" aria-label="ผลงานก่อนหน้า">←</button><p aria-live="polite"><b><span id="cfN">StressStrike</span></b><span class="cf-by" id="cfR">โดย น้องวิน</span></p><button class="cf-b" type="button" id="cfNext" aria-label="ผลงานถัดไป">→</button></div>
       <div class="cf-prog" id="cfProg" aria-hidden="true"></div>
       <div class="cta" style="justify-content:center"><a class="gbtn" href="#works">เข้าสู่ Hall of Fame</a></div>
     </div>
@@ -1269,30 +1584,81 @@ footer{font-size:.92rem}
       <figure class="nk-q rv"><blockquote>“ไม่เคยทำเกม ไม่เคยใช้ Unity มาก่อนเลย แต่สองวันใน Game Jam ทำให้ได้ลงมือจริง ขอบคุณชุมชน Hamster Hub และแอดมินที่สอนหลายอย่างมาก”</blockquote><cite>ผู้เข้าร่วม Hamster Hub Game Jam เล่าไว้บน itch.io (แปลจากภาษาอังกฤษ)</cite></figure>
     </div>
   </section>
-  <section class="ptn"><div class="wrap c"><p class="au-with">ทำงานร่วมกับ</p><div class="logos" style="justify-content:center"><img src="img/p-it.webp" alt="คณะเทคโนโลยีสารสนเทศ สจล." loading="lazy"><img src="img/p-iote.webp" alt="IoTE สจล." loading="lazy"><img src="img/p-eduverse.webp" alt="EDUverse" loading="lazy"></div></div></section>
+  <section class="ptn"><div class="wrap c"><p class="au-with">จัดกิจกรรมร่วมกับ</p><div class="logos" style="justify-content:center"><img src="img/p-it.webp" alt="คณะเทคโนโลยีสารสนเทศ สจล." loading="lazy"><img src="img/p-iote.webp" alt="IoTE สจล." loading="lazy"><img src="img/p-eduverse.webp" alt="EDUverse" loading="lazy"></div><p class="ptn-cap">คณะเทคโนโลยีสารสนเทศ สจล. · ภาควิชาวิศวกรรมระบบ IoT และสารสนเทศ (IoTE) สจล. · EDUverse</p></div></section>
 </div>
 
 <!-- ===================== COURSES ===================== -->
 <div data-view="courses">
-  <section class="phead"><div class="wrap">
-    <h1 class="rv">คอร์ส</h1>
-    <p class="lead rv" style="margin-inline:auto">คอร์สที่พาน้องจากศูนย์ ไปถึงผลงานจริงที่พร้อมยื่นมหาวิทยาลัย</p>
+  <section class="cx-top"><div class="wrap cx-grid">
+    <div class="cx-main">
+      <p class="cx-crumb"><a href="#home">หน้าแรก</a> › <a href="#courses">คอร์ส</a> › Port Express</p>
+      <h1>Port Express<br><span>คอร์สทำพอร์ตเกม 2 เดือน สำหรับ ม.6</span></h1>
+      <p class="cx-sum">สำหรับน้อง ม.6 ที่ยังไม่มีพอร์ต หรือมีแต่ยังไม่พร้อมยื่น ใน 2 เดือนจะได้ทำเกมที่เล่นได้จริง 3 เกม ทำพอร์ตกับเทรนเนอร์ และซ้อมนำเสนอกับอาจารย์มหาวิทยาลัย จนพร้อมยื่นรอบ Portfolio</p>
+      <ul class="cx-facts">
+        <li><b>เริ่ม 1 ธ.ค. 2569</b><span>วันเริ่มเรียน</span></li>
+        <li><b>จันทร์ พุธ ศุกร์</b><span>วันเรียน</span></li>
+        <li><b>2 เดือน</b><span>8 สัปดาห์</span></li>
+        <li><b>3 เกม</b><span>ผลงานในพอร์ต</span></li>
+        <li><b>5 ครั้ง</b><span>ตรวจงานพร้อมคำแนะนำ</span></li>
+      </ul>
+      <div class="cx-media"><video class="pxv" src="img/portex-banner.mp4" poster="img/portex-poster.webp" autoplay muted loop playsinline preload="metadata" aria-label="วิดีโอแนะนำคอร์ส Port Express"></video></div>
+    </div>
+    <aside class="cx-buy" aria-label="ราคาและการสมัคร">
+      <p class="cx-price"><b>5,990</b> บาท <s>9,990</s></p>
+      <p class="cx-save">ถูกกว่าคอร์ส Standard 5 เดือน 4,000 บาท เนื้อหาครบทุกหัวข้อเท่ากัน</p>
+      <a class="cx-b1" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">จองที่นั่งทาง LINE</a>
+      <p class="cx-note">ยังไม่ต้องจ่ายตอนจอง ทีมจะคุยเป้ามหาวิทยาลัยกับตารางเรียนก่อน แล้วค่อยจ่ายงวดแรก</p>
+      <ul class="cx-inc"><li>เกมที่เล่นได้จริง 3 เกม ขึ้นเว็บ itch.io ให้กรรมการกดเล่นได้</li><li>Pitch Deck (สไลด์นำเสนอ) และพอร์ตที่แก้กับเทรนเนอร์จนพร้อมส่ง</li><li>อาจารย์มหาวิทยาลัยฟังผลงานทุก 2 สัปดาห์ พร้อมซ้อมสัมภาษณ์</li><li>ได้นำเสนองานต่อคนจริงอย่างน้อย 5 คน</li></ul>
+      <button class="cx-copy" type="button" data-copy="@smart-school">LINE: @smart-school <span>คัดลอก</span></button>
+      <p class="cx-tel">หรือโทร <a href="tel:0900602555">090-060-2555</a></p>
+    </aside>
   </div></section>
-  <section class="sec" style="padding-top:10px"><div class="wrap">
-    <p class="eyebrow rv">เปิดรับสมัคร</p>
-    <a class="bn px-bn big rv" href="https://www.hamsterhub.co/portex" target="_blank" rel="noopener" aria-label="Port Express เปิดหน้าคอร์ส">
-      <div class="screen">
-        <video class="pxv" src="img/portex-banner.mp4" poster="img/portex-poster.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video><div class="layer scan"></div>
-      </div>
-      <div class="bar8">
-        <div><p class="blink">● NOW OPEN</p><p class="b8t">Port Express คอร์สทำพอร์ต 2 เดือน สำหรับ ม.6</p><p class="b8s">เริ่ม 1 ธ.ค. เรียนจันทร์ พุธ ศุกร์ <span>5,990.-</span></p></div>
-        <span class="pbtn gold">▶ ไปที่หน้าคอร์ส</span>
-      </div>
-    </a>
-    <div class="cfacts rv"><div><b>3</b><span>ผลงานจริงใน 2 เดือน</span></div><div><b>5</b><span>Checkpoint มี feedback ทุกด่าน</span></div><div><b>2</b><span>สัปดาห์ครั้ง อาจารย์มหาลัยฟังผลงาน</span></div></div>
-    <p class="lead rv c" style="margin:64px auto 0">คอร์สอื่นจะเปิดรับรอบถัดไป ติดตามก่อนใครได้ทาง LINE</p>
-    <div class="c rv" style="margin-top:20px"><a class="btn btn-line" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">LINE @smart-school</a></div>
+
+  <section class="cx-sec"><div class="wrap cx-narrow">
+    <h2>เรียนอะไรบ้างใน 2 เดือน</h2>
+    <p class="cx-lead">แบ่งเป็น 3 ระดับ เหมือนเลื่อนขั้นในเกม เริ่มจากทำเกมแรกให้สนุก จนถึงทำเกมใหญ่เป็นทีม ทุกหัวข้อสอนด้วยโปรแกรม Unity ที่สตูดิโอเกมใช้จริง</p>
+    <div class="cx-acc">
+      <details open><summary><span class="lv" style="--c:#C27A3A">ระดับ 1</span><b>ทำเกมให้สนุกเป็น</b><em>5 หัวข้อ</em></summary>
+        <ul><li><b>หลักการออกแบบเกม</b>คิดเกมให้คนเล่นแล้วสนุก</li><li><b>ใช้ Unity ให้คล่อง</b>เครื่องมือหลักที่ใช้สร้างเกม</li><li><b>ออกแบบด่าน</b>ทำด่านให้เล่นแล้วอยากไปต่อ</li><li><b>สร้างฉาก 3 มิติ</b>ทำแผนที่และสภาพแวดล้อมในเกม</li><li><b>AI พื้นฐาน</b>ทำศัตรูที่ขยับและตัดสินใจเองได้</li></ul></details>
+      <details><summary><span class="lv" style="--c:#8A93A6">ระดับ 2</span><b>ออกแบบเกมให้ขายได้</b><em>5 หัวข้อ</em></summary>
+        <ul><li><b>ความรู้สึกตอนเล่น</b>ทำให้กดแล้วลื่น ตอบสนองดี</li><li><b>แอนิเมชัน</b>ทำให้ตัวละครขยับแล้วมีชีวิต</li><li><b>การคุมกล้อง</b>มุมกล้องที่ทำให้เกมดูเป็นหนัง</li><li><b>AI ระดับกลาง</b>ศัตรูฉลาดขึ้น เล่นแล้วท้าทาย</li><li><b>เทคนิคการนำเสนอ</b>พูดให้กรรมการเข้าใจและจำงานได้</li></ul></details>
+      <details><summary><span class="lv" style="--c:#C9A227">ระดับ 3</span><b>ทำเกมใหญ่เป็นทีม แล้วเลือกสายที่ถนัด</b><em>7 หัวข้อ</em></summary>
+        <ul><li><b>สายศิลป์</b>ออกแบบแผนที่ขั้นสูง ปั้นโมเดล 3 มิติเอง และจัดแสงให้ฉากสวย</li><li><b>สายโปรแกรมเมอร์</b>AI ระดับเกมจริง และการเขียนโค้ดเป็นระบบ (OOP)</li><li><b>สายผู้กำกับ</b>คุมทีมให้ไปทางเดียวกัน และวางแผนงานให้ทันกำหนด</li></ul></details>
+    </div>
   </div></section>
+
+  <section class="cx-sec alt"><div class="wrap cx-narrow">
+    <h2>ตัวอย่างผลงานนักเรียน</h2>
+    <p class="cx-lead">StressStrike โดยน้องวิน ได้รางวัลชนะเลิศ OBEC Roboplayground และเข้ารอบสุดท้าย TICTA นี่คือระดับงานที่น้องจะได้ทำ</p>
+    <div class="cx-demo"><video controls playsinline preload="none" poster="img/work-stressstrike.webp" src="https://www.hamsterhub.co/godang/hall-of-fame/videos/stressstrike.mp4"></video></div>
+    <p class="c" style="margin-top:22px"><a class="cx-link" href="#works">ดูผลงานนักเรียนทั้งหมด →</a></p>
+  </div></section>
+
+  <section class="cx-sec"><div class="wrap cx-narrow">
+    <h2>รุ่นพี่ที่เรียนกับเราแล้วติดมหาวิทยาลัย</h2>
+    <p class="cx-lead">รุ่น DEK69 ติดแล้ว 48 คน ที่ สจล. 24 คน มหิดล 9 คน จุฬาฯ 8 คน และเกษตรศาสตร์ 7 คน ตัวอย่างบางส่วน</p>
+    <ul class="cx-seniors" id="cxSen"></ul>
+  </div></section>
+
+  <section class="cx-sec alt"><div class="wrap cx-narrow">
+    <h2>คำถามที่ผู้ปกครองและน้องๆ ถามบ่อย</h2>
+    <div class="cx-faq">
+      <details><summary>ไม่เคยทำเกมเลย เรียนได้ไหม</summary><p>ได้ ระดับ 1 เริ่มจากศูนย์ สอนตั้งแต่ใช้โปรแกรม Unity และคิดเกมให้สนุก ก่อนขยับไปทำงานที่ยากขึ้น</p></details>
+      <details><summary>ต่างจากคอร์ส Standard ยังไง</summary><p>เนื้อหาครบทุกหัวข้อเท่ากัน คอร์ส Standard เรียน 5 เดือน ราคา 9,990 บาท ส่วน Port Express อัดให้จบใน 2 เดือน ราคา 5,990 บาท สำหรับน้อง ม.6 ที่เวลาก่อนยื่นพอร์ตเหลือน้อย</p></details>
+      <details><summary>ต้องจ่ายเงินตอนจองเลยไหม</summary><p>ยังไม่ต้อง กดจองแล้วทีมจะทัก LINE ไปคุยเป้ามหาวิทยาลัยกับตารางเรียนก่อน ตกลงแล้วค่อยจ่ายงวดแรก</p></details>
+      <details><summary>ไม่เคยนำเสนองาน จะสัมภาษณ์รอดไหม</summary><p>มีหัวข้อฝึกนำเสนอโดยตรง และอาจารย์มหาวิทยาลัยจะฟังผลงานทุก 2 สัปดาห์ พร้อมซ้อมสัมภาษณ์ก่อนยื่นจริง</p></details>
+      <details><summary>ถ้าพลาดรอบ Portfolio จะเป็นยังไง</summary><p>ต้องไปแข่งคะแนนสอบกับคนทั้งประเทศแทน ทั้งที่คณะเกมและดิจิทัลหลายที่รับรอบ Portfolio เป็นหลัก และที่นั่งรอบหลังเหลือน้อย</p></details>
+      <details><summary>ผู้ปกครองจะรู้ได้ยังไงว่าลูกไปถึงไหนแล้ว</summary><p>คอร์สมีจุดตรวจงาน 5 ครั้ง แต่ละครั้งมีคำแนะนำว่าผ่านอะไรแล้ว ต้องแก้อะไร ถามความคืบหน้ากับทีมทาง LINE ได้ตลอด</p></details>
+      <details><summary>เรียนออนไลน์หรือที่ไหน กี่โมง</summary><p>ทีมจะแจ้งรูปแบบและเวลาเรียนตอนคุยทาง LINE ก่อนจ่ายเงิน ถามได้เลยที่ @smart-school</p></details>
+    </div>
+  </div></section>
+
+  <section class="cx-sec dark c"><div class="wrap cx-narrow">
+    <h2>คอร์สอื่นจะเปิดรอบถัดไป</h2>
+    <p class="cx-lead" style="color:#C8CEE6">ติดตามก่อนใครได้ทาง LINE หรือ Facebook ของ Hamster Hub</p>
+    <div class="follow" style="justify-content:center"><a class="btn btn-line" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">LINE @smart-school</a><a class="btn btn-ink" href="https://www.facebook.com/HamsterHubThailand" target="_blank" rel="noopener" style="background:#fff;color:#0B1640">Facebook</a></div>
+  </div></section>
+  <div class="cx-bar" aria-hidden="false"><span><b>5,990 บาท</b> <s>9,990</s><br><small>เริ่ม 1 ธ.ค. · ยังไม่ต้องจ่ายตอนจอง</small></span><a href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">จองที่นั่ง</a></div>
 </div>
 
 <!-- ===================== ACTIVITY ===================== -->
@@ -1303,10 +1669,10 @@ footer{font-size:.92rem}
       <div class="belt a-b2" style="--d:52s"><img src="img/k-dek70.webp" alt=""><img src="img/k-hallow.webp" alt=""><img src="img/k-afo.webp" alt=""><img src="img/k-ghost.webp" alt=""><img src="img/k-gamejam.webp" alt=""><img src="img/k-aicamp.webp" alt=""><img src="img/k-dek70.webp" alt=""><img src="img/k-hallow.webp" alt=""><img src="img/k-afo.webp" alt=""><img src="img/k-ghost.webp" alt=""><img src="img/k-gamejam.webp" alt=""><img src="img/k-aicamp.webp" alt=""></div>
     </div>
     <div class="wrap a-copy">
-      <p class="a-kick">ทั้งปี ไม่มีพัก</p>
-      <h1 class="a-t"><span>ลง</span><span>สนาม</span><span>จริง</span></h1>
-      <p class="lead">ค่าย การแข่งขัน และ Game Jam ที่ให้น้องได้ลงมือจริง แล้วได้ผลงานกลับไปใส่พอร์ต</p>
-      <div class="a-next"><span class="a-live">ถัดไป</span><b>All for One University รอบชิง</b><span class="a-cd" id="aCd">อีก 0 วัน</span></div>
+      <p class="a-kick">กิจกรรมของ Hamster Hub</p>
+      <h1 class="a-t"><span>ค่าย</span><span>แข่งขัน</span><span>Game Jam</span></h1>
+      <p class="lead">Game Jam คืองานแข่งทำเกมให้เสร็จในเวลาจำกัด ทุกกิจกรรมน้องได้ผลงานกลับไปใส่พอร์ต และหลายงานจัดร่วมกับคณะไอที สจล.</p>
+      <a class="a-next" href="https://www.hamsterhub.co/allforone" target="_blank" rel="noopener"><span class="a-live">ถัดไป</span><b>All for One University รอบชิง 14 พ.ย.</b><span class="a-cd" id="aCd">อีก 0 วัน</span><span class="a-go">ดูรายละเอียด →</span></a>
     </div>
   </section>
 
@@ -1340,19 +1706,254 @@ footer{font-size:.92rem}
 
 <!-- ===================== WORKS ===================== -->
 <div data-view="works">
-  <section class="hall c" id="hall"><div class="spot" aria-hidden="true"></div><div class="wrap">
-    <p class="crest rv">Hamster Hub · Class of 2026</p>
-    <h1 class="rv">Hall of Fame</h1>
-    <div class="rule rv"></div>
-    <p class="lead rv" style="margin-inline:auto">สิบผลงานเด่นประจำปี คัดจาก 37 ผลงาน ของผู้สร้าง 80 คน</p>
-    <a class="first rv" href="https://www.hamsterhub.co/go/hall-of-fame/stressstrike" target="_blank" rel="noopener" style="text-align:left">
-      <img src="img/work-stressstrike.webp" alt="StressStrike" loading="lazy">
-      <div><span class="rank">I</span><h2>StressStrike</h2><p class="by">โดย นายอัศวิน วิทูรย์ นิตยวรรธนะ (วิน)</p>
-        <div class="award"><span>OBEC Roboplayground Winner</span><span>TICTA Finalist</span></div>
-        <p class="more" style="margin-top:20px">ชมคลิปผลงานเต็ม</p></div>
-    </a>
-    <div class="halls" id="halls" style="text-align:left"></div>
-  </div></section>
+<section class="tk" aria-label="ผลงานจริงของน้องๆ Hamster Hub">
+  <div class="tk-hud" aria-hidden="true">
+    <div class="tk-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="tk-count"><b class="tk-count-n">0</b> / 10</div>
+  </div>
+  <div class="tk-feed" tabindex="0" aria-label="ฟีดผลงาน เลื่อนขึ้นลงหรือใช้ปุ่มลูกศรเพื่อดูทีละชิ้น">
+    <article class="tk-item tk-intro" data-kind="intro">
+      <div class="tk-mosaic" aria-hidden="true"><img src="img/work-stressstrike.webp" alt="" loading="lazy" decoding="async"><img src="img/work-beyond-the-board.webp" alt="" loading="lazy" decoding="async"><img src="img/work-eugation-strike.webp" alt="" loading="lazy" decoding="async"><img src="img/work-slash-speed.webp" alt="" loading="lazy" decoding="async"><img src="img/work-micro-immersive-sim.webp" alt="" loading="lazy" decoding="async"><img src="img/work-phi-krahang.webp" alt="" loading="lazy" decoding="async"><img src="img/work-midnight-at-roadside.webp" alt="" loading="lazy" decoding="async"><img src="img/work-hot-hot-hot.webp" alt="" loading="lazy" decoding="async"><img src="img/work-apocalypis-building.webp" alt="" loading="lazy" decoding="async"><img src="img/work-escape-rolling.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="tk-card">
+        <p class="tk-kicker">ผลงานปี 2569</p>
+        <h2 class="tk-h">ผลงานจริงของน้องๆ Hamster Hub</h2>
+        <p class="tk-sub">10 เกมเด่นปี 2569 คัดจาก 37 ผลงาน ของผู้สร้าง 80 คน</p>
+        <p class="tk-note">ทุกชิ้นบอกชื่อน้องที่สร้าง และกดดูหน้าผลงานเต็มได้</p>
+        <button type="button" class="tk-go" data-tk-next>เลื่อนดูได้เลย <span class="tk-bounce"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15M5.5 12.5L12 19l6.5-6.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span></button>
+      </div>
+    </article>
+    <article class="tk-item tk-work has-video" data-kind="work" data-i="0" data-link="https://www.hamsterhub.co/go/hall-of-fame/stressstrike" aria-label="ผลงานที่ 1 จาก 10: StressStrike">
+      <img class="tk-bg" src="img/work-stressstrike.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="tk-stage">
+        <div class="tk-frame">
+          <img class="tk-shot" src="img/work-stressstrike.webp" alt="ภาพจากเกม StressStrike โดย นายอัศวิน วิทูรย์ นิตยวรรธนะ" loading="lazy" decoding="async">
+          <video class="tk-vid" data-src="https://www.hamsterhub.co/godang/hall-of-fame/videos/stressstrike.mp4" poster="img/work-stressstrike.webp" muted loop playsinline preload="none" aria-label="คลิปจากเกม StressStrike"></video>
+          <button type="button" class="tk-play" aria-label="เล่นคลิป"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button>
+        </div>
+      </div>
+      <div class="tk-shade" aria-hidden="true"></div>
+      <p class="tk-hint"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V5M5.5 11.5L12 5l6.5 6.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>เลื่อนขึ้นเพื่อดูผลงานถัดไป</p>
+      <div class="tk-cap">
+        <p class="tk-who"><b>@วิน</b> <span>นายอัศวิน วิทูรย์ นิตยวรรธนะ</span></p>
+        <h3 class="tk-title">StressStrike</h3>
+        <p class="tk-desc">เกมที่น้องสร้างเองในคอร์สของ Hamster Hub</p>
+        <p class="tk-chips"><span class="tk-chip tk-year">ผลงานปี 2569</span><span class="tk-chip tk-award" title="OBEC Roboplayground Winner"><em>ได้รางวัล</em> OBEC Roboplayground</span><span class="tk-chip tk-award" title="TICTA Finalist"><em>เข้ารอบสุดท้าย</em> TICTA</span></p>
+      </div>
+      <div class="tk-rail">
+        <button type="button" class="tk-act tk-mute" aria-pressed="false" aria-label="เปิดเสียง"><span class="tk-ic"><span class="tk-i-off"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M16 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span class="tk-i-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span></span><small>เปิดเสียง</small></button>
+        <a class="tk-act tk-open" href="https://www.hamsterhub.co/go/hall-of-fame/stressstrike" target="_blank" rel="noopener" aria-label="ดูหน้าผลงาน StressStrike แบบเต็ม (เปิดแท็บใหม่)"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><small>ดูเต็ม</small></a>
+        <button type="button" class="tk-act tk-share" aria-label="คัดลอกลิงก์ผลงาน StressStrike"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4.4l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2M14 10a4.5 4.5 0 0 0-6.4-.4l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><small>แชร์</small></button>
+        <button type="button" class="tk-act tk-like" aria-pressed="false" aria-label="ชอบผลงานนี้"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.7 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.2 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z" fill="currentColor"/></svg></span><small>ชอบ</small></button>
+      </div>
+    </article>
+    <article class="tk-item tk-work" data-kind="work" data-i="1" data-link="https://www.hamsterhub.co/go/hall-of-fame/beyond-the-board" aria-label="ผลงานที่ 2 จาก 10: Beyond the Board">
+      <img class="tk-bg" src="img/work-beyond-the-board.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="tk-stage">
+        <div class="tk-frame">
+          <img class="tk-shot" src="img/work-beyond-the-board.webp" alt="ภาพจากเกม Beyond the Board โดย นายเพชรรัตน์ โกรเพ็ชร" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="tk-shade" aria-hidden="true"></div>
+      <div class="tk-cap">
+        <p class="tk-who"><b>@กัปตัน</b> <span>นายเพชรรัตน์ โกรเพ็ชร</span></p>
+        <h3 class="tk-title">Beyond the Board</h3>
+        <p class="tk-desc">เกมที่น้องสร้างเองในคอร์สของ Hamster Hub</p>
+        <p class="tk-chips"><span class="tk-chip tk-year">ผลงานปี 2569</span><span class="tk-chip tk-kind">ภาพจากในเกม</span></p>
+      </div>
+      <div class="tk-rail">
+        <a class="tk-act tk-open" href="https://www.hamsterhub.co/go/hall-of-fame/beyond-the-board" target="_blank" rel="noopener" aria-label="ดูหน้าผลงาน Beyond the Board แบบเต็ม (เปิดแท็บใหม่)"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><small>ดูเต็ม</small></a>
+        <button type="button" class="tk-act tk-share" aria-label="คัดลอกลิงก์ผลงาน Beyond the Board"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4.4l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2M14 10a4.5 4.5 0 0 0-6.4-.4l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><small>แชร์</small></button>
+        <button type="button" class="tk-act tk-like" aria-pressed="false" aria-label="ชอบผลงานนี้"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.7 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.2 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z" fill="currentColor"/></svg></span><small>ชอบ</small></button>
+      </div>
+    </article>
+    <article class="tk-item tk-work has-video" data-kind="work" data-i="2" data-link="https://www.hamsterhub.co/go/hall-of-fame/eugation-strike" aria-label="ผลงานที่ 3 จาก 10: Eugation Strike">
+      <img class="tk-bg" src="img/work-eugation-strike.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="tk-stage">
+        <div class="tk-frame">
+          <img class="tk-shot" src="img/work-eugation-strike.webp" alt="ภาพจากเกม Eugation Strike โดย นายณัฐภัทร์ ผลพิบูลสุนทร" loading="lazy" decoding="async">
+          <video class="tk-vid" data-src="https://www.hamsterhub.co/godang/hall-of-fame/videos/eugation-strike.mp4" poster="img/work-eugation-strike.webp" muted loop playsinline preload="none" aria-label="คลิปจากเกม Eugation Strike"></video>
+          <button type="button" class="tk-play" aria-label="เล่นคลิป"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button>
+        </div>
+      </div>
+      <div class="tk-shade" aria-hidden="true"></div>
+      <div class="tk-cap">
+        <p class="tk-who"><b>@ไผ่</b> <span>นายณัฐภัทร์ ผลพิบูลสุนทร</span></p>
+        <h3 class="tk-title">Eugation Strike</h3>
+        <p class="tk-desc">เกมที่น้องสร้างเองในคอร์สของ Hamster Hub</p>
+        <p class="tk-chips"><span class="tk-chip tk-year">ผลงานปี 2569</span></p>
+      </div>
+      <div class="tk-rail">
+        <button type="button" class="tk-act tk-mute" aria-pressed="false" aria-label="เปิดเสียง"><span class="tk-ic"><span class="tk-i-off"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M16 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span class="tk-i-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span></span><small>เปิดเสียง</small></button>
+        <a class="tk-act tk-open" href="https://www.hamsterhub.co/go/hall-of-fame/eugation-strike" target="_blank" rel="noopener" aria-label="ดูหน้าผลงาน Eugation Strike แบบเต็ม (เปิดแท็บใหม่)"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><small>ดูเต็ม</small></a>
+        <button type="button" class="tk-act tk-share" aria-label="คัดลอกลิงก์ผลงาน Eugation Strike"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4.4l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2M14 10a4.5 4.5 0 0 0-6.4-.4l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><small>แชร์</small></button>
+        <button type="button" class="tk-act tk-like" aria-pressed="false" aria-label="ชอบผลงานนี้"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.7 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.2 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z" fill="currentColor"/></svg></span><small>ชอบ</small></button>
+      </div>
+    </article>
+    <article class="tk-item tk-work has-video" data-kind="work" data-i="3" data-link="https://www.hamsterhub.co/go/hall-of-fame/slash-speed" aria-label="ผลงานที่ 4 จาก 10: SLASH//SPEED">
+      <img class="tk-bg" src="img/work-slash-speed.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="tk-stage">
+        <div class="tk-frame">
+          <img class="tk-shot" src="img/work-slash-speed.webp" alt="ภาพจากเกม SLASH//SPEED โดย นายชสาส เล่ามาขาว" loading="lazy" decoding="async">
+          <video class="tk-vid" data-src="https://www.hamsterhub.co/godang/hall-of-fame/videos/slash-speed.mp4" poster="img/work-slash-speed.webp" muted loop playsinline preload="none" aria-label="คลิปจากเกม SLASH//SPEED"></video>
+          <button type="button" class="tk-play" aria-label="เล่นคลิป"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button>
+        </div>
+      </div>
+      <div class="tk-shade" aria-hidden="true"></div>
+      <div class="tk-cap">
+        <p class="tk-who"><b>@ดินสอ</b> <span>นายชสาส เล่ามาขาว</span></p>
+        <h3 class="tk-title">SLASH//SPEED</h3>
+        <p class="tk-desc">เกมที่น้องสร้างเองในคอร์สของ Hamster Hub</p>
+        <p class="tk-chips"><span class="tk-chip tk-year">ผลงานปี 2569</span></p>
+      </div>
+      <div class="tk-rail">
+        <button type="button" class="tk-act tk-mute" aria-pressed="false" aria-label="เปิดเสียง"><span class="tk-ic"><span class="tk-i-off"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M16 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span class="tk-i-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span></span><small>เปิดเสียง</small></button>
+        <a class="tk-act tk-open" href="https://www.hamsterhub.co/go/hall-of-fame/slash-speed" target="_blank" rel="noopener" aria-label="ดูหน้าผลงาน SLASH//SPEED แบบเต็ม (เปิดแท็บใหม่)"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><small>ดูเต็ม</small></a>
+        <button type="button" class="tk-act tk-share" aria-label="คัดลอกลิงก์ผลงาน SLASH//SPEED"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4.4l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2M14 10a4.5 4.5 0 0 0-6.4-.4l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><small>แชร์</small></button>
+        <button type="button" class="tk-act tk-like" aria-pressed="false" aria-label="ชอบผลงานนี้"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.7 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.2 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z" fill="currentColor"/></svg></span><small>ชอบ</small></button>
+      </div>
+    </article>
+    <article class="tk-item tk-work" data-kind="work" data-i="4" data-link="https://www.hamsterhub.co/go/hall-of-fame/micro-immersive-sim" aria-label="ผลงานที่ 5 จาก 10: Micro Immersive Sim">
+      <img class="tk-bg" src="img/work-micro-immersive-sim.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="tk-stage">
+        <div class="tk-frame">
+          <img class="tk-shot" src="img/work-micro-immersive-sim.webp" alt="ภาพจากเกม Micro Immersive Sim โดย นายสุวิจักษณ์ จันทร์รุ่งวิจิตต์" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="tk-shade" aria-hidden="true"></div>
+      <div class="tk-cap">
+        <p class="tk-who"><b>@เพชร</b> <span>นายสุวิจักษณ์ จันทร์รุ่งวิจิตต์</span></p>
+        <h3 class="tk-title">Micro Immersive Sim</h3>
+        <p class="tk-desc">เกมที่น้องสร้างเองในคอร์สของ Hamster Hub</p>
+        <p class="tk-chips"><span class="tk-chip tk-year">ผลงานปี 2569</span><span class="tk-chip tk-kind">ภาพจากในเกม</span></p>
+      </div>
+      <div class="tk-rail">
+        <a class="tk-act tk-open" href="https://www.hamsterhub.co/go/hall-of-fame/micro-immersive-sim" target="_blank" rel="noopener" aria-label="ดูหน้าผลงาน Micro Immersive Sim แบบเต็ม (เปิดแท็บใหม่)"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><small>ดูเต็ม</small></a>
+        <button type="button" class="tk-act tk-share" aria-label="คัดลอกลิงก์ผลงาน Micro Immersive Sim"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4.4l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2M14 10a4.5 4.5 0 0 0-6.4-.4l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><small>แชร์</small></button>
+        <button type="button" class="tk-act tk-like" aria-pressed="false" aria-label="ชอบผลงานนี้"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.7 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.2 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z" fill="currentColor"/></svg></span><small>ชอบ</small></button>
+      </div>
+    </article>
+    <article class="tk-item tk-work" data-kind="work" data-i="5" data-link="https://www.hamsterhub.co/go/hall-of-fame/phi-krahang" aria-label="ผลงานที่ 6 จาก 10: ผีกระหัง">
+      <img class="tk-bg" src="img/work-phi-krahang.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="tk-stage">
+        <div class="tk-frame">
+          <img class="tk-shot" src="img/work-phi-krahang.webp" alt="ภาพจากเกม ผีกระหัง โดย นายธนดล นนสิทธิ์" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="tk-shade" aria-hidden="true"></div>
+      <div class="tk-cap">
+        <p class="tk-who"><b>@นนท์</b> <span>นายธนดล นนสิทธิ์</span></p>
+        <h3 class="tk-title">ผีกระหัง</h3>
+        <p class="tk-desc">เกมที่หยิบ &quot;ผีกระหัง&quot; จากเรื่องเล่าผีไทยมาเป็นตัวเรื่อง</p>
+        <p class="tk-chips"><span class="tk-chip tk-year">ผลงานปี 2569</span><span class="tk-chip tk-kind">ภาพจากในเกม</span></p>
+      </div>
+      <div class="tk-rail">
+        <a class="tk-act tk-open" href="https://www.hamsterhub.co/go/hall-of-fame/phi-krahang" target="_blank" rel="noopener" aria-label="ดูหน้าผลงาน ผีกระหัง แบบเต็ม (เปิดแท็บใหม่)"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><small>ดูเต็ม</small></a>
+        <button type="button" class="tk-act tk-share" aria-label="คัดลอกลิงก์ผลงาน ผีกระหัง"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4.4l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2M14 10a4.5 4.5 0 0 0-6.4-.4l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><small>แชร์</small></button>
+        <button type="button" class="tk-act tk-like" aria-pressed="false" aria-label="ชอบผลงานนี้"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.7 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.2 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z" fill="currentColor"/></svg></span><small>ชอบ</small></button>
+      </div>
+    </article>
+    <article class="tk-item tk-work" data-kind="work" data-i="6" data-link="https://www.hamsterhub.co/go/hall-of-fame/midnight-at-roadside" aria-label="ผลงานที่ 7 จาก 10: Midnight at Roadside">
+      <img class="tk-bg" src="img/work-midnight-at-roadside.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="tk-stage">
+        <div class="tk-frame">
+          <img class="tk-shot" src="img/work-midnight-at-roadside.webp" alt="ภาพจากเกม Midnight at Roadside โดย นายทัศน์ เล่าพัฒนาเกษม" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="tk-shade" aria-hidden="true"></div>
+      <div class="tk-cap">
+        <p class="tk-who"><b>@Windy</b> <span>นายทัศน์ เล่าพัฒนาเกษม</span></p>
+        <h3 class="tk-title">Midnight at Roadside</h3>
+        <p class="tk-desc">เกมที่น้องสร้างเองในคอร์สของ Hamster Hub</p>
+        <p class="tk-chips"><span class="tk-chip tk-year">ผลงานปี 2569</span><span class="tk-chip tk-kind">ภาพจากในเกม</span></p>
+      </div>
+      <div class="tk-rail">
+        <a class="tk-act tk-open" href="https://www.hamsterhub.co/go/hall-of-fame/midnight-at-roadside" target="_blank" rel="noopener" aria-label="ดูหน้าผลงาน Midnight at Roadside แบบเต็ม (เปิดแท็บใหม่)"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><small>ดูเต็ม</small></a>
+        <button type="button" class="tk-act tk-share" aria-label="คัดลอกลิงก์ผลงาน Midnight at Roadside"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4.4l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2M14 10a4.5 4.5 0 0 0-6.4-.4l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><small>แชร์</small></button>
+        <button type="button" class="tk-act tk-like" aria-pressed="false" aria-label="ชอบผลงานนี้"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.7 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.2 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z" fill="currentColor"/></svg></span><small>ชอบ</small></button>
+      </div>
+    </article>
+    <article class="tk-item tk-work" data-kind="work" data-i="7" data-link="https://www.hamsterhub.co/go/hall-of-fame/hot-hot-hot" aria-label="ผลงานที่ 8 จาก 10: Hot Hot Hot">
+      <img class="tk-bg" src="img/work-hot-hot-hot.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="tk-stage">
+        <div class="tk-frame">
+          <img class="tk-shot" src="img/work-hot-hot-hot.webp" alt="ภาพจากเกม Hot Hot Hot โดย นายวรวิช รุ่งปิน" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="tk-shade" aria-hidden="true"></div>
+      <div class="tk-cap">
+        <p class="tk-who"><b>@โอม</b> <span>นายวรวิช รุ่งปิน</span></p>
+        <h3 class="tk-title">Hot Hot Hot</h3>
+        <p class="tk-desc">เกมที่น้องสร้างเองในคอร์สของ Hamster Hub</p>
+        <p class="tk-chips"><span class="tk-chip tk-year">ผลงานปี 2569</span><span class="tk-chip tk-kind">ภาพจากในเกม</span></p>
+      </div>
+      <div class="tk-rail">
+        <a class="tk-act tk-open" href="https://www.hamsterhub.co/go/hall-of-fame/hot-hot-hot" target="_blank" rel="noopener" aria-label="ดูหน้าผลงาน Hot Hot Hot แบบเต็ม (เปิดแท็บใหม่)"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><small>ดูเต็ม</small></a>
+        <button type="button" class="tk-act tk-share" aria-label="คัดลอกลิงก์ผลงาน Hot Hot Hot"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4.4l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2M14 10a4.5 4.5 0 0 0-6.4-.4l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><small>แชร์</small></button>
+        <button type="button" class="tk-act tk-like" aria-pressed="false" aria-label="ชอบผลงานนี้"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.7 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.2 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z" fill="currentColor"/></svg></span><small>ชอบ</small></button>
+      </div>
+    </article>
+    <article class="tk-item tk-work has-video" data-kind="work" data-i="8" data-link="https://www.hamsterhub.co/go/hall-of-fame/apocalypis-building" aria-label="ผลงานที่ 9 จาก 10: Apocalypis Building">
+      <img class="tk-bg" src="img/work-apocalypis-building.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="tk-stage">
+        <div class="tk-frame">
+          <img class="tk-shot" src="img/work-apocalypis-building.webp" alt="ภาพจากเกม Apocalypis Building โดย นายรามิตร บุตรลักษณ์" loading="lazy" decoding="async">
+          <video class="tk-vid" data-src="https://www.hamsterhub.co/godang/hall-of-fame/videos/apocalypis-building.mp4" poster="img/work-apocalypis-building.webp" muted loop playsinline preload="none" aria-label="คลิปจากเกม Apocalypis Building"></video>
+          <button type="button" class="tk-play" aria-label="เล่นคลิป"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button>
+        </div>
+      </div>
+      <div class="tk-shade" aria-hidden="true"></div>
+      <div class="tk-cap">
+        <p class="tk-who"><b>@ฟาร์</b> <span>นายรามิตร บุตรลักษณ์</span></p>
+        <h3 class="tk-title">Apocalypis Building</h3>
+        <p class="tk-desc">เกมที่น้องสร้างเองในคอร์สของ Hamster Hub</p>
+        <p class="tk-chips"><span class="tk-chip tk-year">ผลงานปี 2569</span></p>
+      </div>
+      <div class="tk-rail">
+        <button type="button" class="tk-act tk-mute" aria-pressed="false" aria-label="เปิดเสียง"><span class="tk-ic"><span class="tk-i-off"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M16 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span class="tk-i-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span></span><small>เปิดเสียง</small></button>
+        <a class="tk-act tk-open" href="https://www.hamsterhub.co/go/hall-of-fame/apocalypis-building" target="_blank" rel="noopener" aria-label="ดูหน้าผลงาน Apocalypis Building แบบเต็ม (เปิดแท็บใหม่)"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><small>ดูเต็ม</small></a>
+        <button type="button" class="tk-act tk-share" aria-label="คัดลอกลิงก์ผลงาน Apocalypis Building"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4.4l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2M14 10a4.5 4.5 0 0 0-6.4-.4l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><small>แชร์</small></button>
+        <button type="button" class="tk-act tk-like" aria-pressed="false" aria-label="ชอบผลงานนี้"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.7 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.2 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z" fill="currentColor"/></svg></span><small>ชอบ</small></button>
+      </div>
+    </article>
+    <article class="tk-item tk-work has-video" data-kind="work" data-i="9" data-link="https://www.hamsterhub.co/go/hall-of-fame/escape-rolling" aria-label="ผลงานที่ 10 จาก 10: Escape Rolling">
+      <img class="tk-bg" src="img/work-escape-rolling.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="tk-stage">
+        <div class="tk-frame">
+          <img class="tk-shot" src="img/work-escape-rolling.webp" alt="ภาพจากเกม Escape Rolling โดย นายคชพล จิรธรานนท์" loading="lazy" decoding="async">
+          <video class="tk-vid" data-src="https://www.hamsterhub.co/godang/hall-of-fame/videos/escape-rolling.mp4" poster="img/work-escape-rolling.webp" muted loop playsinline preload="none" aria-label="คลิปจากเกม Escape Rolling"></video>
+          <button type="button" class="tk-play" aria-label="เล่นคลิป"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button>
+        </div>
+      </div>
+      <div class="tk-shade" aria-hidden="true"></div>
+      <div class="tk-cap">
+        <p class="tk-who"><b>@เป๊ป</b> <span>นายคชพล จิรธรานนท์</span></p>
+        <h3 class="tk-title">Escape Rolling</h3>
+        <p class="tk-desc">เกมที่น้องสร้างเองในคอร์สของ Hamster Hub</p>
+        <p class="tk-chips"><span class="tk-chip tk-year">ผลงานปี 2569</span></p>
+      </div>
+      <div class="tk-rail">
+        <button type="button" class="tk-act tk-mute" aria-pressed="false" aria-label="เปิดเสียง"><span class="tk-ic"><span class="tk-i-off"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M16 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span class="tk-i-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span></span><small>เปิดเสียง</small></button>
+        <a class="tk-act tk-open" href="https://www.hamsterhub.co/go/hall-of-fame/escape-rolling" target="_blank" rel="noopener" aria-label="ดูหน้าผลงาน Escape Rolling แบบเต็ม (เปิดแท็บใหม่)"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><small>ดูเต็ม</small></a>
+        <button type="button" class="tk-act tk-share" aria-label="คัดลอกลิงก์ผลงาน Escape Rolling"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4.4l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2M14 10a4.5 4.5 0 0 0-6.4-.4l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><small>แชร์</small></button>
+        <button type="button" class="tk-act tk-like" aria-pressed="false" aria-label="ชอบผลงานนี้"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.7 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.2 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z" fill="currentColor"/></svg></span><small>ชอบ</small></button>
+      </div>
+    </article>
+    <article class="tk-item tk-outro" data-kind="outro">
+      <div class="tk-card">
+        <p class="tk-kicker">ยังมีอีก</p>
+        <h2 class="tk-h">12 ผลงานที่เข้ารอบสุดท้ายเวที NSC</h2>
+        <p class="tk-sub">NSC คือการแข่งขันพัฒนาโปรแกรมคอมพิวเตอร์แห่งประเทศไทย (National Software Contest)</p>
+        <ol class="tk-list"><li>Revoice</li><li>mrCity</li><li>Whiskered Odyssey</li><li>Noar</li><li>Veggie Dash</li><li>Time Keeper</li><li>Ayutthaya</li><li>Shadow Maze</li><li>Plant Create World</li><li>Salmon Crisis</li><li>Z.O.O</li><li>Lyno</li></ol>
+        <div class="tk-btns">
+          <a class="tk-btn tk-btn-main" href="#about">รู้จัก Hamster Hub</a>
+          <button type="button" class="tk-btn" data-tk-top><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V5M5.5 11.5L12 5l6.5 6.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg> ดูตั้งแต่ชิ้นแรก</button>
+        </div>
+      </div>
+    </article>
+  </div>
+  <div class="tk-toast" role="status" aria-live="polite"></div>
+</section>
+
   <section class="sec alt c"><div class="wrap">
     <p class="eyebrow rv">ไปไกลกว่าห้องเรียน</p>
     <h2 class="rv">ผลงานที่ถึงรอบ NSC Finalist</h2>
@@ -1442,7 +2043,7 @@ footer{font-size:.92rem}
   <section class="sec alt c"><div class="wrap">
     <h2 class="rv">คุยกับเราได้เลย</h2>
     <div class="cta rv"><a class="btn btn-line" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">LINE @smart-school</a></div>
-    <div class="contactrow rv"><div>โทร<b style="user-select:all">090-060-2555</b></div><a href="https://www.facebook.com/HamsterHubThailand" target="_blank" rel="noopener">Facebook<b>Hamster Hub</b></a><a href="https://www.instagram.com/hamsterhub_ig/" target="_blank" rel="noopener">Instagram<b>hamsterhub_ig</b></a></div>
+    <div class="contactrow rv"><a href="tel:0900602555">โทร<b>090-060-2555</b></a><button type="button" class="cprow" data-copy="@smart-school">LINE ID<b>@smart-school</b><span>คัดลอก</span></button><a href="https://www.facebook.com/HamsterHubThailand" target="_blank" rel="noopener">Facebook<b>Hamster Hub</b></a><a href="https://www.instagram.com/hamsterhub_ig/" target="_blank" rel="noopener">Instagram<b>hamsterhub_ig</b></a></div>
   </div></section>
 </div>
 </main>
@@ -1481,7 +2082,7 @@ footer{font-size:.92rem}
 
   /* hall of fame: ranks II to X */
   var R=['II','III','IV','V','VI','VII','VIII','IX','X'];
-  $('#halls').innerHTML=W.slice(1).map(function(w,i){return '<a class="rv" href="'+link(w)+'" target="_blank" rel="noopener"><img src="img/work-'+w[0]+'.webp" alt="ภาพจากผลงาน '+w[1]+'" loading="lazy"><div class="t"><span class="n">'+R[i]+'</span><div><b>'+w[1]+'</b><br><em>ชมคลิปผลงาน ›</em></div></div></a>'}).join('');
+  if($('#halls'))$('#halls').innerHTML=W.slice(1).map(function(w,i){return '<a class="rv" href="'+link(w)+'" target="_blank" rel="noopener"><img src="img/work-'+w[0]+'.webp" alt="ภาพจากผลงาน '+w[1]+'" loading="lazy"><div class="t"><span class="n">'+R[i]+'</span><div><b>'+w[1]+'</b><br><em>ชมคลิปผลงาน ›</em></div></div></a>'}).join('');
 
   /* seniors grid */
   var F=[['all','โปสเตอร์ที่ประกาศแล้ว '+G.length+' จาก 48 คน',G.length]].concat(['k','m','c','u'].map(function(k){return [k,UN[k],G.filter(function(g){return g[2]===k}).length]}));
@@ -1548,7 +2149,7 @@ footer{font-size:.92rem}
     var st=$('.dk-stage');st.addEventListener('mouseenter',function(){hold=true});st.addEventListener('mouseleave',function(){hold=false});
     if(!reduce)setInterval(function(){if(!hold&&inView(deck))next()},3000)})();
   /* Hall of Fame coverflow: drag it like a real shelf, it springs into place */
-  (function(){var t=$('#cfT');if(!t)return;var RN=['I','II','III','IV','V','VI','VII','VIII','IX','X'],n=W.length,pos=0,goal=0,vel=0,hold=false,drag=null,moved=false,raf=0;
+  (function(){var t=$('#cfT');if(!t)return;var NK=['วิน','กัปตัน','ไผ่','ดินสอ','เพชร','นนท์','Windy','โอม','ฟาร์','เป๊ป'],n=W.length,pos=0,goal=0,vel=0,hold=false,drag=null,moved=false,raf=0;
     t.innerHTML=W.map(function(w,i){return '<a class="cfc" href="'+link(w)+'" target="_blank" rel="noopener" data-i="'+i+'" draggable="false"><img src="img/work-'+w[0]+'.webp" alt="ภาพจากผลงาน '+w[1]+'" loading="lazy" draggable="false"><span class="play">ชมคลิปผลงาน</span></a>'}).join('');
     $('#cfProg').innerHTML=W.map(function(){return '<i></i>'}).join('');var cs=$$('#cfT .cfc'),pr=$$('#cfProg i'),cf=$('#cf'),cur=-1;
     function lay(){var cw=cs[0].offsetWidth,vw=cf.clientWidth,mo=vw<700?1:2,step=Math.max(40,(vw/2-20-cw*.36)/mo);
@@ -1556,7 +2157,7 @@ footer{font-size:.92rem}
         c.style.transform='translateX('+(o*step).toFixed(1)+'px) translateZ('+(-a*150).toFixed(1)+'px) rotateY('+(-Math.max(-1,Math.min(1,o))*34).toFixed(2)+'deg) scale('+(1-k*.04)+')';
         c.style.zIndex=1000-Math.round(a*100);c.style.opacity=Math.max(0,Math.min(1,mo+.7-a)).toFixed(2);c.style.filter='brightness('+(1-.58*k).toFixed(2)+') saturate('+(1-.2*k).toFixed(2)+')';c.style.pointerEvents=a>mo+.3?'none':''});
       var k2=((Math.round(pos)%n)+n)%n;if(k2!==cur){cur=k2;cs.forEach(function(c,i){c.classList.toggle('cur',i===k2);c.tabIndex=i===k2?0:-1});pr.forEach(function(p,i){p.classList.toggle('on',i===k2)});
-        var cap=$('.cf-cap b');cap.classList.remove('sw');void cap.offsetWidth;cap.classList.add('sw');$('#cfR').textContent=RN[k2];$('#cfN').textContent=W[k2][1]}}
+        var cap=$('.cf-cap b');cap.classList.remove('sw');void cap.offsetWidth;cap.classList.add('sw');$('#cfR').textContent='โดย น้อง'+NK[k2];$('#cfN').textContent=W[k2][1]}}
     function anim(){raf=0;if(!drag){var f=(goal-pos)*.14;vel=vel*.72+f;pos+=vel;if(Math.abs(goal-pos)<.001&&Math.abs(vel)<.001){pos=goal;vel=0}else raf=requestAnimationFrame(anim)}lay()}
     function go(k){goal=Math.round(k);if(!raf)raf=requestAnimationFrame(anim)}
     t.addEventListener('pointerdown',function(e){drag={x:e.clientX,p:pos,t:performance.now(),lx:e.clientX,v:0};moved=false;t.setPointerCapture(e.pointerId);t.classList.add('grab')});
@@ -1588,7 +2189,7 @@ footer{font-size:.92rem}
     var io2=new IntersectionObserver(function(es){if(es[0].isIntersecting){io2.disconnect();setTimeout(run,300)}},{threshold:.55});io2.observe(tp)})();
   /* hero: three.js 2.5D hamster hub on a giant maker desk. hamsters wander, zig-zag sprint loops,
      chase each other, sometimes crash into the edge and get knocked out; pick them up by the scruff to dangle them */
-  (function(){var hx=$('#hx'),cv=$('#hxCanvas'),say=$('#hxSay');if(!hx||!cv)return;
+  (function(){var hx=$('#hx'),st=$('#hx3'),cv=$('#hxCanvas'),say=$('#hxSay');if(!hx||!cv)return;
     var ok=false;try{ok=!!window.THREE&&!!(cv.getContext('webgl')||cv.getContext('experimental-webgl'))}catch(e){}
     if(!ok){hx.classList.add('nogl');return}
     var T=THREE,R=new T.WebGLRenderer({canvas:cv,antialias:true});R.outputEncoding=T.sRGBEncoding;R.setPixelRatio(Math.min(devicePixelRatio||1,2));
@@ -1608,20 +2209,20 @@ footer{font-size:.92rem}
       var a=fly?Math.random()*Math.PI*2:(Math.random()<.5?Math.PI:0)+(Math.random()-.5)*.9,v=(spread||1)*(fly?130+Math.random()*120:40+Math.random()*70);
       p.x=x;p.y=y;p.vx=Math.cos(a)*v;p.vy=fly?Math.abs(Math.sin(a))*v+60:20+Math.random()*30;p.r=kind==='sweat'?0:Math.random()*6;p.vr=kind==='sweat'?0:(Math.random()-.5)*8;
       p.ro=Math.round((spread&&spread.ro)||15);p.s0=(kind==='star'?.028:kind==='spark'?.02:kind==='sweat'?.018:.032)*bh*(.7+Math.random()*.6);p.max=p.life=kind==='star'?.9:kind==='dust'?.55+Math.random()*.3:.6;p.m.visible=true}}
-    var defs=[['gamer',576/898,560/840,560/416,'ทำเกม!'],['walker',640/813,505/874,560/455,'ทำแอป!'],['maker',616/864,511/894,560/368,'ทำ IoT!']],H=[];
+    var defs=[['gamer',576/898,560/840,560/416,'ทำเกมด้วย Unity'],['walker',640/813,505/874,560/455,'เขียนแอปและเว็บ'],['maker',616/864,511/894,560/368,'ต่อบอร์ด IoT']],H=[];
     defs.forEach(function(d,i){var tN=tex('img/n-'+d[0]+'.webp'),tD=tex('img/n-'+d[0]+'-d.webp'),tK=tex('img/n-'+d[0]+'-k.webp');
       var m=new T.Mesh(foot,new T.MeshBasicMaterial({map:tN,transparent:true,depthWrite:false})),md=new T.Mesh(top,new T.MeshBasicMaterial({map:tD,transparent:true,depthWrite:false}));md.visible=false;md.renderOrder=300;
       var s2=new T.Mesh(flat,new T.MeshBasicMaterial({map:shT,transparent:true,depthWrite:false}));S.add(s2);S.add(m);S.add(md);
       var st=[0,1,2].map(function(){var q=new T.Mesh(flat,new T.MeshBasicMaterial({map:starT,transparent:true,depthWrite:false}));q.visible=false;q.renderOrder=450;S.add(q);return q});
       H.push({i:i,m:m,md:md,s:s2,st:st,tN:tN,tK:tK,ar:d[1],arD:d[2],arK:d[3],line:d[4],u:.3+i*.2,d:.3+.3*(i%2),tu:.5,td:.5,face:i%2?-1:1,mode:'idle',t:.6+i*.9,ph:Math.random()*6,walk:0,
         x:0,y:0,vy:0,lift:0,ko:0,dizzy:0,ang:0,av:0,gx:0,gy:0,pgx:0,cvx:0,dust:0,path:[],sq:0,ft:0})});
-    function fit(){w=hx.clientWidth;h=hx.clientHeight;R.setSize(w,h,false);C.left=-w/2;C.right=w/2;C.top=h/2;C.bottom=-h/2;C.updateProjectionMatrix();
+    function fit(){if(st.clientWidth<2||st.clientHeight<2)return;w=st.clientWidth;h=st.clientHeight;R.setSize(w,h,false);C.left=-w/2;C.right=w/2;C.top=h/2;C.bottom=-h/2;C.updateProjectionMatrix();
       var k=Math.max(w/IW,h/IH)*1.04;bw=IW*k;bh=IH*k;bx=0;by=-h/2+bh/2-bh*.01;bg.scale.set(bw,bh,1);
-      uMin=.5-(w/bw)/2+.05;uMax=.5+(w/bw)/2-.05;H.forEach(function(o){o.u=Math.min(uMax,Math.max(uMin,o.u))})}
+      uMin=.5-(w/bw)/2+.05;uMax=.5+(w/bw)/2-.05;H.forEach(function(o){if(!isFinite(o.u))o.u=.5;if(!isFinite(o.d))o.d=.5;if(!isFinite(o.tu))o.tu=o.u;o.u=Math.min(uMax,Math.max(uMin,o.u))})}
     function wx(u){return (u-.5)*bw+bx}function wy(v){return (.5-v)*bh+by}function vOf(y){return .5-(y-by)/bh}function uOf(x){return (x-bx)/bw+.5}
     function hh0(o){return Math.min(bh*(.15+.07*o.d),w*(.25+.07*o.d))}
     function bubble(o,txt){say.textContent=txt;say.classList.remove('on');void say.offsetWidth;say.classList.add('on');say._o=o;clearTimeout(say._t);say._t=setTimeout(function(){say.classList.remove('on');say._o=null},1600)}
-    function pick(cx,cy){var r=hx.getBoundingClientRect(),x=cx-r.left-w/2,y=h/2-(cy-r.top),best=null;
+    function pick(cx,cy){var r=st.getBoundingClientRect(),x=cx-r.left-w/2,y=h/2-(cy-r.top),best=null;
       H.forEach(function(o){if(o.mode==='drag')return;var hh=hh0(o),ww=hh*o.ar,px=o.m.position.x,py=o.m.position.y,top=py+(o.ko>.5?hh*.62:hh);
         if(Math.abs(x-px)<(o.ko>.5?hh*.62*o.arK/2:ww*.42)&&y>py&&y<top&&(!best||o.d>best.d))best=o});return best}
     function rnd(a,b){return a+Math.random()*(b-a)}
@@ -1634,8 +2235,8 @@ footer{font-size:.92rem}
     function next(o){var p=o.path.shift();if(!p){o.mode='idle';o.t=.6+Math.random();return}o.tu=p[0];o.td=p[1]}
     function knock(o,side){o.mode='ko';o.side=side;o.t=0;o.dizzy=2.4;o.ko=1;o.path=[];o.walk=0;bubble(o,'โอ๊ย!')}
     var mx=0,my=0,tx=0,ty=0,last=0,run=false,rq=0,grab=null,downAt=null;
-    function local(e){var r=hx.getBoundingClientRect();return [e.clientX-r.left-w/2,h/2-(e.clientY-r.top)]}
-    hx.addEventListener('pointermove',function(e){var r=hx.getBoundingClientRect();tx=(e.clientX-r.left)/r.width-.5;ty=(e.clientY-r.top)/r.height-.5;
+    function local(e){var r=st.getBoundingClientRect();return [e.clientX-r.left-w/2,h/2-(e.clientY-r.top)]}
+    hx.addEventListener('pointermove',function(e){var r=st.getBoundingClientRect();tx=(e.clientX-r.left)/r.width-.5;ty=(e.clientY-r.top)/r.height-.5;
       if(grab){var p=local(e);grab.gx=p[0];grab.gy=p[1];if(downAt&&Math.hypot(e.clientX-downAt[0],e.clientY-downAt[1])>6)downAt.moved=true}
       else cv.style.cursor=pick(e.clientX,e.clientY)?'grab':''});
     function down(e,cx,cy){if(e.target.closest&&e.target.closest('a,button'))return false;var o=pick(cx,cy);if(!o)return false;
@@ -1691,10 +2292,11 @@ footer{font-size:.92rem}
         p.m.position.set(p.x,p.y,10);p.m.renderOrder=p.kind==='dust'?(p.ro||15):400;p.m.scale.set(s4,s4,1);p.m.rotation.z=p.r;p.m.material.opacity=p.kind==='dust'?(k<.75?1:1-(k-.75)*4):1-k*k});
       R.render(S,C);rq=requestAnimationFrame(step)}
     function play(on){run=on&&!document.hidden;if(run&&!rq){last=0;rq=requestAnimationFrame(step)}}
-    new ResizeObserver(function(){fit();if(!run)R.render(S,C)}).observe(hx);fit();
+    new ResizeObserver(function(){fit();if(!run)R.render(S,C)}).observe(st);fit();
     new IntersectionObserver(function(es){play(es[0].isIntersecting&&!reduce)}).observe(hx);
-    document.addEventListener('visibilitychange',function(){play(!document.hidden&&hx.getBoundingClientRect().bottom>0)});
+    document.addEventListener('visibilitychange',function(){play(!document.hidden&&st.getBoundingClientRect().bottom>0)});
     if(reduce){run=true;setTimeout(function(){step(performance.now());run=false},600)}
+    if(!reduce)setInterval(function(){if(!run||say._o)return;var c=H.filter(function(o){return o.mode!=='drag'&&o.mode!=='ko'&&o.mode!=='fall'});if(c.length){var o=c[Math.floor(Math.random()*c.length)];bubble(o,o.line)}},5200);
     window.__hh=H;})();
   /* login: hamster pops, spins and dives, then the login page opens */
   (function(){var a=$('.login');if(!a)return;a.addEventListener('click',function(e){if(reduce||e.metaKey||e.ctrlKey)return;e.preventDefault();a.classList.remove('poof');void a.offsetWidth;a.classList.add('poof');
@@ -1708,7 +2310,7 @@ footer{font-size:.92rem}
     b.addEventListener('mouseleave',function(){b.style.translate=''})});
   /* keep Thai loanwords / compounds on one line */
   (function(){var W2=['ไอเดีย','ผู้เล่น','สองสัปดาห์','ไปแล้ว','ได้ไกล','พาน้อง','ผู้ปกครอง','มหาวิทยาลัย','พาร์ทเนอร์','Checkpoint','ลงมือ','ทุกด่าน','ชำระเงิน','ผลงาน','กิจกรรม','ตัดสินใจ','ทุกขั้น','ทั่วประเทศ','เทคโนโลยี'],re=new RegExp('('+W2.join('|')+')','g');
-    var tw=document.createTreeWalker(document.querySelector('main')||document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode;if(!p||/^(SCRIPT|STYLE|BUTTON)$/.test(p.nodeName)||p.closest('.nw,#tp,#rotw'))return 2;return re.test(n.nodeValue)?1:2}}),ns=[];re.lastIndex=0;
+    var tw=document.createTreeWalker(document.querySelector('main')||document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode;if(!p||/^(SCRIPT|STYLE|BUTTON)$/.test(p.nodeName)||p.closest('.nw,#tp,#rotw,.tk'))return 2;return re.test(n.nodeValue)?1:2}}),ns=[];re.lastIndex=0;
     while(tw.nextNode())ns.push(tw.currentNode);ns.forEach(function(n){var f=document.createElement('span');f.innerHTML=n.nodeValue.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(re,'<span class="nw">$1</span>');n.parentNode.replaceChild(f,n);while(f.firstChild)f.parentNode.insertBefore(f.firstChild,f);f.remove()})})();
   /* activity: countdown in hero */
   (function(){var el=$('#aCd');if(!el)return;function f(){var d=Math.ceil((new Date('2026-11-14T09:00:00+07:00')-new Date())/864e5);el.textContent=d>0?'อีก '+d+' วัน':'วันนี้!'}f();setInterval(f,6e4)})();
@@ -1721,6 +2323,9 @@ footer{font-size:.92rem}
     function f(){var r=p.getBoundingClientRect(),k=(innerHeight*.85-r.top)/(innerHeight*.6);k=Math.max(0,Math.min(1,k));if(reduce)k=1;
       run.style.left=(k*100)+'%';fill.style.transform='scaleX('+k+')';run.classList.toggle('mv',k>0&&k<1);li.forEach(function(l,i){l.classList.toggle('on',k>=i/3-.02)})}
     addEventListener('scroll',f,{passive:true});addEventListener('hashchange',function(){setTimeout(f,900)});f()})();
+  /* courses: seniors list + copy LINE id */
+  (function(){var u=$('#cxSen');if(u)u.innerHTML=[5,6,9,0,12,10,3,15].map(function(i){var g=G[i];return '<li><img src="img/dek69-'+g[0]+'.webp" alt="'+g[1]+'" loading="lazy"><b>'+g[1]+'</b><span>'+g[3]+'<br>'+UN[g[2]]+'</span><em>เรียนคอร์ส '+g[4]+'</em></li>'}).join('');
+    document.addEventListener('click',function(e){var b=e.target.closest('[data-copy]');if(!b)return;var t=b.dataset.copy;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).catch(function(){}).then(function(){var sp=b.querySelector('span');if(sp){var o=sp.textContent;sp.textContent='คัดลอกแล้ว';setTimeout(function(){sp.textContent=o},1600)}})})})();
   /* countdown to the All for One final */
   (function(){var t=new Date('2026-11-14T09:00:00+07:00').getTime();function f(){var d=Math.max(0,t-Date.now());$('#cdD').textContent=Math.floor(d/864e5);$('#cdH').textContent=Math.floor(d/36e5)%24;$('#cdM').textContent=Math.floor(d/6e4)%60}f();setInterval(f,30000)})();
   /* pixel burst on Port Express buttons */
@@ -1732,6 +2337,257 @@ footer{font-size:.92rem}
   tbs.forEach(function(t,j){t.addEventListener('click',function(){tab(j)})});
   document.addEventListener('click',function(e){var a=e.target.closest('[data-tab]');if(a)tab(+a.dataset.tab)});
 })();
+</script>
+<script>
+/* ===== ผลงาน — TikTok-style feed. Self-contained; runs only if .tk exists. ===== */
+(function () {
+  'use strict';
+  var root = document.querySelector('.tk');
+  if (!root || root.dataset.tkReady) return;
+  root.dataset.tkReady = '1';
+
+  var feed = root.querySelector('.tk-feed');
+  var items = Array.prototype.slice.call(root.querySelectorAll('.tk-item'));
+  var bars = Array.prototype.slice.call(root.querySelectorAll('.tk-bars i'));
+  var countEl = root.querySelector('.tk-count-n');
+  var toastEl = root.querySelector('.tk-toast');
+  var firstWork = root.querySelector('.tk-work');
+  var reduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
+  var soundOn = false;      // shared across clips, like TikTok
+  var liked = {};           // per-session, memory only
+  var current = 0;
+
+  function $(el, sel) { return el.querySelector(sel); }
+  function vidOf(item) { return $(item, '.tk-vid'); }
+
+  /* ---------- active item + HUD ---------- */
+  function setActive(idx) {
+    if (idx < 0 || idx >= items.length) return;
+    current = idx;
+    items.forEach(function (it, i) { it.classList.toggle('is-active', i === idx); });
+    var kind = items[idx].dataset.kind;
+    var wi = kind === 'work' ? +items[idx].dataset.i : (kind === 'outro' ? bars.length : -1);
+    bars.forEach(function (b, i) {
+      b.classList.toggle('is-on', i === wi);
+      b.classList.toggle('is-done', i < wi);
+    });
+    if (countEl) countEl.textContent = wi < 0 ? 0 : Math.min(wi + 1, bars.length);
+    root.classList.toggle('is-intro', kind === 'intro');
+    if (firstWork && items.indexOf(firstWork) < idx) root.classList.add('is-scrolled');
+  }
+
+  /* ---------- video: lazy src, play only when >=60% visible ---------- */
+  function playItem(item) {
+    var v = vidOf(item);
+    if (!v) return;
+    if (!v.getAttribute('src') && v.dataset.src) { v.src = v.dataset.src; }
+    v.muted = !soundOn;
+    if (reduce.matches && !item.dataset.userPlay) { item.classList.add('is-paused'); return; }
+    var p = v.play();
+    if (p && p.catch) {
+      p.catch(function () {
+        // autoplay with sound refused -> retry muted
+        if (!v.muted) { v.muted = true; syncMuteButtons(false); v.play().catch(function () { item.classList.add('is-paused'); }); }
+        else item.classList.add('is-paused');
+      });
+    }
+  }
+  function pauseItem(item) {
+    var v = vidOf(item);
+    if (v && !v.paused) v.pause();
+  }
+
+  items.forEach(function (item) {
+    var v = vidOf(item);
+    if (!v) return;
+    v.addEventListener('playing', function () { v.classList.add('is-ready'); item.classList.remove('is-paused'); });
+    v.addEventListener('pause', function () { if (item.classList.contains('is-visible')) item.classList.add('is-paused'); });
+    v.addEventListener('error', function () { v.classList.remove('is-ready'); item.classList.remove('is-paused'); item.classList.add('is-novideo'); });
+    var btn = $(item, '.tk-play');
+    if (btn) btn.addEventListener('click', function () { item.dataset.userPlay = '1'; playItem(item); });
+  });
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        var item = en.target;
+        var on = en.isIntersecting && en.intersectionRatio >= 0.6;
+        item.classList.toggle('is-visible', on);
+        if (on) { setActive(items.indexOf(item)); playItem(item); }
+        else { pauseItem(item); item.classList.remove('is-paused'); }
+      });
+    }, { root: feed, threshold: [0, 0.6, 1] });
+    items.forEach(function (it) { io.observe(it); });
+  } else {
+    setActive(0);
+  }
+
+  /* ---------- navigation: one item per gesture ---------- */
+  function go(idx) {
+    idx = Math.max(0, Math.min(items.length - 1, idx));
+    feed.scrollTo({ top: items[idx].offsetTop, behavior: reduce.matches ? 'auto' : 'smooth' });
+  }
+  function nearest() { return Math.round(feed.scrollTop / (feed.clientHeight || 1)); }
+
+  feed.addEventListener('keydown', function (e) {
+    var k = e.key, d = 0;
+    if (k === 'ArrowDown' || k === 'PageDown' || (k === ' ' && !e.shiftKey)) d = 1;
+    else if (k === 'ArrowUp' || k === 'PageUp' || (k === ' ' && e.shiftKey)) d = -1;
+    else if (k === 'Home') { e.preventDefault(); go(0); return; }
+    else if (k === 'End') { e.preventDefault(); go(items.length - 1); return; }
+    if (!d) return;
+    if (e.target !== feed && /^(A|BUTTON)$/.test(e.target.tagName) && k === ' ') return;
+    e.preventDefault();
+    go(nearest() + d);
+  });
+
+  // Wheel / trackpad: step exactly one item, ignore inertia tail.
+  // At the first/last item the event is left alone so the page can keep scrolling.
+  var wheelLock = false, wheelAcc = 0, lastWheel = 0, lockedAt = 0, unlockTimer = 0;
+  feed.addEventListener('wheel', function (e) {
+    if (e.ctrlKey || Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
+    var dir = e.deltaY > 0 ? 1 : -1;
+    var at = nearest();
+    if (!wheelLock && ((dir < 0 && at === 0 && feed.scrollTop <= 1) ||
+        (dir > 0 && at === items.length - 1))) return;
+    e.preventDefault();
+    var now = Date.now();
+    lastWheel = now;
+    clearTimeout(unlockTimer);
+    unlockTimer = setTimeout(function tryUnlock() {
+      if (Date.now() - lockedAt > 450) { wheelLock = false; wheelAcc = 0; }
+      else unlockTimer = setTimeout(tryUnlock, 80);
+    }, 160);
+    if (wheelLock) return;
+    wheelAcc += e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;
+    if (Math.abs(wheelAcc) < 24) return;
+    wheelLock = true; lockedAt = now; wheelAcc = 0;
+    go(at + dir);
+  }, { passive: false });
+
+  root.addEventListener('click', function (e) {
+    if (e.target.closest('[data-tk-next]')) go(current + 1);
+    else if (e.target.closest('[data-tk-top]')) go(1);
+  });
+
+  /* ---------- sound toggle ---------- */
+  function syncMuteButtons(on) {
+    soundOn = on;
+    root.querySelectorAll('.tk-mute').forEach(function (b) {
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.setAttribute('aria-label', on ? 'ปิดเสียง' : 'เปิดเสียง');
+      $(b, 'small').textContent = on ? 'ปิดเสียง' : 'เปิดเสียง';
+    });
+  }
+  root.querySelectorAll('.tk-mute').forEach(function (b) {
+    b.addEventListener('click', function () {
+      syncMuteButtons(!soundOn);
+      var item = b.closest('.tk-item');
+      var v = vidOf(item);
+      if (v) {
+        v.muted = !soundOn;
+        if (v.paused) { item.dataset.userPlay = '1'; playItem(item); }
+      }
+    });
+  });
+
+  /* ---------- toast + share ---------- */
+  var toastT = 0;
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('is-on');
+    clearTimeout(toastT);
+    toastT = setTimeout(function () { toastEl.classList.remove('is-on'); }, 1800);
+  }
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;';
+    document.body.appendChild(ta); ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+  root.querySelectorAll('.tk-share').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var url = b.closest('.tk-item').dataset.link;
+      var done = function () { toast('คัดลอกลิงก์แล้ว'); };
+      var fail = function () { if (fallbackCopy(url)) done(); else toast('คัดลอกไม่ได้ ลองกด "ดูเต็ม" แทน'); };
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(url).then(done, fail);
+      else fail();
+    });
+  });
+
+  /* ---------- heart ---------- */
+  function burst(host, x, y) {
+    var b = document.createElement('span');
+    b.className = 'tk-burst';
+    b.setAttribute('aria-hidden', 'true');
+    if (x != null) { b.style.left = x + 'px'; b.style.top = y + 'px'; }
+    var heart = $(root, '.tk-like .tk-ic svg');
+    var h = document.createElement('span');
+    h.className = 'tk-bh';
+    if (heart) h.appendChild(heart.cloneNode(true));
+    b.appendChild(h);
+    for (var i = 0; i < 8; i++) {
+      var s = document.createElement('i'), a = (i / 8) * Math.PI * 2, r = 46 + (i % 2) * 18;
+      s.style.setProperty('--dx', Math.round(Math.cos(a) * r) + 'px');
+      s.style.setProperty('--dy', Math.round(Math.sin(a) * r) + 'px');
+      b.appendChild(s);
+    }
+    host.appendChild(b);
+    setTimeout(function () { b.remove(); }, 900);
+  }
+  function setLiked(item, on) {
+    var key = item.dataset.i;
+    liked[key] = on;
+    var btn = $(item, '.tk-like');
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    btn.setAttribute('aria-label', on ? 'เลิกชอบผลงานนี้' : 'ชอบผลงานนี้');
+    if (on) {
+      btn.classList.remove('is-pop'); void btn.offsetWidth; btn.classList.add('is-pop');
+      burst(btn, null, null);
+    }
+  }
+  root.querySelectorAll('.tk-like').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var item = b.closest('.tk-item');
+      setLiked(item, !liked[item.dataset.i]);
+    });
+  });
+
+  // double-click / double-tap on media = like (never un-like), burst at the pointer
+  function mediaLike(item, cx, cy) {
+    var r = item.getBoundingClientRect();
+    burst(item, cx - r.left, cy - r.top);
+    if (!liked[item.dataset.i]) setLiked(item, true);
+  }
+  root.querySelectorAll('.tk-work').forEach(function (item) {
+    var stage = $(item, '.tk-stage');
+    var lastTap = 0, lx = 0, ly = 0, touchLikeAt = 0;
+    stage.addEventListener('dblclick', function (e) {
+      if (e.target.closest('button') || Date.now() - touchLikeAt < 600) return;
+      e.preventDefault();
+      mediaLike(item, e.clientX, e.clientY);
+    });
+    stage.addEventListener('pointerup', function (e) {
+      if (e.pointerType !== 'touch' || e.target.closest('button')) return;
+      var now = Date.now();
+      if (now - lastTap < 320 && Math.abs(e.clientX - lx) < 40 && Math.abs(e.clientY - ly) < 40) {
+        mediaLike(item, e.clientX, e.clientY);
+        lastTap = 0; touchLikeAt = now;
+      } else { lastTap = now; lx = e.clientX; ly = e.clientY; }
+    });
+  });
+
+  // pause everything if the tab is hidden
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) items.forEach(pauseItem);
+    else if (items[current] && items[current].classList.contains('is-visible')) playItem(items[current]);
+  });
+})();
+
 </script>
 
 </body>
