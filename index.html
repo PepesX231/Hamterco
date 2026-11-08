@@ -2285,6 +2285,7 @@ a.ctb-f:hover{transform:translate(-3px,-3px)}
 .tk-work .tk-hint{display:none!important}
 @media(max-width:900px){.yt-side .wkz{display:none}}
 
+.pt .ph-c img{box-shadow:none!important}
 /* ---------- footer ---------- */
 footer{background:var(--alt);font-size:.85rem;color:var(--mute)}
 footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
@@ -3465,7 +3466,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
       h+='<span class="ev-t"><small>'+(nx?nx.textContent:'')+'</small><b>กิจกรรม</b></span></span>'}
     else if(v==='works'){h='<span class="t5-cu l"></span><span class="t5-cu r"></span><span class="t5-sp"></span>';for(var k=0;k<22;k++)h+='<span class="t5-d" style="left:'+(25+Math.random()*50).toFixed(1)+'%;top:'+(20+Math.random()*60).toFixed(1)+'%;--dl:'+(Math.random()*.6).toFixed(2)+'s;--s:'+(2+Math.random()*4).toFixed(1)+'px"></span>';h+='<span class="t5-fl"></span><img class="t5-tr" src="img/n-win.webp" alt=""><b class="t5-hof"><small>HAMSTER HUB · CLASS OF 2026</small><span>HALL OF FAME</span></b>'}
     else if(v==='about'){h='<span class="pt-band"></span><img class="pt-run" src="img/n-walker.webp" alt="">'}
-    else{h='<span class="ph-p a"></span><span class="ph-p b"></span><span class="ph-p c"></span><span class="ph-c"><span class="ph-r"></span><span class="ph-r r2"></span><img src="img/logo.webp" alt=""><b><span class="ph-l" style="--k:0">H</span><span class="ph-l" style="--k:1">a</span><span class="ph-l" style="--k:2">m</span><span class="ph-l" style="--k:3">s</span><span class="ph-l" style="--k:4">t</span><span class="ph-l" style="--k:5">e</span><span class="ph-l" style="--k:6">r</span><span class="ph-l" style="--k:7">&nbsp;</span><span class="ph-l" style="--k:8">H</span><span class="ph-l" style="--k:9">u</span><span class="ph-l" style="--k:10">b</span></b><small>เกม · Roblox · เว็บ · IoT</small></span>'}
+    else{h='<span class="ph-p a"></span><span class="ph-p b"></span><span class="ph-p c"></span><span class="ph-c"><img src="img/logo.webp" alt=""><b><span class="ph-l" style="--k:0">H</span><span class="ph-l" style="--k:1">a</span><span class="ph-l" style="--k:2">m</span><span class="ph-l" style="--k:3">s</span><span class="ph-l" style="--k:4">t</span><span class="ph-l" style="--k:5">e</span><span class="ph-l" style="--k:6">r</span><span class="ph-l" style="--k:7">&nbsp;</span><span class="ph-l" style="--k:8">H</span><span class="ph-l" style="--k:9">u</span><span class="ph-l" style="--k:10">b</span></b><small>เกม · Roblox · เว็บ · IoT</small></span>'}
     pt.className='pt v-'+v;pt.innerHTML=h;void pt.offsetWidth;pt.classList.add('in')}
   var first=true;function route(){var v=(location.hash||'#home').slice(1);if(views.indexOf(v)<0)v='home';
     if(first||reduce){first=false;show();return}
