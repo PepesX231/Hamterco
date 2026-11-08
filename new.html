@@ -2957,6 +2957,48 @@ img[loading=lazy]{content-visibility:visible}
 .zq-res .ak,.ctg .ak{flex:none;width:auto}
 @media (max-width:700px){.ak{height:300px;flex-basis:86vw}.ak-b{right:18px;bottom:72px}.ak-a{left:22px;right:auto;bottom:18px}.zq-res .zq-g,.ctg{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory}.zq-res .ak,.ctg .ak{flex:0 0 86vw}}
 
+
+/* ===== v51: orange and white ===== */
+:root{--or:#FF7A1A;--or2:#E85D04;--or3:#FFF1E6}
+/* hero warm sky */
+.zq{background:radial-gradient(70% 60% at 50% 0%,#FFE3CC 0%,rgba(255,227,204,0) 70%),linear-gradient(#FFF4EA,#fff 75%)!important}
+.zq-q{color:var(--or2)!important}
+.zq-pop button:hover{color:var(--or2)!important;background:var(--or3)!important}
+.zq-sug button:hover{background:var(--or3)!important}
+.zq-sw::before{background:radial-gradient(50% 120% at 0% 50%,rgba(255,122,26,.9),transparent 70%),radial-gradient(50% 120% at 100% 50%,rgba(255,170,90,.9),transparent 70%),radial-gradient(60% 100% at 50% 50%,rgba(255,210,170,.6),transparent 70%)!important}
+.zq-sw.lit .zq-s{box-shadow:0 0 0 1.5px #fff,0 0 0 3px rgba(255,122,26,.35),0 20px 40px -16px rgba(232,93,4,.3)!important}
+.zq-cur{background:var(--or)!important}
+/* headline: no yellow styles */
+.zq-h[data-f="cartoon"] #zqType{color:#fff!important;-webkit-text-stroke:6px var(--or2)!important;text-shadow:5px 5px 0 #3A1A05}
+.zq-h[data-f="boom"] #zqType{-webkit-text-stroke:5px #8A2A00!important;background:radial-gradient(circle,#FFB36B 0 40%,var(--or) 60%,transparent 62%)!important}
+.zq-h[data-f="ragnarok"] #zqType{color:#FF8A3D!important;text-shadow:0 0 18px rgba(255,110,30,.6),3px 3px 0 #5A1A00!important}
+.zq-h[data-f="elden"] #zqType{background:linear-gradient(180deg,#E8D3A0,#9A6E22 60%,#5E4210)!important;-webkit-background-clip:text!important;background-clip:text!important}
+/* search button */
+.zq-go{position:relative;display:inline-flex!important;align-items:center;gap:6px;overflow:visible!important;background:linear-gradient(135deg,#FF9A3D,var(--or) 50%,var(--or2))!important;color:#fff!important;padding:12px 22px!important;transition:translate .15s ease-out,box-shadow .25s,transform .12s!important;box-shadow:0 6px 16px -6px rgba(232,93,4,.6)}
+.zq-go::before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(60px circle at var(--gx,50%) 50%,rgba(255,255,255,.45),transparent 70%);opacity:0;transition:opacity .2s}
+.zq-go:hover::before{opacity:1}
+.zq-go:hover{box-shadow:0 10px 24px -6px rgba(232,93,4,.75)}
+.zq-go svg{width:0;height:18px;opacity:0;transition:width .25s,opacity .25s,transform .25s}
+.zq-go:hover svg{width:18px;opacity:1}
+.zq-go:active svg{transform:translateX(5px)}
+.zq-sp{position:absolute;left:50%;top:50%;width:4px;height:12px;margin:-6px 0 0 -2px;border-radius:2px;background:var(--or);pointer-events:none;transform:rotate(var(--a)) translateY(0);animation:zqSp .55s ease-out forwards}
+@keyframes zqSp{to{transform:rotate(var(--a)) translateY(-42px);opacity:0}}
+.zq-cf{position:fixed;z-index:200;width:9px;height:9px;border-radius:2px;pointer-events:none;box-shadow:0 0 0 1px rgba(232,93,4,.25);animation:zqCf 1.1s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes zqCf{to{transform:translate(var(--x),calc(var(--y) + 140px)) rotate(var(--r));opacity:0}}
+/* login: orange, calm */
+.login{background:var(--or)!important;color:#fff!important;box-shadow:0 4px 12px -4px rgba(232,93,4,.55)!important}
+.login::before{display:none!important}
+.login::after{display:none!important}
+.login:hover{background:var(--or2)!important;box-shadow:0 6px 16px -4px rgba(232,93,4,.65)!important}
+/* cards: tidier, orange accents */
+.ak-k{left:18px;right:auto!important;top:16px!important;padding:4px 10px;border-radius:6px;background:rgba(255,255,255,.9);color:var(--or2)!important;font-size:.8rem!important;text-shadow:none!important}
+.ak::after{background:linear-gradient(180deg,transparent 40%,rgba(20,10,4,.55) 65%,rgba(20,10,4,.9) 100%)!important}
+.ak-s em{color:#FFB36B!important}
+.ak.on .ak-a{background:var(--or)!important;color:#fff!important}
+.ak-dots button.on{background:var(--or)!important}
+.mr-btn,.mr-btn:hover{color:var(--or2)!important}
+.mr-rw .mr-ar button,.mr-rw .mr-ar button:hover{color:var(--or2)!important}
+
 /* ---------- footer ---------- */
 footer{background:var(--alt);font-size:.85rem;color:var(--mute)}
 footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
@@ -3371,7 +3413,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
       <p class="zq-q">น้องอยาก...</p>
       <h1 class="zq-h" title="กดเพื่อเปลี่ยนสไตล์"><span id="zqType">ยื่นพอร์ตเข้ามหาลัย</span><i class="zq-cur" aria-hidden="true"></i></h1>
       <div class="zq-sw"><span class="zq-ham" id="zqHam" aria-hidden="true"><i class="zq-spr" id="zqSpr"></i></span><form class="zq-s" id="zqForm" role="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        <input id="zqIn" type="search" placeholder="พิมพ์สิ่งที่น้องอยากทำ เช่น อยากติดวิศวะคอม หรือ อยากทำเกม" aria-label="ค้นหาคอร์สและกิจกรรม" autocomplete="off"><button type="submit">ค้นหา</button></form><div class="zq-sug" id="zqSug" hidden><p>ลองค้นหา</p><button type="button" data-q="ยื่นพอร์ต"><img src="img/i3-cap.webp" alt="">ยื่นพอร์ต<small>คอร์สทำพอร์ตยื่นมหาลัย</small></button><button type="button" data-q="สร้างเกม"><img src="img/i3-pad.webp" alt="">สร้างเกม<small>คอร์สและค่ายสร้างเกม</small></button><button type="button" data-q="IoT"><img src="img/i3-bot.webp" alt="">IoT<small>หุ่นยนต์และอุปกรณ์ IoT</small></button><button type="button" data-q="สตาร์ทอัพ"><img src="img/i3-rocket.webp" alt="">สตาร์ทอัพ<small>ทำผลงานที่ต่อยอดเป็นธุรกิจ</small></button></div></div>
+        <input id="zqIn" type="search" placeholder="พิมพ์สิ่งที่น้องอยากทำ เช่น อยากติดวิศวะคอม หรือ อยากทำเกม" aria-label="ค้นหาคอร์สและกิจกรรม" autocomplete="off"><button type="submit" class="zq-go"><span>ค้นหา</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form><div class="zq-sug" id="zqSug" hidden><p>ลองค้นหา</p><button type="button" data-q="ยื่นพอร์ต"><img src="img/i3-cap.webp" alt="">ยื่นพอร์ต<small>คอร์สทำพอร์ตยื่นมหาลัย</small></button><button type="button" data-q="สร้างเกม"><img src="img/i3-pad.webp" alt="">สร้างเกม<small>คอร์สและค่ายสร้างเกม</small></button><button type="button" data-q="IoT"><img src="img/i3-bot.webp" alt="">IoT<small>หุ่นยนต์และอุปกรณ์ IoT</small></button><button type="button" data-q="สตาร์ทอัพ"><img src="img/i3-rocket.webp" alt="">สตาร์ทอัพ<small>ทำผลงานที่ต่อยอดเป็นธุรกิจ</small></button></div></div>
       <p class="zq-pop"><span>คนค้นหาบ่อย</span><button type="button" data-q="ยื่นพอร์ต">ยื่นพอร์ต</button><button type="button" data-q="สร้างเกม">สร้างเกม</button><button type="button" data-q="AI">AI</button><button type="button" data-q="Python">Python</button><button type="button" data-q="ค่าย">ค่าย</button><button type="button" data-q="แข่งขัน">แข่งขัน</button></p>
     </div>
     <div class="zq-res" id="zqRes" hidden><p class="zq-r" id="zqR" aria-live="polite"></p><div class="zq-g" id="zqG"></div></div>
@@ -3897,7 +3939,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     var SYN={'มหาลัย':'พอร์ต','มหาวิทยาลัย':'พอร์ต','tcas':'พอร์ต','portfolio':'พอร์ต','วิศวะ':'พอร์ต','คอม':'พอร์ต','สัมภาษณ์':'พอร์ต','game':'เกม','roblox':'เกม','unity':'เกม','เอไอ':'ai','โค้ด':'python','เขียนโปรแกรม':'python','แข่ง':'แข่งขัน','jam':'แข่งขัน','เว็บ':'web','web':'เว็บ'};
     function lab(x){return x.k==='course'?'คอร์สเรียน':'กิจกรรม: '+x.k}
     function cardH(x){var cta=x.k==='course'?(x.open?'สมัครเรียน':'รับแจ้งเตือน'):(x.open?'ดูรายละเอียด':'รับแจ้งเตือน');
-      return '<a class="ak'+(x.open?' on':'')+'" href="'+x.url+'" target="_blank" rel="noopener"><img class="ak-i" src="'+x.img+'" alt="" loading="lazy"><span class="ak-k">'+(x.k==='course'?'Hamster Hub คอร์สเรียน':'Hamster Hub '+x.k)+'</span><span class="ak-b"><b>'+x.t+'</b><span class="ak-d">'+x.d+'</span><span class="ak-s">'+(x.open?'<i></i>':'')+x.st+(x.pr?' <em>'+x.pr+'</em>':'')+'</span></span><span class="ak-a">'+cta+'</span></a>'}
+      return '<a class="ak'+(x.open?' on':'')+'" href="'+x.url+'" target="_blank" rel="noopener"><img class="ak-i" src="'+x.img+'" alt="" loading="lazy"><span class="ak-k">'+(x.k==='course'?'คอร์สเรียน':x.k)+'</span><span class="ak-b"><b>'+x.t+'</b><span class="ak-d">'+x.d+'</span><span class="ak-s">'+(x.open?'<i></i>':'')+x.st+(x.pr?' <em>'+x.pr+'</em>':'')+'</span></span><span class="ak-a">'+cta+'</span></a>'}
     function render(list,msg){$('#zqR').innerHTML=msg||'';G2.innerHTML=list.length?list.map(cardH).join(''):'<div class="zq-e"><b>ยังไม่มีคอร์สหรือกิจกรรมที่ตรงกับคำนี้</b><p>บอกทีมได้ว่าน้องอยากทำอะไร ทีมช่วยแนะนำให้</p><a href="'+LINE+'" target="_blank" rel="noopener">ทัก LINE ถามทีม</a></div>'}
     function tab(t){$$('.zq-t button').forEach(function(b){b.setAttribute('aria-selected',String(b.dataset.t===t))});
       var L=t==='pop'?POP.map(function(n){return IT.filter(function(x){return x.t===n})[0]}).filter(Boolean):IT.filter(function(x){return x.k===t});render(L)}
@@ -3937,7 +3979,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
   (function(){var h=$('#zqHam'),sp=$('#zqSpr'),f=$('#zqForm'),inp=$('#zqIn');if(!h||!sp)return;setTimeout(function(){h.classList.add('up')},600);
     var T=[],add=function(fr,n){for(var i=0;i<n;i++)T.push(fr)};add(0,30);add(3,2);add(0,8);add(1,14);add(0,6);add(2,14);add(0,24);add(3,2);add(0,3);add(3,2);add(0,12);
     var t=0,mode='idle',ov=-1;function draw(fr){sp.style.backgroundPosition=(fr*100/3)+'% 0'}
-    setInterval(function(){if(document.hidden)return;var fr=T[t%T.length];t++;if(ov>=0&&fr!==3)fr=ov;draw(fr)},1000/15);
+    setInterval(function(){if(document.hidden)return;var fr=T[t%T.length];t++;if(ov>=0&&fr!==3)fr=ov;else if(window.__hamLook!=null&&fr!==3)fr=window.__hamLook;draw(fr)},1000/15);
     f.addEventListener('pointerenter',function(){h.classList.add('watch')});f.addEventListener('pointerleave',function(){if(document.activeElement!==inp){h.classList.remove('watch');ov=-1}});
     inp.addEventListener('focus',function(){h.classList.add('watch');ov=0});inp.addEventListener('blur',function(){h.classList.remove('watch');ov=-1});
     inp.addEventListener('input',function(){ov=inp.value.length%2?1:2;h.classList.remove('nod');void h.offsetWidth;h.classList.add('nod')});
@@ -3985,6 +4027,19 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
       r.addEventListener('scroll',function(){requestAnimationFrame(upd)},{passive:true});new MutationObserver(build).observe(r,{childList:true});build()})})();
   /* search focus: the sky glow pulls in around the bar */
   (function(){var sw=$('.zq-sw'),inp=$('#zqIn');if(!sw)return;inp.addEventListener('focus',function(){sw.classList.remove('lit');void sw.offsetWidth;sw.classList.add('lit')});inp.addEventListener('blur',function(){sw.classList.remove('lit')})})();
+
+  /* hero play: hamster eyes follow the cursor; click the empty sky for confetti */
+  (function(){var z=$('.zq'),h=$('#zqHam');if(!z||!h)return;var tm=0;
+    z.addEventListener('pointermove',function(e){var r=h.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2);window.__hamLook=dx<-80?1:dx>80?2:0;clearTimeout(tm);tm=setTimeout(function(){window.__hamLook=null},1600)});
+    var C=['#FF7A1A','#FFB36B','#FFD9B8','#E85D04','#fff'];
+    z.addEventListener('click',function(e){if(e.target.closest('a,button,input,form,.zq-h,.zq-sug'))return;if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+      for(var i=0;i<16;i++){var p=document.createElement('i');p.className='zq-cf';var a=Math.random()*6.283,v=60+Math.random()*120;p.style.left=e.clientX+'px';p.style.top=e.clientY+'px';p.style.background=C[i%C.length];
+        p.style.setProperty('--x',(Math.cos(a)*v).toFixed(0)+'px');p.style.setProperty('--y',(Math.sin(a)*v-60).toFixed(0)+'px');p.style.setProperty('--r',(Math.random()*720-360).toFixed(0)+'deg');document.body.appendChild(p);setTimeout(function(q){return function(){q.remove()}}(p),1100)}})})();
+  /* search button: magnetic + spark burst on press */
+  (function(){var b=$('.zq-go');if(!b||!matchMedia('(hover:hover)').matches)return;
+    b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();b.style.translate=((e.clientX-r.left-r.width/2)*.18)+'px '+((e.clientY-r.top-r.height/2)*.25)+'px';b.style.setProperty('--gx',(e.clientX-r.left)+'px')});
+    b.addEventListener('pointerleave',function(){b.style.translate=''});
+    b.addEventListener('click',function(){for(var i=0;i<8;i++){var s=document.createElement('i');s.className='zq-sp';s.style.setProperty('--a',(i*45)+'deg');b.appendChild(s);setTimeout(function(q){return function(){q.remove()}}(s),600)}})})();
   /* activity list */
   var AIMG={'All for One University รอบชิงชนะเลิศ':'k-afo-logo','IoTE KMITL 2026 Showcase (Hallow Open House)':'k-hallow','All for One University รอบออนไลน์':'k-afo','AI Camp Season 2':'k-aicamp','Game Pee Camp':'k-ghost','GameJam X ปีที่ 5':'k-gamejam','Dek-70 Camp':'k-dek70','Dek70 Camp':'k-dek70','NSC Software Project 2026':'s-showcase2'},ACOL={'ค่าย':['#FFF1D6','#B26A00'],'เวิร์กชอป':['#E3F3FF','#1D5FB8'],'แข่งขัน':['#FFE6EE','#B23A68'],'โชว์ผลงาน':['#EEE8FF','#5B3FD6'],'โครงการ':['#E6F7EC','#1E7A4C']};
   var MAS={'ค่าย':'ev-st2','เวิร์กชอป':'ev-st3','แข่งขัน':'ev-st4','โชว์ผลงาน':'ev-st1','โครงการ':'ev-st5'},
