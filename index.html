@@ -2246,6 +2246,36 @@ a.ctb-f:hover{transform:translate(-3px,-3px)}
 .wk.ko{height:52px}.wkz.sm .wk.ko{height:44px}
 
 .ctb-p s{color:#E5484D;font-weight:700;font-size:1.25rem;text-decoration-thickness:2px}
+
+/* ===== v34 ===== */
+/* Hall of Fame: square, full width */
+.h5f{margin:0;border-radius:0}
+.h5f-im,.h5f-im img{border-radius:0}
+.h5f-c em{border-radius:0}
+.h5f-go{clip-path:none}
+/* home transition: panels sweep in, logo stamps, name types in */
+.v-home .ph-p{position:fixed;top:-10%;bottom:-10%;left:-20%;right:-20%;transform:translateX(-120%) skewX(-14deg)}
+.v-home .ph-p.a{background:#FFC531;animation:phIn .5s cubic-bezier(.7,0,.2,1) forwards}
+.v-home .ph-p.b{background:#1C74D9;animation:phIn .5s cubic-bezier(.7,0,.2,1) .08s forwards}
+.v-home .ph-p.c{background:#071631;animation:phIn .5s cubic-bezier(.7,0,.2,1) .16s forwards}
+@keyframes phIn{to{transform:translateX(0) skewX(-14deg)}}
+.v-home.out .ph-p{animation:phOut .55s cubic-bezier(.7,0,.2,1) forwards}
+.v-home.out .ph-p.b{animation-delay:.06s}.v-home.out .ph-p.a{animation-delay:.12s}
+@keyframes phOut{from{transform:translateX(0) skewX(-14deg)}to{transform:translateX(120%) skewX(-14deg)}}
+.ph-c{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:14px;color:#fff;z-index:2}
+.pt .ph-c img{width:120px!important;height:120px!important;border-radius:50%;box-shadow:0 0 0 6px rgba(255,255,255,.12),0 20px 50px rgba(0,0,0,.5);transform:scale(0) rotate(-200deg);animation:phLogo .6s cubic-bezier(.2,1.5,.4,1) .4s forwards}
+@keyframes phLogo{to{transform:scale(1) rotate(0)}}
+.ph-r{position:absolute;left:50%;top:54px;width:108px;height:108px;margin:-54px 0 0 -54px;border-radius:50%;border:3px solid #FFC531;opacity:0;animation:phRing .8s ease-out .62s forwards}
+.ph-r.r2{border-color:#4DA3F0;animation-delay:.74s}
+@keyframes phRing{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(2.6)}}
+.ph-c b{display:flex;font:900 clamp(2.2rem,5vw,3.6rem)/1 var(--display);letter-spacing:-.01em}
+.ph-c b .ph-l{display:inline-block;opacity:0;transform:translateY(24px);animation:phL .38s cubic-bezier(.2,1.6,.4,1) forwards;animation-delay:calc(.5s + var(--k) * .025s)}
+.ph-c b .ph-l:nth-child(n+9){color:#FFC531}
+@keyframes phL{to{opacity:1;transform:none}}
+.ph-c small{font:700 1rem var(--display);letter-spacing:.12em;color:#B3D8FF;opacity:0;animation:phL .4s ease-out .8s forwards;transform:translateY(10px)}
+.v-home.out .ph-c{animation:phCo .35s ease-in forwards}
+@keyframes phCo{to{opacity:0;transform:translate(-50%,-50%) scale(.9)}}
+
 /* ---------- footer ---------- */
 footer{background:var(--alt);font-size:.85rem;color:var(--mute)}
 footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
@@ -3416,11 +3446,11 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
       h+='<span class="ev-t"><small>'+(nx?nx.textContent:'')+'</small><b>กิจกรรม</b></span></span>'}
     else if(v==='works'){h='<span class="t5-cu l"></span><span class="t5-cu r"></span><span class="t5-sp"></span>';for(var k=0;k<22;k++)h+='<span class="t5-d" style="left:'+(25+Math.random()*50).toFixed(1)+'%;top:'+(20+Math.random()*60).toFixed(1)+'%;--dl:'+(Math.random()*.6).toFixed(2)+'s;--s:'+(2+Math.random()*4).toFixed(1)+'px"></span>';h+='<span class="t5-fl"></span><img class="t5-tr" src="img/n-win.webp" alt=""><b class="t5-hof"><small>HAMSTER HUB · CLASS OF 2026</small><span>HALL OF FAME</span></b>'}
     else if(v==='about'){h='<span class="pt-band"></span><img class="pt-run" src="img/n-walker.webp" alt="">'}
-    else{h='<span class="pt-home"></span><span class="pt-lg"><img src="img/logo.webp" alt=""><b>Hamster Hub</b></span>'}
+    else{h='<span class="ph-p a"></span><span class="ph-p b"></span><span class="ph-p c"></span><span class="ph-c"><span class="ph-r"></span><span class="ph-r r2"></span><img src="img/logo.webp" alt=""><b><span class="ph-l" style="--k:0">H</span><span class="ph-l" style="--k:1">a</span><span class="ph-l" style="--k:2">m</span><span class="ph-l" style="--k:3">s</span><span class="ph-l" style="--k:4">t</span><span class="ph-l" style="--k:5">e</span><span class="ph-l" style="--k:6">r</span><span class="ph-l" style="--k:7">&nbsp;</span><span class="ph-l" style="--k:8">H</span><span class="ph-l" style="--k:9">u</span><span class="ph-l" style="--k:10">b</span></b><small>เกม · Roblox · เว็บ · IoT</small></span>'}
     pt.className='pt v-'+v;pt.innerHTML=h;void pt.offsetWidth;pt.classList.add('in')}
   var first=true;function route(){var v=(location.hash||'#home').slice(1);if(views.indexOf(v)<0)v='home';
     if(first||reduce){first=false;show();return}
-    clearTimeout(ptT);ptBuild(v);var hold={courses:750,portex:760,activity:850,works:1050,about:700}[v]||620;ptT=setTimeout(function(){show();var vw=document.querySelector('[data-view].on');if(vw&&PTC[v]){vw.classList.remove('pg-in');void vw.offsetWidth;vw.classList.add('pg-in')}pt.classList.add('out');ptT=setTimeout(function(){pt.className='pt';pt.innerHTML=''},1150)},hold)}
+    clearTimeout(ptT);ptBuild(v);var hold={home:1150,courses:750,portex:760,activity:850,works:1050,about:700}[v]||620;ptT=setTimeout(function(){show();var vw=document.querySelector('[data-view].on');if(vw&&PTC[v]){vw.classList.remove('pg-in');void vw.offsetWidth;vw.classList.add('pg-in')}pt.classList.add('out');ptT=setTimeout(function(){pt.className='pt';pt.innerHTML=''},1150)},hold)}
   addEventListener('hashchange',route);route();
 })();
 </script>
