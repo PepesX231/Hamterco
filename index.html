@@ -1327,6 +1327,49 @@ a.ctb-f:hover{transform:translate(-3px,-3px)}
 .pt.out .t5-tr{bottom:3%;animation:fadeOut .25s forwards}
 @media (max-width:600px){.ctb-f{margin:12px;box-shadow:0 0 0 4px #0B0720,0 0 0 8px #5B3FD6,0 0 0 12px #0B0720,8px 8px 0 12px #FFD24A}.tk-vol{top:auto;bottom:16px;left:16px;right:auto}.tk-vol input{width:80px}}
 
+
+/* ===== v12 ===== */
+.hh-h{font:800 clamp(1.9rem,4.2vw,3.4rem)/1.2 var(--display);letter-spacing:-.02em;color:#fff}
+.hh-s{color:#C9CDE8;margin-top:10px;font-size:clamp(1rem,1.5vw,1.15rem)}
+.gb2{position:relative;width:min(1240px,100%);margin:clamp(22px,3vw,34px) auto 0;aspect-ratio:1390/555;container-type:inline-size;filter:drop-shadow(0 0 50px rgba(255,62,165,.25)) drop-shadow(0 40px 40px rgba(0,0,0,.6))}
+.gb-s.g2{left:23.6%;top:8.65%;width:52.8%;height:58.9%;display:block}
+.gb2 .gb-f{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.gb-lcd{position:absolute;left:6.19%;top:63.24%;width:10.43%;height:13.87%;display:grid;place-items:center;align-content:center;gap:.2cqw;background:#0F1A10;box-shadow:inset 0 0 1cqw rgba(0,0,0,.8)}
+.gb-lcd b{font:400 1.25cqw var(--pixel);color:#7CF29A;text-shadow:0 0 .6cqw rgba(124,242,154,.7)}
+.gb-lcd s{font:600 .85cqw var(--display);color:#5A7A5C}
+.gk{position:absolute;top:75.86%;width:12.23%;height:12.97%;display:grid;place-items:center;text-decoration:none;color:#14102E;transition:transform .1s steps(2),filter .2s}
+.gk.k1{left:28.35%}.gk.k2{left:43.81%}.gk.k3{left:59.42%}
+.gk span{font:800 1.25cqw/1.15 var(--display);text-align:center;padding:0 .5cqw}
+.gk::after{content:"";position:absolute;inset:-.25cqw;box-shadow:0 0 0 .25cqw transparent;transition:box-shadow .2s}
+.gk:hover{transform:translateY(.25cqw)}
+.gk:hover::after,.gk:focus-visible::after{box-shadow:0 0 0 .3cqw #FFD24A,0 0 1.6cqw #FFD24A}
+.gk.k1::before{content:"";position:absolute;left:-1.3cqw;top:50%;width:.8cqw;height:1cqw;margin-top:-.5cqw;background:#FFD24A;clip-path:polygon(0 0,100% 50%,0 100%);animation:bl .9s steps(1) infinite}
+.gk-hint{position:absolute;left:28.35%;top:90%;font:600 1cqw var(--display);color:#9FE7FF}
+.gbt{position:absolute;width:3.2%;height:7.4%;border-radius:.4cqw;cursor:default}
+.hh-m{display:none}
+.ar-floor{background-image:url(img/ar-floor2.webp)!important}
+.t-wk video{height:74%!important;-webkit-mask:linear-gradient(transparent,#000 18%)!important;mask:linear-gradient(transparent,#000 18%)!important}
+.ctb-f video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.pb-b.c{text-align:center}
+.s3 .pb-h{font-size:4cqw;margin-bottom:2.4cqw}
+.s4 .pb-h{font-size:4cqw;line-height:1.25}
+.ev-mas img{width:52%!important}
+.ac-soon img{width:130px}
+/* feed volume on the sound button */
+.tk-vol{display:none!important}
+.tk-mw{position:relative;display:block}
+.tk-vp{position:absolute;right:calc(100% + 8px);top:50%;transform:translateY(-50%) scaleX(.6);transform-origin:right;opacity:0;pointer-events:none;padding:10px 14px;border-radius:999px;background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:opacity .2s,transform .2s}
+.tk-mw:hover .tk-vp,.tk-mw:focus-within .tk-vp{opacity:1;pointer-events:auto;transform:translateY(-50%)}
+.tk-vp input{width:110px;accent-color:#FFD24A;display:block}
+/* courses transition: crossfades, then a calm exit */
+.cs-f{animation:csF2 .26s var(--d) ease both!important;animation-fill-mode:none!important}
+@keyframes csF2{0%{opacity:0;transform:scale(1.06)}25%,70%{opacity:1;transform:none}100%{opacity:0}}
+.cs-end{animation:csE .3s .62s forwards!important}
+.pt.out .cs{animation:csOut2 .6s cubic-bezier(.6,0,.3,1) forwards!important}
+@keyframes csOut2{to{opacity:0;transform:scale(1.06);filter:blur(10px)}}
+@media (max-width:700px){.gk span,.gk-hint,.gk.k1::before{display:none}.gb-lcd b{font-size:2.2cqw}.gb-lcd s{display:none}
+  .hh-m{display:grid;justify-items:center;gap:12px;margin-top:18px}.hh-m p{color:#C9CDE8}.hh-m b{font:400 1.2rem var(--pixel);color:#FFD24A}.hh-m s{color:#8A90B8}}
+
 /* ---------- footer ---------- */
 footer{background:var(--alt);font-size:.85rem;color:var(--mute)}
 footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
@@ -1741,18 +1784,25 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     <div class="wrap hh">
       <h1 class="sr">Port Express คอร์สปั้นพอร์ต ยื่นมหาลัย สำหรับ ม.6</h1>
       <h1 class="hh-t rv" style="display:none"><span class="nw">ยังไม่มีพอร์ต?</span> <span class="nw">2 เดือน พร้อมยื่นรอบ Portfolio</span></h1>
-      <div class="hh-b rv">
-        <p class="hh-p"><b>5,990 บาท</b> <s>9,990</s><span>เริ่ม 9 พ.ย. 2569 · เรียน จ พ ศ · 2 เดือน</span></p>
-        <div class="hh-a"><a class="b1" href="#portex">ดูรายละเอียดคอร์ส</a><a class="b2" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">เว็บ Port Express</a><a class="b3" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">ทัก LINE</a></div>
-      </div>
-      <a class="gb rv" href="#portex" aria-label="ดูรายละเอียดคอร์ส Port Express"><span class="gb-s"><div class="pb " aria-label="Port Express คอร์สปั้นพอร์ตยื่นมหาลัย สำหรับ ม.6: 2 เดือน ทำเกม 3 งาน ทำแฟ้มพอร์ต ซ้อมสัมภาษณ์ รุ่นพี่ติดแล้ว 48 คน">
+      <p class="hh-h rv">จบคอร์ส น้องมีแฟ้มพอร์ตพร้อมยื่นมหาลัย</p>
+      <p class="hh-s rv">Port Express คอร์ส 2 เดือนสำหรับ ม.6 ที่ยังไม่มีผลงาน · เริ่ม 9 พ.ย. 2569</p>
+      <div class="gb2 rv"><a class="gb-s g2" href="#portex" aria-label="ดูรายละเอียดคอร์ส Port Express"><div class="pb " aria-label="Port Express คอร์สปั้นพอร์ตยื่นมหาลัย สำหรับ ม.6: 2 เดือน ทำเกม 3 งาน ทำแฟ้มพอร์ต ซ้อมสัมภาษณ์ รุ่นพี่ติดแล้ว 48 คน">
   <span class="pb-sky" aria-hidden="true"></span>
-  <div class="sc s1"><img class="pb-ham" src="img/n-grad.webp" alt=""><div class="pb-tx"><b class="pb-logo">PORT<br>EXPRESS</b><p class="pb-a">คอร์สปั้นพอร์ต ยื่นมหาลัย</p><p class="pb-b">สำหรับ ม.6 ที่ยังไม่มีพอร์ต</p></div></div>
-  <div class="sc s2"><p class="pb-h">2 เดือน ทำเกมจริง 3 งาน</p><div class="pb-gs"><figure><img src="img/work-escape-rolling.webp" alt=""><figcaption>GAME 1</figcaption></figure><figure><img src="img/work-slash-speed.webp" alt=""><figcaption>GAME 2</figcaption></figure><figure><img src="img/work-apocalypis-building.webp" alt=""><figcaption>GAME 3</figcaption></figure></div></div>
-  <div class="sc s3"><div class="pb-fd"><span class="tab">PORTFOLIO</span><span class="pg p1"></span><span class="pg p2"></span><span class="pg p3"></span><b class="stamp">READY!</b></div><ul class="pb-ck"><li>เกม 3 งานเข้าแฟ้ม</li><li>แฟ้มพอร์ต + Pitch Deck</li><li>ซ้อมสัมภาษณ์กับอาจารย์มหาลัย</li></ul></div>
-  <div class="sc s4"><div class="pb-fan"><img src="img/dek69-13.webp" alt=""><img src="img/dek69-6.webp" alt=""><img src="img/dek69-1.webp" alt=""><img src="img/dek69-11.webp" alt=""></div><div class="pb-tx r"><p class="pb-h">รุ่นพี่ติดแล้ว 48 คน</p><p class="pb-b">สจล. · จุฬาฯ · มหิดล · เกษตรศาสตร์</p><p class="pb-p">เริ่ม 9 พ.ย. · 5,990 บาท</p></div></div>
+  <div class="sc s1"><img class="pb-ham" src="img/n-grad.webp" alt=""><div class="pb-tx"><b class="pb-logo">PORT<br>EXPRESS</b><p class="pb-a">คอร์สช่วยน้อง ม.6<br>ทำพอร์ตยื่นมหาลัย</p><p class="pb-b">ไม่เคยทำผลงานมาก่อน ก็เริ่มได้</p></div></div>
+  <div class="sc s2"><p class="pb-h">ใน 2 เดือน น้องสร้างเกมเองกับมือ 3 เกม</p><p class="pb-b c">ทุกเกมคือผลงานจริง ใส่ลงแฟ้มพอร์ตได้ทันที</p><div class="pb-gs"><figure><img src="img/work-escape-rolling.webp" alt=""><figcaption>เกมที่ 1</figcaption></figure><figure><img src="img/work-slash-speed.webp" alt=""><figcaption>เกมที่ 2</figcaption></figure><figure><img src="img/work-apocalypis-building.webp" alt=""><figcaption>เกมที่ 3</figcaption></figure></div></div>
+  <div class="sc s3"><div class="pb-fd"><span class="tab">PORTFOLIO</span><span class="pg p1"></span><span class="pg p2"></span><span class="pg p3"></span><b class="stamp">READY!</b></div><div><p class="pb-h">จบคอร์ส ได้แฟ้มพอร์ตพร้อมยื่น</p><ul class="pb-ck"><li>ผลงานเกม 3 ชิ้นในแฟ้ม</li><li>สไลด์นำเสนอผลงาน</li><li>ซ้อมสัมภาษณ์กับอาจารย์มหาลัยจริง</li></ul></div></div>
+  <div class="sc s4"><div class="pb-fan"><img src="img/dek69-13.webp" alt=""><img src="img/dek69-6.webp" alt=""><img src="img/dek69-1.webp" alt=""><img src="img/dek69-11.webp" alt=""></div><div class="pb-tx r"><p class="pb-h">รุ่นพี่ที่ทำแบบนี้<br>ติดมหาลัยแล้ว 48 คน</p><p class="pb-b">สจล. · จุฬาฯ · มหิดล · เกษตรศาสตร์</p><p class="pb-p">เริ่ม 9 พ.ย. · 5,990 บาท</p></div></div>
   <span class="pb-pip" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-</div><span class="gb-sl"></span></span><img class="gb-f" src="img/console.webp" alt=""></a>
+</div><span class="gb-sl"></span></a><img class="gb-f" src="img/console2.webp" alt="">
+        <span class="gb-lcd" aria-label="ราคา 5,990 บาท จากปกติ 9,990 บาท"><b>5,990฿</b><s>9,990</s></span>
+        <a class="gk k1" href="#portex"><span>ดูรายละเอียด</span></a>
+        <a class="gk k2" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener"><span>เว็บ Port Express</span></a>
+        <a class="gk k3" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener"><span>ทัก LINE</span></a>
+        <span class="gk-hint" aria-hidden="true">กดปุ่มบนเครื่องได้เลย</span>
+        <span class="gbt b1"></span><span class="gbt b2"></span><span class="gbt b3"></span>
+      </div>
+      <div class="hh-m"><p><b>5,990 บาท</b> <s>9,990</s></p><div class="hh-a"><a class="b1" href="#portex">ดูรายละเอียด</a><a class="b2" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">เว็บ Port Express</a><a class="b3" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">ทัก LINE</a></div></div>
+
     </div>
     <div class="ar-floor" aria-hidden="true"></div>
     <div class="hx3" id="hx3" aria-hidden="true"><canvas id="hxCanvas"></canvas><div class="hx-say" id="hxSay"></div></div>
@@ -1785,15 +1835,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     </div>
   </div></section>
 
-  <section class="pr"><div class="pr-in">
-    <h2 class="rv">ผลลัพธ์ที่วัดได้จริง</h2>
-    <div class="pr-g">
-      <a class="pr-t t1 rv" href="#works" data-pane="sen"><span class="bg grid6"><img src="img/dek69-6.webp" alt=""><img src="img/dek69-1.webp" alt=""><img src="img/dek69-13.webp" alt=""><img src="img/dek69-11.webp" alt=""><img src="img/dek69-9.webp" alt=""><img src="img/dek69-14.webp" alt=""></span><b data-count="48">48</b><p>รุ่นพี่ DEK69<br>ติดมหาวิทยาลัยสายคอม</p></a>
-      <a class="pr-t t2 rv" href="#works"><span class="bg"><img src="img/works-mosaic.webp" alt=""></span><b data-count="37">37</b><p>ผลงานที่น้องสร้าง<br>และเผยแพร่ให้คนใช้จริง</p></a>
-      <a class="pr-t t3 rv" href="#works" data-pane="nsc"><span class="bg"><img src="img/s-showcase1.webp" alt="" style="object-position:70% 50%"></span><b data-count="12">12</b><p>ผลงานเข้ารอบชิงชนะเลิศ NSC<br><small>NSC คือการแข่งขันพัฒนาโปรแกรมคอมพิวเตอร์แห่งประเทศไทย</small></p></a>
-    </div>
-    <p class="pr-src">ข้อมูลจาก 2025 Success Story ของ Hamster Hub</p>
-  </div></section>
+  
 
   <section class="mc"><div class="mc-in">
     <p class="mc-bg" aria-hidden="true">CONGRATULATIONS</p>
@@ -1825,20 +1867,12 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
 <!-- ================= COURSES ================= -->
 <div data-view="courses">
   <div class="wrap">
-    <section class="ct-h"><h1>คอร์ส</h1><p>ทุกคอร์สจบด้วยผลงานจริงที่เอาไปใช้ได้ ทั้งยื่นมหาวิทยาลัย ลงแข่ง และต่อยอด</p></section>
+    <section class="ct-h"><h1>คอร์ส</h1><p>คอร์สที่เปิดรับตอนนี้ จบแล้วน้องได้ผลงานจริงที่เอาไปใช้ยื่นมหาวิทยาลัยได้</p></section>
     <div class="ctb">
-      <a class="ctb-f" href="#portex" aria-label="ดูรายละเอียด Port Express"><div class="pb wide" aria-label="Port Express คอร์สปั้นพอร์ตยื่นมหาลัย สำหรับ ม.6: 2 เดือน ทำเกม 3 งาน ทำแฟ้มพอร์ต ซ้อมสัมภาษณ์ รุ่นพี่ติดแล้ว 48 คน">
-  <span class="pb-sky" aria-hidden="true"></span>
-  <div class="sc s1"><img class="pb-ham" src="img/n-grad.webp" alt=""><div class="pb-tx"><b class="pb-logo">PORT<br>EXPRESS</b><p class="pb-a">คอร์สปั้นพอร์ต ยื่นมหาลัย</p><p class="pb-b">สำหรับ ม.6 ที่ยังไม่มีพอร์ต</p></div></div>
-  <div class="sc s2"><p class="pb-h">2 เดือน ทำเกมจริง 3 งาน</p><div class="pb-gs"><figure><img src="img/work-escape-rolling.webp" alt=""><figcaption>GAME 1</figcaption></figure><figure><img src="img/work-slash-speed.webp" alt=""><figcaption>GAME 2</figcaption></figure><figure><img src="img/work-apocalypis-building.webp" alt=""><figcaption>GAME 3</figcaption></figure></div></div>
-  <div class="sc s3"><div class="pb-fd"><span class="tab">PORTFOLIO</span><span class="pg p1"></span><span class="pg p2"></span><span class="pg p3"></span><b class="stamp">READY!</b></div><ul class="pb-ck"><li>เกม 3 งานเข้าแฟ้ม</li><li>แฟ้มพอร์ต + Pitch Deck</li><li>ซ้อมสัมภาษณ์กับอาจารย์มหาลัย</li></ul></div>
-  <div class="sc s4"><div class="pb-fan"><img src="img/dek69-13.webp" alt=""><img src="img/dek69-6.webp" alt=""><img src="img/dek69-1.webp" alt=""><img src="img/dek69-11.webp" alt=""></div><div class="pb-tx r"><p class="pb-h">รุ่นพี่ติดแล้ว 48 คน</p><p class="pb-b">สจล. · จุฬาฯ · มหิดล · เกษตรศาสตร์</p><p class="pb-p">เริ่ม 9 พ.ย. · 5,990 บาท</p></div></div>
-  <span class="pb-pip" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-</div></a>
+      <a class="ctb-f" href="#portex" aria-label="ดูรายละเอียด Port Express"><video src="img/portex-banner.mp4" poster="img/portex-poster.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></a>
       <div class="ctb-b"><div><b>Port Express</b><span>คอร์สปั้นพอร์ต ยื่นมหาลัย สำหรับ ม.6 · เริ่ม 9 พ.ย. 2569 · <em>5,990 บาท</em></span></div>
         <div class="hh-a"><a class="b1" href="#portex">ดูรายละเอียดคอร์ส</a><a class="b2" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">เว็บ Port Express</a></div></div>
     </div>
-    <section class="ct-list"><h2>คอร์สอื่นของ Hamster Hub</h2><p>เปิดรับเป็นรอบ ภาพคือรุ่นพี่ที่เรียนคอร์สนั้นแล้วติดมหาวิทยาลัย</p><div class="cgrid" id="crows"></div></section>
     <section class="ct-help"><h2>ไม่แน่ใจว่าคอร์สไหนเหมาะ</h2><p>บอกทีมว่าน้องเรียนชั้นไหนและอยากไปทางไหน ทีมจะแนะนำให้</p><div class="btns"><a class="btn btn-line" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">ปรึกษาทีมทาง LINE</a></div></section>
   </div>
 </div>
@@ -1857,10 +1891,10 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     </div>
     <div class="ctb-f px-bnr"><div class="pb " aria-label="Port Express คอร์สปั้นพอร์ตยื่นมหาลัย สำหรับ ม.6: 2 เดือน ทำเกม 3 งาน ทำแฟ้มพอร์ต ซ้อมสัมภาษณ์ รุ่นพี่ติดแล้ว 48 คน">
   <span class="pb-sky" aria-hidden="true"></span>
-  <div class="sc s1"><img class="pb-ham" src="img/n-grad.webp" alt=""><div class="pb-tx"><b class="pb-logo">PORT<br>EXPRESS</b><p class="pb-a">คอร์สปั้นพอร์ต ยื่นมหาลัย</p><p class="pb-b">สำหรับ ม.6 ที่ยังไม่มีพอร์ต</p></div></div>
-  <div class="sc s2"><p class="pb-h">2 เดือน ทำเกมจริง 3 งาน</p><div class="pb-gs"><figure><img src="img/work-escape-rolling.webp" alt=""><figcaption>GAME 1</figcaption></figure><figure><img src="img/work-slash-speed.webp" alt=""><figcaption>GAME 2</figcaption></figure><figure><img src="img/work-apocalypis-building.webp" alt=""><figcaption>GAME 3</figcaption></figure></div></div>
-  <div class="sc s3"><div class="pb-fd"><span class="tab">PORTFOLIO</span><span class="pg p1"></span><span class="pg p2"></span><span class="pg p3"></span><b class="stamp">READY!</b></div><ul class="pb-ck"><li>เกม 3 งานเข้าแฟ้ม</li><li>แฟ้มพอร์ต + Pitch Deck</li><li>ซ้อมสัมภาษณ์กับอาจารย์มหาลัย</li></ul></div>
-  <div class="sc s4"><div class="pb-fan"><img src="img/dek69-13.webp" alt=""><img src="img/dek69-6.webp" alt=""><img src="img/dek69-1.webp" alt=""><img src="img/dek69-11.webp" alt=""></div><div class="pb-tx r"><p class="pb-h">รุ่นพี่ติดแล้ว 48 คน</p><p class="pb-b">สจล. · จุฬาฯ · มหิดล · เกษตรศาสตร์</p><p class="pb-p">เริ่ม 9 พ.ย. · 5,990 บาท</p></div></div>
+  <div class="sc s1"><img class="pb-ham" src="img/n-grad.webp" alt=""><div class="pb-tx"><b class="pb-logo">PORT<br>EXPRESS</b><p class="pb-a">คอร์สช่วยน้อง ม.6<br>ทำพอร์ตยื่นมหาลัย</p><p class="pb-b">ไม่เคยทำผลงานมาก่อน ก็เริ่มได้</p></div></div>
+  <div class="sc s2"><p class="pb-h">ใน 2 เดือน น้องสร้างเกมเองกับมือ 3 เกม</p><p class="pb-b c">ทุกเกมคือผลงานจริง ใส่ลงแฟ้มพอร์ตได้ทันที</p><div class="pb-gs"><figure><img src="img/work-escape-rolling.webp" alt=""><figcaption>เกมที่ 1</figcaption></figure><figure><img src="img/work-slash-speed.webp" alt=""><figcaption>เกมที่ 2</figcaption></figure><figure><img src="img/work-apocalypis-building.webp" alt=""><figcaption>เกมที่ 3</figcaption></figure></div></div>
+  <div class="sc s3"><div class="pb-fd"><span class="tab">PORTFOLIO</span><span class="pg p1"></span><span class="pg p2"></span><span class="pg p3"></span><b class="stamp">READY!</b></div><div><p class="pb-h">จบคอร์ส ได้แฟ้มพอร์ตพร้อมยื่น</p><ul class="pb-ck"><li>ผลงานเกม 3 ชิ้นในแฟ้ม</li><li>สไลด์นำเสนอผลงาน</li><li>ซ้อมสัมภาษณ์กับอาจารย์มหาลัยจริง</li></ul></div></div>
+  <div class="sc s4"><div class="pb-fan"><img src="img/dek69-13.webp" alt=""><img src="img/dek69-6.webp" alt=""><img src="img/dek69-1.webp" alt=""><img src="img/dek69-11.webp" alt=""></div><div class="pb-tx r"><p class="pb-h">รุ่นพี่ที่ทำแบบนี้<br>ติดมหาลัยแล้ว 48 คน</p><p class="pb-b">สจล. · จุฬาฯ · มหิดล · เกษตรศาสตร์</p><p class="pb-p">เริ่ม 9 พ.ย. · 5,990 บาท</p></div></div>
   <span class="pb-pip" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
 </div></div>
   </div></section>
@@ -1933,7 +1967,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     <section class="ac-h"><h1>กิจกรรม</h1><p>ค่าย เวิร์กชอป การแข่งขัน และงานโชว์ผลงาน ตลอดทั้งปี ทุกงานน้องได้ลงมือสร้างของจริง</p></section>
     <div class="ac-sh" style="margin-top:8px"><h2>กำลังจะมา</h2><p>รอบชิงชนะเลิศออนไซต์ ต่อจากรอบออนไลน์ Hallow Open House เมื่อ 7 พ.ย.</p></div>
     <div class="ac-up"><a class="ac-next" href="https://www.hamsterhub.co/allforone" target="_blank" rel="noopener"><div class="m"><img src="img/k-afo-logo.webp" alt="All for One University" loading="lazy"></div>
-      <div class="b"><span class="k">กำลังจะมา · กิจกรรมถัดไป</span><h2>All for One University รอบชิงชนะเลิศ</h2><p class="sub2">IoTE KMITL 2026 Showcase · สำหรับทีมที่ผ่านการคัดเลือก</p><p>14 พ.ย. 2569 ที่ IoTE สจล. ลาดกระบัง ทีมที่ผ่านรอบออนไลน์นำผลงานจริงมานำเสนอต่อคณะกรรมการ</p><span class="cd" id="cdAct">อีก 0 วัน</span><span class="more" style="color:#7DB7FF">ดูรายละเอียดงาน</span></div></a><div class="ac-soon"><img src="img/n-peek.webp" alt="" loading="lazy"><b>กิจกรรมถัดไป<br>กำลังจะประกาศ</b><p>ค่ายและการแข่งขันรอบใหม่ ประกาศทาง LINE ก่อนที่อื่น</p><a class="btn btn-line" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">รับแจ้งเตือนทาง LINE</a></div></div>
+      <div class="b"><span class="k">กำลังจะมา · กิจกรรมถัดไป</span><h2>All for One University รอบชิงชนะเลิศ</h2><p class="sub2">IoTE KMITL 2026 Showcase · สำหรับทีมที่ผ่านการคัดเลือก</p><p>14 พ.ย. 2569 ที่ IoTE สจล. ลาดกระบัง ทีมที่ผ่านรอบออนไลน์นำผลงานจริงมานำเสนอต่อคณะกรรมการ</p><span class="cd" id="cdAct">อีก 0 วัน</span><span class="more" style="color:#7DB7FF">ดูรายละเอียดงาน</span></div></a><div class="ac-soon"><img src="img/ev-st0.webp" alt="" loading="lazy"><b>กิจกรรมถัดไป<br>กำลังจะประกาศ</b><p>ค่ายและการแข่งขันรอบใหม่ ประกาศทาง LINE ก่อนที่อื่น</p><a class="btn btn-line" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">รับแจ้งเตือนทาง LINE</a></div></div>
     <div class="ac-sh"><h2>จบไปแล้วในปี 2569</h2><p>ดูว่าแต่ละงานน้องๆ ได้ทำอะไร กิจกรรมแบบนี้จะกลับมาอีก กดติดตามได้ท้ายหน้า</p></div>
     <div class="ac-list" id="acl"></div>
     <div class="ac-fl"><div><b>อยากรู้ก่อนเมื่อมีกิจกรรมใหม่</b><p>ค่าย เวิร์กชอป และการแข่งขัน ประกาศทาง LINE และ Facebook ก่อนที่อื่น</p></div><div class="btns"><a class="btn btn-line" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">LINE @smart-school</a><a class="btn btn-s" href="https://www.facebook.com/HamsterHubThailand" target="_blank" rel="noopener">Facebook</a></div></div>
@@ -2296,12 +2330,12 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
   /* courses list */
   var C=[['Port70','คอร์สทำพอร์ตสำหรับน้อง DEK70'],['Project Express','ทำโปรเจกต์ให้เสร็จไวเพื่อยื่นพอร์ต'],['National Project','ทำโปรเจกต์ส่งเวทีระดับประเทศ'],['Business Project','ทำโปรเจกต์ที่ต่อยอดเป็นธุรกิจ'],['Python Pro Pack','เรียนเขียนโปรแกรมด้วย Python'],['Hamstarter','คอร์สเริ่มต้นสำหรับคนที่ยังไม่มีผลงาน']];
   var CB=['','','','','',''],MO=['70','EXPRESS','NSC','฿','&gt;&gt;&gt; run()','START'];
-  $('#crows').innerHTML=C.map(function(c,ci){var al=G.filter(function(x){return x[4]===c[0]}),us=al.map(function(x){return UN[x[2]]}).filter(function(v,k,a){return a.indexOf(v)===k});
+  if($('#crows'))$('#crows').innerHTML=C.map(function(c,ci){var al=G.filter(function(x){return x[4]===c[0]}),us=al.map(function(x){return UN[x[2]]}).filter(function(v,k,a){return a.indexOf(v)===k});
     var im=al.slice(0,3).map(function(x,k){return '<img src="img/dek69-'+x[0]+'.webp" alt="" loading="lazy" style="--k:'+(k-(Math.min(al.length,3)-1)/2)+'">'}).join('');
     return '<div class="cc"><div class="cc-m th'+ci+'"><i class="mo" aria-hidden="true">'+MO[ci]+'</i>'+im+'<span class="cc-st">รอบถัดไป</span></div><div class="cc-b"><b>'+c[0]+'</b><p>'+c[1]+'</p>'+(al.length?'<p class="al">รุ่นพี่ '+al.length+' คนจากคอร์สนี้ติด '+us.join(' ')+'</p>':'')+'<a href="'+LINE+'" target="_blank" rel="noopener">แจ้งเตือนเมื่อเปิดรอบ</a></div></div>'}).join('');
   /* activity list */
   var AIMG={'All for One University รอบชิงชนะเลิศ':'k-afo-logo','IoTE KMITL 2026 Showcase (Hallow Open House)':'k-hallow','All for One University รอบออนไลน์':'k-afo','AI Camp Season 2':'k-aicamp','Game Pee Camp':'k-ghost','GameJam X ปีที่ 5':'k-gamejam','Dek-70 Camp':'k-dek70','Dek70 Camp':'k-dek70','NSC Software Project 2026':'s-showcase2'},ACOL={'ค่าย':['#FFF1D6','#B26A00'],'เวิร์กชอป':['#E3F3FF','#1D5FB8'],'แข่งขัน':['#FFE6EE','#B23A68'],'โชว์ผลงาน':['#EEE8FF','#5B3FD6'],'โครงการ':['#E6F7EC','#1E7A4C']};
-  var MAS={'ค่าย':'n-gamer','เวิร์กชอป':'n-read','แข่งขัน':'n-win','โชว์ผลงาน':'n-walker','โครงการ':'n-maker'},TN={'โครงการ':'โปรเจกต์ส่งประกวด'};
+  var MAS={'ค่าย':'ev-st2','เวิร์กชอป':'ev-st3','แข่งขัน':'ev-st4','โชว์ผลงาน':'ev-st1','โครงการ':'ev-st5'},TN={'โครงการ':'โปรเจกต์ส่งประกวด'};
   function alist(){$('#acl').innerHTML=ACT.filter(function(a){return !a[4]}).map(function(a){var im=AIMG[a[1]],c=ACOL[a[3]];
     return '<article class="ev done"><div class="ev-m" style="background:'+c[0]+';color:'+c[1]+'">'+(im?'<img src="img/'+im+'.webp" alt="" loading="lazy"'+(im==='k-afo-logo'?' class="logo"':'')+'>':'<span class="ev-mas"><img src="img/'+MAS[a[3]]+'.webp" alt="" loading="lazy"><em>'+a[1]+'</em></span>')+'<span class="ev-d">'+a[0]+'</span><span class="ev-x">จบแล้ว</span></div><div class="ev-b"><span class="tg" style="color:'+c[1]+'">'+(TN[a[3]]||a[3])+'</span><b>'+a[1]+'</b><p>'+a[2]+'</p></div></article>'}).join('')}
   alist();
@@ -2471,14 +2505,13 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
   /* TCAS timeline: mark where we are */
   (function(){var now=new Date(),li=document.querySelectorAll('.tl li'),k=-1;li.forEach(function(e,n){if(new Date(e.dataset.d+'T00:00:00+07:00')<=now)k=n});
     li.forEach(function(e,n){e.classList.toggle('done',n<k);e.classList.toggle('here',n===k+1)})})();
-  /* feed volume: one slider for every clip */
-  (function(){var tk=document.querySelector('.yt .tk');if(!tk)return;var w=document.createElement('label');w.className='tk-vol';
-    w.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg><span class="sr">ระดับเสียง</span><input type="range" min="0" max="100" value="0" aria-label="ระดับเสียง">';
-    tk.appendChild(w);var r=w.querySelector('input');
-    r.addEventListener('input',function(){var val=r.value/100;tk.querySelectorAll('video').forEach(function(v){v.volume=val});var on=document.querySelector('.tk-mute[aria-pressed="true"]');
-      var item=[].slice.call(tk.querySelectorAll('.tk-item')).filter(function(it){var b=it.getBoundingClientRect();return b.top>=-10&&b.top<innerHeight/2})[0],mb=item&&item.querySelector('.tk-mute');
-      if(val>0&&!on&&mb)mb.click();if(val===0&&on&&mb)mb.click();r.style.setProperty('--v',r.value+'%')});
-    tk.addEventListener('click',function(e){var b=e.target.closest('.tk-mute');if(!b)return;setTimeout(function(){var on=b.getAttribute('aria-pressed')==='true';if(on&&+r.value===0){r.value=70;tk.querySelectorAll('video').forEach(function(v){v.volume=.7})}if(!on)r.value=0;r.style.setProperty('--v',r.value+'%')},0)})})();
+  /* feed volume: the sound button also holds a volume slider */
+  (function(){var tk=document.querySelector('.yt .tk');if(!tk)return;var vol=.7;
+    tk.querySelectorAll('.tk-mute').forEach(function(b){var w=document.createElement('span');w.className='tk-mw';b.parentNode.insertBefore(w,b);w.appendChild(b);
+      var p=document.createElement('span');p.className='tk-vp';p.innerHTML='<input type="range" min="0" max="100" value="70" aria-label="ระดับเสียง">';w.appendChild(p);
+      var r=p.querySelector('input');r.addEventListener('input',function(){vol=r.value/100;tk.querySelectorAll('video').forEach(function(v){v.volume=vol});tk.querySelectorAll('.tk-vp input').forEach(function(x){x.value=r.value});
+        var on=b.getAttribute('aria-pressed')==='true';if(vol>0&&!on)b.click();if(vol===0&&on)b.click()})});
+    tk.querySelectorAll('video').forEach(function(v){v.volume=vol})})();
   /* router */
   var views=['home','courses','portex','activity','works','about'],menuBtn=$('#menuBtn'),drawer=$('#drawer');
   var titles={home:'Hamster Hub',courses:'คอร์ส | Hamster Hub',portex:'Port Express | Hamster Hub',activity:'กิจกรรม | Hamster Hub',works:'ผลงาน | Hamster Hub',about:'เกี่ยวกับเรา | Hamster Hub'};
@@ -2494,12 +2527,12 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
   var pt=document.getElementById('pt'),ptT=0;
   var PTC={courses:1,portex:1,activity:1,works:1,about:1};
   function ptBuild(v){var h='';
-    if(v==='courses'){var F=[['f1','คอร์ส'],['f2','คอร์ส'],['f3','คอร์ส'],['f4','&gt; คอร์ส_'],['f5','คอร์ส'],['f1','คอร์ส'],['f3','คอร์ส']];
-      h='<span class="cs">';F.forEach(function(f,k){h+='<span class="cs-f '+f[0]+'" style="--d:'+(k*.085).toFixed(3)+'s"><b>'+f[1]+'</b></span>'});
+    if(v==='courses'){var F=[['f1','คอร์ส'],['f2','คอร์ส'],['f3','คอร์ส'],['f4','&gt; คอร์ส_'],['f5','คอร์ส']];
+      h='<span class="cs">';F.forEach(function(f,k){h+='<span class="cs-f '+f[0]+'" style="--d:'+(k*.13).toFixed(3)+'s"><b>'+f[1]+'</b></span>'});
       h+='<span class="cs-end"><small>หลายคอร์ส หลายสไตล์ เลือกที่ใช่</small><b>คอร์ส</b></span></span>'}
     else if(v==='portex'){var c=14,r=8;for(var y=0;y<r;y++)for(var x=0;x<c;x++)h+='<i style="left:'+(x*100/c)+'%;top:'+(y*100/r)+'%;width:'+(100/c+.2)+'%;height:'+(100/r+.2)+'%;--dl:'+(Math.random()*.32).toFixed(2)+'s"></i>';h+='<b class="pt-px">LOADING...</b>'}
-    else if(v==='activity'){var nx=document.getElementById('nvNext'),x0=lastXY[0],y0=lastXY[1],ST=['n-win','n-gamer','n-walker','n-maker','n-read','afo-ic0','afo-ic1','afo-ic2','n-ceo','n-grad'];h='<span class="ev-w"><span class="ev-c a" style="--x:'+x0+'px;--y:'+y0+'px"></span><span class="ev-c b" style="--x:'+x0+'px;--y:'+y0+'px"></span>';
-      for(var k=0;k<10;k++){var an=k/10*6.283+Math.random()*.4,d=34+Math.random()*10;h+='<img class="ev-s" src="img/'+ST[k]+'.webp" alt="" style="--tx:'+(Math.cos(an)*d).toFixed(1)+'vmin;--ty:'+(Math.sin(an)*d*.8).toFixed(1)+'vmin;--rot:'+(Math.random()*40-20).toFixed(0)+'deg;--dl:'+(.3+k*.025).toFixed(3)+'s">'}
+    else if(v==='activity'){var nx=document.getElementById('nvNext'),x0=lastXY[0],y0=lastXY[1],ST=['ev-st0','ev-st1','ev-st2','ev-st3','ev-st4','ev-st5','ev-st1','ev-st4','ev-st0','ev-st5'];h='<span class="ev-w"><span class="ev-c a" style="--x:'+x0+'px;--y:'+y0+'px"></span><span class="ev-c b" style="--x:'+x0+'px;--y:'+y0+'px"></span>';
+      for(var k=0;k<6;k++){var an=k/6*6.283+.5+Math.random()*.4,d=34+Math.random()*10;h+='<img class="ev-s" src="img/'+ST[k]+'.webp" alt="" style="--tx:'+(Math.cos(an)*d).toFixed(1)+'vmin;--ty:'+(Math.sin(an)*d*.8).toFixed(1)+'vmin;--rot:'+(Math.random()*40-20).toFixed(0)+'deg;--dl:'+(.3+k*.025).toFixed(3)+'s">'}
       h+='<span class="ev-t"><small>'+(nx?nx.textContent:'')+'</small><b>กิจกรรม</b></span></span>'}
     else if(v==='works'){h='<span class="t5-cu l"></span><span class="t5-cu r"></span><span class="t5-sp"></span>';for(var k=0;k<22;k++)h+='<span class="t5-d" style="left:'+(25+Math.random()*50).toFixed(1)+'%;top:'+(20+Math.random()*60).toFixed(1)+'%;--dl:'+(Math.random()*.6).toFixed(2)+'s;--s:'+(2+Math.random()*4).toFixed(1)+'px"></span>';h+='<span class="t5-fl"></span><img class="t5-tr" src="img/n-win.webp" alt=""><b class="t5-hof"><small>HAMSTER HUB · CLASS OF 2026</small><span>HALL OF FAME</span></b>'}
     else if(v==='about'){h='<span class="pt-band"></span><img class="pt-run" src="img/n-walker.webp" alt="">'}
@@ -2507,7 +2540,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     pt.className='pt v-'+v;pt.innerHTML=h;void pt.offsetWidth;pt.classList.add('in')}
   var first=true;function route(){var v=(location.hash||'#home').slice(1);if(views.indexOf(v)<0)v='home';
     if(first||reduce){first=false;show();return}
-    clearTimeout(ptT);ptBuild(v);var hold={courses:950,portex:760,activity:850,works:1050,about:700}[v]||620;ptT=setTimeout(function(){show();var vw=document.querySelector('[data-view].on');if(vw&&PTC[v]){vw.classList.remove('pg-in');void vw.offsetWidth;vw.classList.add('pg-in')}pt.classList.add('out');ptT=setTimeout(function(){pt.className='pt';pt.innerHTML=''},1150)},hold)}
+    clearTimeout(ptT);ptBuild(v);var hold={courses:1000,portex:760,activity:850,works:1050,about:700}[v]||620;ptT=setTimeout(function(){show();var vw=document.querySelector('[data-view].on');if(vw&&PTC[v]){vw.classList.remove('pg-in');void vw.offsetWidth;vw.classList.add('pg-in')}pt.classList.add('out');ptT=setTimeout(function(){pt.className='pt';pt.innerHTML=''},1150)},hold)}
   addEventListener('hashchange',route);route();
 })();
 </script>
