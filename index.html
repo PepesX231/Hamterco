@@ -2006,6 +2006,64 @@ a.ctb-f:hover{transform:translate(-3px,-3px)}
 @media (max-width:1000px){.fit-in{grid-template-columns:minmax(0,1fr)}}
 
 .ct-fit{margin:56px 0}.ct-fit .fit{padding:0}
+
+/* ===== v29 ===== */
+/* hero: calm navy, clear type scale */
+.hq{margin:12px 12px 0;border-radius:28px;overflow:hidden;color:#fff;background:radial-gradient(60% 80% at 78% 30%,rgba(28,116,217,.45),transparent 70%),linear-gradient(160deg,#0B2550 0%,#081A3A 100%);padding:clamp(40px,5vw,72px) clamp(24px,5vw,72px) clamp(28px,4vw,48px)}
+.hq-in{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(28px,4vw,64px);align-items:center}
+.hq-k{font:600 1rem var(--display);color:var(--b200)}
+.hq-h{font:800 clamp(2.4rem,4.4vw,4rem)/1.12 var(--display);letter-spacing:-.025em;margin-top:14px}
+.hq-h span{color:var(--yel)}
+.hq-m{list-style:none;margin:26px 0 0;padding:0;display:flex;gap:28px;flex-wrap:wrap}
+.hq-m li{font:700 1.1rem var(--display)}.hq-m small{display:block;font:500 .85rem var(--display);color:var(--b200);margin-bottom:2px}
+.hq-p{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-top:28px}
+.hq-p b{font:800 clamp(2.8rem,4.4vw,3.6rem)/1 var(--display);letter-spacing:-.02em}.hq-p span{font:700 1.3rem var(--display)}
+.hq-p s{color:var(--b200);margin-left:6px}.hq-p em{font-style:normal;font:800 .9rem var(--display);color:#3A2A00;background:var(--yel);padding:4px 12px;border-radius:999px}
+.hq-b{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:24px}
+.hq-b .go{display:inline-flex;align-items:center;min-height:54px;padding:0 34px;border-radius:999px;background:var(--yel);color:#2A1E00;font:800 1.1rem var(--display);text-decoration:none;transition:transform .15s,filter .2s}
+.hq-b .go:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.hq-b .ln{color:#7CE3A6;font-weight:600;text-decoration:none;padding:8px 12px;margin-left:-12px;border-radius:999px}.hq-b .ln:hover{background:rgba(124,227,166,.12)}
+.hq-v{display:block;border-radius:20px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 40px 70px -30px rgba(0,0,0,.7)}
+.hq-v video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.hq-s{list-style:none;margin:clamp(32px,4vw,48px) auto 0;padding:0;max-width:1240px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.hq-s li{display:flex;align-items:center;gap:14px;padding:12px;border-radius:18px;background:rgba(255,255,255,.06)}
+.hq-s img{width:84px;height:64px;object-fit:cover;border-radius:12px;flex:none}
+.hq-s small{display:block;font:600 .8rem var(--display);color:var(--b200)}.hq-s b{display:block;font:700 1.05rem var(--display)}.hq-s span{display:block;font-size:.88rem;color:rgba(255,255,255,.7)}
+@media (max-width:900px){.hq-in,.hq-s{grid-template-columns:minmax(0,1fr)}.hq-v{order:-1}}
+/* paths without mascots */
+.f4.p3 .pod .ph{aspect-ratio:4/3}
+/* no dashed floors */
+.wkz::after{display:none}
+/* Hall of Fame */
+.h5f{position:relative;margin:12px 12px 0;border-radius:28px;overflow:hidden;text-align:center;color:#fff;padding:clamp(56px,7vw,96px) 16px clamp(48px,6vw,80px);
+  background:radial-gradient(50% 60% at 50% 0%,rgba(255,206,110,.28),transparent 70%),linear-gradient(#120D05,#060402)}
+.h5f-k{font:700 1.05rem var(--display);color:#F3D88E}
+.h5f-t{font:900 clamp(3rem,9vw,7.6rem)/1 var(--display);letter-spacing:.04em;margin-top:10px;background:linear-gradient(100deg,#E8C877 0%,#FFF1C2 25%,#FFFFFF 33%,#F6DF9A 50%,#E8C877 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:hfS 6s linear infinite}
+.h5f-s{color:rgba(255,246,214,.85);margin-top:12px;font-size:1.1rem}
+.h5f-r{display:flex;justify-content:center;align-items:flex-start;gap:clamp(12px,1.6vw,24px);margin:clamp(36px,4vw,56px) auto 0;max-width:1200px;padding:0 8px}
+.h5f-c{--i:0;flex:1;min-width:0;max-width:230px;text-decoration:none;color:#fff;transform:translateY(calc(var(--i) * var(--i) * 10px)) rotate(calc(var(--i) * 3deg));transition:transform .35s cubic-bezier(.3,1.4,.5,1)}
+.h5f-c img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:18px;box-shadow:0 0 0 1px rgba(246,223,154,.35),0 30px 50px -24px rgba(0,0,0,.9),0 0 40px -10px rgba(255,200,90,.35)}
+.h5f-c b{display:block;font:700 1rem var(--display);margin-top:12px}
+.h5f-c em{display:inline-block;font-style:normal;font:700 .8rem var(--display);color:#1A1206;background:#F3D88E;padding:2px 10px;border-radius:999px;margin-top:6px}
+.h5f-c:hover{transform:translateY(-10px) rotate(0)}
+.h5f-go{display:inline-block;margin-top:36px;font:700 1.05rem var(--display);color:#1A1206;background:linear-gradient(90deg,#E8C877,#FFF1C2,#E8C877);padding:13px 30px;border-radius:999px;text-decoration:none}
+@media (max-width:700px){.h5f-c:nth-child(1),.h5f-c:nth-child(5){display:none}.h5f-c{transform:none}}
+/* seniors: clean stage */
+.mc-in{background:radial-gradient(45% 55% at 50% 55%,rgba(120,180,255,.22),transparent 70%),linear-gradient(180deg,#0A2148 0%,#0D2E63 60%,#0A2148 100%)!important}
+.mc-in::after,.mc-bg{display:none!important}
+/* activity list: colored tag instead of a sticker */
+.er{grid-template-columns:minmax(0,1fr)!important}.er-c{display:inline-block;font:700 .8rem var(--display);color:var(--c);background:color-mix(in srgb,var(--c) 12%,#fff);padding:3px 10px;border-radius:999px;margin-bottom:6px}
+.er time{grid-column:auto!important}.er>div{grid-column:auto!important}
+/* about */
+.aw-g figure.nopic{background:var(--b600);color:#fff;display:flex;align-items:flex-end}.aw-g figure.nopic b{color:#fff}.aw-g figure.nopic span{color:rgba(255,255,255,.85)}
+.rw li{padding:22px;border-radius:20px;background:var(--b50);text-align:left}.rw img.ph{display:block;margin-bottom:12px}
+
+
+.hq-h{font-size:clamp(2.2rem,3.5vw,3.4rem)}
+.er-c{width:fit-content;justify-self:start}
+.rw ul{align-items:start}.rw li img{display:none}
+.ct-help{display:none}
+
 /* ---------- footer ---------- */
 footer{background:var(--alt);font-size:.85rem;color:var(--mute)}
 footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
@@ -2415,28 +2473,22 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
 <main id="main">
 <!-- ================= HOME ================= -->
 <div data-view="home">
-  <section class="hb hb2">
-    <div class="hb2-top">
-      <div class="hb2-tx">
-        <p class="hb-k">คอร์สทำพอร์ตยื่นมหาลัย · สำหรับน้อง ม.6</p>
-        <h1 class="hb2-h">เรียน 2 เดือน<br>ได้ผลงานจริง<br><span>ไปยื่นรอบ Portfolio</span></h1>
-        <p class="hb2-n">Port Express · เริ่มเรียน 9 พ.ย. 2569 · เรียนสร้างเกมด้วย Unity · จันทร์ พุธ ศุกร์</p>
-        <div class="hb2-b"><p class="hb-p"><b>5,990 บาท</b> <s>9,990</s><em>ประหยัด 4,000</em></p>
-          <div class="hb-a"><a class="a1" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">สมัครเรียน</a><a class="a2" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">ดูรายละเอียด</a></div></div>
-        <a class="hb2-line" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">มีคำถาม ทัก LINE ถามทีมได้เลย</a>
-      </div>
-      <a class="hb2-sc" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener" aria-label="ดูรายละเอียดคอร์ส Port Express">
-        <span class="glow" aria-hidden="true"></span>
-        <span class="fr"><video src="img/portex-banner.mp4" poster="img/portex-poster.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></span>
-        <img class="hb2-ham" src="img/n-gamer.webp" alt="">
-      </a>
+  <section class="hq"><div class="hq-in">
+    <div class="hq-tx">
+      <p class="hq-k">Port Express · คอร์สทำพอร์ตยื่นมหาลัย สำหรับ ม.6</p>
+      <h1 class="hq-h">เรียน 2 เดือน<br><span>มีผลงานจริงไปยื่นพอร์ต</span></h1>
+      <ul class="hq-m"><li><small>เริ่มเรียน</small>9 พ.ย. 2569</li><li><small>วันเรียน</small>จันทร์ พุธ ศุกร์</li><li><small>สอนอะไร</small>สร้างเกมด้วย Unity</li></ul>
+      <div class="hq-p"><b>5,990</b><span>บาท</span><s>9,990</s><em>ประหยัด 4,000</em></div>
+      <div class="hq-b"><a class="go" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">สมัครเรียน</a><a class="ln" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">มีคำถาม ทัก LINE ถามทีม</a></div>
     </div>
-    <ol class="hb-st">
-        <li><span class="hb-v v-g"><img src="img/work-phi-krahang.webp" alt=""><img src="img/work-stressstrike.webp" alt=""><img src="img/work-midnight-at-roadside.webp" alt=""></span><b>เรียนทำเกมกับพี่ๆ</b><small>จันทร์ พุธ ศุกร์ · 2 เดือน</small></li>
-        <li><span class="hb-v v-f"><span class="fd2"><span class="tb">PORTFOLIO</span><i></i><i></i><i></i><em>READY!</em></span></span><b>ได้ผลงานใส่แฟ้มพอร์ต</b><small>พร้อมสไลด์เล่าผลงาน และซ้อมสัมภาษณ์</small></li>
-        <li><span class="hb-v v-p"><img src="img/dek69-13.webp" alt=""><img src="img/dek69-6.webp" alt=""><img src="img/dek69-1.webp" alt=""></span><b><span class="nw">ยื่นรอบ Portfolio</span> <span class="nw">ติดมหาลัย</span></b><small>รุ่นพี่ติดแล้ว 48 คน</small></li>
-      </ol>
-  </section>
+    <a class="hq-v" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener" aria-label="ดูรายละเอียดคอร์ส Port Express"><video src="img/portex-banner.mp4" poster="img/portex-poster.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></a>
+  </div>
+  <ol class="hq-s">
+    <li><img src="img/work-phi-krahang.webp" alt=""><div><small>ขั้นที่ 1</small><b>เรียนทำเกมกับพี่ๆ</b><span>ไม่เคยทำมาก่อนก็เริ่มได้</span></div></li>
+    <li><img src="img/folio.webp" alt=""><div><small>ขั้นที่ 2</small><b>ได้ผลงานใส่แฟ้มพอร์ต</b><span>พร้อมสไลด์เล่าผลงาน และซ้อมสัมภาษณ์</span></div></li>
+    <li><img src="img/dek69-13.webp" alt="" style="object-position:50% 25%"><div><small>ขั้นที่ 3</small><b>ยื่นรอบ Portfolio</b><span>รุ่นพี่ติดมหาลัยแล้ว 48 คน</span></div></li>
+  </ol>
+</section>
 
 
 
@@ -2454,25 +2506,22 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
   <section class="paths"><div class="wrap">
     <h2 class="rv">น้องอยากไปทางไหน<br>Hamster Hub พาไปได้</h2><p class="sk rv">เราสอนทำ <b>เกม</b> · <b>Roblox</b> · <b>เว็บ</b> · <b>IoT</b> ให้น้องมีผลงานจริงของตัวเอง</p>
     <div class="f4 p3">
-      <a class="f4i rv" href="#courses" style="--bg:#FFF1D6;--ac:#B26A00"><span class="pod"><img class="ph" src="img/dek69-8.webp" alt="" loading="lazy"><img class="ms" src="img/n-grad.webp" alt="" loading="lazy"><i class="bubble">ไปมหาลัยกัน!</i></span><span class="k">พอร์ตโฟลิโอ</span><span class="w">ยื่นมหาลัย</span><span class="d">ทำผลงานเก็บเข้าพอร์ต ซ้อมนำเสนอกับอาจารย์มหาวิทยาลัย</span><span class="pf">รุ่นพี่ DEK69 ติดแล้ว 48 คน</span><span class="go">ดูคอร์สทำพอร์ต <b>→</b></span></a>
-      <a class="f4i rv" href="#works" data-pane="real" style="--bg:#E3F3FF;--ac:#1D5FB8"><span class="pod"><img class="ph" src="img/w-revoice.webp" alt="" loading="lazy"><img class="ms" src="img/n-ceo.webp" alt="" loading="lazy"><i class="bubble">ไปให้สุด!</i></span><span class="k">ธุรกิจของตัวเอง</span><span class="w">สตาร์ทอัพ</span><span class="d">4 ขั้นจากไอเดีย สู่ผลงานที่มีคนใช้และมีรายได้</span><span class="pf">Mr. City ขายให้สวนสัตว์สงขลาแล้ว</span><span class="go">ผลงานที่ใช้งานจริง <b>→</b></span></a>
-      <a class="f4i rv" href="#activity" style="--bg:#FFE6EE;--ac:#B23A68"><span class="pod"><img class="ph" src="img/team-group.webp" alt="" loading="lazy"><img class="ms" src="img/n-win.webp" alt="" loading="lazy"><i class="bubble">ลุยเลย!</i></span><span class="k">การแข่งขัน</span><span class="w">ลงเวทีจริง</span><span class="d">ค่าย Game Jam และการแข่งขันที่จัดร่วมกับ สจล.</span><span class="pf">12 ผลงานเข้ารอบชิง NSC</span><span class="go">ดูกิจกรรม <b>→</b></span></a>
+      <a class="f4i rv" href="#courses" style="--bg:#FFF1D6;--ac:#B26A00"><span class="pod"><img class="ph" src="img/dek69-8.webp" alt="" loading="lazy"></span><span class="k">พอร์ตโฟลิโอ</span><span class="w">ยื่นมหาลัย</span><span class="d">ทำผลงานเก็บเข้าพอร์ต ซ้อมนำเสนอกับอาจารย์มหาวิทยาลัย</span><span class="pf">รุ่นพี่ DEK69 ติดแล้ว 48 คน</span><span class="go">ดูคอร์สทำพอร์ต <b>→</b></span></a>
+      <a class="f4i rv" href="#works" data-pane="real" style="--bg:#E3F3FF;--ac:#1D5FB8"><span class="pod"><img class="ph" src="img/w-revoice.webp" alt="" loading="lazy"></span><span class="k">ธุรกิจของตัวเอง</span><span class="w">สตาร์ทอัพ</span><span class="d">4 ขั้นจากไอเดีย สู่ผลงานที่มีคนใช้และมีรายได้</span><span class="pf">Mr. City ขายให้สวนสัตว์สงขลาแล้ว</span><span class="go">ผลงานที่ใช้งานจริง <b>→</b></span></a>
+      <a class="f4i rv" href="#activity" style="--bg:#FFE6EE;--ac:#B23A68"><span class="pod"><img class="ph" src="img/k-gamejam.webp" alt="" loading="lazy"></span><span class="k">การแข่งขัน</span><span class="w">ลงเวทีจริง</span><span class="d">ค่าย Game Jam และการแข่งขันที่จัดร่วมกับ สจล.</span><span class="pf">12 ผลงานเข้ารอบชิง NSC</span><span class="go">ดูกิจกรรม <b>→</b></span></a>
     </div>
   </div></section>
 
   
 
   <div class="wkz"><img class="wk" src="img/n-gamer.webp" alt="น้องหนู ลากเล่นได้"></div>
-  <section class="hp-grid hof-s"><div class="wrap hg st">
-    <a class="tile hof2 rv" href="#works" data-pane="hof">
-      <span class="hf-sp" aria-hidden="true"></span>
-      <p class="hf-k">ผลงานเด่นของน้องๆ ปี 2569</p>
-      <h3 class="hf-t">HALL OF FAME</h3>
-      <div class="hf-row"><figure><img src="img/work-stressstrike.webp" alt="" loading="lazy"><figcaption>StressStrike</figcaption></figure><figure><img src="img/work-phi-krahang.webp" alt="" loading="lazy"><figcaption>ผีกระหัง</figcaption></figure><figure><img src="img/work-eugation-strike.webp" alt="" loading="lazy"><figcaption>Eugation Strike</figcaption></figure><figure><img src="img/work-slash-speed.webp" alt="" loading="lazy"><figcaption>SLASH//SPEED</figcaption></figure><figure><img src="img/work-escape-rolling.webp" alt="" loading="lazy"><figcaption>Escape Rolling</figcaption></figure></div>
-      <span class="hf-b">ดูผลงานทั้งหมด</span>
-      <img class="hf-tr" src="img/n-win.webp" alt="">
-    </a>
-  </div></section>
+  <section class="h5f" aria-label="Hall of Fame">
+    <p class="h5f-k">ผลงานเด่นของน้องๆ ปี 2569</p>
+    <h2 class="h5f-t">HALL OF FAME</h2>
+    <p class="h5f-s">ทุกเกมด้านล่าง น้องๆ เขียนโปรแกรมสร้างเองกับมือ</p>
+    <div class="h5f-r"><a class="h5f-c" href="#works" data-pane="hof" style="--i:-2"><img src="img/work-stressstrike.webp" alt="" loading="lazy"><b>StressStrike</b><em>ชนะเลิศ OBEC</em></a><a class="h5f-c" href="#works" data-pane="hof" style="--i:-1"><img src="img/work-phi-krahang.webp" alt="" loading="lazy"><b>ผีกระหัง</b></a><a class="h5f-c" href="#works" data-pane="hof" style="--i:0"><img src="img/work-eugation-strike.webp" alt="" loading="lazy"><b>Eugation Strike</b></a><a class="h5f-c" href="#works" data-pane="hof" style="--i:1"><img src="img/work-slash-speed.webp" alt="" loading="lazy"><b>SLASH//SPEED</b></a><a class="h5f-c" href="#works" data-pane="hof" style="--i:2"><img src="img/work-escape-rolling.webp" alt="" loading="lazy"><b>Escape Rolling</b></a></div>
+    <a class="h5f-go" href="#works" data-pane="hof">ดูผลงานทั้งหมด</a>
+  </section>
 
   <section class="mc"><div class="mc-in">
     <p class="mc-bg" aria-hidden="true">CONGRATULATIONS</p>
@@ -2541,7 +2590,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
         <div class="au2-v"><img class="lg" src="img/k-afo-logo.webp" alt="All for One University"><img class="ic i0" src="img/afo-ic0.webp" alt=""><img class="ic i1" src="img/afo-ic1.webp" alt=""><img class="ic i2" src="img/afo-ic2.webp" alt=""></div>
       </div>
     </section>
-    <p class="au-n"><img src="img/ev-st0.webp" alt="">กิจกรรมถัดไปกำลังจะประกาศ <a href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">รับแจ้งเตือนทาง LINE</a></p>
+    <p class="au-n">กิจกรรมถัดไปกำลังจะประกาศ <a href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">รับแจ้งเตือนทาง LINE</a></p>
     <h2 class="er-h">จบไปแล้วในปี 2569</h2>
     <ol class="er-l" id="acl"></ol>
     <p class="er-hint">ชี้ที่กิจกรรมเพื่อดูโปสเตอร์</p>
@@ -2852,22 +2901,22 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
       <figure><img src="img/dek69-8.webp" alt=""><figcaption><b>48 คน</b><span>รุ่นพี่ DEK69 ติดมหาลัยรอบ Portfolio</span></figcaption></figure>
       <figure><img src="img/work-stressstrike.webp" alt=""><figcaption><b>ชนะเลิศ</b><span>OBEC Roboplayground ด้วยเกม StressStrike</span></figcaption></figure>
       <figure><img src="img/w-revoice.webp" alt="ReVoice ผลงานของน้องไอดิน"><figcaption><b>12 ผลงาน</b><span>เข้ารอบชิงชนะเลิศ NSC การแข่งขันพัฒนาโปรแกรมระดับประเทศ</span></figcaption></figure>
-      <figure><img src="img/real-0.webp" alt=""><figcaption><b>ขายได้จริง</b><span>เกม Mr. City ขายให้สวนสัตว์สงขลา</span></figcaption></figure>
+      <figure class="nopic"><figcaption><b>ขายได้จริง</b><span>เกม Mr. City ขายให้สวนสัตว์สงขลา</span></figcaption></figure>
     </div></div></section>
   <section class="ab-h"><div class="wrap"><h1 class="rv">Hamster Hub คือผู้คน<br>ที่สร้างเด็กให้มีผลงานจริง</h1>
     <p class="rv">ผลงานที่ใช้ได้จริง ขายได้จริง และพาไปถึงมหาวิทยาลัยที่ใช่ เราสอน พาสร้าง และพาลงเวทีจริง ตั้งแต่เกม แอป จนถึง IoT</p></div>
     <div class="wrap"><div class="ab-bento rv"><img class="b1" src="img/team-group.webp" alt="น้องๆ Hamster Hub ในงานโชว์ผลงาน" loading="lazy"><img class="b2" src="img/photo-group.webp" alt="น้องๆ ถ่ายรูปรวม" loading="lazy"><img class="b3" src="img/photo-class.webp" alt="ห้องเรียน" loading="lazy"><img class="b4" src="img/photo-desk.webp" alt="น้องกำลังทำผลงาน" loading="lazy"><img class="b5" src="img/s-showcase1.webp" alt="ผลงานที่นำไปโชว์" loading="lazy"></div></div></section>
   <section class="ab-do"><div class="wrap"><h2 class="sec-h rv">เราทำอะไร</h2>
-    <div class="do3"><div class="rv"><img class="do-i" src="img/n-grad.webp" alt="" loading="lazy"><h3>พาเข้ามหาวิทยาลัย</h3><p>คอร์สทำพอร์ต ซ้อมนำเสนอกับอาจารย์มหาวิทยาลัย รุ่นพี่ DEK69 ติดแล้ว 48 คน</p><a class="more" href="#courses">ดูคอร์ส</a></div>
-      <div class="rv"><img class="do-i" src="img/n-ceo.webp" alt="" loading="lazy"><h3>พาสร้างสตาร์ทอัพ</h3><p>4 ขั้นจากออกแบบนวัตกรรม พัฒนาผลงาน จนต่อยอดเป็นธุรกิจที่มีรายได้</p><a class="more" href="#works" data-pane="real">ผลงานที่ใช้งานจริง</a></div>
-      <div class="rv"><img class="do-i" src="img/n-win.webp" alt="" loading="lazy"><h3>พาลงเวทีจริง</h3><p>ค่าย Game Jam และการแข่งขันร่วมกับ สจล. ผลงานเข้ารอบชิง NSC 12 ผลงาน</p><a class="more" href="#activity">ดูกิจกรรม</a></div></div></div></section>
+    <div class="do3"><div class="rv"><h3>พาเข้ามหาวิทยาลัย</h3><p>คอร์สทำพอร์ต ซ้อมนำเสนอกับอาจารย์มหาวิทยาลัย รุ่นพี่ DEK69 ติดแล้ว 48 คน</p><a class="more" href="#courses">ดูคอร์ส</a></div>
+      <div class="rv"><h3>พาสร้างสตาร์ทอัพ</h3><p>4 ขั้นจากออกแบบนวัตกรรม พัฒนาผลงาน จนต่อยอดเป็นธุรกิจที่มีรายได้</p><a class="more" href="#works" data-pane="real">ผลงานที่ใช้งานจริง</a></div>
+      <div class="rv"><h3>พาลงเวทีจริง</h3><p>ค่าย Game Jam และการแข่งขันร่วมกับ สจล. ผลงานเข้ารอบชิง NSC 12 ผลงาน</p><a class="more" href="#activity">ดูกิจกรรม</a></div></div></div></section>
   <section class="ab-real"><div class="wrap"><h2 class="sec-h rv">ผลงานของน้องที่มีคนใช้จริง</h2>
     <ul class="rw">
-      <li class="rv"><img src="img/real-0.webp" alt="" loading="lazy"><b>Mr. City</b><p>เกมแนะนำที่เที่ยวในสงขลา</p><em>ขายให้สวนสัตว์สงขลาแล้ว</em></li>
-      <li class="rv"><img src="img/real-1.webp" alt="" loading="lazy"><b>PHC Map</b><p>เกมสอนเขียนโปรแกรม Python</p><em>ใช้สอนเด็กไปแล้วกว่า 1,000 คน</em></li>
+      <li class="rv"><b>Mr. City</b><p>เกมแนะนำที่เที่ยวในสงขลา</p><em>ขายให้สวนสัตว์สงขลาแล้ว</em></li>
+      <li class="rv"><b>PHC Map</b><p>เกมสอนเขียนโปรแกรม Python</p><em>ใช้สอนเด็กไปแล้วกว่า 1,000 คน</em></li>
       <li class="rv"><img class="ph" src="img/work-stressstrike.webp" alt="ภาพจากเกม StressStrike" loading="lazy"><b>StressStrike</b><p>เกมที่เล่นด้วยการบีบอุปกรณ์วัดแรงมือ</p><em>ชนะเลิศ OBEC Roboplayground</em></li>
-      <li class="rv"><img src="img/real-3.webp" alt="" loading="lazy"><b>Hamster Quest</b><p>เว็บเรียนที่เล่นเหมือนเกม</p><em>กำลังเตรียมใช้กับมหาวิทยาลัย</em></li>
-    </ul><p class="rw-n">Mr. City, PHC Map และ Hamster Quest ยังใช้ภาพวาดประกอบ รอภาพจริงจากทีม</p></div></section>
+      <li class="rv"><b>Hamster Quest</b><p>เว็บเรียนที่เล่นเหมือนเกม</p><em>กำลังเตรียมใช้กับมหาวิทยาลัย</em></li>
+    </ul></div></section>
   <section class="ab-res"><div class="wrap"><h2 class="sec-h rv">2025 Success Story</h2><img class="rv" src="img/s-success.webp" alt="สรุปผลลัพธ์ปี 2025 ของ Hamster Hub" loading="lazy"></div></section>
   <section class="ptn"><div class="wrap"><p>จัดกิจกรรมร่วมกับ</p><div class="logos"><img src="img/p-it.webp" alt="คณะเทคโนโลยีสารสนเทศ สจล." loading="lazy"><img src="img/p-iote.webp" alt="IoTE สจล." loading="lazy"><img src="img/p-eduverse.webp" alt="EDUverse" loading="lazy"></div></div></section>
   <section class="ab-ct"><div class="wrap"><h2>คุยกับทีม Hamster Hub</h2><p>ถามเรื่องคอร์ส กิจกรรม หรือการร่วมงานได้ทาง LINE</p>
@@ -2924,7 +2973,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
   var MAS={'ค่าย':'ev-st2','เวิร์กชอป':'ev-st3','แข่งขัน':'ev-st4','โชว์ผลงาน':'ev-st1','โครงการ':'ev-st5'},
     GAIN={'ค่าย':'ได้ผลงานกลับไปภายในไม่กี่วัน','เวิร์กชอป':'ได้ลองทักษะใหม่ในวันเดียว','แข่งขัน':'ได้ลงแข่งจริง มีเรื่องเล่าใส่พอร์ต','โชว์ผลงาน':'ได้นำเสนอผลงานต่อคนจริง','โครงการ':'ได้ผลงานส่งเวทีระดับประเทศ'};
   function alist(){var el=$('#acl');if(!el)return;el.innerHTML=ACT.filter(function(a){return !a[4]}).map(function(a){var im=AIMG[a[1]];
-    return '<li class="er"'+(im?' data-pv="img/'+im+'.webp"':'')+'><time>'+a[0]+'</time><img class="er-s" src="img/'+MAS[a[3]]+'.webp" alt="" loading="lazy"><div><b>'+a[1]+'</b><p>'+a[2]+'</p><em>น้องได้: '+GAIN[a[3]]+'</em></div></li>'}).join('');
+    return '<li class="er"'+(im?' data-pv="img/'+im+'.webp"':'')+'><time>'+a[0]+'</time><span class="er-c" style="--c:'+ACOL[a[3]][1]+'">'+a[3]+'</span><div><b>'+a[1]+'</b><p>'+a[2]+'</p><em>น้องได้: '+GAIN[a[3]]+'</em></div></li>'}).join('');
     var pv=$('#erPv');el.querySelectorAll('.er').forEach(function(r){r.addEventListener('pointerenter',function(){if(!r.dataset.pv){pv.classList.remove('on');return}pv.src=r.dataset.pv;pv.classList.add('on')});r.addEventListener('pointerleave',function(){pv.classList.remove('on')})});
     el.addEventListener('pointermove',function(e){pv.style.transform='translate('+(e.clientX+28)+'px,'+(e.clientY-120)+'px) rotate(4deg)'})}
   alist();
@@ -3487,6 +3536,3 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
 
 
 </script>
-
-</body>
-</html>
