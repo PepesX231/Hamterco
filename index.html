@@ -1875,6 +1875,43 @@ a.ctb-f:hover{transform:translate(-3px,-3px)}
 .mc-in>*:not(.mc-bgi){position:relative}
 .mc-bg{position:absolute!important;opacity:.6}
 
+
+/* ===== v25: Hall of Fame as a sacred hall ===== */
+.hg.st .tile.hz{display:block!important;position:relative;overflow:hidden;text-align:center;padding:clamp(48px,6vw,80px) 20px clamp(40px,5vw,64px)!important;min-height:0!important;color:#fff;
+  background:#070503 url(img/hof-hall.webp) 50% 30%/cover}
+.hz::before{content:"";position:absolute;inset:0;background:radial-gradient(45% 55% at 50% 45%,rgba(7,5,3,.15),rgba(7,5,3,.75) 80%),linear-gradient(rgba(7,5,3,.35),transparent 30%,transparent 70%,rgba(7,5,3,.9));pointer-events:none}
+.hz>*{position:relative;z-index:1}
+.hz .hz-k{color:#FFE6A0!important;opacity:1!important}.hz .hz-s{color:#FFF6D6!important;opacity:1!important;text-shadow:0 2px 8px #000}
+.hz-dust{position:absolute!important;inset:0;background-image:radial-gradient(#FFE6A0 1px,transparent 1.6px),radial-gradient(#FFF6D6 .8px,transparent 1.4px);background-size:120px 160px,80px 110px;background-position:10px 0,40px 60px;opacity:.35;animation:dust 14s linear infinite;pointer-events:none}
+@keyframes dust{to{background-position:10px -320px,40px -160px}}
+.hz-k{font:700 1.05rem var(--display);color:#FFE6A0;letter-spacing:.04em}
+.hz-t1{font:900 clamp(3.2rem,9.5vw,8.6rem)/1 var(--display)!important;letter-spacing:.04em;margin-top:10px!important;
+  background:linear-gradient(100deg,#E8C877 0%,#FFF1C2 22%,#FFFFFF 32%,#F6DF9A 48%,#FFF1C2 66%,#E8C877 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:hfS 6s linear infinite;filter:drop-shadow(0 6px 0 #3A2806) drop-shadow(0 0 40px rgba(255,200,90,.35))}
+@keyframes hfS{from{background-position:120% 0}to{background-position:-130% 0}}
+.hz-s{font:600 clamp(1rem,1.6vw,1.2rem) var(--display);color:rgba(255,246,214,.9);margin-top:12px}
+.hz-stage{margin:clamp(28px,4vw,44px) auto 0;max-width:820px}
+.hz-f{position:relative;margin:0 auto;width:min(100%,720px);padding:14px;background:linear-gradient(135deg,#FFF1C2,#B8862A 25%,#F6DF9A 50%,#8A6A1E 75%,#E8C877);
+  box-shadow:0 0 0 3px #2A1C04,0 0 60px rgba(255,200,90,.35),0 40px 60px -20px rgba(0,0,0,.9)}
+.hz-f::before{content:"";position:absolute;inset:6px;border:2px solid rgba(58,40,6,.6);pointer-events:none}
+.hz-f img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border:4px solid #1A1206;transition:opacity .25s,filter .25s}
+.hz.sw .hz-f img{animation:hzIn .9s cubic-bezier(.2,.8,.2,1)}
+@keyframes hzIn{0%{opacity:1}28%{opacity:0;filter:brightness(2)}30%{opacity:0;transform:scale(1.03)}100%{opacity:1;transform:none;filter:none}}
+.hz-sh{position:absolute;inset:14px;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.28) 45%,transparent 60%);background-size:250% 100%;animation:shine 4.2s linear infinite;pointer-events:none}
+@keyframes shine{from{background-position:120% 0}to{background-position:-120% 0}}
+.hz-cap{display:grid;justify-items:center;gap:6px;margin-top:22px}
+.hz-cap b{font:800 clamp(1.6rem,3vw,2.4rem) var(--display);color:#fff}
+.hz-cap span{color:rgba(255,246,214,.85);font-weight:600}
+.hz-cap em{font-style:normal;font:700 .95rem var(--display);color:#1A1206;background:linear-gradient(90deg,#E8C877,#FFF1C2);padding:4px 14px;border-radius:999px}
+.hz.sw .hz-cap{animation:tcIn .7s .25s both}
+.hz-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:28px}
+.hz-t{width:clamp(64px,7vw,96px);padding:3px;border:0;background:#5A4210;cursor:pointer;opacity:.6;transition:opacity .2s,transform .2s,background .2s}
+.hz-t img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+.hz-t:hover{opacity:1;transform:translateY(-3px)}
+.hz-t.on{opacity:1;background:linear-gradient(135deg,#FFF1C2,#C9A04A);transform:translateY(-4px)}
+.hz-go{display:inline-block;margin-top:30px;font:700 1.05rem var(--display);color:#1A1206;background:linear-gradient(90deg,#E8C877,#FFF1C2,#E8C877);padding:13px 30px;border-radius:999px;text-decoration:none}
+.hz-go:hover{filter:brightness(1.08)}
+
 /* ---------- footer ---------- */
 footer{background:var(--alt);font-size:.85rem;color:var(--mute)}
 footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
@@ -2286,8 +2323,8 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
 <div data-view="home">
   <section class="ov">
     <h1 class="sr">Port Express คอร์สพาน้อง ม.6 ทำพอร์ตยื่นมหาลัย เรียนทำเกมกับพี่ๆ 2 เดือน ได้ผลงานจริงใส่แฟ้มพอร์ต รุ่นพี่ติดมหาลัยแล้ว 48 คน เริ่ม 9 พ.ย. 2569 ราคา 5,990 บาท</h1>
-    <div class="ov-c ov-s" role="link" tabindex="0" aria-label="ดูรายละเอียดคอร์ส Port Express" onclick="if(!event.target.closest('a'))location.hash='portex'"><video src="img/portex-hero.mp4" poster="img/portex-hero.webp" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
-      <div class="ov-in"><a class="pb1" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">▶ สมัครเรียน</a><a class="pb2" href="#portex">ดูรายละเอียด</a></div></div>
+    <div class="ov-c ov-s" role="link" tabindex="0" aria-label="ดูรายละเอียดคอร์ส Port Express" onclick="if(!event.target.closest('a'))window.open('https://www.hamsterhub.co/portex-site/index.html','_blank','noopener')"><video src="img/portex-hero.mp4" poster="img/portex-hero.webp" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+      <div class="ov-in"><a class="pb1" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">▶ สมัครเรียน</a><a class="pb2" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">ดูรายละเอียดคอร์ส</a></div></div>
   </section>
 
   <section class="hp-grid"><div class="wrap hg st">
@@ -2314,17 +2351,17 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
 
   <div class="wkz"><img class="wk" src="img/n-gamer.webp" alt="น้องหนู ลากเล่นได้"></div>
   <section class="hp-grid hof-s"><div class="wrap hg st">
-    <section class="tile hf3" id="hf3" aria-label="Hall of Fame ผลงานเด่นของน้องๆ ปี 2569">
-      <div class="hf3-bg"><img id="hfB0" alt=""><img id="hfB1" alt=""></div>
-      <div class="hf3-l" aria-live="polite">
-        <p class="hf3-k">HALL OF FAME 2569</p>
-        <h3 id="hfN"></h3>
-        <p class="hf3-by" id="hfBy"></p>
-        <p class="hf3-aw" id="hfAw"></p>
-        <a class="hf3-go" href="#works" data-pane="hof">ดูผลงานทั้งหมด</a>
+    <section class="tile hz" id="hz" aria-label="Hall of Fame ผลงานเด่นของน้องๆ ปี 2569">
+      <span class="hz-dust" aria-hidden="true"></span>
+      <p class="hz-k">ผลงานเด่นของน้องๆ ปี 2569</p>
+      <h3 class="hz-t1">HALL OF FAME</h3>
+      <p class="hz-s">เกมทุกเกมในห้องนี้ น้องๆ เขียนโปรแกรมสร้างเองกับมือ</p>
+      <div class="hz-stage">
+        <figure class="hz-f"><img id="hzImg" src="img/work-stressstrike.webp" alt=""><span class="hz-sh" aria-hidden="true"></span></figure>
+        <div class="hz-cap" aria-live="polite"><b id="hzN">StressStrike</b><span id="hzBy">เกมที่น้อง @วิน สร้างเอง</span><em id="hzAw">ชนะเลิศ OBEC Roboplayground</em></div>
       </div>
-      <div class="hf3-cards" id="hfC"></div>
-      <div class="hf3-bar"><span class="hf3-p"><i id="hfP"></i></span><b id="hfI"></b></div>
+      <div class="hz-row"><button type="button" class="hz-t" data-k="0" aria-label="StressStrike"><img src="img/work-stressstrike.webp" alt="" loading="lazy"></button><button type="button" class="hz-t" data-k="1" aria-label="ผีกระหัง"><img src="img/work-phi-krahang.webp" alt="" loading="lazy"></button><button type="button" class="hz-t" data-k="2" aria-label="Eugation Strike"><img src="img/work-eugation-strike.webp" alt="" loading="lazy"></button><button type="button" class="hz-t" data-k="3" aria-label="SLASH//SPEED"><img src="img/work-slash-speed.webp" alt="" loading="lazy"></button><button type="button" class="hz-t" data-k="4" aria-label="Midnight at Roadside"><img src="img/work-midnight-at-roadside.webp" alt="" loading="lazy"></button><button type="button" class="hz-t" data-k="5" aria-label="Hot Hot Hot"><img src="img/work-hot-hot-hot.webp" alt="" loading="lazy"></button><button type="button" class="hz-t" data-k="6" aria-label="Apocalypis Building"><img src="img/work-apocalypis-building.webp" alt="" loading="lazy"></button><button type="button" class="hz-t" data-k="7" aria-label="Escape Rolling"><img src="img/work-escape-rolling.webp" alt="" loading="lazy"></button></div>
+      <a class="hz-go" href="#works" data-pane="hof">ดูผลงานทั้งหมด</a>
     </section>
   </div></section>
 
@@ -2360,94 +2397,14 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
   <div class="wrap">
     <section class="ct-h"><h1>คอร์ส</h1><p>คอร์สที่เปิดรับตอนนี้ จบแล้วน้องได้ผลงานจริงที่เอาไปใช้ยื่นมหาวิทยาลัยได้</p></section>
     <div class="ctb">
-      <a class="ctb-f" href="#portex" aria-label="ดูรายละเอียด Port Express"><video src="img/portex-banner.mp4" poster="img/portex-poster.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></a>
+      <a class="ctb-f" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener" aria-label="ดูรายละเอียด Port Express"><video src="img/portex-banner.mp4" poster="img/portex-poster.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></a>
       <div class="ctb-b"><div><b>Port Express</b><span>คอร์สปั้นพอร์ต ยื่นมหาลัย สำหรับ ม.6 · เริ่ม 9 พ.ย. 2569 · <em>5,990 บาท</em></span></div>
-        <div class="hh-a"><a class="b1" href="#portex">ดูรายละเอียดคอร์ส</a><a class="b2" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">เว็บ Port Express</a></div></div>
+        <div class="hh-a"><a class="b1" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">ดูรายละเอียดและสมัครเรียน</a></div></div>
     </div>
     <section class="ct-list"><h2>คอร์สอื่นของ Hamster Hub</h2><p>เปิดเป็นรอบ ตอนนี้ยังไม่เปิดรับ กดรับแจ้งเตือนทาง LINE ได้ ภาพคือรุ่นพี่ที่เรียนคอร์สนั้นแล้วติดมหาลัย</p><div class="cgrid" id="crows"></div></section>
     <div class="wkz"><img class="wk" src="img/n-maker.webp" alt="น้องหนู ลากเล่นได้"></div>
     <section class="ct-help"><h2>ไม่แน่ใจว่าคอร์สไหนเหมาะ</h2><p>บอกทีมว่าน้องเรียนชั้นไหนและอยากไปทางไหน ทีมจะแนะนำให้</p><div class="btns"><a class="btn btn-line" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">ปรึกษาทีมทาง LINE</a></div></section>
   </div>
-</div>
-
-<div data-view="portex" class="pxp">
-  <div class="pxln"><div class="wrap pxln-in"><b>Port Express</b><span class="pxst">รุ่นใหม่เริ่มเรียน 9 พ.ย. 2569</span><a href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">สมัครเรียน</a></div></div>
-  <section class="ap">
-    <p class="px-crumb ap-cr"><a href="#home">หน้าแรก</a> › <a href="#courses">คอร์ส</a> › Port Express</p>
-    <h1 class="ap-t">Port Express</h1>
-    <p class="ap-s">คอร์สทำพอร์ต <span>ยื่นมหาลัย</span></p>
-    <p class="ap-d">สำหรับน้อง ม.6 ที่ยังไม่มีพอร์ต · เรียน 2 เดือน · เริ่ม 9 พ.ย. 2569</p>
-    <div class="ap-b"><a class="b1" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">สมัครเรียน</a><a class="b2" href="#pxPrice">ดูราคา</a></div>
-    <div class="ap-v"><span class="ap-gl" aria-hidden="true"></span><video src="img/portex-banner.mp4" poster="img/portex-poster.webp" autoplay muted loop playsinline preload="auto" aria-label="วิดีโอแนะนำคอร์ส Port Express"></video></div>
-    <ul class="ap-f">
-      <li><b>2 เดือน</b><span>จันทร์ พุธ ศุกร์</span></li>
-      <li><b>เกม 3 งาน</b><span>ผลงานใส่แฟ้มพอร์ต</span></li>
-      <li><b>5 ครั้ง</b><span>อาจารย์มหาลัยตรวจงาน</span></li>
-      <li><b>48 คน</b><span>รุ่นพี่ติดมหาลัยแล้ว</span></li>
-    </ul>
-    <div class="ap-pr" id="pxPrice"><p><b>5,990 บาท</b> <s>9,990</s> <em>ประหยัด 4,000</em></p><div class="ap-b"><a class="b1" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">สมัครเรียน</a><a class="b2" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">ทัก LINE ถามทีม</a></div></div>
-  </section>
-
-  <section class="px-sec"><div class="wrap">
-    <p class="px-eb">SELECT STAGE</p>
-    <h2>2 เดือน เรียนอะไรบ้าง</h2>
-    <p class="px-lead">ไล่เลื่อน Rank เหมือนเล่นเกม จบแต่ละ Rank ได้เกม 1 งานเข้าพอร์ต ทุกหัวข้อสอนด้วย Unity โปรแกรมที่สตูดิโอเกมใช้จริง</p>
-    <div class="px-tl" aria-hidden="true"><span style="--c:#D08A4E;flex:3">BRONZE<small>สัปดาห์ 1–3</small></span><span style="--c:#B9C2D6;flex:3">SILVER<small>สัปดาห์ 4–6</small></span><span style="--c:#FFD24A;flex:2">GOLD<small>สัปดาห์ 7–8</small></span></div>
-    <div class="rks"><article class="rk" style="--c:#D08A4E"><header><span class="rk-n">RANK 1</span><span class="rk-m">BRONZE</span></header><p class="rk-w"><b>สัปดาห์ 1–3</b> · 9 – 29 พ.ย.</p><h3>ทำเกมให้สนุกเป็น</h3><ul><li><b>Intro to Game Design</b>หลักคิดออกแบบเกมให้สนุก</li><li><b>Unity Tricks</b>ใช้ Unity สร้างเกมได้คล่องมือ</li><li><b>Level Design</b>ออกแบบด่านให้เล่นแล้วอยากไปต่อ</li><li><b>3D Map & Environment</b>สร้างฉากและแผนที่ 3 มิติ</li><li><b>Basic AI</b>ทำศัตรูที่คิดเองได้</li></ul><p class="rk-l"><small>LOOT</small>เกมที่ 1 เกมแรกที่เล่นแล้วสนุก</p></article><article class="rk" style="--c:#B9C2D6"><header><span class="rk-n">RANK 2</span><span class="rk-m">SILVER</span></header><p class="rk-w"><b>สัปดาห์ 4–6</b> · 30 พ.ย. – 20 ธ.ค.</p><h3>ออกแบบเกมให้ขายได้</h3><ul><li><b>Game Feel Technique</b>เล่นแล้วลื่น มันมือ</li><li><b>Animation</b>ตัวละครขยับแล้วมีชีวิต</li><li><b>Camera Direction</b>คุมกล้องให้เกมดูเป็นหนัง</li><li><b>Intermediate AI</b>ศัตรูฉลาดขึ้น เล่นแล้วท้าทาย</li><li><b>Pitching Tricks</b>พูดนำเสนอให้กรรมการอยากได้</li></ul><p class="rk-l"><small>LOOT</small>เกมที่ 2 เกมที่แตกต่างและขายได้</p></article><article class="rk" style="--c:#FFD24A"><header><span class="rk-n">RANK 3</span><span class="rk-m">GOLD</span></header><p class="rk-w"><b>สัปดาห์ 7–8</b> · 21 ธ.ค. – ต้น ม.ค.</p><h3>เกมใหญ่ ทำเป็นทีม</h3><ul><li><b>สาย Art</b>แมพขั้นสูง ปั้นโมเดล 3 มิติ จัดแสง</li><li><b>สาย Developer</b>Advance AI และเขียนโค้ดเป็นระบบ (OOP)</li><li><b>สาย Director</b>คุมทีม และวางแผนงานให้ทันกำหนด</li></ul><p class="rk-l"><small>LOOT</small>เกมที่ 3 เกม Scale ใหญ่แบบกลุ่ม</p></article></div>
-  </div></section>
-
-  <section class="px-sec px-cp"><div class="wrap">
-    <p class="px-eb">SAVE POINT</p>
-    <h2>ตรวจงาน 5 ครั้ง ไม่ปล่อยให้หลง</h2>
-    <p class="px-lead">ทุก Checkpoint มีอาจารย์มหาวิทยาลัยฟังผลงาน ให้คำแนะนำว่าผ่านอะไรแล้ว ต้องแก้อะไร พร้อมซ้อมสัมภาษณ์</p>
-    <ol class="cps"><li><i>1</i>CHECKPOINT</li><li><i>2</i>CHECKPOINT</li><li><i>3</i>CHECKPOINT</li><li><i>4</i>CHECKPOINT</li><li><i>5</i>CHECKPOINT</li><li class="g"><i>★</i>RANK UP</li></ol>
-  </div></section>
-
-  <section class="px-sec"><div class="wrap">
-    <p class="px-eb">INVENTORY</p>
-    <h2>จบคอร์ส ได้อะไรติดตัวไป</h2>
-    <div class="inv">
-      <div><span class="sl">x3</span><b>เกมที่เล่นได้จริง</b><p>ขึ้น itch.io มีลิงก์ให้กรรมการกดเล่นได้ทันที</p></div>
-      <div><span class="sl">PDF</span><b>Pitch Deck และพอร์ต</b><p>แก้กับเทรนเนอร์จนพร้อมส่ง</p></div>
-      <div><span class="sl">5+</span><b>นำเสนอต่อคนจริง</b><p>พูดรู้เรื่อง ไม่สั่นตอนเข้าห้องสัมภาษณ์</p></div>
-      <div><span class="sl">2W</span><b>อาจารย์มหาลัยเห็นงาน</b><p>ฟังผลงานทุก 2 สัปดาห์</p></div>
-    </div>
-  </div></section>
-
-  <section class="px-sec px-dm"><div class="wrap">
-    <p class="px-eb">REPLAY</p>
-    <h2>ระดับงานที่น้องจะได้ทำ</h2>
-    <p class="px-lead">StressStrike โดยน้องวิน ชนะเลิศ OBEC Roboplayground และเข้ารอบสุดท้าย TICTA</p>
-    <div class="cx-demo px-scr"><video controls playsinline preload="none" poster="img/work-stressstrike.webp" src="https://www.hamsterhub.co/godang/hall-of-fame/videos/stressstrike.mp4"></video></div>
-  </div></section>
-
-  <section class="px-sec"><div class="wrap">
-    <p class="px-eb">HIGH SCORE</p>
-    <h2>รุ่นพี่ที่เรียนกับเราแล้วติดมหาวิทยาลัย</h2>
-    <p class="px-lead">DEK69 ติดแล้ว 48 คน สจล. 24 · มหิดล 9 · จุฬาฯ 8 · เกษตรศาสตร์ 7</p>
-    <ul class="cx-seniors" id="cxSen"></ul>
-  </div></section>
-
-  <section class="px-sec"><div class="wrap px-nr">
-    <p class="px-eb">HELP</p>
-    <h2>คำถามที่ถามบ่อย</h2>
-    <div class="cx-faq">
-      <details class="why"><summary>ทำไมเกมใช้ยื่นพอร์ตได้</summary><div>
-        <p>คณะสายคอม ไอที และดิจิทัล อยากเห็นผลงานที่น้องลงมือทำเอง เกมหนึ่งเกมโชว์ได้ครบทั้งการเขียนโปรแกรม การออกแบบ และความรับผิดชอบที่ทำงานจนจบ ใน Port Express น้องทำ 3 เกม แต่ละเกมบอกกรรมการคนละเรื่อง</p>
-        <ul><li><b>เกมที่ 1 เกมแรกที่เล่นสนุก</b> บอกว่าน้องเขียนโค้ดได้จริงและทำงานจนจบได้</li><li><b>เกมที่ 2 เกมที่แตกต่าง ขายได้</b> บอกว่าน้องคิดเรื่องผู้เล่น ไม่ได้ทำตามสั่ง</li><li><b>เกมที่ 3 เกมใหญ่ทำเป็นทีม</b> บอกว่าน้องทำงานเป็นทีมได้และรู้ว่าตัวเองถนัดอะไร</li></ul>
-        <p>Hamster Hub ไม่ได้สอนแค่เกม ยังมีคอร์สเว็บ แอป และ IoT ให้เลือกตามคณะที่น้องอยากเข้า</p></div></details>
-      <details><summary>ไม่เคยทำเกมเลย เรียนได้ไหม</summary><p>ได้ Rank 1 เริ่มจากศูนย์ สอนตั้งแต่ใช้ Unity และคิดเกมให้สนุก ก่อนขยับไปงานที่ยากขึ้น</p></details>
-      <details><summary>ต่างจากคอร์ส Standard ยังไง</summary><p>เนื้อหาครบทุกหัวข้อเท่ากัน Standard เรียน 5 เดือน ราคา 9,990 บาท ส่วน Port Express อัดให้จบใน 2 เดือน ราคา 5,990 บาท สำหรับ ม.6 ที่เวลาก่อนยื่นพอร์ตเหลือน้อย</p></details>
-      <details><summary>ผู้ปกครองจะรู้ได้ยังไงว่าลูกไปถึงไหนแล้ว</summary><p>มี Checkpoint 5 ครั้ง แต่ละครั้งบอกว่าผ่านอะไรแล้ว ต้องแก้อะไร ถามความคืบหน้ากับทีมทาง LINE ได้ตลอด</p></details>
-      <details><summary>เรียนออนไลน์หรือที่ไหน กี่โมง</summary><p>ดูรายละเอียดได้ที่เว็บ Port Express หรือถามทีมทาง LINE @smart-school</p></details>
-    </div>
-  </div></section>
-
-  <section class="px-sec px-end"><div class="wrap">
-    <p class="pxf px-rd">READY<br>PLAYER?</p>
-    <div class="px-bt" style="justify-content:center"><a class="pbtn gold" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">▶ เข้าเว็บ Port Express</a><a class="pbtn blue" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">ทัก LINE ถามทีม</a></div>
-  </div></section>
-  <div class="cx-bar"><span><b>5,990 บาท</b> <s>9,990</s><br><small class="pxst">เริ่ม 9 พ.ย. 2569</small></span><a href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">เข้าเว็บ Port Express</a></div>
 </div>
 
 <!-- ================= ACTIVITY ================= -->
@@ -2796,7 +2753,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
 
 <footer><div class="wrap">
   <div class="fcols">
-    <div><h4>คอร์ส</h4><ul><li><a href="#portex">Port Express</a></li><li><a href="#courses">คอร์สทั้งหมด</a></li></ul></div>
+    <div><h4>คอร์ส</h4><ul><li><a href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">Port Express</a></li><li><a href="#courses">คอร์สทั้งหมด</a></li></ul></div>
     <div><h4>กิจกรรม</h4><ul><li><a href="#activity">กิจกรรมทั้งหมด</a></li><li><a href="https://www.hamsterhub.co/allforone" target="_blank" rel="noopener">All for One University</a></li></ul></div>
     <div><h4>ผลงาน</h4><ul><li><a href="#works">Hall of Fame</a></li><li><a href="#works" data-pane="sen">รุ่นพี่ DEK69</a></li></ul></div>
     <div><h4>ติดต่อ</h4><ul><li><a href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">LINE @smart-school</a></li><li><a href="https://www.facebook.com/HamsterHubThailand" target="_blank" rel="noopener">Facebook</a></li><li><a href="https://www.instagram.com/hamsterhub_ig/" target="_blank" rel="noopener">Instagram</a></li></ul></div>
@@ -3023,25 +2980,15 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
   /* hero clip: the hamster says the course in four lines */
   (function(){var b=document.querySelector('.ov-bub');if(!b)return;var L=['เรียนทำเกมกับพี่ๆ 2 เดือน','ได้ผลงานจริง ใส่แฟ้มพอร์ต','ยื่นรอบ Portfolio ติดมหาลัย!','รุ่นพี่ติดแล้ว 48 คน ตาน้องบ้าง!'],k=0,S=document.getElementById('ovS'),N=document.getElementById('ovN');
     function go(){S.textContent=L[k];N.textContent=(k+1)+'/'+L.length;b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');k=(k+1)%L.length}go();setInterval(go,3200)})();
-  /* hall of fame: timed cards, the next work opens into the background */
-  (function(){var C=document.getElementById('hfC');if(!C)return;
-    var H=[['stressstrike','StressStrike','@วิน','ชนะเลิศ OBEC Roboplayground'],['phi-krahang','ผีกระหัง','@นนท์',''],['eugation-strike','Eugation Strike','@ไผ่',''],['slash-speed','SLASH//SPEED','@ดินสอ',''],
-      ['midnight-at-roadside','Midnight at Roadside','@Windy',''],['hot-hot-hot','Hot Hot Hot','@โอม',''],['apocalypis-building','Apocalypis Building','@ฟาร์',''],['escape-rolling','Escape Rolling','@เป๊ป','']];
-    var a=0,b=0,tm=0,hold=false,T=4500,B=[document.getElementById('hfB0'),document.getElementById('hfB1')],sec=document.getElementById('hf3');
-    C.innerHTML=H.map(function(h,k){return '<button type="button" class="hc3" data-k="'+k+'"><img src="img/work-'+h[0]+'.webp" alt="" loading="lazy"><span>'+h[1]+'</span></button>'}).join('');
-    C.querySelectorAll('.hc3').forEach(function(c){c.addEventListener('click',function(){show(+c.dataset.k)})});
-    function show(k){var n=H.length;a=(k+n)%n;var h=H[a];
-      C.querySelectorAll('.hc3').forEach(function(c,i){var o=(i-a-1+n)%n;c.style.setProperty('--o',o);c.classList.toggle('gone',o>4)});
-      b=1-b;B[b].src='img/work-'+h[0]+'.webp';B[b].classList.add('on');B[1-b].classList.remove('on');
-      document.getElementById('hfN').textContent=h[1];document.getElementById('hfBy').textContent='เกมที่น้อง '+h[2]+' สร้างเอง';
-      var aw=document.getElementById('hfAw');aw.textContent=h[3];aw.style.display=h[3]?'':'none';
-      document.getElementById('hfI').textContent=(a+1<10?'0':'')+(a+1);
-      var p=document.getElementById('hfP');p.style.animation='none';void p.offsetWidth;p.style.animation='';
-      var l=sec.querySelector('.hf3-l');l.classList.remove('in');void l.offsetWidth;l.classList.add('in');
-      clearTimeout(tm);tm=setTimeout(tick,T)}
+  /* hall of fame: one work on the stage at a time */
+  (function(){var z=document.getElementById('hz');if(!z)return;var W=[["stressstrike", "StressStrike", "@วิน", "ชนะเลิศ OBEC Roboplayground"], ["phi-krahang", "ผีกระหัง", "@นนท์", ""], ["eugation-strike", "Eugation Strike", "@ไผ่", ""], ["slash-speed", "SLASH//SPEED", "@ดินสอ", ""], ["midnight-at-roadside", "Midnight at Roadside", "@Windy", ""], ["hot-hot-hot", "Hot Hot Hot", "@โอม", ""], ["apocalypis-building", "Apocalypis Building", "@ฟาร์", ""], ["escape-rolling", "Escape Rolling", "@เป๊ป", ""]],a=0,tm=0,hold=false;
+    var img=document.getElementById('hzImg'),N=document.getElementById('hzN'),By=document.getElementById('hzBy'),Aw=document.getElementById('hzAw'),T=z.querySelectorAll('.hz-t');
+    function show(k){a=(k+W.length)%W.length;var w=W[a];z.classList.remove('sw');void z.offsetWidth;z.classList.add('sw');
+      setTimeout(function(){img.src='img/work-'+w[0]+'.webp';N.textContent=w[1];By.textContent='เกมที่น้อง '+w[2]+' สร้างเอง';Aw.textContent=w[3];Aw.style.display=w[3]?'':'none'},260);
+      T.forEach(function(t,n){t.classList.toggle('on',n===a)});clearTimeout(tm);tm=setTimeout(tick,4200)}
     function tick(){if(hold||!document.querySelector('[data-view="home"].on')){tm=setTimeout(tick,600);return}show(a+1)}
-    sec.addEventListener('pointerenter',function(){hold=true;sec.classList.add('hold')});sec.addEventListener('pointerleave',function(){hold=false;sec.classList.remove('hold')});
-    show(0)})();
+    T.forEach(function(t){t.addEventListener('click',function(){show(+t.dataset.k)})});
+    z.addEventListener('pointerenter',function(){hold=true});z.addEventListener('pointerleave',function(){hold=false});show(0)})();
   /* walking hamsters: wander, pick up, drop */
   (function(){document.querySelectorAll('.wkz').forEach(function(z){var h=z.querySelector('.wk');if(!h)return;var x=Math.random()*200,y=0,vy=0,dir=1,sp=.5+Math.random()*.4,drag=null,pause=0,t0=performance.now(),seen=false;
       new IntersectionObserver(function(e){seen=e[0].isIntersecting}).observe(z);
