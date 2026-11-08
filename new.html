@@ -2574,7 +2574,7 @@ img[loading=lazy]{content-visibility:visible}
 .zq-ham-in{width:132px!important;transform:translateY(64%)}
 .zq-ham.up .zq-ham-in{transform:translateY(24%)}
 .zq-ham.watch .zq-ham-in{transform:translateY(6%)}
-.zq-spr{display:block;width:132px;aspect-ratio:220/188;background:url(img/ham-peek-sprite.webp) 0 0/400% 100% no-repeat;image-rendering:auto}
+.zq-spr{display:block;width:132px;aspect-ratio:220/188;background:url(img/ham-head-sprite.webp) 0 0/400% 100% no-repeat;image-rendering:auto}
 @media (max-width:700px){.zq-ham{right:84px!important;width:96px!important;height:72px!important}.zq-ham-in,.zq-spr{width:96px!important}}
 /* scroll cue */
 .zq-more{position:absolute;left:50%;bottom:24px;z-index:3;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;border:0;background:none;cursor:pointer;color:#0D2E63;font:600 .85rem var(--display);transition:opacity .3s}
@@ -2670,6 +2670,77 @@ img[loading=lazy]{content-visibility:visible}
 .mc-cap{margin-top:34px!important}
 .mc-cap p{font-size:1.1rem!important;color:#4A5874!important}.mc-cap p b{font-size:1.25rem;color:#0D2E63!important}.mc-cap p small{color:#1C74D9!important;font-weight:600}
 .mc .lk{display:inline-block;margin-top:18px;padding:12px 24px;border-radius:999px;background:#0D2E63;color:#fff!important;text-decoration:none;font-weight:700}
+
+
+/* ===== v47 ===== */
+/* login avatar */
+.login{display:inline-flex!important;align-items:center;gap:8px;padding-left:6px!important}
+.lg-h{width:28px;height:28px;object-fit:contain;transition:transform .35s cubic-bezier(.3,1.8,.5,1)}
+.login:hover .lg-h{transform:rotate(-12deg) scale(1.15)}
+/* hero: white stage with floating chibi objects */
+.zq{background:#fff!important}
+.zq-top{margin-top:0!important}
+.zq-ob{position:absolute;inset:0;z-index:0;pointer-events:none}
+.zq-ob img{position:absolute;width:clamp(70px,7vw,110px);filter:drop-shadow(0 14px 18px rgba(13,46,99,.14));animation:zqF 6s ease-in-out infinite}
+.zq-ob .o0{left:12%;top:18%;rotate:-12deg}.zq-ob .o1{left:7%;top:52%;animation-delay:-1.5s}.zq-ob .o2{left:20%;bottom:12%;rotate:10deg;animation-delay:-3s}
+.zq-ob .o3{right:11%;top:16%;rotate:8deg;animation-delay:-2s}.zq-ob .o4{right:6%;top:50%;rotate:-8deg;animation-delay:-4s}.zq-ob .o5{right:19%;bottom:13%;animation-delay:-.8s}
+@keyframes zqF{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@media (max-width:900px){.zq-ob .o1,.zq-ob .o4{display:none}.zq-ob img{width:58px;opacity:.9}.zq-ob .o0{left:4%;top:8%}.zq-ob .o3{right:4%;top:8%}.zq-ob .o2{left:6%;bottom:16%}.zq-ob .o5{right:6%;bottom:16%}}
+.zq-s{background:#fff!important;border:1px solid #DCE4F0!important;box-shadow:0 12px 40px -16px rgba(13,46,99,.25)!important}
+.zq-pop button{background:#F2F5FA!important;border-color:transparent!important}
+.zq-more i{background:#F2F5FA;box-shadow:none}
+/* the hamster sits on the search button */
+.zq-btw{position:relative;display:inline-flex}
+.zq-btw .zq-ham{position:absolute!important;left:50%!important;right:auto!important;bottom:calc(100% - 10px)!important;top:auto!important;width:44px!important;height:auto!important;overflow:visible!important;z-index:2!important;transform:translateX(-50%) translateY(18px) scale(.6);opacity:0;transition:transform .5s cubic-bezier(.3,1.7,.5,1),opacity .3s;pointer-events:none}
+.zq-btw .zq-ham.up{transform:translateX(-50%);opacity:1}
+.zq-btw .zq-ham.watch{transform:translateX(-50%) translateY(-4px) rotate(-6deg)}
+.zq-btw .zq-ham.nod{animation:zqNod2 .25s ease-out}
+@keyframes zqNod2{50%{margin-bottom:-3px}}
+.zq-btw .zq-ham.dive{animation:zqDv 1.1s cubic-bezier(.5,0,.3,1)}
+@keyframes zqDv{0%{transform:translateX(-50%)}20%{transform:translateX(-50%) translateY(-14px) scale(1.1)}45%{transform:translateX(-50%) translateY(26px) scale(.3);opacity:0}70%{transform:translateX(-50%) translateY(26px) scale(.3);opacity:0}100%{transform:translateX(-50%);opacity:1}}
+.zq-btw .zq-spr{display:block;width:44px!important;aspect-ratio:140/125;background-size:400% 100%}
+.zq-btw button{position:relative;z-index:1}
+/* rails: Apple-style */
+.zc2.dk{background:#F5F5F7!important}
+.dk .mr-l h2{color:#0D2E63!important}.dk .mr-l p{color:#4A5874!important}
+.mr-btn{border-radius:999px!important;background:#0D2E63!important;color:#fff!important;box-shadow:none!important;padding:12px 24px!important;font-weight:700!important}
+.mr-btn:hover{background:#1C74D9!important}
+.mr-ar button,.dk .mr-ar button{background:rgba(255,255,255,.7)!important;border:0!important;color:#0D2E63!important;box-shadow:inset 0 0 0 1px rgba(13,46,99,.12),0 6px 16px -10px rgba(13,46,99,.4);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.mr-ar button:hover{background:#0D2E63!important;color:#fff!important}
+.mk,.dk .mk{border-radius:22px!important;padding:0!important;background:#fff!important;color:#10213F!important;overflow:hidden;box-shadow:0 2px 6px rgba(13,46,99,.05),0 18px 40px -24px rgba(13,46,99,.35)!important}
+.mk:hover{transform:translateY(-6px) scale(1.01)!important}
+.mk-i{border-radius:0!important}
+.mk-k{left:12px!important;bottom:12px!important;border-radius:999px;padding:4px 12px!important;background:rgba(255,255,255,.85)!important;color:#0D2E63!important;box-shadow:none!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);font-weight:700!important}
+.mk-b{padding:16px 18px 18px!important}
+.dk .mk-d,.dk .mk-f{color:#4A5874!important}.dk .mk-f em,.mk-f em{color:#0D2E63!important}
+.dk .mk.on .mk-s,.mk.on .mk-s{color:#16803C!important}
+.mk-a,.dk .mk-a{background:none!important;color:#1C74D9!important;text-align:left!important;padding:0!important;margin-top:12px!important}
+.mk.on .mk-a,.dk .mk.on .mk-a{background:#FFC531!important;color:#2A1E00!important;text-align:center!important;padding:10px!important;border-radius:999px!important}
+/* what we build */
+.zb-g{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:16px!important}
+.zb-t{min-height:0!important;align-items:center;text-align:center;padding:32px 24px 34px;border-radius:28px!important;background:#F5F5F7!important;color:#10213F!important;transition:transform .3s}
+.zb-t:hover{transform:translateY(-6px)}
+.zb-t img{width:72%;max-width:190px;aspect-ratio:1;object-fit:contain;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.zb-t:hover img{transform:scale(1.08) rotate(-3deg)}
+.zb-t small{margin-top:18px;font:700 .9rem var(--display);color:#1C74D9;opacity:1}
+.zb-t h3{font:800 clamp(1.4rem,2vw,1.8rem)/1.2 var(--display)!important;color:#0D2E63;margin-top:6px}
+.zb-t p{font-size:.95rem!important;color:#4A5874;opacity:1!important;margin-top:8px}
+@media (max-width:1000px){.zb-g{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media (max-width:560px){.zb-g{grid-template-columns:minmax(0,1fr)!important}}
+/* paths: stickers on soft tiles */
+.zp{background:#fff!important}
+.zp-c{background:#F5F5F7!important;box-shadow:none!important}
+.zp-c:hover{box-shadow:0 24px 40px -26px rgba(13,46,99,.4)!important}
+.zp-im{display:grid!important;place-items:center;padding:24px!important;height:300px;flex:none!important}
+.zp-c:nth-child(1) .zp-im{background:#FFF4DE}.zp-c:nth-child(2) .zp-im{background:#E6F1FF}.zp-c:nth-child(3) .zp-im{background:#FFE9EF}
+.zp-im img{width:auto!important;max-width:80%;max-height:252px;aspect-ratio:auto!important;object-fit:contain!important;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.zp-c:hover .zp-im img{transform:scale(1.06) rotate(-2deg)}
+/* seniors: clear glass, no reflection */
+.mc-c img{-webkit-box-reflect:none!important}
+.mc-u{background:rgba(255,255,255,.35)!important;box-shadow:inset 0 0 0 1px rgba(13,46,99,.12),0 10px 30px -18px rgba(13,46,99,.35);-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%)}
+.mc-u button[aria-pressed="true"]{background:rgba(255,255,255,.75)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.9),0 4px 12px -4px rgba(13,46,99,.25)!important}
+.mc .lk{background:rgba(255,255,255,.35)!important;color:#0D2E63!important;box-shadow:inset 0 0 0 1px rgba(13,46,99,.15),0 10px 24px -16px rgba(13,46,99,.35);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+.mc .lk:hover{background:rgba(255,255,255,.7)!important}
 
 /* ---------- footer ---------- */
 footer{background:var(--alt);font-size:.85rem;color:var(--mute)}
@@ -3070,7 +3141,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
   <a class="brand" href="#home"><img src="img/logo.webp" alt="" width="30" height="30">Hamster Hub</a>
   <a class="v nv-c" href="#courses"><span>คอร์ส</span></a><a class="v nv-a" href="#activity"><span class="roll"><span>กิจกรรม</span><span class="nx" id="nvNext">ถัดไป 14 พ.ย.</span></span></a><a class="v nv-w" href="#works"><span>ผลงาน</span></a><a class="v nv-b" href="#about"><span>เกี่ยวกับเรา</span></a>
   <a class="lbtn" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">ทัก LINE</a>
-  <a class="login" href="https://www.hamsterhub.co/login" target="_blank" rel="noopener"><span class="peekw" aria-hidden="true"><span class="hd"><img src="img/n-peek.webp" alt=""></span></span>เข้าสู่ระบบ</a>
+  <a class="login" href="https://www.hamsterhub.co/login" target="_blank" rel="noopener"><img class="lg-h" src="img/ham-grey.webp" alt="">เข้าสู่ระบบ</a>
   <button class="menu" id="menuBtn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="เปิดเมนู"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg></button>
 </div>
 <nav class="drawer" id="drawer" hidden aria-label="เมนู"><a href="#courses">คอร์ส</a><a href="#activity">กิจกรรม</a><a href="#works">ผลงาน</a><a href="#about">เกี่ยวกับเรา</a><a href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener" style="color:#06C755">ทัก LINE</a><a href="https://www.hamsterhub.co/login" target="_blank" rel="noopener">เข้าสู่ระบบ</a></nav>
@@ -3080,12 +3151,12 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
 <main id="main">
 <!-- ================= HOME ================= -->
 <div data-view="home">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@800;900&family=Mitr:wght@700&family=Chakra+Petch:wght@700&family=Sriracha&family=Srisakdi:wght@700&family=Itim&family=Pattaya&family=Charmonman:wght@700&family=Chonburi&display=swap"><section class="zq" aria-label="ค้นหาคอร์สและกิจกรรม"><div class="zq-town" aria-hidden="true"><img src="img/town.webp" alt=""></div>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@800;900&family=Mitr:wght@700&family=Chakra+Petch:wght@700&family=Sriracha&family=Srisakdi:wght@700&family=Itim&family=Pattaya&family=Charmonman:wght@700&family=Chonburi&display=swap"><section class="zq" aria-label="ค้นหาคอร์สและกิจกรรม"><div class="zq-ob" aria-hidden="true"><img class="o0" src="img/co-pad.webp" alt=""><img class="o1" src="img/co-bot.webp" alt=""><img class="o2" src="img/co-rocket.webp" alt=""><img class="o3" src="img/co-laptop.webp" alt=""><img class="o4" src="img/co-cap.webp" alt=""><img class="o5" src="img/co-bulb.webp" alt=""></div>
     <div class="zq-top">
       <p class="zq-q">น้องอยาก...</p>
       <h1 class="zq-h"><span id="zqType">ยื่นพอร์ตเข้ามหาลัย</span><i class="zq-cur" aria-hidden="true"></i></h1>
-      <form class="zq-s" id="zqForm" role="search"><span class="zq-ham" id="zqHam" aria-hidden="true"><span class="zq-ham-in"><i class="zq-spr" id="zqSpr"></i></span></span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        <input id="zqIn" type="search" placeholder="พิมพ์สิ่งที่น้องอยากทำ เช่น อยากติดวิศวะคอม หรือ อยากทำเกม" aria-label="ค้นหาคอร์สและกิจกรรม" autocomplete="off"><button type="submit">ค้นหา</button></form>
+      <form class="zq-s" id="zqForm" role="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="zqIn" type="search" placeholder="พิมพ์สิ่งที่น้องอยากทำ เช่น อยากติดวิศวะคอม หรือ อยากทำเกม" aria-label="ค้นหาคอร์สและกิจกรรม" autocomplete="off"><span class="zq-btw"><span class="zq-ham" id="zqHam" aria-hidden="true"><i class="zq-spr" id="zqSpr"></i></span><button type="submit">ค้นหา</button></span></form>
       <p class="zq-pop"><span>คนค้นหาบ่อย</span><button type="button" data-q="ยื่นพอร์ต">ยื่นพอร์ต</button><button type="button" data-q="สร้างเกม">สร้างเกม</button><button type="button" data-q="AI">AI</button><button type="button" data-q="Python">Python</button><button type="button" data-q="ค่าย">ค่าย</button><button type="button" data-q="แข่งขัน">แข่งขัน</button></p>
     </div>
     <div class="zq-res" id="zqRes" hidden><p class="zq-r" id="zqR" aria-live="polite"></p><div class="zq-g" id="zqG"></div></div>
@@ -3104,19 +3175,14 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
   <section class="zb"><div class="zb-in">
     <h2>ผลงานของน้องไปไกลกว่าแฟ้มพอร์ต</h2>
     <p class="zb-l">น้องที่เรียนกับเราสร้างผลงานที่ขายได้ มีคนเล่นจริง และไปถึงเวทีระดับประเทศ</p>
-    <div class="zb-g">
-      <article class="zb-t c1"><div><small>สตาร์ทอัพ</small><h3>ขายได้จริง</h3><p>Mr. City เกมแนะนำที่เที่ยวในสงขลา ขายให้สวนสัตว์สงขลาแล้ว</p></div><figure><img src="img/g-mrcity.webp" alt="" loading="lazy"><figcaption>ภาพประกอบ</figcaption></figure></article>
-      <article class="zb-t c2"><div><small>เกมเพื่อการเรียน</small><h3>มีคนเล่นกว่า 1,000 คน</h3><p>PHC Map เกมสอนเขียนโปรแกรม Python ใช้สอนเด็กไปแล้วกว่า 1,000 คน</p></div><figure><img src="img/g-phc.webp" alt="" loading="lazy"><figcaption>ภาพประกอบ</figcaption></figure></article>
-      <article class="zb-t c3"><div><small>เวทีระดับประเทศ</small><h3>12 ผลงานเข้ารอบชิง NSC</h3><p>และชนะเลิศ OBEC Roboplayground ด้วยเกมที่เล่นด้วยการบีบอุปกรณ์วัดแรงมือ</p></div><figure><img src="img/s-showcase2.webp" alt="งานโชว์ผลงานของน้องๆ" loading="lazy"></figure></article>
-      <article class="zb-t c4"><div><small>เว็บ</small><h3>มหาวิทยาลัยเตรียมใช้</h3><p>Hamster Quest เว็บเรียนที่เล่นเหมือนเกม กำลังเตรียมใช้กับมหาวิทยาลัย</p></div><figure><img src="img/g-quest.webp" alt="" loading="lazy"><figcaption>ภาพประกอบ</figcaption></figure></article>
-    </div>
+    <div class="zb-g"><article class="zb-t"><img src="img/cs-shop.webp" alt="" loading="lazy"><small>สตาร์ทอัพ</small><h3>ขายได้จริง</h3><p>Mr. City เกมแนะนำที่เที่ยวในสงขลา ขายให้สวนสัตว์สงขลาแล้ว</p></article><article class="zb-t"><img src="img/cs-play.webp" alt="" loading="lazy"><small>เกม</small><h3>มีคนเล่นกว่า 1,000 คน</h3><p>PHC Map เกมสอนเขียนโปรแกรม Python ใช้สอนเด็กไปแล้วกว่า 1,000 คน</p></article><article class="zb-t"><img src="img/cs-trophy.webp" alt="" loading="lazy"><small>IoT และการแข่งขัน</small><h3>12 ผลงานเข้ารอบชิง NSC</h3><p>และชนะเลิศ OBEC Roboplayground ด้วยเกมที่เล่นด้วยการบีบอุปกรณ์วัดแรงมือ</p></article><article class="zb-t"><img src="img/cs-web.webp" alt="" loading="lazy"><small>เว็บ</small><h3>มหาวิทยาลัยเตรียมใช้</h3><p>Hamster Quest เว็บเรียนที่เล่นเหมือนเกม กำลังเตรียมใช้กับมหาวิทยาลัย</p></article></div>
   </div></section>
   <section class="zp"><div class="zp-in">
     <h2>เลือกเส้นทางของน้อง</h2>
     <div class="zp-g">
-      <a class="zp-c" href="#" data-q="ยื่นพอร์ต"><img src="img/p-uni.webp" alt="" loading="lazy"><span><b>อยากเข้ามหาลัยรอบพอร์ต</b><em>ทำผลงานจริงใส่แฟ้มพอร์ต แล้วซ้อมตอบคำถามกรรมการจนพร้อม</em><i>ดูคอร์สทำพอร์ต</i></span></a>
-      <a class="zp-c" href="#" data-q="สร้างเกม"><img src="img/p-make.webp" alt="" loading="lazy"><span><b>อยากสร้างเกมหรือเว็บเป็น</b><em>ไม่เคยเขียนโค้ดก็เริ่มได้ จบแล้วมีผลงานที่เล่นได้จริงเป็นของตัวเอง</em><i>ดูคอร์สและค่าย</i></span></a>
-      <a class="zp-c" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener"><img src="img/p-parent.webp" alt="" loading="lazy"><span><b>ผู้ปกครองอยากถามก่อน</b><em>คุยกับทีมเรื่องคอร์ส ราคา และวันเรียน ก่อนตัดสินใจ</em><i>ทัก LINE ถามทีม</i></span></a>
+      <a class="zp-c" href="#" data-q="ยื่นพอร์ต"><span class="zp-im"><img src="img/cs-uni.webp" alt="" loading="lazy"></span><span><b>อยากเข้ามหาลัยรอบพอร์ต</b><em>ทำผลงานจริงใส่แฟ้มพอร์ต แล้วซ้อมตอบคำถามกรรมการจนพร้อม</em><i>ดูคอร์สทำพอร์ต</i></span></a>
+      <a class="zp-c" href="#" data-q="สร้างเกม"><span class="zp-im"><img src="img/cs-make.webp" alt="" loading="lazy"></span><span><b>อยากสร้างเกมหรือเว็บเป็น</b><em>ไม่เคยเขียนโค้ดก็เริ่มได้ จบแล้วมีผลงานที่เล่นได้จริงเป็นของตัวเอง</em><i>ดูคอร์สและค่าย</i></span></a>
+      <a class="zp-c" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener"><span class="zp-im"><img src="img/cs-parent.webp" alt="" loading="lazy"></span><span><b>ผู้ปกครองอยากถามก่อน</b><em>คุยกับทีมเรื่องคอร์ส ราคา และวันเรียน ก่อนตัดสินใจ</em><i>ทัก LINE ถามทีม</i></span></a>
     </div>
   </div></section>
   
@@ -3672,6 +3738,11 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
   /* rails */
   document.querySelectorAll('.mr').forEach(function(m){var r=m.querySelector('.mr-r');if(!r)return;function st(d){var c=r.querySelector('.mk');r.scrollBy({left:d*((c?c.offsetWidth:300)+18),behavior:'smooth'})}
     m.querySelector('.mr-p').addEventListener('click',function(){st(-1)});m.querySelector('.mr-n').addEventListener('click',function(){st(1)})});
+
+  /* hero objects follow the mouse */
+  (function(){var z=$('.zq');if(!z||!matchMedia('(hover:hover)').matches||matchMedia('(prefers-reduced-motion:reduce)').matches)return;var I=z.querySelectorAll('.zq-ob img'),D=[1.2,.7,1.4,.9,1.1,.6],tx=0,ty=0,cx=0,cy=0,run=false;
+    z.addEventListener('pointermove',function(e){tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5;if(!run){run=true;requestAnimationFrame(loop)}});
+    function loop(){cx+=(tx-cx)*.07;cy+=(ty-cy)*.07;I.forEach(function(im,i){im.style.translate=(-cx*46*D[i])+'px '+(-cy*34*D[i])+'px'});if(Math.abs(tx-cx)>.001||Math.abs(ty-cy)>.001)requestAnimationFrame(loop);else run=false}})();
   /* activity list */
   var AIMG={'All for One University รอบชิงชนะเลิศ':'k-afo-logo','IoTE KMITL 2026 Showcase (Hallow Open House)':'k-hallow','All for One University รอบออนไลน์':'k-afo','AI Camp Season 2':'k-aicamp','Game Pee Camp':'k-ghost','GameJam X ปีที่ 5':'k-gamejam','Dek-70 Camp':'k-dek70','Dek70 Camp':'k-dek70','NSC Software Project 2026':'s-showcase2'},ACOL={'ค่าย':['#FFF1D6','#B26A00'],'เวิร์กชอป':['#E3F3FF','#1D5FB8'],'แข่งขัน':['#FFE6EE','#B23A68'],'โชว์ผลงาน':['#EEE8FF','#5B3FD6'],'โครงการ':['#E6F7EC','#1E7A4C']};
   var MAS={'ค่าย':'ev-st2','เวิร์กชอป':'ev-st3','แข่งขัน':'ev-st4','โชว์ผลงาน':'ev-st1','โครงการ':'ev-st5'},
