@@ -1817,6 +1817,24 @@ a.ctb-f:hover{transform:translate(-3px,-3px)}
 .ap-pr b{font:400 clamp(1.6rem,3.4vw,2.6rem) var(--pixel)!important;color:#FFD24A!important;text-shadow:4px 4px 0 #E0337E}
 .ap-pr em{border-radius:0!important}
 
+
+/* ===== v22 ===== */
+.ov{padding:0!important;background:#1A1460 url(img/px-sky.webp) 50% 50%/cover!important;image-rendering:pixelated}
+.ov a.ov-c{width:100%!important;max-width:none;height:min(calc(100svh - 150px),56.25vw);aspect-ratio:auto!important}
+.ov-c video{object-fit:contain!important}
+.ov .ov-c{background:transparent!important}
+.ov-bar3{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;padding:22px 16px 26px;background:#140F3A;box-shadow:0 -6px 0 #5B3FD6}
+.ov-bar3 a{display:inline-flex;align-items:center;min-height:54px;padding:0 30px 5px;font:800 1.1rem var(--display);text-decoration:none;transition:transform .1s steps(2);
+  clip-path:polygon(0 6px,6px 6px,6px 0,calc(100% - 6px) 0,calc(100% - 6px) 6px,100% 6px,100% calc(100% - 6px),calc(100% - 6px) calc(100% - 6px),calc(100% - 6px) 100%,6px 100%,6px calc(100% - 6px),0 calc(100% - 6px))}
+.ov-bar3 a:hover{transform:translateY(4px)}
+.pb1{background:#FFD24A;color:#0B0720;box-shadow:inset 0 -6px 0 #C28A00}
+.pb2{background:#5BC0FF;color:#06123A;box-shadow:inset 0 -6px 0 #1D5FB8}
+.hp-grid{padding-top:12px!important}
+/* hall of fame row: fit, never cut */
+.hf-row{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));max-width:1100px;margin-left:auto!important;margin-right:auto!important;padding:0 8px}
+.hf-row figure{width:auto!important}
+@media (max-width:700px){.hf-row{grid-template-columns:repeat(3,minmax(0,1fr))}.ov a.ov-c{height:56.25vw}}
+
 /* ---------- footer ---------- */
 footer{background:var(--alt);font-size:.85rem;color:var(--mute)}
 footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
@@ -2229,13 +2247,12 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
   <section class="ov">
     <h1 class="sr">Port Express คอร์สพาน้อง ม.6 ทำพอร์ตยื่นมหาลัย เรียนทำเกมกับพี่ๆ 2 เดือน ได้ผลงานจริงใส่แฟ้มพอร์ต รุ่นพี่ติดมหาลัยแล้ว 48 คน เริ่ม 9 พ.ย. 2569 ราคา 5,990 บาท</h1>
     <a class="ov-c" href="#portex" aria-label="ดูรายละเอียดคอร์ส Port Express"><video src="img/portex-hero.mp4" poster="img/portex-hero.webp" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video></a>
-    <div class="ov-bar2"><p class="ov-p2"><b>Port Express</b> · 5,990 บาท · เริ่ม 9 พ.ย. 2569</p>
-      <div class="ov-b2"><a class="a1" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">สมัครเรียน</a><a class="a2" href="#portex">ดูรายละเอียด</a></div></div>
+    <div class="ov-bar3"><a class="pb1" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">▶ สมัครเรียน</a><a class="pb2" href="#portex">ดูรายละเอียดคอร์ส</a></div>
   </section>
 
-  <section class="hp-grid"><div class="nw-h"><span class="nw-b">ข่าวสาร</span><h2>อัปเดตล่าสุดจาก Hamster Hub</h2></div><div class="wrap hg st">
+  <section class="hp-grid"><div class="wrap hg st">
     <div class="tile t-afo rv">
-      <p class="t-k"><span class="nw-new">ข่าวใหม่</span></p><p class="t-k" id="afoTag">กิจกรรมถัดไป · 14 พ.ย. 2569</p><h3>All for One University<br>รอบชิงชนะเลิศ</h3>
+      <p class="t-k"><span class="nw-new">ข่าวสาร · อัปเดตล่าสุด</span></p><p class="t-k" id="afoTag">กิจกรรมถัดไป · 14 พ.ย. 2569</p><h3>All for One University<br>รอบชิงชนะเลิศ</h3>
       <div class="afo-hd"><img class="afo-logo" src="img/k-afo-logo.webp" alt="All for One University" loading="lazy"><img class="afo-ic i0" src="img/afo-ic0.webp" alt="" aria-hidden="true"><img class="afo-ic i1" src="img/afo-ic1.webp" alt="" aria-hidden="true"><img class="afo-ic i2" src="img/afo-ic2.webp" alt="" aria-hidden="true"></div>
       <p class="t-s">14 พ.ย. 2569 · IoTE KMITL 2026 Showcase ที่ สจล.<br>ทีมที่ผ่านรอบออนไลน์มานำเสนอผลงานจริงต่อกรรมการ</p>
       <div class="cd" id="afoCd" aria-label="นับถอยหลังถึงวันแข่ง"><div><b id="cdD">0</b><span>วัน</span></div><div><b id="cdH">0</b><span>ชั่วโมง</span></div><div><b id="cdM">0</b><span>นาที</span></div></div>
