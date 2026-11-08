@@ -1211,7 +1211,7 @@ button{font:inherit}
 .sc{position:absolute;inset:0;display:flex;align-items:center;gap:4cqw;padding:0 7cqw;opacity:0;animation:pbS 16s infinite}
 .s2{animation-delay:4s;flex-direction:column;justify-content:center;gap:3cqw}.s3{animation-delay:8s}.s4{animation-delay:12s}
 @keyframes pbS{0%{opacity:0}2.5%,22.5%{opacity:1}25%,100%{opacity:0}}
-.sc>*,.pb-gs figure,.pb-ck li,.pb-fan img,.pg,.stamp{animation:pbI 16s infinite both}
+.sc>*,.pb-gs figure,.pb-ck li,.pb-fan img,.pgx,.stamp{animation:pbI 16s infinite both}
 @keyframes pbI{0%{opacity:0;transform:translateY(3cqw) scale(.94)}3%,100%{opacity:1;transform:none}}
 .s1 .pb-ham{width:24cqw;filter:drop-shadow(0 1cqw 2cqw rgba(0,0,0,.5))}
 .pb-logo{display:block;font:400 6.6cqw/1.12 var(--pixel);color:#FFD24A;text-shadow:.6cqw .6cqw 0 #E0337E}
@@ -1228,11 +1228,11 @@ button{font:inherit}
 .pb-fd{position:relative;flex:none;width:30cqw;height:33cqw;animation-delay:8s!important}
 .pb-fd::before{content:"";position:absolute;inset:3cqw 0 0;background:#FFB81C;box-shadow:inset 0 -1.2cqw 0 #C28A00}
 .pb-fd .tab{position:absolute;left:0;top:0;height:3.4cqw;padding:0 2cqw;background:#FFB81C;font:400 1.5cqw/3.6cqw var(--pixel);color:#5A3A00}
-.pg{position:absolute;left:3cqw;right:3cqw;height:7cqw;background:#fff;box-shadow:inset 0 0 0 .4cqw #E3DAC4}
-.pg.p1{top:6.5cqw;animation-delay:8.4s!important}.pg.p2{top:14.5cqw;animation-delay:8.7s!important}.pg.p3{top:22.5cqw;animation-delay:9s!important}
-.pg::before{content:"";position:absolute;left:1cqw;top:1cqw;bottom:1cqw;width:8cqw;background:#5B3FD6}
-.pg.p2::before{background:#1068DC}.pg.p3::before{background:#2E9E6B}
-.pg::after{content:"";position:absolute;left:12cqw;right:1.6cqw;top:2cqw;height:1cqw;background:#E3DAC4;box-shadow:0 2.2cqw 0 #E3DAC4}
+.pgx{position:absolute;left:3cqw;right:3cqw;height:7cqw;background:#fff;box-shadow:inset 0 0 0 .4cqw #E3DAC4}
+.pgx.q1{top:6.5cqw;animation-delay:8.4s!important}.pgx.q2{top:14.5cqw;animation-delay:8.7s!important}.pgx.q3{top:22.5cqw;animation-delay:9s!important}
+.pgx::before{content:"";position:absolute;left:1cqw;top:1cqw;bottom:1cqw;width:8cqw;background:#5B3FD6}
+.pgx.q2::before{background:#1068DC}.pgx.q3::before{background:#2E9E6B}
+.pgx::after{content:"";position:absolute;left:12cqw;right:1.6cqw;top:2cqw;height:1cqw;background:#E3DAC4;box-shadow:0 2.2cqw 0 #E3DAC4}
 .stamp{position:absolute;right:-3cqw;bottom:2cqw;font:400 2.6cqw var(--pixel);color:#E0337E;border:.5cqw solid #E0337E;padding:1cqw 1.4cqw;transform:rotate(-12deg);background:rgba(255,255,255,.85);animation:pbStamp 16s infinite both!important;animation-delay:9.6s!important}
 @keyframes pbStamp{0%{opacity:0;transform:rotate(-12deg) scale(2.4)}2%,100%{opacity:1;transform:rotate(-12deg) scale(1)}}
 .pb-ck{list-style:none;margin:0;padding:0;display:grid;gap:2cqw;animation:none!important}
@@ -1369,6 +1369,18 @@ a.ctb-f:hover{transform:translate(-3px,-3px)}
 @keyframes csOut2{to{opacity:0;transform:scale(1.06);filter:blur(10px)}}
 @media (max-width:700px){.gk span,.gk-hint,.gk.k1::before{display:none}.gb-lcd b{font-size:2.2cqw}.gb-lcd s{display:none}
   .hh-m{display:grid;justify-items:center;gap:12px;margin-top:18px}.hh-m p{color:#C9CDE8}.hh-m b{font:400 1.2rem var(--pixel);color:#FFD24A}.hh-m s{color:#8A90B8}}
+
+
+/* v13: scene 2 reads at a glance */
+.s2 .pb-h{font-size:5cqw}
+.pb-gs{gap:3cqw}
+.pb-gs figure{width:25cqw;padding:0;background:none;box-shadow:none!important;position:relative}
+.pb-gs img{aspect-ratio:16/10;border-radius:1.2cqw;box-shadow:0 0 0 .5cqw #fff,0 1.6cqw 3cqw rgba(0,0,0,.5)}
+.pb-gs figcaption{position:absolute;left:50%;bottom:-1.6cqw;transform:translateX(-50%);white-space:nowrap;font:700 2cqw var(--display);color:#0B0720;background:#FFD24A;padding:.5cqw 1.4cqw;border-radius:99px}
+.pb-n{font:500 1.9cqw var(--display);color:#9AA0C8;margin-top:1.6cqw}
+.s2 .pb-n{animation-delay:5s}
+.s3 .pb-h{font-size:4.4cqw;line-height:1.25}
+.pb-ck li{font-size:3.5cqw}
 
 /* ---------- footer ---------- */
 footer{background:var(--alt);font-size:.85rem;color:var(--mute)}
@@ -1788,10 +1800,10 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
       <p class="hh-s rv">Port Express คอร์ส 2 เดือนสำหรับ ม.6 ที่ยังไม่มีผลงาน · เริ่ม 9 พ.ย. 2569</p>
       <div class="gb2 rv"><a class="gb-s g2" href="#portex" aria-label="ดูรายละเอียดคอร์ส Port Express"><div class="pb " aria-label="Port Express คอร์สปั้นพอร์ตยื่นมหาลัย สำหรับ ม.6: 2 เดือน ทำเกม 3 งาน ทำแฟ้มพอร์ต ซ้อมสัมภาษณ์ รุ่นพี่ติดแล้ว 48 คน">
   <span class="pb-sky" aria-hidden="true"></span>
-  <div class="sc s1"><img class="pb-ham" src="img/n-grad.webp" alt=""><div class="pb-tx"><b class="pb-logo">PORT<br>EXPRESS</b><p class="pb-a">คอร์สช่วยน้อง ม.6<br>ทำพอร์ตยื่นมหาลัย</p><p class="pb-b">ไม่เคยทำผลงานมาก่อน ก็เริ่มได้</p></div></div>
-  <div class="sc s2"><p class="pb-h">ใน 2 เดือน น้องสร้างเกมเองกับมือ 3 เกม</p><p class="pb-b c">ทุกเกมคือผลงานจริง ใส่ลงแฟ้มพอร์ตได้ทันที</p><div class="pb-gs"><figure><img src="img/work-escape-rolling.webp" alt=""><figcaption>เกมที่ 1</figcaption></figure><figure><img src="img/work-slash-speed.webp" alt=""><figcaption>เกมที่ 2</figcaption></figure><figure><img src="img/work-apocalypis-building.webp" alt=""><figcaption>เกมที่ 3</figcaption></figure></div></div>
-  <div class="sc s3"><div class="pb-fd"><span class="tab">PORTFOLIO</span><span class="pg p1"></span><span class="pg p2"></span><span class="pg p3"></span><b class="stamp">READY!</b></div><div><p class="pb-h">จบคอร์ส ได้แฟ้มพอร์ตพร้อมยื่น</p><ul class="pb-ck"><li>ผลงานเกม 3 ชิ้นในแฟ้ม</li><li>สไลด์นำเสนอผลงาน</li><li>ซ้อมสัมภาษณ์กับอาจารย์มหาลัยจริง</li></ul></div></div>
-  <div class="sc s4"><div class="pb-fan"><img src="img/dek69-13.webp" alt=""><img src="img/dek69-6.webp" alt=""><img src="img/dek69-1.webp" alt=""><img src="img/dek69-11.webp" alt=""></div><div class="pb-tx r"><p class="pb-h">รุ่นพี่ที่ทำแบบนี้<br>ติดมหาลัยแล้ว 48 คน</p><p class="pb-b">สจล. · จุฬาฯ · มหิดล · เกษตรศาสตร์</p><p class="pb-p">เริ่ม 9 พ.ย. · 5,990 บาท</p></div></div>
+  <div class="sc s1"><img class="pb-ham" src="img/n-grad.webp" alt=""><div class="pb-tx"><b class="pb-logo">PORT<br>EXPRESS</b><p class="pb-a">คอร์สทำพอร์ต<br>สำหรับ ม.6</p><p class="pb-b">เรียน 2 เดือน มีผลงานไปยื่นมหาลัย</p></div></div>
+  <div class="sc s2"><p class="pb-h">เรียนจบ น้องทำเกมเองได้ 3 เกม</p><div class="pb-gs"><figure><img src="img/work-phi-krahang.webp" alt=""><figcaption>▶ เล่นได้จริง</figcaption></figure><figure><img src="img/work-stressstrike.webp" alt=""><figcaption>▶ เล่นได้จริง</figcaption></figure><figure><img src="img/work-midnight-at-roadside.webp" alt=""><figcaption>▶ เล่นได้จริง</figcaption></figure></div><p class="pb-n">ตัวอย่างเกมที่รุ่นพี่ Hamster Hub ทำ</p></div>
+  <div class="sc s3"><div class="pb-fd"><span class="tab">PORTFOLIO</span><span class="pgx q1"></span><span class="pgx q2"></span><span class="pgx q3"></span><b class="stamp">READY!</b></div><div><p class="pb-h">เอาเกมใส่แฟ้มพอร์ต<br>พร้อมยื่นมหาลัย</p><ul class="pb-ck"><li>เกมของน้อง 3 เกม</li><li>สไลด์เล่าผลงาน</li><li>ซ้อมสัมภาษณ์กับอาจารย์มหาลัย</li></ul></div></div>
+  <div class="sc s4"><div class="pb-fan"><img src="img/dek69-13.webp" alt=""><img src="img/dek69-6.webp" alt=""><img src="img/dek69-1.webp" alt=""><img src="img/dek69-11.webp" alt=""></div><div class="pb-tx r"><p class="pb-h">รุ่นพี่ทำแบบนี้<br>ติดมหาลัยแล้ว 48 คน</p><p class="pb-b">สจล. · จุฬาฯ · มหิดล · เกษตรศาสตร์</p><p class="pb-p">เริ่ม 9 พ.ย. · 5,990 บาท</p></div></div>
   <span class="pb-pip" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
 </div><span class="gb-sl"></span></a><img class="gb-f" src="img/console2.webp" alt="">
         <span class="gb-lcd" aria-label="ราคา 5,990 บาท จากปกติ 9,990 บาท"><b>5,990฿</b><s>9,990</s></span>
@@ -1891,10 +1903,10 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     </div>
     <div class="ctb-f px-bnr"><div class="pb " aria-label="Port Express คอร์สปั้นพอร์ตยื่นมหาลัย สำหรับ ม.6: 2 เดือน ทำเกม 3 งาน ทำแฟ้มพอร์ต ซ้อมสัมภาษณ์ รุ่นพี่ติดแล้ว 48 คน">
   <span class="pb-sky" aria-hidden="true"></span>
-  <div class="sc s1"><img class="pb-ham" src="img/n-grad.webp" alt=""><div class="pb-tx"><b class="pb-logo">PORT<br>EXPRESS</b><p class="pb-a">คอร์สช่วยน้อง ม.6<br>ทำพอร์ตยื่นมหาลัย</p><p class="pb-b">ไม่เคยทำผลงานมาก่อน ก็เริ่มได้</p></div></div>
-  <div class="sc s2"><p class="pb-h">ใน 2 เดือน น้องสร้างเกมเองกับมือ 3 เกม</p><p class="pb-b c">ทุกเกมคือผลงานจริง ใส่ลงแฟ้มพอร์ตได้ทันที</p><div class="pb-gs"><figure><img src="img/work-escape-rolling.webp" alt=""><figcaption>เกมที่ 1</figcaption></figure><figure><img src="img/work-slash-speed.webp" alt=""><figcaption>เกมที่ 2</figcaption></figure><figure><img src="img/work-apocalypis-building.webp" alt=""><figcaption>เกมที่ 3</figcaption></figure></div></div>
-  <div class="sc s3"><div class="pb-fd"><span class="tab">PORTFOLIO</span><span class="pg p1"></span><span class="pg p2"></span><span class="pg p3"></span><b class="stamp">READY!</b></div><div><p class="pb-h">จบคอร์ส ได้แฟ้มพอร์ตพร้อมยื่น</p><ul class="pb-ck"><li>ผลงานเกม 3 ชิ้นในแฟ้ม</li><li>สไลด์นำเสนอผลงาน</li><li>ซ้อมสัมภาษณ์กับอาจารย์มหาลัยจริง</li></ul></div></div>
-  <div class="sc s4"><div class="pb-fan"><img src="img/dek69-13.webp" alt=""><img src="img/dek69-6.webp" alt=""><img src="img/dek69-1.webp" alt=""><img src="img/dek69-11.webp" alt=""></div><div class="pb-tx r"><p class="pb-h">รุ่นพี่ที่ทำแบบนี้<br>ติดมหาลัยแล้ว 48 คน</p><p class="pb-b">สจล. · จุฬาฯ · มหิดล · เกษตรศาสตร์</p><p class="pb-p">เริ่ม 9 พ.ย. · 5,990 บาท</p></div></div>
+  <div class="sc s1"><img class="pb-ham" src="img/n-grad.webp" alt=""><div class="pb-tx"><b class="pb-logo">PORT<br>EXPRESS</b><p class="pb-a">คอร์สทำพอร์ต<br>สำหรับ ม.6</p><p class="pb-b">เรียน 2 เดือน มีผลงานไปยื่นมหาลัย</p></div></div>
+  <div class="sc s2"><p class="pb-h">เรียนจบ น้องทำเกมเองได้ 3 เกม</p><div class="pb-gs"><figure><img src="img/work-phi-krahang.webp" alt=""><figcaption>▶ เล่นได้จริง</figcaption></figure><figure><img src="img/work-stressstrike.webp" alt=""><figcaption>▶ เล่นได้จริง</figcaption></figure><figure><img src="img/work-midnight-at-roadside.webp" alt=""><figcaption>▶ เล่นได้จริง</figcaption></figure></div><p class="pb-n">ตัวอย่างเกมที่รุ่นพี่ Hamster Hub ทำ</p></div>
+  <div class="sc s3"><div class="pb-fd"><span class="tab">PORTFOLIO</span><span class="pgx q1"></span><span class="pgx q2"></span><span class="pgx q3"></span><b class="stamp">READY!</b></div><div><p class="pb-h">เอาเกมใส่แฟ้มพอร์ต<br>พร้อมยื่นมหาลัย</p><ul class="pb-ck"><li>เกมของน้อง 3 เกม</li><li>สไลด์เล่าผลงาน</li><li>ซ้อมสัมภาษณ์กับอาจารย์มหาลัย</li></ul></div></div>
+  <div class="sc s4"><div class="pb-fan"><img src="img/dek69-13.webp" alt=""><img src="img/dek69-6.webp" alt=""><img src="img/dek69-1.webp" alt=""><img src="img/dek69-11.webp" alt=""></div><div class="pb-tx r"><p class="pb-h">รุ่นพี่ทำแบบนี้<br>ติดมหาลัยแล้ว 48 คน</p><p class="pb-b">สจล. · จุฬาฯ · มหิดล · เกษตรศาสตร์</p><p class="pb-p">เริ่ม 9 พ.ย. · 5,990 บาท</p></div></div>
   <span class="pb-pip" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
 </div></div>
   </div></section>
