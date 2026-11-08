@@ -3131,6 +3131,22 @@ button:active:not(.vg-c):not(.zq-go),.lbtn:active,.mr-btn:active{transform:scale
 .tl-on::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(320px circle at var(--lx) var(--ly),rgba(255,255,255,.22),transparent 60%);z-index:3}
 .qv-im,.zb-t,.zp-c{position:relative}
 
+
+/* ===== v55 ===== */
+/* login: the light drifts along the pill and breathes */
+.login{background-size:100% 100%,100% 100%!important;animation:lgDrift 5s ease-in-out infinite}
+@keyframes lgDrift{0%,100%{--ox:92%}50%{--ox:18%}}
+@property --ox{syntax:"<percentage>";inherits:true;initial-value:92%}
+.lg-orb{animation:lgOrb 5s ease-in-out infinite}
+@keyframes lgOrb{0%,100%{right:-6px;opacity:.85}50%{right:calc(100% - 22px);opacity:.55}}
+.login::before{animation:lgTw2 2.6s ease-in-out infinite alternate!important}
+@keyframes lgTw2{from{opacity:.35}to{opacity:.9}}
+.lg-t{animation:lgGlow 5s ease-in-out infinite}
+@keyframes lgGlow{0%,100%{text-shadow:0 0 6px rgba(150,200,255,.25)}50%{text-shadow:0 0 12px rgba(170,215,255,.6)}}
+.login:hover{animation-play-state:paused}
+.login:hover .lg-orb,.login:hover .lg-t{animation-play-state:paused}
+@media (prefers-reduced-motion:reduce){.login,.lg-orb,.lg-t,.login::before{animation:none!important}}
+
 /* ---------- footer ---------- */
 footer{background:var(--alt);font-size:.85rem;color:var(--mute)}
 footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
@@ -3669,7 +3685,6 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
       </div>
     </section>
     <p class="au-n">กิจกรรมถัดไปกำลังจะประกาศ <a href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">รับแจ้งเตือนทาง LINE</a></p>
-    <section class="dq" aria-label="ไทม์ไลน์กิจกรรม"><h2 class="dq-h">มีอะไรเกิดขึ้นบ้าง</h2><div class="dq-st" id="dqSt"></div><p class="dq-cap">กดการ์ดด้านหลังเพื่อดูงานนั้น</p></section>
     <h2 class="er-h">จบไปแล้วในปี 2569</h2>
     <ol class="er-l" id="acl"></ol>
     <p class="er-hint">ชี้ที่กิจกรรมเพื่อดูโปสเตอร์</p>
@@ -4480,7 +4495,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
       h+='<span class="ev-t"><small>'+(nx?nx.textContent:'')+'</small><b>กิจกรรม</b></span></span>'}
     else if(v==='works'){h='<span class="t5-cu l"></span><span class="t5-cu r"></span><span class="t5-sp"></span>';for(var k=0;k<22;k++)h+='<span class="t5-d" style="left:'+(25+Math.random()*50).toFixed(1)+'%;top:'+(20+Math.random()*60).toFixed(1)+'%;--dl:'+(Math.random()*.6).toFixed(2)+'s;--s:'+(2+Math.random()*4).toFixed(1)+'px"></span>';h+='<span class="t5-fl"></span><img class="t5-tr" src="img/n-win.webp" alt=""><b class="t5-hof"><small>HAMSTER HUB · CLASS OF 2026</small><span>HALL OF FAME</span></b>'}
     else if(v==='about'){h='<span class="pt-band"></span><img class="pt-run" src="img/n-walker.webp" alt="">'}
-    else{h='<span class="ph-p a"></span><span class="ph-p b"></span><span class="ph-p c"></span><span class="ph-c"><img src="img/logo.webp" alt=""><b><span class="ph-l" style="--k:0">H</span><span class="ph-l" style="--k:1">a</span><span class="ph-l" style="--k:2">m</span><span class="ph-l" style="--k:3">s</span><span class="ph-l" style="--k:4">t</span><span class="ph-l" style="--k:5">e</span><span class="ph-l" style="--k:6">r</span><span class="ph-l" style="--k:7">&nbsp;</span><span class="ph-l" style="--k:8">H</span><span class="ph-l" style="--k:9">u</span><span class="ph-l" style="--k:10">b</span></b><small>Game · Web · IoT</small></span>'}
+    else{h='<span class="ph-p a"></span><span class="ph-p b"></span><span class="ph-p c"></span><span class="ph-c"><img src="img/logo.webp" alt=""><b><span class="ph-l" style="--k:0">H</span><span class="ph-l" style="--k:1">a</span><span class="ph-l" style="--k:2">m</span><span class="ph-l" style="--k:3">s</span><span class="ph-l" style="--k:4">t</span><span class="ph-l" style="--k:5">e</span><span class="ph-l" style="--k:6">r</span><span class="ph-l" style="--k:7">&nbsp;</span><span class="ph-l" style="--k:8">H</span><span class="ph-l" style="--k:9">u</span><span class="ph-l" style="--k:10">b</span></b></span>'}
     pt.className='pt v-'+v;pt.innerHTML=h;void pt.offsetWidth;pt.classList.add('in')}
   var first=true;function route(){var v=(location.hash||'#home').slice(1);if(views.indexOf(v)<0)v='home';
     if(first||reduce){first=false;show();return}
