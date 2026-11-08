@@ -2005,6 +2005,7 @@ a.ctb-f:hover{transform:translate(-3px,-3px)}
 .fb1{background:var(--b600);color:#fff}.fb2{background:#06C755;color:#fff}
 @media (max-width:1000px){.fit-in{grid-template-columns:minmax(0,1fr)}}
 
+.ct-fit{margin:56px 0}.ct-fit .fit{padding:0}
 /* ---------- footer ---------- */
 footer{background:var(--alt);font-size:.85rem;color:var(--mute)}
 footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
@@ -2437,15 +2438,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
       </ol>
   </section>
 
-  <section class="fit"><div class="fit-in">
-    <div class="fit-h"><p class="fit-k">ยังไม่แน่ใจว่าเหมาะไหม</p><h2>ตอบ 3 ข้อ ดูว่าคอร์สนี้เหมาะกับน้องไหม</h2><p>ใช้เวลาไม่ถึง 10 วินาที ข้ามได้ ไม่ต้องกรอกชื่อหรือเบอร์</p></div>
-    <form class="fit-q" id="fitQ" onsubmit="return false">
-      <fieldset><legend>1. ตอนนี้น้องเรียนชั้นไหน</legend><label><input type="radio" name="g" value="m6">ม.6</label><label><input type="radio" name="g" value="m45">ม.4–5</label><label><input type="radio" name="g" value="o">อื่นๆ</label></fieldset>
-      <fieldset><legend>2. มีผลงานไว้ยื่นพอร์ตแล้วหรือยัง</legend><label><input type="radio" name="p" value="no">ยังไม่มี</label><label><input type="radio" name="p" value="some">มีบ้าง</label><label><input type="radio" name="p" value="yes">มีพร้อมแล้ว</label></fieldset>
-      <fieldset><legend>3. น้องสนใจสายไหน</legend><label><input type="radio" name="t" value="game">เกม</label><label><input type="radio" name="t" value="app">แอป / เว็บ</label><label><input type="radio" name="t" value="iot">IoT</label><label><input type="radio" name="t" value="any">ยังไม่รู้</label></fieldset>
-    </form>
-    <div class="fit-r" id="fitR" aria-live="polite"><p>เลือกคำตอบครบ 3 ข้อ แล้วผลจะขึ้นตรงนี้</p></div>
-  </div></section>
+
 
   <section class="hp-grid"><div class="wrap hg st">
     <div class="tile t-afo rv">
@@ -2519,6 +2512,15 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     </div>
     <section class="ct-list"><h2>คอร์สอื่นของ Hamster Hub</h2><p>เปิดเป็นรอบ ตอนนี้ยังไม่เปิดรับ กดรับแจ้งเตือนทาง LINE ได้ ภาพคือรุ่นพี่ที่เรียนคอร์สนั้นแล้วติดมหาลัย</p><div class="cgrid" id="crows"></div></section>
     <div class="wkz"><img class="wk" src="img/n-maker.webp" alt="น้องหนู ลากเล่นได้"></div>
+    <div class="ct-fit">  <section class="fit"><div class="fit-in">
+    <div class="fit-h"><p class="fit-k">ยังไม่แน่ใจว่าเริ่มคอร์สไหนดี</p><h2>ตอบ 3 ข้อ ดูว่าคอร์สไหนเหมาะกับน้อง</h2><p>ใช้เวลาไม่ถึง 10 วินาที ข้ามได้ ไม่ต้องกรอกชื่อหรือเบอร์</p></div>
+    <form class="fit-q" id="fitQ" onsubmit="return false">
+      <fieldset><legend>1. ตอนนี้น้องเรียนชั้นไหน</legend><label><input type="radio" name="g" value="m6">ม.6</label><label><input type="radio" name="g" value="m45">ม.4–5</label><label><input type="radio" name="g" value="o">อื่นๆ</label></fieldset>
+      <fieldset><legend>2. มีผลงานไว้ยื่นพอร์ตแล้วหรือยัง</legend><label><input type="radio" name="p" value="no">ยังไม่มี</label><label><input type="radio" name="p" value="some">มีบ้าง</label><label><input type="radio" name="p" value="yes">มีพร้อมแล้ว</label></fieldset>
+      <fieldset><legend>3. น้องสนใจสายไหน</legend><label><input type="radio" name="t" value="game">เกม</label><label><input type="radio" name="t" value="app">แอป / เว็บ</label><label><input type="radio" name="t" value="iot">IoT</label><label><input type="radio" name="t" value="any">ยังไม่รู้</label></fieldset>
+    </form>
+    <div class="fit-r" id="fitR" aria-live="polite"><p>เลือกคำตอบครบ 3 ข้อ แล้วผลจะขึ้นตรงนี้</p></div>
+  </div></section></div>
     <section class="ct-help"><h2>ไม่แน่ใจว่าคอร์สไหนเหมาะ</h2><p>บอกทีมว่าน้องเรียนชั้นไหนและอยากไปทางไหน ทีมจะแนะนำให้</p><div class="btns"><a class="btn btn-line" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">ปรึกษาทีมทาง LINE</a></div></section>
   </div>
 </div>
