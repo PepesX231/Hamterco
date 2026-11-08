@@ -2292,6 +2292,45 @@ a.ctb-f:hover{transform:translate(-3px,-3px)}
 @media(max-width:900px){.hq-in{grid-template-columns:minmax(0,1fr)!important}.hq-v{order:-1}.hq-h{white-space:normal!important;font-size:2.2rem!important}.hq{min-height:0}}
 .hq-in{margin-top:auto;margin-bottom:auto}
 
+
+/* ===== v37 ===== */
+/* quick re-entry for pages already seen */
+[data-view].fast-in{animation:fastIn .28s ease-out both}
+@keyframes fastIn{from{opacity:0;transform:translateY(8px)}}
+/* button states: hover, pressed, keyboard focus */
+.hq-b .go:active,.tk-more:active,.h5f-go:active,a.b1:active,.e1:active,.e2:active,.lbtn:active{transform:translateY(1px) scale(.97)!important;filter:brightness(.95)}
+a:focus-visible,button:focus-visible{outline:3px solid #4DA3F0;outline-offset:3px}
+.hq-b .go:focus-visible{outline-color:#fff}
+/* scrollytelling */
+.sy{margin:56px calc(50% - 50vw) 8px;padding:clamp(56px,6vw,88px) 0;color:#fff;background:radial-gradient(50% 60% at 25% 40%,rgba(77,163,240,.28),transparent 70%),linear-gradient(180deg,#071631,#0A2250)}
+.sy-hd{max-width:1180px;margin:0 auto;padding:0 24px}
+.sy-k{font:700 1rem var(--display);color:var(--yel)}
+.sy-hd h2{font:800 clamp(2rem,4vw,3.2rem)/1.15 var(--display);margin-top:8px}
+.sy-hd>p:last-child{color:#B3D8FF;margin-top:10px}
+.sy-g{max-width:1180px;margin:40px auto 0;padding:0 24px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px)}
+.sy-v{position:relative}
+.sy-f{position:sticky;top:calc(50vh - min(19vw,230px));aspect-ratio:4/3;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.15),0 40px 70px -30px rgba(0,0,0,.8)}
+.sy-i{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity .6s,transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.sy-i.on{opacity:1;transform:none}
+.sy-n{position:absolute;right:0;bottom:0;background:var(--yel);color:#2A1E00;font:700 .95rem var(--display);padding:6px 14px}.sy-n b{font-size:1.2rem}
+.sy-l{list-style:none;margin:0;padding:0}
+.sy-s{min-height:62vh;display:flex;flex-direction:column;justify-content:center;opacity:.28;transition:opacity .4s;border-left:3px solid rgba(255,255,255,.15);padding-left:24px}
+.sy-s.on{opacity:1;border-left-color:var(--yel)}
+.sy-s:first-child{min-height:42vh;justify-content:flex-start}
+.sy-s small{font:700 .9rem var(--display);color:var(--yel)}
+.sy-s h3{font:800 clamp(1.5rem,2.6vw,2.2rem)/1.2 var(--display);margin-top:6px}
+.sy-s p{color:#D9ECFF;font-size:1.08rem;line-height:1.6;margin-top:10px;max-width:30em}
+@media (max-width:900px){.sy-g{grid-template-columns:minmax(0,1fr)}.sy-v{position:sticky;top:60px;z-index:2}.sy-f{position:relative;top:0}.sy-s{min-height:55vh}.sy-s:first-child{min-height:40vh;padding-top:20px}}
+
+
+.hq-k span{color:#fff;opacity:.6;font-weight:500;margin-left:6px}
+.hq-w{max-width:1560px;width:100%;margin:clamp(28px,3vw,44px) auto 0;display:grid;grid-template-columns:auto repeat(3,minmax(0,1fr));gap:10px;align-items:stretch}
+.hq-w p{align-self:center;font:700 1rem var(--display);color:#B3D8FF;padding-right:10px}
+.hq-w a{display:flex;flex-direction:column;gap:2px;padding:12px 16px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);color:#fff;text-decoration:none;font-size:.95rem;transition:background .2s,transform .15s}
+.hq-w a b{font:800 1.05rem var(--display);color:var(--yel)}
+.hq-w a:hover{background:rgba(255,255,255,.12)}.hq-w a:active{transform:scale(.98)}
+@media (max-width:900px){.hq-w{grid-template-columns:minmax(0,1fr)}.hq-w p{padding:0}}
+
 /* ---------- footer ---------- */
 footer{background:var(--alt);font-size:.85rem;color:var(--mute)}
 footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
@@ -2703,7 +2742,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
 <div data-view="home">
   <section class="hq"><div class="hq-in">
     <div class="hq-tx">
-      <p class="hq-k">Port Express · คอร์สทำพอร์ตยื่นมหาลัย สำหรับ ม.6</p>
+      <p class="hq-k">ม.6 ยังไม่มีผลงานไปยื่นพอร์ต? <span>คอร์ส Port Express</span></p>
       <h1 class="hq-h">เรียน 2 เดือน<br><span>มีผลงานจริงไปยื่นพอร์ต</span><br><em>ตอบคำถามกรรมการได้ลื่นไหล</em></h1>
       <ul class="hq-m"><li><small>เริ่มเรียน</small>9 พ.ย. 2569</li><li><small>วันเรียน</small>จันทร์ พุธ ศุกร์</li><li><small>สอนอะไร</small>สร้างเกมด้วย Unity</li></ul>
       <div class="hq-p"><b>5,990</b><span>บาท</span><s>9,990</s></div>
@@ -2711,6 +2750,11 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     </div>
     <a class="hq-v" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener" aria-label="ดูรายละเอียดคอร์ส Port Express"><video src="img/portex-banner.mp4" poster="img/portex-poster.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></a>
   </div>
+  <nav class="hq-w" aria-label="เลือกทางที่ตรงกับน้อง"><p>ไม่ใช่ ม.6? เลือกทางที่ตรงกับน้อง</p>
+    <a href="#courses" data-scroll=".ct-list"><b>ม.4–5</b>อยากเริ่มเก็บผลงานไว้ก่อน</a>
+    <a href="#activity"><b>ทุกชั้น</b>อยากลองค่ายและเวิร์กชอป</a>
+    <a href="#courses" data-scroll=".ct-fit"><b>ยังไม่แน่ใจ</b>ตอบ 3 ข้อ ดูคอร์สที่เหมาะ</a>
+  </nav>
 </section>
 
 
@@ -2782,6 +2826,10 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
       <div class="ctb-b"><div><b>Port Express</b><span>คอร์สทำพอร์ตยื่นมหาลัย สำหรับ ม.6 · เริ่ม 9 พ.ย. 2569 · เรียน 2 เดือน</span><p class="ctb-p"><strong>5,990 บาท</strong><s>9,990</s></p></div>
         <div class="hh-a"><a class="b1" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">ดูรายละเอียดและสมัครเรียน</a></div></div>
     </div>
+    <section class="sy" aria-label="2 เดือนใน Port Express น้องได้อะไรบ้าง">
+      <div class="sy-hd"><p class="sy-k">Port Express · เรียน 2 เดือน</p><h2>2 เดือนนี้ น้องได้อะไรบ้าง</h2><p>เลื่อนลงเพื่อดูทีละขั้น ตั้งแต่วันแรกจนถึงวันยื่นพอร์ต</p></div>
+      <div class="sy-g"><div class="sy-v"><div class="sy-f"><img class="sy-i on" src="img/work-phi-krahang.webp" alt="" loading="lazy" data-k="0"><img class="sy-i" src="img/work-eugation-strike.webp" alt="" loading="lazy" data-k="1"><img class="sy-i" src="img/photo-class.webp" alt="" loading="lazy" data-k="2"><img class="sy-i" src="img/folio.webp" alt="" loading="lazy" data-k="3"><img class="sy-i" src="img/photo-desk.webp" alt="" loading="lazy" data-k="4"><img class="sy-i" src="img/dek69-13.webp" alt="" loading="lazy" data-k="5"><span class="sy-n"><b id="syN">1</b>/6</span></div></div><ol class="sy-l"><li class="sy-s on" data-k="0"><small>ขั้นที่ 1</small><h3>เรียนสร้างเกมด้วย Unity</h3><p>เริ่มจากพื้นฐาน ไม่เคยเขียนโค้ดมาก่อนก็เรียนได้ เรียนสด จันทร์ พุธ ศุกร์</p></li><li class="sy-s" data-k="1"><small>ขั้นที่ 2</small><h3>ทำเกมของตัวเองจนเล่นได้จริง</h3><p>น้องคิดไอเดียเอง ลงมือทำเอง ได้ผลงานที่เป็นของตัวเอง ไม่ใช่งานลอกตามตัวอย่าง</p></li><li class="sy-s" data-k="2"><small>ขั้นที่ 3</small><h3>อาจารย์มหาวิทยาลัยช่วยตรวจงาน</h3><p>รู้ว่าผลงานต้องปรับตรงไหน ก่อนส่งให้กรรมการดูจริง</p></li><li class="sy-s" data-k="3"><small>ขั้นที่ 4</small><h3>ทำแฟ้มพอร์ตและสไลด์เล่าผลงาน</h3><p>จัดผลงานลงพอร์ต พร้อมสไลด์ที่เล่าว่าน้องทำอะไร และได้เรียนรู้อะไร</p></li><li class="sy-s" data-k="4"><small>ขั้นที่ 5</small><h3>ซ้อมตอบคำถามกรรมการ</h3><p>ซ้อมสัมภาษณ์กับพี่ๆ จนเล่าผลงานของตัวเองได้ลื่นไหล</p></li><li class="sy-s" data-k="5"><small>ขั้นที่ 6</small><h3>ยื่นรอบ Portfolio</h3><p>รุ่นพี่ DEK69 ที่เรียนกับเรา ติดมหาวิทยาลัยแล้ว 48 คน</p></li></ol></div>
+    </section>
     <section class="ct-list"><h2>คอร์สอื่นของ Hamster Hub</h2><p>เปิดเป็นรอบ ตอนนี้ยังไม่เปิดรับ กดรับแจ้งเตือนทาง LINE ได้ ภาพคือรุ่นพี่ที่เรียนคอร์สนั้นแล้วติดมหาลัย</p><div class="cgrid" id="crows"></div></section>
     <div class="wkz"><img class="wk" src="img/n-maker.webp" alt="น้องหนู ลากเล่นได้"></div>
     <div class="ct-fit">  <section class="fit"><div class="fit-in">
@@ -3410,6 +3458,17 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     T.forEach(function(t){t.addEventListener('click',function(){show(+t.dataset.k)})});
     z.addEventListener('pointerenter',function(){hold=true});z.addEventListener('pointerleave',function(){hold=false});show(0)})();
   (function(){var n=document.querySelectorAll(".er").length,e=document.getElementById("axN");if(e&&n)e.textContent=n})();
+  
+  /* links that land on a section of another page */
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-scroll]');if(!a)return;var q=a.dataset.scroll,t0=Date.now();
+    (function wait(){var el=document.querySelector('[data-view].on '+q);if(el&&el.offsetParent){setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'start'})},150)}else if(Date.now()-t0<3000)setTimeout(wait,120)})()});
+  /* courses: scrollytelling */
+  (function(){var S=document.querySelectorAll('.sy-s'),I=document.querySelectorAll('.sy-i'),N=document.getElementById('syN');if(!S.length)return;
+    function on(k){S.forEach(function(x){x.classList.toggle('on',+x.dataset.k===k)});I.forEach(function(x){x.classList.toggle('on',+x.dataset.k===k)});if(N)N.textContent=k+1}
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)on(+e.target.dataset.k)})},{rootMargin:'-45% 0px -45% 0px'});S.forEach(function(x){io.observe(x)})})();
+  /* activity header: soft parallax on the photo stack */
+  (function(){var P=document.querySelectorAll('.axh-p img');if(!P.length||matchMedia('(prefers-reduced-motion:reduce)').matches)return;var K=[.18,-.12,.3,-.22,.08],tk=0;
+    addEventListener('scroll',function(){if(tk)return;tk=requestAnimationFrame(function(){tk=0;var y=scrollY;if(y>900)return;P.forEach(function(p,i){p.style.transform='translateY('+(y*K[i]).toFixed(1)+'px)'})})},{passive:true})})();
   /* walking hamsters: waddle walk, grabbed pose, dizzy after a high drop */
   (function(){document.querySelectorAll('.wkz').forEach(function(z){var h=z.querySelector('.wk');if(!h)return;var base=h.getAttribute('src'),D=base.replace('.webp','-d.webp'),K=base.replace('.webp','-k.webp');
       [D,K].forEach(function(u){var i=new Image();i.src=u});
@@ -3469,8 +3528,9 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     else if(v==='about'){h='<span class="pt-band"></span><img class="pt-run" src="img/n-walker.webp" alt="">'}
     else{h='<span class="ph-p a"></span><span class="ph-p b"></span><span class="ph-p c"></span><span class="ph-c"><img src="img/logo.webp" alt=""><b><span class="ph-l" style="--k:0">H</span><span class="ph-l" style="--k:1">a</span><span class="ph-l" style="--k:2">m</span><span class="ph-l" style="--k:3">s</span><span class="ph-l" style="--k:4">t</span><span class="ph-l" style="--k:5">e</span><span class="ph-l" style="--k:6">r</span><span class="ph-l" style="--k:7">&nbsp;</span><span class="ph-l" style="--k:8">H</span><span class="ph-l" style="--k:9">u</span><span class="ph-l" style="--k:10">b</span></b><small>Game · Web · IoT</small></span>'}
     pt.className='pt v-'+v;pt.innerHTML=h;void pt.offsetWidth;pt.classList.add('in')}
-  var first=true;function route(){var v=(location.hash||'#home').slice(1);if(views.indexOf(v)<0)v='home';
-    if(first||reduce){first=false;show();return}
+  var first=true,seenV={};function route(){var v=(location.hash||'#home').slice(1);if(views.indexOf(v)<0)v='home';
+    if(first||reduce){first=false;seenV[v]=1;show();return}
+    if(seenV[v]){clearTimeout(ptT);pt.className='pt';pt.innerHTML='';show();var vq=document.querySelector('[data-view].on');if(vq){vq.classList.remove('fast-in');void vq.offsetWidth;vq.classList.add('fast-in')}return}seenV[v]=1;
     clearTimeout(ptT);ptBuild(v);var hold={home:1150,courses:750,portex:760,activity:850,works:1050,about:700}[v]||620;ptT=setTimeout(function(){show();var vw=document.querySelector('[data-view].on');if(vw&&PTC[v]){vw.classList.remove('pg-in');void vw.offsetWidth;vw.classList.add('pg-in')}pt.classList.add('out');ptT=setTimeout(function(){pt.className='pt';pt.innerHTML=''},1150)},hold)}
   addEventListener('hashchange',route);route();
 })();
