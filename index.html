@@ -1976,16 +1976,23 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
 
   
 
-  <section class="tc" id="tc">
-    <div class="tc-bg"><img id="tcB0" alt=""><img id="tcB1" alt=""></div>
-    <div class="tc-in">
-      <div class="tc-top"><p class="tc-k">รุ่นพี่ DEK69 ที่ยื่นรอบ Portfolio แล้วติดมหาลัย</p>
-        <div class="tc-u" role="group" aria-label="ดูตามมหาวิทยาลัย"><button type="button" data-u="" aria-pressed="true">ทั้งหมด 48 คน</button><button type="button" data-u="k" aria-pressed="false">สจล. 24</button><button type="button" data-u="m" aria-pressed="false">มหิดล 9</button><button type="button" data-u="c" aria-pressed="false">จุฬาฯ 8</button><button type="button" data-u="u" aria-pressed="false">เกษตรศาสตร์ 7</button></div></div>
-      <div class="tc-l" aria-live="polite"><p class="tc-uni" id="tcU"></p><h2 id="tcN"></h2><p class="tc-f" id="tcF"></p><p class="tc-cs" id="tcC"></p><a class="lk" href="#works" data-pane="sen">ดูรุ่นพี่ทั้งหมด</a></div>
-      <div class="tc-cards" id="tcS"></div>
-      <div class="tc-bar"><span class="tc-p"><i id="tcP"></i></span><b id="tcI">01</b></div>
+  <section class="mc"><div class="mc-in">
+    <p class="mc-bg" aria-hidden="true">CONGRATULATIONS</p>
+    <div class="mc-h">
+      <p class="mc-k rv">DEK69 · รอบ Portfolio</p>
+      <h2 class="rv">รุ่นพี่ติดมหาลัยแล้ว <span>48 คน</span></h2>
+      <div class="mc-u rv" role="group" aria-label="ดูตามมหาวิทยาลัย">
+        <button type="button" data-u="" aria-pressed="true">ทั้งหมด</button>
+        <button type="button" data-u="k" aria-pressed="false">สจล. <b>24</b></button>
+        <button type="button" data-u="m" aria-pressed="false">มหิดล <b>9</b></button>
+        <button type="button" data-u="c" aria-pressed="false">จุฬาฯ <b>8</b></button>
+        <button type="button" data-u="u" aria-pressed="false">เกษตรศาสตร์ <b>7</b></button>
+      </div>
     </div>
-  </section>
+    <div class="mc-st" id="mcSt" aria-live="polite"></div>
+    <div class="mc-cap"><p id="mcC"></p></div>
+    <a class="lk" href="#works" data-pane="sen">ดูรุ่นพี่ทั้งหมด</a>
+  </div></section>
 
   <section class="end"><div class="end-in">
     <h2 class="rv">อยากให้น้องมีผลงานจริงเป็นของตัวเอง</h2>
@@ -2640,24 +2647,18 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
       tb.forEach(function(b,k){b.setAttribute('aria-selected',String(k===i));var bar=b.querySelector('.bar');bar.style.animation='none';void bar.offsetWidth;bar.style.animation=''})}
     tb.forEach(function(b,k){b.addEventListener('click',function(){go(k)});b.querySelector('.bar').addEventListener('animationend',function(){if(k===i)go(i+1)})});
     sc.addEventListener('pointerenter',function(){sc.classList.add('hold')});sc.addEventListener('pointerleave',function(){sc.classList.remove('hold')});go(0)})();
-  /* seniors: timed cards; the front card opens into the background */
-  (function(){var S=document.getElementById('tcS');if(!S)return;var on='',L=[],a=0,tm=0,b=0,hold=false,T=4200;
-    var B=[document.getElementById('tcB0'),document.getElementById('tcB1')];
-    function build(){L=G.filter(function(g){return !on||g[2]===on});a=0;S.innerHTML=L.map(function(g,k){return '<button type="button" class="tc-c" data-k="'+k+'" aria-label="'+g[1]+'"><img src="img/dek69-'+g[0]+'.webp" alt="" loading="lazy"><span><b>'+g[1]+'</b><small>'+UN[g[2]]+'</small></span></button>'}).join('');
-      S.querySelectorAll('.tc-c').forEach(function(c){c.addEventListener('click',function(){show(+c.dataset.k)})});show(0)}
-    function show(k){var n=L.length;a=(k+n)%n;var g=L[a];
-      S.querySelectorAll('.tc-c').forEach(function(c,i){var o=(i-a+n)%n;c.style.setProperty('--o',o);c.classList.toggle('on',o===0);c.classList.toggle('gone',o>5)});
-      b=1-b;B[b].src='img/dek69-'+g[0]+'.webp';B[b].classList.add('on');B[1-b].classList.remove('on');
-      document.getElementById('tcU').textContent=UN[g[2]];document.getElementById('tcU').style.setProperty('--c',UC[g[2]]);
-      document.getElementById('tcN').textContent=g[1];document.getElementById('tcF').textContent=g[3];document.getElementById('tcC').textContent='เรียนคอร์ส '+g[4]+' กับ Hamster Hub';
-      document.getElementById('tcI').textContent=(a+1<10?'0':'')+(a+1)+' / '+(n<10?'0':'')+n;
-      var p=document.getElementById('tcP');p.style.animation='none';void p.offsetWidth;p.style.animation='';
-      var l=document.querySelector('.tc-l');l.classList.remove('in');void l.offsetWidth;l.classList.add('in');
-      clearTimeout(tm);tm=setTimeout(tick,T)}
-    function tick(){if(hold||!document.querySelector('[data-view="home"].on')){tm=setTimeout(tick,600);return}show(a+1)}
-    var sec=document.getElementById('tc');sec.addEventListener('pointerenter',function(){hold=true;sec.classList.add('hold')});sec.addEventListener('pointerleave',function(){hold=false;sec.classList.remove('hold')});
-    document.querySelectorAll('.tc-u button').forEach(function(x){x.addEventListener('click',function(){on=x.dataset.u;document.querySelectorAll('.tc-u button').forEach(function(y){y.setAttribute('aria-pressed',String(y===x))});build()})});
-    build()})();
+  /* seniors: center-focus carousel that walks by itself */
+  (function(){var st=document.getElementById('mcSt');if(!st)return;var on='',L=[],a=0,tm=0,hold=false;
+    function build(){L=G.filter(function(g){return !on||g[2]===on});a=0;st.innerHTML=L.map(function(g,k){return '<figure class="mc-c" data-k="'+k+'"><img src="img/dek69-'+g[0]+'.webp" alt="'+g[1]+' '+UN[g[2]]+'" loading="lazy"></figure>'}).join('');
+      st.querySelectorAll('.mc-c').forEach(function(c){c.addEventListener('click',function(){go(+c.dataset.k)})});lay()}
+    function lay(){var n=L.length,W=st.offsetWidth||1000,gap=Math.min(240,W*.2);st.querySelectorAll('.mc-c').forEach(function(c,k){var o=k-a;if(o>n/2)o-=n;if(o<-n/2)o+=n;var ab=Math.abs(o);
+      c.style.transform='translate(-50%,-50%) translateX('+(o*gap)+'px) translateY('+(ab%2?28:0)+'px) scale('+(1-Math.min(ab,4)*.12)+')';c.style.zIndex=20-ab;c.style.opacity=ab>3?0:1;c.style.filter='brightness('+(1-Math.min(ab,3)*.18)+')';c.classList.toggle('on',o===0)});
+      var g=L[a];document.getElementById('mcC').innerHTML='<b>'+g[1]+'</b> · '+g[3]+' · '+UN[g[2]]+'<small>จากคอร์ส '+g[4]+'</small>'}
+    function go(k){a=(k+L.length)%L.length;lay();clearInterval(tm);tm=setInterval(function(){if(!hold&&document.querySelector('[data-view="home"].on'))go(a+1)},2800)}
+    st.addEventListener('pointerenter',function(){hold=true});st.addEventListener('pointerleave',function(){hold=false});
+    
+    document.querySelectorAll('.mc-u button').forEach(function(b){b.addEventListener('click',function(){on=b.dataset.u;document.querySelectorAll('.mc-u button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});build();go(0)})});
+    addEventListener('resize',lay);build();go(0)})();
   /* TCAS timeline: mark where we are */
   (function(){var now=new Date(),li=document.querySelectorAll('.tl li'),k=-1;li.forEach(function(e,n){if(new Date(e.dataset.d+'T00:00:00+07:00')<=now)k=n});
     li.forEach(function(e,n){e.classList.toggle('done',n<k);e.classList.toggle('here',n===k+1)})})();
