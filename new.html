@@ -2390,6 +2390,22 @@ img[loading=lazy]{content-visibility:visible}
 
 .zk-i img[src*="afo-logo"]{object-fit:contain;padding:12px;background:#1C74D9}
 @media (max-width:700px){.zk{flex-direction:row}.zk-i{width:112px;flex:none;aspect-ratio:auto}.zk-b{padding:12px 14px}.zk-d{display:none}.zk-b b{font-size:1rem}.zk.on .zk-a{padding:7px}}
+
+/* ===== v40 ===== */
+.zq-res{max-width:1240px;margin:32px auto 0;background:#fff;border-radius:28px;padding:20px clamp(16px,2.4vw,32px) 28px;box-shadow:0 20px 50px -30px rgba(13,46,99,.35)}
+.zq-res .zq-r{margin:0}
+.zq-g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:16px}
+.nw2{background:#fff;padding:clamp(56px,6vw,88px) 0 clamp(40px,4vw,64px)!important}
+.nw2-h{font-size:clamp(2rem,3.6vw,2.8rem)!important}
+.nw2-l{max-width:1240px;margin:36px auto 0;padding:0 24px}
+.nw2-l h3{font:800 1.4rem var(--display);color:#0D2E63}
+.nw2-all{display:inline-block;margin-top:18px;font:700 1rem var(--display);color:#1C74D9;text-decoration:none}
+.zc2{background:#F2F5FA;padding:clamp(56px,6vw,88px) 0}
+.zc2-in{max-width:1240px;margin:0 auto;padding:0 24px}
+.zc2 h2{font:800 clamp(2rem,3.6vw,2.8rem) var(--display);color:#0D2E63}.zc2-in>p{color:#4A5874;margin-top:8px}
+@media (max-width:1000px){.zq-g{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:700px){.zq-g{grid-template-columns:minmax(0,1fr)}}
+
 /* ---------- footer ---------- */
 footer{background:var(--alt);font-size:.85rem;color:var(--mute)}
 footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
@@ -2807,20 +2823,19 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
         <input id="zqIn" type="search" placeholder="พิมพ์สิ่งที่น้องอยากทำ เช่น อยากติดวิศวะคอม หรือ อยากทำเกม" aria-label="ค้นหาคอร์สและกิจกรรม" autocomplete="off"><button type="submit">ค้นหา</button></form>
       <p class="zq-pop"><span>คนค้นหาบ่อย</span><button type="button" data-q="ยื่นพอร์ต">ยื่นพอร์ต</button><button type="button" data-q="สร้างเกม">สร้างเกม</button><button type="button" data-q="AI">AI</button><button type="button" data-q="Python">Python</button><button type="button" data-q="ค่าย">ค่าย</button><button type="button" data-q="แข่งขัน">แข่งขัน</button></p>
     </div>
-    <div class="zq-p">
-      <div class="zq-t" role="tablist" aria-label="หมวด">
-        <button type="button" role="tab" data-t="pop" aria-selected="true"><img src="img/ev-st0.webp" alt="">ยอดนิยม</button>
-        <button type="button" role="tab" data-t="course" aria-selected="false"><img src="img/n-grad.webp" alt="">คอร์สเรียน</button>
-        <button type="button" role="tab" data-t="ค่าย" aria-selected="false"><img src="img/ev-st2.webp" alt="">ค่าย</button>
-        <button type="button" role="tab" data-t="เวิร์กชอป" aria-selected="false"><img src="img/ev-st3.webp" alt="">เวิร์กชอป</button>
-        <button type="button" role="tab" data-t="แข่งขัน" aria-selected="false"><img src="img/ev-st4.webp" alt="">แข่งขันและ Game Jam</button>
-        <button type="button" role="tab" data-t="โชว์ผลงาน" aria-selected="false"><img src="img/ev-st1.webp" alt="">โชว์ผลงาน</button>
-        <button type="button" role="tab" data-t="โครงการ" aria-selected="false"><img src="img/ev-st5.webp" alt="">โครงการ</button>
-      </div>
-      <p class="zq-r" id="zqR" aria-live="polite"></p>
-      <div class="zq-g" id="zqG"></div>
-    </div>
+    <div class="zq-res" id="zqRes" hidden><p class="zq-r" id="zqR" aria-live="polite"></p><div class="zq-g" id="zqG"></div></div>
   </section>
+  <section class="hp-grid nw2"><h2 class="nw2-h">ข่าวสาร</h2><div class="wrap hg st">
+    <div class="tile t-afo rv">
+      <p class="t-k" id="afoTag">กิจกรรมถัดไป 14 พ.ย. 2569</p><h3>All for One University<br>รอบชิงชนะเลิศ</h3>
+      <div class="afo-hd"><img class="afo-logo" src="img/k-afo-logo.webp" alt="All for One University" loading="lazy"><img class="afo-ic i0" src="img/afo-ic0.webp" alt="" aria-hidden="true"><img class="afo-ic i1" src="img/afo-ic1.webp" alt="" aria-hidden="true"><img class="afo-ic i2" src="img/afo-ic2.webp" alt="" aria-hidden="true"></div>
+      <p class="t-s">14 พ.ย. 2569 ที่ IoTE สจล. (IoTE KMITL 2026 Showcase)<br>ทีมที่ผ่านรอบออนไลน์มานำเสนอผลงานจริงต่อกรรมการ</p>
+      <div class="cd" id="afoCd" aria-label="นับถอยหลังถึงวันแข่ง"><div><b id="cdD">0</b><span>วัน</span></div><div><b id="cdH">0</b><span>ชั่วโมง</span></div><div><b id="cdM">0</b><span>นาที</span></div></div>
+      <div class="t-b"><a class="tb1" href="https://www.hamsterhub.co/allforone" target="_blank" rel="noopener">รายละเอียดงาน</a><a class="tb2" href="#activity">กิจกรรมทั้งหมด</a></div>
+    </div>
+
+  </div><div class="nw2-l"><h3>กิจกรรมล่าสุด</h3><div class="zq-g" id="zqN"></div><a class="nw2-all" href="#activity">ดูกิจกรรมทั้งหมด</a></div></section>
+  <section class="zc2"><div class="zc2-in"><h2>คอร์สเรียน</h2><p>คอร์สที่เปิดรับตอนนี้ และคอร์สที่กดรับแจ้งเตือนรอบใหม่ได้</p><div class="zq-g" id="zqC"></div></div></section>
   <section class="zh"><div class="zh-in">
     <h2>Hamster Hub คือที่สอนเด็กสร้างผลงานจริง</h2>
     <p class="zh-l">เราสอนทำเกม เว็บ และ IoT ให้น้อง ม.ปลาย มีทั้งคอร์สยาว ค่ายสั้น และงานแข่งขัน จบแล้วน้องมีผลงานของตัวเองไว้ยื่นมหาลัยหรือต่อยอดได้</p>
@@ -2868,16 +2883,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     <a class="lk" href="#works" data-pane="sen">ดูรุ่นพี่ทั้งหมด</a>
   </div></section>
 
-  <section class="hp-grid nw2"><h2 class="nw2-h">ข่าวและกิจกรรมล่าสุด</h2><div class="wrap hg st">
-    <div class="tile t-afo rv">
-      <p class="t-k" id="afoTag">กิจกรรมถัดไป 14 พ.ย. 2569</p><h3>All for One University<br>รอบชิงชนะเลิศ</h3>
-      <div class="afo-hd"><img class="afo-logo" src="img/k-afo-logo.webp" alt="All for One University" loading="lazy"><img class="afo-ic i0" src="img/afo-ic0.webp" alt="" aria-hidden="true"><img class="afo-ic i1" src="img/afo-ic1.webp" alt="" aria-hidden="true"><img class="afo-ic i2" src="img/afo-ic2.webp" alt="" aria-hidden="true"></div>
-      <p class="t-s">14 พ.ย. 2569 ที่ IoTE สจล. (IoTE KMITL 2026 Showcase)<br>ทีมที่ผ่านรอบออนไลน์มานำเสนอผลงานจริงต่อกรรมการ</p>
-      <div class="cd" id="afoCd" aria-label="นับถอยหลังถึงวันแข่ง"><div><b id="cdD">0</b><span>วัน</span></div><div><b id="cdH">0</b><span>ชั่วโมง</span></div><div><b id="cdM">0</b><span>นาที</span></div></div>
-      <div class="t-b"><a class="tb1" href="https://www.hamsterhub.co/allforone" target="_blank" rel="noopener">รายละเอียดงาน</a><a class="tb2" href="#activity">กิจกรรมทั้งหมด</a></div>
-    </div>
-
-  </div></section>
+  
   <section class="end"><div class="end-in">
     <h2 class="rv">อยากให้น้องมีผลงานจริงเป็นของตัวเอง</h2>
     <p class="rv">เลือกคอร์สที่ใช่ หรือทัก LINE ให้ทีมแนะนำตามชั้นเรียนและเป้าหมายของน้อง</p>
@@ -3346,7 +3352,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     function render(list,msg){$('#zqR').innerHTML=msg||'';G2.innerHTML=list.length?list.map(cardH).join(''):'<div class="zq-e"><b>ยังไม่มีคอร์สหรือกิจกรรมที่ตรงกับคำนี้</b><p>บอกทีมได้ว่าน้องอยากทำอะไร ทีมช่วยแนะนำให้</p><a href="'+LINE+'" target="_blank" rel="noopener">ทัก LINE ถามทีม</a></div>'}
     function tab(t){$$('.zq-t button').forEach(function(b){b.setAttribute('aria-selected',String(b.dataset.t===t))});
       var L=t==='pop'?POP.map(function(n){return IT.filter(function(x){return x.t===n})[0]}).filter(Boolean):IT.filter(function(x){return x.k===t});render(L)}
-    function search(q){q=(q||'').trim();if(!q){tab('pop');return}var toks=q.toLowerCase().split(/\s+/),k=[];toks.forEach(function(w){k.push(w);Object.keys(SYN).forEach(function(s2){if(w.indexOf(s2)>-1)k.push(SYN[s2])})});
+    function search(q){q=(q||'').trim();var R=$('#zqRes');if(!q){R.hidden=true;return}R.hidden=false;var toks=q.toLowerCase().split(/\s+/),k=[];toks.forEach(function(w){k.push(w);Object.keys(SYN).forEach(function(s2){if(w.indexOf(s2)>-1)k.push(SYN[s2])})});
       var L=IT.filter(function(x){var h=(x.t+' '+x.d+' '+x.tags+' '+x.k).toLowerCase();return k.some(function(w){return w.length>1&&h.indexOf(w)>-1})});
       L.sort(function(a,b){return (b.open?2:0)+(b.k==='course'?1:0)-((a.open?2:0)+(a.k==='course'?1:0))});
       $$('.zq-t button').forEach(function(b){b.setAttribute('aria-selected','false')});render(L,'ผลลัพธ์สำหรับ “'+q.replace(/[<>&]/g,'')+'” '+L.length+' รายการ')}
@@ -3354,7 +3360,8 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     $('#zqForm').addEventListener('submit',function(e){e.preventDefault();search($('#zqIn').value)});
     var dt;$('#zqIn').addEventListener('input',function(){clearTimeout(dt);dt=setTimeout(function(){search($('#zqIn').value)},250)});
     document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-q]');if(!b)return;e.preventDefault();$('#zqIn').value=b.dataset.q;search(b.dataset.q);$('.zq').scrollIntoView({behavior:'smooth'})});
-    tab('pop');
+    $('#zqC').innerHTML=IT.filter(function(x){return x.k==='course'}).map(cardH).join('');
+    $('#zqN').innerHTML=IT.filter(function(x){return x.k!=='course'}).slice(1,5).map(cardH).join('');
     var W2=['ยื่นพอร์ตเข้ามหาลัย','สร้างเกมของตัวเอง','เรียน AI','เขียน Python','ลงแข่ง Game Jam'],wi=0,ci=W2[0].length,del=true,el=$('#zqType');
     if(!matchMedia('(prefers-reduced-motion:reduce)').matches)(function ty(){var w=W2[wi];if(del){ci--;if(ci<=0){del=false;wi=(wi+1)%W2.length}}else{ci++;if(ci>=W2[wi].length){del=true;el.textContent=W2[wi];setTimeout(ty,2200);return}}el.textContent=W2[wi].slice(0,Math.max(ci,0));setTimeout(ty,del?40:85)})();
   })();
