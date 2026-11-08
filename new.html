@@ -3034,6 +3034,49 @@ img[loading=lazy]{content-visibility:visible}
 .mr-r{gap:22px!important}
 @media (max-width:700px){.qv{flex-basis:76vw}.zq-res .zq-g,.ctg{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory}.zq-res .gk,.ctg .qv{flex:0 0 76vw}}
 
+
+/* ===== v53 ===== */
+/* hero: sky layer that gathers into the bar on focus */
+.zq{background:#fff!important}
+.zq-sky{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(70% 60% at 50% 0%,#D6E6FF 0%,rgba(214,230,255,0) 70%),linear-gradient(#EAF2FF,#fff 75%);transform-origin:var(--fx,50%) var(--fy,60%);transition:transform .8s cubic-bezier(.7,0,.2,1),opacity .8s cubic-bezier(.7,0,.2,1)}
+.zq.fx .zq-sky{transform:scale(.08,.04);opacity:0}
+.zq-top,.zq-res{position:relative;z-index:1}.zq-top{width:100%;max-width:820px;margin-left:auto;margin-right:auto}.zq-sw{width:min(630px,100%)}.zq-more{z-index:2}
+.zq-sw::before{background:radial-gradient(50% 120% at 0% 50%,rgba(77,163,240,.95),transparent 70%),radial-gradient(50% 120% at 100% 50%,rgba(28,116,217,.95),transparent 70%),radial-gradient(60% 100% at 50% 50%,rgba(179,216,255,.8),transparent 70%)!important;transition:opacity .5s .35s,transform .7s .3s cubic-bezier(.2,.8,.2,1)!important}
+.zq-sw.lit .zq-s{box-shadow:0 0 0 1.5px #fff,0 0 0 3px rgba(77,163,240,.45),0 20px 40px -16px rgba(13,46,99,.35)!important}
+.zq-ham.act .zq-bur{display:none}
+/* hamster head turn */
+.zq-sw .zq-ham{perspective:260px}
+.zq-hb{transform-style:preserve-3d;will-change:transform}
+/* search press: dive down and pop back */
+.zq-sw .zq-ham.dive{animation:zqDv4 1.05s cubic-bezier(.5,0,.3,1)!important}
+@keyframes zqDv4{0%{transform:translateY(6px)}20%{transform:translateY(-6px)}50%,70%{transform:translateY(80px)}88%{transform:translateY(-4px)}100%{transform:translateY(6px)}}
+/* login: slimmer, lighter, hamster icon */
+.login{padding:6px 16px 6px 8px!important;gap:7px!important;background:radial-gradient(80px circle at var(--mx,30%) 50%,rgba(255,255,255,.28),transparent 70%),linear-gradient(135deg,#3B8EEA,#1C74D9)!important;box-shadow:0 4px 12px -6px rgba(28,116,217,.6)!important;font-size:.95rem}
+.login::before{background:conic-gradient(from var(--lgb),rgba(255,255,255,.9),rgba(179,216,255,.4),rgba(255,255,255,.9))!important;padding:1px!important}
+.lg-ic{width:24px!important;height:24px!important;border-radius:50%;background:#fff;object-fit:contain;padding:1px}
+.login:hover .lg-ic{transform:rotate(-10deg) scale(1.08)!important}
+.login:hover{box-shadow:0 8px 18px -6px rgba(28,116,217,.7)!important}
+/* site-wide details */
+.sp-bar{position:fixed;left:0;right:0;top:0;height:3px;z-index:120;background:linear-gradient(90deg,#4DA3F0,#1C74D9);transform-origin:0 50%;transform:scaleX(0);pointer-events:none}
+.to-top{position:fixed;right:22px;bottom:22px;z-index:110;width:46px;height:46px;border-radius:50%;border:0;display:grid;place-items:center;color:#fff;background:#1C74D9;box-shadow:0 10px 24px -8px rgba(13,46,99,.55);cursor:pointer;opacity:0;transform:translateY(16px) scale(.8);pointer-events:none;transition:opacity .3s,transform .35s cubic-bezier(.3,1.6,.5,1),background .2s}
+.to-top.on{opacity:1;transform:none;pointer-events:auto}
+.to-top:hover{background:#155FB5;transform:translateY(-3px)}
+.to-top svg{width:20px;height:20px}
+.rp{position:absolute;border-radius:50%;background:rgba(255,255,255,.4);transform:scale(0);pointer-events:none;animation:rpA .6s ease-out forwards;mix-blend-mode:overlay}
+@keyframes rpA{to{transform:scale(1);opacity:0}}
+.nav-in{position:relative}
+.nv-ind{display:none!important;position:absolute;left:0;bottom:6px;height:2.5px;border-radius:2px;background:#1C74D9;opacity:0;transition:transform .45s cubic-bezier(.3,1.3,.5,1),width .45s,opacity .3s;pointer-events:none}
+.nav-in a.v{transition:color .2s}
+.nav-in a.v:hover{color:#1C74D9}
+a,button{-webkit-tap-highlight-color:transparent}
+button:active:not(.vg-c):not(.zq-go),.lbtn:active,.mr-btn:active{transform:scale(.97)}
+:focus-visible{outline:3px solid rgba(28,116,217,.55);outline-offset:3px;border-radius:8px}
+.er{transition:transform .25s,box-shadow .25s}
+.er:hover{transform:translateY(-3px)}
+.zb-t,.zp-c,.qv{will-change:transform}
+::selection{background:#B3D8FF;color:#0D2E63}
+@media (prefers-reduced-motion:reduce){.zq-sky{transition:none}}
+
 /* ---------- footer ---------- */
 footer{background:var(--alt);font-size:.85rem;color:var(--mute)}
 footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
@@ -3433,7 +3476,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
   <a class="brand" href="#home"><img src="img/logo.webp" alt="" width="30" height="30">Hamster Hub</a>
   <a class="v nv-c" href="#courses"><span>คอร์ส</span></a><a class="v nv-a" href="#activity"><span class="roll"><span>กิจกรรม</span><span class="nx" id="nvNext">ถัดไป 14 พ.ย.</span></span></a><a class="v nv-w" href="#works"><span>ผลงาน</span></a><a class="v nv-b" href="#about"><span>เกี่ยวกับเรา</span></a>
   <a class="lbtn" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">ทัก LINE</a>
-  <a class="login" href="https://www.hamsterhub.co/login" target="_blank" rel="noopener"><svg class="lg-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 19.5c1.4-3.3 4-4.8 7-4.8s5.6 1.5 7 4.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="lg-t">เข้าสู่ระบบ</span><svg class="lg-ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  <a class="login" href="https://www.hamsterhub.co/login" target="_blank" rel="noopener"><img class="lg-ic" src="img/ham-ico.webp" alt=""><span class="lg-t">เข้าสู่ระบบ</span><svg class="lg-ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
   <button class="menu" id="menuBtn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="เปิดเมนู"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg></button>
 </div>
 <nav class="drawer" id="drawer" hidden aria-label="เมนู"><a href="#courses">คอร์ส</a><a href="#activity">กิจกรรม</a><a href="#works">ผลงาน</a><a href="#about">เกี่ยวกับเรา</a><a href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener" style="color:#06C755">ทัก LINE</a><a href="https://www.hamsterhub.co/login" target="_blank" rel="noopener">เข้าสู่ระบบ</a></nav>
@@ -3443,7 +3486,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
 <main id="main">
 <!-- ================= HOME ================= -->
 <div data-view="home">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@800;900&family=Mitr:wght@700&family=Chakra+Petch:wght@700&family=Sriracha&family=Srisakdi:wght@700&family=Itim&family=Pattaya&family=Charmonman:wght@700&family=Chonburi&family=Mali:wght@700&family=Sarabun:wght@800&display=swap"><section class="zq" aria-label="ค้นหาคอร์สและกิจกรรม">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@800;900&family=Mitr:wght@700&family=Chakra+Petch:wght@700&family=Sriracha&family=Srisakdi:wght@700&family=Itim&family=Pattaya&family=Charmonman:wght@700&family=Chonburi&family=Mali:wght@700&family=Sarabun:wght@800&display=swap"><section class="zq" aria-label="ค้นหาคอร์สและกิจกรรม"><i class="zq-sky" aria-hidden="true"></i>
     <div class="zq-top">
       <p class="zq-q">น้องอยาก...</p>
       <h1 class="zq-h" title="กดเพื่อเปลี่ยนสไตล์"><span id="zqType">ยื่นพอร์ตเข้ามหาลัย</span><i class="zq-cur" aria-hidden="true"></i></h1>
@@ -4070,9 +4113,9 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     document.addEventListener('pointermove',function(e){var r=h.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height*.46,dx=e.clientX-cx,dy=e.clientY-cy,d=Math.hypot(dx,dy)||1,k=Math.min(1,d/260);
       E.forEach(function(b){b.style.transform='translate('+(dx/d*k*38).toFixed(1)+'%,'+(dy/d*k*38).toFixed(1)+'%)'})});
     var f=$('#zqForm');function act(){h.classList.remove('act');void h.offsetWidth;h.classList.add('act');setTimeout(function(){h.classList.remove('act')},1500)}
-    f.addEventListener('submit',act);document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.zq-pop [data-q],.zq-sug [data-q]'))act()})})();
+    })();
   /* hero play: click the empty sky for confetti */
-  (function(){var z=$('.zq');if(!z)return;var C=['#1C74D9','#4DA3F0','#B3D8FF','#0D2E63','#fff','#FFC531'];
+  (function(){var z=$('.zq');if(!z)return;var C=['#1C74D9','#4DA3F0','#B3D8FF','#0D2E63','#fff','#7FC0FF'];
     z.addEventListener('click',function(e){if(e.target.closest('a,button,input,form,.zq-h,.zq-sug'))return;if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
       for(var i=0;i<16;i++){var p=document.createElement('i');p.className='zq-cf';var a=Math.random()*6.283,v=60+Math.random()*120;p.style.left=e.clientX+'px';p.style.top=e.clientY+'px';p.style.background=C[i%C.length];
         p.style.setProperty('--x',(Math.cos(a)*v).toFixed(0)+'px');p.style.setProperty('--y',(Math.sin(a)*v-60).toFixed(0)+'px');p.style.setProperty('--r',(Math.random()*720-360).toFixed(0)+'deg');document.body.appendChild(p);setTimeout(function(q){return function(){q.remove()}}(p),1100)}})})();
@@ -4082,6 +4125,28 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     b.addEventListener('click',function(){for(var i=0;i<8;i++){var s=document.createElement('i');s.className='zq-sp';s.style.setProperty('--a',(i*45)+'deg');b.appendChild(s);setTimeout(function(q){return function(){q.remove()}}(s),600)}})})();
   /* login: light follows the cursor */
   (function(){var b=$('.login');if(!b)return;b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();b.style.setProperty('--mx',(e.clientX-r.left)+'px')})})();
+
+  /* hamster turns its whole head toward the cursor */
+  (function(){var h=$('#zqHam'),hb=h&&h.querySelector('.zq-hb');if(!hb||matchMedia('(prefers-reduced-motion:reduce)').matches)return;var tx=0,ty=0,cx=0,cy=0,run=false;
+    document.addEventListener('pointermove',function(e){var r=h.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height*.45),d=Math.hypot(dx,dy)||1,k=Math.min(1,d/320);tx=dx/d*k;ty=dy/d*k;if(!run){run=true;requestAnimationFrame(loop)}});
+    function loop(){cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;hb.style.transform='translate('+(cx*5).toFixed(2)+'px,'+(cy*3).toFixed(2)+'px) rotate('+(cx*9).toFixed(2)+'deg) rotateY('+(cx*26).toFixed(2)+'deg) rotateX('+(-cy*22).toFixed(2)+'deg)';
+      if(Math.abs(tx-cx)>.002||Math.abs(ty-cy)>.002)requestAnimationFrame(loop);else run=false}})();
+  /* focus: the sky gathers into the search bar */
+  (function(){var z=$('.zq'),inp=$('#zqIn'),sw=$('.zq-sw');if(!z||!inp)return;
+    function place(){var r=sw.getBoundingClientRect(),zr=z.getBoundingClientRect();z.style.setProperty('--fx',(r.left+r.width/2-zr.left)+'px');z.style.setProperty('--fy',(r.top+r.height/2-zr.top)+'px')}
+    inp.addEventListener('focus',function(){place();z.classList.add('fx')});inp.addEventListener('blur',function(){z.classList.remove('fx')})})();
+  /* site-wide feel: scroll progress, back to top, ripple on buttons */
+  (function(){var bar=document.createElement('i');bar.className='sp-bar';document.body.appendChild(bar);
+    var top=document.createElement('button');top.type='button';top.className='to-top';top.setAttribute('aria-label','กลับขึ้นด้านบน');top.innerHTML='<svg viewBox="0 0 24 24"><path d="M12 19V6M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';document.body.appendChild(top);
+    top.addEventListener('click',function(){scrollTo({top:0,behavior:'smooth'})});
+    function u(){var m=document.documentElement.scrollHeight-innerHeight;bar.style.transform='scaleX('+(m>0?scrollY/m:0)+')';top.classList.toggle('on',scrollY>innerHeight*1.2)}
+    addEventListener('scroll',u,{passive:true});addEventListener('hashchange',function(){setTimeout(u,60)});u();
+    document.addEventListener('pointerdown',function(e){var b=e.target.closest&&e.target.closest('button,.mr-btn,.lbtn,.qv-btn,.zp-c i,.fit button,.btn');if(!b||b.classList.contains('vg-c'))return;var r=b.getBoundingClientRect(),d=Math.max(r.width,r.height)*2,i=document.createElement('i');i.className='rp';i.style.width=i.style.height=d+'px';i.style.left=(e.clientX-r.left-d/2)+'px';i.style.top=(e.clientY-r.top-d/2)+'px';
+      if(getComputedStyle(b).position==='static')b.style.position='relative';b.style.overflow=b.style.overflow||'hidden';b.appendChild(i);setTimeout(function(){i.remove()},600)})})();
+  /* nav: sliding indicator under the current page */
+  (function(){var nav=$('.nav-in');if(!nav)return;var ind=document.createElement('i');ind.className='nv-ind';nav.appendChild(ind);
+    function go(){var a=nav.querySelector('a.v[aria-current="page"]');if(!a){ind.style.opacity=0;return}var r=a.getBoundingClientRect(),n=nav.getBoundingClientRect();ind.style.opacity=1;ind.style.width=(r.width-16)+'px';ind.style.transform='translateX('+(r.left-n.left+8)+'px)'}
+    addEventListener('hashchange',function(){setTimeout(go,80);setTimeout(go,1300)});addEventListener('resize',go);setTimeout(go,300)})();
   /* activity list */
   var AIMG={'All for One University รอบชิงชนะเลิศ':'k-afo-logo','IoTE KMITL 2026 Showcase (Hallow Open House)':'k-hallow','All for One University รอบออนไลน์':'k-afo','AI Camp Season 2':'k-aicamp','Game Pee Camp':'k-ghost','GameJam X ปีที่ 5':'k-gamejam','Dek-70 Camp':'k-dek70','Dek70 Camp':'k-dek70','NSC Software Project 2026':'s-showcase2'},ACOL={'ค่าย':['#FFF1D6','#B26A00'],'เวิร์กชอป':['#E3F3FF','#1D5FB8'],'แข่งขัน':['#FFE6EE','#B23A68'],'โชว์ผลงาน':['#EEE8FF','#5B3FD6'],'โครงการ':['#E6F7EC','#1E7A4C']};
   var MAS={'ค่าย':'ev-st2','เวิร์กชอป':'ev-st3','แข่งขัน':'ev-st4','โชว์ผลงาน':'ev-st1','โครงการ':'ev-st5'},
