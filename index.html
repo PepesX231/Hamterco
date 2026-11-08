@@ -1977,6 +1977,34 @@ a.ctb-f:hover{transform:translate(-3px,-3px)}
 @keyframes cvT{to{opacity:1;transform:translate(-50%,-50%)}}
 .pt.out .cv-t{opacity:1;animation:fadeOut .2s forwards}
 
+
+/* ===== v27 ===== */
+.hb2{margin:12px 12px 0;border-radius:28px;min-height:auto!important}
+.hb-p em{font-style:normal;font:800 .9rem var(--display);color:#3A2A00;background:var(--yel);padding:3px 12px;border-radius:999px;margin-left:10px;vertical-align:middle}
+.hb2 .hb-p b{font-size:clamp(2.2rem,3.6vw,3rem)!important}
+/* fit finder */
+.fit{padding:12px 12px 0}
+.fit-in{background:var(--b50);border-radius:28px;padding:clamp(32px,5vw,56px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) minmax(0,1fr);gap:28px;align-items:start}
+.fit-k{font:700 .95rem var(--display);color:var(--b700)}
+.fit-h h2{font:800 clamp(1.5rem,2.4vw,2rem)/1.25 var(--display);color:var(--b900);margin-top:6px}
+.fit-h p:last-child{color:#4A5B75;margin-top:8px;font-size:.95rem}
+.fit-q{display:grid;gap:16px}
+.fit-q fieldset{border:0;margin:0;padding:0}
+.fit-q legend{font:700 1rem var(--display);color:var(--b900);margin-bottom:8px}
+.fit-q label{display:inline-flex;align-items:center;margin:0 6px 6px 0;padding:9px 16px;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 1.5px var(--b200);font:600 .95rem var(--display);color:var(--b800);cursor:pointer;transition:background .15s,box-shadow .15s}
+.fit-q label:hover{box-shadow:inset 0 0 0 1.5px var(--b600)}
+.fit-q input{position:absolute;opacity:0;pointer-events:none}
+.fit-q label:has(input:checked){background:var(--b600);color:#fff;box-shadow:none}
+.fit-q label:has(input:focus-visible){outline:2px solid var(--b900);outline-offset:2px}
+.fit-r{background:#fff;border-radius:20px;padding:22px;box-shadow:0 0 0 1px var(--b100);min-height:180px;color:#4A5B75}
+.fit-r.ok{box-shadow:0 0 0 2px var(--b600)}
+.fr-k{font:700 .9rem var(--display);color:var(--b700)}.fit-r h3{font:800 1.6rem var(--display);color:var(--b900);margin-top:4px}
+.fit-r p{margin-top:6px;line-height:1.55}.fr-p b{color:var(--b700);font-size:1.3rem}
+.fr-b{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.fr-b a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;font:700 .95rem var(--display);text-decoration:none}
+.fb1{background:var(--b600);color:#fff}.fb2{background:#06C755;color:#fff}
+@media (max-width:1000px){.fit-in{grid-template-columns:minmax(0,1fr)}}
+
 /* ---------- footer ---------- */
 footer{background:var(--alt);font-size:.85rem;color:var(--mute)}
 footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
@@ -2386,24 +2414,38 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
 <main id="main">
 <!-- ================= HOME ================= -->
 <div data-view="home">
-  <section class="nh">
-    <div class="nh-in">
-      <p class="nh-k"><span class="dot"></span>เปิดรับรุ่นใหม่ · เริ่มเรียน 9 พ.ย. 2569</p>
-      <h1 class="nh-t">Port Express</h1>
-      <p class="nh-s">คอร์สทำพอร์ตยื่นมหาลัย สำหรับน้อง ม.6<br><span>เรียนสร้างเกมด้วย Unity 2 เดือน · จันทร์ พุธ ศุกร์</span></p>
-      <div class="nh-pr"><p class="nh-price"><b>5,990</b> บาท</p><p class="nh-was"><s>ปกติ 9,990 บาท</s><em>ประหยัด 4,000</em></p></div>
-      <div class="nh-b"><a class="nb1" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">สมัครเรียน</a><a class="nb2" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">ดูรายละเอียดคอร์ส</a><a class="nb3" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">ทัก LINE ถามทีม</a></div>
-    </div>
-    <div class="nh-get">
-      <h2>จบคอร์ส น้องได้ 3 อย่างนี้</h2>
-      <div class="nh-g">
-        <figure><img src="img/work-phi-krahang.webp" alt="ตัวอย่างเกมที่รุ่นพี่สร้าง"><figcaption><b>ผลงานเกมของน้องเอง</b><span>เกมที่น้องเขียนโปรแกรมสร้างเอง ใส่พอร์ตได้ทันที</span></figcaption></figure>
-        <figure><img src="img/folio.webp" alt="ภาพประกอบแฟ้มพอร์ตโฟลิโอ"><figcaption><b>แฟ้มพอร์ตพร้อมยื่น</b><span>แฟ้มผลงานและสไลด์เล่าผลงาน ที่พี่ๆ ช่วยแก้จนพร้อมส่ง</span></figcaption></figure>
-        <figure><img src="img/photo-class.webp" alt="ห้องเรียน Hamster Hub"><figcaption><b>ซ้อมสัมภาษณ์กับอาจารย์มหาลัย</b><span>นำเสนอผลงานให้อาจารย์ฟัง ก่อนเข้าห้องสัมภาษณ์จริง</span></figcaption></figure>
+  <section class="hb hb2">
+    <div class="hb2-top">
+      <div class="hb2-tx">
+        <p class="hb-k">คอร์สทำพอร์ตยื่นมหาลัย · สำหรับน้อง ม.6</p>
+        <h1 class="hb2-h">เรียน 2 เดือน<br>ได้ผลงานจริง<br><span>ไปยื่นรอบ Portfolio</span></h1>
+        <p class="hb2-n">Port Express · เริ่มเรียน 9 พ.ย. 2569 · เรียนสร้างเกมด้วย Unity · จันทร์ พุธ ศุกร์</p>
+        <div class="hb2-b"><p class="hb-p"><b>5,990 บาท</b> <s>9,990</s><em>ประหยัด 4,000</em></p>
+          <div class="hb-a"><a class="a1" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">สมัครเรียน</a><a class="a2" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">ดูรายละเอียด</a></div></div>
+        <a class="hb2-line" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">มีคำถาม ทัก LINE ถามทีมได้เลย</a>
       </div>
-      <p class="nh-proof"><span class="av2"><img src="img/dek69-13.webp" alt=""><img src="img/dek69-6.webp" alt=""><img src="img/dek69-1.webp" alt=""><img src="img/dek69-11.webp" alt=""></span><span><b>รุ่นพี่ติดมหาลัยแล้ว 48 คน</b> สจล. · จุฬาฯ · มหิดล · เกษตรศาสตร์</span></p>
+      <a class="hb2-sc" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener" aria-label="ดูรายละเอียดคอร์ส Port Express">
+        <span class="glow" aria-hidden="true"></span>
+        <span class="fr"><video src="img/portex-banner.mp4" poster="img/portex-poster.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></span>
+        <img class="hb2-ham" src="img/n-gamer.webp" alt="">
+      </a>
     </div>
+    <ol class="hb-st">
+        <li><span class="hb-v v-g"><img src="img/work-phi-krahang.webp" alt=""><img src="img/work-stressstrike.webp" alt=""><img src="img/work-midnight-at-roadside.webp" alt=""></span><b>เรียนทำเกมกับพี่ๆ</b><small>จันทร์ พุธ ศุกร์ · 2 เดือน</small></li>
+        <li><span class="hb-v v-f"><span class="fd2"><span class="tb">PORTFOLIO</span><i></i><i></i><i></i><em>READY!</em></span></span><b>ได้ผลงานใส่แฟ้มพอร์ต</b><small>พร้อมสไลด์เล่าผลงาน และซ้อมสัมภาษณ์</small></li>
+        <li><span class="hb-v v-p"><img src="img/dek69-13.webp" alt=""><img src="img/dek69-6.webp" alt=""><img src="img/dek69-1.webp" alt=""></span><b><span class="nw">ยื่นรอบ Portfolio</span> <span class="nw">ติดมหาลัย</span></b><small>รุ่นพี่ติดแล้ว 48 คน</small></li>
+      </ol>
   </section>
+
+  <section class="fit"><div class="fit-in">
+    <div class="fit-h"><p class="fit-k">ยังไม่แน่ใจว่าเหมาะไหม</p><h2>ตอบ 3 ข้อ ดูว่าคอร์สนี้เหมาะกับน้องไหม</h2><p>ใช้เวลาไม่ถึง 10 วินาที ข้ามได้ ไม่ต้องกรอกชื่อหรือเบอร์</p></div>
+    <form class="fit-q" id="fitQ" onsubmit="return false">
+      <fieldset><legend>1. ตอนนี้น้องเรียนชั้นไหน</legend><label><input type="radio" name="g" value="m6">ม.6</label><label><input type="radio" name="g" value="m45">ม.4–5</label><label><input type="radio" name="g" value="o">อื่นๆ</label></fieldset>
+      <fieldset><legend>2. มีผลงานไว้ยื่นพอร์ตแล้วหรือยัง</legend><label><input type="radio" name="p" value="no">ยังไม่มี</label><label><input type="radio" name="p" value="some">มีบ้าง</label><label><input type="radio" name="p" value="yes">มีพร้อมแล้ว</label></fieldset>
+      <fieldset><legend>3. น้องสนใจสายไหน</legend><label><input type="radio" name="t" value="game">เกม</label><label><input type="radio" name="t" value="app">แอป / เว็บ</label><label><input type="radio" name="t" value="iot">IoT</label><label><input type="radio" name="t" value="any">ยังไม่รู้</label></fieldset>
+    </form>
+    <div class="fit-r" id="fitR" aria-live="polite"><p>เลือกคำตอบครบ 3 ข้อ แล้วผลจะขึ้นตรงนี้</p></div>
+  </div></section>
 
   <section class="hp-grid"><div class="wrap hg st">
     <div class="tile t-afo rv">
@@ -2420,8 +2462,8 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     <h2 class="rv">น้องอยากไปทางไหน<br>Hamster Hub พาไปได้</h2><p class="sk rv">เราสอนทำ <b>เกม</b> · <b>Roblox</b> · <b>เว็บ</b> · <b>IoT</b> ให้น้องมีผลงานจริงของตัวเอง</p>
     <div class="f4 p3">
       <a class="f4i rv" href="#courses" style="--bg:#FFF1D6;--ac:#B26A00"><span class="pod"><img class="ph" src="img/dek69-8.webp" alt="" loading="lazy"><img class="ms" src="img/n-grad.webp" alt="" loading="lazy"><i class="bubble">ไปมหาลัยกัน!</i></span><span class="k">พอร์ตโฟลิโอ</span><span class="w">ยื่นมหาลัย</span><span class="d">ทำผลงานเก็บเข้าพอร์ต ซ้อมนำเสนอกับอาจารย์มหาวิทยาลัย</span><span class="pf">รุ่นพี่ DEK69 ติดแล้ว 48 คน</span><span class="go">ดูคอร์สทำพอร์ต <b>→</b></span></a>
-      <a class="f4i rv" href="#works" data-pane="real" style="--bg:#E3F3FF;--ac:#1D5FB8"><span class="pod"><img class="ph" src="img/s-showcase2.webp" alt="" loading="lazy"><img class="ms" src="img/n-ceo.webp" alt="" loading="lazy"><i class="bubble">ไปให้สุด!</i></span><span class="k">ธุรกิจของตัวเอง</span><span class="w">สตาร์ทอัพ</span><span class="d">4 ขั้นจากไอเดีย สู่ผลงานที่มีคนใช้และมีรายได้</span><span class="pf">Mr. City ขายให้สวนสัตว์สงขลาแล้ว</span><span class="go">ผลงานที่ใช้งานจริง <b>→</b></span></a>
-      <a class="f4i rv" href="#activity" style="--bg:#FFE6EE;--ac:#B23A68"><span class="pod"><img class="ph" src="img/s-showcase1.webp" alt="" loading="lazy"><img class="ms" src="img/n-win.webp" alt="" loading="lazy"><i class="bubble">ลุยเลย!</i></span><span class="k">การแข่งขัน</span><span class="w">ลงเวทีจริง</span><span class="d">ค่าย Game Jam และการแข่งขันที่จัดร่วมกับ สจล.</span><span class="pf">12 ผลงานเข้ารอบชิง NSC</span><span class="go">ดูกิจกรรม <b>→</b></span></a>
+      <a class="f4i rv" href="#works" data-pane="real" style="--bg:#E3F3FF;--ac:#1D5FB8"><span class="pod"><img class="ph" src="img/w-revoice.webp" alt="" loading="lazy"><img class="ms" src="img/n-ceo.webp" alt="" loading="lazy"><i class="bubble">ไปให้สุด!</i></span><span class="k">ธุรกิจของตัวเอง</span><span class="w">สตาร์ทอัพ</span><span class="d">4 ขั้นจากไอเดีย สู่ผลงานที่มีคนใช้และมีรายได้</span><span class="pf">Mr. City ขายให้สวนสัตว์สงขลาแล้ว</span><span class="go">ผลงานที่ใช้งานจริง <b>→</b></span></a>
+      <a class="f4i rv" href="#activity" style="--bg:#FFE6EE;--ac:#B23A68"><span class="pod"><img class="ph" src="img/team-group.webp" alt="" loading="lazy"><img class="ms" src="img/n-win.webp" alt="" loading="lazy"><i class="bubble">ลุยเลย!</i></span><span class="k">การแข่งขัน</span><span class="w">ลงเวทีจริง</span><span class="d">ค่าย Game Jam และการแข่งขันที่จัดร่วมกับ สจล.</span><span class="pf">12 ผลงานเข้ารอบชิง NSC</span><span class="go">ดูกิจกรรม <b>→</b></span></a>
     </div>
   </div></section>
 
@@ -2429,18 +2471,14 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
 
   <div class="wkz"><img class="wk" src="img/n-gamer.webp" alt="น้องหนู ลากเล่นได้"></div>
   <section class="hp-grid hof-s"><div class="wrap hg st">
-    <section class="tile hz" id="hz" aria-label="Hall of Fame ผลงานเด่นของน้องๆ ปี 2569">
-      <span class="hz-dust" aria-hidden="true"></span>
-      <p class="hz-k">ผลงานเด่นของน้องๆ ปี 2569</p>
-      <h3 class="hz-t1">HALL OF FAME</h3>
-      <p class="hz-s">เกมทุกเกมในห้องนี้ น้องๆ เขียนโปรแกรมสร้างเองกับมือ</p>
-      <div class="hz-stage">
-        <figure class="hz-f"><img id="hzImg" src="img/work-stressstrike.webp" alt=""><span class="hz-sh" aria-hidden="true"></span></figure>
-        <div class="hz-cap" aria-live="polite"><b id="hzN">StressStrike</b><span id="hzBy">เกมที่น้อง @วิน สร้างเอง</span><em id="hzAw">ชนะเลิศ OBEC Roboplayground</em></div>
-      </div>
-      <div class="hz-row"><button type="button" class="hz-t" data-k="0" aria-label="StressStrike"><img src="img/work-stressstrike.webp" alt="" loading="lazy"></button><button type="button" class="hz-t" data-k="1" aria-label="ผีกระหัง"><img src="img/work-phi-krahang.webp" alt="" loading="lazy"></button><button type="button" class="hz-t" data-k="2" aria-label="Eugation Strike"><img src="img/work-eugation-strike.webp" alt="" loading="lazy"></button><button type="button" class="hz-t" data-k="3" aria-label="SLASH//SPEED"><img src="img/work-slash-speed.webp" alt="" loading="lazy"></button><button type="button" class="hz-t" data-k="4" aria-label="Midnight at Roadside"><img src="img/work-midnight-at-roadside.webp" alt="" loading="lazy"></button><button type="button" class="hz-t" data-k="5" aria-label="Hot Hot Hot"><img src="img/work-hot-hot-hot.webp" alt="" loading="lazy"></button><button type="button" class="hz-t" data-k="6" aria-label="Apocalypis Building"><img src="img/work-apocalypis-building.webp" alt="" loading="lazy"></button><button type="button" class="hz-t" data-k="7" aria-label="Escape Rolling"><img src="img/work-escape-rolling.webp" alt="" loading="lazy"></button></div>
-      <a class="hz-go" href="#works" data-pane="hof">ดูผลงานทั้งหมด</a>
-    </section>
+    <a class="tile hof2 rv" href="#works" data-pane="hof">
+      <span class="hf-sp" aria-hidden="true"></span>
+      <p class="hf-k">ผลงานเด่นของน้องๆ ปี 2569</p>
+      <h3 class="hf-t">HALL OF FAME</h3>
+      <div class="hf-row"><figure><img src="img/work-stressstrike.webp" alt="" loading="lazy"><figcaption>StressStrike</figcaption></figure><figure><img src="img/work-phi-krahang.webp" alt="" loading="lazy"><figcaption>ผีกระหัง</figcaption></figure><figure><img src="img/work-eugation-strike.webp" alt="" loading="lazy"><figcaption>Eugation Strike</figcaption></figure><figure><img src="img/work-slash-speed.webp" alt="" loading="lazy"><figcaption>SLASH//SPEED</figcaption></figure><figure><img src="img/work-escape-rolling.webp" alt="" loading="lazy"><figcaption>Escape Rolling</figcaption></figure></div>
+      <span class="hf-b">ดูผลงานทั้งหมด</span>
+      <img class="hf-tr" src="img/n-win.webp" alt="">
+    </a>
   </div></section>
 
   <section class="mc"><div class="mc-in">
@@ -2811,12 +2849,12 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     <div class="aw-g">
       <figure><img src="img/dek69-8.webp" alt=""><figcaption><b>48 คน</b><span>รุ่นพี่ DEK69 ติดมหาลัยรอบ Portfolio</span></figcaption></figure>
       <figure><img src="img/work-stressstrike.webp" alt=""><figcaption><b>ชนะเลิศ</b><span>OBEC Roboplayground ด้วยเกม StressStrike</span></figcaption></figure>
-      <figure><img src="img/s-showcase1.webp" alt=""><figcaption><b>12 ผลงาน</b><span>เข้ารอบชิงชนะเลิศ NSC การแข่งขันพัฒนาโปรแกรมระดับประเทศ</span></figcaption></figure>
+      <figure><img src="img/w-revoice.webp" alt="ReVoice ผลงานของน้องไอดิน"><figcaption><b>12 ผลงาน</b><span>เข้ารอบชิงชนะเลิศ NSC การแข่งขันพัฒนาโปรแกรมระดับประเทศ</span></figcaption></figure>
       <figure><img src="img/real-0.webp" alt=""><figcaption><b>ขายได้จริง</b><span>เกม Mr. City ขายให้สวนสัตว์สงขลา</span></figcaption></figure>
     </div></div></section>
   <section class="ab-h"><div class="wrap"><h1 class="rv">Hamster Hub คือผู้คน<br>ที่สร้างเด็กให้มีผลงานจริง</h1>
     <p class="rv">ผลงานที่ใช้ได้จริง ขายได้จริง และพาไปถึงมหาวิทยาลัยที่ใช่ เราสอน พาสร้าง และพาลงเวทีจริง ตั้งแต่เกม แอป จนถึง IoT</p></div>
-    <div class="wrap"><div class="ab-bento rv"><img class="b1" src="img/photo-camp.webp" alt="น้องๆ ในค่าย Hamster Hub" loading="lazy"><img class="b2" src="img/photo-group.webp" alt="น้องๆ ถ่ายรูปรวม" loading="lazy"><img class="b3" src="img/photo-class.webp" alt="ห้องเรียน" loading="lazy"><img class="b4" src="img/photo-desk.webp" alt="น้องกำลังทำผลงาน" loading="lazy"><img class="b5" src="img/s-showcase1.webp" alt="ผลงานที่นำไปโชว์" loading="lazy"></div></div></section>
+    <div class="wrap"><div class="ab-bento rv"><img class="b1" src="img/team-group.webp" alt="น้องๆ Hamster Hub ในงานโชว์ผลงาน" loading="lazy"><img class="b2" src="img/photo-group.webp" alt="น้องๆ ถ่ายรูปรวม" loading="lazy"><img class="b3" src="img/photo-class.webp" alt="ห้องเรียน" loading="lazy"><img class="b4" src="img/photo-desk.webp" alt="น้องกำลังทำผลงาน" loading="lazy"><img class="b5" src="img/s-showcase1.webp" alt="ผลงานที่นำไปโชว์" loading="lazy"></div></div></section>
   <section class="ab-do"><div class="wrap"><h2 class="sec-h rv">เราทำอะไร</h2>
     <div class="do3"><div class="rv"><img class="do-i" src="img/n-grad.webp" alt="" loading="lazy"><h3>พาเข้ามหาวิทยาลัย</h3><p>คอร์สทำพอร์ต ซ้อมนำเสนอกับอาจารย์มหาวิทยาลัย รุ่นพี่ DEK69 ติดแล้ว 48 คน</p><a class="more" href="#courses">ดูคอร์ส</a></div>
       <div class="rv"><img class="do-i" src="img/n-ceo.webp" alt="" loading="lazy"><h3>พาสร้างสตาร์ทอัพ</h3><p>4 ขั้นจากออกแบบนวัตกรรม พัฒนาผลงาน จนต่อยอดเป็นธุรกิจที่มีรายได้</p><a class="more" href="#works" data-pane="real">ผลงานที่ใช้งานจริง</a></div>
@@ -3089,6 +3127,13 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
   (function(){var tk=document.querySelector('.yt .tk'),f=tk&&tk.querySelector('.tk-feed');if(!f)return;var g=document.createElement('button');g.type='button';g.className='tk-guide';
     g.innerHTML='เลื่อนลง หรือกดตรงนี้<br>เพื่อดูผลงานถัดไป <b>↓</b>';tk.appendChild(g);g.addEventListener('click',function(){f.scrollBy({top:f.clientHeight,behavior:'smooth'})});
     f.addEventListener('scroll',function(){if(f.scrollTop>40)g.classList.add('hide')},{passive:true})})();
+  /* fit finder: ask before selling */
+  (function(){var f=document.getElementById('fitQ'),r=document.getElementById('fitR');if(!f)return;
+    f.addEventListener('change',function(){var d=new FormData(f),g=d.get('g'),p=d.get('p'),t=d.get('t');if(!g||!p||!t)return;
+      var line='<a class="fb2" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">ทัก LINE ให้ทีมแนะนำ</a>';
+      if(g==='m6'&&p!=='yes'&&(t==='game'||t==='any')){r.className='fit-r ok';r.innerHTML='<p class="fr-k">เหมาะกับน้อง</p><h3>Port Express</h3><p>น้องอยู่ ม.6 และยังต้องการผลงานใส่พอร์ต คอร์สนี้พาทำเกมของตัวเองใน 2 เดือน ทันยื่นรอบ Portfolio</p><p class="fr-p"><b>5,990 บาท</b> · เริ่ม 9 พ.ย. 2569</p><div class="fr-b"><a class="fb1" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">ดูรายละเอียดและสมัครเรียน</a>'+line+'</div>'}
+      else if(p==='yes'){r.className='fit-r';r.innerHTML='<p class="fr-k">น้องมีผลงานแล้ว</p><h3>ลองให้ทีมดูพอร์ตก่อน</h3><p>ทีมช่วยดูว่าผลงานที่มีพร้อมยื่นแล้วหรือยัง และควรเพิ่มอะไร</p><div class="fr-b">'+line+'</div>'}
+      else{r.className='fit-r';r.innerHTML='<p class="fr-k">มีคอร์สที่เหมาะกว่า</p><h3>'+(t==='app'?'สายแอปและเว็บ':t==='iot'?'สาย IoT':'คอร์สปูพื้นฐาน')+'</h3><p>'+(g==='m45'?'น้องยังมีเวลาก่อนยื่น ทำผลงานใหญ่ขึ้นได้อีก':'คอร์สสายนี้เปิดเป็นรอบ')+' ทักทีมให้แนะนำรอบที่เหมาะกับน้อง</p><div class="fr-b">'+line+'</div>'}})})();
   /* router */
   var views=['home','courses','portex','activity','works','about'],menuBtn=$('#menuBtn'),drawer=$('#drawer');
   var titles={home:'Hamster Hub',courses:'คอร์ส | Hamster Hub',portex:'Port Express | Hamster Hub',activity:'กิจกรรม | Hamster Hub',works:'ผลงาน | Hamster Hub',about:'เกี่ยวกับเรา | Hamster Hub'};
