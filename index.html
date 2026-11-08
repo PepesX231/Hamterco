@@ -1737,6 +1737,32 @@ a.ctb-f:hover{transform:translate(-3px,-3px)}
 .hf-tr{position:absolute;right:clamp(10px,4vw,60px);bottom:-8px;width:clamp(90px,10vw,140px)}
 @media (max-width:700px){.hf-row figure:nth-child(n+4){display:none}.hf-row figure{width:28vw}}
 
+
+/* ===== v19: the original clip, with the info placed inside it ===== */
+.ov{padding:12px 12px 0;background:#fff}
+.ov-c{position:relative;width:min(100%,calc((100svh - 84px) * 16 / 9));margin:0 auto;aspect-ratio:16/9;overflow:hidden;container-type:inline-size;background:#1A1460}
+.ov-c video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ov-t{position:absolute;left:4.3%;top:63.5%;margin:0;font:800 2.6cqw/1.25 var(--display);color:#fff;text-shadow:.25cqw .25cqw 0 #2A1A6E,0 0 1.2cqw rgba(20,10,60,.6);background:linear-gradient(90deg,rgba(26,20,96,.92),rgba(26,20,96,.6));padding:.6cqw 1.4cqw .7cqw .9cqw;width:max-content;min-width:36cqw}
+.ov-bub{position:absolute;left:47%;top:7%;max-width:30cqw;background:#fff;color:#1A1460;padding:1.1cqw 1.6cqw 1.2cqw;font:800 2.2cqw/1.3 var(--display);
+  box-shadow:0 -.4cqw 0 #1A1460,0 .4cqw 0 #1A1460,-.4cqw 0 0 #1A1460,.4cqw 0 0 #1A1460,.4cqw .8cqw 0 #E0337E;transform-origin:70% 120%}
+.ov-bub::after{content:"";position:absolute;left:62%;bottom:-2.2cqw;width:2cqw;height:2cqw;background:#fff;clip-path:polygon(0 0,100% 0,30% 100%);filter:drop-shadow(.4cqw 0 0 #1A1460)}
+.ov-bub p{margin:0}
+.ov-n{display:block;font:400 .9cqw var(--pixel);color:#E0337E;margin-bottom:.5cqw}
+.ov-bub.pop{animation:bub .45s cubic-bezier(.2,1.6,.4,1)}
+@keyframes bub{from{transform:scale(.6);opacity:0}}
+.ov-bar{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:2cqw;padding:2cqw 4cqw 2.2cqw;background:linear-gradient(transparent,rgba(16,10,60,.85) 45%)}
+.ov-p{color:#E8EAF8;font:600 1.5cqw var(--display)}.ov-p b{font:800 3.2cqw var(--display);color:#FFD24A}.ov-p s{color:#B7BCE0;margin-left:.6cqw}.ov-p span{display:block;margin-top:.2cqw}
+.ov-b{display:flex;gap:1cqw}
+.ov-b a{display:inline-flex;align-items:center;min-height:max(44px,3.6cqw);padding:0 max(20px,2cqw);border-radius:999px;font:700 max(15px,1.4cqw) var(--display);text-decoration:none;transition:transform .15s,background .2s}
+.ov-b a:hover{transform:translateY(-2px)}
+.ov-m{display:none}
+@media (max-width:700px){.ov-t{font-size:4cqw}.ov-bub{font-size:3.4cqw;max-width:44cqw;left:40%;top:4%}.ov-n{font-size:1.8cqw}
+  .ov-bar{position:static;flex-direction:column;align-items:stretch;background:#1A1460;padding:16px}.ov-c{aspect-ratio:auto}.ov-c video{position:relative;aspect-ratio:16/9;height:auto}
+  .ov-p{font-size:.9rem;text-align:center}.ov-p b{font-size:1.6rem}.ov-b{justify-content:center;margin-top:10px}
+  .ov-t{top:calc((100vw - 24px) * 9 / 16 * .6)}
+  .ov-m{display:grid;gap:8px;list-style:none;margin:0;padding:16px 16px 0;counter-reset:s}.ov-m li{counter-increment:s;font:700 1rem var(--display);display:flex;gap:10px;align-items:center}
+  .ov-m li::before{content:counter(s);display:grid;place-items:center;flex:none;width:26px;height:26px;border-radius:50%;background:#7CF29A;font-size:.85rem}}
+
 /* ---------- footer ---------- */
 footer{background:var(--alt);font-size:.85rem;color:var(--mute)}
 footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
@@ -2146,25 +2172,15 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
 <main id="main">
 <!-- ================= HOME ================= -->
 <div data-view="home">
-  <section class="hc"><div class="pc" id="pc" data-s="0" role="region" aria-label="Port Express คอร์สพาน้อง ม.6 ทำพอร์ตยื่นมหาลัย เรียนทำเกมกับพี่ๆ 2 เดือน ได้ผลงานจริงใส่แฟ้มพอร์ต รุ่นพี่ติดมหาลัยแล้ว 48 คน เริ่ม 9 พ.ย. 2569 ราคา 5,990 บาท">
-    <span class="pc-sky" aria-hidden="true"></span><span class="pc-tw" aria-hidden="true"></span>
-    <span class="pc-ln" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-    <p class="pc-mini" aria-hidden="true">PORT EXPRESS</p>
-    <div class="ps s0 on"><p class="pc-big">PORT<br>EXPRESS</p><p class="pc-h">คอร์สพาน้อง ม.6<br>ทำพอร์ตยื่นมหาลัย</p></div>
-    <div class="ps s1"><p class="pc-k">ขั้นที่ 1</p><p class="pc-h">เรียนทำเกม<br>กับพี่ๆ 2 เดือน</p><p class="pc-s">จันทร์ พุธ ศุกร์ · ไม่เคยทำมาก่อนก็เริ่มได้</p>
-      <div class="pc-v gm"><img src="img/work-phi-krahang.webp" alt=""><img src="img/work-stressstrike.webp" alt=""><img src="img/work-midnight-at-roadside.webp" alt=""></div></div>
-    <div class="ps s2"><p class="pc-k">ขั้นที่ 2</p><p class="pc-h">ได้ผลงานจริง<br>ใส่แฟ้มพอร์ต</p><p class="pc-s">พร้อมสไลด์เล่าผลงาน และซ้อมสัมภาษณ์กับอาจารย์มหาลัย</p>
-      <div class="pc-v fdx"><span class="tb">PORTFOLIO</span><i></i><i></i><i></i><em>READY!</em></div></div>
-    <div class="ps s3"><p class="pc-k">ขั้นที่ 3</p><p class="pc-h">ยื่นรอบ Portfolio<br>รุ่นพี่ติดมหาลัยแล้ว 48 คน</p><p class="pc-s">สจล. · จุฬาฯ · มหิดล · เกษตรศาสตร์</p>
-      <div class="pc-v pst"><img src="img/dek69-13.webp" alt=""><img src="img/dek69-6.webp" alt=""><img src="img/dek69-1.webp" alt=""><img src="img/dek69-11.webp" alt=""></div></div>
-    <div class="ps s4"><p class="pc-k">รุ่นใหม่</p><p class="pc-h">เริ่ม 9 พ.ย. 2569</p><p class="pc-pr"><b>5,990 บาท</b> <s>ปกติ 9,990</s></p><p class="pc-s">เรียน 2 เดือน · จันทร์ พุธ ศุกร์</p></div>
-    <img class="pc-ham" src="img/px-astro.webp" alt="">
-    <div class="pc-bar">
-      <div class="pc-pip" role="tablist" aria-label="เลือกฉาก"><button type="button" aria-label="ฉาก 1"></button><button type="button" aria-label="ฉาก 2"></button><button type="button" aria-label="ฉาก 3"></button><button type="button" aria-label="ฉาก 4"></button><button type="button" aria-label="ฉาก 5"></button></div>
-      <p class="pc-p"><b>5,990 บาท</b> · เริ่ม 9 พ.ย.</p>
-      <div class="pc-b"><a class="a1" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">สมัครเรียน</a><a class="a2" href="#portex">ดูรายละเอียด</a></div>
-    </div>
-  </div></section>
+  <section class="ov"><div class="ov-c" id="ovc">
+    <video src="img/portex-banner.mp4" poster="img/portex-poster.webp" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+    <h1 class="ov-t">คอร์สพาน้อง ม.6<br>ทำพอร์ตยื่นมหาลัย</h1>
+    <div class="ov-bub" aria-live="polite"><span class="ov-n" id="ovN">1/4</span><p id="ovS">เรียนทำเกมกับพี่ๆ 2 เดือน</p></div>
+    <div class="ov-bar"><p class="ov-p"><b>5,990 บาท</b> <s>9,990</s><span>เริ่ม 9 พ.ย. 2569 · เรียน จ พ ศ</span></p>
+      <div class="ov-b"><a class="a1" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">สมัครเรียน</a><a class="a2" href="#portex">ดูรายละเอียด</a></div></div>
+  </div>
+  <ol class="ov-m"><li>เรียนทำเกมกับพี่ๆ 2 เดือน</li><li>ได้ผลงานจริงใส่แฟ้มพอร์ต</li><li>ยื่นรอบ Portfolio · รุ่นพี่ติดมหาลัยแล้ว 48 คน</li></ol>
+  </section>
 
   <section class="hp-grid"><div class="nw-h"><span class="nw-b">ข่าวสาร</span><h2>อัปเดตล่าสุดจาก Hamster Hub</h2></div><div class="wrap hg st">
     <div class="tile t-afo rv">
@@ -2890,12 +2906,9 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
       var r=p.querySelector('input');r.addEventListener('input',function(){vol=r.value/100;tk.querySelectorAll('video').forEach(function(v){v.volume=vol});tk.querySelectorAll('.tk-vp input').forEach(function(x){x.value=r.value});
         var on=b.getAttribute('aria-pressed')==='true';if(vol>0&&!on)b.click();if(vol===0&&on)b.click()})});
     tk.querySelectorAll('video').forEach(function(v){v.volume=vol})})();
-  /* hero clip: scenes advance like a video */
-  (function(){var pc=document.getElementById('pc');if(!pc)return;var sc=pc.querySelectorAll('.ps'),pp=pc.querySelectorAll('.pc-pip button'),i=0,t=0,D=4200;
-    function go(k){i=(k+sc.length)%sc.length;pc.dataset.s=i;sc.forEach(function(e,n){e.classList.toggle('on',n===i)});pp.forEach(function(b,n){b.classList.toggle('on',n===i);b.classList.remove('run');if(n===i){void b.offsetWidth;b.classList.add('run')}});clearTimeout(t);t=setTimeout(function(){go(i+1)},D)}
-    pp.forEach(function(b,n){b.addEventListener('click',function(){go(n)})});
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){pc.classList.add('still')}
-    go(0)})();
+  /* hero clip: the hamster says the course in four lines */
+  (function(){var b=document.querySelector('.ov-bub');if(!b)return;var L=['เรียนทำเกมกับพี่ๆ 2 เดือน','ได้ผลงานจริง ใส่แฟ้มพอร์ต','ยื่นรอบ Portfolio ติดมหาลัย!','รุ่นพี่ติดแล้ว 48 คน ตาน้องบ้าง!'],k=0,S=document.getElementById('ovS'),N=document.getElementById('ovN');
+    function go(){S.textContent=L[k];N.textContent=(k+1)+'/'+L.length;b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');k=(k+1)%L.length}go();setInterval(go,3200)})();
   /* router */
   var views=['home','courses','portex','activity','works','about'],menuBtn=$('#menuBtn'),drawer=$('#drawer');
   var titles={home:'Hamster Hub',courses:'คอร์ส | Hamster Hub',portex:'Port Express | Hamster Hub',activity:'กิจกรรม | Hamster Hub',works:'ผลงาน | Hamster Hub',about:'เกี่ยวกับเรา | Hamster Hub'};
