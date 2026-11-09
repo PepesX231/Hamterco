@@ -3509,30 +3509,6 @@ button:active:not(.vg-c):not(.zq-go),.lbtn:active,.mr-btn:active{transform:scale
 
 
 /* ===== v69 ===== */
-/* hero: Hamster Hub's own look, text left, the brand hamsters right */
-.zq-top{display:grid!important;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);column-gap:clamp(24px,4vw,64px);align-items:center;text-align:left!important;max-width:1240px!important;width:100%!important;margin:0 auto!important;padding:0 16px;box-sizing:border-box}
-.zq-top>*{grid-column:1}
-.zq-lead{display:flex;align-items:center;gap:10px;margin:0 0 18px;font:700 clamp(.95rem,1.3vw,1.08rem) var(--display);color:#0D2E63}
-.zq-lead img{width:34px;height:34px;border-radius:50%}
-.zq-q{text-align:left!important;margin-left:0!important}
-.zq-h{text-align:left!important;justify-content:flex-start!important;margin-left:0!important;margin-right:0!important}
-.zq-sw{margin-left:0!important;margin-right:0!important;max-width:640px!important;width:100%!important}
-.zq-pop{justify-content:flex-start!important;text-align:left!important;margin-left:0!important}
-.zq-ptn{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:28px}
-.zq-ptn span{font:600 .82rem var(--display);color:#6A7891}
-.zq-ptn img{height:30px;width:auto;filter:grayscale(1);opacity:.7;transition:filter .3s,opacity .3s}
-.zq-ptn img:hover{filter:none;opacity:1}
-.zq-brand{grid-column:2!important;grid-row:1/span 7;position:relative;justify-self:center;width:min(100%,460px);aspect-ratio:1}
-.zq-brand img{position:relative;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 30px 40px rgba(13,46,99,.25));animation:hhBob 6s ease-in-out infinite;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
-.zb-ring{position:absolute;inset:6%;border-radius:50%;border:2px dashed rgba(28,116,217,.25);animation:hhSpin 40s linear infinite}
-.zq-brand:hover img{transform:scale(1.04) rotate(-3deg)}
-@keyframes hhBob{0%,100%{translate:0 0}50%{translate:0 -10px}}
-@keyframes hhSpin{to{transform:rotate(360deg)}}
-.zq.ask .zq-brand,.zq.ask .zq-lead,.zq.ask .zq-ptn{opacity:0;pointer-events:none;transition:opacity .3s}
-.zq-sw .zq-res{left:0!important;right:-45%!important}
-@media (max-width:1000px){.zq-top{grid-template-columns:minmax(0,1fr)}.zq-brand{grid-column:1!important;grid-row:auto;width:180px;order:-1;justify-self:start;margin-bottom:8px}.zb-ring{display:none}.zq-sw .zq-res{right:0!important}}
-@media (max-width:700px){.zq-brand{width:120px}.zq-ptn img{height:24px}}
-@media (prefers-reduced-motion:reduce){.zq-brand img,.zb-ring{animation:none}}
 /* home rows: startup leads with three real products */
 .oc-biz{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:1fr 1fr;gap:6px}.oc-biz img:first-child{grid-row:span 2}.oc-biz img{min-height:0}
 .oc-big .oc-t h3{font-size:clamp(1.8rem,3.2vw,2.7rem)}
@@ -4053,11 +4029,11 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
 <div data-view="home">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@800;900&family=Mitr:wght@700&family=Chakra+Petch:wght@700&family=Sriracha&family=Srisakdi:wght@700&family=Itim&family=Pattaya&family=Charmonman:wght@700&family=Chonburi&family=Mali:wght@700&family=Sarabun:wght@800&display=swap"><section class="zq" aria-label="ค้นหาคอร์สและกิจกรรม"><i class="zq-sky" aria-hidden="true"></i>
     <div class="zq-top">
-      <p class="zq-lead">Hamster Hub สอนน้องมัธยมสร้างเกม เว็บ และ IoT ของตัวเอง</p><p class="zq-q">น้องอยาก...</p>
+      <p class="zq-q">น้องอยาก...</p>
       <h1 class="zq-h" title="กดเพื่อเปลี่ยนสไตล์"><span id="zqType">ยื่นพอร์ตเข้ามหาลัย</span><i class="zq-cur" aria-hidden="true"></i></h1>
       <div class="zq-sw"><span class="zq-ham" id="zqHam" aria-hidden="true"><span class="zq-hb" id="zqSpr"><img src="img/ham-noeye.webp" alt=""><i class="ze l"><b></b></i><i class="ze r"><b></b></i><i class="zq-bur" aria-hidden="true"></i></span></span><form class="zq-s" id="zqForm" role="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         <input id="zqIn" type="search" placeholder="พิมพ์สิ่งที่น้องอยากได้ เช่น อยากเข้าวิศวะคอม" aria-label="ค้นหาคอร์สและกิจกรรม" autocomplete="off"><button type="submit" class="zq-go"><span>ค้นหา</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form><div class="zq-sug" id="zqSug" hidden><p>น้องพิมพ์แบบนี้ได้เลย</p><button type="button" data-q="อยากเข้าวิศวะคอม"><img src="img/i3-cap.webp" alt="">อยากเข้าวิศวะคอม<small>ดูคอร์สที่รุ่นพี่วิศวะคอมฯ เรียน</small></button><button type="button" data-q="อยากเข้าแพทย์"><img src="img/i3-cap.webp" alt="">อยากเข้าแพทย์<small>เราช่วยเรื่องไหนได้บ้าง</small></button><button type="button" data-q="อยากทำเกมของตัวเอง"><img src="img/i3-pad.webp" alt="">อยากทำเกมของตัวเอง<small>คอร์สและค่ายสร้างเกม</small></button><button type="button" data-q="ไม่เคยเขียนโปรแกรมเลย"><img src="img/i3-rocket.webp" alt="">ไม่เคยเขียนโปรแกรมเลย<small>เริ่มจากศูนย์ได้ไหม</small></button><button type="button" data-q="ผู้ปกครอง ลูกจะได้อะไร"><img src="img/i3-bot.webp" alt="">ผู้ปกครอง ลูกจะได้อะไร<small>สิ่งที่ลูกได้จากที่นี่</small></button></div></div>
-      <p class="zq-pop"><span>ลองพิมพ์</span><button type="button" data-q="อยากเข้าวิศวะคอม">อยากเข้าวิศวะคอม</button><button type="button" data-q="ม.6 ยังไม่มีพอร์ต">ม.6 ยังไม่มีพอร์ต</button><button type="button" data-q="อยากทำเกมของตัวเอง">อยากทำเกมของตัวเอง</button><button type="button" data-q="Hamster Hub คืออะไร">Hamster Hub คืออะไร</button><button type="button" data-q="ค่าเรียนเท่าไหร่">ค่าเรียนเท่าไหร่</button></p><div class="zq-ptn"><span>จัดกิจกรรมร่วมกับ</span><img src="img/p-it.webp" alt="คณะเทคโนโลยีสารสนเทศ สจล."><img src="img/p-iote.webp" alt="IoTE สจล."><img src="img/p-eduverse.webp" alt="EDUverse"></div><div class="zq-brand" aria-hidden="true"><i class="zb-ring"></i><img src="img/hh-mascot.webp" alt=""></div>
+      <p class="zq-pop"><span>ลองพิมพ์</span><button type="button" data-q="อยากเข้าวิศวะคอม">อยากเข้าวิศวะคอม</button><button type="button" data-q="ม.6 ยังไม่มีพอร์ต">ม.6 ยังไม่มีพอร์ต</button><button type="button" data-q="อยากทำเกมของตัวเอง">อยากทำเกมของตัวเอง</button><button type="button" data-q="Hamster Hub คืออะไร">Hamster Hub คืออะไร</button><button type="button" data-q="ค่าเรียนเท่าไหร่">ค่าเรียนเท่าไหร่</button></p>
     </div>
     <div class="zq-res" id="zqRes" hidden><p class="zq-r" id="zqR" aria-live="polite"></p><div class="ia-w" id="zqA" hidden></div><div class="zq-g" id="zqG"></div></div>
   <button type="button" class="zq-more" id="zqMore" aria-label="เลื่อนลงดูต่อ"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></button></section>

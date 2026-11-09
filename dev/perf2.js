@@ -1,0 +1,6 @@
+const {chromium}=require('playwright');(async()=>{const b=await chromium.launch();
+const T={base:'.x{}',noHof:'.h5f,.rau,.rsd{display:none!important}',noAur:'.h5f-au2{display:none!important}',noClip:'.h5f{clip-path:none!important}',noRau:'.rau{display:none!important}',noRt:'.h5f-rt,.h5f-tear{display:none!important}',noDust:'.h5f-du,.rsd{display:none!important}',noCards:'.h5f-c{animation:none!important}',noNav:'.nav{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}',noWalk:'#wkRift{display:none!important}',noLogin:'.lg-cm{display:none!important}'};
+for(const [k,css] of Object.entries(T)){const p=await b.newPage({viewport:{width:1440,height:900}});await p.goto('http://localhost:8765/p39.html');await p.addStyleTag({content:css});await p.waitForTimeout(1000);
+await p.evaluate(()=>{const e=document.querySelector('.h5f')||document.querySelector('.mc');scrollTo(0,(document.querySelector('.h5f').offsetTop||3000)-160)});await p.waitForTimeout(600);
+const r=await p.evaluate(()=>new Promise(res=>{let n=0,t0=performance.now();function f(t){n++;if(t-t0<2500)requestAnimationFrame(f);else res(Math.round(n/((t-t0)/1000)))}requestAnimationFrame(f)}));console.log(k,r);await p.close()}
+await b.close()})()

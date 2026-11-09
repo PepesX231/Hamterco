@@ -1,0 +1,6 @@
+const {chromium}=require('playwright');(async()=>{const b=await chromium.launch();const f=process.argv[2];
+const V={base:'x{}',noAu2:'.h5f-au2{display:none!important}',noRau:'.rau{display:none!important}',noRt:'.h5f-rt,.h5f-tear{display:none!important}',noDu:'.h5f-du,.rsd{display:none!important}',noWk:'#wkRift{display:none!important}',noCards:'.h5f-c{animation:none!important}.h5f-c *{animation:none!important}',noCap:'.h5f-cap{display:none!important}',noAnimAll:'.h5f *{animation:none!important}',noFilter:'.h5f *{filter:none!important;box-shadow:none!important;text-shadow:none!important}',noNavTop:'.nav,.sp-bar{display:none!important}',noOther:'body>*:not(main) {display:none!important}'};
+for(const k in V){const p=await b.newPage({viewport:{width:1440,height:900}});const c=await p.context().newCDPSession(p);
+await p.goto('http://localhost:8765/'+f);await p.waitForTimeout(1200);await p.addStyleTag({content:V[k]});await c.send('Emulation.setCPUThrottlingRate',{rate:6});
+await p.evaluate(()=>{const e=document.querySelector('.h5f');scrollTo(0,e.getBoundingClientRect().top+scrollY-160)});await p.waitForTimeout(700);
+const r=await p.evaluate(()=>new Promise(res=>{let n=0,t0=performance.now();function f(t){n++;if(t-t0<2500)requestAnimationFrame(f);else res(Math.round(n/((t-t0)/1000)))}requestAnimationFrame(f)}));console.log(k,r);await p.close()}await b.close()})()
