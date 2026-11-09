@@ -3481,6 +3481,17 @@ button:active:not(.vg-c):not(.zq-go),.lbtn:active,.mr-btn:active{transform:scale
 .oc-x{position:absolute;top:-16px;right:-16px;width:40px;height:40px;border-radius:50%;border:0;background:#fff;color:#0D2E63;font-size:1.5rem;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.3)}
 @media (max-width:900px){.oc-r{grid-template-columns:minmax(0,1fr);gap:22px}.oc-r.rv2 .oc-m{order:0}.oc-x{top:-48px;right:0}}
 
+
+/* v67: side course cards - landscape picture, text centred */
+.fx-s{grid-template-columns:minmax(0,42%) minmax(0,1fr)!important;align-items:center!important;padding:18px!important}
+.fx-si{aspect-ratio:4/3;align-self:center;height:auto}
+.fx-si img{object-position:50% 22%!important}
+.fx-sb{justify-content:center}
+.fx-pr{margin-top:6px!important;padding-top:6px!important}
+.oc-hd{max-width:900px}
+.nw{white-space:nowrap}
+@media (max-width:560px){.fx-s{grid-template-columns:minmax(0,1fr)!important}.fx-si{aspect-ratio:16/9}}
+
 /* ---------- footer ---------- */
 footer{background:var(--alt);font-size:.85rem;color:var(--mute)}
 footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
@@ -3915,7 +3926,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     </a>
     <div class="fx-row">
       <a class="fx-s" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener"><span class="fx-si"><img src="img/dek69-1.webp" alt="" loading="lazy"></span><span class="fx-sb">
-          <small>สำหรับน้องที่ยังไม่เคยเขียนโปรแกรม</small><b>Hamstarter</b><span class="fx-sp">เริ่มจากศูนย์ จนมีผลงานชิ้นแรกเป็นของตัวเอง</span>
+          <small>สำหรับน้องที่ยังไม่เคยเขียนโปรแกรม</small><b>Hamstarter</b><span class="fx-sp">เริ่มจากศูนย์ จนมีผลงานชิ้นแรกเป็น<span class="nw">ของตัวเอง</span></span>
           <span class="fx-pr"><span class="ft-av"><img src="img/dek69-1.webp" alt="" loading="lazy"></span>น้องปลื้มจากคอร์สนี้ ติดสถิติประยุกต์ฯ สจล.</span>
           <span class="fx-go">รับแจ้งเตือนรอบถัดไป</span></span></a>
       <a class="fx-s" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener"><span class="fx-si"><img src="img/sc-lyno.webp" alt="" loading="lazy"></span><span class="fx-sb">
@@ -3927,12 +3938,12 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
 </div></section>
   <section class="zc2 dk"><div class="mr"><div class="mr-l"><h2>คอร์สทั้งหมด</h2><p>ทุกคอร์สจบแล้วน้องได้ผลงานจริงของตัวเอง คอร์สที่ยังไม่เปิดรอบ กดรับแจ้งเตือนได้</p><a class="mr-btn" href="#courses">ดูคอร์สทั้งหมด</a><div class="mr-ar"><button type="button" class="mr-p" aria-label="เลื่อนไปทางซ้าย"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="mr-n" aria-label="เลื่อนไปทางขวา"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div><div class="mr-r" id="zqC"></div></div></section>
   <section class="oc" aria-labelledby="ocH"><div class="oc-in">
-  <div class="oc-hd"><h2 id="ocH">น้องที่นี่ไปได้ไกลกว่าการติดมหาลัย</h2><p>เราสอนให้น้องสร้างของจริง ที่มีคนใช้ ขายได้ และชนะรางวัล การยื่นพอร์ตเป็นแค่หนึ่งในทางที่น้องเลือกได้</p></div>
+  <div class="oc-hd"><h2 id="ocH">เราไม่ได้สอนแค่ทำพอร์ต<br>เราสอนให้น้องสร้างของจริง</h2><p>น้องที่นี่ทำแอปที่ช่วยคนได้ เกมที่มีคนเล่นจริง ผลงานที่ขายได้ และพอร์ตที่พาติดมหาลัย</p></div>
 
   <article class="oc-r">
     <div class="oc-m"><img src="img/sc-revoice.webp" alt="น้องไอดิน กับแอป REVOICE ที่เขาสร้าง"></div>
     <div class="oc-t"><span class="oc-k">สร้างของที่ช่วยคนได้จริง</span>
-      <h3>REVOICE แอปฝึกพูด ที่น้องไอดินสร้างเองใน 4 เดือน</h3>
+      <h3>REVOICE แอปฝึกพูด ที่<span class="nw">น้องไอดิน</span>สร้างเองใน 4 เดือน</h3>
       <p>แอปช่วยฝึกการสื่อสาร สำหรับคนที่มีปัญหาด้านการพูด เล่นเหมือนเกม ทำด้วย Unity ผลงานนี้พาน้องไอดินชนะ NSC 2025 (การแข่งขันพัฒนาโปรแกรมคอมพิวเตอร์แห่งประเทศไทย)</p>
       <button type="button" class="oc-play" data-v="img/story-nsc.mp4"><i aria-hidden="true"></i>ดูคลิปไอดินเล่า 27 วินาที</button>
     </div>
@@ -4036,7 +4047,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     </a>
     <div class="fx-row">
       <a class="fx-s" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener"><span class="fx-si"><img src="img/dek69-1.webp" alt="" loading="lazy"></span><span class="fx-sb">
-          <small>สำหรับน้องที่ยังไม่เคยเขียนโปรแกรม</small><b>Hamstarter</b><span class="fx-sp">เริ่มจากศูนย์ จนมีผลงานชิ้นแรกเป็นของตัวเอง</span>
+          <small>สำหรับน้องที่ยังไม่เคยเขียนโปรแกรม</small><b>Hamstarter</b><span class="fx-sp">เริ่มจากศูนย์ จนมีผลงานชิ้นแรกเป็น<span class="nw">ของตัวเอง</span></span>
           <span class="fx-pr"><span class="ft-av"><img src="img/dek69-1.webp" alt="" loading="lazy"></span>น้องปลื้มจากคอร์สนี้ ติดสถิติประยุกต์ฯ สจล.</span>
           <span class="fx-go">รับแจ้งเตือนรอบถัดไป</span></span></a>
       <a class="fx-s" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener"><span class="fx-si"><img src="img/sc-lyno.webp" alt="" loading="lazy"></span><span class="fx-sb">
