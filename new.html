@@ -3452,7 +3452,7 @@ button:active:not(.vg-c):not(.zq-go),.lbtn:active,.mr-btn:active{transform:scale
 @media (max-width:980px){.fx-main{grid-template-columns:minmax(0,1fr)}.fx-row{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:560px){.fx-f{grid-template-columns:minmax(0,1fr)}.fx-s{grid-template-columns:96px minmax(0,1fr);gap:14px}}
 
-.oc{background:#fff;padding:clamp(90px,10vw,150px) 16px clamp(60px,8vw,110px)}
+.hbx{background:#fff;padding:clamp(90px,10vw,150px) 16px clamp(60px,8vw,110px)}
 .oc-in{max-width:1240px;margin:0 auto}
 .oc-hd{max-width:760px}
 .oc-hd h2{font:800 clamp(2.2rem,4.6vw,3.8rem)/1.12 var(--display);color:#0D2E63;margin:0}
@@ -3622,35 +3622,6 @@ button:active:not(.vg-c):not(.zq-go),.lbtn:active,.mr-btn:active{transform:scale
 .ad-im img{object-position:50% 20%}
 
 
-/* ===== v71: cinematic hero ===== */
-.zq{background:#05070D!important;color:#fff;min-height:100svh!important;overflow:hidden}
-.zq-sky,.zq-orb,.zq-town,.zq-dc,.zq-fl{display:none!important}
-.hx-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
-.hx-bg video{width:100%;height:100%;object-fit:cover;opacity:.55}
-.hx-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,7,13,.96) 0%,rgba(5,7,13,.82) 38%,rgba(5,7,13,.35) 70%,rgba(5,7,13,.55) 100%),linear-gradient(0deg,#05070D 0%,transparent 30%)}
-.zq-top{grid-template-columns:minmax(0,1fr)!important;max-width:1240px!important;position:relative;z-index:2;padding-top:40px!important;padding-bottom:40px!important}
-.zq-top>*{max-width:720px}
-.zq-lead{color:#C9D6EE!important;font-weight:600!important;margin-bottom:22px!important}
-.zq-q{color:#fff!important;font:800 clamp(2.4rem,5.4vw,4.6rem)/1.05 var(--display)!important;margin:0!important;letter-spacing:-.01em}
-.zq-h{margin:4px 0 28px!important;min-height:1.15em}
-.zq-h[data-f] #zqType,.zq-h #zqType{font:800 clamp(2.4rem,5.4vw,4.6rem)/1.15 var(--display)!important;color:#FFD54A!important;background:none!important;-webkit-text-stroke:0!important;text-shadow:none!important;transform:none!important;box-shadow:none!important;filter:none!important;padding:0!important;letter-spacing:-.01em!important;-webkit-background-clip:border-box!important;background-clip:border-box!important}
-.zq-h .zq-cur{background:#FFD54A!important}
-.zq-h{cursor:default!important}
-.zq-s{background:rgba(255,255,255,.96)!important;box-shadow:0 20px 50px -20px rgba(0,0,0,.6)!important}
-.zq-pop>span{color:#9FB0CC!important}
-.zq-pop button{background:rgba(255,255,255,.1)!important;color:#fff!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)!important;backdrop-filter:none!important}
-.zq-pop button:hover{background:rgba(255,255,255,.2)!important}
-.hx-pf{list-style:none;margin:44px 0 0;padding:22px 0 0;border-top:1px solid rgba(255,255,255,.14);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:860px!important}
-.hx-pf b{display:block;font:800 clamp(1.4rem,2.2vw,1.9rem)/1.1 var(--display);color:#fff}
-.hx-pf span{display:block;margin-top:6px;color:#9FB0CC;font-size:.9rem;line-height:1.45}
-.hx-pt{display:flex;flex-wrap:wrap;align-items:center;gap:20px;margin-top:28px}
-.hx-pt span{font:600 .82rem var(--display);color:#7F8DA8}
-.hx-pt img{height:28px;width:auto;filter:brightness(0) invert(1);opacity:.6}
-.zq-more{color:#fff!important}.zq-more i{background:rgba(255,255,255,.12)!important;color:#fff!important}
-.zq.ask .hx-pf,.zq.ask .hx-pt{opacity:0;pointer-events:none;transition:opacity .3s}
-.zq-sw .zq-res{right:-30%!important}
-@media (max-width:1000px){.zq-sw .zq-res{right:0!important}}
-@media (max-width:700px){.hx-pf{grid-template-columns:minmax(0,1fr);gap:14px;margin-top:32px}.hx-pf li{display:flex;gap:12px;align-items:baseline}.hx-pf span{margin:0}.hx-bg::after{background:linear-gradient(0deg,#05070D 10%,rgba(5,7,13,.8) 60%,rgba(5,7,13,.6))}.hx-pt img{height:22px}}
 /* products */
 .oc-biz video,.us-m video{width:100%;height:100%;object-fit:cover;display:block;min-height:0}
 .oc-biz video{grid-row:span 2}
@@ -3662,13 +3633,14 @@ button:active:not(.vg-c):not(.zq-go),.lbtn:active,.mr-btn:active{transform:scale
 .us-city b{position:relative;font:800 clamp(2rem,4vw,3rem) var(--display);color:#fff}.us-city span{position:relative;color:#CFEBDD;font-weight:700}
 
 
-/* v72 */
-.nav{transition:background .3s,border-color .3s}
-.nav.nav-dk{background:rgba(5,7,13,.92)!important;border-color:rgba(255,255,255,.08)!important}
-.nav.nav-dk .brand,.nav.nav-dk .v,.nav.nav-dk .menu{color:#fff!important}
-.nav.nav-dk .v span{color:#E5ECF8!important}
-.hx-pf b{white-space:nowrap}
-@media (max-width:700px){.zq-more{display:none!important}.hx-pf li{display:grid;grid-template-columns:118px 1fr;gap:10px}}
+/* v73 */
+.hbx .oc-m{aspect-ratio:16/10}
+.h5f-cap,.h5f-rt{left:-3%!important;width:106%!important}
+.rau{overflow-x:visible!important}
+.rau>div{left:-3%!important;width:106%!important}
+.rau canvas{width:100%!important}
+.h5f,.rau,.rsd{max-width:100vw}
+main{overflow-x:clip}
 
 /* ---------- footer ---------- */
 footer{background:var(--alt);font-size:.85rem;color:var(--mute)}
@@ -4079,14 +4051,14 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
 <main id="main">
 <!-- ================= HOME ================= -->
 <div data-view="home">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@800;900&family=Mitr:wght@700&family=Chakra+Petch:wght@700&family=Sriracha&family=Srisakdi:wght@700&family=Itim&family=Pattaya&family=Charmonman:wght@700&family=Chonburi&family=Mali:wght@700&family=Sarabun:wght@800&display=swap"><section class="zq" aria-label="ค้นหาคอร์สและกิจกรรม"><i class="zq-sky" aria-hidden="true"></i><div class="hx-bg" aria-hidden="true"><video src="img/hh-intro.mp4" poster="img/hh-intro.webp" muted loop playsinline autoplay></video></div>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@800;900&family=Mitr:wght@700&family=Chakra+Petch:wght@700&family=Sriracha&family=Srisakdi:wght@700&family=Itim&family=Pattaya&family=Charmonman:wght@700&family=Chonburi&family=Mali:wght@700&family=Sarabun:wght@800&display=swap"><section class="zq" aria-label="ค้นหาคอร์สและกิจกรรม"><i class="zq-sky" aria-hidden="true"></i>
     <div class="zq-top">
-      <p class="zq-lead">Hamster Hub สอนน้องมัธยมสร้างเกม เว็บ และ IoT ที่มีคนใช้จริง</p><p class="zq-q">น้องอยาก...</p>
+      <p class="zq-lead">Hamster Hub สอนน้องมัธยมสร้างเกม เว็บ และ IoT ของตัวเอง</p><p class="zq-q">น้องอยาก...</p>
       <h1 class="zq-h" title="กดเพื่อเปลี่ยนสไตล์"><span id="zqType">ยื่นพอร์ตเข้ามหาลัย</span><i class="zq-cur" aria-hidden="true"></i></h1>
       <div class="zq-sw"><span class="zq-ham" id="zqHam" aria-hidden="true"><span class="zq-hb" id="zqSpr"><img src="img/ham-noeye.webp" alt=""><i class="ze l"><b></b></i><i class="ze r"><b></b></i><i class="zq-bur" aria-hidden="true"></i></span></span><form class="zq-s" id="zqForm" role="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         <input id="zqIn" type="search" placeholder="พิมพ์สิ่งที่น้องอยากได้ เช่น อยากเข้าวิศวะคอม" aria-label="ค้นหาคอร์สและกิจกรรม" autocomplete="off"><button type="submit" class="zq-go"><span>ค้นหา</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form><div class="zq-sug" id="zqSug" hidden><p>น้องพิมพ์แบบนี้ได้เลย</p><button type="button" data-q="อยากเข้าวิศวะคอม"><img src="img/i3-cap.webp" alt="">อยากเข้าวิศวะคอม<small>ดูคอร์สที่รุ่นพี่วิศวะคอมฯ เรียน</small></button><button type="button" data-q="อยากเข้าแพทย์"><img src="img/i3-cap.webp" alt="">อยากเข้าแพทย์<small>เราช่วยเรื่องไหนได้บ้าง</small></button><button type="button" data-q="อยากทำเกมของตัวเอง"><img src="img/i3-pad.webp" alt="">อยากทำเกมของตัวเอง<small>คอร์สและค่ายสร้างเกม</small></button><button type="button" data-q="ไม่เคยเขียนโปรแกรมเลย"><img src="img/i3-rocket.webp" alt="">ไม่เคยเขียนโปรแกรมเลย<small>เริ่มจากศูนย์ได้ไหม</small></button><button type="button" data-q="ผู้ปกครอง ลูกจะได้อะไร"><img src="img/i3-bot.webp" alt="">ผู้ปกครอง ลูกจะได้อะไร<small>สิ่งที่ลูกได้จากที่นี่</small></button></div></div>
-      <p class="zq-pop"><span>ลองพิมพ์</span><button type="button" data-q="อยากเข้าวิศวะคอม">อยากเข้าวิศวะคอม</button><button type="button" data-q="ม.6 ยังไม่มีพอร์ต">ม.6 ยังไม่มีพอร์ต</button><button type="button" data-q="อยากทำเกมของตัวเอง">อยากทำเกมของตัวเอง</button><button type="button" data-q="Hamster Hub คืออะไร">Hamster Hub คืออะไร</button><button type="button" data-q="ค่าเรียนเท่าไหร่">ค่าเรียนเท่าไหร่</button></p><ul class="hx-pf"><li><b>48 คน</b><span>รุ่นพี่ติดมหาลัยรอบ Portfolio ปี 2569</span></li><li><b>12 ผลงาน</b><span>เข้ารอบชิงชนะเลิศ NSC ระดับประเทศ</span></li><li><b>ขายได้จริง</b><span>เกม Mr. City ขายให้สวนสัตว์สงขลา</span></li></ul>
-      <div class="hx-pt"><span>จัดกิจกรรมร่วมกับ</span><img src="img/p-it.webp" alt="คณะเทคโนโลยีสารสนเทศ สจล."><img src="img/p-iote.webp" alt="IoTE สจล."><img src="img/p-eduverse.webp" alt="EDUverse"></div>
+      <p class="zq-pop"><span>ลองพิมพ์</span><button type="button" data-q="อยากเข้าวิศวะคอม">อยากเข้าวิศวะคอม</button><button type="button" data-q="ม.6 ยังไม่มีพอร์ต">ม.6 ยังไม่มีพอร์ต</button><button type="button" data-q="อยากทำเกมของตัวเอง">อยากทำเกมของตัวเอง</button><button type="button" data-q="Hamster Hub คืออะไร">Hamster Hub คืออะไร</button><button type="button" data-q="ค่าเรียนเท่าไหร่">ค่าเรียนเท่าไหร่</button></p><div class="zq-ptn"><span>จัดกิจกรรมร่วมกับ</span><img src="img/p-it.webp" alt="คณะเทคโนโลยีสารสนเทศ สจล."><img src="img/p-iote.webp" alt="IoTE สจล."><img src="img/p-eduverse.webp" alt="EDUverse"></div><div class="zq-brand" aria-hidden="true"><i class="zb-ring"></i><img src="img/hh-mascot.webp" alt=""></div>
+    </div>
     <div class="zq-res" id="zqRes" hidden><p class="zq-r" id="zqR" aria-live="polite"></p><div class="ia-w" id="zqA" hidden></div><div class="zq-g" id="zqG"></div></div>
   <button type="button" class="zq-more" id="zqMore" aria-label="เลื่อนลงดูต่อ"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></button></section>
   <section class="ft"><div class="ft-in">
@@ -4115,7 +4087,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
   </div>
 </div></section>
   <section class="zc2 dk"><div class="mr"><div class="mr-l"><h2>คอร์สทั้งหมด</h2><p>ทุกคอร์สจบแล้วน้องได้ผลงานจริงของตัวเอง คอร์สที่ยังไม่เปิดรอบ กดรับแจ้งเตือนได้</p><a class="mr-btn" href="#courses">ดูคอร์สทั้งหมด</a><div class="mr-ar"><button type="button" class="mr-p" aria-label="เลื่อนไปทางซ้าย"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="mr-n" aria-label="เลื่อนไปทางขวา"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div><div class="mr-r" id="zqC"></div></div></section>
-  <section class="oc" aria-labelledby="ocH"><div class="oc-in">
+  <section class="hbx" aria-labelledby="ocH"><div class="oc-in">
   <div class="oc-hd"><h2 id="ocH">สิ่งที่ Hamster Hub สร้าง</h2><p>สตาร์ทอัพที่ขายได้จริง รุ่นพี่ที่ติดมหาลัย ผลงานที่ชนะระดับประเทศ และเกมที่มีคนเล่นจริง ทั้งหมดสร้างโดยน้องมัธยม</p></div>
 
   <article class="oc-r oc-big">
@@ -5063,15 +5035,10 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
       var d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5),m=Math.floor(ms%36e5/6e4),b=el.querySelectorAll('b');b[0].textContent=d;b[1].textContent=h;b[2].textContent=m}
     cd();setInterval(cd,30000)})();
   /* v71: hero headline keeps one look; videos play only on screen */
-  (function(){var h=$('.zq-h');if(h){h.setAttribute('data-f','hx');h.removeAttribute('title');h.addEventListener('click',function(e){e.stopImmediatePropagation()},true)}
+  (function(){
     if(!('IntersectionObserver' in window))return;var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
     var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting&&!rm)v.play().catch(function(){});else v.pause()})},{threshold:.2});
     document.querySelectorAll('.hx-bg video,.oc-biz video,.us-m video').forEach(function(v){v.removeAttribute('autoplay');io.observe(v)})})();
-  /* v72: nav turns dark while the dark hero is under it */
-  (function(){var n=$('.nav'),z=$('.zq');if(!n||!z)return;function on(v){n.classList.toggle('nav-dk',v)}
-    new IntersectionObserver(function(e){on(e[0].isIntersecting&&!!document.querySelector('[data-view="home"].on'))},{rootMargin:'-60px 0px -100% 0px'}).observe(z);
-    function chk(){var r=z.getBoundingClientRect();on(r.bottom>70&&r.top<80&&!!document.querySelector('[data-view="home"].on'))}
-    addEventListener('hashchange',function(){setTimeout(chk,60)});addEventListener('scroll',chk,{passive:true});setTimeout(chk,100);setTimeout(chk,800)})();
   /* activity list */
   var AIMG={'All for One University รอบชิงชนะเลิศ':'k-afo-logo','IoTE KMITL 2026 Showcase (Hallow Open House)':'k-hallow','All for One University รอบออนไลน์':'k-afo','AI Camp Season 2':'k-aicamp','Game Pee Camp':'k-ghost','GameJam X ปีที่ 5':'k-gamejam','Dek-70 Camp':'k-dek70','Dek70 Camp':'k-dek70','NSC Software Project 2026':'s-showcase2'},ACOL={'ค่าย':['#FFF1D6','#B26A00'],'เวิร์กชอป':['#E3F3FF','#1D5FB8'],'แข่งขัน':['#FFE6EE','#B23A68'],'โชว์ผลงาน':['#EEE8FF','#5B3FD6'],'โครงการ':['#E6F7EC','#1E7A4C']};
   var MAS={'ค่าย':'ev-st2','เวิร์กชอป':'ev-st3','แข่งขัน':'ev-st4','โชว์ผลงาน':'ev-st1','โครงการ':'ev-st5'},
