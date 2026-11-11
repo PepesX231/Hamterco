@@ -10,9 +10,10 @@ def remap(r, g, b):
     h, l, sa = colorsys.rgb_to_hls(r/255, g/255, b/255)
     if sa < .12 or not (190/360 <= h <= 245/360):
         return None
-    if l < .32:   nh, nl, ns = 0, min(l, .1), .02          # navy -> ink
-    elif l > .8:  nh, nl, ns = 40/360, max(l, .93), .1     # pale blue -> warm paper
-    else:         nh, nl, ns = 0, .16, .0                  # accent blue -> ink
+    if l < .32:   nh, nl, ns = 25/360, min(l, .09), .25       # navy -> warm ink
+    elif l > .8:  nh, nl, ns = 36/360, max(l, .93), .9       # pale blue -> cream
+    elif sa > .5: nh, nl, ns = 28/360, .45, .8               # bright blue -> deep hamster orange
+    else:         nh, nl, ns = 25/360, .32, .1               # slate -> warm grey
     r2, g2, b2 = colorsys.hls_to_rgb(nh, nl, ns)
     return round(r2*255), round(g2*255), round(b2*255)
 def hx(m):
