@@ -6997,7 +6997,7 @@ span.hb.pz-hb::before{content:none!important}
       var t=c.querySelector('.avc-d span'),k=TY[t&&t.textContent.trim()]||TY['ค่าย'];
       c.style.setProperty('--pz-chip',k[3]);c.style.setProperty('--pz-l',k[1]);c.style.setProperty('--pz-bg',k[2]);
       var ty=c.querySelector('.avc-ty');
-      if(ty&&!ty.querySelector('.hb')){var moods=['happy','calm','wow'],sh=['loaf','tall','loaf'];var h=blob({fur:k[0],shape:sh[i%3],mood:moods[i%3]});h.setAttribute('aria-hidden','true');ty.appendChild(h);
+      if(ty&&!ty.querySelector('.hb')){var moods=['happy','calm','wow'],sh=['loaf','tall','loaf'];var FC=['orange','mint','sky','pink','lilac','cream'];var h=blob({fur:FC[i%6],shape:sh[i%3],mood:moods[i%3]});h.setAttribute('aria-hidden','true');ty.appendChild(h);
         c.addEventListener('pointerenter',function(){Hamblob.squish(h)})}
     })}
   function popIn(G){if(rm||!G.animate)return;[].slice.call(G.children).forEach(function(c,i){c.animate([{opacity:0,transform:'translateY(18px) scale(.97)'},{opacity:1,transform:'none'}],{duration:520,delay:Math.min(i,8)*45,easing:'cubic-bezier(.2,.9,.25,1)',fill:'backwards'})})}
@@ -7067,3 +7067,125 @@ span.hb.pz-hb::before{content:none!important}
   setTimeout(build,0);
 })();
 </script>
+
+<!-- layer: 30-polish.html -->
+<!--
+  30-polish: independent critic pass (loads last, overrides only). Prefix: pl-
+  Fixes found in the audit; every rule is commented with the issue it closes.
+-->
+<style id="ly-polish">
+/* ---------- P0: hamblob scenes were laid out in normal flow ----------
+   05-hamblob sets `span.hb{position:relative}` (specificity 0,1,1) which beat `.pz-scene>*`, `.pz-peek`,
+   `.pz-perch` (0,1,0) in 20-pages, so the courses/activity/about mascots were stacked in flow:
+   blobs clipped under the header pad, a blob squashed under Port Express, a blob covering students' faces. */
+.pz-scene>span.hb,.pz-fam>span.hb,span.hb.pz-peek,span.hb.pz-perch{position:absolute!important}
+
+/* ---------- P1: confetti sprinkles in the activity header read as "AI slop" ---------- */
+.pz-cf{display:none!important}
+
+/* ---------- P0: rail card shadows were cut by the scroller's left/right edges ----------
+   give the scroller 56px of breathing room on each side (content does not move) and fade the very edge */
+.mr-r{--pl-g:56px;padding-left:calc(var(--pl-g) + 4px)!important;padding-right:calc(var(--pl-g) + 4px)!important;
+  margin-left:calc(var(--pl-g) * -1)!important;margin-right:calc(var(--pl-g) * -1)!important;scroll-padding-inline:calc(var(--pl-g) + 4px);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 calc(var(--pl-g) - 8px),#000 calc(100% - var(--pl-g) + 8px),transparent 100%);
+          mask-image:linear-gradient(90deg,transparent 0,#000 calc(var(--pl-g) - 8px),#000 calc(100% - var(--pl-g) + 8px),transparent 100%)}
+@media (max-width:900px){.mr-r{--pl-g:20px}}
+
+/* ---------- P0: the Port Express logo was cropped ("ORT XPRESS") wherever the poster is shown narrower than 16:9 ---------- */
+.qv-im img[src*="portex"]{object-position:8% 50%!important}
+.fx-main .fx-media video{object-position:30% 50%}
+.fx-main .fx-media{background-position:30% 50%!important}
+
+/* ---------- P1: header let page content show through behind the logo and links ---------- */
+.nav{background:rgba(255,250,243,.97)!important;transition:box-shadow .3s}
+html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
+
+/* ---------- P1: secondary course pads were off-palette salmon/olive, and they competed with Port Express ----------
+   soft glossy pink / mint pads (palette accents), lighter than the deep-space Port Express so #1 clearly leads */
+.fx-row .fx-s:nth-child(1){background:linear-gradient(160deg,#FFE3EC 0%,#FFC9DA 100%)!important}
+.fx-row .fx-s:nth-child(2){background:linear-gradient(160deg,#E2F8EF 0%,#BDEBDB 100%)!important}
+.fx-row .fx-s{box-shadow:inset 0 2px 0 rgba(255,255,255,.7),0 26px 44px -34px rgba(60,35,10,.55)!important}
+.fx-row .fx-s .fx-pr,.fx-row .fx-s small{color:rgba(29,23,18,.72)!important}
+
+/* ---------- P1: closing CTA was a muddy mustard; use the hero's glossy hamster orange ---------- */
+.end-in{background:radial-gradient(60% 90% at 18% 0%,rgba(255,236,205,.75),rgba(255,236,205,0) 70%),linear-gradient(180deg,#FFC27A 0%,#F7A23E 62%,#F29736 100%)!important;
+  box-shadow:inset 0 3px 0 rgba(255,255,255,.4),0 40px 70px -46px rgba(170,80,0,.75)!important}
+.end-in p{color:rgba(29,23,18,.8)!important}
+
+/* ---------- P1: hero hint ("tap the orange floor to feed") was small grey text on orange ---------- */
+[data-view="home"] .zq .tip{color:#1D1712!important;background:rgba(255,246,232,.62);padding:6px 14px;border-radius:999px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.6);width:fit-content;max-width:calc(100% - 24px);white-space:normal;text-align:center;line-height:1.45}
+
+/* ---------- P1: search suggestions used glossy 3D clip-art icons (cap, gamepad, rocket) — a second art style ---------- */
+.zq-sug button img.pl-hide{display:none!important}
+.zq-sug button .pl-sb{grid-row:1/3;width:40px;display:flex;align-items:flex-end;justify-content:center}
+.zq-sug button .pl-sb .hb{width:38px}
+.zq-sug button:hover .pl-sb .hb{transform:translateY(-2px);transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+
+/* ---------- P1: courses quiz walker was the old sticker hamster (different art style) — re-skin it as a Hamblob ---------- */
+[data-view="courses"] .wkz .wk.pl-skinned{opacity:0!important}
+[data-view="courses"] .wkz .pl-wk{position:absolute;left:0;bottom:-6px;width:84px;pointer-events:none;transform-origin:50% 100%;will-change:transform}
+[data-view="courses"] .wkz .pl-wk .hb{width:100%}
+
+/* ---------- P2: rail page dots were nearly invisible ---------- */
+.ak-dots button{background:rgba(29,23,18,.2)!important}
+.ak-dots button.on{background:linear-gradient(90deg,#F7A23E,#D9741A)!important}
+
+/* ---------- P2: mobile menu was a plain list ---------- */
+@media (max-width:900px){
+  .drawer{border-radius:0 0 24px 24px;box-shadow:0 30px 50px -30px rgba(60,35,10,.5);background:#FFFAF3!important;padding-bottom:16px!important}
+  .drawer a{border-bottom-color:rgba(29,23,18,.07)!important;transition:padding .25s cubic-bezier(.3,1.5,.5,1),color .2s}
+  .drawer a:active{padding-left:8px;color:#D9741A}
+}
+/* ---------- P2: floating back-to-top button covered the footer copyright on phones ---------- */
+@media (max-width:640px){footer{padding-bottom:84px!important}}
+</style>
+<script>
+(function(){
+  var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* header shadow once the page moves */
+  function sc(){document.documentElement.classList.toggle('pl-scrolled',scrollY>8)}
+  addEventListener('scroll',sc,{passive:true});sc();
+
+  /* search suggestions: Hamblob heads instead of the 3D clip-art icons */
+  function sug(){
+    if(!window.Hamblob)return;
+    var furs=['orange','cream','pink','mint','lilac'],moods=['happy','calm','wow','happy','calm'];
+    document.querySelectorAll('.zq-sug button').forEach(function(b,i){
+      if(b.querySelector('.pl-sb'))return;var im=b.querySelector('img');if(!im)return;
+      im.classList.add('pl-hide');var w=document.createElement('span');w.className='pl-sb';w.setAttribute('aria-hidden','true');
+      w.appendChild(Hamblob.make({fur:furs[i%5],shape:'loaf',mood:moods[i%5],size:38}));b.insertBefore(w,b.firstChild);
+      b.addEventListener('pointerenter',function(){var h=w.querySelector('.hb');if(h&&Hamblob.squish)Hamblob.squish(h)});
+    });
+  }
+  /* courses quiz walker: mirror the original walker's motion onto a Hamblob (drag/throw still work on the hidden img) */
+  function walker(){
+    if(!window.Hamblob)return;
+    document.querySelectorAll('[data-view="courses"] .wkz').forEach(function(z){
+      var img=z.querySelector('img.wk');if(!img||z.querySelector('.pl-wk'))return;
+      var box=document.createElement('span');box.className='pl-wk';box.setAttribute('aria-hidden','true');
+      var calm=Hamblob.make({fur:'orange',shape:'loaf',mood:'happy',size:84}),wow=Hamblob.make({fur:'orange',shape:'loaf',mood:'wow',size:84}),zz=Hamblob.make({fur:'orange',shape:'loaf',mood:'sleep',size:84});
+      [wow,zz].forEach(function(h){h.style.display='none'});box.appendChild(calm);box.appendChild(wow);box.appendChild(zz);z.appendChild(box);
+      img.classList.add('pl-skinned');
+      var last='';
+      function sync(){
+        var t=img.style.transform||'';
+        /* the sticker faces right by default and is flipped with scale(-1,..); a blob is symmetric, so drop the flip */
+        t=t.replace(/scale\((-?[\d.]+),\s*([\d.]+)\)/,function(m,a,b){return 'scale('+Math.abs(+a)+','+b+')'});
+        if(t!==last){box.style.transform=t;last=t}
+        var held=img.classList.contains('held'),ko=img.classList.contains('ko');
+        calm.style.display=held||ko?'none':'';wow.style.display=held&&!ko?'':'none';zz.style.display=ko?'':'none';
+      }
+      new MutationObserver(sync).observe(img,{attributes:true,attributeFilter:['style','class','src']});sync();
+      img.addEventListener('pointerdown',function(){Hamblob.squish&&Hamblob.squish(wow)});
+    });
+  }
+  function run(){sug();walker()}
+  if(document.readyState==='complete')run();else addEventListener('load',run);
+  addEventListener('hashchange',function(){setTimeout(run,80);setTimeout(function(){dispatchEvent(new Event('resize'))},120)});
+  /* 20-pages measures its scenes before this layer's CSS existed: re-measure once */
+  addEventListener('load',function(){setTimeout(function(){dispatchEvent(new Event('resize'))},60)});
+})();
+</script>
+
+<style id="pl-lead">.nav-in>a.nv-b[aria-current="page"]::after{display:none}.oc-hd h2{width:fit-content!important;max-width:100%}</style>

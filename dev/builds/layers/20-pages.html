@@ -365,7 +365,7 @@ span.hb.pz-hb::before{content:none!important}
       var t=c.querySelector('.avc-d span'),k=TY[t&&t.textContent.trim()]||TY['ค่าย'];
       c.style.setProperty('--pz-chip',k[3]);c.style.setProperty('--pz-l',k[1]);c.style.setProperty('--pz-bg',k[2]);
       var ty=c.querySelector('.avc-ty');
-      if(ty&&!ty.querySelector('.hb')){var moods=['happy','calm','wow'],sh=['loaf','tall','loaf'];var h=blob({fur:k[0],shape:sh[i%3],mood:moods[i%3]});h.setAttribute('aria-hidden','true');ty.appendChild(h);
+      if(ty&&!ty.querySelector('.hb')){var moods=['happy','calm','wow'],sh=['loaf','tall','loaf'];var FC=['orange','mint','sky','pink','lilac','cream'];var h=blob({fur:FC[i%6],shape:sh[i%3],mood:moods[i%3]});h.setAttribute('aria-hidden','true');ty.appendChild(h);
         c.addEventListener('pointerenter',function(){Hamblob.squish(h)})}
     })}
   function popIn(G){if(rm||!G.animate)return;[].slice.call(G.children).forEach(function(c,i){c.animate([{opacity:0,transform:'translateY(18px) scale(.97)'},{opacity:1,transform:'none'}],{duration:520,delay:Math.min(i,8)*45,easing:'cubic-bezier(.2,.9,.25,1)',fill:'backwards'})})}
