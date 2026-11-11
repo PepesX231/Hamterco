@@ -52,9 +52,9 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
 .zq-sug button:hover .pl-sb .hb{transform:translateY(-2px);transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
 
 /* ---------- P1: courses quiz walker was the old sticker hamster (different art style) — re-skin it as a Hamblob ---------- */
-[data-view="courses"] .wkz .wk.pl-skinned{opacity:0!important}
-[data-view="courses"] .wkz .pl-wk{position:absolute;left:0;bottom:-6px;width:84px;pointer-events:none;transform-origin:50% 100%;will-change:transform}
-[data-view="courses"] .wkz .pl-wk .hb{width:100%}
+.wkz .wk.pl-skinned,.wkz-rift .wk.pl-skinned{opacity:0!important}
+.wkz .pl-wk,.wkz-rift .pl-wk{position:absolute;left:0;bottom:-15px;width:84px;pointer-events:none;transform-origin:50% 100%;will-change:transform}
+.wkz .pl-wk .hb,.wkz-rift .pl-wk .hb{width:100%}
 
 /* ---------- P2: rail page dots were nearly invisible ---------- */
 .ak-dots button{background:rgba(29,23,18,.2)!important}
@@ -90,7 +90,7 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
   /* courses quiz walker: mirror the original walker's motion onto a Hamblob (drag/throw still work on the hidden img) */
   function walker(){
     if(!window.Hamblob)return;
-    document.querySelectorAll('[data-view="courses"] .wkz').forEach(function(z){
+    document.querySelectorAll('.wkz,.wkz-rift').forEach(function(z){
       var img=z.querySelector('img.wk');if(!img||z.querySelector('.pl-wk'))return;
       var box=document.createElement('span');box.className='pl-wk';box.setAttribute('aria-hidden','true');
       var calm=Hamblob.make({fur:'orange',shape:'loaf',mood:'happy',size:84}),wow=Hamblob.make({fur:'orange',shape:'loaf',mood:'wow',size:84}),zz=Hamblob.make({fur:'orange',shape:'loaf',mood:'sleep',size:84});

@@ -6276,15 +6276,14 @@ span.hb.pxe-peek.up{transform:translateY(-12px)}
     return svg}
 
   /* hamblob family: [fur, shape, mood, layer, x(0..1), size, sink] */
-  var FAM_D=[['mint','tall','happy','front',.05,92,6],['cream','loaf','calm','mid',.165,172,6],['ink','loaf','happy','mid',.268,88,4],
-             ['lilac','tall','calm','far',.952,82,4],['pink','puddle','happy','front',.872,176,8]];
-  var FAM_M=[['cream','loaf','calm','mid',.16,88,4],['lilac','tall','calm','far',.93,44,3],['pink','puddle','happy','front',.83,96,6]];
+  var FAM_D=[['cream','loaf','calm','front',.11,150,12]];
+  var FAM_M=[['cream','loaf','calm','front',.13,78,7]];
   var DOTS_D=[[.075,.33,22,'7s','0s'],[.3,.17,10,'6s','-2s'],[.71,.15,15,'8s','-1s'],[.94,.45,12,'6.5s','-3s']],DOTS_M=[[.1,.26,12,'7s','0s'],[.9,.47,9,'6s','-2s']];
   function mkBlob(f){var b=div('hm-b'),i=div('hm-in'),j=div('hm-j'),hb=H.make({fur:f[0],shape:f[1],mood:f[2],size:f[5]});
     b.style.width=f[5]+'px';j.appendChild(hb);i.appendChild(j);b.appendChild(i);b._f=f;b._hb=hb;b._j=j;b._in=i;
     var busy=0;function hop(){if(busy||rm)return;busy=1;H.squish(hb);
       j.animate([{transform:'none'},{transform:'scale(1.12,.86)',offset:.18},{transform:'translateY(-22px) scale(.92,1.08)',offset:.48},{transform:'scale(1.08,.92)',offset:.8},{transform:'none'}],{duration:620,easing:'ease-out'});setTimeout(function(){busy=0},640)}
-    b.addEventListener('pointerenter',hop);b.addEventListener('pointerdown',hop);return b}
+    if(f[3]!=='hang'){b.addEventListener('pointerenter',hop);b.addEventListener('pointerdown',hop)}return b}
   function buildScene(){
     if(!scene){scene=document.createElement('a');scene.className='hm-w';scene.setAttribute('aria-hidden','true');
       scene.appendChild(div('hm-glow'));zq.insertBefore(scene,zq.firstChild)}
@@ -7123,9 +7122,9 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
 .zq-sug button:hover .pl-sb .hb{transform:translateY(-2px);transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
 
 /* ---------- P1: courses quiz walker was the old sticker hamster (different art style) — re-skin it as a Hamblob ---------- */
-[data-view="courses"] .wkz .wk.pl-skinned{opacity:0!important}
-[data-view="courses"] .wkz .pl-wk{position:absolute;left:0;bottom:-6px;width:84px;pointer-events:none;transform-origin:50% 100%;will-change:transform}
-[data-view="courses"] .wkz .pl-wk .hb{width:100%}
+.wkz .wk.pl-skinned,.wkz-rift .wk.pl-skinned{opacity:0!important}
+.wkz .pl-wk,.wkz-rift .pl-wk{position:absolute;left:0;bottom:-15px;width:84px;pointer-events:none;transform-origin:50% 100%;will-change:transform}
+.wkz .pl-wk .hb,.wkz-rift .pl-wk .hb{width:100%}
 
 /* ---------- P2: rail page dots were nearly invisible ---------- */
 .ak-dots button{background:rgba(29,23,18,.2)!important}
@@ -7161,7 +7160,7 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
   /* courses quiz walker: mirror the original walker's motion onto a Hamblob (drag/throw still work on the hidden img) */
   function walker(){
     if(!window.Hamblob)return;
-    document.querySelectorAll('[data-view="courses"] .wkz').forEach(function(z){
+    document.querySelectorAll('.wkz,.wkz-rift').forEach(function(z){
       var img=z.querySelector('img.wk');if(!img||z.querySelector('.pl-wk'))return;
       var box=document.createElement('span');box.className='pl-wk';box.setAttribute('aria-hidden','true');
       var calm=Hamblob.make({fur:'orange',shape:'loaf',mood:'happy',size:84}),wow=Hamblob.make({fur:'orange',shape:'loaf',mood:'wow',size:84}),zz=Hamblob.make({fur:'orange',shape:'loaf',mood:'sleep',size:84});
@@ -7189,3 +7188,62 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
 </script>
 
 <style id="pl-lead">.nav-in>a.nv-b[aria-current="page"]::after{display:none}.oc-hd h2{width:fit-content!important;max-width:100%}</style>
+
+<!-- layer: 40-lead.html -->
+<style id="ly-lead">
+/* ceiling goo only at the two side edges; the hanging sky blob keeps its own strand */
+.hm-top{-webkit-mask-image:linear-gradient(90deg,#000 0,#000 7%,transparent 13%,transparent 87%,#000 93%,#000 100%);mask-image:linear-gradient(90deg,#000 0,#000 7%,transparent 13%,transparent 87%,#000 93%,#000 100%)}
+.hm-hang .hm-b{pointer-events:none}
+/* the seed hamster peeks from behind the search bar instead of sitting on it */
+[data-view="home"] .zq-s{position:relative;z-index:4}
+.hm-pet{z-index:1!important;--ps:76px!important;bottom:calc(100% - 22px)!important}
+@media (max-width:640px){.hm-pet{--ps:52px!important;bottom:calc(100% - 22px)!important}}
+/* drawn faces (no lashes) on the closing card and on "what we build" */
+.end-in .hm-end{display:none!important}
+.lf,.end-in>.lf{position:absolute!important;pointer-events:none;z-index:2!important}
+.lf .pu{transition:transform .18s ease-out}.lf .lid{transform-box:fill-box;transform-origin:50% 50%;transition:transform .08s}.lf.blink .lid{transform:scaleY(.1)}
+.oc-r{position:relative}
+</style>
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg',INK='#1D1712',rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function R0(s){return function(){s=(s*16807)%2147483647;return (s-1)/2147483646}}
+  function E(t,a){var e=document.createElementNS(NS,t);for(var i in a)e.setAttribute(i,a[i]);return e}
+  function sm(p){var n=p.length,d='M'+p[0][0].toFixed(1)+' '+p[0][1].toFixed(1);for(var i=0;i<n;i++){var a=p[(i-1+n)%n],b=p[i],c=p[(i+1)%n],e=p[(i+2)%n];d+='C'+(b[0]+(c[0]-a[0])/6).toFixed(1)+' '+(b[1]+(c[1]-a[1])/6).toFixed(1)+' '+(c[0]-(e[0]-b[0])/6).toFixed(1)+' '+(c[1]-(e[1]-b[1])/6).toFixed(1)+' '+c[0].toFixed(1)+' '+c[1].toFixed(1)}return d+'Z'}
+  function blob(R,cx,cy,rx,ry,a){var p=[],ph=R()*6;for(var i=0;i<16;i++){var t=i/16*Math.PI*2,k=1+(a||.05)*Math.sin(2*t+ph);p.push([cx+Math.cos(t)*rx*k,cy+Math.sin(t)*ry*k])}return sm(p)}
+  function stroke(R,pts,w){var P=[],i,j;for(i=0;i<pts.length-1;i++)for(j=0;j<8;j++){var t=j/8;P.push([pts[i][0]+(pts[i+1][0]-pts[i][0])*t,pts[i][1]+(pts[i+1][1]-pts[i][1])*t])}P.push(pts[pts.length-1]);
+    for(var it=0;it<3;it++)for(i=1;i<P.length-1;i++)P[i]=[(P[i-1][0]+P[i][0]*2+P[i+1][0])/4,(P[i-1][1]+P[i][1]*2+P[i+1][1])/4];
+    var L=[],Rr=[],n=P.length;for(i=0;i<n;i++){var a=P[Math.max(0,i-1)],b=P[Math.min(n-1,i+1)],dx=b[0]-a[0],dy=b[1]-a[1],l=Math.hypot(dx,dy)||1,ww=w*Math.pow(Math.sin(Math.PI*Math.min(1,i/(n-1)*1.12)),.55)*.5+.25;
+      L.push([P[i][0]-dy/l*ww,P[i][1]+dx/l*ww]);Rr.unshift([P[i][0]+dy/l*ww,P[i][1]-dx/l*ww])}return sm(L.concat(Rr))}
+  function face(o){var R=R0(o.seed),sv=E('svg',{'class':'lf',viewBox:'0 0 200 120','aria-hidden':'true'}),ey=50,er=17,ex=[62,138],c=o.ink||INK;
+    if(o.blush!==false)[34,166].forEach(function(x){sv.appendChild(E('path',{d:blob(R,x,ey+26,15,8),fill:'#FF7F9F',opacity:.4}));for(var h=0;h<3;h++)sv.appendChild(E('path',{d:stroke(R,[[x-7+h*6,ey+29],[x-3+h*6,ey+22]],2.2),fill:'#E8566B',opacity:.55}))});
+    ex.forEach(function(x,i){var lid=E('g',{'class':'lid'}),pu=E('g',{'class':'pu'});
+      if(o.wink&&i)lid.appendChild(E('path',{d:stroke(R,[[x-er,ey+3],[x-er*.4,ey-er*.7],[x+er*.4,ey-er*.7],[x+er,ey+3]],5),fill:c}));
+      else{pu.appendChild(E('path',{d:blob(R,x,ey,er*.86,er),fill:c}));pu.appendChild(E('path',{d:blob(R,x+er*.32,ey-er*.38,er*.3,er*.32,.1),fill:o.hi||'#fff'}));pu.appendChild(E('path',{d:blob(R,x-er*.35,ey+er*.45,er*.12,er*.12),fill:o.hi||'#fff'}))}
+      lid.appendChild(pu);sv.appendChild(lid)});
+    var my=ey+32;
+    if(o.mouth==='open'){sv.appendChild(E('path',{d:blob(R,100,my+5,11,9,.08),fill:'#5A1E22'}));sv.appendChild(E('path',{d:blob(R,100,my+9,6.5,3.6),fill:'#EF6F7F'}))}
+    else if(o.mouth==='tongue'){sv.appendChild(E('path',{d:blob(R,104,my+9,8,10,.07),fill:'#EF6F7F'}));sv.appendChild(E('path',{d:stroke(R,[[86,my],[100,my+6],[116,my-3]],4.6),fill:c}))}
+    else sv.appendChild(E('path',{d:stroke(R,[[86,my-2],[92,my+5],[99,my],[100,my-1],[101,my],[108,my+5],[114,my-2]],4.4),fill:c}));
+    return sv}
+  var faces=[];
+  function build(){
+    document.querySelectorAll('.lf').forEach(function(n){n.remove()});faces=[];
+    var home=document.querySelector('[data-view="home"]');if(!home)return;var mob=innerWidth<640;
+    var en=home.querySelector('.end-in');if(en){var f=face({seed:21,mouth:'open'});f.style.cssText='left:50%;top:'+(mob?14:22)+'px;width:'+(mob?170:250)+'px;margin-left:-'+(mob?85:125)+'px';en.appendChild(f)}
+    /* "what we build": a face peeks from behind each picture, different mood per row */
+    var M=[{seed:3,mouth:'w'},{seed:8,mouth:'tongue',wink:true},{seed:13,mouth:'open'}];
+    home.querySelectorAll('.oc-r').forEach(function(r,i){var m=r.querySelector('.oc-m');if(!m)return;var f=face(M[i%3]);
+      var left=m.offsetLeft<r.clientWidth/3;f.style.width=(mob?110:150)+'px';f.style.top=(m.offsetTop-(mob?40:54))+'px';
+      f.style.left=(left?m.offsetLeft+m.offsetWidth-(mob?130:180):m.offsetLeft+(mob?20:30))+'px';r.appendChild(f)});
+    faces=[].slice.call(document.querySelectorAll('.lf'));
+  }
+  var mx=0,my=0,raf=0;
+  function look(){raf=0;faces.forEach(function(f){var r=f.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;var dx=mx-(r.left+r.width/2),dy=my-(r.top+r.height*.45),d=Math.hypot(dx,dy)||1,k=Math.min(1,d/260)*3.4;
+    f.querySelectorAll('.pu').forEach(function(p){p.setAttribute('transform','translate('+(dx/d*k).toFixed(2)+' '+(dy/d*k*.8).toFixed(2)+')')})})}
+  if(!rm){addEventListener('pointermove',function(e){mx=e.clientX;my=e.clientY;if(!raf)raf=requestAnimationFrame(look)},{passive:true});
+    (function bl(){setTimeout(function(){var f=faces[Math.floor(Math.random()*faces.length)];if(f){f.classList.add('blink');setTimeout(function(){f.classList.remove('blink')},130)}bl()},1300+Math.random()*2000)})()}
+  addEventListener('hashchange',function(){setTimeout(build,500)});var lw=innerWidth,t;addEventListener('resize',function(){if(innerWidth===lw)return;lw=innerWidth;clearTimeout(t);t=setTimeout(build,300)});
+  if(document.readyState==='complete')setTimeout(build,400);else addEventListener('load',function(){setTimeout(build,400)});
+})();
+</script>

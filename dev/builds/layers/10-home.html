@@ -162,15 +162,14 @@ span.hb.pxe-peek.up{transform:translateY(-12px)}
     return svg}
 
   /* hamblob family: [fur, shape, mood, layer, x(0..1), size, sink] */
-  var FAM_D=[['mint','tall','happy','front',.05,92,6],['cream','loaf','calm','mid',.165,172,6],['ink','loaf','happy','mid',.268,88,4],
-             ['lilac','tall','calm','far',.952,82,4],['pink','puddle','happy','front',.872,176,8]];
-  var FAM_M=[['cream','loaf','calm','mid',.16,88,4],['lilac','tall','calm','far',.93,44,3],['pink','puddle','happy','front',.83,96,6]];
+  var FAM_D=[['cream','loaf','calm','front',.11,150,12]];
+  var FAM_M=[['cream','loaf','calm','front',.13,78,7]];
   var DOTS_D=[[.075,.33,22,'7s','0s'],[.3,.17,10,'6s','-2s'],[.71,.15,15,'8s','-1s'],[.94,.45,12,'6.5s','-3s']],DOTS_M=[[.1,.26,12,'7s','0s'],[.9,.47,9,'6s','-2s']];
   function mkBlob(f){var b=div('hm-b'),i=div('hm-in'),j=div('hm-j'),hb=H.make({fur:f[0],shape:f[1],mood:f[2],size:f[5]});
     b.style.width=f[5]+'px';j.appendChild(hb);i.appendChild(j);b.appendChild(i);b._f=f;b._hb=hb;b._j=j;b._in=i;
     var busy=0;function hop(){if(busy||rm)return;busy=1;H.squish(hb);
       j.animate([{transform:'none'},{transform:'scale(1.12,.86)',offset:.18},{transform:'translateY(-22px) scale(.92,1.08)',offset:.48},{transform:'scale(1.08,.92)',offset:.8},{transform:'none'}],{duration:620,easing:'ease-out'});setTimeout(function(){busy=0},640)}
-    b.addEventListener('pointerenter',hop);b.addEventListener('pointerdown',hop);return b}
+    if(f[3]!=='hang'){b.addEventListener('pointerenter',hop);b.addEventListener('pointerdown',hop)}return b}
   function buildScene(){
     if(!scene){scene=document.createElement('a');scene.className='hm-w';scene.setAttribute('aria-hidden','true');
       scene.appendChild(div('hm-glow'));zq.insertBefore(scene,zq.firstChild)}
