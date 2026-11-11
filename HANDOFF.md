@@ -186,3 +186,7 @@ GitHub Pages takes about 1 to 5 minutes, and sometimes needs an extra empty comm
   - coreyhaines31 `marketingskills` (cro, marketing-council)
   - StoryBrand (Grunt Test)
 
+
+## slime.html (theme preview)
+- Built from new.html: `python3 dev/builds/theme_slime.py new.html slime.html`. The layout is untouched. Theme = colour pads with small faces (mousepad ref), glossy slime drips, and jelly buttons. The layer lives in dev/builds/theme_slime.css.html.
+- The user rejected hamsters built from CSS circles. Use the real drawn art in img/ (n-*, ham-*).
