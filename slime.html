@@ -5661,7 +5661,7 @@ html,body{background:var(--paper)}
 @keyframes chew{50%{transform:scale(1.04,.95) translateY(2px)}}
 .zq-ham.chew .ze{display:none}
 .je{position:relative;z-index:6;height:0;pointer-events:none}
-.je i{position:absolute;top:-34px;height:220px;background:url(img/fx-drip.webp) 0 0/960px 220px round no-repeat;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22px,#000 calc(100% - 22px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 22px,#000 calc(100% - 22px),transparent 100%)}
+.je i{position:absolute;top:-34px;height:220px;background:url(img/fx-drip.webp) 0 0/960px 220px round no-repeat;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 46px,#000 calc(100% - 46px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 46px,#000 calc(100% - 46px),transparent 100%)}
 .seed{position:absolute;z-index:8;width:15px;height:19px;margin:-9px 0 0 -7px;pointer-events:none}
 .tip{position:absolute;z-index:9;left:50%;transform:translate(-50%,6px);white-space:nowrap;color:rgba(29,23,18,.7);font:600 .85rem var(--display);opacity:0;transition:opacity .4s,transform .4s;pointer-events:none}
 .tip.on{opacity:1;transform:translate(-50%,0)}
@@ -5694,10 +5694,12 @@ html,body{background:var(--paper)}
 .mc-u button[aria-pressed="true"]{background:var(--or)!important;color:var(--ink)!important;box-shadow:none!important}
 .mc-u button b{color:var(--or-d)!important}
 .hg{position:relative}
-.t-afo{background:var(--ink)!important}
-.t-afo .t-k{color:var(--or)!important;padding-top:14px}
-.cd>div{background:rgba(255,255,255,.08)!important;box-shadow:none!important}
-.cd>div b{color:var(--or)!important}
+.t-afo{background:#1068DC!important;color:#fff}
+.t-afo .t-k{color:#FFD24A!important}
+.t-afo .cd div{background:#0B1640!important;box-shadow:5px 5px 0 #FFD24A!important;color:#fff!important}
+.t-afo .cd b{color:#fff!important}
+.t-afo .tb1{background:#FFD24A!important;color:#0B1640!important;box-shadow:none!important}
+.t-afo .tb2{color:#fff!important;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.7)!important}
 .end,.nw2{content-visibility:visible!important;contain:none!important}
 .end-in{position:relative;overflow:hidden;background:var(--ink)!important;border-radius:clamp(30px,3.4vw,48px)!important}
 .end-in h2{color:#fff!important}.end-in p{color:rgba(255,255,255,.75)!important}
@@ -5724,6 +5726,29 @@ html,body{background:var(--paper)}
 .end-in{padding-top:150px!important}
 .end-in>*:not(.dfc){position:relative;z-index:1}
 @media (max-width:640px){.end-in{padding-top:120px!important}}
+
+
+/* ---------- hero stickers (Hamster Hub's own drawn icons) ---------- */
+.hstk{position:absolute;z-index:1;pointer-events:auto;width:var(--w);transform:translate(var(--px,0),var(--py,0)) rotate(var(--r));transition:transform .5s cubic-bezier(.2,.9,.3,1)}
+.hstk img{display:block;width:100%;height:auto;filter:drop-shadow(0 12px 14px rgba(110,50,0,.28));animation:bob var(--t) ease-in-out var(--d) infinite}
+.hstk:hover img{animation:wig .5s ease-in-out}
+@keyframes bob{50%{transform:translateY(-10px)}}
+@keyframes wig{25%{transform:rotate(-8deg) scale(1.06)}75%{transform:rotate(8deg) scale(1.06)}}
+.zq-top{position:relative;z-index:2}
+
+/* ---------- Port Express: the star course gets a living aura, 3D tilt and twinkles ---------- */
+.px-aura{position:absolute;z-index:0;border-radius:32px;pointer-events:none;filter:blur(20px);opacity:.95;
+  background:conic-gradient(from var(--a,0deg),#F7A23E,#FF6FA8,#8C6BFF,#4FC3FF,#F7A23E);animation:spinA 6s linear infinite}
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes spinA{to{--a:360deg}}
+.fx-main{position:relative;z-index:1;transform:perspective(1100px) rotateX(var(--rx,0)) rotateY(var(--ry,0));transition:transform .4s cubic-bezier(.2,.9,.3,1)!important;will-change:transform}
+.fx-main .px-shine{position:absolute;inset:0;z-index:5;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity .3s;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.22),transparent 60%)}
+.fx-main:hover .px-shine{opacity:1}
+.tw{position:absolute;z-index:4;width:var(--s);height:var(--s);pointer-events:none;animation:tw var(--t) ease-in-out var(--d) infinite}
+@keyframes tw{0%,100%{transform:scale(.2) rotate(0);opacity:0}50%{transform:scale(1) rotate(45deg);opacity:1}}
+.px-rib{position:absolute;z-index:6;right:-46px;top:22px;transform:rotate(38deg);background:#F7A23E;color:#1D1712;font:800 .8rem var(--display);padding:6px 52px;box-shadow:0 6px 14px -6px rgba(0,0,0,.6)}
+@media (max-width:640px){.hstk{display:none}.hstk.m{display:block}}
 
 /* ---------- headings: soft marker under the words ---------- */
 .ft-hd h2,.mr-l h2,.mr-l h3,.oc-hd h2,.nw2-h,.ct-h h1{position:relative;z-index:0;width:fit-content;isolation:isolate}
@@ -5753,7 +5778,7 @@ footer{background:var(--cream)!important}
 
   /* glossy slime: a strip under the hero, a cap on each card */
   function drip(zq){var r=parseFloat(getComputedStyle(zq).borderBottomLeftRadius)||40,m=parseFloat(getComputedStyle(zq).marginLeft)||0,
-      b=document.createElement('div'),i=document.createElement('i');b.className='je';i.style.left=(m+r*.9)+'px';i.style.right=(m+r*.9)+'px';b.appendChild(i);zq.after(b)}
+      b=document.createElement('div'),i=document.createElement('i');b.className='je';i.style.left=(m+r+14)+'px';i.style.right=(m+r+14)+'px';b.appendChild(i);zq.after(b)}
   function cap(box,small){if(!box||box.querySelector(':scope > .cap'))return;var c=document.createElement('i');c.className='cap'+(small?' s':'');c.setAttribute('aria-hidden','true');
       c.style.setProperty('--cx',-Math.round(Math.random()*300)+'px');box.insertBefore(c,box.firstChild)}
 
@@ -5843,11 +5868,38 @@ footer{background:var(--cream)!important}
   if(!rm){addEventListener('pointermove',function(e){fmx=e.clientX;fmy=e.clientY;if(!fr)fr=requestAnimationFrame(flook)},{passive:true});
     (function bl(){setTimeout(function(){var f=faces[Math.floor(Math.random()*faces.length)];if(f){f.classList.add('blink');setTimeout(function(){f.classList.remove('blink')},130)}bl()},1200+Math.random()*2200)})()}
 
+
+  function stickers(zq){
+    zq.querySelectorAll('.hstk').forEach(function(n){n.remove()});
+    var L=[['co-rocket',8,14,118,-10,'m'],['co-bulb',84,10,104,12,''],['co-laptop',6,62,128,8,''],['co-pad',86,58,118,-12,'m'],['co-bot',18,84,96,6,''],['co-cap',76,84,104,-6,'']];
+    var mob=innerWidth<640;if(mob)L=[['co-rocket',12,9,64,-10,'m'],['co-pad',88,9,64,10,'m']];
+    L.forEach(function(c,i){var a=document.createElement('a');a.className='hstk '+c[5];a.setAttribute('aria-hidden','true');a.tabIndex=-1;
+      a.style.left=c[1]+'%';a.style.top=c[2]+'%';a.style.setProperty('--w',c[3]+'px');a.style.setProperty('--r',c[4]+'deg');
+      a.style.setProperty('--t',(4+i*.6)+'s');a.style.setProperty('--d','-'+(i*.9)+'s');a.style.marginLeft=-(c[3]/2)+'px';a.style.marginTop=-(c[3]/2)+'px';
+      a.innerHTML='<img src="img/'+c[0]+'.webp" alt="">';a.dataset.k=(.6+i%3*.35);zq.appendChild(a)});
+  }
+  function portex(home){
+    var fm=home.querySelector('.fx-main'),fx=fm&&fm.parentNode;if(!fm)return;
+    fx.querySelectorAll('.px-aura').forEach(function(n){n.remove()});
+    var au=document.createElement('i');au.className='px-aura';au.style.left=(fm.offsetLeft-4)+'px';au.style.top=(fm.offsetTop+6)+'px';au.style.width=(fm.offsetWidth+8)+'px';au.style.height=(fm.offsetHeight+6)+'px';fx.insertBefore(au,fx.firstChild);
+    if(!fm.querySelector('.px-shine')){var sh=document.createElement('i');sh.className='px-shine';fm.appendChild(sh);
+      var rb=document.createElement('span');rb.className='px-rib';
+      var med=fm.querySelector('.fx-media');if(med)for(var i=0;i<9;i++){var t=document.createElementNS('http://www.w3.org/2000/svg','svg');t.setAttribute('class','tw');t.setAttribute('viewBox','-10 -10 20 20');
+        t.innerHTML='<path d="M0-10C1 -2 2 -1 10 0C2 1 1 2 0 10C-1 2-2 1-10 0C-2-1-1-2 0-10Z" fill="#FFF6C8"/>';t.style.left=(8+Math.random()*84)+'%';t.style.top=(8+Math.random()*80)+'%';
+        t.style.setProperty('--s',(10+Math.random()*12)+'px');t.style.setProperty('--t',(1.8+Math.random()*2)+'s');t.style.setProperty('--d','-'+(Math.random()*3).toFixed(1)+'s');med.appendChild(t)}
+      if(!rm){fm.addEventListener('pointermove',function(e){var r=fm.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+          fm.style.setProperty('--ry',((x-.5)*6).toFixed(2)+'deg');fm.style.setProperty('--rx',(-(y-.5)*6).toFixed(2)+'deg');fm.style.setProperty('--mx',(x*100)+'%');fm.style.setProperty('--my',(y*100)+'%')});
+        fm.addEventListener('pointerleave',function(){fm.style.setProperty('--ry','0deg');fm.style.setProperty('--rx','0deg')})}}
+  }
+  var szq=null;
+  if(!rm)addEventListener('pointermove',function(e){if(!szq)return;var r=szq.getBoundingClientRect();if(e.clientY>r.bottom)return;var dx=(e.clientX-r.left-r.width/2)/r.width,dy=(e.clientY-r.top-r.height/2)/r.height;
+    szq.querySelectorAll('.hstk').forEach(function(a){var k=+a.dataset.k;a.style.setProperty('--px',(-dx*22*k).toFixed(1)+'px');a.style.setProperty('--py',(-dy*18*k).toFixed(1)+'px')})},{passive:true});
+
   function build(){
     var home=document.querySelector('[data-view="home"]'),zq=home&&home.querySelector('.zq');
     if(!zq||!zq.offsetWidth)return;
     document.querySelectorAll('.je').forEach(function(n){n.remove()});drip(zq);
-    pads(home);
+    pads(home);stickers(zq);szq=zq;portex(home);
     var top=zq.querySelector('.zq-top');
     if(top&&!tip&&!rm){var f=0;try{f=localStorage.getItem('hhFed')}catch(e){}
       if(!f){tip=document.createElement('p');tip.className='tip';tip.textContent='แตะที่ว่างบนพื้นสีส้ม เพื่อป้อนเมล็ดทานตะวันให้น้องแฮมสเตอร์';top.appendChild(tip);
