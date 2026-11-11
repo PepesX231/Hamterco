@@ -27,10 +27,6 @@
   Site-wide, automatic: a slime scroll-progress bar at the top (replaces the old .sp-bar).
 -->
 <style id="ly-motion">
-/* guard: new.html still carries an old full-screen `.hb` section rule (min-height 100svh, purple bg, dot overlay)
-   that collides with the Hamblob mascot class <span class="hb">. Neutralise it for every hamblob on the site. */
-span.hb{min-height:0!important;overflow:visible!important;background:none!important;align-items:normal!important}
-span.hb::before{content:none!important;display:none!important}
 @property --mo-p{syntax:'<length-percentage>';inherits:false;initial-value:-120px}
 /* ---- reveal ---- */
 html.mo-js .mo-goo:not(.mo-done),html.mo-js .mo-rise:not(.mo-done),html.mo-js .mo-kids:not(.mo-done)>*{

@@ -345,7 +345,7 @@ footer{background:var(--cream)!important}
     var home=document.querySelector('[data-view="home"]'),zq=home&&home.querySelector('.zq');
     if(!zq||!zq.offsetWidth)return;
     document.querySelectorAll('.je').forEach(function(n){n.remove()});drip(zq);
-    pads(home);goo(zq);portex(home);
+    pads(home);portex(home);
     var top=zq.querySelector('.zq-top');
     if(top&&!tip&&!rm){var f=0;try{f=localStorage.getItem('hhFed')}catch(e){}
       if(!f){tip=document.createElement('p');tip.className='tip';tip.textContent='แตะที่ว่างบนพื้นสีส้ม เพื่อป้อนเมล็ดทานตะวันให้น้องแฮมสเตอร์';top.appendChild(tip);
