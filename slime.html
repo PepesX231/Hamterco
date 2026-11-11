@@ -5991,3 +5991,12 @@ footer{background:var(--cream)!important}
   if(document.readyState==='complete')setTimeout(build,60);else addEventListener('load',function(){setTimeout(build,60)});
 })();
 </script>
+<style id="slime-seam-fix">
+/* Blend the live surface into the overlapping drip without a hard edge. */
+.gl-goo{-webkit-mask-image:linear-gradient(to top,transparent 40px,#000 140px);mask-image:linear-gradient(to top,transparent 40px,#000 140px)}
+.je i{-webkit-mask-image:linear-gradient(to bottom,transparent,#000 34px);mask-image:linear-gradient(to bottom,transparent,#000 34px)}
+@media(max-width:640px){
+.gl-goo{-webkit-mask-image:linear-gradient(to top,transparent 28px,#000 100px);mask-image:linear-gradient(to top,transparent 28px,#000 100px)}
+.je i{-webkit-mask-image:linear-gradient(to bottom,transparent,#000 23px);mask-image:linear-gradient(to bottom,transparent,#000 23px)}
+}
+</style>
