@@ -185,3 +185,7 @@ GitHub Pages takes about 1 to 5 minutes, and sometimes needs an extra empty comm
   - greensock `gsap-skills`
   - coreyhaines31 `marketingskills` (cro, marketing-council)
   - StoryBrand (Grunt Test)
+
+## hamster.html (theme preview)
+- Built from new.html by `python3 dev/builds/theme_hamster.py new.html hamster.html` (blue to warm-gold colour remap + override layer). Same layout as new.html. Re-run after every new.html change.
+- The user rejected CSS-shape hamsters ("geometric, kindergarten"). Use the real drawn hamster art in img/ (n-*.webp, ham-*.webp) instead.
