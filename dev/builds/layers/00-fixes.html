@@ -1,0 +1,14 @@
+<style id="ly-fixes">
+/* rails: room for the card shadow, so it is not cut by the scroller */
+.mr-r{padding-bottom:44px!important;margin-bottom:-28px!important}
+/* search open: results sit above the slime drip, hero grows to fit */
+.zq.ask{z-index:12;overflow:visible!important}
+.zq.ask .gl-goo{border-radius:inherit}
+</style>
+<script>
+/* when results open, lift the search bar only a little (to ~22% of the screen), not to the very top */
+(function(){var z=document.querySelector('[data-view="home"] .zq'),top=z&&z.querySelector('.zq-top'),sw=z&&z.querySelector('.zq-sw');if(!z||!top||!sw)return;
+  new MutationObserver(function(){if(!z.classList.contains('ask'))return;top.style.removeProperty('--ask');
+    var b=sw.getBoundingClientRect().top,target=Math.max(110,innerHeight*.22),d=Math.max(0,b-target);if(scrollY>40)d=0;top.style.setProperty('--ask',(-d)+'px')}).observe(z,{attributes:true,attributeFilter:['class']});
+})();
+</script>

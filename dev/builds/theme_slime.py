@@ -30,4 +30,8 @@ s = re.sub(r'style="([^"]*)"', lambda m: 'style="'+fix(m.group(1))+'"', s)
 
 # ---- 2. theme layer (appended last so it wins) ----
 s += open(__file__.replace('theme_slime.py', 'theme_slime.css.html')).read()
+# ---- 3. extra layers, applied in filename order (each agent owns one file) ----
+import glob, os
+for f in sorted(glob.glob(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'layers', '*.html'))):
+    s += '\n<!-- layer: %s -->\n' % os.path.basename(f) + open(f).read()
 open(out, 'w').write(s)
