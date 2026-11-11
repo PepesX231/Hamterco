@@ -5661,7 +5661,7 @@ html,body{background:var(--paper)}
 @keyframes chew{50%{transform:scale(1.04,.95) translateY(2px)}}
 .zq-ham.chew .ze{display:none}
 .je{position:relative;z-index:6;height:0;pointer-events:none}
-.je i{position:absolute;top:-34px;height:220px;background:url(img/fx-drip.webp) repeat-x 0 0/960px 220px}
+.je i{position:absolute;top:-34px;height:220px;background:url(img/fx-drip.webp) 0 0/960px 220px round no-repeat;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22px,#000 calc(100% - 22px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 22px,#000 calc(100% - 22px),transparent 100%)}
 .seed{position:absolute;z-index:8;width:15px;height:19px;margin:-9px 0 0 -7px;pointer-events:none}
 .tip{position:absolute;z-index:9;left:50%;transform:translate(-50%,6px);white-space:nowrap;color:rgba(29,23,18,.7);font:600 .85rem var(--display);opacity:0;transition:opacity .4s,transform .4s;pointer-events:none}
 .tip.on{opacity:1;transform:translate(-50%,0)}
@@ -5730,7 +5730,7 @@ footer{background:var(--cream)!important}
 
   /* glossy slime: a strip under the hero, a cap on each card */
   function drip(zq){var r=parseFloat(getComputedStyle(zq).borderBottomLeftRadius)||40,m=parseFloat(getComputedStyle(zq).marginLeft)||0,
-      b=document.createElement('div'),i=document.createElement('i');b.className='je';i.style.left=(m+r*.8)+'px';i.style.right=(m+r*.8)+'px';b.appendChild(i);zq.after(b)}
+      b=document.createElement('div'),i=document.createElement('i');b.className='je';i.style.left=(m+r*.9)+'px';i.style.right=(m+r*.9)+'px';b.appendChild(i);zq.after(b)}
   function cap(box,small){if(!box||box.querySelector(':scope > .cap'))return;var c=document.createElement('i');c.className='cap'+(small?' s':'');c.setAttribute('aria-hidden','true');
       c.style.setProperty('--cx',-Math.round(Math.random()*300)+'px');box.insertBefore(c,box.firstChild)}
 

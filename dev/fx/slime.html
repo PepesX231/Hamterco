@@ -31,7 +31,7 @@ function strip(o,t){
   var g=el('g',{filter:'url(#f)',fill:'#000'});s.appendChild(g);
   var band=o.band;
   // drips defs (deterministic)
-  var D=[];for(var i=0;i<o.n;i++){D.push({x:(i+.15+R()*.7)/o.n*W,w:12+R()*14,lmin:6+R()*10,lmax:o.lmax*(.45+R()*.55),ph:R(),rel:R()<o.rel,sp:R()<.5?1:2,bul:R()<.35})}
+  var D=[];for(var i=0;i<o.n;i++){D.push({x:(i+.5+(R()-.5)*.45)/o.n*W,w:12+R()*14,lmin:6+R()*10,lmax:o.lmax*(.45+R()*.55),ph:R(),rel:R()<o.rel,sp:R()<.5?1:2,bul:R()<.35})}
   for(var c=-1;c<=1;c++){var ox=c*W;
     g.appendChild(el('rect',{x:ox-10,y:-40,width:W+20,height:band+40}));
     // slow bulges
