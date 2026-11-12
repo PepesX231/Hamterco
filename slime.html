@@ -7293,9 +7293,6 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
     var en=home.querySelector('.end-in');if(en){var f=face({seed:21,mouth:'open'});f.style.cssText='left:50%;top:'+(mob?14:22)+'px;width:'+(mob?170:250)+'px;margin-left:-'+(mob?85:125)+'px';en.appendChild(f)}
     /* "what we build": a face peeks from behind each picture, different mood per row */
     var M=[{seed:3,mouth:'w',happy:true},{seed:8,mouth:'w'},{seed:13,mouth:'w'}];
-    var CH=[['n-ceo','หนูซีอีโอ'],['n-win','หนูถือถ้วยรางวัล'],['n-gamer','หนูเล่นเกม']];
-    home.querySelectorAll('.oc-r').forEach(function(r,i){var m=r.querySelector('.oc-m');if(!m)return;var c=CH[i%3],im=document.createElement('img');im.className='lfp';im.src='img/'+c[0]+'.webp';im.alt='';
-      var left=m.offsetLeft<r.clientWidth/3,W=mob?100:150;W=Math.round(W*[1,.82,.9][i%3]);im.style.cssText='width:'+W+'px;bottom:'+(r.clientHeight-m.offsetTop-m.offsetHeight-18)+'px;left:'+(left?m.offsetLeft+m.offsetWidth-W*.5:m.offsetLeft-W*.5)+'px';r.appendChild(im)});
     faces=[].slice.call(document.querySelectorAll('.lf'));
   }
   var mx=0,my=0,raf=0;
