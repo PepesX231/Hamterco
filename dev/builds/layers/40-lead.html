@@ -13,7 +13,7 @@
 .oc-r{position:relative}
 
 /* hero v2: the brand's own three hamsters; no moving hills / drops / ceiling goo */
-.hm-l,.hm-dot,.hm-top,.hm-glow{display:none!important}
+.hm-l,.hm-dot,.hm-top,.hm-glow,.hm-hang,.lm{display:none!important}
 .lm{position:absolute;z-index:1;left:clamp(16px,5vw,90px);bottom:clamp(20px,5vh,60px);width:clamp(170px,19vw,290px);pointer-events:auto;cursor:pointer;transform-origin:50% 90%;animation:lmIn .9s cubic-bezier(.2,1.3,.4,1) .2s both}
 .lm img{display:block;width:100%;height:auto;filter:drop-shadow(0 18px 22px rgba(110,50,0,.28));animation:lmB 4.2s ease-in-out infinite}
 .lm:hover img,.lm.tap img{animation:lmW .6s cubic-bezier(.3,1.6,.5,1)}
@@ -22,6 +22,16 @@
 @keyframes lmW{30%{transform:rotate(-7deg) scale(1.05)}65%{transform:rotate(5deg) scale(1.03)}}
 @media (max-width:640px){.lm{left:auto;right:12px;bottom:58px;width:118px}}
 @media (prefers-reduced-motion:reduce){.lm,.lm img{animation:none!important}}
+
+/* hero v3: real seniors who got in, pinned around the edges like photos on a board (still, no drifting) */
+.sn{position:absolute;z-index:1;width:var(--w);transform:rotate(var(--r));transition:transform .35s cubic-bezier(.2,1.3,.4,1);text-decoration:none;color:#1D1712}
+.sn i>span{display:block;overflow:hidden;border-radius:3px}.sn i{display:block;background:#fff;padding:7px 7px 30px;border-radius:6px;box-shadow:0 16px 26px -14px rgba(90,40,0,.6)}
+.sn img{display:block;width:100%;aspect-ratio:1;object-fit:cover;object-position:50% 18%;border-radius:3px;transform:scale(1.8);transform-origin:66% 58%}
+.sn b{position:absolute;left:0;right:0;bottom:7px;text-align:center;font:700 .78rem var(--display);white-space:nowrap}
+.sn em{position:absolute;left:50%;top:-12px;transform:translateX(-50%);font:700 .7rem var(--display);font-style:normal;background:#1D1712;color:#fff;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.sn:hover,.sn:focus-visible{transform:rotate(0) translateY(-6px) scale(1.06);z-index:3}
+.sn-cap{position:absolute;z-index:1;left:clamp(20px,4vw,70px);bottom:24px;font:600 .85rem var(--display);color:rgba(29,23,18,.75)}
+@media (max-width:900px){.sn,.sn-cap{display:none}}
 </style>
 <script>
 (function(){
@@ -50,7 +60,15 @@
     var a=document.createElement('a');a.className='lm';a.setAttribute('aria-hidden','true');a.tabIndex=-1;a.innerHTML='<img src="img/hh-mascot.webp" alt="" width="290" height="290">';
     a.addEventListener('pointerdown',function(e){e.stopPropagation();a.classList.remove('tap');void a.offsetWidth;a.classList.add('tap')});zq.appendChild(a)}
 
-  function build(){mascot();
+
+  var SN=[[1,'น้องปลื้ม','สจล.',5,13,118,-6],[6,'น้องต้นกล้า','จุฬาฯ',13,48,104,5],[13,'น้องอาร์ม','มหิดล',4,76,112,-3],
+          [3,'น้องดา','สจล.',95,14,112,6],[8,'น้องเฟิร์ส','จุฬาฯ',86,46,106,-5],[16,'น้องปิ่นโต','มหิดล',95,76,114,4]];
+  function seniors(){var zq=document.querySelector('[data-view="home"] .zq');if(!zq||zq.querySelector('.sn'))return;
+    SN.forEach(function(c){var a=document.createElement('a');a.className='sn';a.href='#works';
+      a.style.cssText='left:'+c[3]+'%;top:'+c[4]+'%;--w:'+c[5]+'px;--r:'+c[6]+'deg;margin-left:-'+(c[5]/2)+'px';
+      a.innerHTML='<i><span><img src="img/dek69-'+c[0]+'.webp" alt="'+c[1]+' ติด '+c[2]+'" loading="lazy"></span></i><b>'+c[1]+'</b><em>ติด '+c[2]+'</em>';zq.appendChild(a)});
+    var p=document.createElement('p');p.className='sn-cap';p.textContent='รุ่นพี่ปี 2569 ที่ติดมหาลัยจากผลงานที่ทำที่นี่';zq.appendChild(p)}
+  function build(){seniors();
     document.querySelectorAll('.lf').forEach(function(n){n.remove()});faces=[];
     var home=document.querySelector('[data-view="home"]');if(!home)return;var mob=innerWidth<640;
     var en=home.querySelector('.end-in');if(en){var f=face({seed:21,mouth:'open'});f.style.cssText='left:50%;top:'+(mob?14:22)+'px;width:'+(mob?170:250)+'px;margin-left:-'+(mob?85:125)+'px';en.appendChild(f)}
