@@ -4,8 +4,11 @@
 :root{--or:#F2A65E!important}
 
 /* 2. blob hamsters and drawn faces are gone, everywhere */
-span.hb,.cl-p,.cl-w,.pxe-astro,.pxe-paw,.pl-sb,.pl-wk,.dfc,.lf,
-[data-view="home"] .zq .hm-pet,[data-view="home"] .zq .hm-w,[data-view="home"] .zq .tip{display:none!important}
+span.hb:not(.hm-pet span.hb),.cl-p,.cl-w,.pxe-astro,.pxe-paw,.pl-sb,.pl-wk,.dfc,.lf{display:none!important}
+/* the little hamster behind the search bar stays (owner) */
+/* white search state: chips step down so the slime drips under the bar are not covered */
+[data-view="home"] .zq .zq-pop{transition:transform .5s cubic-bezier(.3,1.3,.5,1),opacity .3s}
+[data-view="home"] .zq.hx-white:not(.ask) .zq-pop{transform:translateY(34px)}
 .wkz .wk.pl-skinned,.wkz-rift .wk.pl-skinned{opacity:1!important}   /* the courses walker goes back to the brand's own drawing */
 [data-view="activity"] .avc-ty{display:flex!important;align-items:flex-end!important;justify-content:flex-start!important;padding:22px!important}
 [data-view="activity"] .avc-ty b{position:static!important;max-width:90%!important;font-size:clamp(1.5rem,2.3vw,2.1rem)!important;line-height:1.15!important;text-align:left!important}
@@ -63,3 +66,7 @@ body .end-in .e1{background:var(--or)!important;color:#1D1712!important}
   if(document.readyState==='complete')go();else addEventListener('load',go);
 })();
 </script>
+<style>
+/* phone: the back-to-top button is smaller and tucked into the corner so it covers less of the cards */
+@media (max-width:640px){.to-top{width:38px!important;height:38px!important;right:10px!important;bottom:calc(10px + env(safe-area-inset-bottom,0px))!important;opacity:.92}.to-top svg{width:18px!important;height:18px!important}}
+</style>
