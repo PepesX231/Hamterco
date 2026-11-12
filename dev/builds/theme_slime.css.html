@@ -289,7 +289,7 @@ footer{background:var(--cream)!important}
     var box=document.createElement('div');box.className='reel';var t=document.createElement('div');t.className='reel-t';
     var html=ok.map(function(w,i){var nm=w[1];return '<a class="rc-w" href="https://www.hamsterhub.co/go/projects/'+w[0]+'" target="_blank" rel="noopener" style="--r:'+((i%2?1:-1)*(2+i%3))+'deg;--y:'+(i%3*8)+'px"><img src="img/ar-'+w[0]+'.webp" alt="'+nm+'" loading="lazy"><b>'+nm+'</b></a>'}).join('');
     t.innerHTML=html+html.replace(/<a /g,'<a tabindex="-1" aria-hidden="true" ');box.appendChild(t);zq.appendChild(box);
-    var h=document.createElement('p');h.className='reel-h';h.textContent='ผลงานจริงของน้องๆ Hamster Hub ชี้เพื่อดูชื่อ กดเพื่อเปิดดู';zq.appendChild(h);
+    var h=document.createElement('p');h.className='reel-h';h.textContent='ผลงานจริงของน้องๆ Hamster Hub กดเพื่อเปิดดู';zq.appendChild(h);
   }
 
 
@@ -348,7 +348,7 @@ footer{background:var(--cream)!important}
     pads(home);portex(home);
     var top=zq.querySelector('.zq-top');
     if(top&&!tip&&!rm){var f=0;try{f=localStorage.getItem('hhFed')}catch(e){}
-      if(!f){tip=document.createElement('p');tip.className='tip';tip.textContent='แตะที่ว่างบนพื้นสีส้ม เพื่อป้อนเมล็ดทานตะวันให้น้องแฮมสเตอร์';top.appendChild(tip);
+      if(!f){tip=document.createElement('p');tip.className='tip';tip.textContent='แตะพื้นสีส้มเพื่อป้อนเมล็ดทานตะวันให้น้องแฮมสเตอร์';top.appendChild(tip);
         tip.style.position='relative';tip.style.marginTop='18px';setTimeout(function(){tip.classList.add('on')},2400)}}
   }
   if(!rm)document.addEventListener('pointerdown',function(e){var zq=e.target.closest&&e.target.closest('[data-view="home"] .zq');

@@ -5,6 +5,19 @@ import re, sys, colorsys
 src, out = sys.argv[1], sys.argv[2]
 s = open(src).read()
 
+# ---- 0. copy edits (Thai copy review): dev/builds/copy.json = [[old, new, expected_count], ...] ----
+import json, os as _os
+_cp = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'copy.json')
+if _os.path.exists(_cp):
+    for _row in json.load(open(_cp)):
+        _old, _new = _row[0], _row[1]
+        _n = _row[2] if len(_row) > 2 else 1
+        _c = s.count(_old)
+        if _c != _n:
+            print('copy.json: expected %d x %r, found %d - skipped' % (_n, _old[:60], _c))
+            continue
+        s = s.replace(_old, _new)
+
 # ---- 1. recolour the old blue system to ink / neutral / salmon accent ----
 def remap(r, g, b):
     h, l, sa = colorsys.rgb_to_hls(r/255, g/255, b/255)

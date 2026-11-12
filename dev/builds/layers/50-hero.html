@@ -55,9 +55,10 @@
   function target(){var r=zq.getBoundingClientRect(),f=form.getBoundingClientRect(),l=f.left,t=f.top,R=f.right,B=f.bottom;
     if(resEl&&!resEl.hidden&&zq.classList.contains('ask')){var q=resEl.getBoundingClientRect();if(q.height){l=Math.min(l,q.left);R=Math.max(R,q.right);B=Math.max(B,q.bottom)}}
     return{cx:(l+R)/2-r.left,cy:(t+B)/2-r.top,hw:(R-l)/2,hh:(B-t)/2,r:Math.min(30,(B-t)/2)}}
-  function frame(t){t/=1000;cx.setTransform(1,0,0,1,0,0);cx.clearRect(0,0,cv.width,cv.height);
+  function frame(t){if(zq.clientWidth!==W||zq.clientHeight!==H){if(!zq.clientWidth)return;size()}
+    t/=1000;cx.setTransform(1,0,0,1,0,0);cx.clearRect(0,0,cv.width,cv.height);
     var n=G.length,now=performance.now();rip=rip.filter(function(p){return now-p.t<2600});
-    var gt=zq.classList.contains('ask')?1:(document.activeElement===inp?.4:0);gat+=(gt-gat)*(rm?1:.07);if(Math.abs(gt-gat)<.002)gat=gt;
+    var gt=0;/* owner: the glyph sea stays as it is while searching */gat+=(gt-gat)*(rm?1:.07);if(Math.abs(gt-gat)<.002)gat=gt;
     var S=window.HXSlime,sp=S&&typeof S.p==='number'?Math.max(0,Math.min(1,S.p)):0,rim=S&&S.rim?S.rim:0;
     var ge=gat*gat*(3-2*gat),tb=(ge>.003||sp>.003)&&form?target():null,far=Math.max(W,H)*.75,r0=10+rim*sp+(1-ge)*far,wd=16+(1-ge)*70,clr=6+rim*sp;
     var B1=W<640?.2:.36;
@@ -132,3 +133,28 @@
 /* white search state: the "tap the orange area" hint makes no sense, hide it until the orange is back */
 [data-view="home"] .zq.hx-white .tip{opacity:0!important;pointer-events:none!important;transition:opacity .25s}
 </style>
+
+<style>
+/* the old slime scroll-progress bar at the very top of the page: removed (owner) */
+.mo-bar,.sp-bar{display:none!important}
+</style>
+<script>
+/* headline: keep only the clean, readable type styles (the neon / glitch / outline / script ones read badly) */
+(function(){var h=document.querySelector('[data-view="home"] .zq-h');if(!h)return;var OK=['kanit','persona','pencil'],k=0;
+  function fix(){var f=h.dataset.f;if(f&&OK.indexOf(f)<0){k=(k+1)%OK.length;h.dataset.f=OK[k]}}
+  fix();new MutationObserver(fix).observe(h,{attributes:true,attributeFilter:['data-f']})})();
+</script>
+
+<style>
+/* nothing pops up on a bare click into the search; results appear once the user types */
+[data-view="home"] #zqSug{display:none!important}
+</style>
+<script>
+/* typing details: Esc closes the answer (second Esc leaves the field); whitespace-only never searches */
+(function(){var inp=document.getElementById('zqIn'),res=document.getElementById('zqRes');if(!inp||!res)return;
+  inp.addEventListener('keydown',function(e){if(e.key!=='Escape'||e.isComposing)return;
+    if(!res.hidden){e.preventDefault();inp.value='';inp.dispatchEvent(new Event('input',{bubbles:true}));res.hidden=true}else inp.blur()});
+  inp.addEventListener('input',function(){if(inp.value&&!inp.value.trim()&&!res.hidden)res.hidden=true});
+  document.getElementById('zqForm').addEventListener('submit',function(e){if(!inp.value.trim()){e.preventDefault();e.stopImmediatePropagation();inp.value='';inp.focus()}},true);
+})();
+</script>
