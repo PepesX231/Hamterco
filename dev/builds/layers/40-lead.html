@@ -11,6 +11,17 @@
 .lf,.end-in>.lf{position:absolute!important;pointer-events:none;z-index:2!important}
 .lf .pu{transition:transform .18s ease-out}.lf .lid{transform-box:fill-box;transform-origin:50% 50%;transition:transform .08s}.lf.blink .lid{transform:scaleY(.1)}
 .oc-r{position:relative}
+
+/* hero v2: the brand's own three hamsters; no moving hills / drops / ceiling goo */
+.hm-l,.hm-dot,.hm-top,.hm-glow{display:none!important}
+.lm{position:absolute;z-index:1;left:clamp(16px,5vw,90px);bottom:clamp(20px,5vh,60px);width:clamp(170px,19vw,290px);pointer-events:auto;cursor:pointer;transform-origin:50% 90%;animation:lmIn .9s cubic-bezier(.2,1.3,.4,1) .2s both}
+.lm img{display:block;width:100%;height:auto;filter:drop-shadow(0 18px 22px rgba(110,50,0,.28));animation:lmB 4.2s ease-in-out infinite}
+.lm:hover img,.lm.tap img{animation:lmW .6s cubic-bezier(.3,1.6,.5,1)}
+@keyframes lmIn{from{opacity:0;transform:translateY(30px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes lmB{50%{transform:translateY(-6px) rotate(-1.5deg)}}
+@keyframes lmW{30%{transform:rotate(-7deg) scale(1.05)}65%{transform:rotate(5deg) scale(1.03)}}
+@media (max-width:640px){.lm{left:auto;right:12px;bottom:58px;width:118px}}
+@media (prefers-reduced-motion:reduce){.lm,.lm img{animation:none!important}}
 </style>
 <script>
 (function(){
@@ -35,7 +46,11 @@
     else sv.appendChild(E('path',{d:stroke(R,[[86,my-2],[92,my+5],[99,my],[100,my-1],[101,my],[108,my+5],[114,my-2]],4.4),fill:c}));
     return sv}
   var faces=[];
-  function build(){
+  function mascot(){var zq=document.querySelector('[data-view="home"] .zq');if(!zq||zq.querySelector('.lm'))return;
+    var a=document.createElement('a');a.className='lm';a.setAttribute('aria-hidden','true');a.tabIndex=-1;a.innerHTML='<img src="img/hh-mascot.webp" alt="" width="290" height="290">';
+    a.addEventListener('pointerdown',function(e){e.stopPropagation();a.classList.remove('tap');void a.offsetWidth;a.classList.add('tap')});zq.appendChild(a)}
+
+  function build(){mascot();
     document.querySelectorAll('.lf').forEach(function(n){n.remove()});faces=[];
     var home=document.querySelector('[data-view="home"]');if(!home)return;var mob=innerWidth<640;
     var en=home.querySelector('.end-in');if(en){var f=face({seed:21,mouth:'open'});f.style.cssText='left:50%;top:'+(mob?14:22)+'px;width:'+(mob?170:250)+'px;margin-left:-'+(mob?85:125)+'px';en.appendChild(f)}
