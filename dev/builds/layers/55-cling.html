@@ -1,0 +1,64 @@
+<style id="ly-cling">
+/* ===== soft hamsters hanging on a card's top edge: body behind the card, paws over the edge in front ===== */
+[data-view="home"] .zc2>.hm-zc,span.hb.pxe-peek,.pxe-paw{display:none!important}
+.cl-host{position:relative}
+.cl-card{position:relative;z-index:2}
+.cl-in-card{overflow:visible!important}
+.cl-w{position:absolute;z-index:5;overflow:hidden;pointer-events:none}
+.cl-w>span.hb.cl-b{left:0!important;top:0!important}
+.cl-in-card>.cl-p{z-index:6}
+span.hb.cl-b{position:absolute!important;z-index:1;pointer-events:none;transition:transform .55s cubic-bezier(.3,1.6,.5,1)}
+span.hb.cl-b svg>ellipse:first-of-type{display:none}
+.cl-p{position:absolute;z-index:3;pointer-events:none;border-radius:50% 50% 46% 46%/60% 60% 40% 40%;
+  background:radial-gradient(circle at 42% 30%,#fff 0,#FFEBD0 58%,#F2C79A 100%);
+  box-shadow:0 3px 5px -1px rgba(60,30,5,.28);transition:transform .55s cubic-bezier(.3,1.6,.5,1)}
+.cl-p::after{content:"";position:absolute;left:24%;right:24%;bottom:18%;height:34%;
+  background:linear-gradient(90deg,transparent 0 30%,rgba(190,125,70,.5) 30% 38%,transparent 38% 62%,rgba(190,125,70,.5) 62% 70%,transparent 70%);border-radius:2px}
+.cl-b.cl-up,.cl-p.cl-up{transform:translateY(-7px)}
+span.hb.cl-b,.cl-p{opacity:0;translate:0 -26px}
+span.hb.cl-b.cl-in,.cl-p.cl-in{opacity:1;translate:0 0;transition:transform .55s cubic-bezier(.3,1.6,.5,1),translate .7s cubic-bezier(.3,1.5,.5,1),opacity .3s}
+.cl-p.cl-in{transition-delay:0s,.08s,.08s}
+@media (prefers-reduced-motion:reduce){span.hb.cl-b,.cl-p{transition:none!important;opacity:1;translate:none}}
+</style>
+<script>
+(function(){
+  if(!window.Hamblob)return;var H=Hamblob,rm=matchMedia('(prefers-reduced-motion: reduce)').matches,all=[];
+  /* card: element to hang on; at: 0..1 across its width; w: hamster width (px, desktop) */
+  function cling(card,at,w,mood){if(!card||card.dataset.cl)return;card.dataset.cl='1';
+    /* sticky cards move on their own, so the hamster lives inside them; the clip box ends exactly on the card edge */
+    var inside=getComputedStyle(card).position==='sticky',host=inside?card:(card.offsetParent||card.parentElement),wrap=null;
+    if(inside){card.classList.add('cl-in-card');wrap=document.createElement('span');wrap.className='cl-w';wrap.setAttribute('aria-hidden','true')}
+    else{host.classList.add('cl-host');card.classList.add('cl-card')}
+    var b=H.make({fur:'cream',shape:'loaf',mood:mood||'calm',size:w});b.classList.add('cl-b');b.style.width='';
+    var p=[0,1].map(function(){var e=document.createElement('i');e.className='cl-p';e.setAttribute('aria-hidden','true');return e});
+    if(wrap){wrap.appendChild(b);host.appendChild(wrap)}else host.appendChild(b);p.forEach(function(e){host.appendChild(e)});
+    var o={card:card,host:host,b:b,p:p,at:at,w:w,wrap:wrap};all.push(o);
+    card.addEventListener('pointerenter',function(){cls(o,'cl-up',1);if(!rm)H.squish(b)});
+    card.addEventListener('pointerleave',function(){cls(o,'cl-up',0)});
+    place(o);
+    if('IntersectionObserver' in window&&!rm)new IntersectionObserver(function(es,ob){if(!es[0].isIntersecting)return;ob.disconnect();setTimeout(function(){place(o);cls(o,'cl-in',1)},750)},{threshold:.35}).observe(card);
+    else cls(o,'cl-in',1)}
+  function cls(o,c,v){[o.b].concat(o.p).forEach(function(e){e.classList.toggle(c,!!v)})}
+  function place(o){var c=o.card;if(!c.offsetWidth)return;
+    var w=Math.round(o.w*(innerWidth<640?.78:1)),h=w*190/220,
+        /* position of the card's top edge inside the host (ignores the reveal transform, which ends at 0) */
+        x0=o.wrap?0:c.offsetLeft,y0=o.wrap?0:c.offsetTop,cx=x0+c.offsetWidth*o.at,
+        top=y0-h*.69;                      /* chin rests on the edge: eyes and mouth stay above it */
+    if(o.wrap){o.wrap.style.cssText='left:'+(cx-w/2)+'px;top:'+top+'px;width:'+w+'px;height:'+(h*.69)+'px';o.b.style.cssText='width:'+w+'px'}
+    else o.b.style.cssText='width:'+w+'px;left:'+(cx-w/2)+'px;top:'+top+'px';
+    var pw=w*.24,ph=w*.17;
+    o.p[0].style.cssText='width:'+pw+'px;height:'+ph+'px;left:'+(cx-w*.27-pw/2)+'px;top:'+(y0-ph*.45)+'px';
+    o.p[1].style.cssText='width:'+pw+'px;height:'+ph+'px;left:'+(cx+w*.27-pw/2)+'px;top:'+(y0-ph*.45)+'px'}
+  function placeAll(){all.forEach(place)}
+  function build(){
+    var afo=document.querySelector('[data-view="home"] .t-afo');if(afo)cling(afo,.8,96,'happy');
+    var row=document.querySelector('[data-view="home"] .fx-row');
+    if(row)[].forEach.call(row.querySelectorAll('.fx-s'),function(c,i){cling(c,.8,i?60:66,i?'happy':'calm')});
+    placeAll()}
+  function go(){build();setTimeout(placeAll,600);setTimeout(placeAll,1800)}
+  if(document.readyState==='complete')go();else addEventListener('load',go);
+  addEventListener('resize',placeAll);
+  if(window.ResizeObserver)new ResizeObserver(placeAll).observe(document.body);
+  addEventListener('hashchange',function(){setTimeout(placeAll,120)});
+})();
+</script>

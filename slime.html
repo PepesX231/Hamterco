@@ -6009,11 +6009,27 @@ footer{background:var(--cream)!important}
 .zq.ask{z-index:12;overflow:visible!important}
 .zq.ask .gl-goo{border-radius:inherit}
 </style>
+<style>
+/* search open: if the bar did not need to move, keep the headline in view */
+.zq.ask.hx-keep .zq-q,.zq.ask.hx-keep .zq-h{opacity:1!important}
+[data-view="home"] .zq-top{transition:transform .55s cubic-bezier(.22,1,.36,1)}
+</style>
 <script>
-/* when results open, lift the search bar only a little (to ~22% of the screen), not to the very top */
-(function(){var z=document.querySelector('[data-view="home"] .zq'),top=z&&z.querySelector('.zq-top'),sw=z&&z.querySelector('.zq-sw');if(!z||!top||!sw)return;
-  new MutationObserver(function(){if(!z.classList.contains('ask'))return;top.style.removeProperty('--ask');
-    var b=sw.getBoundingClientRect().top,target=Math.max(110,innerHeight*.22),d=Math.max(0,b-target);if(scrollY>40)d=0;top.style.setProperty('--ask',(-d)+'px')}).observe(z,{attributes:true,attributeFilter:['class']});
+/* when results open, move the search bar only as much as the results panel needs (often not at all) */
+(function(){var z=document.querySelector('[data-view="home"] .zq'),top=z&&z.querySelector('.zq-top'),sw=z&&z.querySelector('.zq-sw'),form=z&&z.querySelector('#zqForm'),res=z&&z.querySelector('#zqRes'),h1=z&&z.querySelector('.zq-h');if(!z||!top||!sw||!form)return;
+  var on=false;
+  function ty(){var m=getComputedStyle(top).transform;return m&&m!=='none'?new DOMMatrix(m).m42:0}
+  function fit(e){var ask=z.classList.contains('ask');if(!ask){if(!on)return;on=false;if(z.classList.contains('hx-keep'))z.classList.remove('hx-keep');if(res)res.style.removeProperty('max-height');return}
+    on=true;
+    var vh=innerHeight,cur=ty(),ft=form.getBoundingClientRect().top-cur,fh=form.offsetHeight,want=Math.min(440,vh*.5),
+        need=ft+fh+14+want+16-vh,d=Math.max(0,Math.min(need,ft-(innerWidth<700?76:88)));
+    top.style.setProperty('--ask',(-d)+'px');
+    var ht=h1?h1.getBoundingClientRect().top-cur:0;z.classList.toggle('hx-keep',ht-d>70);
+    if(res)res.style.setProperty('max-height',Math.max(240,vh-(ft-d+fh+14)-16)+'px','important')}
+  var raf=0;function later(){cancelAnimationFrame(raf);raf=requestAnimationFrame(function(){raf=requestAnimationFrame(function(){fit('r')})})}
+  new MutationObserver(function(){if(z.classList.contains('ask')){if(!on){on=true;top.style.setProperty('--ask','0px');z.classList.add('hx-keep');later()}}else fit()}).observe(z,{attributes:true,attributeFilter:['class']});
+  if(window.ResizeObserver)new ResizeObserver(function(){if(on)later()}).observe(top);
+  addEventListener('resize',function(){if(z.classList.contains('ask'))fit('r')});
 })();
 </script>
 
@@ -7354,8 +7370,17 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
     cv.width=W*dpr;cv.height=H*dpr;cols=Math.ceil(W/cw);rows=Math.ceil(H/ch);mkAtlas();
     var r=zq.getBoundingClientRect(),h1=top.querySelector('.zq-h')||top,a=h1.getBoundingClientRect(),b=(form||h1).getBoundingClientRect();
     box={x:(Math.min(a.left,b.left)+Math.max(a.right,b.right))/2-r.left,y:(a.top+b.bottom)/2-r.top,rx:Math.max(a.width,b.width)*.5+(W<640?6:40),ry:(b.bottom-a.top)*.5+(W<640?24:46)}}
+  /* gather: when the search is used, the glyph sea flows in and hugs the search bar (and the results panel) */
+  var gat=0,inp=zq.querySelector('#zqIn'),resEl=zq.querySelector('#zqRes'),zr;
+  function rr(px,py,b){var qx=Math.abs(px-b.cx)-b.hw+b.r,qy=Math.abs(py-b.cy)-b.hh+b.r;
+    return Math.min(Math.max(qx,qy),0)+Math.hypot(Math.max(qx,0),Math.max(qy,0))-b.r}
+  function target(){var r=zq.getBoundingClientRect(),f=form.getBoundingClientRect(),l=f.left,t=f.top,R=f.right,B=f.bottom;
+    if(resEl&&!resEl.hidden&&zq.classList.contains('ask')){var q=resEl.getBoundingClientRect();if(q.height){l=Math.min(l,q.left);R=Math.max(R,q.right);B=Math.max(B,q.bottom)}}
+    return{cx:(l+R)/2-r.left,cy:(t+B)/2-r.top,hw:(R-l)/2,hh:(B-t)/2,r:Math.min(30,(B-t)/2)}}
   function frame(t){t/=1000;cx.setTransform(1,0,0,1,0,0);cx.clearRect(0,0,cv.width,cv.height);
     var n=G.length,now=performance.now();rip=rip.filter(function(p){return now-p.t<2600});
+    var gt=zq.classList.contains('ask')?1:(document.activeElement===inp?.4:0);gat+=(gt-gat)*(rm?1:.07);if(Math.abs(gt-gat)<.002)gat=gt;
+    var ge=gat*gat*(3-2*gat),tb=ge>.003&&form?target():null,far=Math.max(W,H)*.75,r0=10+(1-ge)*far,wd=16+(1-ge)*70;
     var B1=W<640?.2:.36;
     for(var j=0;j<rows;j++){var y=j*ch+ch/2,v=y/H;
       for(var i=0;i<cols;i++){var x=i*cw+cw/2,u=x/W;
@@ -7371,6 +7396,9 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
           d+=1.1*Math.exp(-Math.pow((dd-R)/34,2))*Math.max(0,1-e/2.4)}
         /* keep the headline and search clear */
         var ex=(x-box.x)/box.rx,ey=(y-box.y)/box.ry,m=Math.sqrt(ex*ex+ey*ey);d*=m<1?0:m<1.5?(m-1)*2:1;
+        if(tb){var sd=rr(x,y,tb);if(sd<6)d*=1-ge;else{var an=Math.atan2((y-tb.cy)*1.6,x-tb.cx),
+            hug=Math.exp(-Math.pow((sd-r0)/wd,2))*(.8+.35*Math.sin(an*9-t*2.4+sd*.05))+.55*Math.exp(-Math.pow((sd-r0-46)/(wd*1.6),2))*(.6+.4*Math.sin(an*5+t*1.3));
+            d=d*(1-ge*.85)+hug*Math.min(1,ge*1.6)}}
         if(d<.16)continue;var g=Math.min(n-1,Math.floor((d-.16)*n*1.05));
         cx.globalAlpha=Math.min(.62,.2+d*.38);
         cx.drawImage(atlas,g*cw*dpr,0,cw*dpr,ch*dpr,i*cw*dpr,j*ch*dpr,cw*dpr,ch*dpr)}}
@@ -7399,5 +7427,71 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
   if(document.readyState==='complete')go();else addEventListener('load',go);
   /* replay the drop when coming back to home */
   addEventListener('hashchange',function(){if(/^#?(home)?$/.test(location.hash.replace('#','')||'home')){setTimeout(function(){size();ring();drop()},350)}});
+})();
+</script>
+
+<!-- layer: 55-cling.html -->
+<style id="ly-cling">
+/* ===== soft hamsters hanging on a card's top edge: body behind the card, paws over the edge in front ===== */
+[data-view="home"] .zc2>.hm-zc,span.hb.pxe-peek,.pxe-paw{display:none!important}
+.cl-host{position:relative}
+.cl-card{position:relative;z-index:2}
+.cl-in-card{overflow:visible!important}
+.cl-w{position:absolute;z-index:5;overflow:hidden;pointer-events:none}
+.cl-w>span.hb.cl-b{left:0!important;top:0!important}
+.cl-in-card>.cl-p{z-index:6}
+span.hb.cl-b{position:absolute!important;z-index:1;pointer-events:none;transition:transform .55s cubic-bezier(.3,1.6,.5,1)}
+span.hb.cl-b svg>ellipse:first-of-type{display:none}
+.cl-p{position:absolute;z-index:3;pointer-events:none;border-radius:50% 50% 46% 46%/60% 60% 40% 40%;
+  background:radial-gradient(circle at 42% 30%,#fff 0,#FFEBD0 58%,#F2C79A 100%);
+  box-shadow:0 3px 5px -1px rgba(60,30,5,.28);transition:transform .55s cubic-bezier(.3,1.6,.5,1)}
+.cl-p::after{content:"";position:absolute;left:24%;right:24%;bottom:18%;height:34%;
+  background:linear-gradient(90deg,transparent 0 30%,rgba(190,125,70,.5) 30% 38%,transparent 38% 62%,rgba(190,125,70,.5) 62% 70%,transparent 70%);border-radius:2px}
+.cl-b.cl-up,.cl-p.cl-up{transform:translateY(-7px)}
+span.hb.cl-b,.cl-p{opacity:0;translate:0 -26px}
+span.hb.cl-b.cl-in,.cl-p.cl-in{opacity:1;translate:0 0;transition:transform .55s cubic-bezier(.3,1.6,.5,1),translate .7s cubic-bezier(.3,1.5,.5,1),opacity .3s}
+.cl-p.cl-in{transition-delay:0s,.08s,.08s}
+@media (prefers-reduced-motion:reduce){span.hb.cl-b,.cl-p{transition:none!important;opacity:1;translate:none}}
+</style>
+<script>
+(function(){
+  if(!window.Hamblob)return;var H=Hamblob,rm=matchMedia('(prefers-reduced-motion: reduce)').matches,all=[];
+  /* card: element to hang on; at: 0..1 across its width; w: hamster width (px, desktop) */
+  function cling(card,at,w,mood){if(!card||card.dataset.cl)return;card.dataset.cl='1';
+    /* sticky cards move on their own, so the hamster lives inside them; the clip box ends exactly on the card edge */
+    var inside=getComputedStyle(card).position==='sticky',host=inside?card:(card.offsetParent||card.parentElement),wrap=null;
+    if(inside){card.classList.add('cl-in-card');wrap=document.createElement('span');wrap.className='cl-w';wrap.setAttribute('aria-hidden','true')}
+    else{host.classList.add('cl-host');card.classList.add('cl-card')}
+    var b=H.make({fur:'cream',shape:'loaf',mood:mood||'calm',size:w});b.classList.add('cl-b');b.style.width='';
+    var p=[0,1].map(function(){var e=document.createElement('i');e.className='cl-p';e.setAttribute('aria-hidden','true');return e});
+    if(wrap){wrap.appendChild(b);host.appendChild(wrap)}else host.appendChild(b);p.forEach(function(e){host.appendChild(e)});
+    var o={card:card,host:host,b:b,p:p,at:at,w:w,wrap:wrap};all.push(o);
+    card.addEventListener('pointerenter',function(){cls(o,'cl-up',1);if(!rm)H.squish(b)});
+    card.addEventListener('pointerleave',function(){cls(o,'cl-up',0)});
+    place(o);
+    if('IntersectionObserver' in window&&!rm)new IntersectionObserver(function(es,ob){if(!es[0].isIntersecting)return;ob.disconnect();setTimeout(function(){place(o);cls(o,'cl-in',1)},750)},{threshold:.35}).observe(card);
+    else cls(o,'cl-in',1)}
+  function cls(o,c,v){[o.b].concat(o.p).forEach(function(e){e.classList.toggle(c,!!v)})}
+  function place(o){var c=o.card;if(!c.offsetWidth)return;
+    var w=Math.round(o.w*(innerWidth<640?.78:1)),h=w*190/220,
+        /* position of the card's top edge inside the host (ignores the reveal transform, which ends at 0) */
+        x0=o.wrap?0:c.offsetLeft,y0=o.wrap?0:c.offsetTop,cx=x0+c.offsetWidth*o.at,
+        top=y0-h*.69;                      /* chin rests on the edge: eyes and mouth stay above it */
+    if(o.wrap){o.wrap.style.cssText='left:'+(cx-w/2)+'px;top:'+top+'px;width:'+w+'px;height:'+(h*.69)+'px';o.b.style.cssText='width:'+w+'px'}
+    else o.b.style.cssText='width:'+w+'px;left:'+(cx-w/2)+'px;top:'+top+'px';
+    var pw=w*.24,ph=w*.17;
+    o.p[0].style.cssText='width:'+pw+'px;height:'+ph+'px;left:'+(cx-w*.27-pw/2)+'px;top:'+(y0-ph*.45)+'px';
+    o.p[1].style.cssText='width:'+pw+'px;height:'+ph+'px;left:'+(cx+w*.27-pw/2)+'px;top:'+(y0-ph*.45)+'px'}
+  function placeAll(){all.forEach(place)}
+  function build(){
+    var afo=document.querySelector('[data-view="home"] .t-afo');if(afo)cling(afo,.8,96,'happy');
+    var row=document.querySelector('[data-view="home"] .fx-row');
+    if(row)[].forEach.call(row.querySelectorAll('.fx-s'),function(c,i){cling(c,.8,i?60:66,i?'happy':'calm')});
+    placeAll()}
+  function go(){build();setTimeout(placeAll,600);setTimeout(placeAll,1800)}
+  if(document.readyState==='complete')go();else addEventListener('load',go);
+  addEventListener('resize',placeAll);
+  if(window.ResizeObserver)new ResizeObserver(placeAll).observe(document.body);
+  addEventListener('hashchange',function(){setTimeout(placeAll,120)});
 })();
 </script>
