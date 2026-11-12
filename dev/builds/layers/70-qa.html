@@ -81,3 +81,20 @@ main h1:not(.zq-h),main h2,main h3,[data-view] h1:not(.zq-h),[data-view] h2,[dat
   addEventListener('hashchange',function(){setTimeout(run,60)});
 })();
 </script>
+<style>
+/* senior posters are portrait (title "CONGRATULATIONS DEK69" at the top): show from the top so the title is never cut in half */
+.fx-si img[src*="dek69-"],.qv-im img[src*="dek69-"]{object-position:50% 0!important}
+</style>
+<style>
+/* footer: who we are, in one line, above the link columns */
+.qa-fb{display:flex;align-items:center;gap:14px;padding-bottom:22px;margin-bottom:24px;border-bottom:1px solid rgba(29,23,18,.08)}
+.qa-fb img{width:44px;height:44px;flex:none}
+.qa-fb b{display:block;font:800 1.15rem/1.2 var(--display);color:#1D1712}
+.qa-fb span{display:block;margin-top:3px;font-size:.9rem;color:#6B5E54}
+</style>
+<script>
+(function(){var w=document.querySelector('footer .wrap'),c=w&&w.querySelector('.fcols');if(!c||w.querySelector('.qa-fb'))return;
+  var d=document.createElement('div');d.className='qa-fb';
+  d.innerHTML='<img src="img/logo.webp" alt="" width="44" height="44"><div><b>Hamster Hub</b><span>สอนน้องมัธยมสร้างเกม เว็บ และ IoT จนมีผลงานจริงไว้ยื่นพอร์ตเข้ามหาลัย</span></div>';
+  w.insertBefore(d,c)})();
+</script>
