@@ -11,7 +11,7 @@
 .lf,.end-in>.lf{position:absolute!important;pointer-events:none;z-index:2!important}
 .lf .pu{transition:transform .18s ease-out}.lf .lid{transform-box:fill-box;transform-origin:50% 50%;transition:transform .08s}.lf.blink .lid{transform:scaleY(.1)}
 .oc-r{position:relative}
-.lfp{position:absolute;z-index:3;border-radius:52% 48% 46% 54%/50% 54% 46% 50%;box-shadow:inset 0 -8px 0 rgba(0,0,0,.08),inset 0 6px 10px rgba(255,255,255,.45),0 14px 24px -14px rgba(60,30,5,.55);pointer-events:none}
+.lfp{position:absolute;z-index:3;height:auto;pointer-events:none;filter:drop-shadow(0 12px 14px rgba(60,30,5,.3));animation:lfpB 4s ease-in-out infinite}@keyframes lfpB{50%{transform:translateY(-6px)}}@media (prefers-reduced-motion:reduce){.lfp{animation:none}}
 .lfp .lf{position:absolute!important}.lfa{position:absolute;left:-12%;top:-12%;width:124%;height:124%;overflow:visible;pointer-events:none}
 
 /* hero v2: the brand's own three hamsters; no moving hills / drops / ceiling goo */
@@ -101,10 +101,9 @@
     var en=home.querySelector('.end-in');if(en){var f=face({seed:21,mouth:'open'});f.style.cssText='left:50%;top:'+(mob?14:22)+'px;width:'+(mob?170:250)+'px;margin-left:-'+(mob?85:125)+'px';en.appendChild(f)}
     /* "what we build": a face peeks from behind each picture, different mood per row */
     var M=[{seed:3,mouth:'w',happy:true},{seed:8,mouth:'w'},{seed:13,mouth:'w'}];
-    var PC=['#F7A23E','#FF9CC0','#7FD9B8'];
-    home.querySelectorAll('.oc-r').forEach(function(r,i){var m=r.querySelector('.oc-m');if(!m)return;var f=face(M[i%3]),pad=document.createElement('span');pad.className='lfp';
-      var left=m.offsetLeft<r.clientWidth/3,W=mob?96:128;pad.style.cssText='width:'+W+'px;height:'+W+'px;background:'+PC[i%3]+';top:'+(m.offsetTop+m.offsetHeight-W*.62)+'px;left:'+(left?m.offsetLeft+m.offsetWidth-W*.45:m.offsetLeft-W*.55)+'px';
-      f.style.cssText='left:8%;top:22%;width:84%';pad.appendChild(f);var pr=prop(i%3);pad.appendChild(pr);r.appendChild(pad)});
+    var CH=[['n-ceo','หนูซีอีโอ'],['n-win','หนูถือถ้วยรางวัล'],['n-gamer','หนูเล่นเกม']];
+    home.querySelectorAll('.oc-r').forEach(function(r,i){var m=r.querySelector('.oc-m');if(!m)return;var c=CH[i%3],im=document.createElement('img');im.className='lfp';im.src='img/'+c[0]+'.webp';im.alt='';
+      var left=m.offsetLeft<r.clientWidth/3,W=mob?100:150;W=Math.round(W*[1,.82,.9][i%3]);im.style.cssText='width:'+W+'px;bottom:'+(r.clientHeight-m.offsetTop-m.offsetHeight-18)+'px;left:'+(left?m.offsetLeft+m.offsetWidth-W*.5:m.offsetLeft-W*.5)+'px';r.appendChild(im)});
     faces=[].slice.call(document.querySelectorAll('.lf'));
   }
   var mx=0,my=0,raf=0;
