@@ -1,0 +1,83 @@
+<style id="qa-layer">
+/* ===== 70-qa: QA + polish layer (prefix qa-). Home hero (.zq), .je, Hall of Fame and .t-afo untouched. ===== */
+
+/* 1. Sticky header: at 97% opacity, text scrolled under it stayed readable as faint "ghost" text
+      (most visible on #about's big title). new.html removed the backdrop blur for performance, so
+      make the bar fully opaque instead of re-adding blur. */
+header.nav{background:#FFFAF3!important}
+
+/* 2. Section-title highlighter: one treatment everywhere. The old absolute bar sat under the
+      glyphs on some titles, through them on others, and on wrapped titles (phone) only under the
+      last line at full width. An inline highlight follows each line and sits at the same height. */
+.qa-hl-on::before{display:none!important}
+.qa-hl{background-image:linear-gradient(var(--or-l,#FFD7A3),var(--or-l,#FFD7A3));background-repeat:no-repeat;
+  background-size:100% .34em;background-position:0 82%;-webkit-box-decoration-break:clone;box-decoration-break:clone;
+  padding:0 .12em;margin:0 -.12em;border-radius:.2em}
+.ct-h h1 .qa-hl{background-position:0 80%}
+/* the courses-page copy of "คอร์สที่เราแนะนำ" had a yellow star icon in front; the home copy doesn't. Same title, same look. */
+[data-view="courses"] .ft-hd h2 .ct-star{display:none!important}
+
+/* 3. Headlines: balanced lines, so Thai titles don't leave one word alone on the last line
+      ("...ผลงาน / จริง") or split the brand name. Body copy gets pretty wrapping. */
+main h1:not(.zq-h),main h2,main h3,[data-view] h1:not(.zq-h),[data-view] h2,[data-view] h3{text-wrap:balance}
+[data-view] .zq h1,[data-view] .zq h2,[data-view] .zq h3{text-wrap:initial}
+[data-view] p{text-wrap:pretty}
+
+/* 4. Rail headers on phones (คอร์สทั้งหมด / กิจกรรมล่าสุด): the "see all" link stayed in a side
+      column, squeezing the description into a ~190px strip. Stack it under the text on phones. */
+@media (max-width:640px){
+  .mr-l{grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"t" "p" "b"!important}
+  .mr-l .mr-btn{justify-self:start;margin-top:14px!important}
+}
+
+/* 5. Courses quiz: the panel was cream on cream, so it had no visible edge and the walking
+      Hamblob looked like it floated in space. Give it a real surface for the hamster to stand on. */
+[data-view="courses"] .fit-in{background:linear-gradient(180deg,#FFF1DE 0%,#FFEBD2 100%)!important;
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.75),0 0 0 1px rgba(217,116,26,.10),0 30px 60px -44px rgba(150,70,0,.55)!important}
+[data-view="courses"] .fit-r{box-shadow:0 0 0 1px rgba(217,116,26,.14),0 16px 30px -24px rgba(150,70,0,.45)!important;transition:box-shadow .35s}
+[data-view="courses"] .fit-r.ok{box-shadow:0 0 0 2px var(--or,#F7A23E),0 18px 34px -24px rgba(150,70,0,.6)!important}
+/* empty result state: show progress instead of a blank white box */
+.qa-fp{display:flex;flex-direction:column;justify-content:center;min-height:136px;gap:14px}
+.qa-fp p{margin:0!important;color:#5E544B}
+.qa-fp-bar{display:flex;gap:8px}
+.qa-fp-bar i{flex:1;height:8px;border-radius:99px;background:rgba(29,23,18,.08);overflow:hidden;position:relative}
+.qa-fp-bar i::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(90deg,#FFC27A,#F7A23E);
+  transform:scaleX(0);transform-origin:0 50%;transition:transform .45s cubic-bezier(.3,1.3,.5,1)}
+.qa-fp-bar i.on::after{transform:scaleX(1)}
+.qa-fp b{font:800 1.05rem var(--display,inherit);color:#1D1712}
+.qa-fp b span{color:#C2600C;font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:reduce){.qa-fp-bar i::after{transition:none}}
+</style>
+<script>
+(function(){
+  /* 2. wrap highlighted section titles in an inline span (text only; icons stay outside) */
+  var SEL='.ft-hd h2,.mr-l h2,.mr-l h3,.oc-hd h2,.nw2-h,.ct-h h1';
+  function hl(){
+    document.querySelectorAll(SEL).forEach(function(h){
+      if(h.closest('.zq')||h.querySelector('.qa-hl'))return;
+      var nodes=[].filter.call(h.childNodes,function(n){return n.nodeType===3?n.textContent.trim():!(n instanceof SVGElement)&&n.tagName!=='IMG'});
+      if(!nodes.length)return;
+      var s=document.createElement('span');s.className='qa-hl';
+      h.insertBefore(s,nodes[0]);nodes.forEach(function(n){s.appendChild(n)});
+      h.classList.add('qa-hl-on');
+    });
+  }
+  /* 5. quiz progress in the empty result box */
+  function quiz(){
+    var f=document.getElementById('fitQ'),r=document.getElementById('fitR');if(!f||!r||f.dataset.qa)return;f.dataset.qa='1';
+    function draw(){
+      var d=new FormData(f),n=['g','p','t'].filter(function(k){return d.get(k)}).length;
+      if(n===3)return;            /* the page's own script writes the result */
+      var box=r.querySelector('.qa-fp');
+      if(!box){r.className='fit-r';r.innerHTML='<div class="qa-fp"><b>ตอบแล้ว <span>0</span> จาก 3 ข้อ</b><div class="qa-fp-bar" aria-hidden="true"><i></i><i></i><i></i></div><p>ตอบครบแล้วคอร์สที่เหมาะกับน้องจะขึ้นตรงนี้</p></div>';box=r.querySelector('.qa-fp')}
+      box.querySelector('span').textContent=n;
+      var k=['g','p','t'];box.querySelectorAll('.qa-fp-bar i').forEach(function(i,x){i.classList.toggle('on',!!d.get(k[x]))});
+    }
+    f.addEventListener('change',draw);draw();
+  }
+  function run(){hl();quiz()}
+  if(document.readyState==='loading')addEventListener('DOMContentLoaded',run);else run();
+  addEventListener('load',run);
+  addEventListener('hashchange',function(){setTimeout(run,60)});
+})();
+</script>
