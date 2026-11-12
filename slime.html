@@ -7260,7 +7260,7 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
       a.style.cssText='left:'+c[3]+'%;top:'+c[4]+'%;--w:'+c[5]+'px;--r:'+c[6]+'deg;margin-left:-'+(c[5]/2)+'px';
       a.innerHTML='<i><span><img src="img/dek69-'+c[0]+'.webp" alt="'+c[1]+' ติด '+c[2]+'" loading="lazy"></span></i><b>'+c[1]+'</b><em>ติด '+c[2]+'</em>';zq.appendChild(a)});
     var p=document.createElement('p');p.className='sn-cap';p.textContent='รุ่นพี่ปี 2569 ที่ติดมหาลัยจากผลงานที่ทำที่นี่';zq.appendChild(p)}
-  function build(){seniors();
+  function build(){
     document.querySelectorAll('.lf').forEach(function(n){n.remove()});faces=[];
     var home=document.querySelector('[data-view="home"]');if(!home)return;var mob=innerWidth<640;
     var en=home.querySelector('.end-in');if(en){var f=face({seed:21,mouth:'open'});f.style.cssText='left:50%;top:'+(mob?14:22)+'px;width:'+(mob?170:250)+'px;margin-left:-'+(mob?85:125)+'px';en.appendChild(f)}
