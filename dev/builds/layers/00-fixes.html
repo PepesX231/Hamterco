@@ -9,6 +9,9 @@
 /* search open: if the bar did not need to move, keep the headline in view */
 .zq.ask.hx-keep .zq-q,.zq.ask.hx-keep .zq-h{opacity:1!important}
 [data-view="home"] .zq-top{transition:transform .55s cubic-bezier(.22,1,.36,1)}
+/* class clash: new.html puts .fx on the hero while typing, and .fx{display:grid;margin-top:32px} (course section) made the whole search jump up */
+[data-view="home"] .zq.fx{display:flex!important;gap:0!important;margin-top:12px!important}
+@media (max-width:640px){[data-view="home"] .zq.fx{margin-top:8px!important}}
 </style>
 <script>
 /* when results open, move the search bar only as much as the results panel needs (often not at all) */
@@ -17,7 +20,7 @@
   function ty(){var m=getComputedStyle(top).transform;return m&&m!=='none'?new DOMMatrix(m).m42:0}
   function fit(e){var ask=z.classList.contains('ask');if(!ask){if(!on)return;on=false;if(z.classList.contains('hx-keep'))z.classList.remove('hx-keep');if(res)res.style.removeProperty('max-height');return}
     on=true;
-    var vh=innerHeight,cur=ty(),ft=form.getBoundingClientRect().top-cur,fh=form.offsetHeight,want=Math.min(440,vh*.5),
+    var vh=innerHeight,cur=ty(),ft=form.getBoundingClientRect().top-cur,fh=form.offsetHeight,want=Math.min(380,vh*.45),
         need=ft+fh+14+want+16-vh,d=Math.max(0,Math.min(need,ft-(innerWidth<700?76:88)));
     top.style.setProperty('--ask',(-d)+'px');
     var ht=h1?h1.getBoundingClientRect().top-cur:0;z.classList.toggle('hx-keep',ht-d>70);

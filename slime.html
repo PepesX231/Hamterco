@@ -6013,6 +6013,9 @@ footer{background:var(--cream)!important}
 /* search open: if the bar did not need to move, keep the headline in view */
 .zq.ask.hx-keep .zq-q,.zq.ask.hx-keep .zq-h{opacity:1!important}
 [data-view="home"] .zq-top{transition:transform .55s cubic-bezier(.22,1,.36,1)}
+/* class clash: new.html puts .fx on the hero while typing, and .fx{display:grid;margin-top:32px} (course section) made the whole search jump up */
+[data-view="home"] .zq.fx{display:flex!important;gap:0!important;margin-top:12px!important}
+@media (max-width:640px){[data-view="home"] .zq.fx{margin-top:8px!important}}
 </style>
 <script>
 /* when results open, move the search bar only as much as the results panel needs (often not at all) */
@@ -6021,7 +6024,7 @@ footer{background:var(--cream)!important}
   function ty(){var m=getComputedStyle(top).transform;return m&&m!=='none'?new DOMMatrix(m).m42:0}
   function fit(e){var ask=z.classList.contains('ask');if(!ask){if(!on)return;on=false;if(z.classList.contains('hx-keep'))z.classList.remove('hx-keep');if(res)res.style.removeProperty('max-height');return}
     on=true;
-    var vh=innerHeight,cur=ty(),ft=form.getBoundingClientRect().top-cur,fh=form.offsetHeight,want=Math.min(440,vh*.5),
+    var vh=innerHeight,cur=ty(),ft=form.getBoundingClientRect().top-cur,fh=form.offsetHeight,want=Math.min(380,vh*.45),
         need=ft+fh+14+want+16-vh,d=Math.max(0,Math.min(need,ft-(innerWidth<700?76:88)));
     top.style.setProperty('--ask',(-d)+'px');
     var ht=h1?h1.getBoundingClientRect().top-cur:0;z.classList.toggle('hx-keep',ht-d>70);
@@ -7324,7 +7327,7 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
 <!-- layer: 50-hero.html -->
 <style id="ly-hx">
 /* ===== Home hero: code-glyph wave field (Robust ref) + glowing glass search (Sanctum ref) + drop & ripple intro (water-drop ref) ===== */
-.hx-cv{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0;transition:opacity 1.2s ease}
+.hx-cv{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:0;transition:opacity .35s ease}
 .hx-cv.on{opacity:1}
 [data-view="home"] .zq-top{z-index:2}
 /* glowing ring around the search (sits under the form inside .zq-sw) */
@@ -7339,13 +7342,13 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
 /* springy button press */
 [data-view="home"] .zq-go{transition:transform .45s cubic-bezier(.3,1.8,.5,1),translate .15s ease-out!important}
 [data-view="home"] .zq-go:active{transform:scale(.9)!important;transition-duration:.08s!important}
-/* the drop + glowing ripple rings */
-.hx-drop{position:absolute;z-index:3;left:0;top:0;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:50%;pointer-events:none;
-  background:radial-gradient(circle at 35% 30%,#fff 0 18%,#FFF4DF 32%,#FFC777 70%,#F08A1C 100%);box-shadow:0 0 18px 4px rgba(255,240,200,.75),inset -3px -4px 6px rgba(200,90,0,.35)}
-.hx-drop::after{content:"";position:absolute;left:50%;top:-14px;width:2px;height:12px;margin-left:-1px;border-radius:2px;background:linear-gradient(rgba(255,255,255,0),rgba(255,255,255,.8))}
+/* glowing ripple rings (white on orange, orange on the white search state) */
 .hx-ring{position:absolute;z-index:1;left:0;top:0;width:10px;height:10px;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);
   border:2px solid rgba(255,252,240,.95);box-shadow:0 0 14px 2px rgba(255,245,215,.7),inset 0 0 14px 2px rgba(255,245,215,.55)}
-@media (prefers-reduced-motion:reduce){.hx-gw,.hx-gr{animation:none}.hx-drop,.hx-ring{display:none}}
+.hx-ring.o{border-color:rgba(240,138,28,.75);box-shadow:0 0 12px 1px rgba(247,162,62,.45),inset 0 0 12px 1px rgba(247,162,62,.35)}
+.hx-gw,.hx-gr{transition:opacity .4s}
+.zq.hx-white .hx-gw,.zq.hx-white .hx-gr{opacity:0}
+@media (prefers-reduced-motion:reduce){.hx-gw,.hx-gr{animation:none}.hx-ring{display:none}}
 </style>
 <script>
 (function(){
@@ -7363,9 +7366,11 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
   /* ---------- glyph wave field ---------- */
   var cv=document.createElement('canvas');cv.className='hx-cv';cv.setAttribute('aria-hidden','true');zq.insertBefore(cv,zq.firstChild);
   var cx=cv.getContext('2d'),G=['·',':','-','+','=','{','}','<','>','#'],atlas,cw,ch,dpr,W,H,cols,rows,mx=-1e4,my=-1e4,rip=[],box;
-  function mkAtlas(){atlas=document.createElement('canvas');atlas.width=G.length*cw*dpr;atlas.height=ch*dpr;var a=atlas.getContext('2d');a.scale(dpr,dpr);
-    a.font='600 '+(ch*.78)+'px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace';a.textAlign='center';a.textBaseline='middle';a.fillStyle='#8A3A00';
-    G.forEach(function(g,i){a.fillText(g,i*cw+cw/2,ch/2+1)})}
+  var atlasW;
+  function mk(col){var c=document.createElement('canvas');c.width=G.length*cw*dpr;c.height=ch*dpr;var a=c.getContext('2d');a.scale(dpr,dpr);
+    a.font='600 '+(ch*.78)+'px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace';a.textAlign='center';a.textBaseline='middle';a.fillStyle=col;
+    G.forEach(function(g,i){a.fillText(g,i*cw+cw/2,ch/2+1)});return c}
+  function mkAtlas(){atlas=mk('#8A3A00');atlasW=mk('#E07B1E')}
   function size(){W=zq.clientWidth;H=zq.clientHeight;dpr=Math.min(devicePixelRatio||1,2);var mob=W<640;cw=mob?9:11;ch=mob?13:15;
     cv.width=W*dpr;cv.height=H*dpr;cols=Math.ceil(W/cw);rows=Math.ceil(H/ch);mkAtlas();
     var r=zq.getBoundingClientRect(),h1=top.querySelector('.zq-h')||top,a=h1.getBoundingClientRect(),b=(form||h1).getBoundingClientRect();
@@ -7380,7 +7385,8 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
   function frame(t){t/=1000;cx.setTransform(1,0,0,1,0,0);cx.clearRect(0,0,cv.width,cv.height);
     var n=G.length,now=performance.now();rip=rip.filter(function(p){return now-p.t<2600});
     var gt=zq.classList.contains('ask')?1:(document.activeElement===inp?.4:0);gat+=(gt-gat)*(rm?1:.07);if(Math.abs(gt-gat)<.002)gat=gt;
-    var ge=gat*gat*(3-2*gat),tb=ge>.003&&form?target():null,far=Math.max(W,H)*.75,r0=10+(1-ge)*far,wd=16+(1-ge)*70;
+    var S=window.HXSlime,sp=S&&typeof S.p==='number'?Math.max(0,Math.min(1,S.p)):0,rim=S&&S.rim?S.rim:0;
+    var ge=gat*gat*(3-2*gat),tb=(ge>.003||sp>.003)&&form?target():null,far=Math.max(W,H)*.75,r0=10+rim*sp+(1-ge)*far,wd=16+(1-ge)*70,clr=6+rim*sp;
     var B1=W<640?.2:.36;
     for(var j=0;j<rows;j++){var y=j*ch+ch/2,v=y/H;
       for(var i=0;i<cols;i++){var x=i*cw+cw/2,u=x/W;
@@ -7391,17 +7397,18 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
         d*=.72+.28*Math.sin(x*.21+y*.13+t*1.6)*Math.sin(x*.05-t*.7+y*.02);
         /* pointer lifts the sea a little */
         var px=x-mx,py=y-my,pd=px*px+py*py;if(pd<40000)d+=.55*Math.exp(-pd/9000);
-        /* ripples from the drop */
-        for(var k=0;k<rip.length;k++){var p=rip[k],e=(now-p.t)/1000,R=e*520,dx=(x-p.x),dy=(y-p.y)*2.6,dd=Math.sqrt(dx*dx+dy*dy);
-          d+=1.1*Math.exp(-Math.pow((dd-R)/34,2))*Math.max(0,1-e/2.4)}
+        /* ripples */
+        for(var k=0;k<rip.length;k++){var p=rip[k],e=(now-p.t)/1000,R=e*p.v,dx=(x-p.x),dy=(y-p.y)*2.6,dd=Math.sqrt(dx*dx+dy*dy);
+          d+=p.s*Math.exp(-Math.pow((dd-R)/34,2))*Math.max(0,1-e/p.life)}
         /* keep the headline and search clear */
         var ex=(x-box.x)/box.rx,ey=(y-box.y)/box.ry,m=Math.sqrt(ex*ex+ey*ey);d*=m<1?0:m<1.5?(m-1)*2:1;
-        if(tb){var sd=rr(x,y,tb);if(sd<6)d*=1-ge;else{var an=Math.atan2((y-tb.cy)*1.6,x-tb.cx),
+        if(tb){var sd=rr(x,y,tb);if(sd<clr)d*=sd<6?1-Math.max(ge,sp):1-sp;else{var an=Math.atan2((y-tb.cy)*1.6,x-tb.cx),
             hug=Math.exp(-Math.pow((sd-r0)/wd,2))*(.8+.35*Math.sin(an*9-t*2.4+sd*.05))+.55*Math.exp(-Math.pow((sd-r0-46)/(wd*1.6),2))*(.6+.4*Math.sin(an*5+t*1.3));
             d=d*(1-ge*.85)+hug*Math.min(1,ge*1.6)}}
         if(d<.16)continue;var g=Math.min(n-1,Math.floor((d-.16)*n*1.05));
-        cx.globalAlpha=Math.min(.62,.2+d*.38);
-        cx.drawImage(atlas,g*cw*dpr,0,cw*dpr,ch*dpr,i*cw*dpr,j*ch*dpr,cw*dpr,ch*dpr)}}
+        var al=Math.min(.62,.2+d*.38);
+        if(sp<.98){cx.globalAlpha=al*(1-sp);cx.drawImage(atlas,g*cw*dpr,0,cw*dpr,ch*dpr,i*cw*dpr,j*ch*dpr,cw*dpr,ch*dpr)}
+        if(sp>.02){cx.globalAlpha=al*sp*.9;cx.drawImage(atlasW,g*cw*dpr,0,cw*dpr,ch*dpr,i*cw*dpr,j*ch*dpr,cw*dpr,ch*dpr)}}}
     cx.globalAlpha=1}
   var run=false,last=0;
   function loop(t){if(!run)return;requestAnimationFrame(loop);if(t-last<33)return;last=t;frame(t)}
@@ -7411,22 +7418,41 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
   if(!rm)zq.addEventListener('pointermove',function(e){var r=zq.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top},{passive:true});
   zq.addEventListener('pointerleave',function(){mx=my=-1e4});
 
-  /* ---------- drop + ripple ---------- */
-  function rings(x,y,big){for(var k=0;k<3;k++){(function(k){var r=document.createElement('i');r.className='hx-ring';r.style.left=x+'px';r.style.top=y+'px';zq.appendChild(r);
-      var s=(big?1:.45)*(1-k*.18);
-      r.animate([{width:'10px',height:'4px',opacity:1},{width:900*s+'px',height:900*s*.3+'px',opacity:0}],{duration:1700+k*200,delay:k*170,easing:'cubic-bezier(.15,.6,.3,1)',fill:'both'}).onfinish=function(){r.remove()}})(k)}
-    rip.push({x:x,y:y,t:performance.now()})}
-  function hitPoint(){var r=zq.getBoundingClientRect(),f=form.getBoundingClientRect();return{x:f.left+f.width/2-r.left,y:f.top-r.top+4}}
-  function drop(){if(rm||!form)return;var p=hitPoint(),d=document.createElement('i');d.className='hx-drop';zq.appendChild(d);
-    var y0=Math.max(30,p.y-Math.min(520,p.y-20));
-    var a=d.animate([{transform:'translate('+p.x+'px,'+y0+'px) scale(.6)',opacity:0},{transform:'translate('+p.x+'px,'+(y0+40)+'px) scale(1)',opacity:1,offset:.25},{transform:'translate('+p.x+'px,'+(p.y-10)+'px) scale(.85,1.25)',opacity:1}],{duration:900,easing:'cubic-bezier(.55,0,1,.45)',fill:'forwards'});
-    a.onfinish=function(){d.remove();rings(p.x,p.y,true);form.classList.remove('hx-hit');void form.offsetWidth;form.classList.add('hx-hit')}}
-  form&&form.querySelector('.zq-go')&&form.querySelector('.zq-go').addEventListener('pointerdown',function(){if(rm)return;var r=zq.getBoundingClientRect(),b=this.getBoundingClientRect();rings(b.left+b.width/2-r.left,b.top+b.height/2-r.top,false)});
+  /* ---------- ripples: rings on the surface that push through the glyph sea ---------- */
+  function rings(x,y,sz,n){var o=window.HXSlime&&HXSlime.p>.5;for(var k=0;k<n;k++){(function(k){var r=document.createElement('i');r.className='hx-ring'+(o?' o':'');r.style.left=x+'px';r.style.top=y+'px';zq.appendChild(r);
+      var s=sz*(1-k*.2);
+      r.animate([{width:'10px',height:'4px',opacity:.95},{width:s+'px',height:s*.3+'px',opacity:0}],{duration:1800+k*220,delay:k*180,easing:'cubic-bezier(.15,.6,.3,1)',fill:'both'}).onfinish=function(){r.remove()}})(k)}
+    rip.push({x:x,y:y,t:performance.now(),v:sz*.3,s:1.05,life:2.4})}
+  form&&form.querySelector('.zq-go')&&form.querySelector('.zq-go').addEventListener('pointerdown',function(){if(rm)return;var r=zq.getBoundingClientRect(),b=this.getBoundingClientRect();rings(b.left+b.width/2-r.left,b.top+b.height/2-r.top,420,2)});
+  /* every few seconds a ripple opens somewhere on the sea (never on the headline or search) */
+  var amb=0;
+  function ambient(){clearTimeout(amb);amb=setTimeout(ambient,2600+Math.random()*1800);
+    if(rm||!run||document.hidden||!W||!box)return;
+    for(var tries=0;tries<12;tries++){var x=W*(.06+Math.random()*.88),y=H*(.14+Math.random()*.72),ex=(x-box.x)/(box.rx+60),ey=(y-box.y)/(box.ry+50);
+      if(ex*ex+ey*ey>1.2&&!(y>box.y&&Math.abs(x-W/2)<(W<640?W:300))){rings(x,y,(W<640?320:520)+Math.random()*200,Math.random()<.5?2:3);return}}}
+  /* typing: each key sends a small ripple out of the caret */
+  var mc=document.createElement('canvas').getContext('2d');
+  inp&&inp.addEventListener('input',function(){if(rm)return;var r=zq.getBoundingClientRect(),ir=inp.getBoundingClientRect(),cs=getComputedStyle(inp);mc.font=cs.font;
+    var tw=Math.min(ir.width-8,mc.measureText(inp.value.slice(0,inp.selectionStart==null?inp.value.length:inp.selectionStart)).width);
+    rip.push({x:ir.left-r.left+tw,y:ir.top-r.top+ir.height/2,t:performance.now(),v:300,s:.8,life:1.3})});
+  /* results: titles decode out of the same code glyphs */
+  var seg=window.Intl&&Intl.Segmenter?new Intl.Segmenter('th',{granularity:'grapheme'}):null,GL='{}<>+=-:#';
+  function parts(t){return seg?Array.from(seg.segment(t),function(x){return x.segment}):Array.from(t)}
+  function decode(el,delay){if(el.dataset.hxa||el.dataset.hxd===el.textContent)return;el.dataset.hxa='1';var txt=el.textContent,P=parts(txt),n=P.length,t0=0,dur=Math.min(700,260+n*22);
+    el.dataset.hxd=txt;el.setAttribute('aria-label',txt);
+    function step(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0-delay)/dur);if(k<0){requestAnimationFrame(step);return}
+      var shown=Math.floor(k*n),out=P.slice(0,shown).join('');
+      for(var i=shown;i<n;i++)out+=P[i]===' '?' ':GL[(Math.random()*GL.length)|0];
+      if(!el.isConnected){delete el.dataset.hxa;return}el.textContent=k>=1?txt:out;if(k<1)requestAnimationFrame(step);else{delete el.dataset.hxa;el.removeAttribute('aria-label')}}
+    requestAnimationFrame(step)}
+  if(resEl&&!rm){var dq=0;new MutationObserver(function(){clearTimeout(dq);dq=setTimeout(function(){if(resEl.hidden)return;var k=0;
+      resEl.querySelectorAll('h3,h4,.zq-g b,.zq-g strong').forEach(function(el){if(el.children.length||!el.textContent.trim()||el.textContent.length>60)return;decode(el,k++*70)})},30)}).observe(resEl,{childList:true,subtree:true})}
+  /* follow the slime layer: white state */
+  addEventListener('hx-slime',function(e){zq.classList.toggle('hx-white',!!(e.detail&&e.detail.active))});
 
-  function go(){start();setTimeout(drop,700)}
+  function go(){start();cv.classList.add('on');ambient()}
   if(document.readyState==='complete')go();else addEventListener('load',go);
-  /* replay the drop when coming back to home */
-  addEventListener('hashchange',function(){if(/^#?(home)?$/.test(location.hash.replace('#','')||'home')){setTimeout(function(){size();ring();drop()},350)}});
+  addEventListener('hashchange',function(){if(/^#?(home)?$/.test(location.hash.replace('#','')||'home'))setTimeout(function(){size();ring()},350)});
 })();
 </script>
 
