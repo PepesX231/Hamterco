@@ -16,74 +16,7 @@ html body .end-in>.ar-wall{display:none!important}
 /* nav: the rolling "กิจกรรม" label sat lower than the other links (inline-block with overflow:hidden takes its bottom edge as baseline) */
 .nv-a .roll{vertical-align:top!important}
 </style>
-<style id="ly-sn2">
-/* ===== seniors: modern split, number + university bars on the left, two moving rows of real posters on the right ===== */
-html body [data-view="home"] .mc .mc-st,html body [data-view="home"] .mc .mc-cap,html body [data-view="home"] .mc .mc-bg,html body [data-view="home"] .mc .mc-u,html body [data-view="home"] .mc .cl2-sen,html body [data-view="home"] .mc .cl2-uni{display:none!important}
-.sn2{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,4vw,64px);align-items:center;max-width:1240px;margin:0 auto;text-align:left}
-html body [data-view="home"] .mc .mc-in{max-width:none!important}
-html body [data-view="home"] .mc .mc-h{text-align:left!important}
-html body [data-view="home"] .mc .mc-k{margin:0 0 6px!important;font:600 1rem/1.3 var(--display)!important;color:#B85F14!important}
-html body [data-view="home"] .mc h2{text-align:left!important;font:700 clamp(1.6rem,2.6vw,2.2rem)/1.2 var(--display)!important;margin:0!important;color:#1D1712!important}
-html body [data-view="home"] .mc h2 span{display:block!important;font:800 clamp(5rem,10vw,8.6rem)/.95 var(--display)!important;letter-spacing:-.04em;color:#1D1712!important;margin-top:8px;background:none!important;-webkit-text-fill-color:currentColor!important}
-.sn2-bars{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:8px;max-width:440px}
-.sn2-bars button{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:grid;grid-template-columns:7.5em 1fr 2.4em;align-items:center;gap:12px;padding:8px 10px;border-radius:12px;font:600 1rem/1.2 var(--display);color:#1D1712;transition:background .18s}
-.sn2-bars button:hover{background:rgba(29,23,18,.05)}
-.sn2-bars button[aria-pressed="true"]{background:#1D1712;color:#FFF6E8}
-.sn2-bars i{display:block;height:10px;border-radius:99px;background:rgba(29,23,18,.08);overflow:hidden}
-.sn2-bars i::after{content:"";display:block;height:100%;width:var(--w);border-radius:inherit;background:#F2A65E}
-.sn2-bars button[aria-pressed="true"] i{background:rgba(255,246,232,.18)}
-.sn2-bars b{text-align:right;font-weight:700}
-.sn2-all{margin-top:14px;font:600 .95rem/1 var(--display);color:rgba(29,23,18,.6)}
-.sn2-all button{all:unset;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
-.sn2-rows{position:relative;display:grid;gap:14px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.sn2-row{display:flex;gap:14px;width:max-content;animation:sn2Mv var(--d,60s) linear infinite}
-.sn2-row.r2{animation-direction:reverse}
-.sn2-rows:hover .sn2-row,.sn2-rows:focus-within .sn2-row{animation-play-state:paused}
-@keyframes sn2Mv{to{transform:translateX(-50%)}}
-.sn2-c{flex:0 0 auto;width:clamp(150px,13vw,190px);margin:0;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 0 0 1px rgba(29,23,18,.07)}
-.sn2-c img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 0}
-.sn2-c figcaption{padding:9px 11px 11px;font:600 .9rem/1.3 var(--display);color:#1D1712}
-.sn2-c figcaption span{display:block;font:500 .8rem/1.35 var(--body,inherit);color:rgba(29,23,18,.62);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-html body [data-view="home"] .mc .lk{display:inline-flex!important;margin:22px 0 0!important}
-@media (max-width:860px){.sn2{grid-template-columns:minmax(0,1fr)}.sn2-c{width:150px}}
-@media (prefers-reduced-motion:reduce){.sn2-row{animation:none}.sn2-rows{overflow-x:auto}}
-</style>
-<script>
-(function(){
-  function $(s,r){return (r||document).querySelector(s)}function $$(s,r){return [].slice.call((r||document).querySelectorAll(s))}
-  function build(){
-    var mc=$('[data-view="home"] .mc');if(!mc||$('.sn2',mc))return true;
-    var src=$$('#sgrid figure');if(!src.length)return false;
-    var h=$('.mc-h',mc),lk=$('.lk',mc),btns=$$('.mc-u button',mc);
-    var wrap=document.createElement('div');wrap.className='sn2';mc.querySelector('.mc-in').insertBefore(wrap,h);
-    var left=document.createElement('div');left.className='sn2-l';wrap.appendChild(left);left.appendChild(h);
-    var max=0,data=btns.filter(function(b){return b.dataset.u}).map(function(b){var n=+(($('b',b)||{}).textContent||0);max=Math.max(max,n);return{u:b.dataset.u,n:n,name:b.textContent.replace(/\d+/,'').trim()}});
-    var ul=document.createElement('ul');ul.className='sn2-bars';ul.setAttribute('aria-label','ดูตามมหาวิทยาลัย');
-    ul.innerHTML=data.map(function(d){return '<li><button type="button" aria-pressed="false" data-u="'+d.u+'"><span>'+d.name+'</span><i style="--w:'+Math.round(d.n/max*100)+'%"></i><b>'+d.n+'</b></button></li>'}).join('');
-    left.appendChild(ul);
-    var all=document.createElement('p');all.className='sn2-all';all.innerHTML='<button type="button">ดูทุกมหาวิทยาลัย</button>';left.appendChild(all);
-    if(lk)left.appendChild(lk);
-    var rows=document.createElement('div');rows.className='sn2-rows';rows.setAttribute('aria-label','รุ่นพี่ที่ติดมหาวิทยาลัย');wrap.appendChild(rows);
-    var cards=src.map(function(f){var im=$('img',f),cap=$('figcaption',f);var c=document.createElement('figure');c.className='sn2-c';c.dataset.u=f.dataset.u||'';
-      var nm=cap&&cap.querySelector('b'),rest=cap&&cap.querySelector('span');
-      c.innerHTML='<img src="'+im.getAttribute('src')+'" alt="'+(im.alt||'').replace(/"/g,'&quot;')+'" loading="lazy" decoding="async"><figcaption></figcaption>';
-      var fc=c.querySelector('figcaption');fc.appendChild(document.createTextNode(nm?nm.textContent:''));
-      if(rest){var sp=document.createElement('span');sp.textContent=rest.innerHTML.split(/<br\s*\/?>/i).map(function(x){var d=document.createElement('div');d.innerHTML=x;return d.textContent.trim()}).join(' · ');fc.appendChild(sp)}
-      return c});
-    function fill(k){rows.innerHTML='';var list=cards.filter(function(c){return !k||c.dataset.u===k});if(!list.length)list=cards;
-      var half=Math.ceil(list.length/2),sets=k?[list]:[list.slice(0,half),list.slice(half)];
-      sets.forEach(function(set,i){var r=document.createElement('div');r.className='sn2-row'+(i?' r2':'');
-        var base=set.slice();while(base.length<6)base=base.concat(set);
-        base.concat(base).forEach(function(c,j){var n=c.cloneNode(true);if(j>=base.length)n.setAttribute('aria-hidden','true');r.appendChild(n)});
-        r.style.setProperty('--d',(base.length*5)+'s');rows.appendChild(r)})}
-    fill('');
-    function pick(k){$$('button',ul).forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.u===k))});fill(k)}
-    ul.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;pick(b.getAttribute('aria-pressed')==='true'?'':b.dataset.u)});
-    all.addEventListener('click',function(){pick('')});
-    return true}
-  var n=0;(function t(){if(build()||++n>40)return;setTimeout(t,250)})();
-})();
-</script>
+
 <style>
 .ow-bn{position:absolute!important;inset:0;width:100%!important;height:100%!important;object-fit:cover;z-index:1;display:block}
 </style>
@@ -117,5 +50,42 @@ html body [data-view="home"] .mc .lk{display:inline-flex!important;margin:22px 0
     function pos(){var l=live?live.offsetLeft+live.offsetWidth+8:16;t.style.left=l+'px';if(live)t.style.top=live.offsetTop+'px'}
     pos();if(window.ResizeObserver&&live)new ResizeObserver(pos).observe(live)})}
   if(document.readyState==='complete')put();else addEventListener('load',put);
+})();
+</script>
+<style id="ly-mc2">
+/* seniors: same fan layout, tighter and clearer */
+html body [data-view="home"] .mc h2 span{font-size:clamp(4.6rem,9vw,7.4rem)!important}
+html body [data-view="home"] .mc .mc-st{height:clamp(400px,36vw,500px)!important;margin-top:6px!important;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%)}
+html body [data-view="home"] .mc .mc-c{transition:transform .5s cubic-bezier(.23,1,.32,1),opacity .4s,filter .4s!important;cursor:pointer}
+html body [data-view="home"] .mc .mc-c.on{box-shadow:0 26px 50px -24px rgba(29,23,18,.55)}
+.mc2-nav{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:4px}
+.mc2-nav button{all:unset;cursor:pointer;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#fff;color:#1D1712;box-shadow:0 0 0 1px rgba(29,23,18,.1);transition:background .18s,color .18s}
+.mc2-nav button:hover{background:#1D1712;color:#FFF6E8}
+.mc2-nav button:focus-visible{outline:2px solid #1D1712;outline-offset:2px}
+.mc2-nav svg{width:18px;height:18px}
+html body [data-view="home"] .mc .mc-cap{min-width:0;flex:0 1 auto;margin:0!important}
+html body [data-view="home"] .mc .mc-cap p{margin:0!important}
+html body [data-view="home"] .mc .mc-cap b{font-size:1.15rem}
+.mc2-cnt{display:none}
+@media (max-width:640px){.mc2-nav{gap:10px}.mc2-nav button{width:40px;height:40px}html body [data-view="home"] .mc .mc-st{height:clamp(300px,82vw,380px)!important}}
+</style>
+<script>
+(function(){
+  function go(d){var st=document.getElementById('mcSt');if(!st)return;var cs=[].slice.call(st.querySelectorAll('.mc-c'));if(!cs.length)return;
+    var on=st.querySelector('.mc-c.on'),k=on?+on.dataset.k:0,n=cs.length,t=st.querySelector('.mc-c[data-k="'+((k+d+n)%n)+'"]');if(t)t.click();cnt()}
+  function cnt(){var st=document.getElementById('mcSt'),c=document.querySelector('.mc2-cnt');if(!st||!c)return;var n=st.querySelectorAll('.mc-c').length,on=st.querySelector('.mc-c.on');c.textContent=(on?+on.dataset.k+1:1)+' / '+n}
+  function build(){var cap=document.querySelector('[data-view="home"] .mc .mc-cap');if(!cap||cap.parentNode.classList.contains('mc2-nav'))return;
+    var nav=document.createElement('div');nav.className='mc2-nav';cap.parentNode.insertBefore(nav,cap);
+    var ar='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>';
+    var p=document.createElement('button');p.type='button';p.setAttribute('aria-label','รุ่นพี่คนก่อนหน้า');p.innerHTML=ar;
+    var x=document.createElement('button');x.type='button';x.setAttribute('aria-label','รุ่นพี่คนถัดไป');x.innerHTML=ar.replace('M15 5l-7 7 7 7','M9 5l7 7-7 7');
+    nav.appendChild(p);nav.appendChild(cap);nav.appendChild(x);
+    var c=document.createElement('p');c.className='mc2-cnt';nav.parentNode.insertBefore(c,nav.nextSibling);
+    p.addEventListener('click',function(){go(-1)});x.addEventListener('click',function(){go(1)});
+    var st=document.getElementById('mcSt');if(st){new MutationObserver(cnt).observe(st,{subtree:true,attributes:true,attributeFilter:['class'],childList:true});
+      st.tabIndex=0;st.setAttribute('aria-label','รุ่นพี่ที่ติดมหาลัย ใช้ลูกศรซ้ายขวาเพื่อเลื่อน');st.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'){e.preventDefault();go(-1)}else if(e.key==='ArrowRight'){e.preventDefault();go(1)}})}
+    cnt()}
+  if(document.readyState==='complete')build();else addEventListener('load',build);
 })();
 </script>
