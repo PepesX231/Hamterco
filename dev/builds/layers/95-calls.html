@@ -10,7 +10,7 @@
 :root{--cl2-ink:#1D1712;--cl2-cream:#FFF3E3;--cl2-paper:#FFFAF3;--cl2-or:#F7A23E;--cl2-deep:#D9741A;--cl2-txt:#8A4A12;--cl2-e:cubic-bezier(.23,1,.32,1)}
 
 /* ---- 1. home: Port Express is THE course; the rest is one quiet line ---- */
-html body [data-view="home"] .ft .fx-row,html body [data-view="home"] section.zc2{display:none!important}
+
 .cl2-next{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:18px;padding:20px 24px;border-radius:22px;background:var(--cl2-cream);color:var(--cl2-ink);box-shadow:inset 0 0 0 1px rgba(29,23,18,.07)}
 .cl2-next-t{flex:1 1 420px;min-width:0}
 .cl2-next-t b{display:block;font:700 1.02rem/1.4 var(--display,inherit);margin-bottom:4px}
@@ -41,7 +41,7 @@ html body [data-view] a.ad-s.ad-s{background:#FFF3E3!important;background-image:
 html body [data-view] .us-m.us-city{background:#1D6B4E!important}
 html body [data-view] .tk-item.tk-outro{background:#100C0A!important}
 /* the search glow ring: a still white ring (no spinning colour sweep) */
-html body .hx-gr{animation:none!important;background:rgba(255,255,255,.92)!important}
+
 html body .hx-gw{display:none!important}
 html body .ak-dots button.on{background:var(--cl2-ink)!important}
 
@@ -72,7 +72,7 @@ html body .rv-ln.cl2-hasli .cl2-li{margin-right:8px}
 html body .to-top{display:none!important}
 
 /* ---- 11. seniors: where they got in + a calm flat row ---- */
-html body [data-view="home"] .mc #mcSt,html body [data-view="home"] .mc .mc-cap,html body [data-view="home"] .mc .mc-bg{display:none!important}
+
 .cl2-uni{max-width:40em;margin:14px auto 0;font:500 clamp(1rem,1.3vw,1.12rem)/1.55 var(--body,inherit);color:rgba(29,23,18,.8);text-wrap:balance}
 .cl2-sen{position:relative;margin:34px auto 6px;max-width:1240px;text-align:left}
 .cl2-sr{display:flex;gap:16px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;padding:4px 2px 10px}
@@ -208,7 +208,7 @@ html body [data-view="activity"] .avc:not(:has(a)){cursor:default}
     var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;var h=a.getAttribute('href').slice(1);
     var act=a.dataset.cl2t,id=null;
     if(act){e.preventDefault();pend={view:'activity',title:act};if(onView()==='activity')land();else location.hash='#activity';return}
-    if(h==='about'&&a.closest('.oc-big'))id='about-real';
+    if(h==='about'&&(a.closest('.oc-big')||a.classList.contains('oc-lk')))id='about-real';
     else if(h&&VIEWS.indexOf(h)<0){var t=document.getElementById(h);if(t&&t.closest('[data-view]'))id=h}
     if(!id)return;var tv=document.getElementById(id),v=tv&&tv.closest('[data-view]');if(!v)return;
     e.preventDefault();pend={view:v.dataset.view,id:id};
@@ -254,7 +254,7 @@ html body [data-view="activity"] .avc:not(:has(a)){cursor:default}
   /* ---------- 14. closing panel: signed by the team ---------- */
   function sign(){var p=$('[data-view="home"] .end-in > p');if(!p||$('.cl2-sig',p))return;var s=document.createElement('span');s.className='cl2-sig';s.textContent='ทีม Hamster Hub';p.appendChild(s)}
 
-  function all(){nextLine();flat();rails();actCards();lineMark();seniors();warm();sign()}
+  function all(){flat();rails();actCards();lineMark();warm()}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',all);else all();
   addEventListener('load',function(){all();setTimeout(all,700)});
   addEventListener('resize',function(){raf(relayout)});
