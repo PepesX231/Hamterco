@@ -1,26 +1,4 @@
-<style id="ly-hbg">
-/* home hero: a faint loop of real student game clips behind everything, tinted into the orange */
-.hbg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity 1.2s ease;
-  -webkit-mask-image:radial-gradient(ellipse 62% 58% at 50% 46%,rgba(0,0,0,.25) 0,rgba(0,0,0,.25) 45%,#000 100%);mask-image:radial-gradient(ellipse 62% 58% at 50% 46%,rgba(0,0,0,.25) 0,rgba(0,0,0,.25) 45%,#000 100%)}
-.hbg.on{opacity:1}
-.hbg video{position:absolute;left:-4%;top:-4%;width:108%;height:114%;max-width:none!important;object-fit:cover;object-position:50% 0;filter:grayscale(1) contrast(1.1) blur(.6px);mix-blend-mode:multiply;opacity:.15}
-.zq.hx-white .hbg,.zq.ask .hbg,.zq.fx .hbg,.zq:focus-within .hbg{opacity:0;transition-duration:.3s}
-@media (prefers-reduced-motion:reduce){.hbg{display:none}}
-</style>
-<script>
-(function(){var zq=document.querySelector('[data-view="home"] .zq');if(!zq)return;
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  var c=navigator.connection;if(c&&(c.saveData||/2g/.test(c.effectiveType||'')))return;
-  function go(){var w=document.createElement('div');w.className='hbg';w.setAttribute('aria-hidden','true');
-    var v=document.createElement('video');v.muted=true;v.loop=true;v.playsInline=true;v.setAttribute('playsinline','');v.setAttribute('muted','');v.preload='auto';v.poster='img/hero-bg.webp';v.src='img/hero-bg.mp4';v.tabIndex=-1;
-    w.appendChild(v);var cv=zq.querySelector('.hx-cv');zq.insertBefore(w,cv||zq.firstChild);
-    v.addEventListener('playing',function(){w.classList.add('on')},{once:true});
-    function play(){var p=v.play();if(p&&p.catch)p.catch(function(){})}
-    new IntersectionObserver(function(es){if(es[0].isIntersecting&&!document.hidden)play();else v.pause()}).observe(zq);
-    document.addEventListener('visibilitychange',function(){if(document.hidden)v.pause();else if(zq.clientWidth)play()})}
-  if(document.readyState==='complete')setTimeout(go,600);else addEventListener('load',function(){setTimeout(go,600)});
-})();
-</script>
+<!-- hero clip background removed (owner: did not work) -->
 
 <style>
 /* one still line that says what this place is (the headline types and changes) */
