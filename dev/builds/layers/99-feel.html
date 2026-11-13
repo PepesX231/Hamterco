@@ -1,0 +1,108 @@
+<style id="ly-feel">
+/* ===== owner round: nav hover, recommended cards that feel alive, code sea in page headers ===== */
+
+/* nav: one calm underline for every link (the red "video scrub" under ผลงาน read as loading) */
+.nav-in>a.v::before{display:none!important;animation:none!important}
+.nav-in>a.v::after{background:#1D1712!important;height:2px!important;bottom:0!important;transform:scaleX(0);transform-origin:left;transition:transform .22s cubic-bezier(.23,1,.32,1)!important;animation:none!important}
+.nav-in>a.v:hover::after,.nav-in>a.v:focus-visible::after,.nav-in>a.v[aria-current="page"]::after{transform:scaleX(1)!important;animation:none!important}
+.nav-in>a.v:hover{color:#1D1712!important}
+
+/* recommended tag on the two secondary cards: quieter than Port Express */
+.fe-rec{position:absolute;top:12px;left:12px;z-index:3;font:700 .76rem/1 var(--display);padding:7px 11px;border-radius:999px;background:#FFF6E8;color:#B85F14;box-shadow:0 0 0 1px rgba(184,95,20,.25)}
+.fx-si{position:relative}
+
+/* recommended cards: tilt toward the pointer, a soft light follows it, the banner leans the other way */
+.fe-tilt{transform-style:preserve-3d;will-change:transform;transition:transform .5s cubic-bezier(.23,1,.32,1),box-shadow .3s!important}
+.fe-tilt.fe-on{transition:transform .08s linear,box-shadow .3s!important;box-shadow:0 30px 60px -30px rgba(29,23,18,.45)!important}
+.fe-glare{position:absolute;inset:0;z-index:5;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity .3s;
+  background:radial-gradient(420px circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.22),rgba(255,255,255,0) 60%);mix-blend-mode:soft-light}
+.fe-on>.fe-glare{opacity:1}
+.fe-tilt .fx-media img,.fe-tilt .fx-si img{transition:transform .5s cubic-bezier(.23,1,.32,1)!important}
+.fe-tilt.fe-on .fx-media img,.fe-tilt.fe-on .fx-si img{transform:translate(var(--px,0),var(--py,0)) scale(1.05)!important;transition:transform .08s linear!important}
+.fe-tilt .fx-go,.fe-tilt .fx-cta{transition:transform .25s cubic-bezier(.23,1,.32,1),background .2s,color .2s}
+.fe-tilt.fe-on .fx-go{background:#1D1712!important;color:#FFF6E8!important;transform:translateX(4px)}
+.fe-tilt.fe-on .fx-cta{transform:translateX(4px)}
+@media (hover:none),(prefers-reduced-motion:reduce){.fe-tilt,.fe-tilt.fe-on{transform:none!important}.fe-glare{display:none}}
+
+/* page headers (courses / activity / about): the hero's code sea runs inside the orange band */
+.pz-pad{overflow:hidden}
+.fe-sea{position:absolute;inset:0;z-index:1;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .8s}
+.fe-sea.on{opacity:1}
+.pz-pad .pz-bub{display:none!important}
+</style>
+<script>
+(function(){
+  var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,fine=matchMedia('(hover:hover)').matches;
+
+  /* ---------- recommended cards ---------- */
+  function cards(){
+    [].forEach.call(document.querySelectorAll('.fx-row .fx-s .fx-si'),function(si){if(si.querySelector('.fe-rec'))return;var t=document.createElement('span');t.className='fe-rec';t.textContent='แนะนำ';si.appendChild(t)});
+    [].forEach.call(document.querySelectorAll('.fx-main,.fx-row .fx-s'),function(c){
+      if(c.dataset.fe)return;c.dataset.fe=1;
+      [].forEach.call(c.querySelectorAll('.fx-go'),function(g){if(/รับแจ้งเตือนรอบถัดไป/.test(g.textContent))g.textContent='ทัก LINE ขอข่าวรอบถัดไป'});
+      if(rm||!fine)return;
+      c.classList.add('fe-tilt');if(getComputedStyle(c).position==='static')c.style.position='relative';
+      var gl=document.createElement('i');gl.className='fe-glare';gl.setAttribute('aria-hidden','true');c.appendChild(gl);
+      var raf=0,ev=null,max=c.classList.contains('fx-main')?3:5;
+      function apply(){raf=0;if(!ev)return;var r=c.getBoundingClientRect(),x=(ev.clientX-r.left)/r.width,y=(ev.clientY-r.top)/r.height;
+        c.style.transform='perspective(1100px) rotateX('+((.5-y)*max).toFixed(2)+'deg) rotateY('+((x-.5)*max).toFixed(2)+'deg) translateY(-3px)';
+        c.style.setProperty('--gx',(x*100).toFixed(1)+'%');c.style.setProperty('--gy',(y*100).toFixed(1)+'%');
+        c.style.setProperty('--px',((.5-x)*10).toFixed(1)+'px');c.style.setProperty('--py',((.5-y)*8).toFixed(1)+'px')}
+      c.addEventListener('pointerenter',function(){c.classList.add('fe-on')});
+      c.addEventListener('pointermove',function(e){ev=e;if(!raf)raf=requestAnimationFrame(apply)},{passive:true});
+      c.addEventListener('pointerleave',function(){ev=null;c.classList.remove('fe-on');c.style.transform=''});
+    })}
+
+  /* ---------- code sea for page headers ---------- */
+  var CODE={courses:['public class Player : MonoBehaviour { public float speed = 5f; }','void Update(){ if (Input.GetKeyDown("space")) Jump(); }','score += 10; if (score >= 100) LevelUp();','int lives = 3; while (lives > 0) Play();','portfolio.Add(new Project("My First Game"));'],
+    activity:['camp.start(); team.build(idea); demo.present();','const day = 1; while (day <= 3) { learn(); make(); }','pitch(judges, prototype);','if (idea.works) celebrate(); else iterate();','robot.forward(50); sensor.read();'],
+    about:['students.forEach(s => s.build(dream));','while (true) { learn(); build(); share(); }','const team = ["mentor", "student", "friend"];','impact = users * 1000;','game.publish(); app.launch();']};
+  function sea(pad,view){
+    if(pad.querySelector('.fe-sea'))return;var L=CODE[view];if(!L)return;
+    var cv=document.createElement('canvas');cv.className='fe-sea';cv.setAttribute('aria-hidden','true');var pin=pad.querySelector('.pz-pad-in');if(pin&&pin.nextSibling)pad.insertBefore(cv,pin.nextSibling);else pad.appendChild(cv);
+    var cx=cv.getContext('2d'),at,cw,ch,dpr,W=0,H=0,cols,rows,rowC,run=false,last=0,mx=-1e4,my=-1e4,rip=[],hole=[];
+    function size(){W=pad.clientWidth;H=pad.clientHeight;if(!W||!H)return false;dpr=Math.min(devicePixelRatio||1,2);var mob=W<640;cw=mob?7:8;ch=mob?13:15;
+      cv.width=W*dpr;cv.height=H*dpr;cols=Math.ceil(W/cw);rows=Math.ceil(H/ch);
+      at=document.createElement('canvas');at.width=94*cw*dpr;at.height=ch*dpr;var a=at.getContext('2d');a.scale(dpr,dpr);
+      a.font='600 '+(ch*.78)+'px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace';a.textAlign='center';a.textBaseline='middle';a.fillStyle='#8A3A00';
+      for(var g=0;g<94;g++)a.fillText(String.fromCharCode(33+g),g*cw+cw/2,ch/2+1);
+      rowC=[];for(var j=0;j<rows;j++){var t=L[j%L.length]+'    ',r=new Uint8Array(cols),o=(j*17)%t.length;for(var i=0;i<cols;i++)r[i]=t.charCodeAt((i+o)%t.length);rowC.push(r)}
+      /* keep the heading + intro clear */
+      holes();
+      return true}
+    function holes(){var vw=document.querySelector('[data-view="'+view+'"]'),pr=pad.getBoundingClientRect();hole=[];
+      [].forEach.call(vw.querySelectorAll('h1,h2,h3,p,img,a,figure,article,.btn,.avn,.t-afo'),function(e){if(pad.contains(e))return;var r=e.getBoundingClientRect();
+        if(!r.width||r.width>pr.width*.97||r.bottom<pr.top||r.top>pr.bottom)return;var m=/^H[123]$/.test(e.tagName)?40:22;hole.push({x:r.left-pr.left-m,y:r.top-pr.top-16,w:r.width+m*2,h:r.height+32})})}
+    var hl=0;
+    function frame(t){if(pad.clientWidth!==W||pad.clientHeight!==H){if(!size())return}
+      if(t-hl>1000){hl=t;holes()}
+      t/=1000;cx.clearRect(0,0,cv.width,cv.height);var now=performance.now();rip=rip.filter(function(p){return now-p.t<2400});
+      for(var j=0;j<rows;j++){var y=j*ch+ch/2,v=y/H,RC=rowC[j];
+        for(var i=0;i<cols;i++){var c=RC[i];if(c===32)continue;var x=i*cw+cw/2,u=x/W;
+          var y1=.32+.14*Math.sin(u*4.4+t*.45)+.04*Math.sin(u*11-t*.8),y2=.78+.1*Math.sin(u*3.6-t*.4+1.3);
+          var d=Math.exp(-Math.pow((v-y1)/(.12+.04*Math.sin(u*3+t*.4)),2))+.85*Math.exp(-Math.pow((v-y2)/(.1+.03*Math.sin(u*2.4-t*.5)),2));
+          d*=.72+.28*Math.sin(x*.2+y*.12+t*1.4)*Math.sin(x*.05-t*.6);
+          var px=x-mx,py=y-my,pd=px*px+py*py;if(pd<44000)d+=.7*Math.exp(-pd/9000);
+          for(var k=0;k<rip.length;k++){var p=rip[k],e=(now-p.t)/1000,R=e*460,dx=x-p.x,dy=(y-p.y)*2.2,dd=Math.sqrt(dx*dx+dy*dy);d+=1.1*Math.exp(-Math.pow((dd-R)/32,2))*Math.max(0,1-e/2.2)}
+          for(var q=0;q<hole.length&&d>0;q++){var o=hole[q];if(x>o.x&&x<o.x+o.w&&y>o.y&&y<o.y+o.h){var ex=Math.min(x-o.x,o.x+o.w-x,y-o.y,o.y+o.h-y);d*=Math.max(0,1-ex/22)}}
+          if(d<.2)continue;cx.globalAlpha=Math.min(.62,.1+d*.4);
+          cx.drawImage(at,(c-33)*cw*dpr,0,cw*dpr,ch*dpr,i*cw*dpr,j*ch*dpr,cw*dpr,ch*dpr)}}
+      cx.globalAlpha=1}
+    function loop(t){if(!run)return;requestAnimationFrame(loop);if(t-last<33)return;last=t;frame(t)}
+    if(!size())return;cv.classList.add('on');
+    if(rm){frame(0);return}
+    new IntersectionObserver(function(es){var vis=es[0].isIntersecting;if(vis&&!run){run=true;requestAnimationFrame(loop)}else if(!vis)run=false}).observe(pad);
+    var vw=pad.parentElement;
+    vw.addEventListener('pointermove',function(e){var r=pad.getBoundingClientRect();if(e.clientY>r.bottom){mx=my=-1e4;return}mx=e.clientX-r.left;my=e.clientY-r.top},{passive:true});
+    vw.addEventListener('pointerleave',function(){mx=my=-1e4});
+    vw.addEventListener('pointerdown',function(e){var r=pad.getBoundingClientRect();if(e.clientY>r.bottom||e.target.closest('a,button,input,select,textarea,label'))return;rip.push({x:e.clientX-r.left,y:e.clientY-r.top,t:performance.now()})});
+    /* one wave rolls through when the page opens */
+    setTimeout(function(){rip.push({x:W*.85,y:H*.5,t:performance.now()})},500);
+  }
+  function pages(){['courses','activity','about'].forEach(function(v){var view=document.querySelector('[data-view="'+v+'"]');if(!view||!view.classList.contains('on'))return;var pad=view.querySelector(':scope>.pz-pad');if(pad)sea(pad,v)})}
+
+  function all(){cards();pages()}
+  if(document.readyState==='complete')all();else addEventListener('load',all);
+  addEventListener('hashchange',function(){setTimeout(all,450);setTimeout(all,1200)});
+})();
+</script>
