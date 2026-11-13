@@ -3,7 +3,7 @@
 .hbg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity 1.2s ease;
   -webkit-mask-image:radial-gradient(ellipse 62% 58% at 50% 46%,rgba(0,0,0,.25) 0,rgba(0,0,0,.25) 45%,#000 100%);mask-image:radial-gradient(ellipse 62% 58% at 50% 46%,rgba(0,0,0,.25) 0,rgba(0,0,0,.25) 45%,#000 100%)}
 .hbg.on{opacity:1}
-.hbg video{position:absolute;left:-4%;top:-4%;width:108%;height:114%;max-width:none!important;object-fit:cover;object-position:50% 0;filter:grayscale(1) contrast(1.1) blur(.6px);mix-blend-mode:multiply;opacity:.2}
+.hbg video{position:absolute;left:-4%;top:-4%;width:108%;height:114%;max-width:none!important;object-fit:cover;object-position:50% 0;filter:grayscale(1) contrast(1.1) blur(.6px);mix-blend-mode:multiply;opacity:.15}
 .zq.hx-white .hbg,.zq.ask .hbg,.zq.fx .hbg,.zq:focus-within .hbg{opacity:0;transition-duration:.3s}
 @media (prefers-reduced-motion:reduce){.hbg{display:none}}
 </style>
@@ -20,4 +20,17 @@
     document.addEventListener('visibilitychange',function(){if(document.hidden)v.pause();else if(zq.clientWidth)play()})}
   if(document.readyState==='complete')setTimeout(go,600);else addEventListener('load',function(){setTimeout(go,600)});
 })();
+</script>
+
+<style>
+/* one still line that says what this place is (the headline types and changes) */
+.hb2-sub{margin:0 auto 6px;max-width:34em;font:600 clamp(.9rem,1.15vw,1.05rem)/1.45 var(--body,inherit);color:rgba(29,23,18,.78);text-wrap:balance}
+.zq.ask .hb2-sub{opacity:0;transition:opacity .2s}
+/* phone: the hamster never rises into the headline */
+@media (max-width:700px){.zq-sw .zq-ham.watch,.zq-sw:hover .zq-ham{transform:translateY(14px)!important}}
+</style>
+<script>
+(function(){var h=document.querySelector('[data-view="home"] .zq-h');if(!h||document.querySelector('.hb2-sub'))return;
+  var p=document.createElement('p');p.className='hb2-sub';p.textContent='สอนน้องมัธยมสร้างเกม เว็บ และ IoT ไว้ยื่นพอร์ต';
+  var q=h.parentNode.querySelector('.zq-q')||h;q.parentNode.insertBefore(p,q)})();
 </script>
