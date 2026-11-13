@@ -4061,7 +4061,7 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
     <div class="zq-res" id="zqRes" hidden><p class="zq-r" id="zqR" aria-live="polite"></p><div class="ia-w" id="zqA" hidden></div><div class="zq-g" id="zqG"></div></div>
   <button type="button" class="zq-more" id="zqMore" aria-label="เลื่อนลงดูต่อ"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></button></section>
   <section class="ft"><div class="ft-in">
-  <div class="ft-hd"><h2>คอร์สที่เปิดรับตอนนี้</h2><p>ตอนนี้เปิดรับ 1 คอร์ส คอร์สอื่นจะเปิดรอบถัดไป</p></div>
+  <div class="ft-hd"><h2>คอร์สของ Hamster Hub</h2><p>Port Express เปิดรับแล้ว คอร์สอื่นเปิดรอบถัดไป ทัก LINE ให้แจ้งเตือนได้</p></div>
   <div class="fx">
     <a class="fx-main" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">
       <span class="fx-media"><video src="img/portex-hero.mp4" poster="img/portex-poster.webp" muted loop playsinline preload="none" aria-hidden="true"></video><span class="ft-live">เปิดรับสมัคร</span></span>
@@ -4164,8 +4164,8 @@ footer .wrap{padding-top:32px;padding-bottom:calc(34px + env(safe-area-inset-bot
   </div><div class="mr lt"><div class="mr-l"><h3>กิจกรรมล่าสุด</h3><p>ค่าย เวิร์กชอป และงานแข่งที่จัดไปแล้ว กดรับแจ้งเตือนงานหน้าได้</p><a class="mr-btn" href="#activity">ดูกิจกรรมทั้งหมด</a><div class="mr-ar"><button type="button" class="mr-p" aria-label="เลื่อนไปทางซ้าย"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="mr-n" aria-label="เลื่อนไปทางขวา"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div><div class="mr-r" id="zqN"></div></div></section>
   
   <section class="end"><div class="end-in">
-    <h2 class="rv">ยังไม่แน่ใจว่าจะเริ่มตรงไหน คุยกับเราก่อนได้</h2>
-    <p class="rv">บอกเราแค่ว่าน้องเรียนชั้นไหน และอยากทำอะไร ทีมจะช่วยดูให้ว่าคอร์สไหนเหมาะ</p>
+    <h2 class="rv">ผลงานชิ้นแรกของน้อง<br>เริ่มได้ตั้งแต่วันนี้</h2>
+    <p class="rv">บอกเราว่าน้องเรียนชั้นไหน อยากสร้างอะไร ทีมจะพาทำตั้งแต่บรรทัดแรก จนมีผลงานไว้ยื่นพอร์ต</p>
     <div class="end-b rv"><a class="e1" href="#courses">ดูคอร์สทั้งหมด</a><a class="e2" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">คุยกับทีมทาง LINE</a></div>
   </div></section>
 
@@ -8771,12 +8771,6 @@ html body .end-in>.ar-wall{background:none!important}
   var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
   function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e}
 
-  /* the old code canvas on the closing panel is not started at all */
-  [].forEach.call(document.querySelectorAll('.end-in'),function(h){
-    var old=h.querySelector('canvas.kn-sea');if(old)old.remove();
-    if(!h.querySelector('.kn-sea')){var d=el('i','kn-sea');d.hidden=true;h.insertBefore(d,h.firstChild)}
-  });
-
   /* ---------- 1. startup stage ---------- */
   function stage(){
     var big=document.querySelector('.hbx .oc-r.oc-big');if(!big||big.getAttribute('data-ar'))return;big.setAttribute('data-ar','1');
@@ -8915,7 +8909,7 @@ html body .end-in>.ar-wall{background:none!important}
   }
 
   function go(){
-    stage();rank();wall();posters();
+    stage();rank();posters();
     var act=document.querySelector('[data-view="activity"]');
     if(act&&'MutationObserver' in window){var q=0;new MutationObserver(function(){if(q)return;q=requestAnimationFrame(function(){q=0;if(act.querySelector('.avc-ty:not(.ar-po)'))posters()})}).observe(act,{childList:true,subtree:true})}
   }
@@ -9445,5 +9439,79 @@ body .end-in .end-b .e2{order:-1}
   function z(){if(!d)return;var box=d.parentElement,zero=d.textContent.trim()==='0';if(box.classList.contains('cp-zero')!==zero)box.classList.toggle('cp-zero',zero)}
   if(d){z();new MutationObserver(z).observe(d,{childList:true,characterData:true,subtree:true})}
   /* closing wall: fill the slot the dashed tile used with nothing (grid of 8 reads fine as 4+4 / 3+3+2) */
+})();
+</script>
+
+<!-- layer: 98-owner.html -->
+<style id="ly-owner">
+/* ===== owner round 14 Nov: closing panel back to ink + code sea; startup block without box or steps ===== */
+/* closing panel: ink panel, the code sea from layer 80 runs behind it */
+html body .end-in{display:block!important;background:#1D1712!important;text-align:center!important;position:relative;overflow:hidden;
+  padding:clamp(80px,10vw,136px) clamp(20px,5vw,80px)!important}
+html body .end-in>*{position:relative;z-index:1}
+html body .end-in>.kn-sea{display:block!important;position:absolute!important;inset:0;z-index:0}
+html body .end-in h2{color:#FFF6E8!important;font:800 clamp(2.2rem,5vw,4.2rem)/1.12 var(--display)!important;letter-spacing:-.02em;max-width:none!important;margin:0 auto!important}
+html body .end-in p{color:rgba(255,246,232,.74)!important;max-width:38ch!important;margin:20px auto 0!important;font-size:clamp(1rem,1.3vw,1.15rem)!important;line-height:1.7}
+html body .end-in p .cl2-sig{display:none!important}
+html body .end-in .end-b{justify-content:center!important;margin-top:34px!important}
+html body .end-in .end-b .e1{color:#FFF6E8!important;text-decoration-color:rgba(255,246,232,.4)!important}
+html body .end-in>.ar-wall{display:none!important}
+/* startup block: no dark box, no 4-step path; it sits on the page like the rest */
+html body .hbx .oc-r.oc-big{background:none!important;color:#1D1712!important;padding-left:0!important;padding-right:0!important;border-radius:0!important}
+html body .hbx .oc-big h3{color:#1D1712!important}
+html body .hbx .oc-big .oc-t>p{color:rgba(29,23,18,.72)!important}
+html body .hbx .oc-big .oc-k{color:#B85F14!important}
+html body .hbx .oc-big .oc-st,html body .hbx .oc-big .ar-path{display:none!important}
+html body .hbx .oc-big .ar-led{border-color:rgba(29,23,18,.12)!important}
+html body .hbx .oc-big .ar-led li,html body .hbx .oc-big .ar-led b{color:#1D1712!important;border-color:rgba(29,23,18,.12)!important}
+html body .hbx .oc-big .ar-led small{color:#B85F14!important}
+html body .hbx .oc-big .ar-led span,html body .hbx .oc-big .ar-led .ar-led-h{color:rgba(29,23,18,.66)!important}
+html body .hbx .oc-big .oc-lk{background:#1D1712!important;color:#FFF6E8!important}
+</style>
+<style>
+/* home courses: one grid of course cards with real banners (Port Express open now, the rest mocked as next round) */
+[data-view="home"] .fx>.fx-main,[data-view="home"] .fx>.fx-row,[data-view="home"] .fx .cl2-next{display:none!important}
+.ow-cg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.ow-c{display:flex;flex-direction:column;background:#fff;border-radius:22px;overflow:hidden;color:#1D1712;text-decoration:none;
+  box-shadow:0 1px 0 rgba(29,23,18,.05),0 0 0 1px rgba(29,23,18,.07);transition:transform .2s cubic-bezier(.23,1,.32,1),box-shadow .2s}
+@media (hover:hover){.ow-c:hover{transform:translateY(-3px);box-shadow:0 0 0 1px rgba(29,23,18,.1),0 18px 34px -22px rgba(29,23,18,.45)}}
+.ow-c:active{transform:translateY(0) scale(.99)}
+.ow-im{position:relative;aspect-ratio:16/9;background:#FFF3E3;overflow:hidden}
+.ow-im img,.ow-im video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ow-st{position:absolute;right:12px;top:12px;font:700 .8rem/1 var(--display);padding:7px 11px;border-radius:999px;background:#fff;color:#1D1712}
+.ow-st.on{color:#0E7A43}.ow-st.on::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#06C755;margin-right:6px;vertical-align:1px}
+.ow-b{display:flex;flex-direction:column;gap:6px;padding:18px 20px 20px;flex:1}
+.ow-b b{font:700 1.3rem/1.2 var(--display)}
+.ow-b p{margin:0;font-size:.97rem;line-height:1.55;color:rgba(29,23,18,.72)}
+.ow-m{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:auto;padding-top:12px;font:600 .92rem/1.3 var(--display)}
+.ow-m span{color:rgba(29,23,18,.6);font-weight:500}
+.ow-c.big{grid-column:span 3;flex-direction:row}
+.ow-c.big .ow-im{flex:0 0 58%;aspect-ratio:auto;min-height:340px}
+.ow-c.big .ow-b{padding:34px 36px;justify-content:center;gap:10px}
+.ow-c.big .ow-b b{font-size:2.3rem}
+.ow-c.big .ow-b p{font-size:1.06rem}
+.ow-c.big .ow-m{margin-top:14px;font-size:1.05rem;gap:10px 26px}
+.ow-go{display:inline-flex;align-self:flex-start;margin-top:18px;background:#1D1712;color:#FFF6E8;font:700 1rem/1 var(--display);padding:14px 22px;border-radius:999px}
+.ow-nt{font:600 .92rem/1 var(--display);color:#B85F14;margin-top:10px}
+@media (max-width:960px){.ow-cg{grid-template-columns:repeat(2,minmax(0,1fr))}.ow-c.big{grid-column:span 2}}
+@media (max-width:640px){.ow-cg{grid-template-columns:minmax(0,1fr);gap:16px}.ow-c.big{grid-column:auto;flex-direction:column}
+  .ow-c.big .ow-im{flex:none;aspect-ratio:16/9;min-height:0}.ow-c.big .ow-b{padding:22px 20px}.ow-c.big .ow-b b{font-size:1.8rem}}
+</style>
+<script>
+(function(){
+  var fx=document.querySelector('[data-view="home"] .fx');if(!fx||fx.querySelector('.ow-cg'))return;
+  var LINE='https://page.line.me/jkm4247u?openQrModal=true',PX='https://www.hamsterhub.co/portex-site/index.html';
+  var C=[['cb-hamstarter','Hamstarter','คอร์สเริ่มต้นสำหรับคนที่ยังไม่เคยเขียนโปรแกรม'],['cb-port70','Port70','คอร์สทำพอร์ตสำหรับน้อง DEK70'],
+    ['cb-pexp','Project Express','ทำโปรเจกต์ให้เสร็จไวเพื่อยื่นพอร์ต'],['cb-national','National Project','ทำโปรเจกต์ส่งเวทีระดับประเทศ'],
+    ['cb-business','Business Project','ทำโปรเจกต์ที่ต่อยอดเป็นธุรกิจ'],['cb-python','Python Pro Pack','เรียนเขียนโปรแกรมด้วย Python']];
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  var g=document.createElement('div');g.className='ow-cg';
+  g.innerHTML='<a class="ow-c big" href="'+PX+'" target="_blank" rel="noopener"><span class="ow-im"><img src="img/portex-poster.webp" alt="Port Express" loading="lazy"><span class="ow-st on" style="left:12px;right:auto">เปิดรับสมัคร</span></span>'+
+    '<span class="ow-b"><b>Port Express</b><p>สำหรับน้อง ม.6 ที่ยังไม่มีผลงาน เรียนเขียนโปรแกรมสร้างเกมของตัวเองด้วย Unity จบคอร์สได้เกมที่ทำเองไว้ใส่พอร์ต</p>'+
+    '<span class="ow-m">2 เดือน <span>จันทร์ พุธ ศุกร์</span></span><span class="ow-m" style="padding-top:0;margin-top:0">เริ่ม 9 พ.ย. 2569 <span>·</span> 5,990 บาท <span>ทั้งคอร์ส</span></span>'+
+    '<span class="ow-go">ดูรายละเอียดคอร์ส</span></span></a>'+
+    C.map(function(c){return '<a class="ow-c" href="'+LINE+'" target="_blank" rel="noopener"><span class="ow-im"><img src="img/'+c[0]+'.webp" alt="'+esc(c[1])+'" loading="lazy"><span class="ow-st">รอบถัดไป</span></span>'+
+      '<span class="ow-b"><b>'+esc(c[1])+'</b><p>'+esc(c[2])+'</p><span class="ow-nt">ทัก LINE ให้แจ้งเตือนเมื่อเปิดรอบ</span></span></a>'}).join('');
+  var anchor=fx.querySelector('.fx-main');fx.insertBefore(g,anchor||null);
 })();
 </script>

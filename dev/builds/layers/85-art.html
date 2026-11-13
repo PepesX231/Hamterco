@@ -243,12 +243,6 @@ html body .end-in>.ar-wall{background:none!important}
   var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
   function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e}
 
-  /* the old code canvas on the closing panel is not started at all */
-  [].forEach.call(document.querySelectorAll('.end-in'),function(h){
-    var old=h.querySelector('canvas.kn-sea');if(old)old.remove();
-    if(!h.querySelector('.kn-sea')){var d=el('i','kn-sea');d.hidden=true;h.insertBefore(d,h.firstChild)}
-  });
-
   /* ---------- 1. startup stage ---------- */
   function stage(){
     var big=document.querySelector('.hbx .oc-r.oc-big');if(!big||big.getAttribute('data-ar'))return;big.setAttribute('data-ar','1');
@@ -387,7 +381,7 @@ html body .end-in>.ar-wall{background:none!important}
   }
 
   function go(){
-    stage();rank();wall();posters();
+    stage();rank();posters();
     var act=document.querySelector('[data-view="activity"]');
     if(act&&'MutationObserver' in window){var q=0;new MutationObserver(function(){if(q)return;q=requestAnimationFrame(function(){q=0;if(act.querySelector('.avc-ty:not(.ar-po)'))posters()})}).observe(act,{childList:true,subtree:true})}
   }
