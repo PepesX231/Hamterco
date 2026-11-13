@@ -1,0 +1,213 @@
+<style id="ly-review">
+/* =====================================================================
+   90-review: fixes from two reviews (prefix rv-)
+   1 search panel fade   2 reveal never hides focus   3 skip link
+   4 one focus ring      5 contrast                   7 course covers
+   10 about card         11 works on phones           12 headings
+   13 calm UI motion     14 one left edge
+   ===================================================================== */
+:root{--rv-ease:cubic-bezier(.23,1,.32,1);--rv-ink:#1D1712;--rv-cream:#FFF6E8}
+
+/* ---- 1. search results: the panel scrolls inside; soft fades say there is more ---- */
+[data-view="home"] #zqRes{overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(29,23,18,.28) transparent}
+[data-view="home"] #zqRes::after{content:"";position:sticky;bottom:-22px;display:block;height:64px;margin:-64px -18px -22px;z-index:4;pointer-events:none;
+  background:linear-gradient(rgba(255,253,249,0),rgba(255,253,249,.92) 62%,#FFFDF9);opacity:0;transition:opacity .2s var(--rv-ease)}
+[data-view="home"] #zqRes::before{content:"";position:sticky;top:0;display:block;height:44px;margin:-18px -18px -26px;z-index:4;pointer-events:none;
+  background:linear-gradient(#FFFDF9 35%,rgba(255,253,249,0));opacity:0;transition:opacity .2s var(--rv-ease)}
+[data-view="home"] #zqRes.rv-fb::after,[data-view="home"] #zqRes.rv-ft::before{opacity:1}
+[data-view="home"] #zqRes>.zq-x{z-index:5}
+
+/* ---- 2. a reveal never hides what has focus ---- */
+html.mo-js .mo-goo:focus-within,html.mo-js .mo-rise:focus-within,html.mo-js .mo-kids:focus-within>*,.rv:focus-within{
+  opacity:1!important;transform:none!important;-webkit-mask:none!important;mask:none!important;transition:none!important}
+
+/* ---- 3. skip link ---- */
+body>a[href="#main"]:focus,body>a[href="#main"]:focus-visible{position:fixed!important;left:16px!important;top:12px!important;z-index:10000;
+  background:var(--rv-ink);color:var(--rv-cream)!important;padding:12px 18px;border-radius:12px;font:600 1rem/1.2 var(--display);text-decoration:none;
+  box-shadow:0 10px 24px -10px rgba(29,23,18,.6);outline:2px solid var(--rv-cream)!important;outline-offset:2px!important}
+
+/* ---- 4. one focus ring: 2px ink, 2px gap (cream on dark surfaces) ---- */
+html body :focus-visible{outline:2px solid var(--rv-ink)!important;outline-offset:2px!important}
+html body .rv-on-dk:focus-visible{outline-color:var(--rv-cream)!important}
+html body .mo-press:focus-visible,html body .mo-cue:focus-visible{outline-width:2px!important;outline-offset:2px!important}
+/* search: the ring sits on the pill, not on the bare input */
+html body #zqIn:focus-visible{outline:none!important}
+html body #zqForm:has(#zqIn:focus-visible){outline:2px solid var(--rv-ink)!important;outline-offset:2px!important}
+
+/* ---- 5. contrast ---- */
+html body .rv-ln,html body .rv-ln:hover{color:var(--rv-ink)!important}
+html body .rv-ln svg{color:var(--rv-ink)!important}
+html body [data-view="home"] .mc-h h2>span{color:#B85F14!important;-webkit-text-fill-color:#B85F14!important}
+html body .aw-g b{background:none!important;-webkit-text-fill-color:#B85F14!important;color:#B85F14!important}
+/* filter counts */
+html body .mc-u button b,html body [data-view="activity"] button[data-t]>span,html body [data-view="courses"] b>span{color:#9A4A0E!important;-webkit-text-fill-color:#9A4A0E!important}
+html body .mc-u button[aria-pressed="true"] b,html body [data-view="activity"] button[data-t][aria-pressed="true"]>span{color:inherit!important;-webkit-text-fill-color:currentColor!important}
+
+/* ---- 7. course rail: a clean type cover for courses that only had a congratulation poster ---- */
+.qv-im.rv-has>img{visibility:hidden}
+.rv-cv{position:absolute;inset:0;z-index:0;display:flex;flex-direction:column;justify-content:flex-end;padding:0 8% 8%;box-sizing:border-box;overflow:hidden;
+  background:var(--cv-bg);color:var(--cv-fg);container-type:inline-size;pointer-events:none}
+.rv-cv svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.rv-cv svg *{fill:none;stroke:var(--cv-ln);stroke-width:1;vector-effect:non-scaling-stroke}
+.rv-cv svg .a{stroke:var(--cv-ac);opacity:.8}
+.rv-cv svg .d{fill:var(--cv-ln);stroke:none}
+.rv-cv b{position:relative;font:700 12.5cqw/1.02 var(--display);letter-spacing:-.02em;text-wrap:balance;max-width:92%}
+.rv-cv span{position:relative;margin-top:3cqw;font:600 5.4cqw/1.3 var(--display);color:var(--cv-ac)}
+@supports not (font-size:1cqw){.rv-cv b{font-size:2.1rem}.rv-cv span{font-size:.95rem}}
+.rv-cv.c-ink{--cv-bg:#1D1712;--cv-fg:#FFF6E8;--cv-ac:#F2A65E;--cv-ln:rgba(255,246,232,.13)}
+.rv-cv.c-orange{--cv-bg:#F2A65E;--cv-fg:#1D1712;--cv-ac:#1D1712;--cv-ln:rgba(29,23,18,.22)}
+.rv-cv.c-sky{--cv-bg:#DCEEFB;--cv-fg:#13324A;--cv-ac:#1C639A;--cv-ln:rgba(31,111,168,.26)}
+.rv-cv.c-mint{--cv-bg:#D7F0E6;--cv-fg:#123D31;--cv-ac:#1D6E56;--cv-ln:rgba(31,122,96,.28)}
+.rv-cv.c-lilac{--cv-bg:#E9E3FF;--cv-fg:#2A2152;--cv-ac:#5640BA;--cv-ln:rgba(91,69,194,.26)}
+.rv-cv.c-sand{--cv-bg:#FAE7CB;--cv-fg:#1D1712;--cv-ac:#A8551A;--cv-ln:rgba(140,80,24,.26)}
+.rv-cv.c-pink{--cv-bg:#FFE3EC;--cv-fg:#4A1A2C;--cv-ac:#A8335F;--cv-ln:rgba(178,58,106,.24)}
+/* the image zoom on hover now moves the cover */
+@media (hover:hover){.qv:hover .rv-cv svg{transform:scale(1.04);transition:transform .22s var(--rv-ease)}}
+.rv-cv svg{transition:transform .22s var(--rv-ease)}
+
+/* ---- 10. about: the fourth result card gets a real picture area (type, no fake photo) ---- */
+.rv-ph{position:relative;display:block;width:100%;aspect-ratio:4/3;border-radius:20px;overflow:hidden;background:#1D1712;color:#FFF6E8;container-type:inline-size}
+.rv-ph svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.rv-ph svg *{fill:none;stroke:rgba(242,166,94,.32);stroke-width:1;vector-effect:non-scaling-stroke}
+.rv-ph svg .a{stroke:#F2A65E;stroke-width:2;opacity:.9}
+.rv-ph svg .d{fill:#F2A65E;stroke:none}
+.rv-ph b,.aw-g .rv-ph b{position:absolute!important;left:8%;bottom:8%;margin:0;font:700 14cqw/1 var(--display)!important;letter-spacing:-.02em;white-space:nowrap;
+  color:#FFF6E8!important;-webkit-text-fill-color:#FFF6E8!important;background:none!important}
+.rv-ph small{position:absolute;left:8%;top:8%;font:600 6.2cqw/1.2 var(--display);color:#F2A65E}
+
+/* ---- 11. works on phones: compact chip menu, arrows off the text ---- */
+@media (max-width:640px){
+  html body [data-view="works"] .yt-side{position:sticky;top:60px;z-index:5;flex-direction:row!important;flex-wrap:nowrap!important;align-items:center;gap:6px!important;
+    height:auto!important;max-height:none!important;overflow-x:auto!important;overflow-y:hidden!important;padding:8px 12px!important;scrollbar-width:none;
+    -webkit-mask:linear-gradient(90deg,#000 calc(100% - 28px),transparent);mask:linear-gradient(90deg,#000 calc(100% - 28px),transparent)}
+  html body [data-view="works"] .yt-side::-webkit-scrollbar{display:none}
+  html body [data-view="works"] .yt-side button{width:auto!important;flex:none!important;padding:8px 14px!important;border-radius:999px!important;white-space:nowrap;font-size:.92rem!important;min-height:40px}
+  html body [data-view="works"] .yt-side button:not([aria-current="true"]){background:#272727!important}
+  html body [data-view="works"] .yt-side svg,html body [data-view="works"] .yt-side hr,html body [data-view="works"] .yt-side small,html body [data-view="works"] .yt-side .wkz{display:none!important}
+  html body [data-view="works"] .tk-nav{display:none!important}
+}
+
+/* ---- 12. headings: the highlighter only on the first heading of each page ---- */
+html body .rv-nohl::before{display:none!important}
+html body .rv-nohl .qa-hl{background-image:none!important;background:none!important;padding:0!important;margin:0!important}
+html body [data-view="home"] .nw2-h{width:auto!important;justify-content:flex-start!important;text-align:left!important}
+
+/* ---- 13. calm UI motion: short, ease-out, no overshoot (slime and hamster keep their springs) ---- */
+html body .mo-press{transition:transform .18s var(--rv-ease),box-shadow .18s var(--rv-ease),background-color .18s var(--rv-ease),color .18s var(--rv-ease)!important}
+html body .mo-press:active{transform:scale(.97)!important;transition-duration:.12s!important}
+html body .mo-press.mo-boing{animation:none!important}
+html body .mo-lift{transition:transform .2s var(--rv-ease),box-shadow .2s var(--rv-ease)!important}
+html body .mo-lift:hover{transform:translateY(-4px)!important}
+html body .mo-lift:active{transform:translateY(-1px) scale(.99)!important;transition-duration:.12s!important}
+html.mo-js .mo-goo:not(.mo-done),html.mo-js .mo-rise:not(.mo-done),html.mo-js .mo-kids:not(.mo-done)>*{
+  transition:transform .22s var(--rv-ease) var(--mo-w,0ms),opacity .2s var(--rv-ease) var(--mo-w,0ms),--mo-p .22s var(--rv-ease) var(--mo-w,0ms)!important}
+html.mo-js .mo-kids:not(.mo-done)>*{transition-delay:calc(var(--mo-i,0) * 40ms)!important}
+html.mo-js .mo-goo:not(.mo-in){transform:translateY(16px)!important}
+html.mo-js .mo-rise:not(.mo-in),html.mo-js .mo-kids:not(.mo-in)>*{transform:translateY(14px)!important}
+html body .rv{transition:opacity .22s var(--rv-ease),transform .22s var(--rv-ease)!important}
+html body .rv:not(.in){transform:translateY(12px)}
+html body .qv-btn{transition:transform .18s var(--rv-ease),background-color .18s var(--rv-ease),color .18s var(--rv-ease)!important}
+html body .qv:hover .qv-btn{transform:translateX(2px)!important}
+html body [data-view="works"] .yt-side button{transition:background-color .18s var(--rv-ease),color .18s var(--rv-ease),transform .12s var(--rv-ease)!important}
+html body [data-view="works"] .yt-side button:hover svg{animation:none!important}
+html body .aw-g figure,html body .aw-g img{transition:transform .22s var(--rv-ease),box-shadow .22s var(--rv-ease)!important}
+html body .aw-g figure:hover,html body .aw-g figure:nth-child(even):hover{transform:translateY(-4px)!important}
+html body .fx-main,html body .fx-main .fx-media img{transition-duration:.22s!important;transition-timing-function:var(--rv-ease)!important}
+html body [data-view] :is(.av-f button,.av-pg img,.fit-q label,.qv,.qv-btn,.qv-btn svg,.qv-im img,.avc,.avn,.b1,.b2,.b3,.b4,.b5,.ad-big,.ad-s,.ad-s img){transition-timing-function:var(--rv-ease)!important;transition-duration:.2s!important}
+@media (prefers-reduced-motion:reduce){html body .mo-press,html body .mo-lift,html body .rv,html body .qv-btn{transition:none!important}}
+
+/* ---- 14. one left edge: content sits in the same 1240px column ---- */
+@media (min-width:1100px){
+  html body [data-view="home"] .zc2>.mr,html body [data-view="home"] .nw2 .mr{max-width:1240px!important;padding-left:0!important;padding-right:0!important;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box}
+  html body [data-view="home"] .end-in{padding-left:max(clamp(20px,5vw,80px),calc((100% - 1240px) / 2))!important;padding-right:max(clamp(20px,5vw,80px),calc((100% - 1240px) / 2))!important}
+}
+</style>
+<script>
+(function(){
+  var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
+  var raf=window.requestAnimationFrame||function(f){return setTimeout(f,16)};
+
+  /* ---------- 1. search panel fades ---------- */
+  var res=$('#zqRes');
+  if(res){
+    var q=0;
+    var edge=function(){q=0;var more=res.scrollHeight-res.clientHeight>4,b=more&&res.scrollTop+res.clientHeight<res.scrollHeight-6,t=more&&res.scrollTop>6;
+      if(res.classList.contains('rv-fb')!==b)res.classList.toggle('rv-fb',b);if(res.classList.contains('rv-ft')!==t)res.classList.toggle('rv-ft',t)};
+    var later=function(){if(!q)q=raf(edge)};
+    res.addEventListener('scroll',later,{passive:true});
+    new MutationObserver(later).observe(res,{childList:true,subtree:true});
+    if(window.ResizeObserver)new ResizeObserver(later).observe(res);
+    var z=$('[data-view="home"] .zq');if(z)new MutationObserver(function(){setTimeout(later,60);setTimeout(later,500)}).observe(z,{attributes:true,attributeFilter:['class']});
+  }
+
+  /* ---------- 2 + 4. focus: reveal anything hidden, pick ring colour from the surface ---------- */
+  function rgb(c){var m=c&&c.match(/[\d.]+/g);return m?{r:+m[0],g:+m[1],b:+m[2],a:m[3]==null?1:+m[3]}:null}
+  function dark(el){var n=el;while(n&&n.nodeType===1){var s=getComputedStyle(n),c=rgb(s.backgroundColor);
+      if(s.backgroundImage&&s.backgroundImage!=='none'&&/gradient/.test(s.backgroundImage)){var g=rgb(s.backgroundImage);if(g)c=g}
+      if(c&&c.a>.5){return (.2126*c.r+.7152*c.g+.0722*c.b)<110}n=n.parentElement}
+    return false}
+  document.addEventListener('focusin',function(e){var t=e.target;if(!t||!t.closest)return;
+    for(var n=t;n&&n!==document.body;n=n.parentElement){var c=n.classList;if(!c)continue;
+      if((c.contains('mo-goo')||c.contains('mo-rise')||c.contains('mo-kids'))&&!c.contains('mo-in')){c.add('mo-in');c.add('mo-done')}
+      if(c.contains('rv')&&!c.contains('in'))c.add('in')}
+    var d=dark(t.parentElement||t);if(t.classList.contains('rv-on-dk')!==d)t.classList.toggle('rv-on-dk',d)},true);
+
+  /* ---------- 5. LINE green buttons: ink text ---------- */
+  function line(){$$('a,button').forEach(function(e){if(e.classList.contains('rv-ln'))return;var c=rgb(getComputedStyle(e).backgroundColor);
+    if(c&&c.a>.9&&c.g>150&&c.r<90&&c.b<140)e.classList.add('rv-ln')})}
+
+  /* ---------- 7. course covers ---------- */
+  function f1(n){return Math.round(n*10)/10}
+  function rng(seed){var s=seed>>>0||1;return function(){s^=s<<13;s>>>=0;s^=s>>>17;s^=s<<5;s>>>=0;return s/4294967296}}
+  function hash(str){var h=2166136261;for(var i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+  var PAT={
+    grid:function(r){var o='',ox=r()*18,oy=r()*18;for(var x=ox;x<320;x+=18)o+='<path d="M'+f1(x)+' 0V240"/>';for(var y=oy;y<240;y+=18)o+='<path d="M0 '+f1(y)+'H320"/>';
+      var ax=ox+18*(9+Math.floor(r()*4)),ay=oy+18*2,R=72;return o+'<path class="a" d="M'+f1(ax)+' '+f1(ay+R)+'A'+R+' '+R+' 0 0 0 '+f1(ax+R)+' '+f1(ay)+'"/>'},
+    speed:function(r){var o='';for(var k=0;k<16;k++){var y=k*15+r()*6,x0=120+r()*90,len=60+r()*140;o+='<path'+(k===5?' class="a"':'')+' d="M'+f1(x0)+' '+f1(y)+'h'+f1(len)+'"/>'}return o},
+    orbit:function(r){var cx=250+r()*40,cy=20+r()*30,o='<g transform="rotate(-18 '+f1(cx)+' '+f1(cy)+')">';for(var k=0;k<6;k++){var rx=40+k*42;o+='<ellipse cx="'+f1(cx)+'" cy="'+f1(cy)+'" rx="'+rx+'" ry="'+f1(rx*.5)+'"'+(k===2?' class="a"':'')+'/>'}return o+'</g>'},
+    steps:function(r){var o='',x=150,y=210;for(var k=0;k<6;k++){var w=26,h=18+r()*8;o+='<path'+(k===5?' class="a"':'')+' d="M'+f1(x)+' '+f1(y)+'v'+f1(-h)+'h'+w+'"/>';x+=w;y-=h}
+      for(var j=0;j<8;j++)o+='<path d="M0 '+(30+j*26)+'H320"/>';return o},
+    dots:function(r){var o='',cx=250+r()*30,cy=40+r()*30;for(var y=8;y<240;y+=13)for(var x=8;x<320;x+=13){var d=Math.hypot(x-cx,y-cy),rr=Math.max(0,3.2-d/62);if(rr>.45)o+='<circle class="d" cx="'+x+'" cy="'+y+'" r="'+f1(rr)+'"/>'}return o},
+    contour:function(r){var cx=240+r()*40,cy=60+r()*30,o='';for(var k=0;k<9;k++){var rx=14+k*22,ry=rx*.66;o+='<ellipse cx="'+f1(cx)+'" cy="'+f1(cy)+'" rx="'+rx+'" ry="'+f1(ry)+'" transform="rotate('+f1(-12+k*2.4)+' '+f1(cx)+' '+f1(cy)+')"'+(k===3?' class="a"':'')+'/>'}return o}
+  };
+  /* tagline: a few words taken from the card's own line */
+  var COURSE={
+    'Port70':['ink','grid','คอร์สทำพอร์ต DEK70'],
+    'Project Express':['orange','speed','ทำโปรเจกต์ให้เสร็จไว'],
+    'National Project':['sky','orbit','ส่งเวทีระดับประเทศ'],
+    'Business Project':['mint','steps','ต่อยอดเป็นธุรกิจ'],
+    'Python Pro Pack':['lilac','dots','เรียนเขียน Python'],
+    'Hamstarter':['sand','contour','คอร์สเริ่มต้น']
+  },CYC=[['pink','contour'],['sky','dots'],['mint','grid'],['lilac','orbit']];
+  function covers(){var k=0;
+    $$('.qv').forEach(function(q){var im=q.querySelector('.qv-im'),img=im&&im.querySelector('img');if(!img||im.classList.contains('rv-has'))return;
+      if(!/dek69-/.test(img.getAttribute('src')||''))return;
+      var nm=(q.querySelector('.qv-tx b')||{}).textContent||'',d=(q.querySelector('.qv-d')||{}).textContent||'';nm=nm.trim();
+      var c=COURSE[nm]||(function(){var x=CYC[k++%CYC.length];return [x[0],x[1],d.trim().split(/\s+/).slice(0,3).join(' ')]})();
+      var cv=document.createElement('span');cv.className='rv-cv c-'+c[0];cv.setAttribute('aria-hidden','true');
+      cv.innerHTML='<svg viewBox="0 0 320 240" preserveAspectRatio="xMidYMid slice">'+PAT[c[1]](rng(hash(nm)))+'</svg><b></b><span></span>';
+      cv.querySelector('b').textContent=nm;cv.querySelector('span').textContent=c[2];
+      im.insertBefore(cv,im.firstChild);im.classList.add('rv-has')})}
+
+  /* ---------- 10. about: the card with no picture ---------- */
+  function about(){var f=$('.aw-g figure.nopic');if(!f||f.querySelector('.rv-ph'))return;
+    var ph=document.createElement('span');ph.className='rv-ph';ph.setAttribute('aria-hidden','true');
+    var o='';for(var x=-20;x<340;x+=34)o+='<path d="M'+x+' 0L'+(x+60)+' 240"/>';for(var y=10;y<240;y+=30)o+='<path d="M0 '+y+'L320 '+(y-26)+'"/>';
+    o+='<path class="a" d="M30 190C90 170 110 120 160 110S250 70 290 40"/><circle class="d" cx="290" cy="40" r="6"/><circle class="d" cx="30" cy="190" r="4"/>';
+    ph.innerHTML='<svg viewBox="0 0 320 240" preserveAspectRatio="xMidYMid slice">'+o+'</svg><small>เกมเดินเที่ยวสงขลา</small><b>Mr. City</b>';
+    var pz=f.querySelector('.pz-sold');if(pz)pz.remove();
+    f.classList.remove('nopic');f.insertBefore(ph,f.firstChild)}
+
+  /* ---------- 12. highlighter on the first heading of each page only ---------- */
+  function heads(){$$('[data-view]').forEach(function(v){
+    $$('.ft-hd h2,.mr-l h2,.mr-l h3,.oc-hd h2,.nw2-h,.ct-h h1',v).forEach(function(h,i){var off=i>0;if(h.classList.contains('rv-nohl')!==off)h.classList.toggle('rv-nohl',off)})})}
+
+  function all(){line();covers();about();heads()}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',all);else all();
+  addEventListener('load',function(){all();setTimeout(all,800)});
+  addEventListener('hashchange',function(){setTimeout(all,300);setTimeout(all,1200)});
+  /* rails and search results are built by script: watch only their lists */
+  ['#zqC','#zqN','#zqRes'].forEach(function(s){var el=$(s);if(!el)return;var p=0;new MutationObserver(function(){if(p)return;p=raf(function(){p=0;line();covers()})}).observe(el,{childList:true,subtree:true})});
+  $$('[data-view="courses"] .mr-r,[data-view="courses"] .ctg').forEach(function(el){var p=0;new MutationObserver(function(){if(p)return;p=raf(function(){p=0;covers()})}).observe(el,{childList:true})});
+})();
+</script>
