@@ -1,0 +1,383 @@
+<style>
+/* 65-search: the home search understands every kind of input (see script below) */
+.sx-vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+[data-view="home"] #zqRes .ia-q,[data-view="home"] #zqRes .ia-fix,[data-view="home"] #zqRes #zqR,[data-view="home"] #zqRes .ia h3,[data-view="home"] #zqRes .ia-a{overflow-wrap:anywhere;word-break:break-word}
+[data-view="home"] #zqRes .ia-q{max-width:100%}
+[data-view="home"] #zqIn{text-overflow:ellipsis}
+[data-view="home"] #zqIn::placeholder{text-overflow:ellipsis}
+[data-view="home"] #zqIn::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none;width:22px;height:22px;margin:0 6px 0 8px;border-radius:50%;cursor:pointer;
+  background:#F1E4D3 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7.5 7.5l9 9M16.5 7.5l-9 9' stroke='%235A4634' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E") center/14px no-repeat}
+[data-view="home"] #zqIn::-webkit-search-cancel-button:hover{background-color:#FFD9A8}
+[data-view="home"] #zqRes .sx-en{margin:10px 0 0;padding:8px 12px;border-left:3px solid #F7A23E;background:#FFF6E9;border-radius:0 10px 10px 0;font-size:.9rem;line-height:1.55;color:#5A4634;max-width:64ch}
+[data-view="home"] #zqRes .sx-fix{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+[data-view="home"] #zqRes .sx-fix button{border:0;background:#fff;color:#8A4A00;font:700 .82rem var(--display);padding:5px 10px;border-radius:8px;cursor:pointer;box-shadow:0 0 0 1px rgba(138,74,0,.22)}
+[data-view="home"] #zqRes .sx-fix button:hover{background:#FFEFD6}
+[data-view="home"] #zqRes .sx-card .ia-k{margin-top:16px}
+[data-view="home"] #zqRes .sx-card .ia-alt{margin-right:0;margin-bottom:0}
+[data-view="home"] #zqRes .sx-tel{display:inline-block;margin-top:14px;background:#1D1712;color:#fff;font:700 1rem var(--display);padding:11px 20px;border-radius:12px;text-decoration:none}
+[data-view="home"] #zqRes .ia[tabindex]{outline:0}
+[data-view="home"] #zqRes .ia[tabindex]:focus-visible{box-shadow:0 0 0 3px rgba(247,162,62,.55);border-radius:12px}
+@media (max-width:700px){[data-view="home"] #zqRes .sx-card .ia-x .ia-lk{padding-left:0}}
+</style>
+<script>
+/* 65-search: every input gets a sensible answer.
+   The page's own search(q) lives in a closure; we reach it through its public [data-q] click handler
+   (a hidden trigger button), after cleaning / translating the query. The page's own debounce is skipped
+   so there is exactly one render per query. User text is only ever written with textContent. */
+(function(){
+  var inp=document.getElementById('zqIn'),form=document.getElementById('zqForm'),R=document.getElementById('zqRes'),
+      A=document.getElementById('zqA'),G=document.getElementById('zqG'),RR=document.getElementById('zqR');
+  if(!inp||!form||!R||!A||!G||!RR)return;
+  var la=document.querySelector('a[href*="line.me"]'),LINE=la?la.getAttribute('href'):'https://page.line.me/jkm4247u?openQrModal=true';
+  var fa=document.querySelector('a[href*="facebook.com"]'),ig=document.querySelector('a[href*="instagram.com"]');
+  var st=window.setTimeout.bind(window),ct=window.clearTimeout.bind(window);
+  var coarse=matchMedia('(pointer:coarse)').matches;
+
+  /* ---------- field attributes (mobile keyboards, a11y) ---------- */
+  inp.setAttribute('enterkeyhint','search');inp.setAttribute('inputmode','search');inp.setAttribute('autocapitalize','off');
+  inp.setAttribute('autocorrect','off');inp.setAttribute('spellcheck','false');inp.setAttribute('maxlength','200');inp.setAttribute('dir','auto');
+  inp.setAttribute('aria-controls','zqRes');inp.setAttribute('aria-describedby','sxHint');
+  var hint=document.createElement('span');hint.id='sxHint';hint.className='sx-vh';hint.textContent='พิมพ์คำถามแล้วคำตอบจะขึ้นข้างล่าง กด Esc เพื่อล้างคำค้น';form.appendChild(hint);
+  var live=document.createElement('div');live.id='sxLive';live.className='sx-vh';live.setAttribute('role','status');live.setAttribute('aria-live','polite');live.setAttribute('aria-atomic','true');document.body.appendChild(live);
+  RR.removeAttribute('aria-live');/* one live region only, so screen readers never read a result twice */
+  /* placeholder: the longest wording that fits the field, so it is never cut mid-word */
+  var PH=inp.getAttribute('placeholder')||'',PHS=[PH,'พิมพ์ถามได้เลย เช่น อยากทำเกม','ถามได้เลย เช่น ทำเกม','เช่น อยากทำเกม'],mc=document.createElement('canvas').getContext('2d');
+  function ph(){var w=inp.clientWidth;if(!w)return;var cs=getComputedStyle(inp);mc.font=cs.font;w-=parseFloat(cs.paddingLeft)+parseFloat(cs.paddingRight)+6;
+    var pick=PHS[PHS.length-1];for(var i=0;i<PHS.length;i++){if(mc.measureText(PHS[i]).width<=w){pick=PHS[i];break}}
+    if(inp.getAttribute('placeholder')!==pick)inp.setAttribute('placeholder',pick)}
+  ph();if(window.ResizeObserver)new ResizeObserver(ph).observe(inp);else addEventListener('resize',ph);
+  addEventListener('load',ph);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(ph);addEventListener('hashchange',function(){st(ph,400)});
+
+  /* ---------- text helpers ---------- */
+  var EN="`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:\"ZXCVBNM<>?",
+      TH="_ๅ/-ภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ%+๑๒๓๔ู฿๕๖๗๘๙๐\"ฎฑธํ๊ณฯญฐ,ฅฤฆฏโฌ็๋ษศซ.()ฉฮฺ์?ฒฬฦ";
+  function swapKb(t,toTh){var a=toTh?EN:TH,b=toTh?TH:EN,o='';for(var i=0;i<t.length;i++){var k=a.indexOf(t[i]);o+=k>-1?b[k]:t[i]}return o}
+  function base(raw){var s=String(raw==null?'':raw).slice(0,600);try{s=s.normalize('NFC')}catch(e){}
+    s=s.replace(/[！-～]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-0xFEE0)}).replace(/　/g,' ');
+    s=s.replace(/[​-‏‪-‮⁠-⁩﻿­]/g,'').replace(/[\u0000-\u001F\u007F]+/g,' ');
+    return s.replace(/\s+/g,' ').trim()}
+  function clean(raw){var s=base(raw);
+    s=s.replace(/เเ/g,'แ').replace(/ํา/g,'ำ').replace(/([่-๋])([ัิ-ู])/g,'$2$1').replace(/([ัิ-ู็-์])\1+/g,'$1');
+    s=s.replace(/([^\d\s.])\1{2,}/g,'$1');/* อยากกกก > อยาก , gameeee > game */
+    return s.replace(/\s+/g,' ').trim()}
+  function nsp(t){return t.toLowerCase().replace(/[\s"'“”‘’!?.,()\-_\/ๆ]+/g,'')}
+  function detone(t){return t.replace(/[่-๋์็]/g,'')}
+  function short(t,n){var a=Array.from(t);return a.length>n?a.slice(0,n).join('').replace(/\s+$/,'')+'…':t}
+  function lev(a,b){if(a===b)return 0;var m=a.length,n=b.length;if(!m)return n;if(!n)return m;var d=[],i,j;for(i=0;i<=m;i++)d[i]=[i];for(j=0;j<=n;j++)d[0][j]=j;
+    for(i=1;i<=m;i++)for(j=1;j<=n;j++){var c=a[i-1]===b[j-1]?0:1;d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+c);if(i>1&&j>1&&a[i-1]===b[j-2]&&a[i-2]===b[j-1])d[i][j]=Math.min(d[i][j],d[i-2][j-2]+1)}return d[m][n]}
+  var segW=window.Intl&&Intl.Segmenter?new Intl.Segmenter('th',{granularity:'word'}):null;
+  function words(t){return segW?Array.from(segW.segment(t),function(x){return x.segment}).filter(function(x){return /[ก-๙a-z]/i.test(x)}):t.split(/\s+/)}
+  var reThai=/[ก-๛]/,reLat=/[a-z]/i,
+      reForeign=/[຀-໿぀-ヿ㐀-鿿豈-﫿가-힯ᄀ-ᇿ֐-ࣿЀ-ԯͰ-Ͽऀ-෿က-႟ក-៿À-ɏḀ-ỿ¿¡]/;
+
+  /* ---------- what the page knows (canonical Thai query per topic, label, one English line) ---------- */
+  var T={
+    kmitl:['สจล','สจล.','Seniors who got into KMITL, and the courses they took, are listed below.'],
+    chula:['จุฬา','จุฬาฯ','Seniors who got into Chulalongkorn University, and the courses they took, are listed below.'],
+    mahidol:['มหิดล','มหิดล','Seniors who got into Mahidol University, and the courses they took, are listed below.'],
+    ku:['เกษตรศาสตร์','เกษตรศาสตร์','Seniors who got into Kasetsart University, and the courses they took, are listed below.'],
+    med:['แพทย์','อยากเข้าแพทย์','We teach technology, not medical entrance exams. We can help you build a health-tech project for your portfolio.'],
+    eng:['วิศวะคอม','อยากเข้าวิศวะคอม','For computer engineering or CEDT, a project you coded yourself makes the portfolio stronger. See the courses below.'],
+    cs:['วิทย์คอม','อยากเข้าวิทย์คอม','For computer science or IT, projects that real people use make a portfolio stand out. See the courses below.'],
+    sci:['วิทยาศาสตร์','คณะสายวิทยาศาสตร์','Tech projects also help portfolios for science faculties. See the courses below.'],
+    about:['Hamster Hub คืออะไร','Hamster Hub คืออะไร','Hamster Hub teaches Thai high-school students to build games, web apps and IoT projects, for university portfolios, competitions or startups.'],
+    price:['ค่าเรียน','ค่าเรียนเท่าไหร่','Port Express (2 months) costs 5,990 baht. Other courses announce prices when they open.'],
+    when:['สมัครยังไง','เรียนวันไหน สมัครยังไง','Port Express runs Mon, Wed and Fri for 2 months, starting 9 Nov 2026. Ask the team on LINE about place and time.'],
+    parent:['ผู้ปกครอง','ผู้ปกครอง ลูกจะได้อะไร','Your child builds real projects for a university portfolio, with mentors looking after them closely.'],
+    m6:['ม.6','น้อง ม.6','Courses that fit grade 12 (M.6) are listed below. Details are in Thai.'],
+    m45:['ม.4','น้อง ม.4–5','Courses that fit grades 10–11 (M.4–5) are listed below. Details are in Thai.'],
+    m13:['ม.ต้น','น้อง ม.ต้น','Courses and camps that fit younger students are listed below. Details are in Thai.'],
+    beginner:['มือใหม่','เริ่มจากศูนย์ได้ไหม','No experience needed. Starter courses take you to your first finished project.'],
+    game:['เกม','อยากทำเกม','You code your own game here, from idea to playable. Courses and camps are listed below.'],
+    web:['เว็บ','อยากทำเว็บหรือแอป','You build a real web or mobile app. Courses and camps are listed below.'],
+    iot:['iot','อยากทำ IoT หรือหุ่นยนต์','You build devices that work with your own code, such as IoT and robots. See the courses below.'],
+    ai:['ai','อยากใช้ AI สร้างผลงาน','Use AI to build games, websites and business projects in a few days. See the camps below.'],
+    biz:['ธุรกิจ','อยากทำธุรกิจหรือสตาร์ทอัพ','Student projects can grow into real businesses. See the courses below.'],
+    compete:['แข่งขัน','อยากส่งผลงานแข่ง','Build a project for national competitions such as NSC. Awards go straight into your portfolio.'],
+    camp:['ค่าย','ค่ายและกิจกรรม','Short camps and workshops let you try building something real before a long course.'],
+    port:['พอร์ต','อยากมีพอร์ตยื่นมหาลัย','A strong portfolio shows work you built yourself. In 2026, 48 Hamster Hub students got into university in the Portfolio round.']
+  };
+  /* Latin rules: [topic, English, romanised Thai] - order = priority when several match */
+  var L=[
+    ['kmitl',/\b(kmitl|lad ?krabang|lat ?krabang)\b/],['chula',/\b(chula|chulalongkorn|cu)\b/],['mahidol',/\b(mahidol|mu)\b/],['ku',/\b(kasetsart|kaset|ku)\b/],
+    ['med',/\b(medicine|medical|med ?school|med|doctors?|dentist(ry)?|pharmac(y|ist)|nurs(e|ing)|vet|veterinary|health)\b/,/\b(mor(?! ?\d)|phaet|paet|phayaban|payaban|khana ?phaet)\b/],
+    ['eng',/\b(engineering|engineers?|cedt|comp(uter)? ?eng|com ?eng|cpe)\b/,/\b(wi[st]?sa[wv]a|wissawa|wit ?sa ?wa|wi ?sa ?wa|visawa|wishawa|wisawakam|witsawakam)\b/],
+    ['price',/\b(prices?|pricing|costs?|fees?|tuition|how much|expensive|cheap|discounts?|installments?|pay|payment|baht|thb|free)\b/,/\b(ra ?ka|kh?a ?rian|kh?a ?course|kh?a ?term|th?ao ?rai|th?ao ?r[ia]i|taorai|thaorai|g[ei]e? ?ba(h)?t|k[ei]e? ?ba(h)?t|ph?aeng)\b/],
+    ['when',/\b(schedule|timetable|when|what time|where|location|address|map|online|onsite|on-site|register|registration|sign ?up|enrol+(ment)?|join|start date|how long|duration|class times?)\b/,/\b(samak|sa ?mak|wan ?nai|th?[ie]e? ?nai|m[eu]e?a ?rai|rian ?yang ?ngai|rian ?wan ?nai|g[ei]e? ?mong|k[ei]e? ?mong)\b/],
+    ['parent',/\b(parents?|my (son|daughter|kids?|child|children)|mom|mum|dad|mother|father|guardian)\b/,/\b(ph?[ou]o? ?pok ?kh?rong|luk ?(chai|sao)|khun ?mae|khun ?ph?o|ph?o ?mae|por ?mae)\b/],
+    ['m6',/\b(grade ?12|12th grade|m\.? ?6|mor ?6|senior year|final year|dek ?70)\b/],
+    ['m45',/\b(grade ?1[01]|1[01]th grade|m\.? ?[45]|mor ?[45]|dek ?7[12])\b/],
+    ['m13',/\b(grade ?[4-9]|m\.? ?[123]|mor ?[123]|junior high|middle school|primary|elementary|young(er)? (kids?|students?))\b/,/\b(mor ?ton|m\.? ?ton|prathom|pratom)\b/],
+    ['game',/\b(games?|gaming|game ?dev\w*|unity|roblox|godot|minecraft)\b/,/\b(gem|kem|th?am ?gem|sang ?gem)\b/],
+    ['web',/\b(web|websites?|web ?apps?|apps?|applications?|html|css|javascript|js|react|front ?end|sites?)\b/,/\b(wep|wep ?sai)\b/],
+    ['iot',/\b(iot|robots?|robotics?|arduino|esp32|sensors?|hardware|electronics?|embedded|micro:?bit|raspberry)\b/,/\b(hun ?yon)\b/],
+    ['ai',/\b(ai|a\.i\.?|artificial intelligence|chat ?gpt|gpt|machine learning|ml|llm|gemini|claude)\b/],
+    ['biz',/\b(business|start-?ups?|entrepreneurs?|sell(ing)?|marketing|make money)\b/,/\b(thurakit|turakit|kh?ai ?khong)\b/],
+    ['compete',/\b(competitions?|compete|contests?|awards?|prizes?|nsc|hackathons?|game ?jam|olympiad)\b/,/\b(kh?aeng|kh?aeng ?kh?an|pra ?kuat|rang ?wan)\b/],
+    ['camp',/\b(camps?|workshops?|events?|activit(y|ies)|summer|holidays?|school break)\b/,/\b(kh?ai|pi[dt] ?th?[eo]e?r?m|kit ?ja ?kam|kitchakam)\b/],
+    ['cs',/\b(computer science|comp ?sci|cs|ict|it (faculty|major|program|course|school|student)|(study|studying|faculty of|major in) it|information technology|software|data science|digital|computers?)\b/,/\b(wit ?com|wit ?khom|witth?aya ?kan ?com\w*)\b/],
+    ['port',/\b(portfolios?|port|tcas|universit(y|ies)|college|uni|admissions?|interviews?|get into)\b/,/\b(maha ?lai|mahawitth?ayalai|maha ?wit\w*|yuen ?port|fam ?port|ph?ot|tid ?maha ?lai|tit ?maha ?lai)\b/],
+    ['beginner',/\b(beginners?|newbie|noob|never (coded|code|programmed)|no experience|from zero|from scratch|basics?|learn (to )?(code|coding|program|programming)|coding|code|programming|python|c#|java|c\+\+|scratch|start(ing)?)\b/,/\b(m[uea]{1,3} ?mai|mai ?kh?[eo]e?i|mai ?keng|kh?ian ?pro ?gr[ae]m|r[oe]{1,2}m ?ton|rerm ?ton)\b/],
+    ['sci',/\b(science|statistics|physics|chemistry|biology|maths?|mathematics|data)\b/,/\b(wit(th?aya)?sat)\b/],
+    ['about',/\b(hamster ?hub|hamsterhub|hamster|hamter|about( us)?|who (are|r) (you|u) guys|trust(ed)?|legit|reviews?|scam|what is this|what do you (do|teach)|what (is|are) (you|this place))\b/,/\b(kh?[eu]e? ?a ?rai|th?am ?a ?rai|thi ?ni)\b/]
+  ];
+  /* typo-tolerant vocabulary for single Latin words */
+  var V={game:'game',games:'game',port:'port',camp:'camp',code:'beginner',website:'web',portfolio:'port',python:'beginner',programming:'beginner',beginner:'beginner',coding:'beginner',robot:'iot',robotics:'iot',arduino:'iot',price:'price',tuition:'price',
+    engineering:'eng',engineer:'eng',medicine:'med',doctor:'med',parent:'parent',parents:'parent',competition:'compete',hackathon:'compete',university:'port',admission:'port',business:'biz',startup:'biz',
+    computer:'cs',software:'cs',science:'sci',hamster:'about',hamsterhub:'about',roblox:'game',unity:'game',workshop:'camp',schedule:'when',register:'when',chulalongkorn:'chula',kasetsart:'ku',mahidol:'mahidol'};
+  var STOP=/\b(the|is|are|am|was|what|how|why|who|where|when|do|does|did|you|your|me|my|we|our|they|can|could|will|would|should|want|wanna|need|like|love|have|has|had|to|for|of|in|on|at|and|or|not|no|yes|with|this|that|it|its|a|an|be|there|here|please|help|tell|give|show|make|learn|teach|study|class|classes|course|courses|kid|kids|student|students|school|good|best|new|any|some|about|from|more|much|many|get|go|know|think|im|i)\b/;
+  function latin(t){var hits=[],i,j;
+    for(i=0;i<L.length;i++){var en=L[i][1].test(t),ro=!en&&L[i][2]&&L[i][2].test(t);if(en||ro)hits.push({k:L[i][0],ro:!!ro})}
+    if(/^(it|i\.t\.?)$/.test(t))hits.push({k:'cs',ro:false});
+    if(!hits.length){var ws=t.split(/[^a-z0-9#+]+/).filter(Boolean);
+      for(i=0;i<ws.length&&!hits.length;i++){var w=ws[i];if(w.length<4)continue;var tol=w.length>=8?2:1;
+        for(j in V){if(w.length===4&&(j.length!==4||w.split('').sort().join('')!==j.split('').sort().join('')))continue;if(Math.abs(j.length-w.length)<=tol&&j[0]===w[0]&&lev(w,j)<=tol){hits.push({k:V[j],ro:false,typo:j});break}}}}
+    if(!hits.length)return null;
+    /* "what is ..." style words only win when nothing more specific matched */
+    return {k:hits[0].k,ro:hits[0].ro,typo:hits[0].typo,alts:hits.slice(1,4).map(function(h){return h.k})}}
+
+  /* Thai vocabulary: a page answer is trusted only when the query really contains (or nearly spells) one of these */
+  var TV=('สจล ลาดกระบัง พระจอมเกล้า จุฬา มหิดล เกษตร ศรีราชา แพทย์ แพทย หมอ เภสัช พยาบาล ทันต สัตวแพทย์ กายภาพ สาธารณสุข สุขภาพ วิศว วิดวะ วิสวะ วิศะ วิดสะวะ คอมเอ็น วิทย์คอม วิทยาการคอม ไอที สารสนเทศ คอมพิว คอม ดิจิทัล ซอฟต์แวร์ ซอฟแวร์ '+
+    'วิทยาศาสตร์ วิทย์ สถิติ สิ่งแวดล้อม ฟิสิกส์ เคมี ชีวะ ชีววิทยา คณิต ข้อมูล แฮมสเตอร์ แฮมเตอร์ แฮมสเตอ แฮม ฮับ คืออะไร ที่นี่ เกี่ยวกับ เป็นใคร ทำอะไร สอนอะไร บริษัท สถาบัน น่าเชื่อ รีวิว ราคา เท่าไหร่ เท่าไร เท่าไห่ กี่บาท ค่าเรียน ค่าคอร์ส ค่าเทอม ค่าสมัคร บาท แพง ผ่อน ส่วนลด ฟรี จ่าย '+
+    'วันไหน กี่โมง ตาราง ออนไลน์ ที่ไหน เรียนยังไง เวลาเรียน เปิดเมื่อ เมื่อไหร่ เมื่อไร สมัคร ลงทะเบียน เริ่มเรียน กี่วัน กี่เดือน นานไหม เปิดรับ ผู้ปกครอง ลูก พ่อแม่ คุณแม่ คุณพ่อ ผปค หลาน ม6 ม.6 มหก เด็ก70 ปีสุดท้าย ม4 ม5 ม.4 ม.5 ม1 ม2 ม3 ม.1 ม.2 ม.3 มต้น ม.ต้น มปลาย ม.ปลาย ประถม ป6 ป5 ป.6 ป.5 ป.4 '+
+    'มือใหม่ ไม่เคย ไม่เก่ง ไม่มีพื้น ศูนย์ เริ่มต้น พื้นฐาน ไพธอน ไพทอน โค้ด เขียนโปรแกรม โปรแกรม เกม ยูนิตี้ โรบล็อกซ์ เว็บ เวป เว็ป เวบ แอป แอพ ไอโอที หุ่นยนต์ หุ่นยน อาดูโน่ บอร์ด อุปกรณ์ เซนเซอร์ เซ็นเซอร์ ไฟฟ้า อิเล็ก เอไอ ปัญญาประดิษฐ์ แชทจีพีที '+
+    'ธุรกิจ สตาร์ทอัพ สตาร์ตอัป สตาทอัพ ขาย หาเงิน บริหาร การตลาด ผู้ประกอบการ บัญชี แข่ง รางวัล ประกวด เกมแจม โอลิมปิก เวที แฮกกาธอน ค่าย แคมป์ ปิดเทอม เวิร์กชอป เวิร์คช็อป กิจกรรม อีเวนต์ พอร์ต พอต พอท มหาลัย มหาวิทยาลัย ทีแคส ยื่น สัมภาษณ์ แฟ้ม รอบ1 ติดมหา เข้ามหา').split(' ');
+  var TVL=TV.filter(function(x){return x.length>=4}),TVD=TV.map(detone);
+  function hasEv(q){var n=nsp(q);if(/[a-z]{2,}/.test(n))return true;/* the page knows many English aliases itself */
+    var i,d=detone(n);for(i=0;i<TV.length;i++){if(n.indexOf(TV[i])>-1)return true;if(TVD[i].length>=3&&d.indexOf(TVD[i])>-1)return true}
+    var ws=words(q.toLowerCase()),cand=[];for(i=0;i<ws.length;i++){if(ws[i].length>=4)cand.push(ws[i]);if(ws[i+1]&&(ws[i]+ws[i+1]).length>=4)cand.push(ws[i]+ws[i+1])}
+    for(i=0;i<cand.length;i++){var w=cand[i],tol=w.length>=7?2:1;for(var j=0;j<TVL.length;j++){var a=TVL[j];if(Math.abs(a.length-w.length)<=tol&&lev(w,a)<=tol)return true}}
+    return false}
+
+  /* ---------- special kinds ---------- */
+  var RUDE=/ควย|เหี้ย|เหี้ย|เชี่ย|สัส|สัตว์นรก|ไอ้สัตว์|อีสัตว์|เย็ด|แม่ง|อีดอก|ไอ้เวร|ระยำ|ส้นตีน|ตอแหล|เฮงซวย|ห่วยแตก|ห่วย|กระจอก|มึง|(^|\s)กู(?=\s|$)|\b(f+u+c+k+\w*|sh[i1]t+\w*|b[i1]tch\w*|assholes?|bastards?|cunts?|wtf|stfu|motherf\w*|kuy|kuay|kwai)\b/gi;
+  var S=[
+    ['crisis',/อยากตาย|ฆ่าตัวตาย|ไม่อยากอยู่แล้ว|ไม่อยากมีชีวิต|ทำร้ายตัวเอง|กรีดแขน|suicid\w*|kill myself|want to die|end my life|self.?harm/i],
+    ['harm',/ทำระเบิด|วางระเบิด|ยาเสพติด|ยาบ้า|ยาไอซ์|กัญชา|ปืน|อาวุธ|แฮก(เฟส|ไอจี|บัญชี|ไลน์|เว็บ|ระบบ|ไวไฟ|wifi)|โกงข้อสอบ|โกงเกม|การพนัน|พนัน|บาคาร่า|สล็อต|หนังโป๊|คลิปหลุด|\b(bombs?|weapons?|guns?|drugs?|cocaine|meth|porn\w*|xxx|nudes?|sex|gambling|casino|slots?|cheat(s|ing)?|hack (into |a |my |her |his )?(facebook|instagram|account|wifi|website|line))\b/i],
+    ['who',/เป็น(บอท|ai|เอไอ|คนจริง|คน|หุ่นยนต์|แชทบอท)(ไหม|มั้ย|มั๊ย|หรือ|รึ|ป่าว|เปล่า|ปะ)|(คุณ|เธอ|นาย|แก)(คือ|เป็น)ใคร|นี่ใคร|ใครตอบ|มีคนตอบ|\b(are (you|u) (a |an )?(bot|ai|human|robot|real|person)|who (are|r) (you|u)\??$|who is this|is this (a )?(bot|ai|chatbot))\b/i],
+    ['home',/การบ้าน|ทำรายงาน|เขียนเรียงความ|เฉลยข้อสอบ|เฉลย|ทำโจทย์|แก้โจทย์|\b(homework|essay|assignment|solve this)\b/i],
+    ['off',/อากาศ|ฝนตก|ฝนจะตก|พยากรณ์|หวย|ลอตเตอรี่|ดูดวง|ดวงวันนี้|ข่าววันนี้|ฟุตบอล|ผลบอล|บอลวันนี้|ดูหนัง|หนังใหม่|ฟังเพลง|เนื้อเพลง|สูตรอาหาร|กินอะไรดี|ร้านอาหาร|ร้านกาแฟ|หาแฟน|จีบ|อกหัก|เรื่องตลก|มุกตลก|เล่านิทาน|แปลภาษา|แปลว่าอะไร|แปลให้|กี่โมงแล้ว|วันนี้วันอะไร|วันนี้วันที่|เมืองหลวง|นายก|การเมือง|เลือกตั้ง|หุ้น|คริปโต|บิทคอยน์|ราคาทอง|ราคาน้ำมัน|ตั๋วเครื่องบิน|โรงแรม|ที่เที่ยว|\b(weather|rain(ing)?|forecast|lottery|horoscope|news|football|soccer|nba|movies?|songs?|lyrics|music|recipes?|restaurants?|jokes?|girlfriend|boyfriend|translate|capital of|president|prime minister|election|stocks?|bitcoin|crypto|gold price|what time is it|what day is|flights?|hotels?)\b/i],
+    ['contact',/ติดต่อ|เบอร์โทร|เบอร์|โทรศัพท์|โทรหา|โทรไป|ไลน์|แอดไลน์|เฟสบุ๊ก|เฟซบุ๊ก|เฟสบุค|เพจ|ไอจี|อินสตา|อีเมล|แอดมิน|คุยกับ(ทีม|คน|พี่|เจ้าหน้าที่|ครู)|ถามทีม|ทักแชท|แชทกับ|ช่องทาง|\b(contact|line|line id|phone|call|tel|e-?mail|facebook|fb|instagram|ig|admin|staff|talk to|message|chat|dm|support|tit ?t[o]r?|tid ?t[o]r?|ber ?th?o+r?)\b/i],
+    ['works',/ดูผลงาน|ผลงานน้อง|ผลงานนักเรียน|ตัวอย่างผลงาน|ตัวอย่างงาน|เกมที่น้อง|ฮอลล์ออฟเฟม|\b(hall of fame|student (works?|projects?|games?)|showcase|examples?|gallery)\b/i]
+  ];
+  var GREET=/^(สวัสดี(ครับ|ค่ะ|คะ|คับ|จ้า|ค่า|ตอน\S+)?|หวัดดี|ดีครับ|ดีค่ะ|ดีคับ|ดีจ้า|ดีค่า|ฮัลโหล|ฮัลโล|เฮลโล|ฮาย|ไฮ|ว่าไง|ไง|มีใครอยู่ไหม|มีคนอยู่ไหม|hi+|hello+|hey+|yo|hiya|sawa[sdt]+ ?d[ie]+ ?(k[rh]?[au]b|kh?a|krub)?|wa[sd]+up|whats ?up|sup|good (morning|afternoon|evening)|anyone (here|there)\??)/i;
+  var THANK=/^(ขอบคุณ(มาก)?|ขอบใจ|แต๊งกิ้ว|แต๊ง|โอเค|โอเคร|เค|ได้เลย|รับทราบ|เข้าใจแล้ว|thanks?( you| a lot)?|thank ?u|thx|ty|tysm|ok(ay)?|kh?o[bp] ?kh?un( kh?a| k[rh]?[au]b)?|bye|บาย|ลาก่อน)/i;
+  var TAIL=/^(ครับ|คับ|ค้าบ|ค่ะ|คะ|ค่า|จ้า|จ้ะ|จ๊ะ|นะ|น้า|เลย|มาก|ผม|หนู|พี่|น้อง|ทีม|แอดมิน|kh?a|k[rh]?[au]b|krub|na|there|team|admin|guys|everyone|[\s!?.,~^_:;)(\-]|5+|ๆ)+/i;
+  var FK=[['game',/ゲーム|游戏|遊戲|게임|juegos?|jeux?|spiele?|trò chơi|игр|لعب|ເກມ/i],['web',/ウェブ|サイト|アプリ|网站|網站|应用|웹|앱|sitio web|página web|trang web|ứng dụng|сайт|веб|موقع|ເວັບ/i],
+    ['price',/値段|料金|いくら|价格|價格|多少钱|多少錢|学费|學費|가격|얼마|precios?|cuánto|cuanto cuesta|combien|prix|giá|học phí|bao nhiêu|цена|сколько|سعر|بكم|ລາຄາ|ເທົ່າໃດ/i],
+    ['iot',/ロボット|机器人|機器人|로봇|robots?|робот|روبوت|ຫຸ່ນຍົນ/i],['port',/大学|大學|대학|universidad|université|đại học|университет|جامعة|ມະຫາວິທະຍາໄລ/i],
+    ['beginner',/初心者|プログラミング|编程|編程|初学者|코딩|프로그래밍|programación|programar|lập trình|программирован|برمجة/i]];
+  var WANT=/^(อยาก(จะ)?(ได้|รู้|ทำ|เรียน|ลอง|ถาม)?|ต้องการ|สนใจ|ขอ(ถาม)?|หา|ถาม|มี(ไหม|มั้ย)?|เรียน|ช่วย|หน่อย|ครับ|คับ|ค่ะ|คะ|จ้า|นะ|ด้วย|อะไร(ดี|บ้าง)?|ไหม|มั้ย|บ้าง)+$/;
+  var TH1=[['price',/ฟรี|ค่าเทอม|ค่าสมัคร|ค่าใช้จ่าย|จ่ายเงิน|แบ่งจ่าย/],['when',/ที่อยู่|แผนที่|ตั้งอยู่|อยู่ที่ไหน|อยู่แถวไหน|สถานที่|สาขา/]];
+  var TH2=[['beginner',/ไม่รู้จะเริ่ม|เริ่มยังไง|เริ่มตรงไหน|เริ่มจากไหน|เริ่มจากอะไร|เริ่มอย่างไร|โง่|ไม่ฉลาด|เรียนไม่เก่ง|หัวไม่ดี|หัวช้า|ไม่มีความรู้|ตามไม่ทัน|ยากไหม|ยากมั้ย/],['m13',/อายุ(น้อย|เท่าไหร่|กี่)|กี่ขวบ|เด็กเล็ก/],['when',/ระยะเวลา|เรียนนาน|ใช้เวลา|เสาร์อาทิตย์|วันหยุด/],['port',/ผลงาน|รุ่นพี่|คณะ/]];
+  var FWORDS=/\b(hola|gracias|quiero|como|cómo|qué|que tal|buenos|buenas|por favor|hacer|aprender|clases?|cursos?|bonjour|merci|salut|je veux|comment|apprendre|hallo|danke|guten|ich|lernen|xin chao|cam on|toi muon|hoc|ciao|grazie|voglio|ola|obrigad[oa]|konnichiwa|arigato|ni ?hao|xie ?xie|annyeong|kamsahamnida|privet|spasibo|salam|terima kasih|apa kabar|selamat|saya|mau|belajar|kumusta|salamat|sabaidee|khop chai)\b/i;
+
+  /* ---------- rendering ---------- */
+  var CH={port:['อยากมีพอร์ตยื่นมหาลัย','พอร์ตยื่นมหาลัย'],game:['อยากทำเกมของตัวเอง','อยากทำเกมของตัวเอง'],zero:['เริ่มจากศูนย์ได้ไหม','เริ่มจากศูนย์ได้ไหม'],price:['ค่าเรียนเท่าไหร่','ค่าเรียนเท่าไหร่'],
+    parent:['ผู้ปกครอง ลูกจะได้อะไร','ผู้ปกครอง ลูกจะได้อะไร'],about:['Hamster Hub คืออะไร','Hamster Hub คืออะไร'],when:['เรียนวันไหน สมัครยังไง','เรียนวันไหน'],camp:['ค่ายและกิจกรรม','ค่าย'],
+    m6:['น้อง ม.6','ม.6'],m45:['น้อง ม.4–5','ม.4'],m13:['น้อง ม.ต้น','ม.ต้น'],web:['อยากทำเว็บหรือแอป','อยากทำเว็บหรือแอป'],iot:['อยากทำ IoT หรือหุ่นยนต์','อยากทำ IoT']};
+  var MAIN=['port','game','zero','price'];
+  var C={
+    unknown:{h:'ยังตอบเรื่องนี้ไม่ได้',a:'ช่องค้นหานี้ตอบได้เฉพาะเรื่องคอร์ส ค่าย ค่าเรียน และการทำพอร์ตยื่นมหาลัย ลองเลือกเรื่องที่ใกล้ที่สุดข้างล่าง หรือทัก LINE ถามทีมได้เลย',
+      e:'Sorry, we can’t answer this one yet. This search covers our courses, camps, fees and university portfolios. Pick a topic below or message the team on LINE.',c:['port','game','zero','price'],lk:1},
+    foreign:{h:'ตอนนี้ช่องค้นหาเข้าใจภาษาไทย และภาษาอังกฤษแบบง่ายๆ',a:'Hamster Hub สอนน้องมัธยมสร้างเกม เว็บ และ IoT จนมีผลงานจริงของตัวเอง เลือกเรื่องที่สนใจข้างล่าง หรือทัก LINE ถามทีมได้เลย',
+      e:'Sorry, this search understands Thai and simple English only. Hamster Hub teaches Thai high-school students to build games, web apps and IoT projects. Pick a topic below or message the team on LINE.',c:['about','game','port','price'],lk:1,fe:1},
+    greet:{h:'สวัสดี อยากรู้เรื่องไหน พิมพ์ถามได้เลย',a:'พิมพ์เป็นคำสั้นๆ ก็ได้ เช่น ทำเกม พอร์ต หรือค่าเรียน หรือเลือกจากข้างล่าง',e:'Hi! Type what you want to know, for example “game”, “portfolio” or “price”, or pick a topic below.',c:['port','game','zero','price','parent']},
+    want:{h:'น้องอยากทำอะไร เลือกได้เลย',a:'พิมพ์ต่ออีกนิด เช่น อยากทำเกม อยากมีพอร์ต หรืออยากรู้ค่าเรียน หรือเลือกจากข้างล่าง',c:['port','game','web','iot','zero']},
+    thanks:{h:'ยินดีเลย',a:'ถ้าอยากรู้เรื่องไหนเพิ่ม พิมพ์ถามต่อได้ หรือทัก LINE ถามทีมก็ได้',e:'You’re welcome. Ask anything else here, or message the team on LINE.',c:['port','game','price']},
+    shape:{h:'พิมพ์เป็นคำสั้นๆ ได้เลย',a:'เช่น ทำเกม พอร์ต หรือค่าเรียน แล้วเราจะหาคอร์สที่ตรงให้ หรือเลือกจากข้างล่าง',e:'Type a word or two, for example “game”, “portfolio” or “price”.',c:['port','game','zero','price']},
+    num:{h:'ตัวเลขนี้หมายถึงเรื่องไหน',a:'ถ้าเป็นชั้นเรียนของน้อง เลือกจากข้างล่างได้เลย ถ้าอยากรู้ราคา กดที่ค่าเรียน',c:['m6','m45','m13','price']},
+    info:{h:'ช่องนี้ใช้ค้นหาคอร์สและกิจกรรมเท่านั้น',a:'ข้อความในช่องนี้ไม่ได้ส่งถึงทีม ถ้าอยากฝากลิงก์ อีเมล หรือเบอร์โทรให้ทีมติดต่อกลับ ส่งทาง LINE ได้เลย',
+      e:'This box only searches our courses and activities. Nothing typed here is sent to the team. To share a link, email or phone number, message us on LINE.',c:['about','price','when']},
+    code:{h:'ช่องนี้เป็นช่องค้นหา ไม่ได้รันโค้ดหรือทำตามคำสั่ง',a:'พิมพ์เป็นคำถามธรรมดาได้เลย เช่น อยากทำเกม หรือค่าเรียนเท่าไหร่ ถ้าน้องชอบเขียนโค้ดอยู่แล้ว ลองดูคอร์สข้างล่าง',
+      e:'This is a search box. It does not run code or follow instructions. Ask a plain question, for example “make a game” or “price”.',c:['game','web','zero','about']},
+    off:{h:'เรื่องนี้ช่องค้นหาตอบไม่ได้',a:'ช่องนี้ตอบเฉพาะเรื่องเรียนที่ Hamster Hub เช่น คอร์ส ค่าย ค่าเรียน และการทำพอร์ตยื่นมหาลัย ลองเลือกเรื่องข้างล่างดู',
+      e:'This search only answers questions about learning at Hamster Hub: courses, camps, fees and university portfolios.',c:['about','port','game','price']},
+    home:{h:'ทำการบ้านแทนไม่ได้ แต่สอนให้น้องเขียนโปรแกรมเองได้',a:'Hamster Hub สอนน้องมัธยมเขียนโปรแกรมจนมีผลงานของตัวเอง ถ้าน้องอยากเริ่ม ลองดูเรื่องข้างล่าง',
+      e:'We can’t do homework for you, but we teach students to code and build their own projects.',c:['zero','game','about']},
+    who:{h:'ช่องนี้เป็นช่องค้นหา ไม่ใช่แชตกับคน',a:'คำตอบมาจากข้อมูลคอร์สและกิจกรรมบนเว็บนี้ ถ้าอยากคุยกับทีม Hamster Hub ทัก LINE ได้เลย',
+      e:'This is a search box, not a live chat. Answers come from the course information on this site. To talk to the team, message us on LINE.',c:['about','price','port']},
+    rude:{h:'ขอโทษถ้าเว็บทำให้หงุดหงิด',a:'บอกได้เลยว่าน้องกำลังหาอะไร พิมพ์เป็นคำสั้นๆ เช่น ทำเกม หรือค่าเรียน หรือทัก LINE ให้ทีมช่วยหาก็ได้',
+      e:'Sorry if the site was frustrating. Tell us what you are looking for in a word or two, or message the team on LINE.',c:['port','game','price']},
+    harm:{h:'เรื่องนี้เราช่วยไม่ได้',a:'Hamster Hub สอนน้องมัธยมสร้างเกม เว็บ และ IoT ถ้าน้องสนใจเทคโนโลยี ลองดูเรื่องข้างล่าง',
+      e:'We can’t help with this. Hamster Hub teaches students to build games, web apps and IoT projects.',c:['game','web','iot','about']},
+    crisis:{h:'ถ้าตอนนี้รู้สึกแย่มาก น้องไม่ต้องอยู่กับมันคนเดียว',a:'โทรสายด่วนสุขภาพจิต 1323 ได้ตลอด 24 ชั่วโมง ไม่เสียค่าโทร หรือเล่าให้ผู้ใหญ่ที่น้องไว้ใจฟัง ช่องค้นหานี้ช่วยเรื่องนี้ไม่ได้ แต่อยากให้น้องได้คุยกับคนที่ช่วยได้จริง',
+      e:'If you are feeling very low, you don’t have to face it alone. In Thailand, call the Mental Health Hotline 1323 (free, 24 hours), or talk to an adult you trust.',c:[],tel:1,noline:1},
+    contact:{h:'ติดต่อทีม Hamster Hub',a:'ถามเรื่องคอร์ส ค่าเรียน หรือวันเรียน ได้ทาง LINE กดปุ่มสีเขียวข้างล่างแล้วพิมพ์ถามทีมได้เลย',
+      e:'Message the Hamster Hub team on LINE (green button below) to ask about courses, fees or schedules.',c:['price','when','about'],soc:1},
+    works:{h:'ผลงานของน้องๆ',a:'ปีนี้มีเกมของน้องๆ 10 เกมใน Hall of Fame เปิดดูได้ที่หน้าผลงาน',e:'This year 10 student games are in our Hall of Fame. See them on the Works page.',c:['game','port'],wk:1}
+  };
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  function chip(k){var c=CH[k],b=el('button','',c[0]);b.type='button';b.dataset.q=c[1];return b}
+  function echoP(pre,q){var p=el('p','ia-q');p.appendChild(document.createTextNode(pre+' “'));var b=el('bdi','',short(q,56));p.appendChild(b);p.appendChild(document.createTextNode('”'));return p}
+  function fixP(txt,dq){var p=el('p','ia-fix sx-fix'),s=el('span');s.appendChild(document.createTextNode('หมายถึง “'));s.appendChild(el('b','',short(txt,40)));s.appendChild(document.createTextNode('” ใช่ไหม'));p.appendChild(s);
+    if(dq){var b=el('button','','ใช้คำนี้ค้นหา');b.type='button';b.dataset.q=dq;p.appendChild(b)}return p}
+  function noteP(txt){return el('p','ia-fix sx-fix sx-note',txt)}
+  function card(kind,o){o=o||{};var d=C[kind],w=el('div','ia sx-card');w.dataset.sx=kind;
+    if(o.echo&&kind!=='crisis')w.appendChild(echoP('น้องพิมพ์',o.echo));else if(o.echoT)w.appendChild(el('p','ia-q',o.echoT));
+    w.appendChild(el('h3','',d.h));w.appendChild(el('p','ia-a',d.a));
+    if(d.e&&(o.en||d.fe)){var e=el('p','sx-en',d.e);e.lang='en';w.appendChild(e)}
+    if(d.tel){var t=el('a','sx-tel','โทร 1323 สายด่วนสุขภาพจิต');t.href='tel:1323';w.appendChild(t)}
+    if(d.c&&d.c.length){w.appendChild(el('p','ia-k','เรื่องที่คนถามบ่อย'));var p=el('p','ia-alt ia-pick sx-ch');d.c.forEach(function(k){p.appendChild(chip(k))});w.appendChild(p)}
+    var x=el('div','ia-x'),a;
+    if(d.lk){a=el('a','ia-lk','ดูคอร์สทั้งหมด');a.href='#courses';x.appendChild(a)}
+    if(d.wk){a=el('a','ia-lk','ดูเกมที่น้องๆ ทำ');a.href='#works';x.appendChild(a)}
+    if(d.soc){if(fa){a=el('a','ia-lk','Facebook');a.href=fa.getAttribute('href');a.target='_blank';a.rel='noopener';x.appendChild(a)}
+      if(ig){a=el('a','ia-lk','Instagram');a.href=ig.getAttribute('href');a.target='_blank';a.rel='noopener';x.appendChild(a)}}
+    if(!d.noline){a=el('a','ia-line','ทัก LINE ถามทีม');a.href=LINE;a.target='_blank';a.rel='noopener';x.appendChild(a)}
+    if(x.children.length)w.appendChild(x);
+    RR.textContent='';G.innerHTML='';A.innerHTML='';if(o.fix)A.appendChild(o.fix);A.appendChild(w);A.hidden=false;R.hidden=false;R.scrollTop=0;
+    return {kind:'card:'+kind,say:d.h+' '+d.a}}
+
+  /* ---------- calling the page's own search(q) ---------- */
+  var trig=document.createElement('button');trig.type='button';trig.hidden=true;trig.tabIndex=-1;trig.setAttribute('aria-hidden','true');trig.className='sx-trig';document.body.appendChild(trig);
+  var VD=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value'),own=false;
+  function shadow(v){Object.defineProperty(inp,'value',{configurable:true,get:function(){return v==null?VD.get.call(inp):v},set:function(){}})}
+  function unshadow(){delete inp.value}
+  function page(q){own=true;shadow(null);try{trig.dataset.q=q;trig.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true}))}finally{unshadow();own=false}
+    var ia=!A.hidden&&A.querySelector('.ia');
+    if(ia)return {kind:ia.querySelector('.ia-pick')&&!ia.querySelector('.ia-a')?'pick':'ia',ia:ia};
+    if(G.querySelector('.zq-e'))return {kind:'empty'};
+    var n=G.querySelectorAll('.qv').length;return {kind:n?'list':'empty',n:n}}
+  /* after a page render: show what the visitor really typed, add notes / the English line */
+  function dress(r,o){o=o||{};var say='';
+    var pf=A.querySelector('.ia-fix:not(.sx-fix)');
+    if(pf){var b=pf.querySelector('b'),via=b?b.textContent:'';if(o.fix||!via)pf.remove();else pf.replaceWith(fixP(via,via))}
+    if(o.fix&&!A.hidden)A.insertBefore(o.fix,A.firstChild);
+    if(r.kind==='ia'||r.kind==='pick'){var ia=r.ia,q=ia.querySelector('.ia-q'),h=ia.querySelector('h3'),a=ia.querySelector('.ia-a');
+      if(q&&o.echo)q.replaceWith(echoP(r.kind==='pick'?'น้องพิมพ์':'คำตอบสำหรับ',o.echo));
+      if(o.en&&a){var e=el('p','sx-en',o.en);e.lang='en';a.parentNode.insertBefore(e,a.nextSibling)}
+      if(o.alts&&o.alts.length&&!A.querySelector('.ia-alt:not(.ia-pick)')){var p=el('p','ia-alt');p.appendChild(el('span','','หรือน้องหมายถึง'));
+        o.alts.forEach(function(k){var bb=el('button','',T[k][1]);bb.type='button';bb.dataset.q=T[k][0];p.appendChild(bb)});A.insertBefore(p,ia)}
+      var n=ia.querySelectorAll('.ia-p>li').length;
+      say=(h?h.textContent:'')+(a?' '+a.textContent:'')+(n?' มีคอร์สและกิจกรรมแนะนำ '+n+' รายการ':'')+(r.kind==='pick'?' เลือกเรื่องที่ต้องการจากปุ่มข้างล่าง':'')}
+    else if(r.kind==='list'){if(o.echo){RR.textContent='';RR.appendChild(document.createTextNode('ผลลัพธ์สำหรับ “'));RR.appendChild(el('bdi','',short(o.echo,56)));RR.appendChild(document.createTextNode('” '+r.n+' รายการ'))}
+      say='พบคอร์สและกิจกรรม '+r.n+' รายการ'}
+    r.say=say;return r}
+
+  /* ---------- the decision ---------- */
+  function titleHit(n){if(n.length<4)return false;var ok=false;document.querySelectorAll('#zqC .qv b,#zqN .qv b').forEach(function(b){var t=nsp(b.textContent);if(t.indexOf(n)===0||n.indexOf(t)>-1)ok=true});return ok}
+  function special(t){for(var i=0;i<S.length;i++)if(S[i][1].test(t))return S[i][0];return null}
+  function solve(raw){
+    var b0=base(raw),c=clean(raw);if(!c)return null;
+    var echo=c,isLong=c.length>90,t=c.toLowerCase(),o={echo:echo},k,r,m;
+    /* 1. nothing to read: emoji, punctuation, digits */
+    if(!/[\p{L}]/u.test(c)){
+      if(/\d/.test(c)&&/^[\d\s.,]+$/.test(c)){if(/^0\d[\d\s\-]{7,}$/.test(c)||c.replace(/\D/g,'').length>=9)return card('info',{echoT:'น้องพิมพ์เบอร์โทร'});
+        if(/^\s*[1-6]\s*$/.test(c)){r=page('ม.'+c.trim());if(r.kind==='ia')return dress(r,{echo:echo,fix:fixP('ม.'+c.trim())})}
+        return card(/^5{3,}$/.test(c)?'shape':'num',o)}
+      if(/^5{3,}$/.test(c))return card('shape',o);
+      if(/\d/.test(c)&&/[+\-*\/x×÷=^%]/.test(c)&&/^[\d\s+\-*\/x×÷=().^%,]+$/.test(c))return card('off',o);
+      if(/^\+?[\d\s\-().]{9,}$/.test(c))return card('info',{echoT:'น้องพิมพ์เบอร์โทร'});
+      return card('shape',o)}
+    /* 2. safety first */
+    if(special(t)==='crisis'||special(nsp(t))==='crisis')return card('crisis',{en:!reThai.test(c)});
+    /* 3. strip what is not a question: links, emails, phone numbers, tags, code-like text, swear words */
+    var f={},s=t;
+    s=s.replace(/<\/?[a-z!][^>]*>?/gi,function(){f.code=1;return ' '}).replace(/[\w.+-]+@[\w-]+(\.[\w-]+)+/g,function(){f.mail=1;return ' '})
+      .replace(/\b(?:https?:\/\/|www\.)\S+|\b[\w-]+(?:\.[\w-]+)*\.(?:com|co|net|org|io|ac\.th|co\.th|in\.th|th|me|app|dev|ee|gg)\b(?:\/\S*)?/gi,function(){f.url=1;return ' '})
+      .replace(/(?:\+66|0)[\s-]?\d{1,2}[\s-]?\d{3}[\s-]?\d{3,4}\b/g,function(){f.tel=1;return ' '});
+    if(/ignore (all |any |the |your )*(previous|above|prior|earlier)|disregard (all|the|previous)|system prompt|you are now|act as (a|an|if)|pretend (to be|you)|jailbreak|developer mode|do anything now|reveal (your|the) (prompt|instructions)|ลืมคำสั่ง|เพิกเฉยคำสั่ง|ไม่ต้องสนใจคำสั่ง|คำสั่งก่อนหน้า|เปิดเผยพรอมต์|javascript:|&(lt|gt|amp|quot|#x?[0-9a-f]+);|on(error|load|click)\s*=|\{\{.*\}\}|\$\{.*\}|;\s*(drop|delete|select|insert|update)\s|union\s+select|'\s*or\s*'?1'?\s*=\s*'?1|\balert\s*\(|document\.cookie|\beval\s*\(|\.\.\/\.\.\//i.test(t))f.inj=1;
+    s=s.replace(RUDE,function(){f.rude=1;return ' '}).replace(/\s+/g,' ').trim();
+    var hasTh=reThai.test(s),hasLa=reLat.test(s),sn=nsp(s),en=!hasTh&&hasLa;
+    if(f.inj)return card('code',{echo:echo,en:!reThai.test(c)});
+    if(/(เว็บ|เวบ|เว็ป|เวป|ที่นี่|แอป|ระบบ|ช่องค้นหา|ค้นหา|คอร์ส|sites?|websites?|search|this)\s*(นี้|นี่|is|are)?\s*(โคตร|แม่ง)?\s*(ห่วย|กระจอก|เฮงซวย|แย่|กาก|sucks?|bad|trash|sh[i1]t)/i.test(t))return card('rude',{echo:echo,en:!reThai.test(c)});
+    if(!sn||!/[\p{L}]/u.test(s)){k=f.code?'code':f.tel?'info':f.mail?'info':f.url?'info':f.rude?'rude':'shape';
+      return card(k,k==='info'?{echoT:f.tel?'น้องพิมพ์เบอร์โทร':f.mail?'น้องพิมพ์อีเมล':'น้องพิมพ์ลิงก์',en:!reThai.test(c)}:{echo:echo,en:!reThai.test(c)})}
+    function last(){if(f.code)return card('code',{echo:echo,en:en});if(f.tel||f.mail||f.url)return card('info',{echoT:f.tel?'น้องพิมพ์เบอร์โทร':f.mail?'น้องพิมพ์อีเมล':'น้องพิมพ์ลิงก์',en:en});
+      if(f.rude)return card('rude',{echo:echo,en:en});return card(en?'unknown':'unknown',{echo:echo,en:en})}
+    /* 4. hello / thanks on their own */
+    function soc(x){var g=x.replace(GREET,''),h;if(g!==x){if(!g.replace(TAIL,'').trim())return 'greet';x=g.replace(/^[\s,.!]+/,'')}
+      h=x.replace(THANK,'');if(h!==x&&!h.replace(TAIL,'').trim())return 'thanks';return null}
+    function sp(x){var k=soc(x);if(k)return k;if(/^(it|i\.t\.?)$/.test(x))return null;x=x.replace(/ออนไลน์/g,' ');k=special(x)||special(nsp(x));if(!k)return null;
+      if((k==='off'||k==='home'||k==='works')&&reThai.test(x)&&/ค่าเรียน|ราคา|คอร์ส|ค่าย|สมัคร|พอร์ต/.test(x)&&k!=='works')return null;
+      if(k==='contact'&&/ออนไลน์|online/.test(x)&&!/ติดต่อ|contact|เบอร์|ไลน์|\bline\b/.test(x))return null;return k}
+    k=sp(s);if(k)return card(k,{echo:echo,en:en&&!/^(sawa|wasd)|kh?o[bp] ?kh?un|\b(k[rh]?[au]b|krub|kha)\b/.test(s)});
+    if(en&&sn.replace(/[^a-z]/g,'').length<2&&!/\d/.test(sn))return card('shape',{echo:echo});
+    /* 5. other languages */
+    if(!hasTh&&(reForeign.test(s)||(hasLa&&FWORDS.test(s)&&!latin(s)))){
+      for(var i=0;i<FK.length;i++)if(FK[i][1].test(s)){r=page(T[FK[i][0]][0]);if(r.kind==='ia')return dress(r,{echo:echo,en:'Sorry, answers are in Thai only. '+T[FK[i][0]][2]})}
+      m=hasLa&&!reForeign.test(s.replace(/[À-ɏḀ-ỿ¿¡]/g,''))?latin(s.normalize?s.normalize('NFD').replace(/[̀-ͯ]/g,''):s):null;
+      if(m){r=page(T[m.k][0]);if(r.kind==='ia')return dress(r,{echo:echo,en:'Sorry, answers are in Thai only. '+T[m.k][2]})}
+      return card('foreign',{echo:echo,en:1})}
+    /* 6. Thai (or mixed) text: the page's own knowledge base is good at this */
+    if(hasTh){
+      var q=s;
+      TV.forEach(function(w,i){if(TVD[i]!==w&&TVD[i].length>=4&&q.indexOf(w)<0&&q.indexOf(TVD[i])>-1)q=q.split(TVD[i]).join(w)});
+      if(!nsp(q).replace(WANT,''))return card('want',{echo:echo});
+      if(!isLong)for(var pi=0;pi<TH1.length;pi++)if(TH1[pi][1].test(sn)){r=page(T[TH1[pi][0]][0]);if(r.kind==='ia')return dress(r,{echo:echo})}
+      if(isLong){var found=[],nn=nsp(s);TV.forEach(function(w){var at=nn.indexOf(w);if(at>-1&&w.length>=3&&!/^(ที่นี่|ทำอะไร|ข้อมูล|โปรแกรม|เกี่ยวกับ|อุปกรณ์|ที่ไหน|เริ่มต้น)$/.test(w))found.push([at,w])});found.sort(function(a,b){return a[0]-b[0]});
+        if(found.length)q=found.slice(0,3).map(function(x){return x[1]}).join(' ');else q=short(s,60).replace('…','')}
+      r=page(q);
+      if(r.kind==='list'||r.kind==='pick'||(r.kind==='ia'&&hasEv(q)))return dress(r,{echo:echo,fix:isLong?noteP('ข้อความยาว เราตอบจากคำสำคัญที่เจอในข้อความ'):null});
+      if(hasLa){m=latin(s.replace(/[^\x00-\x7f]+/g,' '));if(m){r=page(T[m.k][0]);if(r.kind==='ia')return dress(r,{echo:echo})}}
+      /* Thai letters that are really English typed on the Thai layout */
+      if(!hasLa){var se=clean(swapKb(b0,false)).toLowerCase();
+        if(/^[a-z0-9 .,'?!-]+$/.test(se)&&/[a-z]{2}/.test(se)){k=sp(se);if(k)return card(k,{echo:echo,fix:fixP(se)});
+          m=latin(se);if(m&&!m.ro){r=page(T[m.k][0]);if(r.kind==='ia')return dress(r,{echo:echo,fix:fixP(se),en:T[m.k][2]})}}}
+      if(/คอร์ส|หลักสูตร|สอนอะไร|เรียนอะไร|มีอะไรบ้าง/.test(sn)){r=page('คอร์ส');if(r.kind==='list')return dress(r,{echo:echo})}
+      for(var hi=0;hi<TH2.length;hi++)if(TH2[hi][1].test(sn)){r=page(T[TH2[hi][0]][0]);if(r.kind==='ia')return dress(r,{echo:echo})}
+      return last()}
+    /* 7. Latin letters */
+    if(titleHit(sn)){r=page(s);if(r.kind==='list'||r.kind==='ia')return dress(r,{echo:echo})}
+    m=latin(s);
+    if(m){r=page(T[m.k][0]);if(r.kind==='ia')return dress(r,{echo:echo,en:m.ro?null:T[m.k][2],alts:m.alts,fix:m.ro?fixP(T[m.k][1]):m.typo?fixP(m.typo):null})}
+    /* Thai typed with the keyboard left on English (vpkd = อยาก) */
+    var b1=/[a-z]/.test(b0)?b0:b0.toLowerCase().replace(/</g,',').replace(/>/g,'.').replace(/\?/g,'/').replace(/:/g,';').replace(/"/g,"'").replace(/\{/g,'[').replace(/\}/g,']');
+    var sw=clean(swapKb(b1,true)),thN=(sw.match(/[ก-ฮ]/g)||[]).length,lt=(sw.match(/[a-z]/gi)||[]).length;
+    if(thN>=2&&lt<=1&&!/^[ะ-ฺ็-๎]/.test(sw)&&!(STOP.test(s)&&/^[a-z\s?!.,']+$/.test(s))){
+      k=sp(sw.toLowerCase());if(k)return card(k,{echo:echo,fix:fixP(sw,null)});
+      if(!nsp(sw).replace(WANT,''))return card('want',{echo:echo,fix:fixP(sw,null)});
+      r=page(sw);if((r.kind==='ia'&&hasEvTh(sw))||r.kind==='pick'&&sw.length<=2)return dress(r,{echo:echo,fix:fixP(sw,sw)})}
+    var kw=s.split(/[^a-z0-9#+]+/).filter(function(w){return w.length>=3&&!new RegExp('^'+STOP.source.slice(2,-2)+'$').test(w)}).join(' ');
+    if(kw){r=page(kw);if(r.kind==='list')return dress(r,{echo:echo})}
+    return last()}
+  function hasEvTh(q){var n=nsp(q).replace(/[a-z]+/g,'');return !!n&&hasEv(n)}
+
+  /* ---------- run + announce ---------- */
+  var lastC=null,sayT;
+  function announce(txt){ct(sayT);sayT=st(function(){live.textContent='';st(function(){live.textContent=short(txt.replace(/\s+/g,' ').trim(),220)},40)},350)}
+  function run(raw,force){var c=clean(raw);
+    if(!c){lastC=null;if(!R.hidden)R.hidden=true;return}
+    if(!force&&c===lastC&&!R.hidden)return;
+    var r;try{r=solve(raw)}catch(err){try{r=dress(page(c),{})}catch(e2){}}
+    lastC=c;if(r&&r.say)announce(r.say)}
+
+  /* ---------- events ---------- */
+  var deb,comp=false,compT,skip=false,skipAt=0;
+  /* the page's own "search 250ms after typing" timer is replaced by ours (same delay) so a query renders once */
+  window.setTimeout=function(fn,ms){if(skip&&ms===250&&performance.now()-skipAt<40&&typeof fn==='function'&&/search\(/.test(Function.prototype.toString.call(fn)))return 0;return st.apply(null,arguments)};
+  inp.addEventListener('compositionstart',function(){comp=true;ct(deb);ct(compT)});
+  inp.addEventListener('compositionend',function(){comp=false;ct(compT);ct(deb);deb=st(function(){run(VD.get.call(inp))},80)});
+  window.addEventListener('input',function(e){if(e.target!==inp)return;
+    if(e.isComposing||comp){e.stopImmediatePropagation();ct(deb);ct(compT);
+      /* phone keyboards keep ordinary Thai/English words "composing"; after a pause, answer what is there */
+      if(coarse)compT=st(function(){var v=VD.get.call(inp);if(!/[぀-ヿ㐀-鿿가-힯ᄀ-ᇿ]/.test(v))run(v)},700);return}
+    skip=true;skipAt=performance.now();ct(deb);
+    var v=inp.value;if(!v.trim()||!clean(v)){lastC=null;if(!R.hidden)R.hidden=true;return}
+    deb=st(function(){run(inp.value)},250)},true);
+  window.addEventListener('input',function(e){if(e.target===inp)skip=false});
+  window.addEventListener('submit',function(e){if(e.target!==form)return;var v=inp.value;ct(deb);
+    if(!v.trim())return;/* 50-hero handles the empty case */
+    if(!clean(v)){e.preventDefault();e.stopImmediatePropagation();inp.value='';inp.focus();if(!R.hidden)R.hidden=true;return}
+    if(comp||e.isComposing)return;
+    shadow('เกม');st(unshadow,0);
+    st(function(){if(inp.hasOwnProperty('value'))unshadow()},0)},true);
+  window.addEventListener('submit',function(e){if(e.target!==form)return;if(inp.hasOwnProperty('value')){unshadow();run(inp.value,true);
+    /* keyboard users: move to the answer so the next Tab is inside it */
+    }});
+  /* chips inside the page call the page's search directly: tidy up after it */
+  document.addEventListener('click',function(e){if(own)return;var b=e.target.closest&&e.target.closest('[data-q]');if(!b)return;
+    ct(deb);lastC=clean(b.dataset.q);
+    var r={kind:'ia',ia:!A.hidden&&A.querySelector('.ia')};if(r.ia){if(r.ia.querySelector('.ia-pick')&&!r.ia.querySelector('.ia-a'))r.kind='pick';dress(r,{});if(r.say)announce(r.say)}
+    else{var n=G.querySelectorAll('.qv').length;announce(n?'พบคอร์สและกิจกรรม '+n+' รายการ':'ยังไม่เจอคำตอบสำหรับคำนี้')}
+    /* the chip that was pressed is gone after the re-render: keep keyboard focus inside the answer */
+    if(R.contains(b)||!document.contains(b)){var ia=A.querySelector('.ia');if(ia&&(!document.activeElement||document.activeElement===document.body||!document.contains(document.activeElement))){ia.tabIndex=-1;try{ia.focus({preventScroll:true})}catch(x){}}}});
+  /* closing the panel: forget the last query, hand focus back to the field (not on touch: it would reopen the keyboard) */
+  new MutationObserver(function(){if(R.hidden){lastC=null;ct(sayT);live.textContent='';var a=document.activeElement;if(a&&a!==inp&&R.contains(a)&&!coarse)inp.focus({preventScroll:true})}}).observe(R,{attributes:true,attributeFilter:['hidden']});
+  R.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.zq-x')&&!coarse)inp.focus({preventScroll:true})});
+  /* the native clear (x) of a search field fires "search" in Chromium/WebKit: make sure the panel closes and focus stays */
+  inp.addEventListener('search',function(){if(!inp.value){lastC=null;if(!R.hidden)R.hidden=true;inp.focus()}});
+  window.SXSearch={run:run,clean:clean,solve:solve};
+})();
+</script>
