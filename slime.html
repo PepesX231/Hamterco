@@ -9539,3 +9539,17 @@ html body [data-view="home"] .mc .lk{display:inline-flex!important;margin:22px 0
   addEventListener('hashchange',function(){setTimeout(run,300)});
 })();
 </script>
+<style>
+/* Port Express: a plain "recommended" tag beside "open for enrolment" (type only: no star, medal or gradient) */
+.ow-rec{position:absolute;top:16px;z-index:4;display:flex;align-items:center;background:#F2A65E;color:#1D1712;font:700 .85rem/1 var(--display);padding:9px 14px;border-radius:999px;letter-spacing:.01em}
+@media (max-width:640px){.ow-rec{top:12px;font-size:.8rem;padding:8px 12px}}
+</style>
+<script>
+(function(){
+  function put(){[].forEach.call(document.querySelectorAll('.fx-main .fx-media'),function(m){if(m.querySelector('.ow-rec'))return;var live=m.querySelector('.ft-live');
+    var t=document.createElement('span');t.className='ow-rec';t.textContent='คอร์สแนะนำ';m.appendChild(t);
+    function pos(){var l=live?live.offsetLeft+live.offsetWidth+8:16;t.style.left=l+'px';if(live)t.style.top=live.offsetTop+'px'}
+    pos();if(window.ResizeObserver&&live)new ResizeObserver(pos).observe(live)})}
+  if(document.readyState==='complete')put();else addEventListener('load',put);
+})();
+</script>
