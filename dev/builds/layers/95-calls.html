@@ -1,0 +1,266 @@
+<style id="ly-cl2">
+/* =====================================================================
+   95-calls: fixes from the reviewer call (prefix cl2-)
+   1 one courses section on home   2 no "แนะนำ" labels   3 flat colours
+   6 links land on their section   7 rails   8 activity cards link
+   9 LINE mark   10 no back-to-top   11 seniors row + universities line
+   12 brand colours   13 card hover/press   14 closing panel
+   (4 and 5 live in 50-hero / 52-herobg + copy.json)
+   ===================================================================== */
+:root{--cl2-ink:#1D1712;--cl2-cream:#FFF3E3;--cl2-paper:#FFFAF3;--cl2-or:#F7A23E;--cl2-deep:#D9741A;--cl2-txt:#8A4A12;--cl2-e:cubic-bezier(.23,1,.32,1)}
+
+/* ---- 1. home: Port Express is THE course; the rest is one quiet line ---- */
+html body [data-view="home"] .ft .fx-row,html body [data-view="home"] section.zc2{display:none!important}
+.cl2-next{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:18px;padding:20px 24px;border-radius:22px;background:var(--cl2-cream);color:var(--cl2-ink);box-shadow:inset 0 0 0 1px rgba(29,23,18,.07)}
+.cl2-next-t{flex:1 1 420px;min-width:0}
+.cl2-next-t b{display:block;font:700 1.02rem/1.4 var(--display,inherit);margin-bottom:4px}
+.cl2-next-t p{margin:0;font-size:.97rem;line-height:1.6;color:rgba(29,23,18,.74);text-wrap:pretty}
+.cl2-next-a{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px}
+html body a.cl2-bell{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;background:#06C755;color:var(--cl2-ink)!important;font:600 .97rem/1 var(--display,inherit);text-decoration:none;white-space:nowrap}
+html body a.cl2-all{display:inline-flex;align-items:center;min-height:44px;color:var(--cl2-ink)!important;font:600 .97rem/1 var(--display,inherit);text-decoration:underline;text-decoration-color:var(--cl2-or);text-decoration-thickness:2px;text-underline-offset:5px;white-space:nowrap}
+html body a.cl2-all:hover{text-decoration-color:var(--cl2-ink)}
+@media (max-width:640px){.cl2-next{padding:18px;gap:14px}.cl2-next-a{width:100%}html body a.cl2-bell{flex:1 1 auto;justify-content:center}}
+
+/* ---- 2. no "คอร์สแนะนำอันดับ 1" and no "แนะนำ" chips ---- */
+html body .fx-main .rc,html body [data-view] .fx-main .rc.ar-rk,html body [data-view] .fx-main .fx-body .rc.ar-rk,html body .fx-s .rc-s,html body .qv-rc{display:none!important}
+
+/* ---- 3. flat colours: no decorative gradient washes ---- */
+html body [data-view] a.fx-main.fx-main{background:#1D1550!important;background-image:none!important}
+html body [data-view] .fx-main .fx-t.fx-t{background:none!important;-webkit-text-fill-color:#FFF3E3!important;color:#FFF3E3!important}
+html body .px-shine,html body .pxe-ring,html body .px-aura,html body .pz-glow{display:none!important}
+html body [data-view] .zq-go::before{background:none!important}
+html body [data-view] .pz-pad-in.pz-pad-in{background:#F7A23E!important;background-image:none!important}
+html body [data-view] .pz-pad-in.pz-pad-in::before{background:none!important;display:none!important}
+html body [data-view] .pz-bub,html body [data-view] .pz-beam{display:none!important}
+html body [data-view] .fit-in.fit-in{background:#FFF1DE!important;background-image:none!important}
+html body [data-view] .fit-in i::after{background:#F7A23E!important}
+html body [data-view] .qv-im::after,html body [data-view] .avc-m::after{background:none!important}
+html body [data-view] .avc-ty.ar-po::before{background:none!important}
+html body [data-view] .cl2-flat.cl2-flat{background-image:none!important;background-color:var(--cl2-flat,#F7A23E)!important}
+html body [data-view] a.ad-s.ad-s{background:#FFF3E3!important;background-image:none!important}
+html body [data-view] .us-m.us-city{background:#1D6B4E!important}
+html body [data-view] .tk-item.tk-outro{background:#100C0A!important}
+/* the search glow ring: a still white ring (no spinning colour sweep) */
+html body .hx-gr{animation:none!important;background:rgba(255,255,255,.92)!important}
+html body .hx-gw{display:none!important}
+html body .ak-dots button.on{background:var(--cl2-ink)!important}
+
+/* ---- 7. rails: full width, card-by-card snap, soft edges, honest dots ---- */
+html body .mr-r.cl2-r,html body .cl2-sr{scroll-snap-type:x mandatory!important;scroll-behavior:auto}
+html body .mr-r.cl2-r>*,html body .cl2-sr>*{scroll-snap-align:start;scroll-snap-stop:always}
+.cl2-r.cl2-fl,.cl2-sr.cl2-fl{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 var(--cl2-f,56px),#000 100%);mask-image:linear-gradient(90deg,transparent 0,#000 var(--cl2-f,56px),#000 100%)}
+.cl2-r.cl2-fr,.cl2-sr.cl2-fr{-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - var(--cl2-f,56px)),transparent 100%);mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - var(--cl2-f,56px)),transparent 100%)}
+.cl2-r.cl2-fl.cl2-fr,.cl2-sr.cl2-fl.cl2-fr{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 var(--cl2-f,56px),#000 calc(100% - var(--cl2-f,56px)),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 var(--cl2-f,56px),#000 calc(100% - var(--cl2-f,56px)),transparent 100%)}
+html body .ak-dots.cl2-off{display:none!important}
+.cl2-dots{display:flex;justify-content:center;align-items:center;gap:4px;margin-top:18px;min-height:24px}
+.cl2-dots[hidden]{display:none}
+.cl2-dots button{position:relative;width:24px;height:24px;padding:0;border:0;background:none;cursor:pointer}
+.cl2-dots button::after{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:999px;background:rgba(29,23,18,.22);transition:width .22s var(--cl2-e),margin .22s var(--cl2-e),background-color .22s var(--cl2-e)}
+.cl2-dots button.on::after{width:28px;margin-left:-14px;background:var(--cl2-ink)}
+.cl2-dots button:hover::after{background:rgba(29,23,18,.45)}
+.cl2-dots button.on:hover::after{background:var(--cl2-ink)}
+
+/* ---- 8. home activity cards: whole card opens the activity ---- */
+@keyframes cl2Hl{0%,100%{box-shadow:0 0 0 0 rgba(247,162,62,0)}25%,70%{box-shadow:0 0 0 4px #F7A23E}}
+html body .cl2-hl{animation:cl2Hl 1.8s var(--cl2-e) 1}
+
+/* ---- 9. LINE mark on LINE buttons ---- */
+.cl2-li{width:1.25em;height:1.25em;flex:none;display:inline-block;vertical-align:-.28em;margin-right:.45em;fill:#fff}
+html body .rv-ln.cl2-hasli .cl2-li{margin-right:8px}
+
+/* ---- 10. back-to-top: removed ---- */
+html body .to-top{display:none!important}
+
+/* ---- 11. seniors: where they got in + a calm flat row ---- */
+html body [data-view="home"] .mc #mcSt,html body [data-view="home"] .mc .mc-cap,html body [data-view="home"] .mc .mc-bg{display:none!important}
+.cl2-uni{max-width:40em;margin:14px auto 0;font:500 clamp(1rem,1.3vw,1.12rem)/1.55 var(--body,inherit);color:rgba(29,23,18,.8);text-wrap:balance}
+.cl2-sen{position:relative;margin:34px auto 6px;max-width:1240px;text-align:left}
+.cl2-sr{display:flex;gap:16px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;padding:4px 2px 10px}
+.cl2-sr::-webkit-scrollbar{display:none}
+.cl2-sr figure{flex:0 0 clamp(168px,17vw,216px);margin:0;display:flex;flex-direction:column}
+.cl2-sr figure[hidden]{display:none}
+.cl2-sr img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:16px;background:#EADBC6;box-shadow:0 1px 0 rgba(29,23,18,.06),0 10px 22px -16px rgba(29,23,18,.5)}
+.cl2-sr figcaption{padding:10px 2px 0;font-size:.9rem;line-height:1.45;color:rgba(29,23,18,.72)}
+.cl2-sr figcaption b{display:block;font:700 .98rem/1.35 var(--display,inherit);color:var(--cl2-ink)}
+.cl2-ctl{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:10px}
+.cl2-ctl .cl2-dots{margin-top:0}
+.cl2-arw{width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:var(--cl2-ink);cursor:pointer;display:grid;place-items:center;box-shadow:inset 0 0 0 1px rgba(29,23,18,.14);transition:background-color .18s var(--cl2-e),transform .12s var(--cl2-e)}
+.cl2-arw:hover{background:var(--cl2-cream)}
+.cl2-arw:active{transform:scale(.94)}
+.cl2-arw[disabled]{opacity:.35;cursor:default}
+.cl2-arw svg{width:20px;height:20px}
+@media (max-width:640px){.cl2-sr figure{flex-basis:44vw}.cl2-sen{margin-top:26px}.cl2-ctl{gap:4px}.cl2-ctl .cl2-dots{gap:0}.cl2-ctl .cl2-dots button{width:13px}.cl2-ctl .cl2-dots button::after{width:6px;height:6px;margin:-3px 0 0 -3px}.cl2-ctl .cl2-dots button.on::after{width:12px;margin-left:-6px}}
+
+/* ---- 12. brand colours: the pink accents go warm ---- */
+html body .ar-po.p-pink{--po-bg:#FAE7CB;--po-fg:#1D1712;--po-ac:#B0581A;--po-ln:rgba(140,80,24,.26)}
+html body .rv-cv.c-pink{--cv-bg:#FAE7CB;--cv-fg:#1D1712;--cv-ac:#A8551A;--cv-ln:rgba(140,80,24,.26)}
+
+/* ---- 13. cards: clear hover + pressed states; plain cards stay still ---- */
+html body :is(.qv,.fx-main,.fx-s,.ad-big,.ad-s,.ar-tile,.cl2-card){transition:transform .2s var(--cl2-e),box-shadow .2s var(--cl2-e)!important}
+@media (hover:hover){
+  html body :is(.qv,.fx-s,.ad-s,.cl2-card):hover{transform:translateY(-4px)!important;box-shadow:0 1px 0 rgba(29,23,18,.05),0 22px 40px -22px rgba(110,55,10,.55)!important}
+  html body :is(.fx-main,.ad-big):hover{transform:translateY(-3px)!important}
+  html body .ar-tile:hover{transform:translateY(-3px)!important}
+}
+html body :is(.qv,.fx-s,.ad-s,.cl2-card,.fx-main,.ad-big,.ar-tile):active{transform:translateY(0) scale(.985)!important;transition-duration:.1s!important;box-shadow:0 1px 0 rgba(29,23,18,.05),0 8px 16px -12px rgba(110,55,10,.5)!important}
+/* not links: no lift, no zoom, no pointer */
+html body [data-view="activity"] .avc:not(:has(a)):hover,html body .aw-g figure:hover,html body .aw-g figure:nth-child(2n):hover{transform:none!important}
+html body [data-view="activity"] .avc:not(:has(a)):hover .avc-m>img,html body .oc-m:hover img,html body .us-m:hover img{transform:none!important}
+html body [data-view="activity"] .avc:not(:has(a)){cursor:default}
+
+/* ---- 14. closing panel: a line from the team ---- */
+.cl2-sig{display:block;margin-top:8px;font:600 .95rem/1.4 var(--display,inherit);color:var(--cl2-txt)}
+
+/* ---- reduced motion: still states ---- */
+@media (prefers-reduced-motion:reduce){
+  html body [data-view="home"] .zq *,html body [data-view="home"] .zq,html body .je i{animation:none!important}
+  html body :is(.qv,.fx-main,.fx-s,.ad-big,.ad-s,.ar-tile,.cl2-card,.cl2-arw){transition:none!important}
+  html body :is(.qv,.fx-s,.ad-s,.cl2-card,.fx-main,.ad-big,.ar-tile):hover{transform:none!important}
+  .cl2-dots button::after{transition:none}
+  html body .cl2-hl{animation:none;outline:3px solid #F7A23E;outline-offset:3px}
+}
+</style>
+<script>
+(function(){
+  'use strict';
+  var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
+  var RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var LINE='https://page.line.me/jkm4247u?openQrModal=true';
+  var LOGO='<svg class="cl2-li" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>';
+  var ARW={l:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+           r:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'};
+  var raf=window.requestAnimationFrame||function(f){return setTimeout(f,16)};
+  function onView(){var v=$('[data-view].on');return v?v.dataset.view:'home'}
+  function txt(el){return el?el.textContent.replace(/\s+/g,' ').trim():''}
+
+  /* ---------- 1. home courses: one quiet "next round" line under Port Express ---------- */
+  function nextLine(){var fx=$('[data-view="home"] .ft .fx');if(!fx||$('.cl2-next',fx))return;
+    /* names come from the page's own course list (the cards that are not open yet) */
+    var names=$$('#zqC .qv:not(.on) .qv-tx b').map(txt).filter(function(n,i,a){return n&&a.indexOf(n)===i});
+    if(!names.length)return;
+    var d=document.createElement('div');d.className='cl2-next';
+    d.innerHTML='<div class="cl2-next-t"><b>คอร์สที่จะเปิดรอบถัดไป</b><p></p></div><div class="cl2-next-a"><a class="cl2-bell" href="'+LINE+'" target="_blank" rel="noopener">'+LOGO+'แจ้งเตือนเมื่อเปิด</a><a class="cl2-all" href="#courses">ดูคอร์สทั้งหมด</a></div>';
+    $('p',d).textContent=names.length>1?names.slice(0,-1).join(', ')+' และ '+names[names.length-1]:names[0];
+    fx.appendChild(d)}
+
+  /* ---------- 3. flat fills for the few gradient chips built in page code ---------- */
+  function flat(){
+    $$('[data-view="about"] small,[data-view="about"] li,[data-view="works"] button,[data-view="activity"] h2 span,[data-view="activity"] h1 span').forEach(function(e){
+      if(e.classList.contains('cl2-flat')||e.closest('.h5f,.t-afo'))return;var bi=getComputedStyle(e).backgroundImage;
+      if(bi&&/linear-gradient|radial-gradient/.test(bi)&&!/url\(/.test(bi)){e.classList.add('cl2-flat');e.style.setProperty('background','#F7A23E','important')}})}
+
+  /* ---------- 7. rails ---------- */
+  var RAILS=[];
+  function stops(r){var cs=[].slice.call(r.children).filter(function(c){return !c.hidden&&c.offsetWidth&&getComputedStyle(c).display!=='none'});
+    var max=r.scrollWidth-r.clientWidth;if(!cs.length||max<=4)return [];
+    var pl=parseFloat(getComputedStyle(r).scrollPaddingLeft)||0,rl=r.getBoundingClientRect().left,out=[];
+    cs.forEach(function(c){var x=Math.round(c.getBoundingClientRect().left-rl+r.scrollLeft-pl);x=Math.max(0,Math.min(max,x));if(!out.length||x-out[out.length-1]>4)out.push(x)});
+    if(max-out[out.length-1]>4)out.push(max);return out}
+  function Rail(r,dotsHost,opt){var o={r:r,s:[],d:document.createElement('div'),opt:opt||{}};o.d.className='cl2-dots';o.d.setAttribute('role','group');o.d.setAttribute('aria-label','เลื่อนดูการ์ด');
+    dotsHost(o.d);r.classList.add(o.opt.own?'cl2-own':'cl2-r');
+    function go(x){r.scrollTo({left:x,behavior:RM?'auto':'smooth'})}
+    o.go=go;
+    o.bleed=function(){if(!o.opt.bleed||!r.offsetParent)return;var p=r.parentElement,pr=p.getBoundingClientRect(),W=document.documentElement.clientWidth;
+      var l=Math.max(0,Math.round(pr.left)),rt=Math.max(0,Math.round(W-pr.right));
+      /* cards line up with the section heading; the scroll area reaches the screen edges */
+      var hd=r.closest('.mr'),hh=hd&&hd.querySelector('.mr-l h2,.mr-l h3'),c0=hh?Math.round(hh.getBoundingClientRect().left):l;
+      var col=hh&&hh.offsetWidth?c0:l+4;col=Math.max(12,col);
+      var S=function(k,v){r.style.setProperty(k,v,'important')};S('margin-left',-l+'px');S('margin-right',-rt+'px');S('padding-left',col+'px');S('padding-right',col+'px');S('scroll-padding-left',col+'px');S('scroll-padding-right',col+'px');
+      r.style.setProperty('--cl2-f',Math.max(28,Math.min(72,l+24))+'px')};
+    o.build=function(){o.bleed();o.s=stops(r);var n=o.s.length;
+      if(o.d.childElementCount!==n){o.d.innerHTML='';for(var i=0;i<n;i++){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','ไปหน้าที่ '+(i+1)+' จาก '+n);
+          (function(i){b.addEventListener('click',function(){go(o.s[i])})})(i);o.d.appendChild(b)}}
+      o.d.hidden=n<2;o.upd()};
+    o.upd=function(){var x=r.scrollLeft,max=r.scrollWidth-r.clientWidth,a=0,best=1e9;o.s.forEach(function(s,i){var d=Math.abs(s-x);if(d<best){best=d;a=i}});
+      [].forEach.call(o.d.children,function(b,i){var on=i===a;if(b.classList.contains('on')!==on)b.classList.toggle('on',on);if(on)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current')});
+      var fl=x>4,fr=x<max-4;if(r.classList.contains('cl2-fl')!==fl)r.classList.toggle('cl2-fl',fl);if(r.classList.contains('cl2-fr')!==fr)r.classList.toggle('cl2-fr',fr);
+      if(o.opt.onUpd)o.opt.onUpd(x,max)};
+    var q=0;r.addEventListener('scroll',function(){if(!q)q=raf(function(){q=0;o.upd()})},{passive:true});
+    new MutationObserver(function(){raf(o.build)}).observe(r,{childList:true});
+    if(window.ResizeObserver)new ResizeObserver(function(){raf(o.build)}).observe(r);
+    RAILS.push(o);o.build();return o}
+  function rails(){
+    $$('.mr-r').forEach(function(r){if(r.dataset.cl2)return;r.dataset.cl2='1';
+      var old=r.closest('.mr-rw');old=old&&old.nextElementSibling&&old.nextElementSibling.classList.contains('ak-dots')?old.nextElementSibling:null;
+      if(old)old.classList.add('cl2-off');
+      Rail(r,function(d){var host=old||r.closest('.mr-rw')||r;host.parentNode.insertBefore(d,host.nextSibling)},{bleed:!!r.closest('.mr-rw')})});
+    /* the course grid on phones scrolls sideways too */
+    $$('#zqC2').forEach(function(r){if(r.dataset.cl2)return;var s=getComputedStyle(r);if(s.overflowX!=='auto'&&s.overflowX!=='scroll')return;r.dataset.cl2='1';
+      Rail(r,function(d){r.parentNode.insertBefore(d,r.nextSibling)},{})})}
+  function relayout(){RAILS.forEach(function(o){o.build()})}
+
+  /* ---------- 8. home activity cards open their activity ---------- */
+  var pend=null;
+  function actCards(){$$('#zqN .qv').forEach(function(a){if(a.dataset.cl2t)return;var t=txt($('.qv-tx b',a));if(!t)return;
+      a.dataset.cl2t=t;a.setAttribute('href','#activity');a.removeAttribute('target');a.removeAttribute('rel');a.setAttribute('aria-label',t+' ดูรายละเอียดกิจกรรม');
+      var b=$('.qv-btn',a);if(b){b.title='ดูกิจกรรม';b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>'}})}
+  function findAct(t){var hit=null;$$('[data-view="activity"] .avc').some(function(c){if(txt($('h3',c))===t){hit=c;return true}});return hit}
+  function land(){if(!pend)return;var p=pend,t0=Date.now();
+    (function wait(){if(pend!==p)return;var v=$('[data-view="'+p.view+'"].on');
+      if(!v){if(Date.now()-t0<4000)setTimeout(wait,80);else pend=null;return}
+      var el=p.id?document.getElementById(p.id):findAct(p.title);pend=null;if(!el)return;
+      setTimeout(function(){var y=el.getBoundingClientRect().top+scrollY-(p.title?Math.max(80,(innerHeight-el.offsetHeight)/2):76);
+        window.scrollTo({top:Math.max(0,y),behavior:RM?'auto':'smooth'});
+        if(p.title){el.classList.remove('cl2-hl');void el.offsetWidth;el.classList.add('cl2-hl');setTimeout(function(){el.classList.remove('cl2-hl')},2000)}},120)})()}
+  /* ---------- 6. in-page links land on their section, not on a page top ---------- */
+  var VIEWS=['home','courses','portex','activity','works','about'];
+  document.addEventListener('click',function(e){if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+    var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;var h=a.getAttribute('href').slice(1);
+    var act=a.dataset.cl2t,id=null;
+    if(act){e.preventDefault();pend={view:'activity',title:act};if(onView()==='activity')land();else location.hash='#activity';return}
+    if(h==='about'&&a.closest('.oc-big'))id='about-real';
+    else if(h&&VIEWS.indexOf(h)<0){var t=document.getElementById(h);if(t&&t.closest('[data-view]'))id=h}
+    if(!id)return;var tv=document.getElementById(id),v=tv&&tv.closest('[data-view]');if(!v)return;
+    e.preventDefault();pend={view:v.dataset.view,id:id};
+    if(onView()===v.dataset.view)land();else location.hash='#'+v.dataset.view},true);
+  addEventListener('hashchange',function(){if(pend)land()});
+
+  /* ---------- 9. LINE mark ---------- */
+  function lineMark(root){$$('a.rv-ln,button.rv-ln',root).forEach(function(a){if(a.querySelector('.cl2-li'))return;a.insertAdjacentHTML('afterbegin',LOGO);a.classList.add('cl2-hasli')})}
+
+  /* ---------- 11. seniors: universities line + flat row ---------- */
+  function seniors(){var mc=$('[data-view="home"] .mc');if(!mc||$('.cl2-sen',mc))return;
+    var src=$$('#sgrid figure');if(!src.length)return;
+    /* universities and counts read from the page's own filter buttons */
+    var parts=$$('.mc-u button',mc).filter(function(b){return b.dataset.u}).map(function(b){var n=txt($('b',b)),u=txt(b).replace(n,'').trim();return u+' '+n+' คน'});
+    var h2=$('h2',mc),tot=h2?txt($('span',h2)):'';
+    if(parts.length){var p=document.createElement('p');p.className='cl2-uni';
+      p.textContent=(tot?'รุ่นพี่ '+tot+' ติด ':'รุ่นพี่ติด ')+(parts.length>1?parts.slice(0,-1).join(' ')+' และ'+parts[parts.length-1]:parts[0]);
+      var u=$('.mc-u',mc);u.parentNode.insertBefore(p,u)}
+    var w=document.createElement('div');w.className='cl2-sen';
+    w.innerHTML='<div class="cl2-sr" aria-label="รุ่นพี่ที่ลงโปสเตอร์แล้ว"></div><div class="cl2-ctl"><button type="button" class="cl2-arw" data-d="-1" aria-label="เลื่อนไปทางซ้าย">'+ARW.l+'</button><button type="button" class="cl2-arw" data-d="1" aria-label="เลื่อนไปทางขวา">'+ARW.r+'</button></div>';
+    var sr=$('.cl2-sr',w);
+    src.forEach(function(f){var c=document.createElement('figure');c.dataset.u=f.dataset.u||'';var im=$('img',f),cap=$('figcaption',f);
+      var i2=document.createElement('img');i2.src=im.getAttribute('src');i2.alt=im.alt||'';i2.loading='lazy';i2.decoding='async';c.appendChild(i2);
+      if(cap){var fc=document.createElement('figcaption');fc.innerHTML=cap.innerHTML.replace(/<br\s*\/?>/gi,' ').replace(/ · /g,' ');c.appendChild(fc)}
+      sr.appendChild(c)});
+    var st=$('#mcSt',mc);(st||$('.mc-cap',mc)).parentNode.insertBefore(w,st||$('.mc-cap',mc));
+    var ctl=$('.cl2-ctl',w),A=$$('.cl2-arw',w);
+    var o=Rail(sr,function(d){ctl.insertBefore(d,A[1])},{own:1,onUpd:function(x,max){A[0].disabled=x<=4;A[1].disabled=x>=max-4}});
+    A.forEach(function(b){b.addEventListener('click',function(){var d=+b.dataset.d,x=sr.scrollLeft,t=null;
+      o.s.forEach(function(s){if(d>0&&s>x+4&&t==null)t=s;if(d<0&&s<x-4)t=s});if(t!=null)o.go(t)})});
+    $$('.mc-u button',mc).forEach(function(b){b.addEventListener('click',function(){var k=b.dataset.u||'';
+      $$('figure',sr).forEach(function(f){f.hidden=!!k&&f.dataset.u!==k});sr.scrollLeft=0;raf(o.build)})})}
+
+  /* ---------- 12. the pink activity type goes warm ---------- */
+  function warm(){$$('[data-view="activity"] .avc').forEach(function(c){var v=(c.style.getPropertyValue('--pz-chip')||'').trim().toUpperCase();if(v!=='#FFD3E3')return;
+    c.style.setProperty('--pz-chip','#F1E2CF');c.style.setProperty('--pz-l','#FBF3E8');c.style.setProperty('--pz-bg','#F2DFC6');c.style.setProperty('--tc','#A8551A')})}
+
+  /* ---------- 4. search answers: no IoT / robot chips on the home search ---------- */
+  function noIot(){var res=$('#zqRes');if(!res)return;
+    $$('button,[data-q]',res).forEach(function(b){if(b.hidden)return;var t=txt(b);if(/IoT|หุ่นยนต์/.test(t)&&!/IoT|หุ่นยนต์|iot|robot/i.test(($('#zqIn')||{}).value||''))b.hidden=true});
+    var w=document.createTreeWalker(res,NodeFilter.SHOW_TEXT,null),n;while((n=w.nextNode())){if(n.nodeValue.indexOf('เกม เว็บ และ IoT')>-1)n.nodeValue=n.nodeValue.replace(/เกม เว็บ และ IoT/g,'เกม เว็บ และแอป')}}
+
+  /* ---------- 14. closing panel: signed by the team ---------- */
+  function sign(){var p=$('[data-view="home"] .end-in > p');if(!p||$('.cl2-sig',p))return;var s=document.createElement('span');s.className='cl2-sig';s.textContent='ทีม Hamster Hub';p.appendChild(s)}
+
+  function all(){nextLine();flat();rails();actCards();lineMark();seniors();warm();sign()}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',all);else all();
+  addEventListener('load',function(){all();setTimeout(all,700)});
+  addEventListener('resize',function(){raf(relayout)});
+  addEventListener('hashchange',function(){setTimeout(function(){all();relayout()},250);setTimeout(function(){all();relayout()},1300)});
+  /* script-built lists: watch only them, act only when something is missing (no loops) */
+  ['#zqN','#zqRes'].forEach(function(s){var el=$(s);if(!el)return;var p=0;
+    new MutationObserver(function(){if(p)return;p=raf(function(){p=0;if(s==='#zqN')actCards();if(s==='#zqRes'){lineMark(el);noIot()}})}).observe(el,{childList:true,subtree:true})});
+})();
+</script>
