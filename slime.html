@@ -7501,6 +7501,44 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
 })();
 </script>
 
+<!-- layer: 52-herobg.html -->
+<style id="ly-hbg">
+/* home hero: a faint loop of real student game clips behind everything, tinted into the orange */
+.hbg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity 1.2s ease;
+  -webkit-mask-image:radial-gradient(ellipse 62% 58% at 50% 46%,rgba(0,0,0,.25) 0,rgba(0,0,0,.25) 45%,#000 100%);mask-image:radial-gradient(ellipse 62% 58% at 50% 46%,rgba(0,0,0,.25) 0,rgba(0,0,0,.25) 45%,#000 100%)}
+.hbg.on{opacity:1}
+.hbg video{position:absolute;left:-4%;top:-4%;width:108%;height:114%;max-width:none!important;object-fit:cover;object-position:50% 0;filter:grayscale(1) contrast(1.1) blur(.6px);mix-blend-mode:multiply;opacity:.15}
+.zq.hx-white .hbg,.zq.ask .hbg,.zq.fx .hbg,.zq:focus-within .hbg{opacity:0;transition-duration:.3s}
+@media (prefers-reduced-motion:reduce){.hbg{display:none}}
+</style>
+<script>
+(function(){var zq=document.querySelector('[data-view="home"] .zq');if(!zq)return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var c=navigator.connection;if(c&&(c.saveData||/2g/.test(c.effectiveType||'')))return;
+  function go(){var w=document.createElement('div');w.className='hbg';w.setAttribute('aria-hidden','true');
+    var v=document.createElement('video');v.muted=true;v.loop=true;v.playsInline=true;v.setAttribute('playsinline','');v.setAttribute('muted','');v.preload='auto';v.poster='img/hero-bg.webp';v.src='img/hero-bg.mp4';v.tabIndex=-1;
+    w.appendChild(v);var cv=zq.querySelector('.hx-cv');zq.insertBefore(w,cv||zq.firstChild);
+    v.addEventListener('playing',function(){w.classList.add('on')},{once:true});
+    function play(){var p=v.play();if(p&&p.catch)p.catch(function(){})}
+    new IntersectionObserver(function(es){if(es[0].isIntersecting&&!document.hidden)play();else v.pause()}).observe(zq);
+    document.addEventListener('visibilitychange',function(){if(document.hidden)v.pause();else if(zq.clientWidth)play()})}
+  if(document.readyState==='complete')setTimeout(go,600);else addEventListener('load',function(){setTimeout(go,600)});
+})();
+</script>
+
+<style>
+/* one still line that says what this place is (the headline types and changes) */
+.hb2-sub{margin:0 auto 6px;max-width:34em;font:600 clamp(.9rem,1.15vw,1.05rem)/1.45 var(--body,inherit);color:rgba(29,23,18,.78);text-wrap:balance}
+.zq.ask .hb2-sub{opacity:0;transition:opacity .2s}
+/* phone: the hamster never rises into the headline */
+@media (max-width:700px){.zq-sw .zq-ham.watch,.zq-sw:hover .zq-ham{transform:translateY(14px)!important}}
+</style>
+<script>
+(function(){var h=document.querySelector('[data-view="home"] .zq-h');if(!h||document.querySelector('.hb2-sub'))return;
+  var p=document.createElement('p');p.className='hb2-sub';p.textContent='สอนน้องมัธยมสร้างเกม เว็บ และ IoT ไว้ยื่นพอร์ต';
+  var q=h.parentNode.querySelector('.zq-q')||h;q.parentNode.insertBefore(p,q)})();
+</script>
+
 <!-- layer: 55-cling.html -->
 <style id="ly-cling">
 /* ===== soft hamsters hanging on a card's top edge: body behind the card, paws over the edge in front ===== */
@@ -7941,6 +7979,391 @@ span.hb.cl-b.cl-in,.cl-p.cl-in{opacity:1;translate:0 0;transition:transform .55s
 })();
 </script>
 
+<!-- layer: 65-search.html -->
+<style>
+/* 65-search: the home search understands every kind of input (see script below) */
+.sx-vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+[data-view="home"] #zqRes .ia-q,[data-view="home"] #zqRes .ia-fix,[data-view="home"] #zqRes #zqR,[data-view="home"] #zqRes .ia h3,[data-view="home"] #zqRes .ia-a{overflow-wrap:anywhere;word-break:break-word}
+[data-view="home"] #zqRes .ia-q{max-width:100%}
+[data-view="home"] #zqIn{text-overflow:ellipsis}
+[data-view="home"] #zqIn::placeholder{text-overflow:ellipsis}
+[data-view="home"] #zqIn::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none;width:22px;height:22px;margin:0 6px 0 8px;border-radius:50%;cursor:pointer;
+  background:#F1E4D3 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7.5 7.5l9 9M16.5 7.5l-9 9' stroke='%235A4634' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E") center/14px no-repeat}
+[data-view="home"] #zqIn::-webkit-search-cancel-button:hover{background-color:#FFD9A8}
+[data-view="home"] #zqRes .sx-en{margin:10px 0 0;padding:8px 12px;border-left:3px solid #F7A23E;background:#FFF6E9;border-radius:0 10px 10px 0;font-size:.9rem;line-height:1.55;color:#5A4634;max-width:64ch}
+[data-view="home"] #zqRes .sx-fix{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+[data-view="home"] #zqRes .sx-fix button{border:0;background:#fff;color:#8A4A00;font:700 .82rem var(--display);padding:5px 10px;border-radius:8px;cursor:pointer;box-shadow:0 0 0 1px rgba(138,74,0,.22)}
+[data-view="home"] #zqRes .sx-fix button:hover{background:#FFEFD6}
+[data-view="home"] #zqRes .sx-card .ia-k{margin-top:16px}
+[data-view="home"] #zqRes .sx-card .ia-alt{margin-right:0;margin-bottom:0}
+[data-view="home"] #zqRes .sx-tel{display:inline-block;margin-top:14px;background:#1D1712;color:#fff;font:700 1rem var(--display);padding:11px 20px;border-radius:12px;text-decoration:none}
+[data-view="home"] #zqRes .ia[tabindex]{outline:0}
+[data-view="home"] #zqRes .ia[tabindex]:focus-visible{box-shadow:0 0 0 3px rgba(247,162,62,.55);border-radius:12px}
+@media (max-width:700px){[data-view="home"] #zqRes .sx-card .ia-x .ia-lk{padding-left:0}}
+</style>
+<script>
+/* 65-search: every input gets a sensible answer.
+   The page's own search(q) lives in a closure; we reach it through its public [data-q] click handler
+   (a hidden trigger button), after cleaning / translating the query. The page's own debounce is skipped
+   so there is exactly one render per query. User text is only ever written with textContent. */
+(function(){
+  var inp=document.getElementById('zqIn'),form=document.getElementById('zqForm'),R=document.getElementById('zqRes'),
+      A=document.getElementById('zqA'),G=document.getElementById('zqG'),RR=document.getElementById('zqR');
+  if(!inp||!form||!R||!A||!G||!RR)return;
+  var la=document.querySelector('a[href*="line.me"]'),LINE=la?la.getAttribute('href'):'https://page.line.me/jkm4247u?openQrModal=true';
+  var fa=document.querySelector('a[href*="facebook.com"]'),ig=document.querySelector('a[href*="instagram.com"]');
+  var st=window.setTimeout.bind(window),ct=window.clearTimeout.bind(window);
+  var coarse=matchMedia('(pointer:coarse)').matches;
+
+  /* ---------- field attributes (mobile keyboards, a11y) ---------- */
+  inp.setAttribute('enterkeyhint','search');inp.setAttribute('inputmode','search');inp.setAttribute('autocapitalize','off');
+  inp.setAttribute('autocorrect','off');inp.setAttribute('spellcheck','false');inp.setAttribute('maxlength','200');inp.setAttribute('dir','auto');
+  inp.setAttribute('aria-controls','zqRes');inp.setAttribute('aria-describedby','sxHint');
+  var hint=document.createElement('span');hint.id='sxHint';hint.className='sx-vh';hint.textContent='พิมพ์คำถามแล้วคำตอบจะขึ้นข้างล่าง กด Esc เพื่อล้างคำค้น';form.appendChild(hint);
+  var live=document.createElement('div');live.id='sxLive';live.className='sx-vh';live.setAttribute('role','status');live.setAttribute('aria-live','polite');live.setAttribute('aria-atomic','true');document.body.appendChild(live);
+  RR.removeAttribute('aria-live');/* one live region only, so screen readers never read a result twice */
+  /* placeholder: the longest wording that fits the field, so it is never cut mid-word */
+  var PH=inp.getAttribute('placeholder')||'',PHS=[PH,'พิมพ์ถามได้เลย เช่น อยากทำเกม','ถามได้เลย เช่น ทำเกม','เช่น อยากทำเกม'],mc=document.createElement('canvas').getContext('2d');
+  function ph(){var w=inp.clientWidth;if(!w)return;var cs=getComputedStyle(inp);mc.font=cs.font;w-=parseFloat(cs.paddingLeft)+parseFloat(cs.paddingRight)+6;
+    var pick=PHS[PHS.length-1];for(var i=0;i<PHS.length;i++){if(mc.measureText(PHS[i]).width<=w){pick=PHS[i];break}}
+    if(inp.getAttribute('placeholder')!==pick)inp.setAttribute('placeholder',pick)}
+  ph();if(window.ResizeObserver)new ResizeObserver(ph).observe(inp);else addEventListener('resize',ph);
+  addEventListener('load',ph);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(ph);addEventListener('hashchange',function(){st(ph,400)});
+
+  /* ---------- text helpers ---------- */
+  var EN="`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:\"ZXCVBNM<>?",
+      TH="_ๅ/-ภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ%+๑๒๓๔ู฿๕๖๗๘๙๐\"ฎฑธํ๊ณฯญฐ,ฅฤฆฏโฌ็๋ษศซ.()ฉฮฺ์?ฒฬฦ";
+  function swapKb(t,toTh){var a=toTh?EN:TH,b=toTh?TH:EN,o='';for(var i=0;i<t.length;i++){var k=a.indexOf(t[i]);o+=k>-1?b[k]:t[i]}return o}
+  function base(raw){var s=String(raw==null?'':raw).slice(0,600);try{s=s.normalize('NFC')}catch(e){}
+    s=s.replace(/[！-～]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-0xFEE0)}).replace(/　/g,' ');
+    s=s.replace(/[​-‏‪-‮⁠-⁩﻿­]/g,'').replace(/[\u0000-\u001F\u007F]+/g,' ');
+    return s.replace(/\s+/g,' ').trim()}
+  function clean(raw){var s=base(raw);
+    s=s.replace(/เเ/g,'แ').replace(/ํา/g,'ำ').replace(/([่-๋])([ัิ-ู])/g,'$2$1').replace(/([ัิ-ู็-์])\1+/g,'$1');
+    s=s.replace(/([^\d\s.])\1{2,}/g,'$1');/* อยากกกก > อยาก , gameeee > game */
+    return s.replace(/\s+/g,' ').trim()}
+  function nsp(t){return t.toLowerCase().replace(/[\s"'“”‘’!?.,()\-_\/ๆ]+/g,'')}
+  function detone(t){return t.replace(/[่-๋์็]/g,'')}
+  function short(t,n){var a=Array.from(t);return a.length>n?a.slice(0,n).join('').replace(/\s+$/,'')+'…':t}
+  function lev(a,b){if(a===b)return 0;var m=a.length,n=b.length;if(!m)return n;if(!n)return m;var d=[],i,j;for(i=0;i<=m;i++)d[i]=[i];for(j=0;j<=n;j++)d[0][j]=j;
+    for(i=1;i<=m;i++)for(j=1;j<=n;j++){var c=a[i-1]===b[j-1]?0:1;d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+c);if(i>1&&j>1&&a[i-1]===b[j-2]&&a[i-2]===b[j-1])d[i][j]=Math.min(d[i][j],d[i-2][j-2]+1)}return d[m][n]}
+  var segW=window.Intl&&Intl.Segmenter?new Intl.Segmenter('th',{granularity:'word'}):null;
+  function words(t){return segW?Array.from(segW.segment(t),function(x){return x.segment}).filter(function(x){return /[ก-๙a-z]/i.test(x)}):t.split(/\s+/)}
+  var reThai=/[ก-๛]/,reLat=/[a-z]/i,
+      reForeign=/[຀-໿぀-ヿ㐀-鿿豈-﫿가-힯ᄀ-ᇿ֐-ࣿЀ-ԯͰ-Ͽऀ-෿က-႟ក-៿À-ɏḀ-ỿ¿¡]/;
+
+  /* ---------- what the page knows (canonical Thai query per topic, label, one English line) ---------- */
+  var T={
+    kmitl:['สจล','สจล.','Seniors who got into KMITL, and the courses they took, are listed below.'],
+    chula:['จุฬา','จุฬาฯ','Seniors who got into Chulalongkorn University, and the courses they took, are listed below.'],
+    mahidol:['มหิดล','มหิดล','Seniors who got into Mahidol University, and the courses they took, are listed below.'],
+    ku:['เกษตรศาสตร์','เกษตรศาสตร์','Seniors who got into Kasetsart University, and the courses they took, are listed below.'],
+    med:['แพทย์','อยากเข้าแพทย์','We teach technology, not medical entrance exams. We can help you build a health-tech project for your portfolio.'],
+    eng:['วิศวะคอม','อยากเข้าวิศวะคอม','For computer engineering or CEDT, a project you coded yourself makes the portfolio stronger. See the courses below.'],
+    cs:['วิทย์คอม','อยากเข้าวิทย์คอม','For computer science or IT, projects that real people use make a portfolio stand out. See the courses below.'],
+    sci:['วิทยาศาสตร์','คณะสายวิทยาศาสตร์','Tech projects also help portfolios for science faculties. See the courses below.'],
+    about:['Hamster Hub คืออะไร','Hamster Hub คืออะไร','Hamster Hub teaches Thai high-school students to build games, web apps and IoT projects, for university portfolios, competitions or startups.'],
+    price:['ค่าเรียน','ค่าเรียนเท่าไหร่','Port Express (2 months) costs 5,990 baht. Other courses announce prices when they open.'],
+    when:['สมัครยังไง','เรียนวันไหน สมัครยังไง','Port Express runs Mon, Wed and Fri for 2 months, starting 9 Nov 2026. Ask the team on LINE about place and time.'],
+    parent:['ผู้ปกครอง','ผู้ปกครอง ลูกจะได้อะไร','Your child builds real projects for a university portfolio, with mentors looking after them closely.'],
+    m6:['ม.6','น้อง ม.6','Courses that fit grade 12 (M.6) are listed below. Details are in Thai.'],
+    m45:['ม.4','น้อง ม.4–5','Courses that fit grades 10–11 (M.4–5) are listed below. Details are in Thai.'],
+    m13:['ม.ต้น','น้อง ม.ต้น','Courses and camps that fit younger students are listed below. Details are in Thai.'],
+    beginner:['มือใหม่','เริ่มจากศูนย์ได้ไหม','No experience needed. Starter courses take you to your first finished project.'],
+    game:['เกม','อยากทำเกม','You code your own game here, from idea to playable. Courses and camps are listed below.'],
+    web:['เว็บ','อยากทำเว็บหรือแอป','You build a real web or mobile app. Courses and camps are listed below.'],
+    iot:['iot','อยากทำ IoT หรือหุ่นยนต์','You build devices that work with your own code, such as IoT and robots. See the courses below.'],
+    ai:['ai','อยากใช้ AI สร้างผลงาน','Use AI to build games, websites and business projects in a few days. See the camps below.'],
+    biz:['ธุรกิจ','อยากทำธุรกิจหรือสตาร์ทอัพ','Student projects can grow into real businesses. See the courses below.'],
+    compete:['แข่งขัน','อยากส่งผลงานแข่ง','Build a project for national competitions such as NSC. Awards go straight into your portfolio.'],
+    camp:['ค่าย','ค่ายและกิจกรรม','Short camps and workshops let you try building something real before a long course.'],
+    port:['พอร์ต','อยากมีพอร์ตยื่นมหาลัย','A strong portfolio shows work you built yourself. In 2026, 48 Hamster Hub students got into university in the Portfolio round.']
+  };
+  /* Latin rules: [topic, English, romanised Thai] - order = priority when several match */
+  var L=[
+    ['kmitl',/\b(kmitl|lad ?krabang|lat ?krabang)\b/],['chula',/\b(chula|chulalongkorn|cu)\b/],['mahidol',/\b(mahidol|mu)\b/],['ku',/\b(kasetsart|kaset|ku)\b/],
+    ['med',/\b(medicine|medical|med ?school|med|doctors?|dentist(ry)?|pharmac(y|ist)|nurs(e|ing)|vet|veterinary|health)\b/,/\b(mor(?! ?\d)|phaet|paet|phayaban|payaban|khana ?phaet)\b/],
+    ['eng',/\b(engineering|engineers?|cedt|comp(uter)? ?eng|com ?eng|cpe)\b/,/\b(wi[st]?sa[wv]a|wissawa|wit ?sa ?wa|wi ?sa ?wa|visawa|wishawa|wisawakam|witsawakam)\b/],
+    ['price',/\b(prices?|pricing|costs?|fees?|tuition|how much|expensive|cheap|discounts?|installments?|pay|payment|baht|thb|free)\b/,/\b(ra ?ka|kh?a ?rian|kh?a ?course|kh?a ?term|th?ao ?rai|th?ao ?r[ia]i|taorai|thaorai|g[ei]e? ?ba(h)?t|k[ei]e? ?ba(h)?t|ph?aeng)\b/],
+    ['when',/\b(schedule|timetable|when|what time|where|location|address|map|online|onsite|on-site|register|registration|sign ?up|enrol+(ment)?|join|start date|how long|duration|class times?)\b/,/\b(samak|sa ?mak|wan ?nai|th?[ie]e? ?nai|m[eu]e?a ?rai|rian ?yang ?ngai|rian ?wan ?nai|g[ei]e? ?mong|k[ei]e? ?mong)\b/],
+    ['parent',/\b(parents?|my (son|daughter|kids?|child|children)|mom|mum|dad|mother|father|guardian)\b/,/\b(ph?[ou]o? ?pok ?kh?rong|luk ?(chai|sao)|khun ?mae|khun ?ph?o|ph?o ?mae|por ?mae)\b/],
+    ['m6',/\b(grade ?12|12th grade|m\.? ?6|mor ?6|senior year|final year|dek ?70)\b/],
+    ['m45',/\b(grade ?1[01]|1[01]th grade|m\.? ?[45]|mor ?[45]|dek ?7[12])\b/],
+    ['m13',/\b(grade ?[4-9]|m\.? ?[123]|mor ?[123]|junior high|middle school|primary|elementary|young(er)? (kids?|students?))\b/,/\b(mor ?ton|m\.? ?ton|prathom|pratom)\b/],
+    ['game',/\b(games?|gaming|game ?dev\w*|unity|roblox|godot|minecraft)\b/,/\b(gem|kem|th?am ?gem|sang ?gem)\b/],
+    ['web',/\b(web|websites?|web ?apps?|apps?|applications?|html|css|javascript|js|react|front ?end|sites?)\b/,/\b(wep|wep ?sai)\b/],
+    ['iot',/\b(iot|robots?|robotics?|arduino|esp32|sensors?|hardware|electronics?|embedded|micro:?bit|raspberry)\b/,/\b(hun ?yon)\b/],
+    ['ai',/\b(ai|a\.i\.?|artificial intelligence|chat ?gpt|gpt|machine learning|ml|llm|gemini|claude)\b/],
+    ['biz',/\b(business|start-?ups?|entrepreneurs?|sell(ing)?|marketing|make money)\b/,/\b(thurakit|turakit|kh?ai ?khong)\b/],
+    ['compete',/\b(competitions?|compete|contests?|awards?|prizes?|nsc|hackathons?|game ?jam|olympiad)\b/,/\b(kh?aeng|kh?aeng ?kh?an|pra ?kuat|rang ?wan)\b/],
+    ['camp',/\b(camps?|workshops?|events?|activit(y|ies)|summer|holidays?|school break)\b/,/\b(kh?ai|pi[dt] ?th?[eo]e?r?m|kit ?ja ?kam|kitchakam)\b/],
+    ['cs',/\b(computer science|comp ?sci|cs|ict|it (faculty|major|program|course|school|student)|(study|studying|faculty of|major in) it|information technology|software|data science|digital|computers?)\b/,/\b(wit ?com|wit ?khom|witth?aya ?kan ?com\w*)\b/],
+    ['port',/\b(portfolios?|port|tcas|universit(y|ies)|college|uni|admissions?|interviews?|get into)\b/,/\b(maha ?lai|mahawitth?ayalai|maha ?wit\w*|yuen ?port|fam ?port|ph?ot|tid ?maha ?lai|tit ?maha ?lai)\b/],
+    ['beginner',/\b(beginners?|newbie|noob|never (coded|code|programmed)|no experience|from zero|from scratch|basics?|learn (to )?(code|coding|program|programming)|coding|code|programming|python|c#|java|c\+\+|scratch|start(ing)?)\b/,/\b(m[uea]{1,3} ?mai|mai ?kh?[eo]e?i|mai ?keng|kh?ian ?pro ?gr[ae]m|r[oe]{1,2}m ?ton|rerm ?ton)\b/],
+    ['sci',/\b(science|statistics|physics|chemistry|biology|maths?|mathematics|data)\b/,/\b(wit(th?aya)?sat)\b/],
+    ['about',/\b(hamster ?hub|hamsterhub|hamster|hamter|about( us)?|who (are|r) (you|u) guys|trust(ed)?|legit|reviews?|scam|what is this|what do you (do|teach)|what (is|are) (you|this place))\b/,/\b(kh?[eu]e? ?a ?rai|th?am ?a ?rai|thi ?ni)\b/]
+  ];
+  /* typo-tolerant vocabulary for single Latin words */
+  var V={game:'game',games:'game',port:'port',camp:'camp',code:'beginner',website:'web',portfolio:'port',python:'beginner',programming:'beginner',beginner:'beginner',coding:'beginner',robot:'iot',robotics:'iot',arduino:'iot',price:'price',tuition:'price',
+    engineering:'eng',engineer:'eng',medicine:'med',doctor:'med',parent:'parent',parents:'parent',competition:'compete',hackathon:'compete',university:'port',admission:'port',business:'biz',startup:'biz',
+    computer:'cs',software:'cs',science:'sci',hamster:'about',hamsterhub:'about',roblox:'game',unity:'game',workshop:'camp',schedule:'when',register:'when',chulalongkorn:'chula',kasetsart:'ku',mahidol:'mahidol'};
+  var STOP=/\b(the|is|are|am|was|what|how|why|who|where|when|do|does|did|you|your|me|my|we|our|they|can|could|will|would|should|want|wanna|need|like|love|have|has|had|to|for|of|in|on|at|and|or|not|no|yes|with|this|that|it|its|a|an|be|there|here|please|help|tell|give|show|make|learn|teach|study|class|classes|course|courses|kid|kids|student|students|school|good|best|new|any|some|about|from|more|much|many|get|go|know|think|im|i)\b/;
+  function latin(t){var hits=[],i,j;
+    for(i=0;i<L.length;i++){var en=L[i][1].test(t),ro=!en&&L[i][2]&&L[i][2].test(t);if(en||ro)hits.push({k:L[i][0],ro:!!ro})}
+    if(/^(it|i\.t\.?)$/.test(t))hits.push({k:'cs',ro:false});
+    if(!hits.length){var ws=t.split(/[^a-z0-9#+]+/).filter(Boolean);
+      for(i=0;i<ws.length&&!hits.length;i++){var w=ws[i];if(w.length<4)continue;var tol=w.length>=8?2:1;
+        for(j in V){if(w.length===4&&(j.length!==4||w.split('').sort().join('')!==j.split('').sort().join('')))continue;if(Math.abs(j.length-w.length)<=tol&&j[0]===w[0]&&lev(w,j)<=tol){hits.push({k:V[j],ro:false,typo:j});break}}}}
+    if(!hits.length)return null;
+    /* "what is ..." style words only win when nothing more specific matched */
+    return {k:hits[0].k,ro:hits[0].ro,typo:hits[0].typo,alts:hits.slice(1,4).map(function(h){return h.k})}}
+
+  /* Thai vocabulary: a page answer is trusted only when the query really contains (or nearly spells) one of these */
+  var TV=('สจล ลาดกระบัง พระจอมเกล้า จุฬา มหิดล เกษตร ศรีราชา แพทย์ แพทย หมอ เภสัช พยาบาล ทันต สัตวแพทย์ กายภาพ สาธารณสุข สุขภาพ วิศว วิดวะ วิสวะ วิศะ วิดสะวะ คอมเอ็น วิทย์คอม วิทยาการคอม ไอที สารสนเทศ คอมพิว คอม ดิจิทัล ซอฟต์แวร์ ซอฟแวร์ '+
+    'วิทยาศาสตร์ วิทย์ สถิติ สิ่งแวดล้อม ฟิสิกส์ เคมี ชีวะ ชีววิทยา คณิต ข้อมูล แฮมสเตอร์ แฮมเตอร์ แฮมสเตอ แฮม ฮับ คืออะไร ที่นี่ เกี่ยวกับ เป็นใคร ทำอะไร สอนอะไร บริษัท สถาบัน น่าเชื่อ รีวิว ราคา เท่าไหร่ เท่าไร เท่าไห่ กี่บาท ค่าเรียน ค่าคอร์ส ค่าเทอม ค่าสมัคร บาท แพง ผ่อน ส่วนลด ฟรี จ่าย '+
+    'วันไหน กี่โมง ตาราง ออนไลน์ ที่ไหน เรียนยังไง เวลาเรียน เปิดเมื่อ เมื่อไหร่ เมื่อไร สมัคร ลงทะเบียน เริ่มเรียน กี่วัน กี่เดือน นานไหม เปิดรับ ผู้ปกครอง ลูก พ่อแม่ คุณแม่ คุณพ่อ ผปค หลาน ม6 ม.6 มหก เด็ก70 ปีสุดท้าย ม4 ม5 ม.4 ม.5 ม1 ม2 ม3 ม.1 ม.2 ม.3 มต้น ม.ต้น มปลาย ม.ปลาย ประถม ป6 ป5 ป.6 ป.5 ป.4 '+
+    'มือใหม่ ไม่เคย ไม่เก่ง ไม่มีพื้น ศูนย์ เริ่มต้น พื้นฐาน ไพธอน ไพทอน โค้ด เขียนโปรแกรม โปรแกรม เกม ยูนิตี้ โรบล็อกซ์ เว็บ เวป เว็ป เวบ แอป แอพ ไอโอที หุ่นยนต์ หุ่นยน อาดูโน่ บอร์ด อุปกรณ์ เซนเซอร์ เซ็นเซอร์ ไฟฟ้า อิเล็ก เอไอ ปัญญาประดิษฐ์ แชทจีพีที '+
+    'ธุรกิจ สตาร์ทอัพ สตาร์ตอัป สตาทอัพ ขาย หาเงิน บริหาร การตลาด ผู้ประกอบการ บัญชี แข่ง รางวัล ประกวด เกมแจม โอลิมปิก เวที แฮกกาธอน ค่าย แคมป์ ปิดเทอม เวิร์กชอป เวิร์คช็อป กิจกรรม อีเวนต์ พอร์ต พอต พอท มหาลัย มหาวิทยาลัย ทีแคส ยื่น สัมภาษณ์ แฟ้ม รอบ1 ติดมหา เข้ามหา').split(' ');
+  var TVL=TV.filter(function(x){return x.length>=4}),TVD=TV.map(detone);
+  function hasEv(q){var n=nsp(q);if(/[a-z]{2,}/.test(n))return true;/* the page knows many English aliases itself */
+    var i,d=detone(n);for(i=0;i<TV.length;i++){if(n.indexOf(TV[i])>-1)return true;if(TVD[i].length>=3&&d.indexOf(TVD[i])>-1)return true}
+    var ws=words(q.toLowerCase()),cand=[];for(i=0;i<ws.length;i++){if(ws[i].length>=4)cand.push(ws[i]);if(ws[i+1]&&(ws[i]+ws[i+1]).length>=4)cand.push(ws[i]+ws[i+1])}
+    for(i=0;i<cand.length;i++){var w=cand[i],tol=w.length>=7?2:1;for(var j=0;j<TVL.length;j++){var a=TVL[j];if(Math.abs(a.length-w.length)<=tol&&lev(w,a)<=tol)return true}}
+    return false}
+
+  /* ---------- special kinds ---------- */
+  var RUDE=/ควย|เหี้ย|เหี้ย|เชี่ย|สัส|สัตว์นรก|ไอ้สัตว์|อีสัตว์|เย็ด|แม่ง|อีดอก|ไอ้เวร|ระยำ|ส้นตีน|ตอแหล|เฮงซวย|ห่วยแตก|ห่วย|กระจอก|มึง|(^|\s)กู(?=\s|$)|\b(f+u+c+k+\w*|sh[i1]t+\w*|b[i1]tch\w*|assholes?|bastards?|cunts?|wtf|stfu|motherf\w*|kuy|kuay|kwai)\b/gi;
+  var S=[
+    ['crisis',/อยากตาย|ฆ่าตัวตาย|ไม่อยากอยู่แล้ว|ไม่อยากมีชีวิต|ทำร้ายตัวเอง|กรีดแขน|suicid\w*|kill myself|want to die|end my life|self.?harm/i],
+    ['harm',/ทำระเบิด|วางระเบิด|ยาเสพติด|ยาบ้า|ยาไอซ์|กัญชา|ปืน|อาวุธ|แฮก(เฟส|ไอจี|บัญชี|ไลน์|เว็บ|ระบบ|ไวไฟ|wifi)|โกงข้อสอบ|โกงเกม|การพนัน|พนัน|บาคาร่า|สล็อต|หนังโป๊|คลิปหลุด|\b(bombs?|weapons?|guns?|drugs?|cocaine|meth|porn\w*|xxx|nudes?|sex|gambling|casino|slots?|cheat(s|ing)?|hack (into |a |my |her |his )?(facebook|instagram|account|wifi|website|line))\b/i],
+    ['who',/เป็น(บอท|ai|เอไอ|คนจริง|คน|หุ่นยนต์|แชทบอท)(ไหม|มั้ย|มั๊ย|หรือ|รึ|ป่าว|เปล่า|ปะ)|(คุณ|เธอ|นาย|แก)(คือ|เป็น)ใคร|นี่ใคร|ใครตอบ|มีคนตอบ|\b(are (you|u) (a |an )?(bot|ai|human|robot|real|person)|who (are|r) (you|u)\??$|who is this|is this (a )?(bot|ai|chatbot))\b/i],
+    ['home',/การบ้าน|ทำรายงาน|เขียนเรียงความ|เฉลยข้อสอบ|เฉลย|ทำโจทย์|แก้โจทย์|\b(homework|essay|assignment|solve this)\b/i],
+    ['off',/อากาศ|ฝนตก|ฝนจะตก|พยากรณ์|หวย|ลอตเตอรี่|ดูดวง|ดวงวันนี้|ข่าววันนี้|ฟุตบอล|ผลบอล|บอลวันนี้|ดูหนัง|หนังใหม่|ฟังเพลง|เนื้อเพลง|สูตรอาหาร|กินอะไรดี|ร้านอาหาร|ร้านกาแฟ|หาแฟน|จีบ|อกหัก|เรื่องตลก|มุกตลก|เล่านิทาน|แปลภาษา|แปลว่าอะไร|แปลให้|กี่โมงแล้ว|วันนี้วันอะไร|วันนี้วันที่|เมืองหลวง|นายก|การเมือง|เลือกตั้ง|หุ้น|คริปโต|บิทคอยน์|ราคาทอง|ราคาน้ำมัน|ตั๋วเครื่องบิน|โรงแรม|ที่เที่ยว|\b(weather|rain(ing)?|forecast|lottery|horoscope|news|football|soccer|nba|movies?|songs?|lyrics|music|recipes?|restaurants?|jokes?|girlfriend|boyfriend|translate|capital of|president|prime minister|election|stocks?|bitcoin|crypto|gold price|what time is it|what day is|flights?|hotels?)\b/i],
+    ['contact',/ติดต่อ|เบอร์โทร|เบอร์|โทรศัพท์|โทรหา|โทรไป|ไลน์|แอดไลน์|เฟสบุ๊ก|เฟซบุ๊ก|เฟสบุค|เพจ|ไอจี|อินสตา|อีเมล|แอดมิน|คุยกับ(ทีม|คน|พี่|เจ้าหน้าที่|ครู)|ถามทีม|ทักแชท|แชทกับ|ช่องทาง|\b(contact|line|line id|phone|call|tel|e-?mail|facebook|fb|instagram|ig|admin|staff|talk to|message|chat|dm|support|tit ?t[o]r?|tid ?t[o]r?|ber ?th?o+r?)\b/i],
+    ['works',/ดูผลงาน|ผลงานน้อง|ผลงานนักเรียน|ตัวอย่างผลงาน|ตัวอย่างงาน|เกมที่น้อง|ฮอลล์ออฟเฟม|\b(hall of fame|student (works?|projects?|games?)|showcase|examples?|gallery)\b/i]
+  ];
+  var GREET=/^(สวัสดี(ครับ|ค่ะ|คะ|คับ|จ้า|ค่า|ตอน\S+)?|หวัดดี|ดีครับ|ดีค่ะ|ดีคับ|ดีจ้า|ดีค่า|ฮัลโหล|ฮัลโล|เฮลโล|ฮาย|ไฮ|ว่าไง|ไง|มีใครอยู่ไหม|มีคนอยู่ไหม|hi+|hello+|hey+|yo|hiya|sawa[sdt]+ ?d[ie]+ ?(k[rh]?[au]b|kh?a|krub)?|wa[sd]+up|whats ?up|sup|good (morning|afternoon|evening)|anyone (here|there)\??)/i;
+  var THANK=/^(ขอบคุณ(มาก)?|ขอบใจ|แต๊งกิ้ว|แต๊ง|โอเค|โอเคร|เค|ได้เลย|รับทราบ|เข้าใจแล้ว|thanks?( you| a lot)?|thank ?u|thx|ty|tysm|ok(ay)?|kh?o[bp] ?kh?un( kh?a| k[rh]?[au]b)?|bye|บาย|ลาก่อน)/i;
+  var TAIL=/^(ครับ|คับ|ค้าบ|ค่ะ|คะ|ค่า|จ้า|จ้ะ|จ๊ะ|นะ|น้า|เลย|มาก|ผม|หนู|พี่|น้อง|ทีม|แอดมิน|kh?a|k[rh]?[au]b|krub|na|there|team|admin|guys|everyone|[\s!?.,~^_:;)(\-]|5+|ๆ)+/i;
+  var FK=[['game',/ゲーム|游戏|遊戲|게임|juegos?|jeux?|spiele?|trò chơi|игр|لعب|ເກມ/i],['web',/ウェブ|サイト|アプリ|网站|網站|应用|웹|앱|sitio web|página web|trang web|ứng dụng|сайт|веб|موقع|ເວັບ/i],
+    ['price',/値段|料金|いくら|价格|價格|多少钱|多少錢|学费|學費|가격|얼마|precios?|cuánto|cuanto cuesta|combien|prix|giá|học phí|bao nhiêu|цена|сколько|سعر|بكم|ລາຄາ|ເທົ່າໃດ/i],
+    ['iot',/ロボット|机器人|機器人|로봇|robots?|робот|روبوت|ຫຸ່ນຍົນ/i],['port',/大学|大學|대학|universidad|université|đại học|университет|جامعة|ມະຫາວິທະຍາໄລ/i],
+    ['beginner',/初心者|プログラミング|编程|編程|初学者|코딩|프로그래밍|programación|programar|lập trình|программирован|برمجة/i]];
+  var WANT=/^(อยาก(จะ)?(ได้|รู้|ทำ|เรียน|ลอง|ถาม)?|ต้องการ|สนใจ|ขอ(ถาม)?|หา|ถาม|มี(ไหม|มั้ย)?|เรียน|ช่วย|หน่อย|ครับ|คับ|ค่ะ|คะ|จ้า|นะ|ด้วย|อะไร(ดี|บ้าง)?|ไหม|มั้ย|บ้าง)+$/;
+  var TH1=[['price',/ฟรี|ค่าเทอม|ค่าสมัคร|ค่าใช้จ่าย|จ่ายเงิน|แบ่งจ่าย/],['when',/ที่อยู่|แผนที่|ตั้งอยู่|อยู่ที่ไหน|อยู่แถวไหน|สถานที่|สาขา/]];
+  var TH2=[['beginner',/ไม่รู้จะเริ่ม|เริ่มยังไง|เริ่มตรงไหน|เริ่มจากไหน|เริ่มจากอะไร|เริ่มอย่างไร|โง่|ไม่ฉลาด|เรียนไม่เก่ง|หัวไม่ดี|หัวช้า|ไม่มีความรู้|ตามไม่ทัน|ยากไหม|ยากมั้ย/],['m13',/อายุ(น้อย|เท่าไหร่|กี่)|กี่ขวบ|เด็กเล็ก/],['when',/ระยะเวลา|เรียนนาน|ใช้เวลา|เสาร์อาทิตย์|วันหยุด/],['port',/ผลงาน|รุ่นพี่|คณะ/]];
+  var FWORDS=/\b(hola|gracias|quiero|como|cómo|qué|que tal|buenos|buenas|por favor|hacer|aprender|clases?|cursos?|bonjour|merci|salut|je veux|comment|apprendre|hallo|danke|guten|ich|lernen|xin chao|cam on|toi muon|hoc|ciao|grazie|voglio|ola|obrigad[oa]|konnichiwa|arigato|ni ?hao|xie ?xie|annyeong|kamsahamnida|privet|spasibo|salam|terima kasih|apa kabar|selamat|saya|mau|belajar|kumusta|salamat|sabaidee|khop chai)\b/i;
+
+  /* ---------- rendering ---------- */
+  var CH={port:['อยากมีพอร์ตยื่นมหาลัย','พอร์ตยื่นมหาลัย'],game:['อยากทำเกมของตัวเอง','อยากทำเกมของตัวเอง'],zero:['เริ่มจากศูนย์ได้ไหม','เริ่มจากศูนย์ได้ไหม'],price:['ค่าเรียนเท่าไหร่','ค่าเรียนเท่าไหร่'],
+    parent:['ผู้ปกครอง ลูกจะได้อะไร','ผู้ปกครอง ลูกจะได้อะไร'],about:['Hamster Hub คืออะไร','Hamster Hub คืออะไร'],when:['เรียนวันไหน สมัครยังไง','เรียนวันไหน'],camp:['ค่ายและกิจกรรม','ค่าย'],
+    m6:['น้อง ม.6','ม.6'],m45:['น้อง ม.4–5','ม.4'],m13:['น้อง ม.ต้น','ม.ต้น'],web:['อยากทำเว็บหรือแอป','อยากทำเว็บหรือแอป'],iot:['อยากทำ IoT หรือหุ่นยนต์','อยากทำ IoT']};
+  var MAIN=['port','game','zero','price'];
+  var C={
+    unknown:{h:'ยังตอบเรื่องนี้ไม่ได้',a:'ช่องค้นหานี้ตอบได้เฉพาะเรื่องคอร์ส ค่าย ค่าเรียน และการทำพอร์ตยื่นมหาลัย ลองเลือกเรื่องที่ใกล้ที่สุดข้างล่าง หรือทัก LINE ถามทีมได้เลย',
+      e:'Sorry, we can’t answer this one yet. This search covers our courses, camps, fees and university portfolios. Pick a topic below or message the team on LINE.',c:['port','game','zero','price'],lk:1},
+    foreign:{h:'ตอนนี้ช่องค้นหาเข้าใจภาษาไทย และภาษาอังกฤษแบบง่ายๆ',a:'Hamster Hub สอนน้องมัธยมสร้างเกม เว็บ และ IoT จนมีผลงานจริงของตัวเอง เลือกเรื่องที่สนใจข้างล่าง หรือทัก LINE ถามทีมได้เลย',
+      e:'Sorry, this search understands Thai and simple English only. Hamster Hub teaches Thai high-school students to build games, web apps and IoT projects. Pick a topic below or message the team on LINE.',c:['about','game','port','price'],lk:1,fe:1},
+    greet:{h:'สวัสดี อยากรู้เรื่องไหน พิมพ์ถามได้เลย',a:'พิมพ์เป็นคำสั้นๆ ก็ได้ เช่น ทำเกม พอร์ต หรือค่าเรียน หรือเลือกจากข้างล่าง',e:'Hi! Type what you want to know, for example “game”, “portfolio” or “price”, or pick a topic below.',c:['port','game','zero','price','parent']},
+    want:{h:'น้องอยากทำอะไร เลือกได้เลย',a:'พิมพ์ต่ออีกนิด เช่น อยากทำเกม อยากมีพอร์ต หรืออยากรู้ค่าเรียน หรือเลือกจากข้างล่าง',c:['port','game','web','iot','zero']},
+    thanks:{h:'ยินดีเลย',a:'ถ้าอยากรู้เรื่องไหนเพิ่ม พิมพ์ถามต่อได้ หรือทัก LINE ถามทีมก็ได้',e:'You’re welcome. Ask anything else here, or message the team on LINE.',c:['port','game','price']},
+    shape:{h:'พิมพ์เป็นคำสั้นๆ ได้เลย',a:'เช่น ทำเกม พอร์ต หรือค่าเรียน แล้วเราจะหาคอร์สที่ตรงให้ หรือเลือกจากข้างล่าง',e:'Type a word or two, for example “game”, “portfolio” or “price”.',c:['port','game','zero','price']},
+    num:{h:'ตัวเลขนี้หมายถึงเรื่องไหน',a:'ถ้าเป็นชั้นเรียนของน้อง เลือกจากข้างล่างได้เลย ถ้าอยากรู้ราคา กดที่ค่าเรียน',c:['m6','m45','m13','price']},
+    info:{h:'ช่องนี้ใช้ค้นหาคอร์สและกิจกรรมเท่านั้น',a:'ข้อความในช่องนี้ไม่ได้ส่งถึงทีม ถ้าอยากฝากลิงก์ อีเมล หรือเบอร์โทรให้ทีมติดต่อกลับ ส่งทาง LINE ได้เลย',
+      e:'This box only searches our courses and activities. Nothing typed here is sent to the team. To share a link, email or phone number, message us on LINE.',c:['about','price','when']},
+    code:{h:'ช่องนี้เป็นช่องค้นหา ไม่ได้รันโค้ดหรือทำตามคำสั่ง',a:'พิมพ์เป็นคำถามธรรมดาได้เลย เช่น อยากทำเกม หรือค่าเรียนเท่าไหร่ ถ้าน้องชอบเขียนโค้ดอยู่แล้ว ลองดูคอร์สข้างล่าง',
+      e:'This is a search box. It does not run code or follow instructions. Ask a plain question, for example “make a game” or “price”.',c:['game','web','zero','about']},
+    off:{h:'เรื่องนี้ช่องค้นหาตอบไม่ได้',a:'ช่องนี้ตอบเฉพาะเรื่องเรียนที่ Hamster Hub เช่น คอร์ส ค่าย ค่าเรียน และการทำพอร์ตยื่นมหาลัย ลองเลือกเรื่องข้างล่างดู',
+      e:'This search only answers questions about learning at Hamster Hub: courses, camps, fees and university portfolios.',c:['about','port','game','price']},
+    home:{h:'ทำการบ้านแทนไม่ได้ แต่สอนให้น้องเขียนโปรแกรมเองได้',a:'Hamster Hub สอนน้องมัธยมเขียนโปรแกรมจนมีผลงานของตัวเอง ถ้าน้องอยากเริ่ม ลองดูเรื่องข้างล่าง',
+      e:'We can’t do homework for you, but we teach students to code and build their own projects.',c:['zero','game','about']},
+    who:{h:'ช่องนี้เป็นช่องค้นหา ไม่ใช่แชตกับคน',a:'คำตอบมาจากข้อมูลคอร์สและกิจกรรมบนเว็บนี้ ถ้าอยากคุยกับทีม Hamster Hub ทัก LINE ได้เลย',
+      e:'This is a search box, not a live chat. Answers come from the course information on this site. To talk to the team, message us on LINE.',c:['about','price','port']},
+    rude:{h:'ขอโทษถ้าเว็บทำให้หงุดหงิด',a:'บอกได้เลยว่าน้องกำลังหาอะไร พิมพ์เป็นคำสั้นๆ เช่น ทำเกม หรือค่าเรียน หรือทัก LINE ให้ทีมช่วยหาก็ได้',
+      e:'Sorry if the site was frustrating. Tell us what you are looking for in a word or two, or message the team on LINE.',c:['port','game','price']},
+    harm:{h:'เรื่องนี้เราช่วยไม่ได้',a:'Hamster Hub สอนน้องมัธยมสร้างเกม เว็บ และ IoT ถ้าน้องสนใจเทคโนโลยี ลองดูเรื่องข้างล่าง',
+      e:'We can’t help with this. Hamster Hub teaches students to build games, web apps and IoT projects.',c:['game','web','iot','about']},
+    crisis:{h:'ถ้าตอนนี้รู้สึกแย่มาก น้องไม่ต้องอยู่กับมันคนเดียว',a:'โทรสายด่วนสุขภาพจิต 1323 ได้ตลอด 24 ชั่วโมง ไม่เสียค่าโทร หรือเล่าให้ผู้ใหญ่ที่น้องไว้ใจฟัง ช่องค้นหานี้ช่วยเรื่องนี้ไม่ได้ แต่อยากให้น้องได้คุยกับคนที่ช่วยได้จริง',
+      e:'If you are feeling very low, you don’t have to face it alone. In Thailand, call the Mental Health Hotline 1323 (free, 24 hours), or talk to an adult you trust.',c:[],tel:1,noline:1},
+    contact:{h:'ติดต่อทีม Hamster Hub',a:'ถามเรื่องคอร์ส ค่าเรียน หรือวันเรียน ได้ทาง LINE กดปุ่มสีเขียวข้างล่างแล้วพิมพ์ถามทีมได้เลย',
+      e:'Message the Hamster Hub team on LINE (green button below) to ask about courses, fees or schedules.',c:['price','when','about'],soc:1},
+    works:{h:'ผลงานของน้องๆ',a:'ปีนี้มีเกมของน้องๆ 10 เกมใน Hall of Fame เปิดดูได้ที่หน้าผลงาน',e:'This year 10 student games are in our Hall of Fame. See them on the Works page.',c:['game','port'],wk:1}
+  };
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  function chip(k){var c=CH[k],b=el('button','',c[0]);b.type='button';b.dataset.q=c[1];return b}
+  function echoP(pre,q){var p=el('p','ia-q');p.appendChild(document.createTextNode(pre+' “'));var b=el('bdi','',short(q,56));p.appendChild(b);p.appendChild(document.createTextNode('”'));return p}
+  function fixP(txt,dq){var p=el('p','ia-fix sx-fix'),s=el('span');s.appendChild(document.createTextNode('หมายถึง “'));s.appendChild(el('b','',short(txt,40)));s.appendChild(document.createTextNode('” ใช่ไหม'));p.appendChild(s);
+    if(dq){var b=el('button','','ใช้คำนี้ค้นหา');b.type='button';b.dataset.q=dq;p.appendChild(b)}return p}
+  function noteP(txt){return el('p','ia-fix sx-fix sx-note',txt)}
+  function card(kind,o){o=o||{};var d=C[kind],w=el('div','ia sx-card');w.dataset.sx=kind;
+    if(o.echo&&kind!=='crisis')w.appendChild(echoP('น้องพิมพ์',o.echo));else if(o.echoT)w.appendChild(el('p','ia-q',o.echoT));
+    w.appendChild(el('h3','',d.h));w.appendChild(el('p','ia-a',d.a));
+    if(d.e&&(o.en||d.fe)){var e=el('p','sx-en',d.e);e.lang='en';w.appendChild(e)}
+    if(d.tel){var t=el('a','sx-tel','โทร 1323 สายด่วนสุขภาพจิต');t.href='tel:1323';w.appendChild(t)}
+    if(d.c&&d.c.length){w.appendChild(el('p','ia-k','เรื่องที่คนถามบ่อย'));var p=el('p','ia-alt ia-pick sx-ch');d.c.forEach(function(k){p.appendChild(chip(k))});w.appendChild(p)}
+    var x=el('div','ia-x'),a;
+    if(d.lk){a=el('a','ia-lk','ดูคอร์สทั้งหมด');a.href='#courses';x.appendChild(a)}
+    if(d.wk){a=el('a','ia-lk','ดูเกมที่น้องๆ ทำ');a.href='#works';x.appendChild(a)}
+    if(d.soc){if(fa){a=el('a','ia-lk','Facebook');a.href=fa.getAttribute('href');a.target='_blank';a.rel='noopener';x.appendChild(a)}
+      if(ig){a=el('a','ia-lk','Instagram');a.href=ig.getAttribute('href');a.target='_blank';a.rel='noopener';x.appendChild(a)}}
+    if(!d.noline){a=el('a','ia-line','ทัก LINE ถามทีม');a.href=LINE;a.target='_blank';a.rel='noopener';x.appendChild(a)}
+    if(x.children.length)w.appendChild(x);
+    RR.textContent='';G.innerHTML='';A.innerHTML='';if(o.fix)A.appendChild(o.fix);A.appendChild(w);A.hidden=false;R.hidden=false;R.scrollTop=0;
+    return {kind:'card:'+kind,say:d.h+' '+d.a}}
+
+  /* ---------- calling the page's own search(q) ---------- */
+  var trig=document.createElement('button');trig.type='button';trig.hidden=true;trig.tabIndex=-1;trig.setAttribute('aria-hidden','true');trig.className='sx-trig';document.body.appendChild(trig);
+  var VD=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value'),own=false;
+  function shadow(v){Object.defineProperty(inp,'value',{configurable:true,get:function(){return v==null?VD.get.call(inp):v},set:function(){}})}
+  function unshadow(){delete inp.value}
+  function page(q){own=true;shadow(null);try{trig.dataset.q=q;trig.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true}))}finally{unshadow();own=false}
+    var ia=!A.hidden&&A.querySelector('.ia');
+    if(ia)return {kind:ia.querySelector('.ia-pick')&&!ia.querySelector('.ia-a')?'pick':'ia',ia:ia};
+    if(G.querySelector('.zq-e'))return {kind:'empty'};
+    var n=G.querySelectorAll('.qv').length;return {kind:n?'list':'empty',n:n}}
+  /* after a page render: show what the visitor really typed, add notes / the English line */
+  function dress(r,o){o=o||{};var say='';
+    var pf=A.querySelector('.ia-fix:not(.sx-fix)');
+    if(pf){var b=pf.querySelector('b'),via=b?b.textContent:'';if(o.fix||!via)pf.remove();else pf.replaceWith(fixP(via,via))}
+    if(o.fix&&!A.hidden)A.insertBefore(o.fix,A.firstChild);
+    if(r.kind==='ia'||r.kind==='pick'){var ia=r.ia,q=ia.querySelector('.ia-q'),h=ia.querySelector('h3'),a=ia.querySelector('.ia-a');
+      if(q&&o.echo)q.replaceWith(echoP(r.kind==='pick'?'น้องพิมพ์':'คำตอบสำหรับ',o.echo));
+      if(o.en&&a){var e=el('p','sx-en',o.en);e.lang='en';a.parentNode.insertBefore(e,a.nextSibling)}
+      if(o.alts&&o.alts.length&&!A.querySelector('.ia-alt:not(.ia-pick)')){var p=el('p','ia-alt');p.appendChild(el('span','','หรือน้องหมายถึง'));
+        o.alts.forEach(function(k){var bb=el('button','',T[k][1]);bb.type='button';bb.dataset.q=T[k][0];p.appendChild(bb)});A.insertBefore(p,ia)}
+      var n=ia.querySelectorAll('.ia-p>li').length;
+      say=(h?h.textContent:'')+(a?' '+a.textContent:'')+(n?' มีคอร์สและกิจกรรมแนะนำ '+n+' รายการ':'')+(r.kind==='pick'?' เลือกเรื่องที่ต้องการจากปุ่มข้างล่าง':'')}
+    else if(r.kind==='list'){if(o.echo){RR.textContent='';RR.appendChild(document.createTextNode('ผลลัพธ์สำหรับ “'));RR.appendChild(el('bdi','',short(o.echo,56)));RR.appendChild(document.createTextNode('” '+r.n+' รายการ'))}
+      say='พบคอร์สและกิจกรรม '+r.n+' รายการ'}
+    r.say=say;return r}
+
+  /* ---------- the decision ---------- */
+  function titleHit(n){if(n.length<4)return false;var ok=false;document.querySelectorAll('#zqC .qv b,#zqN .qv b').forEach(function(b){var t=nsp(b.textContent);if(t.indexOf(n)===0||n.indexOf(t)>-1)ok=true});return ok}
+  function special(t){for(var i=0;i<S.length;i++)if(S[i][1].test(t))return S[i][0];return null}
+  function solve(raw){
+    var b0=base(raw),c=clean(raw);if(!c)return null;
+    var echo=c,isLong=c.length>90,t=c.toLowerCase(),o={echo:echo},k,r,m;
+    /* 1. nothing to read: emoji, punctuation, digits */
+    if(!/[\p{L}]/u.test(c)){
+      if(/\d/.test(c)&&/^[\d\s.,]+$/.test(c)){if(/^0\d[\d\s\-]{7,}$/.test(c)||c.replace(/\D/g,'').length>=9)return card('info',{echoT:'น้องพิมพ์เบอร์โทร'});
+        if(/^\s*[1-6]\s*$/.test(c)){r=page('ม.'+c.trim());if(r.kind==='ia')return dress(r,{echo:echo,fix:fixP('ม.'+c.trim())})}
+        return card(/^5{3,}$/.test(c)?'shape':'num',o)}
+      if(/^5{3,}$/.test(c))return card('shape',o);
+      if(/\d/.test(c)&&/[+\-*\/x×÷=^%]/.test(c)&&/^[\d\s+\-*\/x×÷=().^%,]+$/.test(c))return card('off',o);
+      if(/^\+?[\d\s\-().]{9,}$/.test(c))return card('info',{echoT:'น้องพิมพ์เบอร์โทร'});
+      return card('shape',o)}
+    /* 2. safety first */
+    if(special(t)==='crisis'||special(nsp(t))==='crisis')return card('crisis',{en:!reThai.test(c)});
+    /* 3. strip what is not a question: links, emails, phone numbers, tags, code-like text, swear words */
+    var f={},s=t;
+    s=s.replace(/<\/?[a-z!][^>]*>?/gi,function(){f.code=1;return ' '}).replace(/[\w.+-]+@[\w-]+(\.[\w-]+)+/g,function(){f.mail=1;return ' '})
+      .replace(/\b(?:https?:\/\/|www\.)\S+|\b[\w-]+(?:\.[\w-]+)*\.(?:com|co|net|org|io|ac\.th|co\.th|in\.th|th|me|app|dev|ee|gg)\b(?:\/\S*)?/gi,function(){f.url=1;return ' '})
+      .replace(/(?:\+66|0)[\s-]?\d{1,2}[\s-]?\d{3}[\s-]?\d{3,4}\b/g,function(){f.tel=1;return ' '});
+    if(/ignore (all |any |the |your )*(previous|above|prior|earlier)|disregard (all|the|previous)|system prompt|you are now|act as (a|an|if)|pretend (to be|you)|jailbreak|developer mode|do anything now|reveal (your|the) (prompt|instructions)|ลืมคำสั่ง|เพิกเฉยคำสั่ง|ไม่ต้องสนใจคำสั่ง|คำสั่งก่อนหน้า|เปิดเผยพรอมต์|javascript:|&(lt|gt|amp|quot|#x?[0-9a-f]+);|on(error|load|click)\s*=|\{\{.*\}\}|\$\{.*\}|;\s*(drop|delete|select|insert|update)\s|union\s+select|'\s*or\s*'?1'?\s*=\s*'?1|\balert\s*\(|document\.cookie|\beval\s*\(|\.\.\/\.\.\//i.test(t))f.inj=1;
+    s=s.replace(RUDE,function(){f.rude=1;return ' '}).replace(/\s+/g,' ').trim();
+    var hasTh=reThai.test(s),hasLa=reLat.test(s),sn=nsp(s),en=!hasTh&&hasLa;
+    if(f.inj)return card('code',{echo:echo,en:!reThai.test(c)});
+    if(/(เว็บ|เวบ|เว็ป|เวป|ที่นี่|แอป|ระบบ|ช่องค้นหา|ค้นหา|คอร์ส|sites?|websites?|search|this)\s*(นี้|นี่|is|are)?\s*(โคตร|แม่ง)?\s*(ห่วย|กระจอก|เฮงซวย|แย่|กาก|sucks?|bad|trash|sh[i1]t)/i.test(t))return card('rude',{echo:echo,en:!reThai.test(c)});
+    if(!sn||!/[\p{L}]/u.test(s)){k=f.code?'code':f.tel?'info':f.mail?'info':f.url?'info':f.rude?'rude':'shape';
+      return card(k,k==='info'?{echoT:f.tel?'น้องพิมพ์เบอร์โทร':f.mail?'น้องพิมพ์อีเมล':'น้องพิมพ์ลิงก์',en:!reThai.test(c)}:{echo:echo,en:!reThai.test(c)})}
+    function last(){if(f.code)return card('code',{echo:echo,en:en});if(f.tel||f.mail||f.url)return card('info',{echoT:f.tel?'น้องพิมพ์เบอร์โทร':f.mail?'น้องพิมพ์อีเมล':'น้องพิมพ์ลิงก์',en:en});
+      if(f.rude)return card('rude',{echo:echo,en:en});return card(en?'unknown':'unknown',{echo:echo,en:en})}
+    /* 4. hello / thanks on their own */
+    function soc(x){var g=x.replace(GREET,''),h;if(g!==x){if(!g.replace(TAIL,'').trim())return 'greet';x=g.replace(/^[\s,.!]+/,'')}
+      h=x.replace(THANK,'');if(h!==x&&!h.replace(TAIL,'').trim())return 'thanks';return null}
+    function sp(x){var k=soc(x);if(k)return k;if(/^(it|i\.t\.?)$/.test(x))return null;x=x.replace(/ออนไลน์/g,' ');k=special(x)||special(nsp(x));if(!k)return null;
+      if((k==='off'||k==='home'||k==='works')&&reThai.test(x)&&/ค่าเรียน|ราคา|คอร์ส|ค่าย|สมัคร|พอร์ต/.test(x)&&k!=='works')return null;
+      if(k==='contact'&&/ออนไลน์|online/.test(x)&&!/ติดต่อ|contact|เบอร์|ไลน์|\bline\b/.test(x))return null;return k}
+    k=sp(s);if(k)return card(k,{echo:echo,en:en&&!/^(sawa|wasd)|kh?o[bp] ?kh?un|\b(k[rh]?[au]b|krub|kha)\b/.test(s)});
+    if(en&&sn.replace(/[^a-z]/g,'').length<2&&!/\d/.test(sn))return card('shape',{echo:echo});
+    /* 5. other languages */
+    if(!hasTh&&(reForeign.test(s)||(hasLa&&FWORDS.test(s)&&!latin(s)))){
+      for(var i=0;i<FK.length;i++)if(FK[i][1].test(s)){r=page(T[FK[i][0]][0]);if(r.kind==='ia')return dress(r,{echo:echo,en:'Sorry, answers are in Thai only. '+T[FK[i][0]][2]})}
+      m=hasLa&&!reForeign.test(s.replace(/[À-ɏḀ-ỿ¿¡]/g,''))?latin(s.normalize?s.normalize('NFD').replace(/[̀-ͯ]/g,''):s):null;
+      if(m){r=page(T[m.k][0]);if(r.kind==='ia')return dress(r,{echo:echo,en:'Sorry, answers are in Thai only. '+T[m.k][2]})}
+      return card('foreign',{echo:echo,en:1})}
+    /* 6. Thai (or mixed) text: the page's own knowledge base is good at this */
+    if(hasTh){
+      var q=s;
+      TV.forEach(function(w,i){if(TVD[i]!==w&&TVD[i].length>=4&&q.indexOf(w)<0&&q.indexOf(TVD[i])>-1)q=q.split(TVD[i]).join(w)});
+      if(!nsp(q).replace(WANT,''))return card('want',{echo:echo});
+      if(!isLong)for(var pi=0;pi<TH1.length;pi++)if(TH1[pi][1].test(sn)){r=page(T[TH1[pi][0]][0]);if(r.kind==='ia')return dress(r,{echo:echo})}
+      if(isLong){var found=[],nn=nsp(s);TV.forEach(function(w){var at=nn.indexOf(w);if(at>-1&&w.length>=3&&!/^(ที่นี่|ทำอะไร|ข้อมูล|โปรแกรม|เกี่ยวกับ|อุปกรณ์|ที่ไหน|เริ่มต้น)$/.test(w))found.push([at,w])});found.sort(function(a,b){return a[0]-b[0]});
+        if(found.length)q=found.slice(0,3).map(function(x){return x[1]}).join(' ');else q=short(s,60).replace('…','')}
+      r=page(q);
+      if(r.kind==='list'||r.kind==='pick'||(r.kind==='ia'&&hasEv(q)))return dress(r,{echo:echo,fix:isLong?noteP('ข้อความยาว เราตอบจากคำสำคัญที่เจอในข้อความ'):null});
+      if(hasLa){m=latin(s.replace(/[^\x00-\x7f]+/g,' '));if(m){r=page(T[m.k][0]);if(r.kind==='ia')return dress(r,{echo:echo})}}
+      /* Thai letters that are really English typed on the Thai layout */
+      if(!hasLa){var se=clean(swapKb(b0,false)).toLowerCase();
+        if(/^[a-z0-9 .,'?!-]+$/.test(se)&&/[a-z]{2}/.test(se)){k=sp(se);if(k)return card(k,{echo:echo,fix:fixP(se)});
+          m=latin(se);if(m&&!m.ro){r=page(T[m.k][0]);if(r.kind==='ia')return dress(r,{echo:echo,fix:fixP(se),en:T[m.k][2]})}}}
+      if(/คอร์ส|หลักสูตร|สอนอะไร|เรียนอะไร|มีอะไรบ้าง/.test(sn)){r=page('คอร์ส');if(r.kind==='list')return dress(r,{echo:echo})}
+      for(var hi=0;hi<TH2.length;hi++)if(TH2[hi][1].test(sn)){r=page(T[TH2[hi][0]][0]);if(r.kind==='ia')return dress(r,{echo:echo})}
+      return last()}
+    /* 7. Latin letters */
+    if(titleHit(sn)){r=page(s);if(r.kind==='list'||r.kind==='ia')return dress(r,{echo:echo})}
+    m=latin(s);
+    if(m){r=page(T[m.k][0]);if(r.kind==='ia')return dress(r,{echo:echo,en:m.ro?null:T[m.k][2],alts:m.alts,fix:m.ro?fixP(T[m.k][1]):m.typo?fixP(m.typo):null})}
+    /* Thai typed with the keyboard left on English (vpkd = อยาก) */
+    var b1=/[a-z]/.test(b0)?b0:b0.toLowerCase().replace(/</g,',').replace(/>/g,'.').replace(/\?/g,'/').replace(/:/g,';').replace(/"/g,"'").replace(/\{/g,'[').replace(/\}/g,']');
+    var sw=clean(swapKb(b1,true)),thN=(sw.match(/[ก-ฮ]/g)||[]).length,lt=(sw.match(/[a-z]/gi)||[]).length;
+    if(thN>=2&&lt<=1&&!/^[ะ-ฺ็-๎]/.test(sw)&&!(STOP.test(s)&&/^[a-z\s?!.,']+$/.test(s))){
+      k=sp(sw.toLowerCase());if(k)return card(k,{echo:echo,fix:fixP(sw,null)});
+      if(!nsp(sw).replace(WANT,''))return card('want',{echo:echo,fix:fixP(sw,null)});
+      r=page(sw);if((r.kind==='ia'&&hasEvTh(sw))||r.kind==='pick'&&sw.length<=2)return dress(r,{echo:echo,fix:fixP(sw,sw)})}
+    var kw=s.split(/[^a-z0-9#+]+/).filter(function(w){return w.length>=3&&!new RegExp('^'+STOP.source.slice(2,-2)+'$').test(w)}).join(' ');
+    if(kw){r=page(kw);if(r.kind==='list')return dress(r,{echo:echo})}
+    return last()}
+  function hasEvTh(q){var n=nsp(q).replace(/[a-z]+/g,'');return !!n&&hasEv(n)}
+
+  /* ---------- run + announce ---------- */
+  var lastC=null,sayT;
+  function announce(txt){ct(sayT);sayT=st(function(){live.textContent='';st(function(){live.textContent=short(txt.replace(/\s+/g,' ').trim(),220)},40)},350)}
+  function run(raw,force){var c=clean(raw);
+    if(!c){lastC=null;if(!R.hidden)R.hidden=true;return}
+    if(!force&&c===lastC&&!R.hidden)return;
+    var r;try{r=solve(raw)}catch(err){try{r=dress(page(c),{})}catch(e2){}}
+    lastC=c;if(r&&r.say)announce(r.say)}
+
+  /* ---------- events ---------- */
+  var deb,comp=false,compT,skip=false,skipAt=0;
+  /* the page's own "search 250ms after typing" timer is replaced by ours (same delay) so a query renders once */
+  window.setTimeout=function(fn,ms){if(skip&&ms===250&&performance.now()-skipAt<40&&typeof fn==='function'&&/search\(/.test(Function.prototype.toString.call(fn)))return 0;return st.apply(null,arguments)};
+  inp.addEventListener('compositionstart',function(){comp=true;ct(deb);ct(compT)});
+  inp.addEventListener('compositionend',function(){comp=false;ct(compT);ct(deb);deb=st(function(){run(VD.get.call(inp))},80)});
+  window.addEventListener('input',function(e){if(e.target!==inp)return;
+    if(e.isComposing||comp){e.stopImmediatePropagation();ct(deb);ct(compT);
+      /* phone keyboards keep ordinary Thai/English words "composing"; after a pause, answer what is there */
+      if(coarse)compT=st(function(){var v=VD.get.call(inp);if(!/[぀-ヿ㐀-鿿가-힯ᄀ-ᇿ]/.test(v))run(v)},700);return}
+    skip=true;skipAt=performance.now();ct(deb);
+    var v=inp.value;if(!v.trim()||!clean(v)){lastC=null;if(!R.hidden)R.hidden=true;return}
+    deb=st(function(){run(inp.value)},250)},true);
+  window.addEventListener('input',function(e){if(e.target===inp)skip=false});
+  window.addEventListener('submit',function(e){if(e.target!==form)return;var v=inp.value;ct(deb);
+    if(!v.trim())return;/* 50-hero handles the empty case */
+    if(!clean(v)){e.preventDefault();e.stopImmediatePropagation();inp.value='';inp.focus();if(!R.hidden)R.hidden=true;return}
+    if(comp||e.isComposing)return;
+    shadow('เกม');st(unshadow,0);
+    st(function(){if(inp.hasOwnProperty('value'))unshadow()},0)},true);
+  window.addEventListener('submit',function(e){if(e.target!==form)return;if(inp.hasOwnProperty('value')){unshadow();run(inp.value,true);
+    /* keyboard users: move to the answer so the next Tab is inside it */
+    }});
+  /* chips inside the page call the page's search directly: tidy up after it */
+  document.addEventListener('click',function(e){if(own)return;var b=e.target.closest&&e.target.closest('[data-q]');if(!b)return;
+    ct(deb);lastC=clean(b.dataset.q);
+    var r={kind:'ia',ia:!A.hidden&&A.querySelector('.ia')};if(r.ia){if(r.ia.querySelector('.ia-pick')&&!r.ia.querySelector('.ia-a'))r.kind='pick';dress(r,{});if(r.say)announce(r.say)}
+    else{var n=G.querySelectorAll('.qv').length;announce(n?'พบคอร์สและกิจกรรม '+n+' รายการ':'ยังไม่เจอคำตอบสำหรับคำนี้')}
+    /* the chip that was pressed is gone after the re-render: keep keyboard focus inside the answer */
+    if(R.contains(b)||!document.contains(b)){var ia=A.querySelector('.ia');if(ia&&(!document.activeElement||document.activeElement===document.body||!document.contains(document.activeElement))){ia.tabIndex=-1;try{ia.focus({preventScroll:true})}catch(x){}}}});
+  /* closing the panel: forget the last query, hand focus back to the field (not on touch: it would reopen the keyboard) */
+  new MutationObserver(function(){if(R.hidden){lastC=null;ct(sayT);live.textContent='';var a=document.activeElement;if(a&&a!==inp&&R.contains(a)&&!coarse)inp.focus({preventScroll:true})}}).observe(R,{attributes:true,attributeFilter:['hidden']});
+  R.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.zq-x')&&!coarse)inp.focus({preventScroll:true})});
+  /* the native clear (x) of a search field fires "search" in Chromium/WebKit: make sure the panel closes and focus stays */
+  inp.addEventListener('search',function(){if(!inp.value){lastC=null;if(!R.hidden)R.hidden=true;inp.focus()}});
+  window.SXSearch={run:run,clean:clean,solve:solve};
+})();
+</script>
+
 <!-- layer: 70-qa.html -->
 <style id="qa-layer">
 /* ===== 70-qa: QA + polish layer (prefix qa-). Home hero (.zq), .je, Hall of Fame and .t-afo untouched. ===== */
@@ -8123,3 +8546,618 @@ body .end-in .e1{background:var(--or)!important;color:#1D1712!important}
 /* Hall of Fame: the small "tear" drawing had a filled box that cut through the glow above the edge */
 .h5f-tear .g{display:none!important}
 </style>
+
+<!-- layer: 85-art.html -->
+<style id="ly-art">
+/* =====================================================================
+   85-art: art direction pass (prefix ar-)
+   1 startup stage + quiet pair   2a rank lockup   2b course cards
+   2c closing wall   2d activity posters   3 colour harmony
+   ===================================================================== */
+:root{--ar-ink:#1D1712;--ar-cream:#FFF6E8;--ar-or:#F2A65E;--ar-or-d:#A8551A;--ar-warm:#FBE9CF;--ar-line:rgba(29,23,18,.10);
+  --ar-out:cubic-bezier(.23,1,.32,1)}
+
+/* ---------- 1. "สิ่งที่ Hamster Hub สร้าง" ---------- */
+html body .hbx .oc-in{display:grid;grid-template-columns:minmax(0,1fr);column-gap:clamp(32px,4.4vw,72px)}
+html body .hbx .oc-hd,html body .hbx .oc-r.oc-big{grid-column:1/-1}
+
+/* the stage */
+html body .hbx .oc-r.oc-big{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:0!important;align-items:start!important;
+  position:relative;isolation:isolate;background:var(--ar-ink);color:var(--ar-cream);
+  border-radius:clamp(24px,3vw,40px);padding:clamp(28px,5vw,72px) clamp(20px,4.8vw,72px) clamp(28px,4.4vw,60px);
+  margin-top:clamp(36px,4.6vw,60px)!important}
+html body .hbx .oc-big .oc-t{display:contents}
+html body .hbx .oc-big .oc-k{order:1;justify-self:start;background:none!important;color:var(--ar-or)!important;padding:0!important;border-radius:0!important;
+  font:600 clamp(1rem,1.2vw,1.12rem)/1.3 var(--display)!important}
+html body .hbx .oc-big h3{order:2;color:var(--ar-cream)!important;font:700 clamp(2.05rem,4.2vw,3.7rem)/1.14 var(--display)!important;letter-spacing:-.015em;margin:14px 0 0!important;max-width:11.5em;text-wrap:balance}
+html body .hbx .oc-big .oc-t>p{order:3;color:rgba(255,246,232,.74)!important;font-size:clamp(1rem,1.15vw,1.1rem)!important;line-height:1.8!important;max-width:54ch!important;margin:18px 0 0!important}
+html body .hbx .oc-big .oc-m{order:4;margin-top:28px}
+html body .hbx .oc-big .oc-st{order:5}
+html body .hbx .oc-big .ar-led{order:6}
+html body .hbx .oc-big .oc-lk{order:7;justify-self:start;margin-top:26px!important}
+
+/* media: three real screens */
+html body .hbx .oc-big .oc-m.oc-biz{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;grid-template-rows:auto auto!important;gap:clamp(8px,1vw,14px)!important;
+  aspect-ratio:auto!important;background:none!important;box-shadow:none!important;border-radius:0!important;overflow:visible!important}
+html body .hbx .oc-big .oc-biz video{grid-column:1/-1!important;grid-row:1!important;width:100%;height:auto!important;aspect-ratio:16/10;object-fit:cover;border-radius:clamp(14px,1.5vw,20px);background:#14100c;
+  box-shadow:0 0 0 1px rgba(255,246,232,.10),0 30px 60px -30px rgba(0,0,0,.8)}
+html body .hbx .oc-big .oc-biz img{grid-row:2!important;width:100%;height:auto!important;aspect-ratio:5/4;object-fit:cover;border-radius:clamp(12px,1.3vw,16px);transform:none!important;
+  box-shadow:0 0 0 1px rgba(255,246,232,.10),0 24px 44px -28px rgba(0,0,0,.8)}
+html body .hbx .oc-big .oc-biz img:nth-of-type(1){grid-column:1}
+html body .hbx .oc-big .oc-biz img:nth-of-type(2){grid-column:2}
+html body .hbx .oc-big .oc-m>.ar-cap{position:relative!important;inset:auto!important;width:auto!important;height:auto!important;align-self:end!important;justify-self:start!important;margin:0 0 10px 10px!important;z-index:2;white-space:nowrap;pointer-events:none;font:600 .8rem/1 var(--display);color:var(--ar-cream);
+  background:rgba(20,16,12,.78);padding:7px 10px;border-radius:8px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.ar-cap.c1{grid-area:1/1/2/3}.ar-cap.c2{grid-area:2/1}.ar-cap.c3{grid-area:2/2}
+
+/* the journey: four steps on one line, each with one plain line saying what the student does */
+html body .hbx .oc-big .oc-st{list-style:none;display:grid!important;grid-template-columns:minmax(0,1fr);gap:0!important;position:relative;
+  margin:clamp(34px,4vw,52px) 0 0!important;padding:0!important;counter-reset:st}
+html body .hbx .oc-big .oc-st li{counter-increment:st;position:relative;display:block!important;background:none!important;box-shadow:none!important;border-radius:0!important;
+  padding:5px 0 22px 50px!important;min-height:34px;font:600 clamp(1.05rem,1.25vw,1.2rem)/1.3 var(--display)!important;color:var(--ar-cream)!important}
+html body .hbx .oc-big .oc-st li:last-of-type{padding-bottom:0!important;color:var(--ar-or)!important}
+html body .hbx .oc-big .oc-st li::before{content:counter(st)!important;position:absolute!important;left:0;top:0;z-index:1;display:grid!important;place-items:center;box-sizing:border-box;
+  width:34px!important;height:34px!important;border-radius:50%!important;background:var(--ar-ink)!important;color:var(--ar-or)!important;border:1.5px solid var(--ar-or);
+  font:700 .92rem/1 var(--display)!important}
+html body .hbx .oc-big .oc-st li:last-of-type::before{background:var(--ar-or)!important;color:var(--ar-ink)!important}
+.ar-sx{display:block;margin-top:6px;font:400 .95rem/1.55 var(--body,inherit);color:rgba(255,246,232,.78);text-wrap:pretty}
+/* phone: a straight vertical line between the numbers */
+html body .hbx .oc-big .oc-st li::after{content:"";position:absolute;left:16px;top:38px;bottom:4px;width:2px;background:rgba(242,166,94,.5)}
+html body .hbx .oc-big .oc-st li:last-of-type::after{display:none}
+.ar-path{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:0;display:none}
+.ar-path path{fill:none;stroke-width:2;stroke-linecap:round}
+.ar-path .b{stroke:rgba(242,166,94,.5)}
+.ar-path .f{display:none}
+
+/* the ledger: who uses the three startups (always visible) */
+.ar-led{list-style:none;margin:clamp(30px,3.4vw,44px) 0 0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+.ar-led li{display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:2px;padding:16px 0;border-top:1px solid rgba(255,246,232,.16)}
+.ar-led li.ar-led-h{font:600 1rem/1.45 var(--display);color:rgba(255,246,232,.86);padding-bottom:4px}
+.ar-led small{font:600 .88rem/1.3 var(--display);color:var(--ar-or)}
+.ar-led b{font:700 clamp(1.4rem,2.1vw,1.9rem)/1.2 var(--display);color:var(--ar-cream);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.ar-led span{font-size:.95rem;line-height:1.5;color:rgba(255,246,232,.74)}
+
+@media (min-width:700px){
+  /* one 4-column grid for the steps and the ledger */
+  .ar-led,html body .hbx .oc-big .oc-st{grid-template-columns:repeat(4,minmax(0,1fr))!important;column-gap:clamp(18px,2.4vw,36px)!important}
+  .ar-led li{padding-bottom:0}
+  .ar-led li.ar-led-h{padding-right:8px}
+  html body .hbx .oc-big .oc-st li{padding:48px 0 0 0!important}
+  html body .hbx .oc-big .oc-st li::after{display:none}
+  .ar-path{display:block}
+}
+@media (min-width:1100px){
+  html body .hbx .oc-in{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  html body .hbx .oc-r.oc-big{grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr)!important;column-gap:clamp(40px,4.6vw,76px)!important;grid-template-rows:1fr auto auto auto 1fr auto auto}
+  html body .hbx .oc-big .oc-k{grid-column:1;grid-row:2;margin-top:0}
+  html body .hbx .oc-big h3{grid-column:1;grid-row:3}
+  html body .hbx .oc-big .oc-t>p{grid-column:1;grid-row:4}
+  html body .hbx .oc-big .oc-lk{grid-column:1;grid-row:5;justify-self:start;align-self:start;margin:28px 0 0!important}
+  html body .hbx .oc-big .oc-m{grid-column:2;grid-row:1/6;margin-top:0;align-self:center}
+  html body .hbx .oc-big .oc-biz img{aspect-ratio:16/9}
+  html body .hbx .oc-big .oc-st{grid-column:1/-1;grid-row:6}
+  html body .hbx .oc-big .ar-led{grid-column:1/-1;grid-row:7}
+}
+
+/* the quiet pair under the stage */
+html body .hbx .oc-r:not(.oc-big){display:flex!important;flex-direction:column;gap:0!important;align-items:stretch!important;margin-top:clamp(44px,5.4vw,80px)!important}
+html body .hbx .oc-r:not(.oc-big) .oc-m{order:0!important;aspect-ratio:16/10!important;border-radius:clamp(16px,1.8vw,22px)!important;background:#14100c!important;
+  box-shadow:0 0 0 1px var(--ar-line),0 26px 44px -34px rgba(60,35,10,.5)!important}
+html body .hbx .oc-r:not(.oc-big) .oc-t{padding-top:22px;display:flex;flex-direction:column;align-items:flex-start;flex:1}
+html body .hbx .oc-r:not(.oc-big) .oc-k{background:none!important;padding:0!important;border-radius:0!important;color:var(--ar-or-d)!important;font:600 1rem/1.3 var(--display)!important}
+html body .hbx .oc-r:not(.oc-big) h3{font:700 clamp(1.5rem,2.3vw,2rem)/1.22 var(--display)!important;color:var(--ar-ink)!important;margin:8px 0 10px!important;text-wrap:balance}
+html body .hbx .oc-r:not(.oc-big) .oc-t>p{font-size:1.02rem!important;line-height:1.75!important;color:rgba(29,23,18,.74)!important;max-width:56ch!important;margin-bottom:22px!important}
+html body .hbx .oc-r:not(.oc-big) .oc-lk,html body .hbx .oc-r:not(.oc-big) .oc-play{margin-top:auto!important;background:transparent!important;color:var(--ar-ink)!important;
+  box-shadow:inset 0 0 0 1.5px rgba(29,23,18,.82)!important;border-radius:999px!important;padding:12px 20px!important;font:600 .98rem var(--display)!important;
+  transition:background .2s var(--ar-out),color .2s var(--ar-out),transform .15s var(--ar-out)!important}
+html body .hbx .oc-r:not(.oc-big) .oc-play i{border-left-color:var(--ar-ink)!important;transition:border-color .2s}
+@media (hover:hover){
+  html body .hbx .oc-r:not(.oc-big) .oc-lk:hover,html body .hbx .oc-r:not(.oc-big) .oc-play:hover{background:var(--ar-ink)!important;color:var(--ar-cream)!important;transform:none!important}
+  html body .hbx .oc-r:not(.oc-big) .oc-play:hover i{border-left-color:var(--ar-cream)!important}
+}
+html body .hbx .oc-r:not(.oc-big) .oc-lk:active,html body .hbx .oc-r:not(.oc-big) .oc-play:active{transform:scale(.97)!important}
+
+/* ---------- 2a. Port Express: rank lockup ---------- */
+html body [data-view] .fx-main .rc.ar-rk{display:inline-flex!important;align-items:center;gap:12px;align-self:flex-start;background:none!important;border:0!important;border-radius:0!important;
+  padding:0!important;box-shadow:none!important;text-shadow:none!important;color:#FFE6C4!important;font:600 .84rem/1.3 var(--display)!important;letter-spacing:.01em}
+html body [data-view] .fx-main .rc.ar-rk>svg,html body [data-view] .fx-main .rc.ar-rk>.pxe-medal{display:none!important}
+.ar-rk-t{text-align:right;opacity:.92}
+.ar-rk-n{font:700 2.9rem/.78 var(--display);padding:0 0 0 13px;border-left:1px solid rgba(255,230,196,.42);color:#FFE6C4;font-variant-numeric:lining-nums}
+
+/* ---------- 2b. Hamstarter / National Project ---------- */
+html body [data-view] .fx-row .fx-s:nth-child(n){display:grid!important;grid-template-columns:minmax(0,41%) minmax(0,1fr)!important;grid-template-rows:auto auto auto 1fr auto auto;gap:0!important;
+  padding:0!important;align-items:stretch!important;overflow:hidden;background:#fff!important;border:1px solid rgba(29,23,18,.09)!important;border-radius:26px!important;
+  box-shadow:0 1px 0 rgba(29,23,18,.03),0 26px 44px -34px rgba(60,35,10,.5)!important;
+  transition:transform .2s var(--ar-out),box-shadow .2s var(--ar-out)!important}
+html body [data-view] .fx-row .fx-s .fx-si{grid-column:1;grid-row:1/6;aspect-ratio:4/5!important;height:100%!important;width:100%;align-self:stretch!important;border-radius:0!important;box-shadow:none!important;background:#2a211a!important}
+html body [data-view] .fx-row .fx-s .fx-si img{object-position:50% 50%!important;transition:transform .22s var(--ar-out)!important}
+html body [data-view] .fx-row .fx-s .fx-si img[src*="sc-lyno"]{object-position:88% 50%!important}
+html body [data-view] .fx-row .fx-s .fx-sb{display:contents!important}
+html body [data-view] .fx-row .fx-s .fx-sb>small{grid-column:2;grid-row:2;padding:10px clamp(18px,2vw,28px) 0;color:var(--ar-or-d)!important;font:600 .9rem/1.4 var(--display)!important}
+html body [data-view] .fx-row .fx-s .fx-sb>b{grid-column:2;grid-row:3;padding:6px clamp(18px,2vw,28px) 0;font:700 clamp(1.5rem,2vw,1.85rem)/1.15 var(--display)!important;color:var(--ar-ink)!important;letter-spacing:-.01em}
+html body [data-view] .fx-row .fx-s .fx-sp{grid-column:2;grid-row:4;padding:10px clamp(18px,2vw,28px) 0;color:rgba(29,23,18,.76)!important;line-height:1.65!important;font-size:1rem}
+html body [data-view] .fx-row .fx-s .fx-go{grid-column:2;grid-row:5;justify-self:start;align-self:end;margin:18px clamp(18px,2vw,28px) clamp(20px,2.2vw,28px)!important;
+  background:transparent!important;color:var(--ar-ink)!important;box-shadow:inset 0 0 0 1.5px rgba(29,23,18,.82)!important;border-radius:999px!important;padding:11px 18px!important;
+  font:600 .92rem var(--display)!important;transition:background .2s var(--ar-out),color .2s var(--ar-out)!important;transform:none!important}
+html body [data-view] .fx-row .fx-s .fx-pr{grid-column:1/-1;grid-row:6;margin:0!important;padding:13px clamp(16px,1.8vw,24px)!important;background:#FBF4E8;border-top:1px solid rgba(29,23,18,.07);
+  color:rgba(29,23,18,.8)!important;font-size:.9rem!important;line-height:1.45!important;font-weight:500}
+html body [data-view] .fx-row .fx-s .fx-pr .ft-av img{border-color:#FBF4E8!important;width:32px;height:32px}
+html body [data-view] .fx-row .fx-s .rc.rc-s{grid-column:2;grid-row:1;justify-self:start;margin:clamp(20px,2.2vw,28px) clamp(18px,2vw,28px) 0!important;padding:0!important;background:none!important;border-radius:0!important;box-shadow:none!important;
+  color:rgba(29,23,18,.55)!important;font:600 .8rem/1.2 var(--display)!important;display:inline-flex!important;align-items:center;gap:8px}
+html body [data-view] .fx-row .fx-s .rc.rc-s{display:none!important}
+html body [data-view] .fx-row .fx-s .fx-sb>small{padding-top:clamp(20px,2.2vw,28px)!important}
+html body [data-view] .fx-row .fx-s .rc.rc-s svg{display:none!important}
+@media (hover:hover){
+  html body [data-view] .fx-row .fx-s:hover{transform:translateY(-3px)!important;box-shadow:0 1px 0 rgba(29,23,18,.03),0 34px 50px -34px rgba(60,35,10,.6)!important}
+  html body [data-view] .fx-row .fx-s:hover .fx-go{background:var(--ar-ink)!important;color:var(--ar-cream)!important}
+  html body [data-view] .fx-row .fx-s:hover .fx-si img{transform:scale(1.035)!important}
+}
+html body [data-view] .fx-row .fx-s:active{transform:scale(.99)!important}
+@media (max-width:640px){
+  /* phone: the whole poster stays visible as a small picture beside the title */
+  html body [data-view] .fx-row .fx-s:nth-child(n){grid-template-columns:104px minmax(0,1fr)!important;grid-template-rows:auto auto 1fr auto auto auto}
+  html body [data-view] .fx-row .fx-s .fx-si{grid-row:1/4;height:auto!important;align-self:start!important;margin:16px 0 0 16px;width:auto;border-radius:12px!important;overflow:hidden}
+  html body [data-view] .fx-row .fx-s .rc.rc-s{margin:18px 16px 0 14px!important}
+  html body [data-view] .fx-row .fx-s .fx-sb>small{padding:18px 16px 0 14px!important;font-size:.84rem!important}
+  html body [data-view] .fx-row .fx-s .fx-sb>b{padding:4px 16px 0 14px}
+  html body [data-view] .fx-row .fx-s .fx-sp{grid-column:1/-1;padding:14px 18px 0;font-size:.96rem}
+  html body [data-view] .fx-row .fx-s .fx-go{grid-column:1/-1;margin:16px 18px 18px!important}
+}
+
+/* narrower rows (courses page): a wider photo column so the 4:5 poster is not cropped */
+html body [data-view] .fx-row{container-type:inline-size}
+@container (min-width:700px) and (max-width:1180px){
+  html body [data-view] .fx-row .fx-s:nth-child(n){grid-template-columns:minmax(0,47%) minmax(0,1fr)!important}
+  html body [data-view] .fx-row .fx-s .fx-sp{font-size:.95rem;line-height:1.55!important}
+  html body [data-view] .fx-row .fx-s .fx-sb>b{font-size:1.5rem!important}
+}
+
+/* ---------- 2c. closing panel: a wall with one empty frame ---------- */
+html body .end-in{display:grid!important;grid-template-columns:minmax(0,1fr);row-gap:0;text-align:left!important;background:var(--ar-warm)!important;
+  padding:clamp(30px,5vw,76px) clamp(20px,5vw,80px)!important;border-radius:clamp(26px,3.2vw,44px)!important;overflow:hidden}
+html body .end-in>.kn-sea{display:none!important}
+html body .end-in h2{color:var(--ar-ink)!important;font:700 clamp(1.9rem,3.7vw,3.2rem)/1.2 var(--display)!important;letter-spacing:-.015em;max-width:11em;margin:0!important;text-wrap:balance}
+html body .end-in p{color:rgba(29,23,18,.74)!important;font-size:clamp(1rem,1.2vw,1.12rem)!important;line-height:1.7;max-width:34ch;margin:16px 0 0!important}
+html body .end-in .end-b{justify-content:flex-start!important;margin-top:26px!important;gap:10px}
+html body .end-in .e1{background:var(--ar-ink)!important;color:var(--ar-cream)!important;box-shadow:none!important}
+html body .end-in>.ar-wall{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(7px,.9vw,12px);margin-top:34px;position:relative;z-index:1}
+.ar-wall>*{position:relative;aspect-ratio:16/9.6;border-radius:clamp(7px,.8vw,11px);overflow:hidden}
+.ar-tile{display:block;background:#2a211a;box-shadow:0 1px 0 rgba(255,255,255,.5),0 14px 22px -16px rgba(60,35,10,.7);transition:transform .2s var(--ar-out),box-shadow .2s var(--ar-out)}
+@media (hover:hover){.ar-tile:hover{transform:translateY(-3px);box-shadow:0 1px 0 rgba(255,255,255,.5),0 20px 26px -16px rgba(60,35,10,.8)}}
+.ar-tile:active{transform:scale(.98)}
+.ar-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity 1s ease}
+.ar-tile img.on{opacity:1}
+.ar-tile:nth-child(n+10){display:none}
+.ar-mine{grid-column:2;grid-row:2;display:grid;place-items:center;text-align:center;padding:6px;box-sizing:border-box;
+  background:#FFF8EC;font:600 clamp(.68rem,1.05vw,.9rem)/1.3 var(--display);color:var(--ar-or-d)}
+.ar-mine svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.ar-mine rect{fill:none;stroke:var(--ar-or-d);stroke-width:1.6;stroke-dasharray:7 6;vector-effect:non-scaling-stroke}
+.ar-mine span{position:relative}
+@media (prefers-reduced-motion:no-preference){.ar-wall.run .ar-mine rect{animation:ar-march 1.6s linear infinite}}
+@keyframes ar-march{to{stroke-dashoffset:-13}}
+@media (min-width:960px){
+  html body .end-in{grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);grid-template-rows:1fr auto 1fr;column-gap:clamp(36px,5vw,84px)}
+  html body .end-in h2{grid-column:1;grid-row:1;align-self:end}
+  html body .end-in p{grid-column:1;grid-row:2}
+  html body .end-in .end-b{grid-column:1;grid-row:3;align-self:start}
+  html body .end-in>.ar-wall{grid-column:2;grid-row:1/4;margin-top:0;grid-template-columns:repeat(4,minmax(0,1fr));align-self:center;padding-bottom:18px}
+  .ar-tile:nth-child(n+10){display:block}
+  .ar-wall>*:nth-child(2),.ar-wall>*:nth-child(4),.ar-wall>*:nth-child(5),.ar-wall>*:nth-child(8),.ar-wall>*:nth-child(10),.ar-wall>*:nth-child(12){top:18px}
+}
+
+/* ---------- 2d. activity cards without a photo: type posters ---------- */
+html body [data-view="activity"] .avc-m:has(>.ar-po){container-type:inline-size;background:#fff}
+html body [data-view="activity"] .avc-ty.ar-po{display:block!important;position:relative!important;height:100%!important;padding:0!important;overflow:hidden;background:var(--po-bg)!important;color:var(--po-fg)}
+html body [data-view="activity"] .avc-ty.ar-po::before,html body [data-view="activity"] .avc-ty.ar-po>img,html body [data-view="activity"] .avc-ty.ar-po>.hb{display:none!important}
+/* each card gets its own colour and pattern; the title lives only under the poster */
+.ar-po{--po-bg:#FAE7CB;--po-fg:#1D1712;--po-ac:#C2661C;--po-ln:rgba(140,80,24,.26)}
+.ar-po.p-sand{--po-bg:#FAE7CB;--po-fg:#1D1712;--po-ac:#B0581A;--po-ln:rgba(140,80,24,.26)}
+.ar-po.p-mint{--po-bg:#D7F0E6;--po-fg:#123D31;--po-ac:#1D6E56;--po-ln:rgba(31,122,96,.28)}
+.ar-po.p-sky{--po-bg:#DCEEFB;--po-fg:#13324A;--po-ac:#1C639A;--po-ln:rgba(31,111,168,.26)}
+.ar-po.p-lilac{--po-bg:#E9E3FF;--po-fg:#2A2152;--po-ac:#5640BA;--po-ln:rgba(91,69,194,.26)}
+.ar-po.p-pink{--po-bg:#FFE3EC;--po-fg:#4A1A2C;--po-ac:#A8335F;--po-ln:rgba(178,58,106,.24)}
+.ar-po.p-ink{--po-bg:#1D1712;--po-fg:#FFF6E8;--po-ac:#F2A65E;--po-ln:rgba(255,246,232,.14)}
+.ar-po.p-navy{--po-bg:#1E2A3D;--po-fg:#F2F6FF;--po-ac:#8CC8FF;--po-ln:rgba(242,246,255,.14)}
+.ar-po.p-orange{--po-bg:#F2A65E;--po-fg:#1D1712;--po-ac:#1D1712;--po-ln:rgba(29,23,18,.24)}
+.ar-po.p-peach{--po-bg:#FFD3B0;--po-fg:#1D1712;--po-ac:#8E3F0E;--po-ln:rgba(142,63,14,.24)}
+.ar-po-g{position:absolute;inset:0;width:100%;height:100%;display:block}
+.ar-po-g *{fill:none;stroke:var(--po-ln);stroke-width:1;vector-effect:non-scaling-stroke}
+.ar-po-g .a{stroke:var(--po-ac);opacity:.75}
+.ar-po-g .d{fill:var(--po-ac);stroke:none}
+.ar-po-g .dl{fill:var(--po-ln);stroke:none}
+html body [data-view="activity"] .avc-ty.ar-po>b{display:none!important}
+.ar-po-d{position:absolute;left:7.5%;bottom:10%;z-index:1;display:flex;align-items:baseline;gap:2.6cqw}
+.ar-po-d i{font:700 30cqw/.74 var(--display);font-style:normal;color:var(--po-ac);letter-spacing:-.03em;font-variant-numeric:lining-nums}
+.ar-po-d u{text-decoration:none;font:600 5.2cqw/1 var(--display);color:var(--po-fg);opacity:.85}
+@supports not (font-size:1cqw){.ar-po-d i{font-size:5.4rem}.ar-po-d u{font-size:1rem}}
+
+/* ---------- 3. colour harmony (home + shared) ---------- */
+/* the softened orange drives the light and deep steps too */
+:root{--or-l:#FFDDB3!important;--or-d:#C97A2E!important}
+/* bell buttons: quiet on every card; only the open course keeps a filled button */
+html body [data-view="home"] .qv:not(.on) .qv-btn{background:#FFF3E3!important;color:var(--ar-ink)!important;box-shadow:inset 0 0 0 1px rgba(29,23,18,.10)!important;
+  transition:background .2s var(--ar-out),color .2s var(--ar-out),transform .2s var(--ar-out)!important}
+@media (hover:hover){html body [data-view="home"] .qv:not(.on):hover .qv-btn{background:var(--ar-ink)!important;color:var(--ar-cream)!important;transform:none!important}}
+/* "recommended" tag on rail cards: white chip, no gold */
+html body [data-view] .qv-rc{background:rgba(255,255,255,.95)!important;color:var(--ar-ink)!important;font:600 .74rem/1 var(--display)!important;padding:6px 9px!important;border-radius:8px!important;
+  box-shadow:0 4px 12px -6px rgba(0,0,0,.5)!important}
+html body [data-view] .qv-rc svg{display:none!important}
+/* rail position bar, back-to-top, the seniors number: one flat orange / ink instead of two-tone hot oranges */
+html body .ak-dots button.on{background:var(--ar-ink)!important}
+html body .to-top,html body .to-top:hover{background:var(--ar-ink)!important;color:var(--ar-cream)!important;box-shadow:0 10px 22px -10px rgba(29,23,18,.6)!important}
+html body [data-view="home"] .mc-h h2>span{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;-webkit-text-fill-color:currentColor!important;color:#E8964A!important;text-shadow:none!important;filter:none!important}
+html body [data-view="home"] .mc-cap small{color:var(--ar-or-d)!important}
+html body .end-in>.ar-wall{background:none!important}
+</style>
+<script>
+(function(){
+  var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e}
+
+  /* the old code canvas on the closing panel is not started at all */
+  [].forEach.call(document.querySelectorAll('.end-in'),function(h){
+    var old=h.querySelector('canvas.kn-sea');if(old)old.remove();
+    if(!h.querySelector('.kn-sea')){var d=el('i','kn-sea');d.hidden=true;h.insertBefore(d,h.firstChild)}
+  });
+
+  /* ---------- 1. startup stage ---------- */
+  function stage(){
+    var big=document.querySelector('.hbx .oc-r.oc-big');if(!big||big.getAttribute('data-ar'))return;big.setAttribute('data-ar','1');
+    var m=big.querySelector('.oc-m'),ol=big.querySelector('.oc-st'),t=big.querySelector('.oc-t');
+    if(m){[['c1','PHC Map เกมสอนเขียน Python'],['c2','Hamster Quest'],['c3','หน้าเควสต์']].forEach(function(c){var s=el('span','ar-cap '+c[0]);s.textContent=c[1];s.setAttribute('aria-hidden','true');m.appendChild(s)})}
+    if(ol&&t){
+      /* one plain line under each step: what the student does there */
+      var SX=['น้องคิดว่าจะทำอะไร ให้ใครใช้','น้องลงมือเขียนโปรแกรมเอง','ให้คนจริงลองใช้ แล้วน้องแก้ให้ดีขึ้น','มีคนซื้อหรือใช้ผลงานของน้องจริง'];
+      [].forEach.call(ol.querySelectorAll('li'),function(li,i){if(SX[i]&&!li.querySelector('.ar-sx')){var x=el('span','ar-sx');x.textContent=SX[i];li.appendChild(x)}});
+      var led=el('ul','ar-led',
+        '<li class="ar-led-h">ผลงานของน้องที่มีคนใช้จริงแล้ว</li>'+
+        '<li><small>Mr. City</small><b>สวนสัตว์สงขลา</b><span>ซื้อไปใช้แล้ว</span></li>'+
+        '<li><small>PHC Map</small><b>1,000+ คน</b><span>เรียนเขียน Python จากเกมนี้แล้ว</span></li>'+
+        '<li><small>Hamster Quest</small><b>มหาวิทยาลัย</b><span>กำลังเตรียมนำไปใช้</span></li>');
+      ol.parentNode.insertBefore(led,ol.nextSibling);
+      /* the climbing path */
+      var NS='http://www.w3.org/2000/svg',svg=document.createElementNS(NS,'svg');svg.setAttribute('class','ar-path');svg.setAttribute('aria-hidden','true');
+      var pb=document.createElementNS(NS,'path'),pf=document.createElementNS(NS,'path');pb.setAttribute('class','b');pf.setAttribute('class','f');pf.setAttribute('pathLength','1');
+      svg.appendChild(pb);svg.appendChild(pf);ol.insertBefore(svg,ol.firstChild);
+      var lastD='';
+      function draw(){
+        var lis=ol.querySelectorAll('li');if(lis.length<2||!ol.clientWidth)return;
+        var d='',prev=null;
+        [].forEach.call(lis,function(li){var x=li.offsetLeft+17,y=li.offsetTop+17;
+          if(!prev)d='M'+x+' '+y;else{var h=(x-prev.x)*.5;d+=' C'+(prev.x+h)+' '+prev.y+' '+(x-h)+' '+y+' '+x+' '+y}prev={x:x,y:y}});
+        if(d!==lastD){lastD=d;pb.setAttribute('d',d);pf.setAttribute('d',d)}
+      }
+      draw();
+      if('ResizeObserver' in window)new ResizeObserver(draw).observe(ol);else addEventListener('resize',draw);
+      if(document.fonts&&document.fonts.ready)document.fonts.ready.then(draw);
+    }
+    /* no reveal: the steps and the ledger are always readable */
+  }
+
+  /* ---------- 2a. rank lockup ---------- */
+  function rank(){
+    [].forEach.call(document.querySelectorAll('.fx-main .rc:not(.ar-rk)'),function(rc){
+      [].slice.call(rc.childNodes).forEach(function(n){if(n.nodeType===3)rc.removeChild(n)});
+      rc.setAttribute('role','img');rc.setAttribute('aria-label','คอร์สแนะนำอันดับ 1');
+      rc.appendChild(el('span','ar-rk-t','คอร์สแนะนำ<br>อันดับ'));rc.appendChild(el('span','ar-rk-n','1'));
+      rc.classList.add('ar-rk');
+    });
+  }
+
+  /* ---------- 2c. closing wall ---------- */
+  var COVERS=['ar-melody-duel','work-phi-krahang','ar-heat-thieves','ar-a-picturesque-breakfast','ar-the-collector','ar-nampun','work-eugation-strike','ar-night-fear','ar-gamejam-x','ar-bidet-blaster','ar-woven-citadel',
+    'work-stressstrike','ar-ecoeats-mas','work-midnight-at-roadside','ar-endlessly','ar-ghostly-prisoner-demo','work-hot-hot-hot','ar-together-forever'];
+  function wall(){
+    var host=document.querySelector('[data-view="home"] .end-in');if(!host||host.querySelector('.ar-wall'))return;
+    var w=el('div','ar-wall');w.setAttribute('role','group');w.setAttribute('aria-label','เกมที่น้องๆ สร้าง กดเพื่อดูผลงาน');
+    var tiles=[],shown=[];
+    for(var i=0;i<11;i++){var t=el('a','ar-tile','<img class="on" alt="" loading="lazy" decoding="async" src="img/'+COVERS[i]+'.webp"><img alt="" decoding="async">');
+      t.href='#works';t.setAttribute('data-pane','hof');t.setAttribute('data-cover',COVERS[i]);label(t,COVERS[i]);w.appendChild(t);tiles.push(t);shown.push(COVERS[i])}
+    /* a cover opens that game in the works page: Hall of Fame games play in the feed, the others open their clip */
+    w.addEventListener('click',function(e){var t=e.target.closest('.ar-tile');if(!t)return;var c=t.getAttribute('data-cover');
+      setTimeout(function open(){var v=document.querySelector('[data-view="works"]');if(!v||!v.offsetParent)return;
+        var im=document.querySelector('#vgrid img[src$="'+c+'.webp"],#arcG img[src$="'+c+'.webp"]'),b=im&&im.closest('.vc,.ac');
+        if(b){b.scrollIntoView({block:'center'});b.click()}},700)});
+    function label(t,c){var im=document.querySelector('#vgrid img[src$="'+c+'.webp"],#arcG img[src$="'+c+'.webp"]'),card=im&&im.closest('.vc,.ac'),nm=card&&card.querySelector('b,h3');
+      t.setAttribute('aria-label','ดูผลงาน '+(nm?nm.textContent.trim():'ของน้อง'))}
+    var mine=el('div','ar-mine','<svg aria-hidden="true"><rect x="1" y="1" rx="9" ry="9" style="width:calc(100% - 2px);height:calc(100% - 2px)"/></svg><span>ที่ว่างนี้<br>รอผลงานของน้อง</span>');
+    w.insertBefore(mine,tiles[4]);
+    host.appendChild(w);
+    if(rm)return;
+    var timer=0,last=-1;
+    function swap(){
+      var vis=tiles.filter(function(t){return t.offsetParent!==null});if(!vis.length)return;
+      var k;do{k=Math.floor(Math.random()*vis.length)}while(vis.length>1&&k===last);last=k;
+      var t=vis[k],ti=tiles.indexOf(t),free=COVERS.filter(function(c){return shown.indexOf(c)<0});if(!free.length)return;
+      var next=free[Math.floor(Math.random()*free.length)],im=t.querySelectorAll('img'),a=im[0].classList.contains('on')?im[0]:im[1],b=a===im[0]?im[1]:im[0];
+      b.onload=function(){b.onload=null;b.classList.add('on');a.classList.remove('on');shown[ti]=next;t.setAttribute('data-cover',next);label(t,next)};
+      b.src='img/'+next+'.webp';
+    }
+    new IntersectionObserver(function(es){var on=es[0].isIntersecting;
+      if(on&&!timer){timer=setInterval(function(){if(!document.hidden)swap()},2600);w.classList.add('run')}
+      else if(!on&&timer){clearInterval(timer);timer=0;w.classList.remove('run')}
+    },{threshold:.2}).observe(w);
+  }
+
+  /* ---------- 2d. activity posters ---------- */
+  function rng(seed){var s=seed>>>0||1;return function(){s^=s<<13;s>>>=0;s^=s>>>17;s^=s<<5;s>>>=0;return s/4294967296}}
+  function hash(str){var h=2166136261;for(var i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+  function f1(n){return Math.round(n*10)/10}
+  function contours(r){   /* camp: terrain lines around a peak */
+    var cx=70+r()*70,cy=50+r()*40,p1=r()*6.28,p2=r()*6.28,a=.1+r()*.08,b=.05+r()*.05,o='';
+    for(var k=0;k<9;k++){var R=10+k*20+k*k*.9,pts=[];
+      for(var i=0;i<36;i++){var th=i/36*6.2832,rr=R*(1+a*Math.sin(3*th+p1+k*.22)+b*Math.sin(5*th+p2-k*.3));pts.push([cx+rr*Math.cos(th)*1.25,cy+rr*Math.sin(th)*.82])}
+      var d='';for(i=0;i<pts.length;i++){var q=pts[i],n=pts[(i+1)%pts.length],mx=(q[0]+n[0])/2,my=(q[1]+n[1])/2;d+=(i?' Q'+f1(q[0])+' '+f1(q[1])+' ':'M'+f1((pts[pts.length-1][0]+q[0])/2)+' '+f1((pts[pts.length-1][1]+q[1])/2)+' Q'+f1(q[0])+' '+f1(q[1])+' ')+f1(mx)+' '+f1(my)}
+      o+='<path d="'+d+'Z"/>'}
+    return o+'<path class="a" d="M'+f1(cx-4)+' '+f1(cy)+'h8M'+f1(cx)+' '+f1(cy-4)+'v8"/>';
+  }
+  function drafting(r){   /* workshop: drafting grid with construction lines */
+    var o='',ox=r()*20,oy=r()*20;
+    for(var x=ox;x<320;x+=20)o+='<path d="M'+f1(x)+' 0V180"/>';
+    for(var y=oy;y<180;y+=20)o+='<path d="M0 '+f1(y)+'H320"/>';
+    var ax=ox+20*(2+Math.floor(r()*3)),ay=oy+20*(1+Math.floor(r()*2)),R=60+Math.floor(r()*3)*20;
+    o+='<path class="a" d="M'+f1(ax)+' '+f1(ay+R)+'A'+R+' '+R+' 0 0 0 '+f1(ax+R)+' '+f1(ay)+'"/>';
+    o+='<path class="a" d="M'+f1(ax)+' '+f1(ay)+'L'+f1(ax+R*.707)+' '+f1(ay+R*.707)+'"/>';
+    o+='<path class="a" d="M'+f1(ax-5)+' '+f1(ay)+'h10M'+f1(ax)+' '+f1(ay-5)+'v10"/>';
+    return o;
+  }
+  function orbits(r){   /* project: long arcs of one orbit system */
+    var cx=40+r()*60,cy=-30+r()*40,rot=-22+r()*12,o='<g transform="rotate('+f1(rot)+' '+f1(cx)+' '+f1(cy)+')">';
+    for(var k=0;k<6;k++){var rx=70+k*52,ry=rx*.52;o+='<ellipse cx="'+f1(cx)+'" cy="'+f1(cy)+'" rx="'+rx+'" ry="'+f1(ry)+'"/>';
+      if(k===1||k===3||k===4){var th=.5+r()*1.4;o+='<circle class="d" r="'+(k===3?4.2:2.8)+'" cx="'+f1(cx+rx*Math.cos(th))+'" cy="'+f1(cy+ry*Math.sin(th))+'"/>'}}
+    return o+'</g>';
+  }
+  function ridges(r){   /* camp: hills one behind another */
+    var o='';for(var k=0;k<7;k++){var y0=40+k*20,ph=r()*6.28,amp=8+r()*10,d='M0 '+f1(y0);
+      for(var x=0;x<=320;x+=16)d+=' L'+x+' '+f1(y0+amp*Math.sin(x/(38+k*4)+ph)+.4*amp*Math.sin(x/13+ph*2));o+='<path'+(k===3?' class="a"':'')+' d="'+d+'"/>'}
+    return o;
+  }
+  function sundots(r){   /* camp: a halftone sun */
+    var cx=200+r()*80,cy=40+r()*40,o='';
+    for(var y=8;y<180;y+=14)for(var x=8;x<320;x+=14){var dd=Math.hypot(x-cx,y-cy),rr=Math.max(0,3.4-dd/60);if(rr>.5)o+='<circle class="dl" cx="'+x+'" cy="'+y+'" r="'+f1(rr)+'"/>'}
+    return o+'<circle class="a" cx="'+f1(cx)+'" cy="'+f1(cy)+'" r="'+f1(26+r()*10)+'"/>';
+  }
+  var PAL={camp:['sand','mint','sky','lilac','pink'],work:['ink','navy'],proj:['orange','peach']},
+      PAT={camp:[contours,ridges,sundots],work:[drafting,sundots],proj:[orbits,ridges]};
+  function posters(root){
+    var n={camp:0,work:0,proj:0};
+    [].forEach.call((root||document).querySelectorAll('[data-view="activity"] .avc-ty:not(.ar-po)'),function(ty){
+      var card=ty.closest('.avc'),b=ty.querySelector('b');if(!card||!b)return;
+      var dEl=card.querySelector('.avc-d'),sp=dEl&&dEl.querySelector('span'),kind=sp?sp.textContent:'',date=dEl?dEl.textContent.replace(kind,'').trim():'';
+      var type=/เวิร์ก/.test(kind)?'work':/โครงการ|โชว์|แข่ง/.test(kind)?'proj':'camp',i=n[type]++;
+      var r=rng(hash(b.textContent+date)),g=PAT[type][i%PAT[type].length](r),pal=PAL[type][i%PAL[type].length];
+      var day=(date.match(/\d+/)||[''])[0],mon=(date.match(/[ก-๙]+\.[ก-๙]+\./)||[''])[0];
+      var svg='<svg class="ar-po-g" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'+g+'</svg>';
+      ty.insertAdjacentHTML('afterbegin',svg);
+      if(day)ty.insertAdjacentHTML('beforeend','<span class="ar-po-d" aria-hidden="true"><i>'+day+'</i><u>'+mon+'</u></span>');
+      ty.classList.add('ar-po','t-'+type,'p-'+pal);
+    });
+    /* "น้องได้" lines: a line shared by many cards says nothing, keep it only on the first card */
+    var gs=[].slice.call(document.querySelectorAll('[data-view="activity"] .avc .avc-g')),cnt={},seen={};
+    gs.forEach(function(g){var k=g.textContent.trim();cnt[k]=(cnt[k]||0)+1});
+    gs.forEach(function(g){var k=g.textContent.trim();var hide=cnt[k]>3&&seen[k];seen[k]=1;if(g.hidden!==!!hide)g.hidden=!!hide});
+  }
+
+  function go(){
+    stage();rank();wall();posters();
+    var act=document.querySelector('[data-view="activity"]');
+    if(act&&'MutationObserver' in window){var q=0;new MutationObserver(function(){if(q)return;q=requestAnimationFrame(function(){q=0;if(act.querySelector('.avc-ty:not(.ar-po)'))posters()})}).observe(act,{childList:true,subtree:true})}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
+  addEventListener('load',function(){rank();posters()});
+})();
+</script>
+
+<!-- layer: 90-review.html -->
+<style id="ly-review">
+/* =====================================================================
+   90-review: fixes from two reviews (prefix rv-)
+   1 search panel fade   2 reveal never hides focus   3 skip link
+   4 one focus ring      5 contrast                   7 course covers
+   10 about card         11 works on phones           12 headings
+   13 calm UI motion     14 one left edge
+   ===================================================================== */
+:root{--rv-ease:cubic-bezier(.23,1,.32,1);--rv-ink:#1D1712;--rv-cream:#FFF6E8}
+
+/* ---- 1. search results: the panel scrolls inside; soft fades say there is more ---- */
+[data-view="home"] #zqRes{overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(29,23,18,.28) transparent}
+[data-view="home"] #zqRes::after{content:"";position:sticky;bottom:-22px;display:block;height:64px;margin:-64px -18px -22px;z-index:4;pointer-events:none;
+  background:linear-gradient(rgba(255,253,249,0),rgba(255,253,249,.92) 62%,#FFFDF9);opacity:0;transition:opacity .2s var(--rv-ease)}
+[data-view="home"] #zqRes::before{content:"";position:sticky;top:0;display:block;height:44px;margin:-18px -18px -26px;z-index:4;pointer-events:none;
+  background:linear-gradient(#FFFDF9 35%,rgba(255,253,249,0));opacity:0;transition:opacity .2s var(--rv-ease)}
+[data-view="home"] #zqRes.rv-fb::after,[data-view="home"] #zqRes.rv-ft::before{opacity:1}
+[data-view="home"] #zqRes>.zq-x{z-index:5}
+
+/* ---- 2. a reveal never hides what has focus ---- */
+html.mo-js .mo-goo:focus-within,html.mo-js .mo-rise:focus-within,html.mo-js .mo-kids:focus-within>*,.rv:focus-within{
+  opacity:1!important;transform:none!important;-webkit-mask:none!important;mask:none!important;transition:none!important}
+
+/* ---- 3. skip link ---- */
+body>a[href="#main"]:focus,body>a[href="#main"]:focus-visible{position:fixed!important;left:16px!important;top:12px!important;z-index:10000;
+  background:var(--rv-ink);color:var(--rv-cream)!important;padding:12px 18px;border-radius:12px;font:600 1rem/1.2 var(--display);text-decoration:none;
+  box-shadow:0 10px 24px -10px rgba(29,23,18,.6);outline:2px solid var(--rv-cream)!important;outline-offset:2px!important}
+
+/* ---- 4. one focus ring: 2px ink, 2px gap (cream on dark surfaces) ---- */
+html body :focus-visible{outline:2px solid var(--rv-ink)!important;outline-offset:2px!important}
+html body .rv-on-dk:focus-visible{outline-color:var(--rv-cream)!important}
+html body .mo-press:focus-visible,html body .mo-cue:focus-visible{outline-width:2px!important;outline-offset:2px!important}
+/* search: the ring sits on the pill, not on the bare input */
+html body #zqIn:focus-visible{outline:none!important}
+html body #zqForm:has(#zqIn:focus-visible){outline:2px solid var(--rv-ink)!important;outline-offset:2px!important}
+
+/* ---- 5. contrast ---- */
+html body .rv-ln,html body .rv-ln:hover{color:var(--rv-ink)!important}
+html body .rv-ln svg{color:var(--rv-ink)!important}
+html body [data-view="home"] .mc-h h2>span{color:#B85F14!important;-webkit-text-fill-color:#B85F14!important}
+html body .aw-g b{background:none!important;-webkit-text-fill-color:#B85F14!important;color:#B85F14!important}
+/* filter counts */
+html body .mc-u button b,html body [data-view="activity"] button[data-t]>span,html body [data-view="courses"] b>span{color:#9A4A0E!important;-webkit-text-fill-color:#9A4A0E!important}
+html body .mc-u button[aria-pressed="true"] b,html body [data-view="activity"] button[data-t][aria-pressed="true"]>span{color:inherit!important;-webkit-text-fill-color:currentColor!important}
+
+/* ---- 7. course rail: a clean type cover for courses that only had a congratulation poster ---- */
+.qv-im.rv-has>img{visibility:hidden}
+.rv-cv{position:absolute;inset:0;z-index:0;display:flex;flex-direction:column;justify-content:flex-end;padding:0 8% 8%;box-sizing:border-box;overflow:hidden;
+  background:var(--cv-bg);color:var(--cv-fg);container-type:inline-size;pointer-events:none}
+.rv-cv svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.rv-cv svg *{fill:none;stroke:var(--cv-ln);stroke-width:1;vector-effect:non-scaling-stroke}
+.rv-cv svg .a{stroke:var(--cv-ac);opacity:.8}
+.rv-cv svg .d{fill:var(--cv-ln);stroke:none}
+.rv-cv b{position:relative;font:700 12.5cqw/1.02 var(--display);letter-spacing:-.02em;text-wrap:balance;max-width:92%}
+.rv-cv span{position:relative;margin-top:3cqw;font:600 5.4cqw/1.3 var(--display);color:var(--cv-ac)}
+@supports not (font-size:1cqw){.rv-cv b{font-size:2.1rem}.rv-cv span{font-size:.95rem}}
+.rv-cv.c-ink{--cv-bg:#1D1712;--cv-fg:#FFF6E8;--cv-ac:#F2A65E;--cv-ln:rgba(255,246,232,.13)}
+.rv-cv.c-orange{--cv-bg:#F2A65E;--cv-fg:#1D1712;--cv-ac:#1D1712;--cv-ln:rgba(29,23,18,.22)}
+.rv-cv.c-sky{--cv-bg:#DCEEFB;--cv-fg:#13324A;--cv-ac:#1C639A;--cv-ln:rgba(31,111,168,.26)}
+.rv-cv.c-mint{--cv-bg:#D7F0E6;--cv-fg:#123D31;--cv-ac:#1D6E56;--cv-ln:rgba(31,122,96,.28)}
+.rv-cv.c-lilac{--cv-bg:#E9E3FF;--cv-fg:#2A2152;--cv-ac:#5640BA;--cv-ln:rgba(91,69,194,.26)}
+.rv-cv.c-sand{--cv-bg:#FAE7CB;--cv-fg:#1D1712;--cv-ac:#A8551A;--cv-ln:rgba(140,80,24,.26)}
+.rv-cv.c-pink{--cv-bg:#FFE3EC;--cv-fg:#4A1A2C;--cv-ac:#A8335F;--cv-ln:rgba(178,58,106,.24)}
+/* the image zoom on hover now moves the cover */
+@media (hover:hover){.qv:hover .rv-cv svg{transform:scale(1.04);transition:transform .22s var(--rv-ease)}}
+.rv-cv svg{transition:transform .22s var(--rv-ease)}
+
+/* ---- 10. about: the fourth result card gets a real picture area (type, no fake photo) ---- */
+.rv-ph{position:relative;display:block;width:100%;aspect-ratio:4/3;border-radius:20px;overflow:hidden;background:#1D1712;color:#FFF6E8;container-type:inline-size}
+.rv-ph svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.rv-ph svg *{fill:none;stroke:rgba(242,166,94,.32);stroke-width:1;vector-effect:non-scaling-stroke}
+.rv-ph svg .a{stroke:#F2A65E;stroke-width:2;opacity:.9}
+.rv-ph svg .d{fill:#F2A65E;stroke:none}
+.rv-ph b,.aw-g .rv-ph b{position:absolute!important;left:8%;bottom:8%;margin:0;font:700 14cqw/1 var(--display)!important;letter-spacing:-.02em;white-space:nowrap;
+  color:#FFF6E8!important;-webkit-text-fill-color:#FFF6E8!important;background:none!important}
+.rv-ph small{position:absolute;left:8%;top:8%;font:600 6.2cqw/1.2 var(--display);color:#F2A65E}
+
+/* ---- 11. works on phones: compact chip menu, arrows off the text ---- */
+@media (max-width:640px){
+  html body [data-view="works"] .yt-side{position:sticky;top:60px;z-index:5;flex-direction:row!important;flex-wrap:nowrap!important;align-items:center;gap:6px!important;
+    height:auto!important;max-height:none!important;overflow-x:auto!important;overflow-y:hidden!important;padding:8px 12px!important;scrollbar-width:none;
+    -webkit-mask:linear-gradient(90deg,#000 calc(100% - 28px),transparent);mask:linear-gradient(90deg,#000 calc(100% - 28px),transparent)}
+  html body [data-view="works"] .yt-side::-webkit-scrollbar{display:none}
+  html body [data-view="works"] .yt-side button{width:auto!important;flex:none!important;padding:8px 14px!important;border-radius:999px!important;white-space:nowrap;font-size:.92rem!important;min-height:40px}
+  html body [data-view="works"] .yt-side button:not([aria-current="true"]){background:#272727!important}
+  html body [data-view="works"] .yt-side svg,html body [data-view="works"] .yt-side hr,html body [data-view="works"] .yt-side small,html body [data-view="works"] .yt-side .wkz{display:none!important}
+  html body [data-view="works"] .tk-nav{display:none!important}
+}
+
+/* ---- 12. headings: the highlighter only on the first heading of each page ---- */
+html body .rv-nohl::before{display:none!important}
+html body .rv-nohl .qa-hl{background-image:none!important;background:none!important;padding:0!important;margin:0!important}
+html body [data-view="home"] .nw2-h{width:auto!important;justify-content:flex-start!important;text-align:left!important}
+
+/* ---- 13. calm UI motion: short, ease-out, no overshoot (slime and hamster keep their springs) ---- */
+html body .mo-press{transition:transform .18s var(--rv-ease),box-shadow .18s var(--rv-ease),background-color .18s var(--rv-ease),color .18s var(--rv-ease)!important}
+html body .mo-press:active{transform:scale(.97)!important;transition-duration:.12s!important}
+html body .mo-press.mo-boing{animation:none!important}
+html body .mo-lift{transition:transform .2s var(--rv-ease),box-shadow .2s var(--rv-ease)!important}
+html body .mo-lift:hover{transform:translateY(-4px)!important}
+html body .mo-lift:active{transform:translateY(-1px) scale(.99)!important;transition-duration:.12s!important}
+html.mo-js .mo-goo:not(.mo-done),html.mo-js .mo-rise:not(.mo-done),html.mo-js .mo-kids:not(.mo-done)>*{
+  transition:transform .22s var(--rv-ease) var(--mo-w,0ms),opacity .2s var(--rv-ease) var(--mo-w,0ms),--mo-p .22s var(--rv-ease) var(--mo-w,0ms)!important}
+html.mo-js .mo-kids:not(.mo-done)>*{transition-delay:calc(var(--mo-i,0) * 40ms)!important}
+html.mo-js .mo-goo:not(.mo-in){transform:translateY(16px)!important}
+html.mo-js .mo-rise:not(.mo-in),html.mo-js .mo-kids:not(.mo-in)>*{transform:translateY(14px)!important}
+html body .rv{transition:opacity .22s var(--rv-ease),transform .22s var(--rv-ease)!important}
+html body .rv:not(.in){transform:translateY(12px)}
+html body .qv-btn{transition:transform .18s var(--rv-ease),background-color .18s var(--rv-ease),color .18s var(--rv-ease)!important}
+html body .qv:hover .qv-btn{transform:translateX(2px)!important}
+html body [data-view="works"] .yt-side button{transition:background-color .18s var(--rv-ease),color .18s var(--rv-ease),transform .12s var(--rv-ease)!important}
+html body [data-view="works"] .yt-side button:hover svg{animation:none!important}
+html body .aw-g figure,html body .aw-g img{transition:transform .22s var(--rv-ease),box-shadow .22s var(--rv-ease)!important}
+html body .aw-g figure:hover,html body .aw-g figure:nth-child(even):hover{transform:translateY(-4px)!important}
+html body .fx-main,html body .fx-main .fx-media img{transition-duration:.22s!important;transition-timing-function:var(--rv-ease)!important}
+html body [data-view] :is(.av-f button,.av-pg img,.fit-q label,.qv,.qv-btn,.qv-btn svg,.qv-im img,.avc,.avn,.b1,.b2,.b3,.b4,.b5,.ad-big,.ad-s,.ad-s img){transition-timing-function:var(--rv-ease)!important;transition-duration:.2s!important}
+@media (prefers-reduced-motion:reduce){html body .mo-press,html body .mo-lift,html body .rv,html body .qv-btn{transition:none!important}}
+
+/* ---- 14. one left edge: content sits in the same 1240px column ---- */
+@media (min-width:1100px){
+  html body [data-view="home"] .zc2>.mr,html body [data-view="home"] .nw2 .mr{max-width:1240px!important;padding-left:0!important;padding-right:0!important;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box}
+  html body [data-view="home"] .end-in{padding-left:max(clamp(20px,5vw,80px),calc((100% - 1240px) / 2))!important;padding-right:max(clamp(20px,5vw,80px),calc((100% - 1240px) / 2))!important}
+}
+</style>
+<script>
+(function(){
+  var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
+  var raf=window.requestAnimationFrame||function(f){return setTimeout(f,16)};
+
+  /* ---------- 1. search panel fades ---------- */
+  var res=$('#zqRes');
+  if(res){
+    var q=0;
+    var edge=function(){q=0;var more=res.scrollHeight-res.clientHeight>4,b=more&&res.scrollTop+res.clientHeight<res.scrollHeight-6,t=more&&res.scrollTop>6;
+      if(res.classList.contains('rv-fb')!==b)res.classList.toggle('rv-fb',b);if(res.classList.contains('rv-ft')!==t)res.classList.toggle('rv-ft',t)};
+    var later=function(){if(!q)q=raf(edge)};
+    res.addEventListener('scroll',later,{passive:true});
+    new MutationObserver(later).observe(res,{childList:true,subtree:true});
+    if(window.ResizeObserver)new ResizeObserver(later).observe(res);
+    var z=$('[data-view="home"] .zq');if(z)new MutationObserver(function(){setTimeout(later,60);setTimeout(later,500)}).observe(z,{attributes:true,attributeFilter:['class']});
+  }
+
+  /* ---------- 2 + 4. focus: reveal anything hidden, pick ring colour from the surface ---------- */
+  function rgb(c){var m=c&&c.match(/[\d.]+/g);return m?{r:+m[0],g:+m[1],b:+m[2],a:m[3]==null?1:+m[3]}:null}
+  function dark(el){var n=el;while(n&&n.nodeType===1){var s=getComputedStyle(n),c=rgb(s.backgroundColor);
+      if(s.backgroundImage&&s.backgroundImage!=='none'&&/gradient/.test(s.backgroundImage)){var g=rgb(s.backgroundImage);if(g)c=g}
+      if(c&&c.a>.5){return (.2126*c.r+.7152*c.g+.0722*c.b)<110}n=n.parentElement}
+    return false}
+  document.addEventListener('focusin',function(e){var t=e.target;if(!t||!t.closest)return;
+    for(var n=t;n&&n!==document.body;n=n.parentElement){var c=n.classList;if(!c)continue;
+      if((c.contains('mo-goo')||c.contains('mo-rise')||c.contains('mo-kids'))&&!c.contains('mo-in')){c.add('mo-in');c.add('mo-done')}
+      if(c.contains('rv')&&!c.contains('in'))c.add('in')}
+    var d=dark(t.parentElement||t);if(t.classList.contains('rv-on-dk')!==d)t.classList.toggle('rv-on-dk',d)},true);
+
+  /* ---------- 5. LINE green buttons: ink text ---------- */
+  function line(){$$('a,button').forEach(function(e){if(e.classList.contains('rv-ln'))return;var c=rgb(getComputedStyle(e).backgroundColor);
+    if(c&&c.a>.9&&c.g>150&&c.r<90&&c.b<140)e.classList.add('rv-ln')})}
+
+  /* ---------- 7. course covers ---------- */
+  function f1(n){return Math.round(n*10)/10}
+  function rng(seed){var s=seed>>>0||1;return function(){s^=s<<13;s>>>=0;s^=s>>>17;s^=s<<5;s>>>=0;return s/4294967296}}
+  function hash(str){var h=2166136261;for(var i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+  var PAT={
+    grid:function(r){var o='',ox=r()*18,oy=r()*18;for(var x=ox;x<320;x+=18)o+='<path d="M'+f1(x)+' 0V240"/>';for(var y=oy;y<240;y+=18)o+='<path d="M0 '+f1(y)+'H320"/>';
+      var ax=ox+18*(9+Math.floor(r()*4)),ay=oy+18*2,R=72;return o+'<path class="a" d="M'+f1(ax)+' '+f1(ay+R)+'A'+R+' '+R+' 0 0 0 '+f1(ax+R)+' '+f1(ay)+'"/>'},
+    speed:function(r){var o='';for(var k=0;k<16;k++){var y=k*15+r()*6,x0=120+r()*90,len=60+r()*140;o+='<path'+(k===5?' class="a"':'')+' d="M'+f1(x0)+' '+f1(y)+'h'+f1(len)+'"/>'}return o},
+    orbit:function(r){var cx=250+r()*40,cy=20+r()*30,o='<g transform="rotate(-18 '+f1(cx)+' '+f1(cy)+')">';for(var k=0;k<6;k++){var rx=40+k*42;o+='<ellipse cx="'+f1(cx)+'" cy="'+f1(cy)+'" rx="'+rx+'" ry="'+f1(rx*.5)+'"'+(k===2?' class="a"':'')+'/>'}return o+'</g>'},
+    steps:function(r){var o='',x=150,y=210;for(var k=0;k<6;k++){var w=26,h=18+r()*8;o+='<path'+(k===5?' class="a"':'')+' d="M'+f1(x)+' '+f1(y)+'v'+f1(-h)+'h'+w+'"/>';x+=w;y-=h}
+      for(var j=0;j<8;j++)o+='<path d="M0 '+(30+j*26)+'H320"/>';return o},
+    dots:function(r){var o='',cx=250+r()*30,cy=40+r()*30;for(var y=8;y<240;y+=13)for(var x=8;x<320;x+=13){var d=Math.hypot(x-cx,y-cy),rr=Math.max(0,3.2-d/62);if(rr>.45)o+='<circle class="d" cx="'+x+'" cy="'+y+'" r="'+f1(rr)+'"/>'}return o},
+    contour:function(r){var cx=240+r()*40,cy=60+r()*30,o='';for(var k=0;k<9;k++){var rx=14+k*22,ry=rx*.66;o+='<ellipse cx="'+f1(cx)+'" cy="'+f1(cy)+'" rx="'+rx+'" ry="'+f1(ry)+'" transform="rotate('+f1(-12+k*2.4)+' '+f1(cx)+' '+f1(cy)+')"'+(k===3?' class="a"':'')+'/>'}return o}
+  };
+  /* tagline: a few words taken from the card's own line */
+  var COURSE={
+    'Port70':['ink','grid','คอร์สทำพอร์ต DEK70'],
+    'Project Express':['orange','speed','ทำโปรเจกต์ให้เสร็จไว'],
+    'National Project':['sky','orbit','ส่งเวทีระดับประเทศ'],
+    'Business Project':['mint','steps','ต่อยอดเป็นธุรกิจ'],
+    'Python Pro Pack':['lilac','dots','เรียนเขียน Python'],
+    'Hamstarter':['sand','contour','คอร์สเริ่มต้น']
+  },CYC=[['pink','contour'],['sky','dots'],['mint','grid'],['lilac','orbit']];
+  function covers(){var k=0;
+    $$('.qv').forEach(function(q){var im=q.querySelector('.qv-im'),img=im&&im.querySelector('img');if(!img||im.classList.contains('rv-has'))return;
+      if(!/dek69-/.test(img.getAttribute('src')||''))return;
+      var nm=(q.querySelector('.qv-tx b')||{}).textContent||'',d=(q.querySelector('.qv-d')||{}).textContent||'';nm=nm.trim();
+      var c=COURSE[nm]||(function(){var x=CYC[k++%CYC.length];return [x[0],x[1],d.trim().split(/\s+/).slice(0,3).join(' ')]})();
+      var cv=document.createElement('span');cv.className='rv-cv c-'+c[0];cv.setAttribute('aria-hidden','true');
+      cv.innerHTML='<svg viewBox="0 0 320 240" preserveAspectRatio="xMidYMid slice">'+PAT[c[1]](rng(hash(nm)))+'</svg><b></b><span></span>';
+      cv.querySelector('b').textContent=nm;cv.querySelector('span').textContent=c[2];
+      im.insertBefore(cv,im.firstChild);im.classList.add('rv-has')})}
+
+  /* ---------- 10. about: the card with no picture ---------- */
+  function about(){var f=$('.aw-g figure.nopic');if(!f||f.querySelector('.rv-ph'))return;
+    var ph=document.createElement('span');ph.className='rv-ph';ph.setAttribute('aria-hidden','true');
+    var o='';for(var x=-20;x<340;x+=34)o+='<path d="M'+x+' 0L'+(x+60)+' 240"/>';for(var y=10;y<240;y+=30)o+='<path d="M0 '+y+'L320 '+(y-26)+'"/>';
+    o+='<path class="a" d="M30 190C90 170 110 120 160 110S250 70 290 40"/><circle class="d" cx="290" cy="40" r="6"/><circle class="d" cx="30" cy="190" r="4"/>';
+    ph.innerHTML='<svg viewBox="0 0 320 240" preserveAspectRatio="xMidYMid slice">'+o+'</svg><small>เกมเดินเที่ยวสงขลา</small><b>Mr. City</b>';
+    var pz=f.querySelector('.pz-sold');if(pz)pz.remove();
+    f.classList.remove('nopic');f.insertBefore(ph,f.firstChild)}
+
+  /* ---------- 12. highlighter on the first heading of each page only ---------- */
+  function heads(){$$('[data-view]').forEach(function(v){
+    $$('.ft-hd h2,.mr-l h2,.mr-l h3,.oc-hd h2,.nw2-h,.ct-h h1',v).forEach(function(h,i){var off=i>0;if(h.classList.contains('rv-nohl')!==off)h.classList.toggle('rv-nohl',off)})})}
+
+  function all(){line();covers();about();heads()}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',all);else all();
+  addEventListener('load',function(){all();setTimeout(all,800)});
+  addEventListener('hashchange',function(){setTimeout(all,300);setTimeout(all,1200)});
+  /* rails and search results are built by script: watch only their lists */
+  ['#zqC','#zqN','#zqRes'].forEach(function(s){var el=$(s);if(!el)return;var p=0;new MutationObserver(function(){if(p)return;p=raf(function(){p=0;line();covers()})}).observe(el,{childList:true,subtree:true})});
+  $$('[data-view="courses"] .mr-r,[data-view="courses"] .ctg').forEach(function(el){var p=0;new MutationObserver(function(){if(p)return;p=raf(function(){p=0;covers()})}).observe(el,{childList:true})});
+})();
+</script>
