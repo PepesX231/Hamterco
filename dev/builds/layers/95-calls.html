@@ -225,7 +225,7 @@ html body [data-view="activity"] .avc:not(:has(a)){cursor:default}
     var parts=$$('.mc-u button',mc).filter(function(b){return b.dataset.u}).map(function(b){var n=txt($('b',b)),u=txt(b).replace(n,'').trim();return u+' '+n+' คน'});
     var h2=$('h2',mc),tot=h2?txt($('span',h2)):'';
     if(parts.length){var p=document.createElement('p');p.className='cl2-uni';
-      p.textContent=(tot?'รุ่นพี่ '+tot+' ติด ':'รุ่นพี่ติด ')+(parts.length>1?parts.slice(0,-1).join(' ')+' และ'+parts[parts.length-1]:parts[0]);
+      p.textContent='ติด '+(parts.length>1?parts.slice(0,-1).join(' ')+' และ'+parts[parts.length-1]:parts[0]);
       var u=$('.mc-u',mc);u.parentNode.insertBefore(p,u)}
     var w=document.createElement('div');w.className='cl2-sen';
     w.innerHTML='<div class="cl2-sr" aria-label="รุ่นพี่ที่ลงโปสเตอร์แล้ว"></div><div class="cl2-ctl"><button type="button" class="cl2-arw" data-d="-1" aria-label="เลื่อนไปทางซ้าย">'+ARW.l+'</button><button type="button" class="cl2-arw" data-d="1" aria-label="เลื่อนไปทางขวา">'+ARW.r+'</button></div>';
