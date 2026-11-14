@@ -9,7 +9,9 @@
 /* screen texture shared by every part: fine scanlines, grain and a dark rim */
 .tv-fx{position:absolute;inset:0;pointer-events:none;z-index:3}
 .tv-fx::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0 2px,rgba(0,0,0,.18) 2px 3px)}
-.tv-fx::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 160px 40px rgba(0,0,0,.75)}
+/* no dark rim: the stage must meet the sections above and below in the same colour, with no seam */
+.tv-fx::after{content:none}
+.tv-fx::before{-webkit-mask:linear-gradient(transparent,#000 18%,#000 82%,transparent);mask:linear-gradient(transparent,#000 18%,#000 82%,transparent)}
 .tv-grain{display:none!important;position:absolute;inset:0;pointer-events:none;z-index:4;opacity:.07;background-size:220px 220px;animation:tvGr .6s steps(5) infinite}
 @keyframes tvGr{20%{background-position:-60px 40px}40%{background-position:90px -70px}60%{background-position:-30px -110px}80%{background-position:120px 60px}}
 .tv-m{font:400 .74rem/1.5 var(--mono);letter-spacing:.04em;color:rgba(255,246,232,.62)}
@@ -224,8 +226,8 @@
   ' float gy=(h(vec2(floor(fc.y/5.),floor(T*24.)))-.5)*G*.08;d.x+=gy;',
   ' vec2 q=vec2(0.,D),dq=d.yz;float a=dot(dq,dq),b=2.*dot(q,dq),c=dot(q,q)-Rd*Rd,dis=b*b-4.*a*c;',
   ' vec3 col=vec3(.07,.055,.045);',
-  ' if(dis>0.){float t=(-b-sqrt(dis))/(2.*a);vec3 hp=d*t;float th=atan(hp.y,hp.z+D);float S=mix(.86,.46,mob),H=mix(.7,.34,mob);float an=th+P*S;',
-  '  float k=floor(an/S+.5);float v=(an-k*S)/H+.5;float Wd=mix(2.3,1.1,mob);float u=hp.x/Wd+.5;float sa=Wd/(Rd*H);',
+  ' if(dis>0.){float t=(-b-sqrt(dis))/(2.*a);vec3 hp=d*t;float th=-atan(hp.y,hp.z+D);float S=mix(.86,.46,mob),H=mix(.7,.34,mob);float an=th+P*S;',
+  '  float k=floor(an/S+.5);float v=.5-(an-k*S)/H;float Wd=mix(2.3,1.1,mob);float u=hp.x/Wd+.5;float sa=Wd/(Rd*H);',
   '  float lit=.35+.65*cos(th*1.6);',
   '  if(k>=0.&&k<N){vec2 sp=vec2(u-.5,v-.5)*vec2(sa,1.);float bd=box(sp,vec2(sa*.5,.5),.06);',
   '   if(bd<0.){float ca=.003+.004*length(sp)+G*.01;vec3 s;vec2 tu=vec2(u,1.-v);',
@@ -233,7 +235,7 @@
   '    float vg=smoothstep(-.0,-.12,bd);s*=mix(.55,1.,vg);s*=.88+.12*sin(fc.y*2.1);',
   '    s+=vec3(1.,.7,.4)*.05*(1.-vg);col=s*lit;}',
   '   else if(bd<.035){col=mix(vec3(.16,.12,.09),vec3(.07,.055,.045),bd/.035)*lit;}}}',
-  ' col+=(h(fc)-.5)*.05;float vgn=1.-.55*dot(uv*.7,uv*.7);col*=vgn;gl_FragColor=vec4(col,1.);}'].join('\n');
+  ' vec3 bg=vec3(.0706,.0549,.0431);float sc=step(.0001,distance(col,vec3(.07,.055,.045)));float vgn=1.-.55*dot(uv*.7,uv*.7);col=mix(bg,(col+(h(fc)-.5)*.05)*vgn,sc);float ef=smoothstep(0.,.14*R.y,fc.y)*smoothstep(0.,.14*R.y,R.y-fc.y);col=mix(bg,col,ef);gl_FragColor=vec4(col,1.);}'].join('\n');
   /* Mr. City has no screenshot: draw its map card (same look the old page used) */
   function city(){var c=document.createElement('canvas');c.width=1280;c.height=760;var x=c.getContext('2d');
     x.fillStyle='#1F6249';x.fillRect(0,0,1280,760);x.strokeStyle='rgba(255,255,255,.09)';x.lineWidth=2;
