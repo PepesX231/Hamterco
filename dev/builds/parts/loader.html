@@ -5,10 +5,10 @@ html.hl-on{overflow:hidden}
 #hhL .hl-stage{position:relative;height:clamp(210px,28vw,260px)}
 #hhL canvas{position:absolute;left:0;top:0;width:100%;height:100%}
 #hhL .hl-t{margin:6px 0 0;font:600 clamp(1rem,1.6vw,1.15rem)/1.2 Mali,'Anuphan',system-ui,sans-serif;color:rgb(88,80,76);letter-spacing:.02em}
-#hhL .hl-t i{display:inline-block;width:1.2em;text-align:left;font-style:normal}
+#hhL .hl-t{position:relative}#hhL .hl-t span{position:relative}#hhL .hl-t i{position:absolute;left:100%;top:0;width:1.2em;text-align:left;font-style:normal}
 #hhL .hl-p{margin:8px auto 0;width:120px;height:4px;border-radius:4px;background:rgb(232,224,216);overflow:hidden}
 #hhL .hl-p b{display:block;height:100%;width:0;border-radius:4px;background:rgb(242,166,94)}
-</style><div class="hl-in"><div class="hl-stage"><canvas></canvas></div><p class="hl-t">กำลังโหลด<i></i></p><div class="hl-p"><b></b></div></div><script>
+</style><div class="hl-in"><div class="hl-stage"><canvas></canvas></div><p class="hl-t"><span>กำลังโหลด<i></i></span></p><div class="hl-p"><b></b></div></div><script>
 (function(){var L=document.getElementById('hhL');if(!L)return;var H=document.documentElement;H.classList.add('hl-on');
 var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,t0=performance.now(),fast=false;try{fast=sessionStorage.getItem('hhl')==='1';sessionStorage.setItem('hhl','1')}catch(e){}
 var cv=L.querySelector('canvas'),cx=cv.getContext('2d'),dots=L.querySelector('.hl-t i'),bar=L.querySelector('.hl-p b');
@@ -36,7 +36,7 @@ function frame(t){var dt=Math.min(50,t-last);last=t;
     /* soft shadow follows the bob */
     cx.fillStyle='rgba(88,80,76,.12)';cx.beginPath();cx.ellipse(mid,gy-1,FW*s*.34*(1-bob*.02),5,0,0,7);cx.fill();
     cx.drawImage(WK,(rm?0:f)*FW,0,FW,WH,mid-FW*s/2,gy-WH*s-bob+ (WH-262)*s,FW*s,WH*s);
-    if(cur>=.999&&loaded&&el>=MIN){phase='yay';yayT=t;dots.textContent='';L.querySelector('.hl-t').firstChild.textContent='มาถึงแล้ว!'}}
+    if(cur>=.999&&loaded&&el>=MIN){phase='yay';yayT=t;dots.textContent='';L.querySelector('.hl-t span').firstChild.textContent='โหลดเสร็จแล้ว!'}}
   else{var q=(t-yayT)/1000*FPS,f2=Math.min(7,Math.floor(q)),lift=0;
     /* the jump is a smooth 60fps arc over frames 3 to 6 */
     var jt=(q-3)/3.2;if(jt>0&&jt<1)lift=Math.sin(jt*Math.PI)*Hc*.2;
