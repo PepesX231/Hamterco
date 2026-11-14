@@ -49,7 +49,7 @@
        so the line is drawn first and the hamster pops out afterwards holding the pencil that made it */
     function arrow(){if(!G||getComputedStyle(svg).display==='none')return;
       /* start exactly at the pencil tip: at rest while it is still hidden, then riding the hamster's real transform */
-      var lx=G.pw*.99,ly=G.ph*.57-G.ph*.75,X0=penOut?P.X:-P.tuck,Y0=penOut?P.Y:0,ra=(penOut?P.r:0)*Math.PI/180;
+      var lx=G.pw*.99,ly=G.ph*.61-G.ph*.75,X0=penOut?P.X:-P.tuck,Y0=penOut?P.Y:0,ra=(penOut?P.r:0)*Math.PI/180;
       var sx=G.pl+X0+lx*Math.cos(ra)-ly*Math.sin(ra),sy=G.pt+G.ph*.75+Y0+lx*Math.sin(ra)+ly*Math.cos(ra),ex=G.fx-14+nudge,ey=G.fy,L=Math.hypot(ex-sx,ey-sy);
       var c1x=sx+L*.38,c1y=sy+L*.42,c2x=ex-L*.42,c2y=ey+L*.06,N=70,pts=[],sk=[];
       for(var i=0;i<=N;i++){var u=i/N,w=1-u,x=w*w*w*sx+3*w*w*u*c1x+3*w*u*u*c2x+u*u*u*ex,y=w*w*w*sy+3*w*w*u*c1y+3*w*u*u*c2y+u*u*u*ey;
