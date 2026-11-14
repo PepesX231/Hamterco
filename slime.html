@@ -10457,15 +10457,15 @@ html body [data-view="home"] .zq{margin-top:-6px!important}
 <style id="ly-chibi">
 /* the search hamster: only its ears show over the bar; it pops up when the visitor taps the bar */
 #zqHam{visibility:hidden!important}
-.zq-ch{position:absolute;z-index:6;width:120px;height:85px;cursor:pointer;-webkit-tap-highlight-color:transparent;will-change:transform,clip-path}
+.zq-ch{position:absolute;z-index:6;width:130px;height:80px;cursor:pointer;-webkit-tap-highlight-color:transparent;will-change:transform,clip-path}
 .zq-ch .hd{position:absolute;inset:0;transform-origin:50% 100%;will-change:transform}
 .zq-ch .hd>img{position:absolute;inset:0;width:100%;height:100%;display:block;-webkit-user-drag:none;pointer-events:none}
-.zq-ch .ey{position:absolute;top:67.5%;width:13%;height:20%;margin:-10% 0 0 -6.5%;transform-origin:50% 50%}
-.zq-ch .ey.l{left:32%}.zq-ch .ey.r{left:67%}
+.zq-ch .ey{position:absolute;top:65.5%;width:12.5%;height:20.5%;margin:-10.25% 0 0 -6.25%;transform-origin:50% 50%}
+.zq-ch .ey.l{left:29.7%}.zq-ch .ey.r{left:70.8%}
 .zq-ch .ey svg{width:100%;height:100%;overflow:visible;display:block}
 .zq-ch .ey .op{transition:opacity .08s}.zq-ch .ey .hp{opacity:0;transition:opacity .08s}
 .zq-ch.happy .ey .op{opacity:0}.zq-ch.happy .ey .hp{opacity:1}
-@media (max-width:640px){.zq-ch{width:88px;height:62px}}
+@media (max-width:640px){.zq-ch{width:96px;height:59px}}
 html body [data-view="home"] .zq .zq-sw{margin-top:46px!important}
 @media (max-width:640px){html body [data-view="home"] .zq .zq-sw{margin-top:44px!important}}
 /* the invitation lives on the bar itself: a warm light sweeps across it and the button nudges */
@@ -10484,8 +10484,8 @@ html body [data-view="home"] .zq .zq-sw{margin-top:46px!important}
   function go(){var ham=document.getElementById('zqHam'),sw=ham&&ham.closest('.zq-sw'),inp=document.getElementById('zqIn'),form=document.getElementById('zqForm');if(!sw||sw.querySelector('.zq-ch'))return;
     if(getComputedStyle(sw).position==='static')sw.style.position='relative';
     var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,ch=document.createElement('div');ch.className='zq-ch';ch.setAttribute('aria-hidden','true');
-    var EYE='<svg viewBox="-10 -12 20 24"><g class="op"><ellipse rx="7.2" ry="9" fill="#3B2416"/><g class="pu"><circle cx="2.4" cy="-3.6" r="2.6" fill="#fff"/><circle cx="-2.6" cy="3.4" r="1.2" fill="#fff" opacity=".85"/></g></g><path class="hp" d="M-7 2.5Q0 -6 7 2.5" fill="none" stroke="#3B2416" stroke-width="2.6" stroke-linecap="round"/></svg>';
-    ch.innerHTML='<div class="hd"><img src="img/ham-face.webp" alt=""><span class="ey l">'+EYE+'</span><span class="ey r">'+EYE+'</span></div>';sw.insertBefore(ch,sw.firstChild);
+    var EYE='<svg viewBox="-10 -12 20 24"><g class="op"><ellipse rx="8.6" ry="9.2" fill="#3B2416"/><g class="pu"><circle cx="2.4" cy="-3.6" r="2.6" fill="#fff"/><circle cx="-2.6" cy="3.4" r="1.2" fill="#fff" opacity=".85"/></g></g><path class="hp" d="M-7 2.5Q0 -6 7 2.5" fill="none" stroke="#3B2416" stroke-width="2.6" stroke-linecap="round"/></svg>';
+    ch.innerHTML='<div class="hd"><img src="img/ham-face2.webp" alt=""><span class="ey l">'+EYE+'</span><span class="ey r">'+EYE+'</span></div>';sw.insertBefore(ch,sw.firstChild);
     var hd=ch.querySelector('.hd'),eyes=[].slice.call(ch.querySelectorAll('.ey')),pus=[].slice.call(ch.querySelectorAll('.pu'));
     var sh=document.createElement('span');sh.className='zq-sh';sh.setAttribute('aria-hidden','true');form.insertBefore(sh,form.firstChild);
     function place(){var a=ham.getBoundingClientRect(),f=form.getBoundingClientRect(),r=sw.getBoundingClientRect(),w=ch.offsetWidth;
@@ -10494,7 +10494,7 @@ html body [data-view="home"] .zq .zq-sw{margin-top:46px!important}
     /* springs, drawn every frame (60fps) */
     function spr(x,k,c){return {x:x,v:0,t:x,k:k,c:c}}
     function step(s,dt){var a=-s.k*(s.x-s.t)-s.c*s.v;s.v+=a*dt;s.x+=s.v*dt}
-    var H=function(){return ch.offsetHeight},HIDE=function(){return H()*.21},
+    var H=function(){return ch.offsetHeight},HIDE=function(){return H()*.2},
         Y=spr(0,170,13),SX=spr(1,320,14),ROT=spr(0,120,12),LX=spr(0,140,16),LY=spr(0,140,16),BL=spr(1,900,40);
     Y.x=Y.t=HIDE();
     var up=false,mx=null,my=null,tLast=performance.now(),nextBlink=tLast+1800,nextLook=tLast+2500,nextPeek=tLast+5000,happyT=0,vis=true,raf=0;
@@ -10508,8 +10508,8 @@ html body [data-view="home"] .zq .zq-sw{margin-top:46px!important}
       if(tx!==null){var dx=tx-cx,dy=ty-cy,dd=Math.hypot(dx,dy)||1,m=Math.min(1,dd/260);LX.t=dx/dd*m;LY.t=dy/dd*m;ROT.t=Math.max(-1,Math.min(1,dx/600))*4}
       else if(now>nextLook){nextLook=now+1600+Math.random()*2600;LX.t=Math.random()<.5?(Math.random()*2-1):0;LY.t=Math.random()*.4-.2;ROT.t=LX.t*3}
       if(now>nextBlink){nextBlink=now+(Math.random()<.2?220:2200+Math.random()*3200);BL.x=.08;BL.v=0}
-      if(!up&&now>nextPeek&&!rm){nextPeek=now+5000+Math.random()*4000;Y.v-=180}
-      Y.t=up?0:HIDE();[Y,SX,ROT,LX,LY,BL].forEach(function(s){step(s,dt)});if(BL.x>1)BL.x=1;
+      if(now>nextPeek&&!rm){nextPeek=now+6000+Math.random()*5000;Y.v-=90}
+      Y.t=HIDE();[Y,SX,ROT,LX,LY,BL].forEach(function(s){step(s,dt)});if(BL.x>1)BL.x=1;
       var y=Math.max(0,Y.x),clip=Math.max(0,y-1);
       ch.style.transform='translateY('+y.toFixed(2)+'px)';ch.style.clipPath='inset(0 0 '+clip.toFixed(2)+'px 0)';
       hd.style.transform='rotate('+ROT.x.toFixed(2)+'deg) scale('+(2-SX.x).toFixed(4)+','+SX.x.toFixed(4)+')';
@@ -10520,12 +10520,12 @@ html body [data-view="home"] .zq .zq-sw{margin-top:46px!important}
     function wake(){if(!raf&&vis){tLast=performance.now();raf=requestAnimationFrame(frame)}}
     if('IntersectionObserver' in window)new IntersectionObserver(function(es){vis=es[0].isIntersecting;wake()}).observe(ch);
     document.addEventListener('visibilitychange',wake);wake();
-    function pop(){if(up)return;up=true;Y.v-=140;SX.x=.82;SX.v=0;ch.classList.add('happy');happyT=performance.now()+700;wake()}
-    function down(){if(!up||inp.value||document.activeElement===inp)return;up=false;SX.x=1.12;wake()}
+    function pop(){if(up)return;up=true;SX.x=.9;SX.v=0;ROT.v+=60;ch.classList.add('happy');happyT=performance.now()+800;wake()}
+    function down(){if(!up||inp.value||document.activeElement===inp)return;up=false;wake()}
     inp.addEventListener('focus',pop);inp.addEventListener('input',function(){if(!up)pop();wake()});inp.addEventListener('blur',function(){setTimeout(down,250)});
     inp.addEventListener('keyup',wake);inp.addEventListener('click',wake);
     ch.addEventListener('click',function(){inp.focus()});
-    ch.addEventListener('pointerenter',function(){if(!up){Y.v-=120;wake()}});
+    ch.addEventListener('pointerenter',function(){SX.x=.94;wake()});
     /* typewriter placeholder */
     var tt=0;window.__zqType=function(t){clearTimeout(tt);if(rm||inp.value){inp.setAttribute('placeholder',t);return}var i=0;
       (function step(){i++;inp.setAttribute('placeholder',t.slice(0,i)+(i<t.length?'|':''));if(i<t.length)tt=setTimeout(step,45)})()};
