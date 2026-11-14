@@ -19,7 +19,7 @@ html body section[aria-labelledby="ocH"] .oc-in>.oc-r:first-of-type{margin-top:c
       if(cd){cd.hidden=true;if(!document.querySelector('.avn-now')){var p=document.createElement('p');p.className='avn-now';p.textContent='งานจัดวันนี้';cd.parentNode.insertBefore(p,cd)}}
       if(nx&&nx.textContent!=='วันนี้ '+m[1]+' '+m[2])nx.textContent='วันนี้ '+m[1]+' '+m[2];
       hd.forEach(function(h){h.textContent='กิจกรรมวันนี้'})}
-    else{if(cd)cd.hidden=true;if(nx&&nx.textContent.indexOf('ถัดไป')===0)nx.textContent='ล่าสุด '+m[1]+' '+m[2];hd.forEach(function(h){h.textContent='กิจกรรมล่าสุด'})}}
+    else{if(cd)cd.hidden=true;/* the nav hint says what actually happened, not a vague "see all" */if(nx&&nx.textContent!=='เพิ่งจบ '+m[1]+' '+m[2])nx.textContent='เพิ่งจบ '+m[1]+' '+m[2];hd.forEach(function(h){h.textContent='กิจกรรมล่าสุด'})}}
   function go(){status();setInterval(status,5000)}
   if(document.readyState==='complete')go();else addEventListener('load',go);
 })();
