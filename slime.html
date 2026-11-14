@@ -10565,15 +10565,14 @@ html body [data-view="home"] .zq .zq-h{cursor:default!important}
 .zq-crew{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;border-radius:inherit}
 .zq-crew .cr{position:absolute;pointer-events:auto;cursor:pointer;will-change:transform}
 .zq-crew .cr img{display:block;width:100%;height:auto;-webkit-user-drag:none;filter:drop-shadow(0 14px 18px rgba(120,60,10,.22))}
-.zq-crew .c1{left:-20px;bottom:-90px;width:clamp(170px,18vw,270px)}
-.zq-crew .c2{right:-24px;bottom:-110px;width:clamp(170px,18vw,270px)}
-.zq-crew .c3{right:-60px;top:22%;width:clamp(150px,15vw,230px)}
-.zq-note{position:absolute;right:clamp(110px,11vw,190px);top:41%;pointer-events:none;color:#1D1712;font:700 clamp(1rem,1.5vw,1.3rem)/1.1 'Mali',var(--display);transform:rotate(-6deg);opacity:0;transition:opacity .4s}
-.zq-note svg{display:block;width:clamp(70px,8vw,120px);height:auto;margin:4px 0 0 -10px;overflow:visible}
+.zq-crew .c1{left:21%;top:-120px;width:clamp(120px,11vw,175px)}
+.zq-crew .c2{right:-70px;top:34%;width:clamp(260px,25vw,380px)}
+.zq-crew .c3{left:62%;bottom:-110px;width:clamp(190px,16vw,250px)}
+.zq-note{position:absolute;right:clamp(250px,22vw,330px);top:23%;pointer-events:none;color:#1D1712;font:700 clamp(1rem,1.5vw,1.3rem)/1.1 'Mali',var(--display);transform:rotate(-4deg);opacity:0;transition:opacity .4s;text-align:center}
+.zq-note svg{display:block;width:clamp(56px,5.5vw,80px);height:auto;margin:4px 0 0 30%;overflow:visible}
 .zq-note path{fill:none;stroke:#1D1712;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
 .zq-note.on{opacity:1}.zq-note.on path{transition:stroke-dashoffset .8s cubic-bezier(.6,0,.3,1) .2s;stroke-dashoffset:0}
-#zqForm:focus-within~* .zq-note,.zq.typing .zq-note{opacity:0}
-@media (max-width:900px){.zq-crew .c3,.zq-note{display:none}.zq-crew .c1{width:120px;left:-26px;bottom:-70px}.zq-crew .c2{width:120px;right:-22px;bottom:-78px}}
+@media (max-width:900px){.zq-crew .c1,.zq-note{display:none}.zq-crew .c2{width:170px;right:-46px;top:auto;bottom:118px}.zq-crew .c3{width:130px;left:4%;bottom:-80px}}
 @media (prefers-reduced-motion:reduce){.zq-note path{stroke-dashoffset:0}}
 </style>
 <script>
@@ -10582,11 +10581,11 @@ html body [data-view="home"] .zq .zq-h{cursor:default!important}
     var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,inp=document.getElementById('zqIn');
     var box=document.createElement('div');box.className='zq-crew';box.setAttribute('aria-hidden','true');
     /* [image, class, base rotation, where it comes in from (x,y), parallax depth] */
-    var D=[['crew-jump','c1',10,[-1,1],18],['crew-wow','c2',-10,[1,1],22],['crew-point','c3',-6,[1,0],12]];
+    var D=[['crew-hang','c1',4,[0,-1],10],['crew-lie','c2',-4,[1,0],16],['crew-wow','c3',-6,[0,1],8]];
     var C=D.map(function(d,i){var e=document.createElement('div');e.className='cr '+d[1];e.innerHTML='<img src="img/'+d[0]+'.webp" alt="">';box.appendChild(e);
       return {e:e,rot:d[2],from:d[3],dep:d[4],x:d[3][0]*260,y:d[3][1]*260,vx:0,vy:0,tx:0,ty:0,r:0,vr:0,tr:0,sq:1,vs:0,ph:i*1.7}});
     var note=document.createElement('div');note.className='zq-note';
-    note.innerHTML='ลองถามตรงนี้!<svg viewBox="0 0 120 60"><path pathLength="1" d="M108 6C80 4 50 14 34 34C26 44 20 50 12 54M12 54L28 52M12 54L16 38"/></svg>';
+    note.innerHTML='ค้นหาตรงนี้เลย!<svg viewBox="0 0 80 50"><path pathLength="1" d="M10 6C24 26 44 38 72 42M72 42L58 32M72 42L58 48"/></svg>';
     box.appendChild(note);zq.insertBefore(box,zq.querySelector('.zq-top'));
     C.forEach(function(c){c.e.style.transform='translate('+c.x+'px,'+c.y+'px) rotate('+c.rot+'deg)'});
     var mx=0,my=0,on=false,vis=true,raf=0,last=0,t0=0,focus=false;
@@ -10594,7 +10593,7 @@ html body [data-view="home"] .zq .zq-h{cursor:default!important}
     function S(p,v,t,k,c,dt){return v+(-k*(p-t)-c*v)*dt}
     function frame(now){raf=0;var dt=Math.min(.033,(now-last)/1000);last=now;var t=(now-t0)/1000,moving=false;
       C.forEach(function(c,i){var inT=t>.35+i*.22;
-        c.tx=inT?(-mx*c.dep):c.from[0]*260;c.ty=inT?(-my*c.dep+(rm?0:Math.sin(t*1.6+c.ph)*5)+(focus?-14:0)):c.from[1]*260;
+        c.tx=inT?(-mx*c.dep):c.from[0]*300;c.ty=inT?(-my*c.dep*(c.from[1]>0?0:1)+(rm?0:Math.sin(t*1.6+c.ph)*5)*(c.from[1]>0?.5:1)+(focus?(c.from[1]>0?-10:c.from[1]<0?16:-14):0)):c.from[1]*300;
         c.tr=inT?(rm?0:Math.sin(t*1.1+c.ph)*2.5)+(focus?(c.from[0]<0?6:-6):0):0;
         c.vx=S(c.x,c.vx,c.tx,90,11,dt);c.vy=S(c.y,c.vy,c.ty,90,11,dt);c.vr=S(c.r,c.vr,c.tr,80,10,dt);c.vs=S(c.sq,c.vs,1,260,12,dt);
         c.x+=c.vx*dt;c.y+=c.vy*dt;c.r+=c.vr*dt;c.sq+=c.vs*dt;
