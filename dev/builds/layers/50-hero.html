@@ -105,7 +105,7 @@
         if(sp>.02){lastA=-1;cx.globalAlpha=al*sp*.9;cx.drawImage(atlasW,g*cw*dpr,0,cw*dpr,ch*dpr,i*cw*dpr,j*ch*dpr,cw*dpr,ch*dpr)}}}
     cx.globalAlpha=1}
   var run=false,last=0;
-  function loop(t){if(!run)return;requestAnimationFrame(loop);if(t-last<33)return;last=t;frame(t)}
+  function loop(t){if(!run)return;requestAnimationFrame(loop);if(t-last<40||(window.__scr&&t-window.__scr<160))return;last=t;frame(t)}
   function start(){size();cv.classList.add('on');if(rm){frame(0);return}
     new IntersectionObserver(function(es){var v=es[0].isIntersecting;if(v&&!run){run=true;requestAnimationFrame(loop)}else if(!v)run=false}).observe(zq)}
   addEventListener('resize',function(){size();if(rm)frame(0)});

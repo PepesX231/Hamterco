@@ -55,7 +55,7 @@ body .end-in .e1{background:var(--or)!important;color:#1D1712!important}
           if(d<.2)continue;cx.globalAlpha=Math.min(.7,.1+d*.42);
           cx.drawImage(at,(c-33)*cw*dpr,0,cw*dpr,ch*dpr,i*cw*dpr,j*ch*dpr,cw*dpr,ch*dpr)}}
       cx.globalAlpha=1}
-    function loop(t){if(!run)return;requestAnimationFrame(loop);if(t-last<33)return;last=t;frame(t)}
+    function loop(t){if(!run)return;requestAnimationFrame(loop);if(t-last<33||(window.__scr&&t-window.__scr<160))return;last=t;frame(t)}
     size();cv.classList.add('on');
     if(rm){frame(0);addEventListener('resize',function(){frame(0)});return}
     new IntersectionObserver(function(es){var vis=es[0].isIntersecting;if(vis&&!run){run=true;requestAnimationFrame(loop)}else if(!vis)run=false}).observe(host);

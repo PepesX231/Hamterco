@@ -1,0 +1,60 @@
+<style id="ly-search-pull">
+/* hero sits right under the bar */
+html body [data-view="home"] .zq{margin-top:-6px!important}
+/* the search bar is the thing to touch: bigger, a slow breathing halo, and a ready-made question inside it */
+@media (min-width:700px){
+  html body [data-view="home"] .zq #zqForm{width:min(760px,86vw)!important;max-width:none!important;min-height:72px;font-size:1.1rem}
+  html body [data-view="home"] .zq #zqIn{font-size:1.12rem!important}
+  html body [data-view="home"] .zq .zq-go{padding:14px 26px!important;font-size:1.05rem!important}
+}
+#zqForm{position:relative}
+.zq-halo{position:absolute;inset:-3px;border-radius:999px;pointer-events:none;z-index:-1;border:2px solid rgba(255,255,255,.95);opacity:0;will-change:transform,opacity;animation:zqHalo 2.8s cubic-bezier(.2,.7,.3,1) infinite}
+.zq-halo.b{animation-delay:1.4s}
+@keyframes zqHalo{0%{transform:scale(1,1);opacity:.85}100%{transform:scale(1.07,1.45);opacity:0}}
+#zqForm:focus-within .zq-halo,#zqForm.used .zq-halo{animation:none;opacity:0}
+.zq-try{all:unset;cursor:pointer;flex:none;margin-right:8px;padding:9px 14px;border-radius:999px;background:#FFF1DF;color:#B85F14;font-weight:700;font-size:.95rem;white-space:nowrap;
+  max-width:280px;overflow:hidden;text-overflow:ellipsis;transition:background .2s,transform .15s,opacity .3s}
+.zq-try:hover{background:#FFE2BF}.zq-try:active{transform:scale(.96)}
+.zq-try:focus-visible{outline:2px solid #B85F14;outline-offset:2px}
+.zq-try.sw{animation:zqTry .4s cubic-bezier(.3,1.5,.5,1)}
+@keyframes zqTry{from{opacity:0;transform:translateY(6px) scale(.94)}to{opacity:1;transform:none}}
+#zqForm.typed .zq-try{display:none}
+@media (max-width:699px){.zq-try{display:none}}
+/* once the hero is gone, a small search pill waits at the bottom */
+.zq-fab{all:unset;position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:900;display:flex;align-items:center;gap:10px;cursor:pointer;
+  padding:12px 20px 12px 16px;border-radius:999px;background:#1D1712;color:#FFF6E8;font-weight:700;font-size:.98rem;box-shadow:0 16px 34px -14px rgba(29,23,18,.7);
+  transform:translate(-50%,140%);opacity:0;transition:transform .45s cubic-bezier(.3,1.4,.5,1),opacity .25s;white-space:nowrap}
+.zq-fab svg{width:18px;height:18px;flex:none}
+.zq-fab small{font-weight:500;color:rgba(255,246,232,.6);font-size:.88rem}
+.zq-fab.on{transform:translate(-50%,0);opacity:1}
+.zq-fab:hover{background:#B85F14}
+.zq-fab:focus-visible{outline:2px solid #F2A65E;outline-offset:3px}
+@media (max-width:480px){.zq-fab small{display:none}}
+@media (prefers-reduced-motion:reduce){.zq-halo{animation:none}.zq-fab{transition:opacity .2s}}
+</style>
+<script>
+(function(){
+  addEventListener('scroll',function(){window.__scr=performance.now()},{passive:true});
+  function go(){var form=document.getElementById('zqForm'),inp=document.getElementById('zqIn'),go=form&&form.querySelector('.zq-go'),typ=document.getElementById('zqType');if(!form||form.dataset.pull)return;form.dataset.pull=1;
+    ['a','b'].forEach(function(c){var h=document.createElement('i');h.className='zq-halo '+c;h.setAttribute('aria-hidden','true');form.insertBefore(h,form.firstChild)});
+    /* a one-tap question that follows the headline word */
+    var tr=document.createElement('button');tr.type='button';tr.className='zq-try';form.insertBefore(tr,go);var cur='',tm=0;
+    function setTry(){var w=(typ&&typ.textContent||'').trim();if(!w||w===cur)return;cur=w;tr.textContent='ลองถาม “อยาก'+w+'”';tr.setAttribute('aria-label','ค้นหา อยาก'+w);tr.classList.remove('sw');void tr.offsetWidth;tr.classList.add('sw')}
+    if(typ){new MutationObserver(function(){clearTimeout(tm);tm=setTimeout(setTry,700)}).observe(typ,{childList:true,characterData:true,subtree:true});setTry()}
+    tr.addEventListener('click',function(){inp.value='อยาก'+cur;inp.dispatchEvent(new Event('input',{bubbles:true}));if(form.requestSubmit)form.requestSubmit();else go.click()});
+    function st(){form.classList.toggle('typed',!!inp.value)}inp.addEventListener('input',st);st();
+    var used=function(){form.classList.add('used')};inp.addEventListener('focus',used);form.addEventListener('submit',used);
+    /* bottom pill */
+    var fab=document.createElement('button');fab.type='button';fab.className='zq-fab';
+    fab.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>ถามเราได้เลย<small>ช่วยหาคอร์สที่ใช่ให้น้อง</small>';
+    document.body.appendChild(fab);
+    var zq=document.querySelector('[data-view="home"] .zq'),past=false,near=false;
+    function upd(){var home=!location.hash||/^#(home)?$/.test(location.hash);fab.classList.toggle('on',home&&past&&!near&&!document.body.classList.contains('zq-open'))}
+    if(zq)new IntersectionObserver(function(es){past=!es[0].isIntersecting&&es[0].boundingClientRect.top<0;upd()}).observe(zq);
+    var foot=document.querySelector('footer');if(foot)new IntersectionObserver(function(es){near=es[0].isIntersecting;upd()}).observe(foot);
+    addEventListener('hashchange',upd);
+    fab.addEventListener('click',function(){var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;scrollTo({top:0,behavior:rm?'auto':'smooth'});
+      var t0=Date.now();(function w(){if(scrollY<10||Date.now()-t0>1200){inp.focus({preventScroll:true})}else requestAnimationFrame(w)})()})}
+  if(document.readyState==='complete')go();else addEventListener('load',go);
+})();
+</script>
