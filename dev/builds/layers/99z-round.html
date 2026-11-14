@@ -37,7 +37,7 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
 .nav-in>a.v:not([aria-current="page"])::after{opacity:0!important}
 .nav-in>a.v::before{display:none!important}
 .nav-in>a.nv-c:hover>span{animation:none!important}
-.nav-in>a.v .roll{display:inline-block;position:relative;height:1.5em;clip-path:inset(-3px -90px);vertical-align:top!important}
+.nav-in>a.v .roll{display:inline-block;position:relative;height:1.5em;clip-path:inset(-8px -90px 0);vertical-align:top!important}
 .nav-in>a.v .roll>span{display:block;transition:transform .45s cubic-bezier(.5,1.6,.4,1)}
 .nav-in>a.v .roll .nx{position:absolute;left:50%;top:0;transform:translate(-50%,110%);white-space:nowrap;font-weight:700!important;font-size:.92em;color:#B85F14!important}
 .nav-in>a.v:hover .roll>span:first-child,.nav-in>a.v:focus-visible .roll>span:first-child{transform:translateY(-110%)}
@@ -104,7 +104,7 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
   }
 
   /* ---- nav: every link rolls to a hint of its page ---- */
-  var HINT={'nv-c':'เปิดรับสมัคร','nv-w':'เกมของน้อง','nv-b':'รุ่นพี่ 48 คน'};
+  var HINT={};
   function nav(){var nx=document.getElementById('nvNext');if(nx&&nx.textContent.indexOf('ถัดไป')===0)nx.textContent=nx.textContent;
     Object.keys(HINT).forEach(function(k){var a=document.querySelector('.nav-in>a.'+k);if(!a||a.querySelector('.roll'))return;var sp=a.querySelector('span');if(!sp)return;
       var r=el('span','roll'),one=el('span',null,sp.textContent),two=el('span','nx',HINT[k]);two.setAttribute('aria-hidden','true');r.appendChild(one);r.appendChild(two);a.replaceChild(r,sp)})}

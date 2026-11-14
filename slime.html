@@ -9674,7 +9674,7 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
 .nav-in>a.v:not([aria-current="page"])::after{opacity:0!important}
 .nav-in>a.v::before{display:none!important}
 .nav-in>a.nv-c:hover>span{animation:none!important}
-.nav-in>a.v .roll{display:inline-block;position:relative;height:1.5em;clip-path:inset(-3px -90px);vertical-align:top!important}
+.nav-in>a.v .roll{display:inline-block;position:relative;height:1.5em;clip-path:inset(-8px -90px 0);vertical-align:top!important}
 .nav-in>a.v .roll>span{display:block;transition:transform .45s cubic-bezier(.5,1.6,.4,1)}
 .nav-in>a.v .roll .nx{position:absolute;left:50%;top:0;transform:translate(-50%,110%);white-space:nowrap;font-weight:700!important;font-size:.92em;color:#B85F14!important}
 .nav-in>a.v:hover .roll>span:first-child,.nav-in>a.v:focus-visible .roll>span:first-child{transform:translateY(-110%)}
@@ -9741,7 +9741,7 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
   }
 
   /* ---- nav: every link rolls to a hint of its page ---- */
-  var HINT={'nv-c':'เปิดรับสมัคร','nv-w':'เกมของน้อง','nv-b':'รุ่นพี่ 48 คน'};
+  var HINT={};
   function nav(){var nx=document.getElementById('nvNext');if(nx&&nx.textContent.indexOf('ถัดไป')===0)nx.textContent=nx.textContent;
     Object.keys(HINT).forEach(function(k){var a=document.querySelector('.nav-in>a.'+k);if(!a||a.querySelector('.roll'))return;var sp=a.querySelector('span');if(!sp)return;
       var r=el('span','roll'),one=el('span',null,sp.textContent),two=el('span','nx',HINT[k]);two.setAttribute('aria-hidden','true');r.appendChild(one);r.appendChild(two);a.replaceChild(r,sp)})}
@@ -10040,5 +10040,103 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
 
   function go(){var v=document.querySelector('[data-view="about"]');if(!v||v.querySelector('.tv'))return;run(build(v))}
   if(document.readyState==='complete')go();else addEventListener('load',go);
+})();
+</script>
+
+<!-- layer: 99zzz-nav.html -->
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen&family=IBM+Plex+Mono:wght@600&display=swap" rel="stylesheet">
+<style id="ly-navart">
+/* ===== nav: each link gets its own hover, drawn from what is behind it ===== */
+.nav-in>a.nv-c,.nav-in>a.nv-w,.nav-in>a.nv-b{position:relative}
+.nav-in>a.nv-c>span,.nav-in>a.nv-w>span,.nav-in>a.nv-b>span{position:relative;display:inline-block}
+.na-x{position:absolute;pointer-events:none;white-space:nowrap}
+
+/* คอร์ส = you learn to write code: the word gets wrapped in a tag, a caret blinks */
+.na-c{top:50%;font:600 .86em/1 'IBM Plex Mono',ui-monospace,monospace;color:#B85F14;opacity:0;transition:transform .35s cubic-bezier(.23,1,.32,1),opacity .2s}
+.na-c.l{right:100%;transform:translate(6px,-52%);margin-right:2px}
+.na-c.r{left:100%;transform:translate(-6px,-52%);margin-left:2px}
+.na-c.r i{display:inline-block;width:.5em;height:2px;background:currentColor;margin-left:2px;vertical-align:-1px;opacity:0}
+.nav-in>a.nv-c:hover .na-c,.nav-in>a.nv-c:focus-visible .na-c{opacity:1;transform:translate(0,-52%)}
+.nav-in>a.nv-c:hover .na-c.r i,.nav-in>a.nv-c:focus-visible .na-c.r i{animation:naBlink 1s steps(1) .3s infinite}
+.nav-in>a.nv-c:hover>span,.nav-in>a.nv-c:focus-visible>span{color:#1D1712;font-weight:600}
+@keyframes naBlink{0%{opacity:1}50%{opacity:0}}
+
+/* ผลงาน = games: the word is wiped away in 8-bit steps and a PLAY prompt pixels in */
+.nav-in>a.nv-w>span>.na-w0{display:inline-block;transition:clip-path .3s steps(5)}
+.na-w{left:50%;top:50%;transform:translate(-50%,-50%);font:400 .78rem/1 'Silkscreen',monospace;color:#B85F14;letter-spacing:.04em;clip-path:inset(0 100% 0 0);transition:clip-path .3s steps(5)}
+.na-w b{display:inline-block;font-weight:400;margin-right:5px}
+.nav-in>a.nv-w:hover>span>.na-w0,.nav-in>a.nv-w:focus-visible>span>.na-w0{clip-path:inset(0 0 0 100%)}
+.nav-in>a.nv-w:hover .na-w,.nav-in>a.nv-w:focus-visible .na-w{clip-path:inset(0 0 0 0);transition-delay:.12s}
+.nav-in>a.nv-w:hover .na-w b,.nav-in>a.nv-w:focus-visible .na-w b{animation:naBlink .8s steps(1) .5s infinite}
+
+/* เกี่ยวกับเรา = the about page is a broadcast: the word tunes in with a glitch and goes ON AIR */
+.na-b{right:calc(100% + 7px);top:50%;width:7px;height:7px;margin-top:-4px;border-radius:50%;background:#E5402F;opacity:0;transform:scale(.4);transition:opacity .2s,transform .3s cubic-bezier(.3,1.6,.5,1)}
+.nav-in>a.nv-b:hover .na-b,.nav-in>a.nv-b:focus-visible .na-b{opacity:1;transform:none;animation:naBlink 1.2s steps(1) .6s infinite}
+.nav-in>a.nv-b:hover>span,.nav-in>a.nv-b:focus-visible>span{color:#B85F14;animation:naTune .5s steps(1) both;text-shadow:0 0 10px rgba(242,166,94,.55)}
+@keyframes naTune{
+  0%{text-shadow:-3px 0 rgba(229,64,47,.8),3px 0 rgba(60,170,255,.7);transform:translateX(2px) skewX(-12deg);clip-path:inset(10% 0 45% 0)}
+  20%{text-shadow:2px 0 rgba(229,64,47,.8),-2px 0 rgba(60,170,255,.7);transform:translateX(-2px);clip-path:inset(50% 0 5% 0)}
+  40%{text-shadow:-1px 0 rgba(229,64,47,.7),1px 0 rgba(60,170,255,.6);transform:translateX(1px) skewX(6deg);clip-path:none}
+  60%{text-shadow:1px 0 rgba(229,64,47,.5),-1px 0 rgba(60,170,255,.4);transform:none}
+  100%{text-shadow:0 0 10px rgba(242,166,94,.55);transform:none;clip-path:none}}
+@media (prefers-reduced-motion:reduce){.na-x,.nav-in>a.nv-w>span>.na-w0{transition:none!important;animation:none!important}.nav-in>a.nv-b:hover>span{animation:none!important}}
+
+/* ===== seniors caption: a quiet plaque instead of a line of dots ===== */
+html body [data-view="home"] .mc .mc2-nav{display:grid!important;grid-template-columns:52px minmax(0,1fr) 52px;align-items:center;gap:clamp(14px,3vw,40px);max-width:760px;margin:6px auto 0!important}
+html body [data-view="home"] .mc .mc2-nav>button{all:unset;cursor:pointer;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:#1D1712;background:transparent!important;
+  box-shadow:inset 0 0 0 1px rgba(29,23,18,.22)!important;transition:background .25s,color .25s,box-shadow .25s,transform .15s}
+html body [data-view="home"] .mc .mc2-nav>button svg{width:18px;height:18px;stroke-width:1.6;transition:transform .3s cubic-bezier(.23,1,.32,1)}
+html body [data-view="home"] .mc .mc2-nav>button:hover{background:#1D1712!important;color:#FFF6E8;box-shadow:inset 0 0 0 1px #1D1712!important}
+html body [data-view="home"] .mc .mc2-nav>button:first-child:hover svg{transform:translateX(-2px)}
+html body [data-view="home"] .mc .mc2-nav>button:last-child:hover svg{transform:translateX(2px)}
+html body [data-view="home"] .mc .mc2-nav>button:active{transform:scale(.95)}
+html body [data-view="home"] .mc .mc2-nav>button:focus-visible{outline:2px solid #B85F14;outline-offset:3px}
+html body [data-view="home"] .mc .mc-cap #mcC{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+html body [data-view="home"] .mc .mc-cap{position:relative;text-align:center}
+.mc3{display:grid;justify-items:center;gap:6px;min-height:92px;align-content:center}
+.mc3>*{display:block;transition:opacity .45s,transform .55s cubic-bezier(.23,1,.32,1),filter .45s}
+.mc3.out>*{opacity:0;transform:translateY(8px);filter:blur(3px)}
+.mc3.out>*:nth-child(2){transition-delay:.04s}.mc3.out>*:nth-child(3){transition-delay:.08s}
+.mc3>:nth-child(2){transition-delay:.06s}.mc3>:nth-child(3){transition-delay:.12s}
+.mc3-n{font:800 clamp(1.7rem,2.6vw,2.2rem)/1.1 var(--display);color:#1D1712;letter-spacing:-.01em}
+.mc3-u{display:flex;align-items:center;gap:12px;font-size:.98rem;color:rgba(29,23,18,.6)}
+.mc3-u b{font-weight:700;color:#1D1712}
+.mc3-u i{width:1px;height:13px;background:rgba(29,23,18,.25)}
+.mc3-c{display:flex!important;align-items:center;gap:12px;font:700 .78rem/1 var(--display);letter-spacing:.06em;color:#B85F14;margin-top:4px}
+.mc3-c::before,.mc3-c::after{content:"";width:22px;height:1px;background:rgba(184,95,20,.45)}
+html body [data-view="home"] .mc .lk{display:inline-flex!important;align-items:center;gap:10px;margin-top:26px!important;padding:15px 30px!important;border-radius:999px!important;
+  background:linear-gradient(#B85F14,#B85F14) left/0% 100% no-repeat,#1D1712!important;color:#FFF6E8!important;box-shadow:0 14px 30px -18px rgba(29,23,18,.7)!important;
+  font-weight:700!important;letter-spacing:.01em;transition:background-size .45s cubic-bezier(.23,1,.32,1),transform .15s!important;text-decoration:none}
+html body [data-view="home"] .mc .lk:hover{background-size:100% 100%,auto!important}
+html body [data-view="home"] .mc .lk:active{transform:scale(.97)}
+@media (max-width:640px){html body [data-view="home"] .mc .mc2-nav{grid-template-columns:44px minmax(0,1fr) 44px;gap:10px}html body [data-view="home"] .mc .mc2-nav>button{width:44px;height:44px}.mc3-n{font-size:1.5rem}.mc3-u{font-size:.86rem;gap:8px;flex-wrap:wrap;justify-content:center}}
+@media (prefers-reduced-motion:reduce){.mc3>*{transition:none!important}}
+@media (hover:none){html body [data-view="home"] .mc .mc2-nav>button:hover{background:transparent!important;color:#1D1712;box-shadow:inset 0 0 0 1px rgba(29,23,18,.22)!important}html body [data-view="home"] .mc .lk:hover{background-size:0% 100%,auto!important}}
+</style>
+<script>
+(function(){
+  function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.textContent=h;return e}
+  function nav(){
+    var c=document.querySelector('.nav-in>a.nv-c>span');
+    if(c&&!c.querySelector('.na-x')){var l=el('span','na-x na-c l','<'),r=el('span','na-x na-c r','/>');r.appendChild(el('i'));[l,r].forEach(function(x){x.setAttribute('aria-hidden','true')});c.appendChild(l);c.appendChild(r)}
+    var w=document.querySelector('.nav-in>a.nv-w>span');
+    if(w&&!w.querySelector('.na-x')){var t=w.textContent;w.textContent='';w.appendChild(el('span','na-w0',t));var p=el('span','na-x na-w');p.setAttribute('aria-hidden','true');p.appendChild(el('b',null,'▶'));p.appendChild(document.createTextNode('PLAY'));w.appendChild(p)}
+    var b=document.querySelector('.nav-in>a.nv-b>span');
+    if(b&&!b.querySelector('.na-x')){var d=el('span','na-x na-b');d.setAttribute('aria-hidden','true');b.appendChild(d)}}
+  /* seniors caption */
+  var last='';
+  function cap(){var p=document.getElementById('mcC');if(!p)return;var box=p.parentNode,m=box.querySelector('.mc3');
+    if(!m){m=el('div','mc3');m.setAttribute('aria-hidden','true');box.appendChild(m)}
+    var b=p.querySelector('b'),s=p.querySelector('small');if(!b)return;
+    var rest='';[].forEach.call(p.childNodes,function(n){if(n.nodeType===3)rest+=n.textContent});
+    var parts=rest.split('·').map(function(x){return x.trim()}).filter(Boolean),key=p.textContent;if(key===last)return;last=key;
+    function fill(){m.innerHTML='';m.appendChild(el('span','mc3-n',b.textContent));var u=el('span','mc3-u');
+      if(parts[1]){u.appendChild(el('b',null,parts[1]));u.appendChild(el('i'))}if(parts[0])u.appendChild(el('span',null,parts[0]));m.appendChild(u);
+      if(s)m.appendChild(el('span','mc3-c',s.textContent));}
+    if(!m.firstChild||matchMedia('(prefers-reduced-motion: reduce)').matches){fill();return}
+    m.classList.add('out');setTimeout(function(){fill();void m.offsetWidth;m.classList.remove('out')},220)}
+  function go(){nav();cap();var p=document.getElementById('mcC');if(p&&!p.dataset.mc3){p.dataset.mc3=1;new MutationObserver(cap).observe(p,{childList:true,characterData:true,subtree:true})}}
+  if(document.readyState==='complete')go();else addEventListener('load',go);
+  addEventListener('hashchange',function(){setTimeout(go,150)});
 })();
 </script>
