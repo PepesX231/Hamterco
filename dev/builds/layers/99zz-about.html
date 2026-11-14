@@ -32,7 +32,7 @@
 .tv-w{position:relative}
 .tv-st{position:sticky;top:0;height:100svh;overflow:hidden}
 .tv-gl{position:absolute;inset:0;width:100%;height:100%;display:block}
-.tv-ls{position:absolute;left:clamp(18px,3vw,40px);top:50%;transform:translateY(-50%);z-index:5;width:min(260px,22vw)}
+.tv-ls{position:absolute;left:clamp(18px,3vw,40px);top:50%;transform:translateY(-50%);z-index:5;width:min(300px,24vw)}
 .tv-ls h2{margin:0 0 4px;font:800 1.5rem/1.2 var(--display);color:var(--cr)}
 .tv-ls>p{margin:0 0 18px}
 .tv-ls ol{list-style:none;margin:0;padding:0}
@@ -40,9 +40,12 @@
 .tv-ls li button::before{content:"";position:absolute;left:0;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:var(--amb);transform:scale(0);transition:transform .25s}
 .tv-ls li button:hover{color:var(--cr)}
 .tv-ls li.on button{color:var(--amb)}
+.tv-ls li .ds{display:block;max-height:0;overflow:hidden;padding-left:16px;font-size:.84rem;line-height:1.5;color:rgba(255,246,232,.75);transition:max-height .4s,margin .4s}
+.tv-ls li.on .ds{max-height:4.6em;margin:2px 0 8px}
+.tv-ls li .ds b{color:var(--amb);font-weight:700}
 .tv-ls li.on button::before{transform:scale(1)}
 .tv-ls li button:focus-visible{outline:1px solid var(--amb);outline-offset:3px}
-.tv-if{position:absolute;right:clamp(18px,3vw,40px);top:50%;transform:translateY(-50%);z-index:5;width:min(330px,24vw)}
+.tv-if{display:none!important;position:absolute;right:clamp(18px,3vw,40px);top:50%;transform:translateY(-50%);z-index:5;width:min(330px,24vw)}
 .tv-if .n{margin:0;font:800 clamp(2rem,3.4vw,3rem)/1 var(--display)}
 .tv-if .w{margin:10px 0 18px;font-size:1rem;line-height:1.55;color:rgba(255,246,232,.82)}
 .tv-if dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:9px 14px;border-top:1px solid rgba(255,246,232,.16);padding-top:14px}
@@ -65,16 +68,22 @@
 .tv-fb b{display:block;font:800 1.4rem var(--display);margin-top:12px}
 .tv-fb span{display:block;color:rgba(255,246,232,.75);margin-top:4px}
 
-/* 3. the real numbers, set huge, sliding past as you scroll */
-.tv-kn{position:relative;padding:clamp(80px,10vw,140px) 0 clamp(50px,6vw,90px);overflow:hidden}
+/* 3. the real numbers: each figure is cut out of the photo it is about */
+.tv-kn{position:relative;padding:clamp(80px,10vw,140px) clamp(18px,4vw,56px) clamp(40px,6vw,80px)}
 .tv-kn h2,.tv-ch h2,.tv-rg h2{margin:0 auto 34px;max-width:1240px;padding:0 clamp(18px,4vw,56px);font:800 clamp(1.8rem,4vw,3.2rem)/1.1 var(--display);color:var(--cr)}
-.tv-kr{display:flex;width:max-content;will-change:transform;padding:8px 0}
-.tv-kr .u{display:inline-flex;align-items:center;gap:clamp(16px,2vw,28px);padding-right:clamp(34px,4.5vw,72px)}
-.tv-kr b{font:800 clamp(3.4rem,10vw,9.2rem)/1.05 var(--display);letter-spacing:-.02em;white-space:nowrap}
-.tv-kr small{font:500 clamp(.95rem,1.35vw,1.2rem)/1.4 var(--display);color:rgba(255,246,232,.78);max-width:15ch}
-.tv-kr i{flex:none;width:14px;height:14px;border-radius:50%;background:var(--amb);box-shadow:0 0 14px rgba(255,170,80,.7)}
-.tv-kr:nth-of-type(odd) b{color:var(--amb);text-shadow:0 0 30px rgba(255,160,70,.35)}
-.tv-kr:nth-of-type(even) b{color:transparent;-webkit-text-stroke:2px rgba(255,246,232,.88)}
+.tv-kn h2{padding:0}
+.tv-kl{list-style:none;margin:0 auto;padding:0;max-width:1240px}
+.tv-kl li{display:flex;align-items:center;gap:clamp(18px,3vw,44px);padding:clamp(6px,1vw,14px) 0}
+.tv-kl li:nth-child(even){flex-direction:row-reverse;text-align:right}
+.tv-kl .big{flex:none;font:800 clamp(4rem,13vw,12rem)/.92 var(--display);letter-spacing:-.03em;color:transparent;-webkit-background-clip:text;background-clip:text;
+  background-size:cover;background-position:50% 40%;-webkit-text-stroke:1.5px rgba(255,236,205,.75);filter:drop-shadow(0 18px 30px rgba(0,0,0,.55)) saturate(1.15) brightness(1.1);transition:background-position 1.2s cubic-bezier(.23,1,.32,1)}
+.tv-kl .ph{flex:none;width:clamp(72px,9vw,128px);aspect-ratio:1;border-radius:50%;object-fit:cover;box-shadow:0 0 0 4px #120E0B,0 0 0 6px var(--amb2)}
+.tv-kl .cp{min-width:0;font:600 clamp(1rem,1.5vw,1.3rem)/1.45 var(--display);color:rgba(255,246,232,.85);max-width:22ch}
+.tv-kl li{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .9s cubic-bezier(.23,1,.32,1)}
+.tv-kl li.in{opacity:1;transform:none}
+.tv-kl li:hover .big{background-position:50% 60%}
+@media (max-width:700px){.tv-kl li,.tv-kl li:nth-child(even){flex-direction:column;align-items:flex-start;text-align:left;gap:10px;padding:14px 0}.tv-kl .ph{display:none}.tv-kl .cp{max-width:none}}
+@media (prefers-reduced-motion:reduce){.tv-kl li{opacity:1;transform:none}}
 
 /* 4. what we do: three tall picture cards, open from the start */
 .tv-ch{position:relative;padding:clamp(60px,8vw,110px) clamp(18px,4vw,56px) clamp(40px,5vw,70px)}
@@ -150,17 +159,16 @@
     var ws=el('section','tv-w');ws.id='about-real';ws.style.height=(W.length*85+100)+'svh';
     var stk=el('div','tv-st');
     stk.innerHTML='<canvas class="tv-gl" aria-hidden="true"></canvas>'+
-      '<div class="tv-ls"><h2>ผลงานที่มีคนใช้จริง</h2><p class="tv-m">เลือกดูทีละชิ้น หรือเลื่อนลง</p><ol>'+W.map(function(w,i){return '<li><button type="button" data-i="'+i+'">['+pad(i)+'] '+w.n+'</button></li>'}).join('')+'</ol>'+
+      '<div class="tv-ls"><h2>ผลงานที่มีคนใช้จริง</h2><p class="tv-m">เลือกดูทีละชิ้น หรือเลื่อนลง</p><ol>'+W.map(function(w,i){return '<li><button type="button" data-i="'+i+'">['+pad(i)+'] '+w.n+'</button><span class="ds">'+w.w+'<br><b>'+w.d[w.d.length-1][1]+'</b></span></li>'}).join('')+'</ol>'+
       '<div class="tv-fb">'+W.map(function(w){return '<div><img src="'+w.img+'" alt="'+w.n+'" loading="lazy"><b>'+w.n+'</b><span>'+w.w+'</span></div>'}).join('')+'</div></div>'+
       '<div class="tv-if" aria-live="polite"></div>'+
       '<div class="tv-ct tv-m"><span class="k">01</span><i><b></b></i><span>'+pad(W.length-1)+'</span></div><div class="tv-fx"></div>';
     ws.appendChild(stk);tv.appendChild(ws);
     /* numbers */
     var kn=el('section','tv-kn');
-    var F=[['48 คน','รุ่นพี่ DEK69 ติดมหาลัยรอบ Portfolio'],['12 ผลงาน','เข้ารอบชิงชนะเลิศ NSC ระดับประเทศ'],['ชนะเลิศ','OBEC Roboplayground ด้วยเกม StressStrike'],['ขายได้จริง','เกม Mr. City ขายให้สวนสัตว์สงขลา'],['1,000+ คน','เด็กที่เรียนเขียน Python ผ่าน PHC Map']];
-    kn.innerHTML='<h2>ผลงานของน้องๆ ปีที่ผ่านมา</h2>'+F.map(function(f,i){var u='<span class="u"><b>'+f[0]+'</b><small>'+f[1]+'</small><i></i></span>';return '<div class="tv-kr" data-d="'+(i%2?1:-1)+'"'+(i?' aria-hidden="true"':'')+'>'+u+u+u+u+'</div>'}).join('')+
-      '<ul style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">'+F.map(function(f){return '<li>'+f[0]+' '+f[1]+'</li>'}).join('')+'</ul>';
-    kn.querySelectorAll('.tv-kr').forEach(function(r){r.setAttribute('aria-hidden','true')});
+    var F=[['48 คน','รุ่นพี่ DEK69 ติดมหาลัยรอบ Portfolio','img/dek69-8.webp'],['12 ผลงาน','เข้ารอบชิงชนะเลิศ NSC การแข่งขันเขียนโปรแกรมระดับประเทศ','img/w-revoice.webp'],
+           ['ชนะเลิศ','OBEC Roboplayground ด้วยเกม StressStrike','img/work-stressstrike.webp'],['ขายได้จริง','เกม Mr. City ขายให้สวนสัตว์สงขลา','CITY'],['1,000+ คน','เด็กที่เรียนเขียน Python ผ่านเกม PHC Map','img/w-hmap.webp']];
+    kn.innerHTML='<h2>ผลงานของน้องๆ ปีที่ผ่านมา</h2><ul class="tv-kl">'+F.map(function(f){return '<li><span class="big" data-bg="'+f[2]+'">'+f[0]+'</span><img class="ph" data-src="'+f[2]+'" alt="" loading="lazy"><span class="cp">'+f[1]+'</span></li>'}).join('')+'</ul>';
     tv.appendChild(kn);
     /* channels */
     var ch=el('section','tv-ch');
@@ -186,16 +194,16 @@
   ' vec2 q=uv;if(asp>sa){q.x=(q.x-.5)*sa/asp+.5;}else{q.y=(q.y-.5)*asp/sa+.5;}',
   ' vec2 o=vec2(ca,0.);return vec3(texture2D(s,q+o).r,texture2D(s,q).g,texture2D(s,q-o).b);}',
   'float box(vec2 p,vec2 b,float r){vec2 d=abs(p)-b+r;return length(max(d,0.))+min(max(d.x,d.y),0.)-r;}',
-  'void main(){vec2 fc=gl_FragCoord.xy;vec2 uv=(fc-.5*R)/R.y;float mob=step(R.x/R.y,1.);',
+  'void main(){vec2 fc=gl_FragCoord.xy;vec2 uv=(fc-.5*R)/R.y;float mob=step(R.x/R.y,1.);uv.x-=mix(.2,0.,mob);uv.y+=mix(0.,.2,mob);float ra=mix(.2,.1,mob);uv=mat2(cos(ra),sin(ra),-sin(ra),cos(ra))*uv;',
   ' float D=6.3,Rd=2.2;vec3 d=normalize(vec3(uv.x,uv.y,-1.55));',
   ' float gy=(h(vec2(floor(fc.y/5.),floor(T*24.)))-.5)*G*.08;d.x+=gy;',
   ' vec2 q=vec2(0.,D),dq=d.yz;float a=dot(dq,dq),b=2.*dot(q,dq),c=dot(q,q)-Rd*Rd,dis=b*b-4.*a*c;',
   ' vec3 col=vec3(.07,.055,.045);',
-  ' if(dis>0.){float t=(-b-sqrt(dis))/(2.*a);vec3 hp=d*t;float th=atan(hp.y,hp.z+D);float S=mix(.76,.42,mob),H=mix(.6,.3,mob);float an=P*S-th;',
-  '  float k=floor(an/S+.5);float v=(an-k*S)/H+.5;float Wd=mix(1.8,1.0,mob);float u=hp.x/Wd+.5;float sa=Wd/(Rd*H);',
+  ' if(dis>0.){float t=(-b-sqrt(dis))/(2.*a);vec3 hp=d*t;float th=atan(hp.y,hp.z+D);float S=mix(.86,.46,mob),H=mix(.7,.34,mob);float an=th+P*S;',
+  '  float k=floor(an/S+.5);float v=(an-k*S)/H+.5;float Wd=mix(2.3,1.1,mob);float u=hp.x/Wd+.5;float sa=Wd/(Rd*H);',
   '  float lit=.35+.65*cos(th*1.6);',
   '  if(k>=0.&&k<N){vec2 sp=vec2(u-.5,v-.5)*vec2(sa,1.);float bd=box(sp,vec2(sa*.5,.5),.06);',
-  '   if(bd<0.){float ca=.003+.004*length(sp)+G*.01;vec3 s;vec2 tu=vec2(u,v);',
+  '   if(bd<0.){float ca=.003+.004*length(sp)+G*.01;vec3 s;vec2 tu=vec2(u,1.-v);',
   '    if(k==K-1.)s=tx(A,tu,AS.x,ca,sa);else if(k==K)s=tx(B,tu,AS.y,ca,sa);else if(k==K+1.)s=tx(C,tu,AS.z,ca,sa);else s=vec3(.1);',
   '    float vg=smoothstep(-.0,-.12,bd);s*=mix(.55,1.,vg);s*=.88+.12*sin(fc.y*2.1);',
   '    s+=vec3(1.,.7,.4)*.05*(1.-vg);col=s*lit;}',
@@ -264,11 +272,11 @@
       fr=requestAnimationFrame(flyF)}
     new IntersectionObserver(function(es){fv=es[0].isIntersecting;last=0;if(fv&&!fr)fr=requestAnimationFrame(flyF)}).observe(fly);
     tv.querySelector('.tv-in').addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
-    /* numbers slide sideways with the scroll */
-    var kn=tv.querySelector('.tv-kn'),rows=[].slice.call(kn.querySelectorAll('.tv-kr'));
-    function kin(){if(!view.offsetParent)return;var r=kn.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;var p=(innerHeight-r.top)/(innerHeight+r.height);
-      rows.forEach(function(row,i){var d=+row.dataset.d,w=row.scrollWidth/4,x=rm?-w*.25:-w*(.15+(d>0?p:1-p)*.6)-i*37;row.style.transform='translate3d('+x.toFixed(1)+'px,0,0)'})}
-    addEventListener('scroll',kin,{passive:true});addEventListener('resize',kin);kin();
+    /* numbers: photo fill + reveal */
+    var cityURL=null;tv.querySelectorAll('.tv-kl li').forEach(function(li){var b=li.querySelector('.big'),p=li.querySelector('.ph'),src=b.dataset.bg;
+      if(src==='CITY'){cityURL=cityURL||city().toDataURL('image/jpeg',.85);src=cityURL}b.style.backgroundImage='linear-gradient(rgba(255,200,130,.28),rgba(255,200,130,.28)),url('+src+')';p.src=src});
+    var kio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');kio.unobserve(e.target)}})},{threshold:.25});
+    tv.querySelectorAll('.tv-kl li').forEach(function(l){kio.observe(l)});
     /* picture cards lean toward the pointer */
     if(!rm&&matchMedia('(hover:hover)').matches)tv.querySelectorAll('.tv-set').forEach(function(s){
       s.addEventListener('pointermove',function(e){var r=s.getBoundingClientRect(),u=(e.clientX-r.left)/r.width-.5,v=(e.clientY-r.top)/r.height-.5;s.style.transform='rotateY('+(u*10).toFixed(2)+'deg) rotateX('+(-v*8).toFixed(2)+'deg) translateY(-6px)'});

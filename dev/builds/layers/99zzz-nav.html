@@ -15,25 +15,32 @@
 .nav-in>a.nv-c:hover>span,.nav-in>a.nv-c:focus-visible>span{color:#1D1712;font-weight:600}
 @keyframes naBlink{0%{opacity:1}50%{opacity:0}}
 
-/* ผลงาน = the Hall of Fame: the word is lit like a name on the wall of fame, a beam of light passes over it */
-.nav-in>a.nv-w>span>.na-w0{display:inline-block;position:relative;transition:color .25s}
-.na-w{left:-12px;right:-12px;top:-7px;bottom:-7px;border-radius:10px;z-index:-1;opacity:0;transform:scale(.85);
-  background:radial-gradient(60% 90% at 50% 0,rgba(255,214,122,.35),rgba(255,214,122,0) 70%),#1D1712;box-shadow:0 6px 16px -8px rgba(29,23,18,.6);transition:opacity .2s,transform .3s cubic-bezier(.3,1.5,.5,1)}
+/* ผลงาน = the Hall of Fame: a soft gold aurora rises behind the word, the word turns to gold */
 .nav-in>a.nv-w>span{z-index:0}
-.nav-in>a.nv-w:hover .na-w,.nav-in>a.nv-w:focus-visible .na-w{opacity:1;transform:none}
+.nav-in>a.nv-w>span>.na-w0{display:inline-block;position:relative;transition:color .25s}
+.na-w{left:50%;top:50%;width:130px;height:40px;margin:-18px 0 0 -65px;z-index:-1;opacity:0;transition:opacity .35s;filter:blur(9px)}
+.na-w i{position:absolute;border-radius:50%;mix-blend-mode:multiply}
+.na-w i:nth-child(1){left:6%;top:24%;width:58%;height:56%;background:#FFD45E;animation:naAu1 3.2s ease-in-out infinite alternate}
+.na-w i:nth-child(2){right:4%;top:14%;width:52%;height:62%;background:#F5B13A;animation:naAu2 2.6s ease-in-out infinite alternate}
+.na-w i:nth-child(3){left:30%;top:40%;width:44%;height:46%;background:#FFE9A6;animation:naAu3 3.8s ease-in-out infinite alternate}
+@keyframes naAu1{to{transform:translate(18px,-6px) scale(1.15)}}
+@keyframes naAu2{to{transform:translate(-20px,6px) scale(.9)}}
+@keyframes naAu3{to{transform:translate(8px,-10px) scale(1.25)}}
+.nav-in>a.nv-w:hover .na-w,.nav-in>a.nv-w:focus-visible .na-w{opacity:.7}
 .nav-in>a.nv-w:hover>span>.na-w0,.nav-in>a.nv-w:focus-visible>span>.na-w0{color:transparent;font-weight:700;
-  background:linear-gradient(100deg,#D9A441 0%,#F2C76B 30%,#FFF4D2 45%,#F2C76B 60%,#D9A441 100%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;
-  animation:naFame 1.6s cubic-bezier(.4,0,.2,1) infinite;filter:drop-shadow(0 0 6px rgba(255,200,90,.45))}
+  background:linear-gradient(100deg,#6B420A 0%,#8A5A10 30%,#E9B44C 45%,#8A5A10 60%,#6B420A 100%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;animation:naFame 1.8s cubic-bezier(.4,0,.2,1) infinite}
 @keyframes naFame{0%{background-position:100% 0}60%,100%{background-position:0 0}}
 
-/* เกี่ยวกับเรา = meet the team: the Hamster Hub hamster climbs up from behind the word to say hi */
-.na-b{left:50%;bottom:76%;width:40px;height:21px;transform:translateX(-50%);overflow:hidden;z-index:-1}
-.na-b img{display:block;width:40px;height:auto;transform:translateY(100%);transition:transform .45s cubic-bezier(.3,1.6,.5,1)}
+/* เกี่ยวกับเรา = "this is us": a marker loop is drawn around the word by hand, with a small heart at the end */
 .nav-in>a.nv-b>span{z-index:0}
-.nav-in>a.nv-b:hover .na-b img,.nav-in>a.nv-b:focus-visible .na-b img{transform:translateY(0)}
-.nav-in>a.nv-b:hover>span,.nav-in>a.nv-b:focus-visible>span{color:#1D1712;font-weight:600}
-
-@media (prefers-reduced-motion:reduce){.na-x,.nav-in>a.nv-w>span>.na-w0{transition:none!important;animation:none!important}.nav-in>a.nv-w:hover>span>.na-w0{animation:none!important}.na-b img{transition:none!important}}
+.na-b{left:-14px;right:-14px;top:-9px;bottom:-9px}
+.na-b svg{width:100%;height:100%;overflow:visible}
+.na-b path{opacity:0;fill:none;stroke:#E8833A;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .55s cubic-bezier(.6,0,.3,1)}
+.na-b path.h{fill:#E8833A;stroke-width:1.4;transform:scale(.3);transform-origin:center;transform-box:fill-box;transition:opacity .2s .45s,transform .35s cubic-bezier(.3,1.8,.5,1) .45s}
+.nav-in>a.nv-b:hover .na-b path,.nav-in>a.nv-b:focus-visible .na-b path{stroke-dashoffset:0;opacity:1}
+.nav-in>a.nv-b:hover .na-b path.h,.nav-in>a.nv-b:focus-visible .na-b path.h{opacity:1;transform:none}
+.nav-in>a.nv-b:hover>span,.nav-in>a.nv-b:focus-visible>span{color:#1D1712}
+@media (prefers-reduced-motion:reduce){.na-x,.nav-in>a.nv-w>span>.na-w0{transition:none!important;animation:none!important}.nav-in>a.nv-w:hover>span>.na-w0{animation:none!important}.na-b path{transition:none!important}.na-w i{animation:none!important}}
 
 /* ===== seniors caption: a quiet plaque instead of a line of dots ===== */
 html body [data-view="home"] .mc .mc2-nav{display:grid!important;grid-template-columns:52px minmax(0,1fr) 52px;align-items:center;gap:clamp(14px,3vw,40px);max-width:760px;margin:6px auto 0!important}
@@ -74,9 +81,9 @@ html body [data-view="home"] .mc .lk:active{transform:scale(.97)}
     var c=document.querySelector('.nav-in>a.nv-c>span');
     if(c&&!c.querySelector('.na-x')){var l=el('span','na-x na-c l','<'),r=el('span','na-x na-c r','/>');r.appendChild(el('i'));[l,r].forEach(function(x){x.setAttribute('aria-hidden','true')});c.appendChild(l);c.appendChild(r)}
     var w=document.querySelector('.nav-in>a.nv-w>span');
-    if(w&&!w.querySelector('.na-x')){var t=w.textContent;w.textContent='';w.appendChild(el('span','na-w0',t));var p=el('span','na-x na-w');p.setAttribute('aria-hidden','true');w.appendChild(p)}
+    if(w&&!w.querySelector('.na-x')){var t=w.textContent;w.textContent='';w.appendChild(el('span','na-w0',t));var p=el('span','na-x na-w');p.setAttribute('aria-hidden','true');p.innerHTML='<i></i><i></i><i></i>';w.appendChild(p)}
     var b=document.querySelector('.nav-in>a.nv-b>span');
-    if(b&&!b.querySelector('.na-x')){var d=el('span','na-x na-b'),im=el('img');im.src='img/n-peek.webp';im.alt='';d.setAttribute('aria-hidden','true');d.appendChild(im);b.appendChild(d)}}
+    if(b&&!b.querySelector('.na-x')){var d=el('span','na-x na-b');d.setAttribute('aria-hidden','true');d.innerHTML='<svg viewBox="0 0 120 40" preserveAspectRatio="none"><path pathLength="1" d="M70 4C40 1 8 6 5 19c-3 14 40 19 72 17 30-2 42-11 38-21C111 4 86 1 56 4"/><path class="h" d="M116 2c2-3 6-1 5 2l-4 5-5-4c-2-3 2-6 4-3z"/></svg>';b.appendChild(d)}}
   /* seniors caption */
   var last='';
   function cap(){var p=document.getElementById('mcC');if(!p)return;var box=p.parentNode,m=box.querySelector('.mc3');
