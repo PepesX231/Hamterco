@@ -10298,13 +10298,22 @@ html.nv-home [data-view="home"] .zq .hx-cv{-webkit-mask:linear-gradient(transpar
 @media (min-width:900px){
   .nav-in>a.v{padding:11px 18px!important}
   html.nv-top .nav-in>a.v{background:rgba(255,246,232,.38)}
-  html.nv-top .nav-in>a.v:hover{background:rgba(255,246,232,.6)}
+  html.nv-top .nav-in>a.v:hover{background:rgba(255,246,232,.38)}
   html.nv-top .nav-in>a.v[aria-current="page"]::after{background:#FFF6E8!important}
 }
 html.nv-top .nav-in>a.v,html.nv-top header.nav .brand{color:#1D1712!important}
 </style>
 <script>(function(){var H=document.documentElement;function f(){var home=!location.hash||/^#(home)?$/.test(location.hash);H.classList.toggle('nv-home',home);H.classList.toggle('nv-top',home&&scrollY<30)}
-f();addEventListener('scroll',f,{passive:true});addEventListener('hashchange',f)})();</script>
+f();addEventListener('scroll',f,{passive:true});addEventListener('hashchange',f)})();</script><style id="ly-navw2">
+/* ผลงาน: no chip, no oval; only the word itself turns to living gold and glows */
+.na-w{display:none!important}
+.nav-in>a.nv-w:hover>span>.na-w0,.nav-in>a.nv-w:focus-visible>span>.na-w0{
+  background:linear-gradient(100deg,#8A5208 0%,#C07A12 28%,#FFE29A 44%,#FFF6DA 50%,#FFE29A 56%,#C07A12 72%,#8A5208 100%) 0 0/260% 100%!important;
+  -webkit-background-clip:text!important;background-clip:text!important;color:transparent!important;
+  animation:naFame 2.2s cubic-bezier(.4,0,.2,1) infinite,naGlow 2.2s ease-in-out infinite alternate!important}
+@keyframes naGlow{from{filter:drop-shadow(0 0 2px rgba(255,190,70,.55)) drop-shadow(0 0 6px rgba(255,170,40,.35))}to{filter:drop-shadow(0 0 3px rgba(255,200,90,.85)) drop-shadow(0 0 10px rgba(255,170,40,.6))}}
+@media (prefers-reduced-motion:reduce){.nav-in>a.nv-w:hover>span>.na-w0{animation:none!important}}
+</style>
 <!-- layer: 99zzzz-fix.html -->
 <style id="ly-fix">
 /* "สิ่งที่ Hamster Hub สร้าง" sat too far from the course rail and from its own first row */
