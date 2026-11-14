@@ -4067,10 +4067,6 @@ function frame(t){var dt=Math.min(50,t-last);last=t;
   var s=Math.min(W*.62/FW,Hc*.6/WH),gy=Hc-6,mid=W/2;
   /* ground line + moving marks, drawn every frame (60fps) */
   var speed=phase==='walk'&&!rm?.055:0;dist+=speed*dt;
-  cx.strokeStyle='rgba(88,80,76,.28)';cx.lineWidth=1.4;cx.lineCap='round';cx.beginPath();cx.moveTo(mid-W*.38,gy);cx.lineTo(mid+W*.38,gy);cx.stroke();
-  marks.forEach(function(m){var x=((m.x*W*.76-dist)%(W*.76)+W*.76)%(W*.76)+mid-W*.38,fade=Math.min(1,(x-(mid-W*.38))/30,(mid+W*.38-x)/30);if(fade<=0)return;cx.globalAlpha=fade;
-    if(m.k){cx.save();cx.translate(x,gy-3-m.y*.3);cx.rotate(-.5);cx.fillStyle='rgb(88,80,76)';cx.beginPath();cx.ellipse(0,0,4.5,2.4,0,0,7);cx.fill();cx.fillStyle='rgb(240,232,222)';cx.beginPath();cx.ellipse(.6,0,2.6,.9,0,0,7);cx.fill();cx.restore()}
-    else{cx.strokeStyle='rgba(88,80,76,.32)';cx.beginPath();cx.moveTo(x,gy+4+m.y);cx.lineTo(x+m.w,gy+4+m.y);cx.stroke()}});
   cx.globalAlpha=1;
   if(ok<2){requestAnimationFrame(frame);return}
   if(phase==='walk'){var p=el/1000*FPS,f=Math.floor(p)%8,sub=p%1,bob=rm?0:Math.abs(Math.sin((f+sub)/8*Math.PI*4))*3;
@@ -9943,6 +9939,31 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
   .tv-kr small{max-width:12ch}
 }
 @media (prefers-reduced-motion:reduce){.tv *{animation:none!important}}
+
+/* ===== round 14 พ.ย. evening ===== */
+/* works: the left list is gone; one caption explains the screen in front of you */
+.tv-ls ol,.tv-ls>p,.tv-ct{display:none!important}
+.tv-ls{top:calc(50% - 150px)!important;transform:none!important}
+.tv-ls h2{font:600 .95rem/1.3 var(--display)!important;color:rgba(255,246,232,.6)!important}
+.tv-if{display:block!important;left:clamp(18px,4vw,64px)!important;right:auto!important;top:calc(50% - 110px)!important;transform:none!important;width:min(420px,32vw)!important}
+.tv-if .n{font-size:clamp(2.4rem,4.4vw,4rem)!important}
+.tv-if.sw{animation:tvSw2 .5s cubic-bezier(.23,1,.32,1) both!important}
+@keyframes tvSw2{from{opacity:0;transform:translateY(14px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+.tv-gl{-webkit-mask:linear-gradient(transparent,#000 14%,#000 86%,transparent);mask:linear-gradient(transparent,#000 14%,#000 86%,transparent)}
+/* numbers: solid figures you can read, the photo melts in behind them with no frame */
+.tv-kl li{position:relative;isolation:isolate}
+.tv-kl .big{color:var(--amb)!important;background:none!important;-webkit-text-stroke:0!important;line-height:1.22!important;padding:.06em 0 .02em;filter:none!important;text-shadow:0 0 34px rgba(255,160,70,.35)}
+.tv-kl li:nth-child(even) .big{color:var(--cr)!important;text-shadow:0 0 30px rgba(255,246,232,.18)}
+.tv-kl .ph{position:relative;z-index:-1;width:clamp(180px,24vw,340px)!important;aspect-ratio:4/3!important;border-radius:0!important;box-shadow:none!important;margin:0 clamp(-90px,-5vw,-30px);
+  -webkit-mask:radial-gradient(closest-side,#000 45%,transparent 100%);mask:radial-gradient(closest-side,#000 45%,transparent 100%);opacity:.85;transition:transform 1.2s cubic-bezier(.23,1,.32,1)}
+.tv-kl li:hover .ph{transform:scale(1.06)}
+@media (max-width:900px){
+  .tv-ls{top:80px!important}
+  .tv-if{left:0!important;right:0!important;top:auto!important;bottom:0!important;width:auto!important;border-radius:0!important;backdrop-filter:none!important;padding:60px 18px 28px!important;
+    background:linear-gradient(to top,rgba(18,14,11,.96) 55%,rgba(18,14,11,0))!important}
+  .tv-if .n{font-size:2rem!important}
+}
+@media (max-width:700px){.tv-kl .ph{display:block!important;position:absolute;right:-10px;top:50%;width:200px!important;margin:0;transform:translateY(-50%);opacity:.5}}
 </style>
 <script>
 (function(){
@@ -10002,7 +10023,7 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
   ' vec2 q=uv;if(asp>sa){q.x=(q.x-.5)*sa/asp+.5;}else{q.y=(q.y-.5)*asp/sa+.5;}',
   ' vec2 o=vec2(ca,0.);return vec3(texture2D(s,q+o).r,texture2D(s,q).g,texture2D(s,q-o).b);}',
   'float box(vec2 p,vec2 b,float r){vec2 d=abs(p)-b+r;return length(max(d,0.))+min(max(d.x,d.y),0.)-r;}',
-  'void main(){vec2 fc=gl_FragCoord.xy;vec2 uv=(fc-.5*R)/R.y;float mob=step(R.x/R.y,1.);uv.x-=mix(.2,0.,mob);uv.y+=mix(0.,.2,mob);float ra=mix(.2,.1,mob);uv=mat2(cos(ra),sin(ra),-sin(ra),cos(ra))*uv;',
+  'void main(){vec2 fc=gl_FragCoord.xy;vec2 uv=(fc-.5*R)/R.y;float mob=step(R.x/R.y,1.);uv.x-=mix(.2,0.,mob);uv.y+=mix(0.,.2,mob);float ra=mix(-.2,-.1,mob);uv=mat2(cos(ra),sin(ra),-sin(ra),cos(ra))*uv;',
   ' float D=6.3,Rd=2.2;vec3 d=normalize(vec3(uv.x,uv.y,-1.55));',
   ' float gy=(h(vec2(floor(fc.y/5.),floor(T*24.)))-.5)*G*.08;d.x+=gy;',
   ' vec2 q=vec2(0.,D),dq=d.yz;float a=dot(dq,dq),b=2.*dot(q,dq),c=dot(q,q)-Rd*Rd,dis=b*b-4.*a*c;',
@@ -10082,7 +10103,7 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
     tv.querySelector('.tv-in').addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
     /* numbers: photo fill + reveal */
     var cityURL=null;tv.querySelectorAll('.tv-kl li').forEach(function(li){var b=li.querySelector('.big'),p=li.querySelector('.ph'),src=b.dataset.bg;
-      if(src==='CITY'){cityURL=cityURL||city().toDataURL('image/jpeg',.85);src=cityURL}b.style.backgroundImage='linear-gradient(rgba(255,200,130,.28),rgba(255,200,130,.28)),url('+src+')';p.src=src});
+      if(src==='CITY'){cityURL=cityURL||city().toDataURL('image/jpeg',.85);src=cityURL}p.src=src});
     var kio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');kio.unobserve(e.target)}})},{threshold:.25});
     tv.querySelectorAll('.tv-kl li').forEach(function(l){kio.observe(l)});
     /* picture cards lean toward the pointer */
@@ -10133,27 +10154,31 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
 /* ผลงาน = the Hall of Fame: a soft gold aurora rises behind the word, the word turns to gold */
 .nav-in>a.nv-w>span{z-index:0}
 .nav-in>a.nv-w>span>.na-w0{display:inline-block;position:relative;transition:color .25s}
-.na-w{left:50%;top:50%;width:130px;height:40px;margin:-18px 0 0 -65px;z-index:-1;opacity:0;transition:opacity .35s;filter:blur(9px)}
-.na-w i{position:absolute;border-radius:50%;mix-blend-mode:multiply}
-.na-w i:nth-child(1){left:6%;top:24%;width:58%;height:56%;background:#FFD45E;animation:naAu1 3.2s ease-in-out infinite alternate}
-.na-w i:nth-child(2){right:4%;top:14%;width:52%;height:62%;background:#F5B13A;animation:naAu2 2.6s ease-in-out infinite alternate}
-.na-w i:nth-child(3){left:30%;top:40%;width:44%;height:46%;background:#FFE9A6;animation:naAu3 3.8s ease-in-out infinite alternate}
-@keyframes naAu1{to{transform:translate(18px,-6px) scale(1.15)}}
-@keyframes naAu2{to{transform:translate(-20px,6px) scale(.9)}}
-@keyframes naAu3{to{transform:translate(8px,-10px) scale(1.25)}}
-.nav-in>a.nv-w:hover .na-w,.nav-in>a.nv-w:focus-visible .na-w{opacity:.7}
+.na-w{left:50%;top:-26px;width:150px;height:66px;margin-left:-75px;z-index:-1;opacity:0;transition:opacity .4s;
+  -webkit-mask:radial-gradient(55% 100% at 50% 0,#000 40%,transparent 100%);mask:radial-gradient(55% 100% at 50% 0,#000 40%,transparent 100%)}
+.na-w::before{content:"";position:absolute;left:14%;right:14%;bottom:2px;height:30px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,206,92,.75),rgba(255,206,92,0));filter:blur(3px);animation:naHalo 2.4s ease-in-out infinite alternate}
+.na-w i{position:absolute;top:0;width:7px;height:100%;border-radius:40%;filter:blur(1.6px);transform-origin:50% 0;
+  background:linear-gradient(to bottom,rgba(230,150,30,0) 0,rgba(236,162,40,.8) 18%,rgba(255,206,96,.55) 60%,rgba(255,236,170,0) 100%);animation:naRay 3s ease-in-out infinite alternate}
+.na-w i:nth-child(1){left:22%;height:70%;animation-duration:2.7s}
+.na-w i:nth-child(2){left:34%;height:96%;width:10px;animation-duration:3.4s;animation-delay:-1s}
+.na-w i:nth-child(3){left:47%;height:84%;animation-duration:2.9s;animation-delay:-.4s}
+.na-w i:nth-child(4){left:59%;height:100%;width:10px;animation-duration:3.7s;animation-delay:-2s}
+.na-w i:nth-child(5){left:71%;height:66%;animation-duration:3.1s;animation-delay:-1.4s}
+@keyframes naRay{0%{transform:skewX(-16deg) scaleY(.85);opacity:.4}50%{opacity:1}100%{transform:skewX(14deg) scaleY(1.05);opacity:.75}}
+@keyframes naHalo{to{transform:scale(1.15);opacity:.8}}
+.nav-in>a.nv-w:hover .na-w,.nav-in>a.nv-w:focus-visible .na-w{opacity:1}
 .nav-in>a.nv-w:hover>span>.na-w0,.nav-in>a.nv-w:focus-visible>span>.na-w0{color:transparent;font-weight:700;
-  background:linear-gradient(100deg,#6B420A 0%,#8A5A10 30%,#E9B44C 45%,#8A5A10 60%,#6B420A 100%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;animation:naFame 1.8s cubic-bezier(.4,0,.2,1) infinite}
+  background:linear-gradient(100deg,#6B420A 0%,#8A5A10 30%,#E9B44C 45%,#8A5A10 60%,#6B420A 100%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;animation:naFame 1.8s cubic-bezier(.4,0,.2,1) infinite;filter:drop-shadow(0 0 5px rgba(255,200,80,.7))}
 @keyframes naFame{0%{background-position:100% 0}60%,100%{background-position:0 0}}
 
-/* เกี่ยวกับเรา = "this is us": a marker loop is drawn around the word by hand, with a small heart at the end */
+/* เกี่ยวกับเรา = "this is us": a marker loop is drawn around the word by hand, with a hamster paw print at the end */
 .nav-in>a.nv-b>span{z-index:0}
 .na-b{left:-14px;right:-14px;top:-9px;bottom:-9px}
 .na-b svg{width:100%;height:100%;overflow:visible}
 .na-b path{opacity:0;fill:none;stroke:#E8833A;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .55s cubic-bezier(.6,0,.3,1)}
-.na-b path.h{fill:#E8833A;stroke-width:1.4;transform:scale(.3);transform-origin:center;transform-box:fill-box;transition:opacity .2s .45s,transform .35s cubic-bezier(.3,1.8,.5,1) .45s}
+.na-b .h{fill:#E8833A;opacity:0;transform:scale(.3) rotate(-20deg);transform-origin:center;transform-box:fill-box;transition:opacity .2s .45s,transform .35s cubic-bezier(.3,1.8,.5,1) .45s}
 .nav-in>a.nv-b:hover .na-b path,.nav-in>a.nv-b:focus-visible .na-b path{stroke-dashoffset:0;opacity:1}
-.nav-in>a.nv-b:hover .na-b path.h,.nav-in>a.nv-b:focus-visible .na-b path.h{opacity:1;transform:none}
+.nav-in>a.nv-b:hover .na-b .h,.nav-in>a.nv-b:focus-visible .na-b .h{opacity:1;transform:rotate(15deg)}
 .nav-in>a.nv-b:hover>span,.nav-in>a.nv-b:focus-visible>span{color:#1D1712}
 @media (prefers-reduced-motion:reduce){.na-x,.nav-in>a.nv-w>span>.na-w0{transition:none!important;animation:none!important}.nav-in>a.nv-w:hover>span>.na-w0{animation:none!important}.na-b path{transition:none!important}.na-w i{animation:none!important}}
 
@@ -10196,9 +10221,9 @@ html body [data-view="home"] .mc .lk:active{transform:scale(.97)}
     var c=document.querySelector('.nav-in>a.nv-c>span');
     if(c&&!c.querySelector('.na-x')){var l=el('span','na-x na-c l','<'),r=el('span','na-x na-c r','/>');r.appendChild(el('i'));[l,r].forEach(function(x){x.setAttribute('aria-hidden','true')});c.appendChild(l);c.appendChild(r)}
     var w=document.querySelector('.nav-in>a.nv-w>span');
-    if(w&&!w.querySelector('.na-x')){var t=w.textContent;w.textContent='';w.appendChild(el('span','na-w0',t));var p=el('span','na-x na-w');p.setAttribute('aria-hidden','true');p.innerHTML='<i></i><i></i><i></i>';w.appendChild(p)}
+    if(w&&!w.querySelector('.na-x')){var t=w.textContent;w.textContent='';w.appendChild(el('span','na-w0',t));var p=el('span','na-x na-w');p.setAttribute('aria-hidden','true');p.innerHTML='<i></i><i></i><i></i><i></i><i></i>';w.appendChild(p)}
     var b=document.querySelector('.nav-in>a.nv-b>span');
-    if(b&&!b.querySelector('.na-x')){var d=el('span','na-x na-b');d.setAttribute('aria-hidden','true');d.innerHTML='<svg viewBox="0 0 120 40" preserveAspectRatio="none"><path pathLength="1" d="M70 4C40 1 8 6 5 19c-3 14 40 19 72 17 30-2 42-11 38-21C111 4 86 1 56 4"/><path class="h" d="M116 2c2-3 6-1 5 2l-4 5-5-4c-2-3 2-6 4-3z"/></svg>';b.appendChild(d)}}
+    if(b&&!b.querySelector('.na-x')){var d=el('span','na-x na-b');d.setAttribute('aria-hidden','true');d.innerHTML='<svg viewBox="0 0 120 40" preserveAspectRatio="none"><path pathLength="1" d="M70 4C40 1 8 6 5 19c-3 14 40 19 72 17 30-2 42-11 38-21C111 4 86 1 56 4"/><g class="h"><ellipse cx="117" cy="5.5" rx="3.6" ry="3"/><circle cx="111.6" cy="1.2" r="1.5"/><circle cx="115.3" cy="-1.2" r="1.5"/><circle cx="119.4" cy="-1" r="1.5"/><circle cx="122.6" cy="1.6" r="1.5"/></g></svg>';b.appendChild(d)}}
   /* seniors caption */
   var last='';
   function cap(){var p=document.getElementById('mcC');if(!p)return;var box=p.parentNode,m=box.querySelector('.mc3');
@@ -10216,7 +10241,17 @@ html body [data-view="home"] .mc .lk:active{transform:scale(.97)}
   addEventListener('hashchange',function(){setTimeout(go,150)});
 })();
 </script>
-
+<style id="ly-navbar">
+/* nav bar: no box and no line, just the page colour; on the dark About page it turns dark too */
+header.nav{border:0!important;box-shadow:none!important;background:rgb(255,250,243)!important;transition:background .35s}
+html.nv-dk header.nav{background:#120E0B!important}
+html.nv-dk main{background:#120E0B}
+html.nv-dk header.nav .brand,html.nv-dk .nav-in>a.v{color:rgba(255,246,232,.82)!important}
+html.nv-dk .nav-in>a.v:hover,html.nv-dk .nav-in>a.v[aria-current="page"],html.nv-dk .nav-in>a.nv-b:hover>span{color:#FFF6E8!important}
+html.nv-dk .nav-in>a.v[aria-current="page"]::after{background:#FFB45E!important}
+html.nv-dk header.nav .menu{color:#FFF6E8!important}
+</style>
+<script>(function(){function f(){document.documentElement.classList.toggle('nv-dk',/^#about/.test(location.hash))}f();addEventListener('hashchange',f)})();</script>
 <!-- layer: 99zzzz-fix.html -->
 <style id="ly-fix">
 /* "สิ่งที่ Hamster Hub สร้าง" sat too far from the course rail and from its own first row */

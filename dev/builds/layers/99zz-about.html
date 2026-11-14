@@ -135,6 +135,31 @@
   .tv-kr small{max-width:12ch}
 }
 @media (prefers-reduced-motion:reduce){.tv *{animation:none!important}}
+
+/* ===== round 14 พ.ย. evening ===== */
+/* works: the left list is gone; one caption explains the screen in front of you */
+.tv-ls ol,.tv-ls>p,.tv-ct{display:none!important}
+.tv-ls{top:calc(50% - 150px)!important;transform:none!important}
+.tv-ls h2{font:600 .95rem/1.3 var(--display)!important;color:rgba(255,246,232,.6)!important}
+.tv-if{display:block!important;left:clamp(18px,4vw,64px)!important;right:auto!important;top:calc(50% - 110px)!important;transform:none!important;width:min(420px,32vw)!important}
+.tv-if .n{font-size:clamp(2.4rem,4.4vw,4rem)!important}
+.tv-if.sw{animation:tvSw2 .5s cubic-bezier(.23,1,.32,1) both!important}
+@keyframes tvSw2{from{opacity:0;transform:translateY(14px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+.tv-gl{-webkit-mask:linear-gradient(transparent,#000 14%,#000 86%,transparent);mask:linear-gradient(transparent,#000 14%,#000 86%,transparent)}
+/* numbers: solid figures you can read, the photo melts in behind them with no frame */
+.tv-kl li{position:relative;isolation:isolate}
+.tv-kl .big{color:var(--amb)!important;background:none!important;-webkit-text-stroke:0!important;line-height:1.22!important;padding:.06em 0 .02em;filter:none!important;text-shadow:0 0 34px rgba(255,160,70,.35)}
+.tv-kl li:nth-child(even) .big{color:var(--cr)!important;text-shadow:0 0 30px rgba(255,246,232,.18)}
+.tv-kl .ph{position:relative;z-index:-1;width:clamp(180px,24vw,340px)!important;aspect-ratio:4/3!important;border-radius:0!important;box-shadow:none!important;margin:0 clamp(-90px,-5vw,-30px);
+  -webkit-mask:radial-gradient(closest-side,#000 45%,transparent 100%);mask:radial-gradient(closest-side,#000 45%,transparent 100%);opacity:.85;transition:transform 1.2s cubic-bezier(.23,1,.32,1)}
+.tv-kl li:hover .ph{transform:scale(1.06)}
+@media (max-width:900px){
+  .tv-ls{top:80px!important}
+  .tv-if{left:0!important;right:0!important;top:auto!important;bottom:0!important;width:auto!important;border-radius:0!important;backdrop-filter:none!important;padding:60px 18px 28px!important;
+    background:linear-gradient(to top,rgba(18,14,11,.96) 55%,rgba(18,14,11,0))!important}
+  .tv-if .n{font-size:2rem!important}
+}
+@media (max-width:700px){.tv-kl .ph{display:block!important;position:absolute;right:-10px;top:50%;width:200px!important;margin:0;transform:translateY(-50%);opacity:.5}}
 </style>
 <script>
 (function(){
@@ -194,7 +219,7 @@
   ' vec2 q=uv;if(asp>sa){q.x=(q.x-.5)*sa/asp+.5;}else{q.y=(q.y-.5)*asp/sa+.5;}',
   ' vec2 o=vec2(ca,0.);return vec3(texture2D(s,q+o).r,texture2D(s,q).g,texture2D(s,q-o).b);}',
   'float box(vec2 p,vec2 b,float r){vec2 d=abs(p)-b+r;return length(max(d,0.))+min(max(d.x,d.y),0.)-r;}',
-  'void main(){vec2 fc=gl_FragCoord.xy;vec2 uv=(fc-.5*R)/R.y;float mob=step(R.x/R.y,1.);uv.x-=mix(.2,0.,mob);uv.y+=mix(0.,.2,mob);float ra=mix(.2,.1,mob);uv=mat2(cos(ra),sin(ra),-sin(ra),cos(ra))*uv;',
+  'void main(){vec2 fc=gl_FragCoord.xy;vec2 uv=(fc-.5*R)/R.y;float mob=step(R.x/R.y,1.);uv.x-=mix(.2,0.,mob);uv.y+=mix(0.,.2,mob);float ra=mix(-.2,-.1,mob);uv=mat2(cos(ra),sin(ra),-sin(ra),cos(ra))*uv;',
   ' float D=6.3,Rd=2.2;vec3 d=normalize(vec3(uv.x,uv.y,-1.55));',
   ' float gy=(h(vec2(floor(fc.y/5.),floor(T*24.)))-.5)*G*.08;d.x+=gy;',
   ' vec2 q=vec2(0.,D),dq=d.yz;float a=dot(dq,dq),b=2.*dot(q,dq),c=dot(q,q)-Rd*Rd,dis=b*b-4.*a*c;',
@@ -274,7 +299,7 @@
     tv.querySelector('.tv-in').addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
     /* numbers: photo fill + reveal */
     var cityURL=null;tv.querySelectorAll('.tv-kl li').forEach(function(li){var b=li.querySelector('.big'),p=li.querySelector('.ph'),src=b.dataset.bg;
-      if(src==='CITY'){cityURL=cityURL||city().toDataURL('image/jpeg',.85);src=cityURL}b.style.backgroundImage='linear-gradient(rgba(255,200,130,.28),rgba(255,200,130,.28)),url('+src+')';p.src=src});
+      if(src==='CITY'){cityURL=cityURL||city().toDataURL('image/jpeg',.85);src=cityURL}p.src=src});
     var kio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');kio.unobserve(e.target)}})},{threshold:.25});
     tv.querySelectorAll('.tv-kl li').forEach(function(l){kio.observe(l)});
     /* picture cards lean toward the pointer */

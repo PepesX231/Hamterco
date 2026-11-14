@@ -30,10 +30,6 @@ function frame(t){var dt=Math.min(50,t-last);last=t;
   var s=Math.min(W*.62/FW,Hc*.6/WH),gy=Hc-6,mid=W/2;
   /* ground line + moving marks, drawn every frame (60fps) */
   var speed=phase==='walk'&&!rm?.055:0;dist+=speed*dt;
-  cx.strokeStyle='rgba(88,80,76,.28)';cx.lineWidth=1.4;cx.lineCap='round';cx.beginPath();cx.moveTo(mid-W*.38,gy);cx.lineTo(mid+W*.38,gy);cx.stroke();
-  marks.forEach(function(m){var x=((m.x*W*.76-dist)%(W*.76)+W*.76)%(W*.76)+mid-W*.38,fade=Math.min(1,(x-(mid-W*.38))/30,(mid+W*.38-x)/30);if(fade<=0)return;cx.globalAlpha=fade;
-    if(m.k){cx.save();cx.translate(x,gy-3-m.y*.3);cx.rotate(-.5);cx.fillStyle='rgb(88,80,76)';cx.beginPath();cx.ellipse(0,0,4.5,2.4,0,0,7);cx.fill();cx.fillStyle='rgb(240,232,222)';cx.beginPath();cx.ellipse(.6,0,2.6,.9,0,0,7);cx.fill();cx.restore()}
-    else{cx.strokeStyle='rgba(88,80,76,.32)';cx.beginPath();cx.moveTo(x,gy+4+m.y);cx.lineTo(x+m.w,gy+4+m.y);cx.stroke()}});
   cx.globalAlpha=1;
   if(ok<2){requestAnimationFrame(frame);return}
   if(phase==='walk'){var p=el/1000*FPS,f=Math.floor(p)%8,sub=p%1,bob=rm?0:Math.abs(Math.sin((f+sub)/8*Math.PI*4))*3;
