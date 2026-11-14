@@ -10564,10 +10564,10 @@ html body [data-view="home"] .zq .zq-h{cursor:default!important}
 /* the brand's hamsters peek into the hero from its edges (owner sketch + monster-landing ref) */
 .zq-crew{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;border-radius:inherit}
 .zq-crew .cr{position:absolute;pointer-events:auto;cursor:pointer;will-change:transform}
-.zq-crew .cr img{display:block;width:100%;height:auto;-webkit-user-drag:none;filter:drop-shadow(0 18px 24px rgba(120,60,10,.28))}
-.zq-crew .c1{left:-34px;bottom:-120px;width:clamp(170px,19vw,290px)}
-.zq-crew .c2{right:-26px;bottom:-130px;width:clamp(170px,19vw,290px)}
-.zq-crew .c3{right:-70px;top:20%;width:clamp(140px,15vw,230px)}
+.zq-crew .cr img{display:block;width:100%;height:auto;-webkit-user-drag:none;filter:drop-shadow(0 14px 18px rgba(120,60,10,.22))}
+.zq-crew .c1{left:-20px;bottom:-90px;width:clamp(170px,18vw,270px)}
+.zq-crew .c2{right:-24px;bottom:-110px;width:clamp(170px,18vw,270px)}
+.zq-crew .c3{right:-60px;top:22%;width:clamp(150px,15vw,230px)}
 .zq-note{position:absolute;right:clamp(110px,11vw,190px);top:41%;pointer-events:none;color:#1D1712;font:700 clamp(1rem,1.5vw,1.3rem)/1.1 'Mali',var(--display);transform:rotate(-6deg);opacity:0;transition:opacity .4s}
 .zq-note svg{display:block;width:clamp(70px,8vw,120px);height:auto;margin:4px 0 0 -10px;overflow:visible}
 .zq-note path{fill:none;stroke:#1D1712;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
@@ -10582,7 +10582,7 @@ html body [data-view="home"] .zq .zq-h{cursor:default!important}
     var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,inp=document.getElementById('zqIn');
     var box=document.createElement('div');box.className='zq-crew';box.setAttribute('aria-hidden','true');
     /* [image, class, base rotation, where it comes in from (x,y), parallax depth] */
-    var D=[['n-gamer','c1',16,[-1,1],18],['n-maker','c2',-14,[1,1],22],['n-up','c3',-72,[1,0],12]];
+    var D=[['crew-jump','c1',10,[-1,1],18],['crew-wow','c2',-10,[1,1],22],['crew-point','c3',-6,[1,0],12]];
     var C=D.map(function(d,i){var e=document.createElement('div');e.className='cr '+d[1];e.innerHTML='<img src="img/'+d[0]+'.webp" alt="">';box.appendChild(e);
       return {e:e,rot:d[2],from:d[3],dep:d[4],x:d[3][0]*260,y:d[3][1]*260,vx:0,vy:0,tx:0,ty:0,r:0,vr:0,tr:0,sq:1,vs:0,ph:i*1.7}});
     var note=document.createElement('div');note.className='zq-note';
