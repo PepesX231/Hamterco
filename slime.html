@@ -10536,4 +10536,17 @@ html body [data-view="home"] .zq .zq-sw{margin-top:46px!important}
     inp.addEventListener('focus',function(){used=true;clearInterval(iv);form.classList.remove('inv')})}
   if(document.readyState==='complete')go();else addEventListener('load',go);
 })();
+</script><style id="ly-calm">
+/* the headline is just text now: no style switching and no seeds when it is clicked */
+html body [data-view="home"] .zq .zq-h{cursor:default!important}
+</style>
+<script>
+(function(){
+  function quiet(e){var t=e.target;if(!t||!t.closest)return;var zq=t.closest('[data-view="home"] .zq');if(!zq)return;
+    if(t.closest('form,input,button,a,label,select,textarea,.zq-ch,.zq-pop,#zqRes,#zqSug,[role="button"]'))return;
+    e.stopImmediatePropagation();if(e.type==='click')e.preventDefault()}
+  ['pointerdown','mousedown','click','touchstart','dblclick'].forEach(function(k){window.addEventListener(k,quiet,{capture:true,passive:k!=='click'})});
+  function go(){var h=document.querySelector('.zq-h');if(h){h.removeAttribute('title');h.setAttribute('data-f','kanit');h.removeAttribute('tabindex');h.removeAttribute('role')}}
+  if(document.readyState==='complete')go();else addEventListener('load',go);
+})();
 </script>
