@@ -1,4 +1,4 @@
-<link href="https://fonts.googleapis.com/css2?family=Silkscreen&family=IBM+Plex+Mono:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@600&display=swap" rel="stylesheet">
 <style id="ly-navart">
 /* ===== nav: each link gets its own hover, drawn from what is behind it ===== */
 .nav-in>a.nv-c,.nav-in>a.nv-w,.nav-in>a.nv-b{position:relative}
@@ -15,25 +15,25 @@
 .nav-in>a.nv-c:hover>span,.nav-in>a.nv-c:focus-visible>span{color:#1D1712;font-weight:600}
 @keyframes naBlink{0%{opacity:1}50%{opacity:0}}
 
-/* ผลงาน = games: the word is wiped away in 8-bit steps and a PLAY prompt pixels in */
-.nav-in>a.nv-w>span>.na-w0{display:inline-block;transition:clip-path .3s steps(5)}
-.na-w{left:50%;top:50%;transform:translate(-50%,-50%);font:400 .78rem/1 'Silkscreen',monospace;color:#B85F14;letter-spacing:.04em;clip-path:inset(0 100% 0 0);transition:clip-path .3s steps(5)}
-.na-w b{display:inline-block;font-weight:400;margin-right:5px}
-.nav-in>a.nv-w:hover>span>.na-w0,.nav-in>a.nv-w:focus-visible>span>.na-w0{clip-path:inset(0 0 0 100%)}
-.nav-in>a.nv-w:hover .na-w,.nav-in>a.nv-w:focus-visible .na-w{clip-path:inset(0 0 0 0);transition-delay:.12s}
-.nav-in>a.nv-w:hover .na-w b,.nav-in>a.nv-w:focus-visible .na-w b{animation:naBlink .8s steps(1) .5s infinite}
+/* ผลงาน = the Hall of Fame: the word is lit like a name on the wall of fame, a beam of light passes over it */
+.nav-in>a.nv-w>span>.na-w0{display:inline-block;position:relative;transition:color .25s}
+.na-w{left:-12px;right:-12px;top:-7px;bottom:-7px;border-radius:10px;z-index:-1;opacity:0;transform:scale(.85);
+  background:radial-gradient(60% 90% at 50% 0,rgba(255,214,122,.35),rgba(255,214,122,0) 70%),#1D1712;box-shadow:0 6px 16px -8px rgba(29,23,18,.6);transition:opacity .2s,transform .3s cubic-bezier(.3,1.5,.5,1)}
+.nav-in>a.nv-w>span{z-index:0}
+.nav-in>a.nv-w:hover .na-w,.nav-in>a.nv-w:focus-visible .na-w{opacity:1;transform:none}
+.nav-in>a.nv-w:hover>span>.na-w0,.nav-in>a.nv-w:focus-visible>span>.na-w0{color:transparent;font-weight:700;
+  background:linear-gradient(100deg,#D9A441 0%,#F2C76B 30%,#FFF4D2 45%,#F2C76B 60%,#D9A441 100%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;
+  animation:naFame 1.6s cubic-bezier(.4,0,.2,1) infinite;filter:drop-shadow(0 0 6px rgba(255,200,90,.45))}
+@keyframes naFame{0%{background-position:100% 0}60%,100%{background-position:0 0}}
 
-/* เกี่ยวกับเรา = the about page is a broadcast: the word tunes in with a glitch and goes ON AIR */
-.na-b{right:calc(100% + 7px);top:50%;width:7px;height:7px;margin-top:-4px;border-radius:50%;background:#E5402F;opacity:0;transform:scale(.4);transition:opacity .2s,transform .3s cubic-bezier(.3,1.6,.5,1)}
-.nav-in>a.nv-b:hover .na-b,.nav-in>a.nv-b:focus-visible .na-b{opacity:1;transform:none;animation:naBlink 1.2s steps(1) .6s infinite}
-.nav-in>a.nv-b:hover>span,.nav-in>a.nv-b:focus-visible>span{color:#B85F14;animation:naTune .5s steps(1) both;text-shadow:0 0 10px rgba(242,166,94,.55)}
-@keyframes naTune{
-  0%{text-shadow:-3px 0 rgba(229,64,47,.8),3px 0 rgba(60,170,255,.7);transform:translateX(2px) skewX(-12deg);clip-path:inset(10% 0 45% 0)}
-  20%{text-shadow:2px 0 rgba(229,64,47,.8),-2px 0 rgba(60,170,255,.7);transform:translateX(-2px);clip-path:inset(50% 0 5% 0)}
-  40%{text-shadow:-1px 0 rgba(229,64,47,.7),1px 0 rgba(60,170,255,.6);transform:translateX(1px) skewX(6deg);clip-path:none}
-  60%{text-shadow:1px 0 rgba(229,64,47,.5),-1px 0 rgba(60,170,255,.4);transform:none}
-  100%{text-shadow:0 0 10px rgba(242,166,94,.55);transform:none;clip-path:none}}
-@media (prefers-reduced-motion:reduce){.na-x,.nav-in>a.nv-w>span>.na-w0{transition:none!important;animation:none!important}.nav-in>a.nv-b:hover>span{animation:none!important}}
+/* เกี่ยวกับเรา = meet the team: the Hamster Hub hamster climbs up from behind the word to say hi */
+.na-b{left:50%;bottom:76%;width:40px;height:21px;transform:translateX(-50%);overflow:hidden;z-index:-1}
+.na-b img{display:block;width:40px;height:auto;transform:translateY(100%);transition:transform .45s cubic-bezier(.3,1.6,.5,1)}
+.nav-in>a.nv-b>span{z-index:0}
+.nav-in>a.nv-b:hover .na-b img,.nav-in>a.nv-b:focus-visible .na-b img{transform:translateY(0)}
+.nav-in>a.nv-b:hover>span,.nav-in>a.nv-b:focus-visible>span{color:#1D1712;font-weight:600}
+
+@media (prefers-reduced-motion:reduce){.na-x,.nav-in>a.nv-w>span>.na-w0{transition:none!important;animation:none!important}.nav-in>a.nv-w:hover>span>.na-w0{animation:none!important}.na-b img{transition:none!important}}
 
 /* ===== seniors caption: a quiet plaque instead of a line of dots ===== */
 html body [data-view="home"] .mc .mc2-nav{display:grid!important;grid-template-columns:52px minmax(0,1fr) 52px;align-items:center;gap:clamp(14px,3vw,40px);max-width:760px;margin:6px auto 0!important}
@@ -74,9 +74,9 @@ html body [data-view="home"] .mc .lk:active{transform:scale(.97)}
     var c=document.querySelector('.nav-in>a.nv-c>span');
     if(c&&!c.querySelector('.na-x')){var l=el('span','na-x na-c l','<'),r=el('span','na-x na-c r','/>');r.appendChild(el('i'));[l,r].forEach(function(x){x.setAttribute('aria-hidden','true')});c.appendChild(l);c.appendChild(r)}
     var w=document.querySelector('.nav-in>a.nv-w>span');
-    if(w&&!w.querySelector('.na-x')){var t=w.textContent;w.textContent='';w.appendChild(el('span','na-w0',t));var p=el('span','na-x na-w');p.setAttribute('aria-hidden','true');p.appendChild(el('b',null,'▶'));p.appendChild(document.createTextNode('PLAY'));w.appendChild(p)}
+    if(w&&!w.querySelector('.na-x')){var t=w.textContent;w.textContent='';w.appendChild(el('span','na-w0',t));var p=el('span','na-x na-w');p.setAttribute('aria-hidden','true');w.appendChild(p)}
     var b=document.querySelector('.nav-in>a.nv-b>span');
-    if(b&&!b.querySelector('.na-x')){var d=el('span','na-x na-b');d.setAttribute('aria-hidden','true');b.appendChild(d)}}
+    if(b&&!b.querySelector('.na-x')){var d=el('span','na-x na-b'),im=el('img');im.src='img/n-peek.webp';im.alt='';d.setAttribute('aria-hidden','true');d.appendChild(im);b.appendChild(d)}}
   /* seniors caption */
   var last='';
   function cap(){var p=document.getElementById('mcC');if(!p)return;var box=p.parentNode,m=box.querySelector('.mc3');
