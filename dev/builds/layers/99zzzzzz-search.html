@@ -39,7 +39,7 @@ html body [data-view="home"] .zq{margin-top:-6px!important}
     var cur='',tm=0;
     function setQ(){var w=(typ&&typ.textContent||'').trim();if(!w||w===cur)return;cur=w;form.classList.add('ph-sw');
       setTimeout(function(){inp.setAttribute('placeholder','ลองถาม: อยาก'+w);form.classList.remove('ph-sw')},250)}
-    if(typ){new MutationObserver(function(){clearTimeout(tm);tm=setTimeout(setQ,700)}).observe(typ,{childList:true,characterData:true,subtree:true});setQ()}
+    if(typ){new MutationObserver(function(){if(!inp.value)form.classList.add('ph-sw');clearTimeout(tm);tm=setTimeout(function(){var w=(typ.textContent||'').trim();if(w===cur)form.classList.remove('ph-sw');else setQ()},700)}).observe(typ,{childList:true,characterData:true,subtree:true});setQ()}
     form.addEventListener('submit',function(){if(!inp.value.trim()&&cur){inp.value='อยาก'+cur;inp.dispatchEvent(new Event('input',{bubbles:true}))}},true);
     go&&go.addEventListener('pointerdown',function(){if(!inp.value.trim()&&cur){inp.value='อยาก'+cur;inp.dispatchEvent(new Event('input',{bubbles:true}))}});
     var used=function(){form.classList.add('used')};inp.addEventListener('focus',used);form.addEventListener('submit',used);

@@ -10272,7 +10272,25 @@ html.nv-dk header.nav .menu{color:#FFF6E8!important}
   html.nv-dk .nav-in>a.v{background:rgba(255,246,232,.07)}
   html.nv-dk .nav-in>a.v[aria-current="page"]::after{background:rgba(255,246,232,.14)!important;box-shadow:none}
 }
+</style><style id="ly-navjoin">
+/* home, at the top: the orange hero card starts right under the top edge and the bar sits inside it, so the two read as one piece */
+html.nv-top header.nav{background:transparent!important}
+html.nv-top .nav-in{transform:translateY(7px)}
+.nav-in{transition:transform .3s}
+html body [data-view="home"] .zq{transition:none}
+html.nv-home body [data-view="home"] .zq{margin-top:-52px!important;padding-top:calc(86px + 52px)!important;border-radius:32px 32px 0 0!important}
+html.nv-top header.nav{transition:background .3s}
+html.nv-home [data-view="home"] .zq .hx-cv{-webkit-mask:linear-gradient(transparent 0,transparent 60px,#000 130px);mask:linear-gradient(transparent 0,transparent 60px,#000 130px)}
+@media (min-width:900px){
+  .nav-in>a.v{padding:11px 18px!important}
+  html.nv-top .nav-in>a.v{background:rgba(255,246,232,.38)}
+  html.nv-top .nav-in>a.v:hover{background:rgba(255,246,232,.6)}
+  html.nv-top .nav-in>a.v[aria-current="page"]::after{background:#FFF6E8!important}
+}
+html.nv-top .nav-in>a.v,html.nv-top header.nav .brand{color:#1D1712!important}
 </style>
+<script>(function(){var H=document.documentElement;function f(){var home=!location.hash||/^#(home)?$/.test(location.hash);H.classList.toggle('nv-home',home);H.classList.toggle('nv-top',home&&scrollY<30)}
+f();addEventListener('scroll',f,{passive:true});addEventListener('hashchange',f)})();</script>
 <!-- layer: 99zzzz-fix.html -->
 <style id="ly-fix">
 /* "สิ่งที่ Hamster Hub สร้าง" sat too far from the course rail and from its own first row */
@@ -10375,7 +10393,7 @@ html body [data-view="home"] .zq{margin-top:-6px!important}
     var cur='',tm=0;
     function setQ(){var w=(typ&&typ.textContent||'').trim();if(!w||w===cur)return;cur=w;form.classList.add('ph-sw');
       setTimeout(function(){inp.setAttribute('placeholder','ลองถาม: อยาก'+w);form.classList.remove('ph-sw')},250)}
-    if(typ){new MutationObserver(function(){clearTimeout(tm);tm=setTimeout(setQ,700)}).observe(typ,{childList:true,characterData:true,subtree:true});setQ()}
+    if(typ){new MutationObserver(function(){if(!inp.value)form.classList.add('ph-sw');clearTimeout(tm);tm=setTimeout(function(){var w=(typ.textContent||'').trim();if(w===cur)form.classList.remove('ph-sw');else setQ()},700)}).observe(typ,{childList:true,characterData:true,subtree:true});setQ()}
     form.addEventListener('submit',function(){if(!inp.value.trim()&&cur){inp.value='อยาก'+cur;inp.dispatchEvent(new Event('input',{bubbles:true}))}},true);
     go&&go.addEventListener('pointerdown',function(){if(!inp.value.trim()&&cur){inp.value='อยาก'+cur;inp.dispatchEvent(new Event('input',{bubbles:true}))}});
     var used=function(){form.classList.add('used')};inp.addEventListener('focus',used);form.addEventListener('submit',used);
