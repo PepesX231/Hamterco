@@ -10435,7 +10435,7 @@ html body [data-view="home"] .zq{margin-top:-6px!important}
     /* the empty bar shows the headline's wish as a question; ค้นหา on an empty bar asks it */
     var cur='',tm=0;
     function setQ(){var w=(typ&&typ.textContent||'').trim();if(!w||w===cur)return;cur=w;form.classList.add('ph-sw');
-      setTimeout(function(){inp.setAttribute('placeholder','ลองถาม: อยาก'+w);form.classList.remove('ph-sw')},250)}
+      setTimeout(function(){form.classList.remove('ph-sw');if(window.__zqType)window.__zqType('ลองถาม: อยาก'+w);else inp.setAttribute('placeholder','ลองถาม: อยาก'+w)},250)}
     if(typ){new MutationObserver(function(){if(!inp.value&&inp.getAttribute('placeholder')!==(innerWidth<640?'ถามเราได้เลย':'พิมพ์ถามเราได้เลย น้องอยากทำอะไร'))inp.setAttribute('placeholder',(innerWidth<640?'ถามเราได้เลย':'พิมพ์ถามเราได้เลย น้องอยากทำอะไร'));clearTimeout(tm);tm=setTimeout(function(){var w=(typ.textContent||'').trim();if(w===cur){cur='';setQ()}else setQ()},700)}).observe(typ,{childList:true,characterData:true,subtree:true});setQ()}
     form.addEventListener('submit',function(){if(!inp.value.trim()&&cur){inp.value='อยาก'+cur;inp.dispatchEvent(new Event('input',{bubbles:true}))}},true);
     go&&go.addEventListener('pointerdown',function(){if(!inp.value.trim()&&cur){inp.value='อยาก'+cur;inp.dispatchEvent(new Event('input',{bubbles:true}))}});
@@ -10455,47 +10455,50 @@ html body [data-view="home"] .zq{margin-top:-6px!important}
 })();
 </script>
 <style id="ly-chibi">
-/* the search hamster: a chibi that peeks over the bar; after a while it points at the bar and taps it */
+/* the search hamster: only its ears show over the bar; it pops up when the visitor taps the bar */
 #zqHam{visibility:hidden!important}
-.zq-ch{position:absolute;z-index:5;width:106px;height:75px;cursor:pointer;background:url(img/ham-chibi.webp) 0 0/848px 75px no-repeat;
-  transform-origin:50% 100%;transition:transform .35s cubic-bezier(.3,1.6,.5,1);-webkit-tap-highlight-color:transparent}
-.zq-ch:hover{transform:translateY(-3px)}
-.zq-ch.hop{animation:zqChHop .5s cubic-bezier(.3,1.6,.5,1)}
-@keyframes zqChHop{40%{transform:translateY(-12px) scale(1.04,.97)}}
-.zq-tap{position:absolute;z-index:5;width:30px;height:12px;margin:-6px 0 0 -15px;border-radius:50%;border:2px solid rgba(242,166,94,.9);pointer-events:none;opacity:0}
-.zq-tap.go{animation:zqTap .6s ease-out}
-@keyframes zqTap{0%{opacity:.9;transform:scale(.3)}100%{opacity:0;transform:scale(1.7)}}
-@media (max-width:640px){.zq-ch{width:74px;height:52px;background-size:592px 52px}}
+.zq-ch{position:absolute;z-index:3;width:106px;height:75px;cursor:pointer;background:url(img/ham-chibi.webp) 0 0/848px 75px no-repeat;
+  transform:translateY(var(--hide,58px));transition:transform .5s cubic-bezier(.3,1.5,.5,1);-webkit-tap-highlight-color:transparent}
+.zq-ch:hover{transform:translateY(calc(var(--hide,58px) - 6px))}
+.zq-ch.up,.zq-ch.up:hover{transform:translateY(0)}
+@media (max-width:640px){.zq-ch{width:74px;height:52px;background-size:592px 52px;--hide:41px}}
 html body [data-view="home"] .zq .zq-sw{margin-top:46px!important}
 @media (max-width:640px){html body [data-view="home"] .zq .zq-sw{margin-top:44px!important}}
+/* the invitation lives on the bar itself: a warm light sweeps across it and the button nudges */
+.zq-sh{position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none;z-index:0}
+.zq-sh::before{content:"";position:absolute;top:0;bottom:0;left:-40%;width:34%;transform:skewX(-20deg) translateX(0);
+  background:linear-gradient(90deg,rgba(242,166,94,0),rgba(242,166,94,.22) 45%,rgba(255,214,150,.35) 50%,rgba(242,166,94,.22) 55%,rgba(242,166,94,0))}
+#zqForm.inv .zq-sh::before{animation:zqSweep 1.3s cubic-bezier(.45,0,.2,1)}
+@keyframes zqSweep{to{transform:skewX(-20deg) translateX(520%)}}
+#zqForm.inv .zq-go{animation:zqNudge .7s cubic-bezier(.3,1.6,.5,1) 1s}
+@keyframes zqNudge{30%{transform:scale(1.07)}60%{transform:scale(.97)}100%{transform:none}}
+#zqForm>*:not(.zq-sh):not(.zq-halo){position:relative;z-index:1}
+@media (prefers-reduced-motion:reduce){.zq-ch{transition:none}#zqForm.inv .zq-sh::before,#zqForm.inv .zq-go{animation:none}}
 </style>
 <script>
 (function(){
   function go(){var ham=document.getElementById('zqHam'),sw=ham&&ham.closest('.zq-sw'),inp=document.getElementById('zqIn'),form=document.getElementById('zqForm');if(!sw||sw.querySelector('.zq-ch'))return;
     if(getComputedStyle(sw).position==='static')sw.style.position='relative';
-    var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,ch=document.createElement('div');ch.className='zq-ch';ch.setAttribute('aria-hidden','true');sw.appendChild(ch);
-    var tap=document.createElement('i');tap.className='zq-tap';sw.appendChild(tap);
-    var fw=0,cur=-1;
-    function fr(n){if(n===cur)return;cur=n;fw=ch.offsetWidth;ch.style.backgroundPosition=(-n*fw)+'px 0'}
-    function place(){var a=ham.getBoundingClientRect(),f=form.getBoundingClientRect(),r=sw.getBoundingClientRect();fw=ch.offsetWidth;
-      var cx=a.width?a.left+a.width/2:f.left+f.width*.62;ch.style.left=(cx-r.left-fw/2)+'px';ch.style.top=(f.top-r.top-ch.offsetHeight+3)+'px';var c=cur;cur=-1;fr(Math.max(0,c))}
+    var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,ch=document.createElement('div');ch.className='zq-ch';ch.setAttribute('aria-hidden','true');sw.insertBefore(ch,sw.firstChild);
+    var sh=document.createElement('span');sh.className='zq-sh';sh.setAttribute('aria-hidden','true');form.insertBefore(sh,form.firstChild);
+    var cur=-1;function fr(n){if(n===cur)return;cur=n;ch.style.backgroundPosition=(-n*ch.offsetWidth)+'px 0'}
+    function place(){var a=ham.getBoundingClientRect(),f=form.getBoundingClientRect(),r=sw.getBoundingClientRect(),w=ch.offsetWidth;
+      var cx=a.width?a.left+a.width/2:f.left+f.width*.62;ch.style.left=(cx-r.left-w/2)+'px';ch.style.top=(f.top-r.top-ch.offsetHeight-14)+'px';var c=cur;cur=-1;fr(Math.max(0,c))}
     place();fr(0);addEventListener('resize',place);setTimeout(place,600);setTimeout(place,2000);
-    /* idle life: blink, sometimes a curious tilt */
-    var busy=false,used=false,T=[];function later(f,ms){T.push(setTimeout(f,ms))}
-    function blink(){if(!busy){fr(1);setTimeout(function(){if(!busy)fr(0)},140)}setTimeout(blink,2600+Math.random()*2600)}
-    function tilt(){if(!busy&&!rm){fr(2);setTimeout(function(){if(!busy)fr(0)},1100)}setTimeout(tilt,9000+Math.random()*5000)}
-    setTimeout(blink,1800);setTimeout(tilt,7000);
-    /* the hint: looks down at the bar, points, taps it twice, then looks at you with sparkly eyes */
-    function tapAt(){var c=ch.getBoundingClientRect(),r=sw.getBoundingClientRect();tap.style.left=(c.left-r.left+c.width*.28)+'px';tap.style.top=(c.bottom-r.top-2)+'px';tap.classList.remove('go');void tap.offsetWidth;tap.classList.add('go')}
-    function hint(){if(used||busy||document.activeElement===inp||inp.value)return;busy=true;var t=0,seq=[[3,650],[4,380],[5,170],[4,240],[5,170],[4,240],[6,1300],[0,0]];
-      seq.forEach(function(s){later(function(){fr(s[0]);if(s[0]===5)tapAt();if(s[0]===0)busy=false},t);t+=s[1]})}
-    var hi=0;function loop(){clearTimeout(hi);if(used)return;hi=setTimeout(function(){hint();loop()},9000)}
-    function first(){setTimeout(function(){hint();loop()},rm?99999999:3500)}if(document.getElementById('hhL'))addEventListener('hh:loaded',first,{once:true});else first();
-    function stop(){if(used)return;used=true;clearTimeout(hi);T.forEach(clearTimeout);busy=true;fr(7);ch.classList.remove('hop');void ch.offsetWidth;ch.classList.add('hop');setTimeout(function(){busy=false;fr(0)},900)}
-    inp.addEventListener('focus',stop);inp.addEventListener('input',stop);form.addEventListener('submit',stop);
+    var up=false;
+    function blink(){if(up&&cur===0){fr(1);setTimeout(function(){if(cur===1)fr(0)},140)}setTimeout(blink,2400+Math.random()*2400)}setTimeout(blink,2000);
+    function pop(){if(up)return;up=true;ch.classList.add('up');fr(6);setTimeout(function(){if(up)fr(0)},900)}
+    function down(){if(!up||inp.value||document.activeElement===inp)return;up=false;ch.classList.remove('up');fr(0)}
+    inp.addEventListener('focus',pop);inp.addEventListener('input',function(){if(!up)pop()});inp.addEventListener('blur',function(){setTimeout(down,250)});
     ch.addEventListener('click',function(){inp.focus()});
-    /* came back to the hero without trying: the hint starts again */
-    var zq=sw.closest('.zq');if(zq&&'IntersectionObserver' in window)new IntersectionObserver(function(es){if(es[0].isIntersecting&&!inp.value&&document.activeElement!==inp&&used){used=false;loop()}},{threshold:.5}).observe(zq)}
+    /* typewriter placeholder */
+    var tt=0;window.__zqType=function(t){clearTimeout(tt);if(rm||inp.value){inp.setAttribute('placeholder',t);return}var i=0;
+      (function step(){i++;inp.setAttribute('placeholder',t.slice(0,i)+(i<t.length?'|':''));if(i<t.length)tt=setTimeout(step,45)})()};
+    /* invitation: until the bar has been used, a light sweeps across it every few seconds */
+    var used=false,iv=0;function inv(){if(used||document.activeElement===inp)return;form.classList.remove('inv');void form.offsetWidth;form.classList.add('inv')}
+    function startInv(){if(rm)return;setTimeout(inv,1600);iv=setInterval(inv,6500)}
+    if(document.getElementById('hhL'))addEventListener('hh:loaded',startInv,{once:true});else startInv();
+    inp.addEventListener('focus',function(){used=true;clearInterval(iv);form.classList.remove('inv')})}
   if(document.readyState==='complete')go();else addEventListener('load',go);
 })();
 </script>
