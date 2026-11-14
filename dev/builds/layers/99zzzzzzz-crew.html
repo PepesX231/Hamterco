@@ -3,10 +3,10 @@
 /* the brand's hamsters peek into the hero from its edges (owner sketch + monster-landing ref) */
 .zq-crew{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;border-radius:inherit}
 .zq-crew .cr{position:absolute;pointer-events:auto;cursor:pointer;will-change:transform}
-.zq-crew .cr img{display:block;width:100%;height:auto;-webkit-user-drag:none;filter:drop-shadow(0 14px 18px rgba(120,60,10,.22))}
-.zq-crew .c1{left:21%;top:-120px;width:clamp(120px,11vw,175px)}
-.zq-crew .c2{right:-70px;top:34%;width:clamp(260px,25vw,380px)}
-.zq-crew .c3{left:62%;bottom:-110px;width:clamp(190px,16vw,250px)}
+.zq-crew .cr img{display:block;width:100%;height:auto;-webkit-user-drag:none;filter:none}
+.zq-crew .c1{left:14px;top:-70px;width:clamp(105px,8.5vw,140px)}
+.zq-crew .c2{right:-90px;top:34%;width:clamp(270px,26vw,390px)}
+.zq-crew .c3{left:73%;bottom:-110px;width:clamp(190px,16vw,250px)}
 .zq-note{position:absolute;right:clamp(250px,22vw,330px);top:23%;pointer-events:none;color:#1D1712;font:700 clamp(1rem,1.5vw,1.3rem)/1.1 'Mali',var(--display);transform:rotate(-4deg);opacity:0;transition:opacity .4s;text-align:center}
 .zq-note svg{display:block;width:clamp(56px,5.5vw,80px);height:auto;margin:4px 0 0 30%;overflow:visible}
 .zq-note path{fill:none;stroke:#1D1712;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
@@ -20,7 +20,7 @@
     var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,inp=document.getElementById('zqIn');
     var box=document.createElement('div');box.className='zq-crew';box.setAttribute('aria-hidden','true');
     /* [image, class, base rotation, where it comes in from (x,y), parallax depth] */
-    var D=[['crew-hang','c1',4,[0,-1],10],['crew-lie','c2',-4,[1,0],16],['crew-wow','c3',-6,[0,1],8]];
+    var D=[['crew2-hang','c1',4,[0,-1],10],['crew2-lie','c2',-4,[1,0],16],['crew-wow','c3',-6,[0,1],8]];
     var C=D.map(function(d,i){var e=document.createElement('div');e.className='cr '+d[1];e.innerHTML='<img src="img/'+d[0]+'.webp" alt="">';box.appendChild(e);
       return {e:e,rot:d[2],from:d[3],dep:d[4],x:d[3][0]*260,y:d[3][1]*260,vx:0,vy:0,tx:0,ty:0,r:0,vr:0,tr:0,sq:1,vs:0,ph:i*1.7}});
     var note=document.createElement('div');note.className='zq-note';
