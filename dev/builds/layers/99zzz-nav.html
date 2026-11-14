@@ -18,18 +18,19 @@
 /* ผลงาน = the Hall of Fame: a soft gold aurora rises behind the word, the word turns to gold */
 .nav-in>a.nv-w>span{z-index:0}
 .nav-in>a.nv-w>span>.na-w0{display:inline-block;position:relative;transition:color .25s}
-.na-w{left:50%;top:-26px;width:150px;height:66px;margin-left:-75px;z-index:-1;opacity:0;transition:opacity .4s;
-  -webkit-mask:radial-gradient(55% 100% at 50% 0,#000 40%,transparent 100%);mask:radial-gradient(55% 100% at 50% 0,#000 40%,transparent 100%)}
-.na-w::before{content:"";position:absolute;left:14%;right:14%;bottom:2px;height:30px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,206,92,.75),rgba(255,206,92,0));filter:blur(3px);animation:naHalo 2.4s ease-in-out infinite alternate}
-.na-w i{position:absolute;top:0;width:7px;height:100%;border-radius:40%;filter:blur(1.6px);transform-origin:50% 0;
-  background:linear-gradient(to bottom,rgba(230,150,30,0) 0,rgba(236,162,40,.8) 18%,rgba(255,206,96,.55) 60%,rgba(255,236,170,0) 100%);animation:naRay 3s ease-in-out infinite alternate}
-.na-w i:nth-child(1){left:22%;height:70%;animation-duration:2.7s}
-.na-w i:nth-child(2){left:34%;height:96%;width:10px;animation-duration:3.4s;animation-delay:-1s}
-.na-w i:nth-child(3){left:47%;height:84%;animation-duration:2.9s;animation-delay:-.4s}
-.na-w i:nth-child(4){left:59%;height:100%;width:10px;animation-duration:3.7s;animation-delay:-2s}
-.na-w i:nth-child(5){left:71%;height:66%;animation-duration:3.1s;animation-delay:-1.4s}
-@keyframes naRay{0%{transform:skewX(-16deg) scaleY(.85);opacity:.4}50%{opacity:1}100%{transform:skewX(14deg) scaleY(1.05);opacity:.75}}
-@keyframes naHalo{to{transform:scale(1.15);opacity:.8}}
+/* light falls on the word from above in a soft fan, a warm pool of gold glows under it */
+.na-w{left:50%;top:-30px;width:120px;height:70px;margin-left:-60px;z-index:-1;opacity:0;transition:opacity .35s}
+.na-w::before{content:"";position:absolute;left:8%;right:8%;bottom:-6px;height:30px;border-radius:50%;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(255,205,90,.7),rgba(255,205,90,0) 100%);animation:naHalo 2.6s ease-in-out infinite alternate}
+.na-w i{position:absolute;left:50%;top:0;width:3px;height:100%;margin-left:-1.5px;border-radius:2px;transform-origin:50% 0;
+  background:linear-gradient(to bottom,rgba(255,214,110,0) 0,rgba(255,200,80,.75) 45%,rgba(255,214,110,0) 100%);filter:blur(.6px);animation:naRay 3.4s ease-in-out infinite alternate}
+.na-w i:nth-child(1){transform:rotate(34deg);height:84%;animation-delay:-.6s}
+.na-w i:nth-child(2){transform:rotate(18deg);animation-delay:-1.8s}
+.na-w i:nth-child(3){transform:rotate(0deg);height:76%;width:4px;animation-delay:-1.1s}
+.na-w i:nth-child(4){transform:rotate(-18deg);animation-delay:-2.4s}
+.na-w i:nth-child(5){transform:rotate(-34deg);height:84%;animation-delay:-.2s}
+@keyframes naRay{0%{opacity:.25}100%{opacity:1}}
+@keyframes naHalo{to{transform:scale(1.15);opacity:.75}}
 .nav-in>a.nv-w:hover .na-w,.nav-in>a.nv-w:focus-visible .na-w{opacity:1}
 .nav-in>a.nv-w:hover>span>.na-w0,.nav-in>a.nv-w:focus-visible>span>.na-w0{color:transparent;font-weight:700;
   background:linear-gradient(100deg,#6B420A 0%,#8A5A10 30%,#E9B44C 45%,#8A5A10 60%,#6B420A 100%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;animation:naFame 1.8s cubic-bezier(.4,0,.2,1) infinite;filter:drop-shadow(0 0 5px rgba(255,200,80,.7))}
@@ -39,7 +40,7 @@
 .nav-in>a.nv-b>span{z-index:0}
 .na-b{left:-14px;right:-14px;top:-9px;bottom:-9px}
 .na-b svg{width:100%;height:100%;overflow:visible}
-.na-b path{opacity:0;fill:none;stroke:#E8833A;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .55s cubic-bezier(.6,0,.3,1)}
+.na-b path{opacity:0;fill:none;stroke:#E8833A;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .55s cubic-bezier(.6,0,.3,1)}
 .na-b .h{fill:#E8833A;opacity:0;transform:scale(.3) rotate(-20deg);transform-origin:center;transform-box:fill-box;transition:opacity .2s .45s,transform .35s cubic-bezier(.3,1.8,.5,1) .45s}
 .nav-in>a.nv-b:hover .na-b path,.nav-in>a.nv-b:focus-visible .na-b path{stroke-dashoffset:0;opacity:1}
 .nav-in>a.nv-b:hover .na-b .h,.nav-in>a.nv-b:focus-visible .na-b .h{opacity:1;transform:rotate(15deg)}

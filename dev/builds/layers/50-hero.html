@@ -124,7 +124,7 @@
   function ambient(){clearTimeout(amb);amb=setTimeout(ambient,2600+Math.random()*1800);
     if(rm||!run||document.hidden||!W||!box)return;
     for(var tries=0;tries<12;tries++){var x=W*(.06+Math.random()*.88),y=H*(.14+Math.random()*.72),ex=(x-box.x)/(box.rx+60),ey=(y-box.y)/(box.ry+50);
-      if(ex*ex+ey*ey>1.2&&!(y>box.y&&Math.abs(x-W/2)<(W<640?W:300))){rings(x,y,(W<640?320:520)+Math.random()*200,Math.random()<.5?2:3);return}}}
+      if(ex*ex+ey*ey>1.2&&!(y>box.y&&Math.abs(x-W/2)<(W<640?W:300))){rings(x,y,(W<640?320:520)+Math.random()*200,0);return}}}
   /* typing: each key sends a small ripple out of the caret */
   var mc=document.createElement('canvas').getContext('2d');
   inp&&inp.addEventListener('input',function(){if(rm)return;var r=zq.getBoundingClientRect(),ir=inp.getBoundingClientRect(),cs=getComputedStyle(inp);mc.font=cs.font;

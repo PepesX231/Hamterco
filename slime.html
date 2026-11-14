@@ -7501,7 +7501,7 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
   function ambient(){clearTimeout(amb);amb=setTimeout(ambient,2600+Math.random()*1800);
     if(rm||!run||document.hidden||!W||!box)return;
     for(var tries=0;tries<12;tries++){var x=W*(.06+Math.random()*.88),y=H*(.14+Math.random()*.72),ex=(x-box.x)/(box.rx+60),ey=(y-box.y)/(box.ry+50);
-      if(ex*ex+ey*ey>1.2&&!(y>box.y&&Math.abs(x-W/2)<(W<640?W:300))){rings(x,y,(W<640?320:520)+Math.random()*200,Math.random()<.5?2:3);return}}}
+      if(ex*ex+ey*ey>1.2&&!(y>box.y&&Math.abs(x-W/2)<(W<640?W:300))){rings(x,y,(W<640?320:520)+Math.random()*200,0);return}}}
   /* typing: each key sends a small ripple out of the caret */
   var mc=document.createElement('canvas').getContext('2d');
   inp&&inp.addEventListener('input',function(){if(rm)return;var r=zq.getBoundingClientRect(),ir=inp.getBoundingClientRect(),cs=getComputedStyle(inp);mc.font=cs.font;
@@ -10160,18 +10160,19 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
 /* ผลงาน = the Hall of Fame: a soft gold aurora rises behind the word, the word turns to gold */
 .nav-in>a.nv-w>span{z-index:0}
 .nav-in>a.nv-w>span>.na-w0{display:inline-block;position:relative;transition:color .25s}
-.na-w{left:50%;top:-26px;width:150px;height:66px;margin-left:-75px;z-index:-1;opacity:0;transition:opacity .4s;
-  -webkit-mask:radial-gradient(55% 100% at 50% 0,#000 40%,transparent 100%);mask:radial-gradient(55% 100% at 50% 0,#000 40%,transparent 100%)}
-.na-w::before{content:"";position:absolute;left:14%;right:14%;bottom:2px;height:30px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,206,92,.75),rgba(255,206,92,0));filter:blur(3px);animation:naHalo 2.4s ease-in-out infinite alternate}
-.na-w i{position:absolute;top:0;width:7px;height:100%;border-radius:40%;filter:blur(1.6px);transform-origin:50% 0;
-  background:linear-gradient(to bottom,rgba(230,150,30,0) 0,rgba(236,162,40,.8) 18%,rgba(255,206,96,.55) 60%,rgba(255,236,170,0) 100%);animation:naRay 3s ease-in-out infinite alternate}
-.na-w i:nth-child(1){left:22%;height:70%;animation-duration:2.7s}
-.na-w i:nth-child(2){left:34%;height:96%;width:10px;animation-duration:3.4s;animation-delay:-1s}
-.na-w i:nth-child(3){left:47%;height:84%;animation-duration:2.9s;animation-delay:-.4s}
-.na-w i:nth-child(4){left:59%;height:100%;width:10px;animation-duration:3.7s;animation-delay:-2s}
-.na-w i:nth-child(5){left:71%;height:66%;animation-duration:3.1s;animation-delay:-1.4s}
-@keyframes naRay{0%{transform:skewX(-16deg) scaleY(.85);opacity:.4}50%{opacity:1}100%{transform:skewX(14deg) scaleY(1.05);opacity:.75}}
-@keyframes naHalo{to{transform:scale(1.15);opacity:.8}}
+/* light falls on the word from above in a soft fan, a warm pool of gold glows under it */
+.na-w{left:50%;top:-30px;width:120px;height:70px;margin-left:-60px;z-index:-1;opacity:0;transition:opacity .35s}
+.na-w::before{content:"";position:absolute;left:8%;right:8%;bottom:-6px;height:30px;border-radius:50%;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(255,205,90,.7),rgba(255,205,90,0) 100%);animation:naHalo 2.6s ease-in-out infinite alternate}
+.na-w i{position:absolute;left:50%;top:0;width:3px;height:100%;margin-left:-1.5px;border-radius:2px;transform-origin:50% 0;
+  background:linear-gradient(to bottom,rgba(255,214,110,0) 0,rgba(255,200,80,.75) 45%,rgba(255,214,110,0) 100%);filter:blur(.6px);animation:naRay 3.4s ease-in-out infinite alternate}
+.na-w i:nth-child(1){transform:rotate(34deg);height:84%;animation-delay:-.6s}
+.na-w i:nth-child(2){transform:rotate(18deg);animation-delay:-1.8s}
+.na-w i:nth-child(3){transform:rotate(0deg);height:76%;width:4px;animation-delay:-1.1s}
+.na-w i:nth-child(4){transform:rotate(-18deg);animation-delay:-2.4s}
+.na-w i:nth-child(5){transform:rotate(-34deg);height:84%;animation-delay:-.2s}
+@keyframes naRay{0%{opacity:.25}100%{opacity:1}}
+@keyframes naHalo{to{transform:scale(1.15);opacity:.75}}
 .nav-in>a.nv-w:hover .na-w,.nav-in>a.nv-w:focus-visible .na-w{opacity:1}
 .nav-in>a.nv-w:hover>span>.na-w0,.nav-in>a.nv-w:focus-visible>span>.na-w0{color:transparent;font-weight:700;
   background:linear-gradient(100deg,#6B420A 0%,#8A5A10 30%,#E9B44C 45%,#8A5A10 60%,#6B420A 100%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;animation:naFame 1.8s cubic-bezier(.4,0,.2,1) infinite;filter:drop-shadow(0 0 5px rgba(255,200,80,.7))}
@@ -10181,7 +10182,7 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
 .nav-in>a.nv-b>span{z-index:0}
 .na-b{left:-14px;right:-14px;top:-9px;bottom:-9px}
 .na-b svg{width:100%;height:100%;overflow:visible}
-.na-b path{opacity:0;fill:none;stroke:#E8833A;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .55s cubic-bezier(.6,0,.3,1)}
+.na-b path{opacity:0;fill:none;stroke:#E8833A;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .55s cubic-bezier(.6,0,.3,1)}
 .na-b .h{fill:#E8833A;opacity:0;transform:scale(.3) rotate(-20deg);transform-origin:center;transform-box:fill-box;transition:opacity .2s .45s,transform .35s cubic-bezier(.3,1.8,.5,1) .45s}
 .nav-in>a.nv-b:hover .na-b path,.nav-in>a.nv-b:focus-visible .na-b path{stroke-dashoffset:0;opacity:1}
 .nav-in>a.nv-b:hover .na-b .h,.nav-in>a.nv-b:focus-visible .na-b .h{opacity:1;transform:rotate(15deg)}
@@ -10329,18 +10330,16 @@ html body [data-view="home"] .zq{margin-top:-6px!important}
   html body [data-view="home"] .zq .zq-go{padding:14px 26px!important;font-size:1.05rem!important}
 }
 #zqForm{position:relative}
-.zq-halo{position:absolute;inset:-3px;border-radius:999px;pointer-events:none;z-index:-1;border:2px solid rgba(255,255,255,.95);opacity:0;will-change:transform,opacity;animation:zqHalo 2.8s cubic-bezier(.2,.7,.3,1) infinite}
-.zq-halo.b{animation-delay:1.4s}
-@keyframes zqHalo{0%{transform:scale(1,1);opacity:.85}100%{transform:scale(1.07,1.45);opacity:0}}
-#zqForm:focus-within .zq-halo,#zqForm.used .zq-halo{animation:none;opacity:0}
-.zq-try{all:unset;cursor:pointer;flex:none;margin-right:8px;padding:9px 14px;border-radius:999px;background:#FFF1DF;color:#B85F14;font-weight:700;font-size:.95rem;white-space:nowrap;
-  max-width:280px;overflow:hidden;text-overflow:ellipsis;transition:background .2s,transform .15s,opacity .3s}
-.zq-try:hover{background:#FFE2BF}.zq-try:active{transform:scale(.96)}
-.zq-try:focus-visible{outline:2px solid #B85F14;outline-offset:2px}
-.zq-try.sw{animation:zqTry .4s cubic-bezier(.3,1.5,.5,1)}
-@keyframes zqTry{from{opacity:0;transform:translateY(6px) scale(.94)}to{opacity:1;transform:none}}
-#zqForm.typed .zq-try{display:none}
-@media (max-width:699px){.zq-try{display:none}}
+/* a warm light breathes behind the bar (opacity only, no ring) */
+.zq-halo{position:absolute;inset:-18px -26px;border-radius:999px;pointer-events:none;z-index:-1;opacity:.35;will-change:opacity;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(255,250,236,.95) 40%,rgba(255,236,200,0) 100%);animation:zqHalo 3.2s ease-in-out infinite alternate}
+.zq-halo.b{display:none}
+@keyframes zqHalo{to{opacity:.95}}
+#zqForm:focus-within .zq-halo{animation:none;opacity:.8}
+/* the question shown inside the empty bar follows the headline; pressing ค้นหา on an empty bar asks it */
+#zqIn::placeholder{transition:opacity .25s;color:rgba(29,23,18,.55)!important}
+#zqForm.ph-sw #zqIn::placeholder{opacity:0}
+.zq-try{display:none!important}
 /* once the hero is gone, a small search pill waits at the bottom */
 .zq-fab{all:unset;position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:900;display:flex;align-items:center;gap:10px;cursor:pointer;
   padding:12px 20px 12px 16px;border-radius:999px;background:#1D1712;color:#FFF6E8;font-weight:700;font-size:.98rem;box-shadow:0 16px 34px -14px rgba(29,23,18,.7);
@@ -10358,12 +10357,13 @@ html body [data-view="home"] .zq{margin-top:-6px!important}
   addEventListener('scroll',function(){window.__scr=performance.now()},{passive:true});
   function go(){var form=document.getElementById('zqForm'),inp=document.getElementById('zqIn'),go=form&&form.querySelector('.zq-go'),typ=document.getElementById('zqType');if(!form||form.dataset.pull)return;form.dataset.pull=1;
     ['a','b'].forEach(function(c){var h=document.createElement('i');h.className='zq-halo '+c;h.setAttribute('aria-hidden','true');form.insertBefore(h,form.firstChild)});
-    /* a one-tap question that follows the headline word */
-    var tr=document.createElement('button');tr.type='button';tr.className='zq-try';form.insertBefore(tr,go);var cur='',tm=0;
-    function setTry(){var w=(typ&&typ.textContent||'').trim();if(!w||w===cur)return;cur=w;tr.textContent='ลองถาม “อยาก'+w+'”';tr.setAttribute('aria-label','ค้นหา อยาก'+w);tr.classList.remove('sw');void tr.offsetWidth;tr.classList.add('sw')}
-    if(typ){new MutationObserver(function(){clearTimeout(tm);tm=setTimeout(setTry,700)}).observe(typ,{childList:true,characterData:true,subtree:true});setTry()}
-    tr.addEventListener('click',function(){inp.value='อยาก'+cur;inp.dispatchEvent(new Event('input',{bubbles:true}));if(form.requestSubmit)form.requestSubmit();else go.click()});
-    function st(){form.classList.toggle('typed',!!inp.value)}inp.addEventListener('input',st);st();
+    /* the empty bar shows the headline's wish as a question; ค้นหา on an empty bar asks it */
+    var cur='',tm=0;
+    function setQ(){var w=(typ&&typ.textContent||'').trim();if(!w||w===cur)return;cur=w;form.classList.add('ph-sw');
+      setTimeout(function(){inp.setAttribute('placeholder','ลองถาม: อยาก'+w);form.classList.remove('ph-sw')},250)}
+    if(typ){new MutationObserver(function(){clearTimeout(tm);tm=setTimeout(setQ,700)}).observe(typ,{childList:true,characterData:true,subtree:true});setQ()}
+    form.addEventListener('submit',function(){if(!inp.value.trim()&&cur){inp.value='อยาก'+cur;inp.dispatchEvent(new Event('input',{bubbles:true}))}},true);
+    go&&go.addEventListener('pointerdown',function(){if(!inp.value.trim()&&cur){inp.value='อยาก'+cur;inp.dispatchEvent(new Event('input',{bubbles:true}))}});
     var used=function(){form.classList.add('used')};inp.addEventListener('focus',used);form.addEventListener('submit',used);
     /* bottom pill */
     var fab=document.createElement('button');fab.type='button';fab.className='zq-fab';
