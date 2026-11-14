@@ -60,11 +60,11 @@ html body [data-view="home"] .zq{margin-top:-6px!important}
 <style id="ly-chibi">
 /* the search hamster: only its ears show over the bar; it pops up when the visitor taps the bar */
 #zqHam{visibility:hidden!important}
-.zq-ch{position:absolute;z-index:3;width:106px;height:75px;cursor:pointer;background:url(img/ham-chibi.webp) 0 0/848px 75px no-repeat;
-  transform:translateY(var(--hide,58px));transition:transform .5s cubic-bezier(.3,1.5,.5,1);-webkit-tap-highlight-color:transparent}
-.zq-ch:hover{transform:translateY(calc(var(--hide,58px) - 6px))}
-.zq-ch.up,.zq-ch.up:hover{transform:translateY(0)}
-@media (max-width:640px){.zq-ch{width:74px;height:52px;background-size:592px 52px;--hide:41px}}
+.zq-ch{position:absolute;z-index:6;width:106px;height:75px;cursor:pointer;background:url(img/ham-chibi.webp) 0 0/848px 75px no-repeat;--hide:42px;
+  transform:translateY(var(--hide));clip-path:inset(0 0 var(--hide) 0);transition:transform .5s cubic-bezier(.3,1.5,.5,1),clip-path .5s cubic-bezier(.3,1.5,.5,1);-webkit-tap-highlight-color:transparent}
+.zq-ch:hover{transform:translateY(calc(var(--hide) - 8px));clip-path:inset(0 0 calc(var(--hide) - 8px) 0)}
+.zq-ch.up,.zq-ch.up:hover{transform:translateY(0);clip-path:inset(0 0 0 0)}
+@media (max-width:640px){.zq-ch{width:74px;height:52px;background-size:592px 52px;--hide:30px}}
 html body [data-view="home"] .zq .zq-sw{margin-top:46px!important}
 @media (max-width:640px){html body [data-view="home"] .zq .zq-sw{margin-top:44px!important}}
 /* the invitation lives on the bar itself: a warm light sweeps across it and the button nudges */
@@ -86,7 +86,7 @@ html body [data-view="home"] .zq .zq-sw{margin-top:46px!important}
     var sh=document.createElement('span');sh.className='zq-sh';sh.setAttribute('aria-hidden','true');form.insertBefore(sh,form.firstChild);
     var cur=-1;function fr(n){if(n===cur)return;cur=n;ch.style.backgroundPosition=(-n*ch.offsetWidth)+'px 0'}
     function place(){var a=ham.getBoundingClientRect(),f=form.getBoundingClientRect(),r=sw.getBoundingClientRect(),w=ch.offsetWidth;
-      var cx=a.width?a.left+a.width/2:f.left+f.width*.62;ch.style.left=(cx-r.left-w/2)+'px';ch.style.top=(f.top-r.top-ch.offsetHeight-14)+'px';var c=cur;cur=-1;fr(Math.max(0,c))}
+      var cx=a.width?a.left+a.width/2:f.left+f.width*.62;ch.style.left=(cx-r.left-w/2)+'px';ch.style.top=(f.top-r.top-ch.offsetHeight+1)+'px';var c=cur;cur=-1;fr(Math.max(0,c))}
     place();fr(0);addEventListener('resize',place);setTimeout(place,600);setTimeout(place,2000);
     var up=false;
     function blink(){if(up&&cur===0){fr(1);setTimeout(function(){if(cur===1)fr(0)},140)}setTimeout(blink,2400+Math.random()*2400)}setTimeout(blink,2000);

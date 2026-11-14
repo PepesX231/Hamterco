@@ -13,7 +13,7 @@ html.hl-on{overflow:hidden}
 var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,t0=performance.now(),fast=false;try{fast=sessionStorage.getItem('hhl')==='1';sessionStorage.setItem('hhl','1')}catch(e){}
 var cv=L.querySelector('canvas'),cx=cv.getContext('2d'),dots=L.querySelector('.hl-t i'),bar=L.querySelector('.hl-p b');
 /* hand-drawn sprite frames: 8 walking, 8 celebrating (each frame 340 wide) */
-var WK=new Image(),YY=new Image(),ok=0;WK.onload=YY.onload=function(){ok++};WK.src='img/ld-ham-walk.webp';YY.src='img/ld-ham-yay.webp';
+var WK=new Image(),YY=new Image(),ok=0;WK.onload=YY.onload=function(){ok++};WK.src='img/ld-ham2-walk.webp';YY.src='img/ld-ham2-yay.webp';
 var FPS=12,FW=340,WH=280,YH=320,W=0,Hc=0,dpr=1;
 function size(){var r=cv.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,2);W=r.width;Hc=r.height;cv.width=W*dpr;cv.height=Hc*dpr}
 size();addEventListener('resize',size);
