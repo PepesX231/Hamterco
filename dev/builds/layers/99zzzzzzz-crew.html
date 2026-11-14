@@ -4,14 +4,15 @@
 .zq-crew{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;border-radius:inherit}
 .zq-crew .cr{position:absolute;pointer-events:auto;cursor:pointer;will-change:transform}
 .zq-crew .cr img{display:block;width:100%;height:auto;-webkit-user-drag:none;filter:none}
-.zq-crew .c1{left:3%;bottom:-110px;width:clamp(180px,17vw,250px)}
-.zq-crew .c2{right:2%;bottom:-70px;width:clamp(200px,18vw,265px);z-index:1}
-.zq-crew .c3{right:calc(2% + clamp(150px,13vw,200px));bottom:-120px;width:clamp(180px,16vw,235px);z-index:2}
-.zq-note{position:absolute;right:2.5%;top:41%;pointer-events:none;color:#1D1712;font:700 clamp(1rem,1.5vw,1.3rem)/1.1 'Mali',var(--display);transform:rotate(-5deg);opacity:0;transition:opacity .4s}
-.zq-note svg{display:block;width:clamp(60px,6vw,86px);height:auto;margin:6px 0 0 -10px;overflow:visible}
+.zq-crew .cr{width:clamp(170px,15vw,220px)}
+.zq-crew .c1{left:-34px;top:30%}
+.zq-crew .c2{right:-34px;top:17%}
+.zq-crew .c3{right:-34px;top:52%}
+.zq-note{position:absolute;left:clamp(130px,11vw,190px);top:29%;pointer-events:none;color:#1D1712;font:700 clamp(1rem,1.5vw,1.3rem)/1.1 'Mali',var(--display);transform:rotate(-6deg);opacity:0;transition:opacity .4s}
+.zq-note svg{display:block;width:clamp(60px,6vw,86px);height:auto;margin:6px 0 0 18px;overflow:visible}
 .zq-note path{fill:none;stroke:#1D1712;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
 .zq-note.on{opacity:1}.zq-note.on path{transition:stroke-dashoffset .8s cubic-bezier(.6,0,.3,1) .2s;stroke-dashoffset:0}
-@media (max-width:900px){.zq-note{display:none}.zq-crew .c1{width:118px;left:-6px;bottom:-60px}.zq-crew .c2{width:120px;right:-8px;bottom:-40px}.zq-crew .c3{width:104px;right:70px;bottom:-66px}}
+@media (max-width:900px){.zq-note{display:none}.zq-crew .cr{width:118px}.zq-crew .c1{left:-22px;top:auto;bottom:70px}.zq-crew .c2{right:-22px;top:auto;bottom:150px}.zq-crew .c3{right:-22px;top:auto;bottom:40px}}
 @media (prefers-reduced-motion:reduce){.zq-note path{stroke-dashoffset:0}}
 </style>
 <script>
@@ -20,11 +21,11 @@
     var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,inp=document.getElementById('zqIn');
     var box=document.createElement('div');box.className='zq-crew';box.setAttribute('aria-hidden','true');
     /* [image, class, base rotation, where it comes in from (x,y), parallax depth] */
-    var D=[['crew3-yay','c1',6,[0,1],14],['crew3-giggle','c2',-5,[0,1],10],['crew3-wow','c3',3,[0,1],18]];
+    var D=[['crew4-wink','c1',90,[-1,0],14],['crew4-shock','c2',-90,[1,0],10],['crew4-smug','c3',-90,[1,0],18]];
     var C=D.map(function(d,i){var e=document.createElement('div');e.className='cr '+d[1];e.innerHTML='<img src="img/'+d[0]+'.webp" alt="">';box.appendChild(e);
-      return {e:e,rot:d[2],from:d[3],dep:d[4],x:0,y:320,vx:0,vy:0,tx:0,ty:0,r:0,vr:0,tr:0,sq:1,vs:0,ph:i*1.7}});
+      return {e:e,rot:d[2],from:d[3],dep:d[4],x:d[3][0]*300,y:d[3][1]*300,vx:0,vy:0,tx:0,ty:0,r:0,vr:0,tr:0,sq:1,vs:0,ph:i*1.7}});
     var note=document.createElement('div');note.className='zq-note';
-    note.innerHTML='ลองค้นหาดูสิ!<svg viewBox="0 0 80 50"><path pathLength="1" d="M70 6C60 30 40 40 8 40M8 40L20 30M8 40L20 48"/></svg>';
+    note.innerHTML='ลองค้นหาดู!<svg viewBox="0 0 90 70"><path pathLength="1" d="M8 4C2 30 20 56 82 62M82 62L68 52M82 62L68 68"/></svg>';
     box.appendChild(note);zq.insertBefore(box,zq.querySelector('.zq-top'));
     C.forEach(function(c){c.e.style.transform='translate('+c.x+'px,'+c.y+'px) rotate('+c.rot+'deg)'});
     var mx=0,my=0,on=false,vis=true,raf=0,last=0,t0=0,focus=false;
@@ -32,22 +33,22 @@
     function S(p,v,t,k,c,dt){return v+(-k*(p-t)-c*v)*dt}
     function frame(now){raf=0;var dt=Math.min(.033,(now-last)/1000);last=now;var t=(now-t0)/1000,moving=false;
       C.forEach(function(c,i){var inT=t>.35+i*.22;
-        c.tx=inT?(-mx*c.dep):0;c.ty=inT?((rm?0:Math.sin(t*1.6+c.ph)*4)+(focus?-26:0)):320;
-        c.tr=inT?(rm?0:Math.sin(t*1.1+c.ph)*2.5)+(focus?(i?-4:4):0):0;
+        var bob=rm?0:Math.sin(t*1.6+c.ph)*4,pk=focus?18:0;c.tx=inT?(-c.from[0]*(bob+pk)-mx*c.dep*.4):c.from[0]*300;c.ty=inT?(-my*c.dep):0;
+        c.tr=inT?(rm?0:Math.sin(t*1.1+c.ph)*3)+(focus?(c.from[0]<0?-8:8):0):0;
         c.vx=S(c.x,c.vx,c.tx,90,11,dt);c.vy=S(c.y,c.vy,c.ty,90,11,dt);c.vr=S(c.r,c.vr,c.tr,80,10,dt);c.vs=S(c.sq,c.vs,1,260,12,dt);
         c.x+=c.vx*dt;c.y+=c.vy*dt;c.r+=c.vr*dt;c.sq+=c.vs*dt;
         if(Math.abs(c.vx)+Math.abs(c.vy)>.5)moving=true;
         c.e.style.transform='translate('+c.x.toFixed(1)+'px,'+c.y.toFixed(1)+'px) rotate('+(c.rot+c.r).toFixed(2)+'deg) scale('+(2-c.sq).toFixed(3)+','+c.sq.toFixed(3)+')'});
       if(t>1.4&&!note.classList.contains('on')&&!focus&&!(inp&&inp.value))note.classList.add('on');
       if(vis&&!document.hidden&&!rm||moving)raf=requestAnimationFrame(frame)}
-    var nextPop=0;setInterval(function(){if(!vis||rm||focus)return;var c=C[Math.floor(Math.random()*C.length)];c.vy-=420;c.sq=.9;wake()},4200);
+    var nextPop=0;setInterval(function(){if(!vis||rm||focus)return;var c=C[Math.floor(Math.random()*C.length)];c.vx-=c.from[0]*380;c.sq=.9;wake()},4200);
     function wake(){if(!raf&&vis){last=performance.now();raf=requestAnimationFrame(frame)}}
     function start(){t0=performance.now();last=t0;wake()}
     if(document.getElementById('hhL'))addEventListener('hh:loaded',start,{once:true});else start();
     if('IntersectionObserver' in window)new IntersectionObserver(function(es){vis=es[0].isIntersecting;wake()}).observe(zq);
-    C.forEach(function(c){c.e.addEventListener('pointerdown',function(){c.sq=.82;c.vy-=260;c.vr+=(Math.random()-.5)*160;wake()});
+    C.forEach(function(c){c.e.addEventListener('pointerdown',function(){c.sq=.82;c.vx-=c.from[0]*260;c.vr+=(Math.random()-.5)*160;wake()});
       c.e.addEventListener('click',function(){if(inp)inp.focus()})});
-    if(inp){inp.addEventListener('focus',function(){focus=true;note.classList.remove('on');C.forEach(function(c,i){setTimeout(function(){c.sq=.86;c.vy-=180;wake()},i*80)})});
+    if(inp){inp.addEventListener('focus',function(){focus=true;note.classList.remove('on');C.forEach(function(c,i){setTimeout(function(){c.sq=.86;c.vx-=c.from[0]*200;wake()},i*80)})});
       inp.addEventListener('blur',function(){focus=false;wake()});inp.addEventListener('input',function(){note.classList.remove('on')})}}
   if(document.readyState==='complete')go();else addEventListener('load',go);
 })();
