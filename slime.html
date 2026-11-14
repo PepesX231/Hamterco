@@ -10160,19 +10160,16 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
 /* ผลงาน = the Hall of Fame: a soft gold aurora rises behind the word, the word turns to gold */
 .nav-in>a.nv-w>span{z-index:0}
 .nav-in>a.nv-w>span>.na-w0{display:inline-block;position:relative;transition:color .25s}
-/* light falls on the word from above in a soft fan, a warm pool of gold glows under it */
-.na-w{left:50%;top:-30px;width:120px;height:70px;margin-left:-60px;z-index:-1;opacity:0;transition:opacity .35s}
-.na-w::before{content:"";position:absolute;left:8%;right:8%;bottom:-6px;height:30px;border-radius:50%;
-  background:radial-gradient(50% 50% at 50% 50%,rgba(255,205,90,.7),rgba(255,205,90,0) 100%);animation:naHalo 2.6s ease-in-out infinite alternate}
-.na-w i{position:absolute;left:50%;top:0;width:3px;height:100%;margin-left:-1.5px;border-radius:2px;transform-origin:50% 0;
-  background:linear-gradient(to bottom,rgba(255,214,110,0) 0,rgba(255,200,80,.75) 45%,rgba(255,214,110,0) 100%);filter:blur(.6px);animation:naRay 3.4s ease-in-out infinite alternate}
-.na-w i:nth-child(1){transform:rotate(34deg);height:84%;animation-delay:-.6s}
-.na-w i:nth-child(2){transform:rotate(18deg);animation-delay:-1.8s}
-.na-w i:nth-child(3){transform:rotate(0deg);height:76%;width:4px;animation-delay:-1.1s}
-.na-w i:nth-child(4){transform:rotate(-18deg);animation-delay:-2.4s}
-.na-w i:nth-child(5){transform:rotate(-34deg);height:84%;animation-delay:-.2s}
-@keyframes naRay{0%{opacity:.25}100%{opacity:1}}
-@keyframes naHalo{to{transform:scale(1.15);opacity:.75}}
+/* light falls on the word: soft god-rays from above, masked to an oval so there is never an edge */
+.na-w{left:50%;top:50%;width:150px;height:80px;margin:-52px 0 0 -75px;z-index:-1;opacity:0;transition:opacity .4s;pointer-events:none;
+  -webkit-mask:radial-gradient(closest-side,#000 35%,transparent 100%);mask:radial-gradient(closest-side,#000 35%,transparent 100%)}
+.na-w::before{content:"";position:absolute;inset:-40% -20% 0;transform-origin:50% 0;
+  background:repeating-conic-gradient(from 135deg at 50% 0,rgba(255,196,70,0) 0deg,rgba(255,196,70,.55) 5deg,rgba(255,196,70,0) 11deg,rgba(255,196,70,0) 15deg);
+  animation:naSway 4s ease-in-out infinite alternate}
+.na-w::after{content:"";position:absolute;left:15%;right:15%;bottom:12%;height:42%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,214,120,.85),rgba(255,214,120,0));animation:naHalo 2.6s ease-in-out infinite alternate}
+.na-w i{display:none}
+@keyframes naSway{from{transform:rotate(-6deg)}to{transform:rotate(6deg)}}
+@keyframes naHalo{to{transform:scale(1.18);opacity:.7}}
 .nav-in>a.nv-w:hover .na-w,.nav-in>a.nv-w:focus-visible .na-w{opacity:1}
 .nav-in>a.nv-w:hover>span>.na-w0,.nav-in>a.nv-w:focus-visible>span>.na-w0{color:transparent;font-weight:700;
   background:linear-gradient(100deg,#6B420A 0%,#8A5A10 30%,#E9B44C 45%,#8A5A10 60%,#6B420A 100%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;animation:naFame 1.8s cubic-bezier(.4,0,.2,1) infinite;filter:drop-shadow(0 0 5px rgba(255,200,80,.7))}
@@ -10258,7 +10255,23 @@ html.nv-dk .nav-in>a.v:hover,html.nv-dk .nav-in>a.v[aria-current="page"],html.nv
 html.nv-dk .nav-in>a.v[aria-current="page"]::after{background:#FFB45E!important}
 html.nv-dk header.nav .menu{color:#FFF6E8!important}
 </style>
-<script>(function(){function f(){document.documentElement.classList.toggle('nv-dk',/^#about/.test(location.hash))}f();addEventListener('hashchange',f)})();</script>
+<script>(function(){function f(){document.documentElement.classList.toggle('nv-dk',/^#about/.test(location.hash))}f();addEventListener('hashchange',f)})();</script><style id="ly-navpill">
+/* the four links sit together in one soft pill; the page you are on is a white chip inside it */
+@media (min-width:900px){
+  .nav-in>a.v{padding:9px 18px!important;background:rgba(29,23,18,.05);transition:background .2s,color .2s}
+  .nav-in>a.nv-a,.nav-in>a.nv-w,.nav-in>a.nv-b{margin-left:-30px!important}
+  .nav-in>a.nv-c{border-radius:999px 0 0 999px;padding-left:22px!important}
+  .nav-in>a.nv-b{border-radius:0 999px 999px 0;padding-right:22px!important}
+  .nav-in>a.v[aria-current="page"]{background:rgba(29,23,18,.05);}
+  .nav-in>a.v[aria-current="page"]>span,.nav-in>a.v[aria-current="page"]>.roll{position:relative}
+  .nav-in>a.v[aria-current="page"]::after{left:8px!important;right:8px!important;top:4px!important;bottom:4px!important;height:auto!important;border-radius:999px;background:#fff!important;z-index:-1;
+    box-shadow:0 2px 8px -3px rgba(29,23,18,.25);transform:none!important;opacity:1!important}
+  .nav-in>a.v{isolation:isolate}
+  .nav-in>a.v[aria-current="page"]::after{display:block!important;content:""!important}
+  html.nv-dk .nav-in>a.v{background:rgba(255,246,232,.07)}
+  html.nv-dk .nav-in>a.v[aria-current="page"]::after{background:rgba(255,246,232,.14)!important;box-shadow:none}
+}
+</style>
 <!-- layer: 99zzzz-fix.html -->
 <style id="ly-fix">
 /* "สิ่งที่ Hamster Hub สร้าง" sat too far from the course rail and from its own first row */
@@ -10290,8 +10303,8 @@ html body section[aria-labelledby="ocH"] .oc-in>.oc-r:first-of-type{margin-top:c
 <!-- layer: 99zzzzz-perf.html -->
 <style id="ly-perf">
 /* performance: decorative loops only run while they can be seen */
-.na-w i,.na-w::before{animation-play-state:paused!important}
-.nav-in>a.nv-w:hover .na-w i,.nav-in>a.nv-w:hover .na-w::before,.nav-in>a.nv-w:focus-visible .na-w i,.nav-in>a.nv-w:focus-visible .na-w::before{animation-play-state:running!important}
+
+
 .nav-in>a.nv-w:not(:hover):not(:focus-visible)>span>.na-w0{animation:none!important}
 .tv-fly i,.tv-rg-r figure{will-change:transform}
 .tv-fly i::after{display:none!important}.tv-fly i{box-shadow:0 18px 30px -18px rgba(0,0,0,.8)!important}
