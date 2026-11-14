@@ -10436,7 +10436,7 @@ html body [data-view="home"] .zq{margin-top:-6px!important}
     var cur='',tm=0;
     function setQ(){var w=(typ&&typ.textContent||'').trim();if(!w||w===cur)return;cur=w;form.classList.add('ph-sw');
       setTimeout(function(){form.classList.remove('ph-sw');if(window.__zqType)window.__zqType('ลองถาม: อยาก'+w);else inp.setAttribute('placeholder','ลองถาม: อยาก'+w)},250)}
-    if(typ){new MutationObserver(function(){if(!inp.value&&inp.getAttribute('placeholder')!==(innerWidth<640?'ถามเราได้เลย':'พิมพ์ถามเราได้เลย น้องอยากทำอะไร'))inp.setAttribute('placeholder',(innerWidth<640?'ถามเราได้เลย':'พิมพ์ถามเราได้เลย น้องอยากทำอะไร'));clearTimeout(tm);tm=setTimeout(function(){var w=(typ.textContent||'').trim();if(w===cur){cur='';setQ()}else setQ()},700)}).observe(typ,{childList:true,characterData:true,subtree:true});setQ()}
+    if(typ){new MutationObserver(function(){/* while the headline swaps words the bar keeps its prefix instead of flashing back to the default text */if(!inp.value){if(window.__zqStop)window.__zqStop();if(inp.getAttribute('placeholder')!=='ลองถาม: อยาก')inp.setAttribute('placeholder','ลองถาม: อยาก')}clearTimeout(tm);tm=setTimeout(function(){var w=(typ.textContent||'').trim();if(w===cur){cur='';setQ()}else setQ()},450)}).observe(typ,{childList:true,characterData:true,subtree:true});setQ()}
     form.addEventListener('submit',function(){if(!inp.value.trim()&&cur){inp.value='อยาก'+cur;inp.dispatchEvent(new Event('input',{bubbles:true}))}},true);
     go&&go.addEventListener('pointerdown',function(){if(!inp.value.trim()&&cur){inp.value='อยาก'+cur;inp.dispatchEvent(new Event('input',{bubbles:true}))}});
     var used=function(){form.classList.add('used')};inp.addEventListener('focus',used);form.addEventListener('submit',used);
@@ -10533,8 +10533,13 @@ html body [data-view="home"] .zq{margin-top:-6px!important}
     ch.addEventListener('click',function(){inp.focus()});
     ch.addEventListener('pointerenter',function(){SX.x=.94;hoverT=performance.now()+1200;wake()});
     /* typewriter placeholder */
-    var tt=0;window.__zqType=function(t){clearTimeout(tt);if(rm||inp.value){inp.setAttribute('placeholder',t);return}var i=0;
-      (function step(){i++;inp.setAttribute('placeholder',t.slice(0,i)+(i<t.length?'|':''));if(i<t.length)tt=setTimeout(step,45)})()};
+    /* the "ลองถาม:" prefix stays put; only the wish is typed, one whole Thai letter cluster at a time
+       (a leading vowel like โ waits for its consonant, tone marks ride with theirs), so it never shows half a letter */
+    function clusters(x){var out=[],i=0;while(i<x.length){var c=x[i++];if(/[\u0E40-\u0E44]/.test(c)&&i<x.length)c+=x[i++];
+        while(i<x.length&&/[\u0E31\u0E33-\u0E3A\u0E47-\u0E4E]/.test(x[i]))c+=x[i++];out.push(c)}return out}
+    var tt=0;window.__zqStop=function(){clearTimeout(tt)};window.__zqType=function(t){clearTimeout(tt);if(rm||inp.value){inp.setAttribute('placeholder',t);return}
+      var m=t.match(/^(ลองถาม:\s*(?:อยาก)?)(.*)$/),pre=m?m[1]:'',parts=clusters(m?m[2]:t),i=0;
+      (function step(){i++;inp.setAttribute('placeholder',pre+parts.slice(0,i).join(''));if(i<parts.length)tt=setTimeout(step,55)})()};
     /* invitation: until the bar has been used, a light sweeps across it every few seconds */
     var used=false,iv=0;function inv(){if(used||document.activeElement===inp)return;form.classList.remove('inv');void form.offsetWidth;form.classList.add('inv')}
     function startInv(){if(rm)return;setTimeout(inv,1600);iv=setInterval(inv,6500)}
@@ -10571,10 +10576,11 @@ html body [data-view="home"] .zq .zq-h{cursor:default!important}
 .zq-crew .zqc-l{width:clamp(160px,13vw,205px);left:0;top:22%;transform-origin:0 85%}
 .zq-crew .zqc-tr{width:clamp(140px,11.4vw,178px);right:0;top:9%;transform-origin:100% 85%}
 .zq-crew .zqc-br{width:clamp(140px,11.4vw,178px);right:0;top:56%;transform-origin:100% 85%}
-.zq-note{position:absolute;left:0;top:0;pointer-events:none;color:#1D1712;font:700 clamp(1.05rem,1.5vw,1.3rem)/1.1 'Mali',var(--display);white-space:nowrap;opacity:0;transition:opacity .35s;will-change:transform}
-.zq-note.on{opacity:1}
+.zq-note{position:absolute;left:0;top:0;pointer-events:none;color:#2A221D;font:700 clamp(1.1rem,1.55vw,1.35rem)/1.1 'Mali',var(--display);white-space:nowrap;will-change:transform,clip-path;clip-path:inset(0 100% 0 0);filter:url(#zqPencil)}
 .zq-arw{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
-.zq-arw path{fill:none;stroke:#1D1712;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
+/* graphite: a firm line plus a faint looser sketch pass, both roughened by a turbulence filter that re-seeds ~10x a second (hand-drawn "line boil") */
+.zq-arw path{fill:none;stroke:#2A221D;stroke-linecap:round;stroke-linejoin:round}
+.zq-arw .pm{stroke-width:2.6;opacity:.92}.zq-arw .ps{stroke-width:1.3;opacity:.38}
 /* below ~1180px the note would sit on the headline, so only the hamsters stay */
 @media (max-width:1180px){.zq-note,.zq-arw{display:none}.zq-crew .zqc{width:clamp(110px,12vw,150px)!important}.zq-crew .zqc-br{top:64%}}
 @media (max-width:900px){.zq-note,.zq-arw{display:none}.zq-crew .zqc{width:96px!important}.zq-crew .zqc-l{top:auto;bottom:70px}.zq-crew .zqc-tr{display:none}.zq-crew .zqc-br{top:auto;bottom:60px}}
@@ -10585,7 +10591,7 @@ html body [data-view="home"] .zq .zq-h{cursor:default!important}
     var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,inp=document.getElementById('zqIn'),form=document.getElementById('zqForm')||(inp&&inp.closest('form'));
     var box=document.createElement('div');box.className='zq-crew';box.setAttribute('aria-hidden','true');
     /* [image, class, side (-1 left wall, 1 right wall), parallax depth, second frame use: blink | hover] */
-    var D=[['crew10-point','zqc-l',-1,8,'blink'],['crew10-cool','zqc-tr',1,6,'hover'],['crew10-thumb','zqc-br',1,10,'blink']];
+    var D=[['crew11-point','zqc-l',-1,8,'blink'],['crew11-cool','zqc-tr',1,6,'hover'],['crew11-thumb','zqc-br',1,10,'blink']];
     var C=D.map(function(d,i){var e=document.createElement('div');e.className='zqc '+d[1];
       e.innerHTML='<img src="img/'+d[0]+'.webp" alt="" draggable="false"><img src="img/'+d[0]+'-b.webp" alt="" draggable="false">';box.appendChild(e);
       return {pose:0,e:e,side:d[2],dep:d[3],mode:d[4],x:d[2]*240,vx:0,y:0,vy:0,r:0,vr:0,sq:1,vs:0,ph:i*1.9,hov:false,hide:0,blinkAt:1.5+i*1.3+Math.random()*2,blinkEnd:0,joy:0}});
@@ -10593,30 +10599,37 @@ html body [data-view="home"] .zq .zq-h{cursor:default!important}
     var P=C[0];
     var note=document.createElement('div');note.className='zq-note';note.textContent='ลองค้นหาตรงนี้!';
     var NS='http://www.w3.org/2000/svg',svg=document.createElementNS(NS,'svg');svg.setAttribute('class','zq-arw');
-    var line=document.createElementNS(NS,'path'),head=document.createElementNS(NS,'path');svg.appendChild(line);svg.appendChild(head);
+    svg.innerHTML='<defs><filter id="zqPencil" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="1"/><feDisplacementMap in="SourceGraphic" scale="2.6"/></filter></defs><g filter="url(#zqPencil)"><path class="ps"/><path class="pm"/><path class="pm h1"/><path class="pm h2"/></g>';
+    var turb=svg.querySelector('feTurbulence'),pS=svg.querySelector('.ps'),pM=svg.querySelector('.pm'),h1=svg.querySelector('.h1'),h2=svg.querySelector('.h2');
     box.appendChild(svg);box.appendChild(note);zq.insertBefore(box,zq.querySelector('.zq-top'));
-    var mx=0,my=0,raf=0,last=0,t0=0,vis=true,focus=false,started=false,draw=0,drawT=0,nudge=0,vn=0;
+    var mx=0,my=0,raf=0,last=0,t0=0,vis=true,focus=false,started=false,draw=0,drawT=0,nudge=0,vn=0,drawing=false,erasing=false,dS=0,boilT=0;
     addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;wake()},{passive:true});
     function S(p,v,t,k,c,dt){return v+(-k*(p-t)-c*v)*dt}
     /* geometry of the note + arrow, measured from the real paw and the real search bar */
     var G=null;function measure(){var zb=zq.getBoundingClientRect();if(!form||!zb.width)return G=null;var fb=form.getBoundingClientRect(),pe=P.e;
       G={pw:pe.offsetWidth,ph:pe.offsetHeight,pl:pe.offsetLeft,pt:pe.offsetTop,fx:fb.left-zb.left,fy:fb.top-zb.top+fb.height/2,nw:note.offsetWidth,nh:note.offsetHeight,bw:zq.offsetWidth}}
     addEventListener('resize',function(){C.forEach(function(c){c.h=0});measure();wake()});
+    /* the line starts at the pencil tip, swoops through a little loop, and lands on the search bar */
+    var K=0,HK=0,NK=0;
     function arrow(){if(!G||getComputedStyle(svg).display==='none')return;
-      /* fingertip sits at 99% x / 65% y of the pointing frame; it rides along with the spring */
-      var tipX=G.pl+G.pw*.99+(P.rx||0),tipY=G.pt+G.ph*.652+P.y;
-      /* the note sits just under the pointing paw, clear of the head */
-      var nx=tipX+18,ny=tipY+6;note.style.transform='translate('+nx.toFixed(1)+'px,'+ny.toFixed(1)+'px) rotate(-4deg)';
-      var sx=nx+G.nw*.35,sy=ny+G.nh+10,ex=G.fx-14+nudge,ey=G.fy;
-      var c1x=sx-10,c1y=sy+Math.max(40,(ey-sy)*.9),c2x=ex-(ex-sx)*.5,c2y=ey+4;
-      /* draw-on: trace the bezier up to `draw` */
-      var k=Math.max(0,Math.min(1,draw)),pts=[],N=40;
-      function B(t){var u=1-t;return [u*u*u*sx+3*u*u*t*c1x+3*u*t*t*c2x+t*t*t*ex,u*u*u*sy+3*u*u*t*c1y+3*u*t*t*c2y+t*t*t*ey]}
-      for(var i=0;i<=N;i++){var q=B(i/N*k);pts.push(q[0].toFixed(1)+' '+q[1].toFixed(1))}
-      line.setAttribute('d',k>0?'M'+pts.join('L'):'');
-      if(k>.97){var a=B(k),b=B(k-.04),ang=Math.atan2(a[1]-b[1],a[0]-b[0]),L=13;
-        head.setAttribute('d','M'+(a[0]-L*Math.cos(ang-.5)).toFixed(1)+' '+(a[1]-L*Math.sin(ang-.5)).toFixed(1)+'L'+a[0].toFixed(1)+' '+a[1].toFixed(1)+'L'+(a[0]-L*Math.cos(ang+.5)).toFixed(1)+' '+(a[1]-L*Math.sin(ang+.5)).toFixed(1))}
-      else head.setAttribute('d','')}
+      var sx=G.pl+G.pw*.97+(P.rx||0),sy=G.pt+G.ph*.965+P.y,ex=G.fx-12+nudge,ey=G.fy;
+      var dx=ex-sx,dy=ey-sy,L=Math.hypot(dx,dy)||1,ux=dx/L,uy=dy/L,nx=-uy,ny=ux;if(ny>0){nx=-nx;ny=-ny}
+      var N=90,R=Math.min(24,L*.11),a=.38,b=.62,pts=[],sk=[];
+      for(var i=0;i<=N;i++){var u=i/N,along=L*u,off=Math.sin(Math.PI*u)*L*.16;
+        if(u>a&&u<b){var th=2*Math.PI*(u-a)/(b-a);along-=R*1.5*Math.sin(th);off+=R*(1-Math.cos(th))}
+        var x=sx+ux*along+nx*off,y=sy+uy*along+ny*off;pts.push([x,y]);
+        sk.push([x+Math.sin(u*9)*2.2+1.5,y+Math.cos(u*7)*2.2+1.2])}
+      function poly(P,k){var n=Math.max(1,Math.round(k*N));if(k<=0)return '';var d='M'+P[0][0].toFixed(1)+' '+P[0][1].toFixed(1);for(var j=1;j<=n;j++)d+='L'+P[j][0].toFixed(1)+' '+P[j][1].toFixed(1);return d}
+      pM.setAttribute('d',poly(pts,K));pS.setAttribute('d',poly(sk,Math.max(0,K*1.08-.08)));
+      /* the arrowhead is two quick strokes, the second a beat after the first */
+      var e=pts[N],q=pts[N-4],ang=Math.atan2(e[1]-q[1],e[0]-q[0]),HL=15;
+      /* each head stroke grows outward from the tip */
+      function stroke2(da,k){if(k<=0)return '';var x=e[0]-HL*Math.cos(ang+da),y=e[1]-HL*Math.sin(ang+da);return 'M'+e[0].toFixed(1)+' '+e[1].toFixed(1)+'L'+(e[0]+(x-e[0])*k).toFixed(1)+' '+(e[1]+(y-e[1])*k).toFixed(1)}
+      h1.setAttribute('d',stroke2(-.55,Math.min(1,HK*2)));h2.setAttribute('d',stroke2(.55,Math.max(0,HK*2-1)));
+      /* the note is hand-lettered above the loop, written left to right as the line passes */
+      var m=pts[Math.round(N*.5)],tx=m[0]-G.nw*.5+12,ty=m[1]-G.nh-30;
+      note.style.transform='translate('+tx.toFixed(1)+'px,'+ty.toFixed(1)+'px) rotate(-4deg)';
+      note.style.clipPath='inset(-20% '+((1-NK)*100).toFixed(1)+'% -20% -4%)'}
     function frame(now){raf=0;var dt=Math.min(.033,(now-last)/1000);last=now;var t=(now-t0)/1000,busy=false;
       C.forEach(function(c,i){var inT=started&&t>.3+i*.25,s=c.side;
         /* how far it sits in: 0 = resting peek, positive = further out of the wall */
@@ -10627,7 +10640,7 @@ html body [data-view="home"] .zq .zq-h{cursor:default!important}
         if(c===P&&inT&&!rm)out+=nudge*.9;
         var tx=-s*out,ty=inT?my*c.dep*-.6:0;
         /* head follows the pointer, pivoting at the wall */
-        var look=inT&&!rm?Math.max(-1,Math.min(1,my*2.2))*4*(-s)+(c.pose>0?5*s*Math.min(1,c.pose*3):0)+(c.hov?4*s:0)+(c.hov?Math.sin(t*14)*3*Math.exp(-c.hovT*3):0):0;
+        var look=(c===P&&drawing&&K<1&&!rm?Math.sin(t*34)*2.2:0)+(inT&&!rm?Math.max(-1,Math.min(1,my*2.2))*4*(-s)+(c.pose>0?5*s*Math.min(1,c.pose*3):0)+(c.hov?4*s:0)+(c.hov?Math.sin(t*14)*3*Math.exp(-c.hovT*3):0):0);
         if(c.hov)c.hovT+=dt;
         c.vx=S(c.x,c.vx,tx,110,12,dt);c.vy=S(c.y,c.vy,ty,90,12,dt);c.vr=S(c.r,c.vr,look,70,9,dt);c.vs=S(c.sq,c.vs,inT&&!rm?1+Math.sin(t*2.4+c.ph)*.012:1,240,12,dt);
         c.x+=c.vx*dt;c.y+=c.vy*dt;c.r+=c.vr*dt;c.sq+=c.vs*dt;
@@ -10643,12 +10656,20 @@ html body [data-view="home"] .zq .zq-h{cursor:default!important}
           if(c.blinkEnd&&t>c.blinkEnd){c.e.classList.remove('bl');c.blinkEnd=0}}});
       /* the arrow draws on once, then its tip taps toward the bar */
       var want=started&&t>1.3&&!focus&&!(inp&&inp.value)?1:0;
-      if(want&&!note.classList.contains('on'))note.classList.add('on');if(!want)note.classList.remove('on');
-      draw+=((want?1.001:0)-draw)*(1-Math.exp(-dt*(want?3.2:9)));
-      var tap=want&&!rm&&draw>.98?Math.max(0,Math.sin(t*3.2))*Math.max(0,Math.sin(t*3.2))*7*((Math.floor(t*3.2/Math.PI)%3)<2?1:0):0;
+      /* draw: line ~0.9s with an ease, then the two head strokes; every ~9s it is erased from the tail and drawn again */
+      if(want&&!drawing&&K<.001&&HK<.001){drawing=true;dS=t}
+      if(!want)drawing=false;
+      if(drawing){var e1=Math.min(1,(t-dS)/.9);K=e1<.5?2*e1*e1:1-Math.pow(-2*e1+2,2)/2;HK=Math.max(0,Math.min(1,(t-dS-.9)/.28));NK=Math.max(0,Math.min(1,(t-dS-.15)/.75));
+        if(!rm&&t-dS>9){drawing=false;erasing=true}}
+      else{var sp=dt*(want?2.6:5);HK=Math.max(0,HK-sp*2.2);if(HK<=0)K=Math.max(0,K-sp);if(!want)NK=Math.max(0,NK-sp*1.3);if(K<=0)erasing=false}
+      if(rm&&want){K=HK=NK=1}
+      draw=K;
+      /* line boil */
+      if(!rm&&want&&t-boilT>.1){boilT=t;turb.setAttribute('seed',1+Math.floor(Math.random()*6))}
+      var tap=want&&!rm&&HK>=1?Math.max(0,Math.sin(t*3.2))*Math.max(0,Math.sin(t*3.2))*7*((Math.floor(t*3.2/Math.PI)%3)<2?1:0):0;
       vn=S(nudge,vn,tap,300,16,dt);nudge+=vn*dt;
-      svg.style.opacity=want?1:Math.min(1,draw*draw);arrow();
-      if(vis&&!document.hidden&&(!rm||busy)||busy||Math.abs(draw-want)>.002)raf=requestAnimationFrame(frame)}
+      arrow();
+      if(vis&&!document.hidden&&(!rm||busy)||busy||want||K>0)raf=requestAnimationFrame(frame)}
     C.forEach(function(c){c.hovT=0});
     /* now and then one ducks behind its wall and pops back */
     setInterval(function(){if(!vis||rm||focus||!started)return;var c=C[Math.floor(Math.random()*C.length)];if(c.hov||c.pose>0)return;if(Math.random()<.55){c.pose=1.6;c.sq=.9;c.vr+=c.side*90}else c.hide=1.25;wake()},4200);
