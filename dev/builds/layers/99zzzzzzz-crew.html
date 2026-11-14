@@ -7,11 +7,13 @@
 .zq-crew .zqc img{display:block;width:100%;height:auto;-webkit-user-drag:none;user-select:none;filter:none!important}
 .zq-crew .zqc img+img{position:absolute;left:0;top:0;opacity:0}
 .zq-crew .zqc.bl img+img{opacity:1}
-.zq-crew .zqc-l{width:clamp(160px,13.2vw,205px);left:0;top:25%;transform-origin:0 85%}
-.zq-crew .zqc-tr{width:clamp(140px,11.4vw,175px);right:0;top:10%;transform-origin:100% 85%}
-.zq-crew .zqc-br{width:clamp(145px,11.8vw,180px);right:0;top:55%;transform-origin:100% 85%}
+.zq-crew .zqc-l{width:clamp(170px,14vw,225px);left:0;top:27%;transform-origin:0 85%}
+.zq-crew .zqc-tr{width:clamp(150px,12.4vw,195px);right:0;top:9%;transform-origin:100% 85%}
+.zq-crew .zqc-br{width:clamp(150px,12.4vw,195px);right:0;top:55%;transform-origin:100% 85%}
 .zq-note{position:absolute;left:0;top:0;pointer-events:none;color:#1D1712;font:700 clamp(1.05rem,1.5vw,1.3rem)/1.1 'Mali',var(--display);white-space:nowrap;opacity:0;transition:opacity .35s;will-change:transform}
 .zq-note.on{opacity:1}
+/* "menacing" ゴゴゴ that rises beside a hamster while it strikes a pose */
+.zq-gs .zq-go{fill:#1D1712;stroke:none;font:900 clamp(2.8rem,4.2vw,4rem)/1 'Hiragino Kaku Gothic ProN','Noto Sans JP','Noto Sans CJK JP','Yu Gothic','Meiryo',sans-serif;opacity:0;transform-box:fill-box;transform-origin:center}
 .zq-arw{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
 .zq-arw path{fill:none;stroke:#1D1712;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
 @media (max-width:900px){.zq-note,.zq-arw{display:none}.zq-crew .zqc{width:96px!important}.zq-crew .zqc-l{top:auto;bottom:70px}.zq-crew .zqc-tr{display:none}.zq-crew .zqc-br{top:auto;bottom:60px}}
@@ -22,10 +24,12 @@
     var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,inp=document.getElementById('zqIn'),form=document.getElementById('zqForm')||(inp&&inp.closest('form'));
     var box=document.createElement('div');box.className='zq-crew';box.setAttribute('aria-hidden','true');
     /* [image, class, side (-1 left wall, 1 right wall), parallax depth, second frame use: blink | hover] */
-    var D=[['crew8-point','zqc-l',-1,8,'blink'],['crew8-cool','zqc-tr',1,6,'hover'],['crew8-thumb','zqc-br',1,10,'blink']];
+    var D=[['crew9-point','zqc-l',-1,8,'blink'],['crew9-cool','zqc-tr',1,6,'hover'],['crew9-thumb','zqc-br',1,10,'blink']];
+    var gsv=document.createElementNS('http://www.w3.org/2000/svg','svg');gsv.setAttribute('class','zq-arw zq-gs');box.appendChild(gsv);
     var C=D.map(function(d,i){var e=document.createElement('div');e.className='zqc '+d[1];
       e.innerHTML='<img src="img/'+d[0]+'.webp" alt="" draggable="false"><img src="img/'+d[0]+'-b.webp" alt="" draggable="false">';box.appendChild(e);
-      return {e:e,side:d[2],dep:d[3],mode:d[4],x:d[2]*240,vx:0,y:0,vy:0,r:0,vr:0,sq:1,vs:0,ph:i*1.9,hov:false,hide:0,blinkAt:1.5+i*1.3+Math.random()*2,blinkEnd:0,joy:0}});
+      var go=[];for(var j=0;j<4;j++){var g=document.createElementNS('http://www.w3.org/2000/svg','text');g.setAttribute('class','zq-go');g.style.setProperty('font-size',innerWidth>1300?'54px':'44px','important');g.style.setProperty('font-weight','900','important');g.textContent='ゴ';gsv.appendChild(g);go.push(g)}
+      return {go:go,men:0,pose:0,e:e,side:d[2],dep:d[3],mode:d[4],x:d[2]*240,vx:0,y:0,vy:0,r:0,vr:0,sq:1,vs:0,ph:i*1.9,hov:false,hide:0,blinkAt:1.5+i*1.3+Math.random()*2,blinkEnd:0,joy:0}});
     C.forEach(function(c){c.e.style.transform='translate3d('+c.x+'px,0,0)'});
     var P=C[0];
     var note=document.createElement('div');note.className='zq-note';note.textContent='ลองค้นหาตรงนี้!';
@@ -37,14 +41,16 @@
     function S(p,v,t,k,c,dt){return v+(-k*(p-t)-c*v)*dt}
     /* geometry of the note + arrow, measured from the real paw and the real search bar */
     var G=null;function measure(){var zb=zq.getBoundingClientRect();if(!form||!zb.width)return G=null;var fb=form.getBoundingClientRect(),pe=P.e;
-      G={pw:pe.offsetWidth,ph:pe.offsetHeight,pl:pe.offsetLeft,pt:pe.offsetTop,fx:fb.left-zb.left,fy:fb.top-zb.top+fb.height/2,nw:note.offsetWidth,nh:note.offsetHeight}}
+      G={pw:pe.offsetWidth,ph:pe.offsetHeight,pl:pe.offsetLeft,pt:pe.offsetTop,fx:fb.left-zb.left,fy:fb.top-zb.top+fb.height/2,nw:note.offsetWidth,nh:note.offsetHeight,bw:zq.offsetWidth};
+      C.forEach(function(c){var e=c.e;c.gx=c.side<0?e.offsetLeft+e.offsetWidth*.7:e.offsetLeft-60;c.gy=c.side<0?e.offsetTop-10:e.offsetTop+e.offsetHeight*.38})}
     addEventListener('resize',function(){C.forEach(function(c){c.h=0});measure();wake()});
     function arrow(){if(!G||getComputedStyle(svg).display==='none')return;
-      /* fingertip sits at 99% x / 57% y of the pointing frame; it rides along with the spring */
-      var tipX=G.pl+G.pw*.99+(P.rx||0),tipY=G.pt+G.ph*.567+P.y;
-      var nx=tipX+14,ny=tipY-G.nh-34;note.style.transform='translate('+nx.toFixed(1)+'px,'+ny.toFixed(1)+'px) rotate(-5deg)';
-      var sx=nx+G.nw*.42,sy=ny+G.nh+8,ex=G.fx-14+nudge,ey=G.fy;
-      var c1x=sx-6,c1y=sy+(ey-sy)*.9+30,c2x=ex-(ex-sx)*.45,c2y=ey+6;
+      /* fingertip sits at 99% x / 48% y of the pointing frame; it rides along with the spring */
+      var tipX=G.pl+G.pw*.99+(P.rx||0),tipY=G.pt+G.ph*.482+P.y;
+      /* the note sits just under the pointing paw, clear of the head */
+      var nx=tipX+18,ny=tipY+6;note.style.transform='translate('+nx.toFixed(1)+'px,'+ny.toFixed(1)+'px) rotate(-4deg)';
+      var sx=nx+G.nw*.35,sy=ny+G.nh+10,ex=G.fx-14+nudge,ey=G.fy;
+      var c1x=sx-10,c1y=sy+Math.max(40,(ey-sy)*.9),c2x=ex-(ex-sx)*.5,c2y=ey+4;
       /* draw-on: trace the bezier up to `draw` */
       var k=Math.max(0,Math.min(1,draw)),pts=[],N=40;
       function B(t){var u=1-t;return [u*u*u*sx+3*u*u*t*c1x+3*u*t*t*c2x+t*t*t*ex,u*u*u*sy+3*u*u*t*c1y+3*u*t*t*c2y+t*t*t*ey]}
@@ -60,9 +66,10 @@
         var out=inT?(s<0?-7:-18):-260;
         if(inT&&!rm){out+=Math.sin(t*1.5+c.ph)*4;if(c.hov)out+=18;if(focus)out+=14;out+=c.joy*8;out-=Math.min(1,c.hide)*230;out-=Math.abs(mx)*c.dep*.8}
         out=Math.min(0,out);
+        if(c===P&&inT&&!rm)out+=nudge*.9;
         var tx=-s*out,ty=inT?my*c.dep*-.6:0;
         /* head follows the pointer, pivoting at the wall */
-        var look=inT&&!rm?Math.max(-1,Math.min(1,my*2.2))*4*(-s)+(c.hov?4*s:0)+(c.hov?Math.sin(t*14)*3*Math.exp(-c.hovT*3):0):0;
+        var look=inT&&!rm?Math.max(-1,Math.min(1,my*2.2))*4*(-s)+(c.pose>0?7*s*Math.min(1,c.pose*3):0)+(c.hov?4*s:0)+(c.hov?Math.sin(t*14)*3*Math.exp(-c.hovT*3):0):0;
         if(c.hov)c.hovT+=dt;
         c.vx=S(c.x,c.vx,tx,110,12,dt);c.vy=S(c.y,c.vy,ty,90,12,dt);c.vr=S(c.r,c.vr,look,70,9,dt);c.vs=S(c.sq,c.vs,inT&&!rm?1+Math.sin(t*2.4+c.ph)*.012:1,240,12,dt);
         c.x+=c.vx*dt;c.y+=c.vy*dt;c.r+=c.vr*dt;c.sq+=c.vs*dt;
@@ -70,6 +77,13 @@
         /* keep the straight cut on the wall: clamp, and tuck in by however much the tilt swings it out */
         var h=c.h||(c.h=c.e.offsetHeight)||300,rx=c.rx=-s*Math.min(-s*c.x,0)+s*Math.abs(c.r)*h*.0152;
         c.e.style.transform='translate3d('+rx.toFixed(2)+'px,'+c.y.toFixed(2)+'px,0) rotate('+c.r.toFixed(2)+'deg) scale('+(2-c.sq).toFixed(4)+','+c.sq.toFixed(4)+')';
+        /* pose snap + menacing glyphs */
+        if(c.pose>0){c.pose-=dt;if(c.pose<=0)c.vr+=-s*60}
+        var mt=(c.hov||c.pose>0)&&inT&&!rm?1:0;c.men+=(mt-c.men)*(1-Math.exp(-dt*(mt?7:4)));
+        for(var j=0;j<c.go.length;j++){var g=c.go[j];if(c.men<.01||c.gx==null){if(g.style.opacity!=='0')g.style.opacity=0;continue}busy=true;
+          var life=(t*.75+j/c.go.length)%1,gx=c.gx+(j%2?-1:1)*22*(j>1?1.7:1)+Math.sin(t*9+j)*2.5-s*life*14,gy=c.gy+40-life*95+(j%2)*30,sc=.75+life*.55;
+          g.style.opacity=(c.men*Math.sin(life*Math.PI)).toFixed(3);
+          g.style.transform='translate3d('+gx.toFixed(1)+'px,'+gy.toFixed(1)+'px,0) rotate('+((j%2?-1:1)*12+Math.sin(t*6+j)*4).toFixed(1)+'deg) scale('+sc.toFixed(3)+')'}
         c.hide=Math.max(0,c.hide-dt*1.6);c.joy=Math.max(0,c.joy-dt*1.4);
         /* blink */
         if(c.mode==='blink'&&!rm){if(t>c.blinkAt){c.e.classList.add('bl');c.blinkEnd=t+(focus?.45:.12);c.blinkAt=t+2.4+Math.random()*3.2+(Math.random()<.25?-2.2:0)}
@@ -84,14 +98,14 @@
       if(vis&&!document.hidden&&(!rm||busy)||busy||Math.abs(draw-want)>.002)raf=requestAnimationFrame(frame)}
     C.forEach(function(c){c.hovT=0});
     /* now and then one ducks behind its wall and pops back */
-    setInterval(function(){if(!vis||rm||focus||!started)return;var c=C[Math.floor(Math.random()*C.length)];if(c.hov)return;c.hide=1.25;wake()},5200);
+    setInterval(function(){if(!vis||rm||focus||!started)return;var c=C[Math.floor(Math.random()*C.length)];if(c.hov||c.pose>0)return;if(Math.random()<.55){c.pose=1.6;c.sq=.9;c.vr+=c.side*90}else c.hide=1.25;wake()},4200);
     function wake(){if(!raf&&vis){last=performance.now();raf=requestAnimationFrame(frame)}}
     function start(){started=true;t0=performance.now();last=t0;measure();wake();setTimeout(measure,600)}
     if(document.getElementById('hhL'))addEventListener('hh:loaded',start,{once:true});else start();
     if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){measure();wake()});
     if('IntersectionObserver' in window)new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(vis)measure();wake()}).observe(zq);
     C.forEach(function(c){
-      c.e.addEventListener('pointerenter',function(){c.hov=true;c.hovT=0;if(c.mode==='hover')c.e.classList.add('bl');wake()});
+      c.e.addEventListener('pointerenter',function(){c.hov=true;c.hovT=0;c.sq=.92;if(c.mode==='hover')c.e.classList.add('bl');wake()});
       c.e.addEventListener('pointerleave',function(){c.hov=false;if(c.mode==='hover')c.e.classList.remove('bl');wake()});
       c.e.addEventListener('pointerdown',function(){c.sq=.86;c.vs=0;c.hide=1.1;wake()});
       c.e.addEventListener('click',function(){if(inp)inp.focus({preventScroll:true})})});
