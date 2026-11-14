@@ -157,4 +157,20 @@ f();addEventListener('scroll',f,{passive:true});addEventListener('hashchange',f)
   animation:naFame 2.2s cubic-bezier(.4,0,.2,1) infinite,naGlow 2.2s ease-in-out infinite alternate!important}
 @keyframes naGlow{from{filter:drop-shadow(0 0 2px rgba(255,190,70,.55)) drop-shadow(0 0 6px rgba(255,170,40,.35))}to{filter:drop-shadow(0 0 3px rgba(255,200,90,.85)) drop-shadow(0 0 10px rgba(255,170,40,.6))}}
 @media (prefers-reduced-motion:reduce){.nav-in>a.nv-w:hover>span>.na-w0{animation:none!important}}
+</style><style id="ly-navw3">
+/* ผลงาน: same hand-drawn language as เกี่ยวกับเรา. On hover three "shine" strokes are drawn out from the word's corner
+   and a small star pops, like a doodle saying "this one's good". The word itself stays readable. */
+.nav-in>a.nv-w:hover>span>.na-w0,.nav-in>a.nv-w:focus-visible>span>.na-w0{background:none!important;color:#1D1712!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;animation:none!important;filter:none!important;font-weight:inherit!important}
+.na-s{position:absolute;right:-19px;top:-14px;width:22px;height:22px;pointer-events:none;overflow:visible}
+.na-s path{fill:none;stroke:#C9780F;stroke-width:1.9;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .28s cubic-bezier(.6,0,.3,1)}
+.na-s path:nth-child(2){transition-delay:.07s}.na-s path:nth-child(3){transition-delay:.14s}
+.na-s .st{fill:#F2B230;stroke:#8A5208;stroke-width:1.1;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;transform:scale(0) rotate(-40deg);transform-box:fill-box;transform-origin:center;transition:transform .4s cubic-bezier(.3,1.8,.5,1) .22s}
+.nav-in>a.nv-w:hover .na-s path,.nav-in>a.nv-w:focus-visible .na-s path{stroke-dashoffset:0}
+.nav-in>a.nv-w:hover .na-s .st,.nav-in>a.nv-w:focus-visible .na-s .st{transform:scale(1) rotate(0)}
+@media (prefers-reduced-motion:reduce){.na-s path,.na-s .st{transition:none!important}}
 </style>
+<script>(function(){function go(){var w=document.querySelector('.nav-in>a.nv-w>span');if(!w||w.querySelector('.na-s'))return;
+  var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('class','na-s');s.setAttribute('viewBox','0 0 22 22');s.setAttribute('aria-hidden','true');
+  s.innerHTML='<path pathLength="1" d="M4 13H0"/><path pathLength="1" d="M6 6.5L3 3.5"/><path pathLength="1" d="M12.5 4V0"/><path class="st" d="M12.5 7.2l1.6 3.3 3.6.5-2.6 2.5.6 3.6-3.2-1.7-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z"/>';
+  w.appendChild(s)}
+  if(document.readyState==='loading')addEventListener('DOMContentLoaded',go);else go();setTimeout(go,800)})();</script>
