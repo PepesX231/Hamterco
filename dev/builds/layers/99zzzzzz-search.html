@@ -39,7 +39,7 @@ html body [data-view="home"] .zq{margin-top:-6px!important}
     var cur='',tm=0;
     function setQ(){var w=(typ&&typ.textContent||'').trim();if(!w||w===cur)return;cur=w;form.classList.add('ph-sw');
       setTimeout(function(){inp.setAttribute('placeholder','ลองถาม: อยาก'+w);form.classList.remove('ph-sw')},250)}
-    if(typ){new MutationObserver(function(){if(!inp.value)form.classList.add('ph-sw');clearTimeout(tm);tm=setTimeout(function(){var w=(typ.textContent||'').trim();if(w===cur)form.classList.remove('ph-sw');else setQ()},700)}).observe(typ,{childList:true,characterData:true,subtree:true});setQ()}
+    if(typ){new MutationObserver(function(){if(!inp.value&&inp.getAttribute('placeholder')!=='พิมพ์ถามเราได้เลย น้องอยากทำอะไร')inp.setAttribute('placeholder','พิมพ์ถามเราได้เลย น้องอยากทำอะไร');clearTimeout(tm);tm=setTimeout(function(){var w=(typ.textContent||'').trim();if(w===cur){cur='';setQ()}else setQ()},700)}).observe(typ,{childList:true,characterData:true,subtree:true});setQ()}
     form.addEventListener('submit',function(){if(!inp.value.trim()&&cur){inp.value='อยาก'+cur;inp.dispatchEvent(new Event('input',{bubbles:true}))}},true);
     go&&go.addEventListener('pointerdown',function(){if(!inp.value.trim()&&cur){inp.value='อยาก'+cur;inp.dispatchEvent(new Event('input',{bubbles:true}))}});
     var used=function(){form.classList.add('used')};inp.addEventListener('focus',used);form.addEventListener('submit',used);
@@ -54,6 +54,37 @@ html body [data-view="home"] .zq{margin-top:-6px!important}
     addEventListener('hashchange',upd);
     fab.addEventListener('click',function(){var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;scrollTo({top:0,behavior:rm?'auto':'smooth'});
       var t0=Date.now();(function w(){if(scrollY<10||Date.now()-t0>1200){inp.focus({preventScroll:true})}else requestAnimationFrame(w)})()})}
+  if(document.readyState==='complete')go();else addEventListener('load',go);
+})();
+</script>
+<style id="ly-invite">
+/* the hamster invites: a little speech bubble pointing at the search bar */
+.zq-bub{all:unset;box-sizing:border-box;position:absolute;z-index:6;border:0!important;pointer-events:auto;cursor:pointer;white-space:nowrap;padding:8px 14px;border-radius:14px;background:#FFF6E8;color:#1D1712;
+  font:700 .95rem/1.2 var(--display);box-shadow:0 10px 24px -12px rgba(29,23,18,.55);transform-origin:0 100%;opacity:0;transform:scale(.6) translateY(6px);
+  transition:opacity .25s,transform .45s cubic-bezier(.3,1.6,.5,1)}
+.zq-bub::after{content:"";position:absolute;left:-7px;bottom:8px;border:7px solid transparent;border-right-color:#FFF6E8;border-left:0}
+.zq-bub small{display:none;font:500 .78rem/1.3 var(--body,inherit);color:rgba(29,23,18,.6);margin-top:2px}
+.zq-bub.on{opacity:1;transform:none;animation:zqBob 2.6s ease-in-out 1s infinite}
+@keyframes zqBob{0%,100%{transform:none}50%{transform:translateY(-4px)}}
+.zq-bub:hover{background:#fff}
+@media (max-width:640px){.zq-bub{font-size:.85rem;padding:7px 11px}.zq-bub small{display:none}}
+@media (prefers-reduced-motion:reduce){.zq-bub,.zq-bub.on{transition:opacity .2s;animation:none;transform:none}}
+</style>
+<script>
+(function(){
+  function go(){var ham=document.getElementById('zqHam'),sw=ham&&ham.closest('.zq-sw'),inp=document.getElementById('zqIn'),form=document.getElementById('zqForm');if(!sw||sw.querySelector('.zq-bub'))return;
+    if(getComputedStyle(sw).position==='static')sw.style.position='relative';
+    var b=document.createElement('button');b.type='button';b.className='zq-bub';b.innerHTML='ลองถามเราดูสิ!<small>พิมพ์อะไรก็ได้ เดี๋ยวช่วยหาให้</small>';b.setAttribute('aria-label','ลองถามในช่องค้นหา');sw.appendChild(b);
+    var done=false,t1=0;
+    function place(){var a=ham.getBoundingClientRect(),r=sw.getBoundingClientRect();if(!a.width)return;b.style.left=(a.right-r.left+6)+'px';var f=document.getElementById('zqForm').getBoundingClientRect();b.style.top=(f.top-r.top-b.offsetHeight-6)+'px'}
+    function show(){if(done||inp.value||document.activeElement===inp)return;place();b.classList.add('on')}
+    function hide(){b.classList.remove('on')}
+    function stop(){done=true;hide();clearTimeout(t1)}
+    t1=setTimeout(show,2200);addEventListener('resize',place);
+    inp.addEventListener('focus',stop);inp.addEventListener('input',stop);form.addEventListener('submit',stop);
+    b.addEventListener('click',function(){stop();inp.focus()});
+    /* came back to the hero without trying: invite again */
+    var zq=sw.closest('.zq');if(zq&&'IntersectionObserver' in window)new IntersectionObserver(function(es){if(es[0].isIntersecting&&!done&&!inp.value){clearTimeout(t1);t1=setTimeout(show,900)}else if(!es[0].isIntersecting)hide()},{threshold:.5}).observe(zq)}
   if(document.readyState==='complete')go();else addEventListener('load',go);
 })();
 </script>
