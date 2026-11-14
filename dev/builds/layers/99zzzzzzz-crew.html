@@ -4,16 +4,16 @@
 .zq-crew{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;border-radius:inherit}
 .zq-crew .cr{position:absolute;pointer-events:auto;cursor:pointer;will-change:transform}
 .zq-crew .cr img{display:block;width:100%;height:auto;-webkit-user-drag:none;filter:none}
-/* each hamster's cut line sits on (or past) the edge it peeks from; --x/--y = centre point, --a = rotation */
-.zq-crew .cr{--w:clamp(190px,16vw,240px);width:var(--w);left:var(--x);top:var(--y);margin:calc(var(--w)*-.4) 0 0 calc(var(--w)*-.5)}
-.zq-crew .c1{--x:calc(var(--w)*.33);--y:30%}
-.zq-crew .c2{--x:calc(100% - var(--w)*.3);--y:27%}
-.zq-crew .c3{--x:calc(100% - var(--w)*.27);--y:74%}
-.zq-note{position:absolute;left:calc(clamp(190px,16vw,240px)*.8 + 2%);top:36%;pointer-events:none;color:#1D1712;font:700 clamp(1.05rem,1.6vw,1.35rem)/1.1 'Mali',var(--display);transform:rotate(-6deg);opacity:0;transition:opacity .4s}
+/* each hamster is drawn peeking round a wall edge; its straight cut sits flush on the hero's side edge */
+.zq-crew .cr{width:clamp(140px,12vw,190px)}
+.zq-crew .c1{left:0;top:21%;transform-origin:0 70%}
+.zq-crew .c2{right:0;top:14%;transform-origin:100% 70%}
+.zq-crew .c3{right:0;top:58%;transform-origin:100% 70%}
+.zq-note{position:absolute;left:calc(clamp(140px,12vw,190px) + 1.5%);top:38%;pointer-events:none;color:#1D1712;font:700 clamp(1.05rem,1.6vw,1.35rem)/1.1 'Mali',var(--display);transform:rotate(-6deg);opacity:0;transition:opacity .4s}
 .zq-note svg{display:block;width:clamp(80px,8vw,120px);height:auto;margin:2px 0 0 -14px;overflow:visible}
 .zq-note path{fill:none;stroke:#1D1712;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
 .zq-note.on{opacity:1}.zq-note.on path{transition:stroke-dashoffset .8s cubic-bezier(.6,0,.3,1) .2s;stroke-dashoffset:0}
-@media (max-width:900px){.zq-note{display:none}.zq-crew .cr{--w:120px}.zq-crew .c1{--y:auto;top:auto;bottom:60px}.zq-crew .c2{display:none}.zq-crew .c3{--y:auto;top:auto;bottom:40px}}
+@media (max-width:900px){.zq-note{display:none}.zq-crew .cr{width:92px}.zq-crew .c1{top:auto;bottom:70px}.zq-crew .c2{display:none}.zq-crew .c3{top:auto;bottom:60px}}
 @media (prefers-reduced-motion:reduce){.zq-note path{stroke-dashoffset:0}}
 </style>
 <script>
@@ -22,9 +22,9 @@
     var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,inp=document.getElementById('zqIn');
     var box=document.createElement('div');box.className='zq-crew';box.setAttribute('aria-hidden','true');
     /* [image, class, base rotation, where it comes in from (x,y), parallax depth] */
-    var D=[['crew5-point','c1',90,[-1,0],14],['crew5-cool','c2',-115,[.906,-.423],10],["crew5-thumb","c3",-75,[.966,.259],18]];
+    var D=[['crew6-point','c1',0,[-1,0],8],['crew6-cool','c2',0,[1,0],6],['crew6-thumb','c3',0,[1,0],10]];
     var C=D.map(function(d,i){var e=document.createElement('div');e.className='cr '+d[1];e.innerHTML='<img src="img/'+d[0]+'.webp" alt="">';box.appendChild(e);
-      return {e:e,rot:d[2],from:d[3],dep:d[4],x:d[3][0]*360,y:d[3][1]*360,vx:0,vy:0,tx:0,ty:0,r:0,vr:0,tr:0,sq:1,vs:0,ph:i*1.7}});
+      return {e:e,rot:d[2],from:d[3],dep:d[4],x:d[3][0]*260,y:0,vx:0,vy:0,tx:0,ty:0,r:0,vr:0,tr:0,sq:1,vs:0,ph:i*1.7}});
     var note=document.createElement('div');note.className='zq-note';
     note.innerHTML='ลองค้นหาตรงนี้!<svg viewBox="0 0 120 90"><path pathLength="1" d="M20 4C-2 22 6 70 110 80M110 80L94 70M110 80L95 88"/></svg>';
     box.appendChild(note);zq.insertBefore(box,zq.querySelector('.zq-top'));
@@ -34,22 +34,22 @@
     function S(p,v,t,k,c,dt){return v+(-k*(p-t)-c*v)*dt}
     function frame(now){raf=0;var dt=Math.min(.033,(now-last)/1000);last=now;var t=(now-t0)/1000,moving=false;
       C.forEach(function(c,i){var inT=t>.35+i*.22;
-        var bob=rm?0:Math.sin(t*1.6+c.ph)*5,pk=focus?22:0,o=inT?(bob-pk):360;c.tx=c.from[0]*o-(inT?mx*c.dep*.5:0);c.ty=c.from[1]*o-(inT?my*c.dep*.5:0);
-        c.tr=inT?(rm?0:Math.sin(t*1.1+c.ph)*3)+(focus?(c.from[0]<0?-8:8):0):0;
+        var bob=rm?0:(Math.sin(t*1.6+c.ph)+1)*5,pk=focus?0:0,o=inT?bob:260;c.tx=c.from[0]*Math.max(0,o+(inT?Math.abs(mx)*c.dep:0));c.ty=inT?-my*c.dep*.5:0;
+        c.tr=inT?(rm?0:Math.sin(t*1.1+c.ph)*2)*(-c.from[0]):0;
         c.vx=S(c.x,c.vx,c.tx,90,11,dt);c.vy=S(c.y,c.vy,c.ty,90,11,dt);c.vr=S(c.r,c.vr,c.tr,80,10,dt);c.vs=S(c.sq,c.vs,1,260,12,dt);
         c.x+=c.vx*dt;c.y+=c.vy*dt;c.r+=c.vr*dt;c.sq+=c.vs*dt;
         if(Math.abs(c.vx)+Math.abs(c.vy)>.5)moving=true;
         c.e.style.transform='translate('+c.x.toFixed(1)+'px,'+c.y.toFixed(1)+'px) rotate('+(c.rot+c.r).toFixed(2)+'deg) scale('+(2-c.sq).toFixed(3)+','+c.sq.toFixed(3)+')'});
       if(t>1.4&&!note.classList.contains('on')&&!focus&&!(inp&&inp.value))note.classList.add('on');
       if(vis&&!document.hidden&&!rm||moving)raf=requestAnimationFrame(frame)}
-    var nextPop=0;setInterval(function(){if(!vis||rm||focus)return;var c=C[Math.floor(Math.random()*C.length)];c.vx-=c.from[0]*380;c.vy-=c.from[1]*380;c.sq=.9;wake()},4200);
+    var nextPop=0;setInterval(function(){if(!vis||rm||focus)return;var c=C[Math.floor(Math.random()*C.length)];c.vx+=c.from[0]*420;c.sq=.94;wake()},4200);
     function wake(){if(!raf&&vis){last=performance.now();raf=requestAnimationFrame(frame)}}
     function start(){t0=performance.now();last=t0;wake()}
     if(document.getElementById('hhL'))addEventListener('hh:loaded',start,{once:true});else start();
     if('IntersectionObserver' in window)new IntersectionObserver(function(es){vis=es[0].isIntersecting;wake()}).observe(zq);
     C.forEach(function(c){c.e.addEventListener('pointerdown',function(){c.sq=.82;c.vx+=c.from[0]*300;c.vy+=c.from[1]*300;c.vr+=(Math.random()-.5)*160;wake()});
       c.e.addEventListener('click',function(){if(inp)inp.focus()})});
-    if(inp){inp.addEventListener('focus',function(){focus=true;note.classList.remove('on');C.forEach(function(c,i){setTimeout(function(){c.sq=.86;c.vx-=c.from[0]*220;c.vy-=c.from[1]*220;wake()},i*80)})});
+    if(inp){inp.addEventListener('focus',function(){focus=true;note.classList.remove('on');C.forEach(function(c,i){setTimeout(function(){c.sq=.86;c.sq=.9;wake()},i*80)})});
       inp.addEventListener('blur',function(){focus=false;wake()});inp.addEventListener('input',function(){note.classList.remove('on')})}}
   if(document.readyState==='complete')go();else addEventListener('load',go);
 })();
