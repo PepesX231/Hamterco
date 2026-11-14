@@ -10457,9 +10457,9 @@ html body [data-view="home"] .zq{margin-top:-6px!important}
 <style id="ly-chibi">
 /* the search hamster: only its ears show over the bar; it pops up when the visitor taps the bar */
 #zqHam{visibility:hidden!important}
-.zq-ch{position:absolute;z-index:6;width:132px;height:85px;cursor:pointer;-webkit-tap-highlight-color:transparent;will-change:transform,clip-path}
-.zq-ch .hd{position:absolute;inset:0;transform-origin:50% 100%;will-change:transform;background:url(img/ham-soft.webp) 0 0/1056px 85px no-repeat}
-@media (max-width:640px){.zq-ch{width:100px;height:65px}.zq-ch .hd{background-size:800px 65px}}
+.zq-ch{position:absolute;z-index:6;width:126px;height:85px;cursor:pointer;-webkit-tap-highlight-color:transparent;will-change:transform,clip-path}
+.zq-ch .hd{position:absolute;inset:0;transform-origin:50% 100%;will-change:transform;background:url(img/ham-head.webp) 0 0/504px 85px no-repeat}
+@media (max-width:640px){.zq-ch{width:96px;height:65px}.zq-ch .hd{background-size:384px 65px}}
 html body [data-view="home"] .zq .zq-sw{margin-top:66px!important}
 @media (max-width:640px){html body [data-view="home"] .zq .zq-sw{margin-top:60px!important}}
 /* the invitation lives on the bar itself: a warm light sweeps across it and the button nudges */
@@ -10502,16 +10502,16 @@ html body [data-view="home"] .zq .zq-sw{margin-top:66px!important}
       if(focus){var k=caret();if(k){tx=k.x;ty=k.y}}else if(mx!==null){tx=mx;ty=my}
       var look=0;
       if(tx!==null){var dx=tx-cx,dy=ty-cy;ROT.t=Math.max(-1,Math.min(1,dx/500))*5;LX.t=Math.max(-1,Math.min(1,dx/400));
-        look=Math.abs(dx)>70?(dx<0?3:4):(dy<-80?5:0)}
+        look=0}
       else if(now>nextLook){nextLook=now+1800+Math.random()*2600;LX.t=Math.random()<.5?(Math.random()*2-1):0;ROT.t=LX.t*3}
-      if(tx===null)look=LX.x<-.4?3:LX.x>.4?4:0;
+      if(tx===null)look=0;
       if(now>nextBlink){nextBlink=now+(Math.random()<.2?260:2400+Math.random()*3000);BL.x=0;BL.v=0;blinkT=now+130}
       if(!rm&&now>nextPeek){nextPeek=now+6000+Math.random()*5000;Y.v-=70}
       Y.t=HIDE();[Y,SX,ROT,LX,LY,BL].forEach(function(s){step(s,dt)});
       var y=Math.max(0,Y.x)+(rm?0:Math.sin(now/900)*.8),clip=Math.max(0,y-1);
       ch.style.transform='translateY('+y.toFixed(2)+'px)';ch.style.clipPath='inset(0 0 '+clip.toFixed(2)+'px 0)';
-      hd.style.transform='translateX('+(LX.x*3).toFixed(2)+'px) rotate('+ROT.x.toFixed(2)+'deg) scale('+(2-SX.x).toFixed(4)+','+SX.x.toFixed(4)+')';
-      var n=look;if(!focus&&now-lastMove>12000)n=7;if(hoverT>now)n=6;if(blinkT>now)n=1;if(happyT>now)n=2;else if(happyT){happyT=0}
+      hd.style.transform='translateX('+(LX.x*5).toFixed(2)+'px) rotate('+ROT.x.toFixed(2)+'deg) scale('+(2-SX.x).toFixed(4)+','+SX.x.toFixed(4)+')';
+      var n=look;if(!focus&&now-lastMove>12000&&Math.sin(now/1400)>.4)n=1;if(hoverT>now)n=3;if(blinkT>now)n=1;if(happyT>now)n=2;else if(happyT){happyT=0}
       fc(n);
       if(vis&&!document.hidden)raf=requestAnimationFrame(frame)}
     var blinkT=0;
