@@ -37,7 +37,7 @@ body .end-in .e1{background:var(--or)!important;color:#1D1712!important}
     if(!host||host.querySelector('.kn-sea'))return;var CODE=window.HXCODE;if(!CODE)return;
     var cv=document.createElement('canvas');cv.className='kn-sea';cv.setAttribute('aria-hidden','true');host.insertBefore(cv,host.firstChild);
     var cx=cv.getContext('2d'),at,cw,ch,dpr,W=0,H=0,cols,rows,rowC,mx=-1e4,my=-1e4,run=false,last=0;
-    function size(){W=host.clientWidth;H=host.clientHeight;if(!W)return;dpr=Math.min(devicePixelRatio||1,2);var mob=W<640;cw=mob?7:8;ch=mob?13:15;
+    function size(){W=host.clientWidth;H=host.clientHeight;if(!W)return;dpr=Math.min(devicePixelRatio||1,1.5);var mob=W<640;cw=mob?7:8;ch=mob?13:15;
       cv.width=W*dpr;cv.height=H*dpr;cols=Math.ceil(W/cw);rows=Math.ceil(H/ch);
       at=document.createElement('canvas');at.width=94*cw*dpr;at.height=ch*dpr;var a=at.getContext('2d');a.scale(dpr,dpr);
       a.font='600 '+(ch*.78)+'px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace';a.textAlign='center';a.textBaseline='middle';a.fillStyle=color;

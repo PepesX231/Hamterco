@@ -59,7 +59,7 @@
     a.font='600 '+(ch*.78)+'px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace';a.textAlign='center';a.textBaseline='middle';a.fillStyle=col;
     G.forEach(function(g,i){a.fillText(g,i*cw+cw/2,ch/2+1)});return c}
   function mkAtlas(){atlas=mk('#8A3A00');atlasW=mk('#E07B1E')}
-  function size(){W=zq.clientWidth;H=zq.clientHeight;dpr=Math.min(devicePixelRatio||1,2);var mob=W<640;cw=mob?7:8;ch=mob?13:15;
+  function size(){W=zq.clientWidth;H=zq.clientHeight;dpr=Math.min(devicePixelRatio||1,1.5);var mob=W<640;cw=mob?7:8;ch=mob?13:15;
     cv.width=W*dpr;cv.height=H*dpr;cols=Math.ceil(W/cw);rows=Math.ceil(H/ch);mkAtlas();mkRows();
     var r=zq.getBoundingClientRect(),h1=top.querySelector('.zq-h')||top,a=h1.getBoundingClientRect(),b=(form||h1).getBoundingClientRect();
     box={x:(Math.min(a.left,b.left)+Math.max(a.right,b.right))/2-r.left,y:(a.top+b.bottom)/2-r.top,rx:Math.max(a.width,b.width)*.5+(W<640?6:40),ry:(b.bottom-a.top)*.5+(W<640?24:46)}}
@@ -77,11 +77,16 @@
     var S=window.HXSlime,sp=S&&typeof S.p==='number'?Math.max(0,Math.min(1,S.p)):0,rim=S&&S.rim?S.rim:0;
     var ge=gat*gat*(3-2*gat),tb=(ge>.003||sp>.003)&&form?target():null,far=Math.max(W,H)*.75,r0=10+rim*sp+(1-ge)*far,wd=16+(1-ge)*70,clr=6+rim*sp;
     var B1=W<640?.2:.36;
+    /* the two bands only depend on the column: work them out once per frame */
+    if(!frame.Y||frame.Y.length!==cols*4)frame.Y=new Float32Array(cols*4);var YB=frame.Y;
+    for(var c0=0;c0<cols;c0++){var u0=(c0*cw+cw/2)/W;YB[c0*4]=B1+.1*Math.sin(u0*5.2+t*.55)+.035*Math.sin(u0*13-t*.9);YB[c0*4+1]=.085+.035*Math.sin(u0*3.4+t*.4);
+      YB[c0*4+2]=.68+.08*Math.sin(u0*4.1-t*.45+1.7)+.03*Math.sin(u0*11+t*.7);YB[c0*4+3]=.065+.03*Math.sin(u0*2.6-t*.5+.6)}
+    var lastA=-1;
     for(var j=0;j<rows;j++){var y=j*ch+ch/2,v=y/H,RC=rowC[j];if(!RC)continue;
       for(var i=0;i<cols;i++){var cc=RC[i];if(cc===32)continue;var x=i*cw+cw/2,u=x/W;
         /* two drifting bands, like a slow sea */
-        var y1=B1+.1*Math.sin(u*5.2+t*.55)+.035*Math.sin(u*13-t*.9),t1=.085+.035*Math.sin(u*3.4+t*.4);
-        var y2=.68+.08*Math.sin(u*4.1-t*.45+1.7)+.03*Math.sin(u*11+t*.7),t2=.065+.03*Math.sin(u*2.6-t*.5+.6);
+        var ex=(x-box.x)/box.rx,ey=(y-box.y)/box.ry,m=ex*ex+ey*ey;if(m<1&&!tb)continue;m=Math.sqrt(m);
+        var y1=YB[i*4],t1=YB[i*4+1],y2=YB[i*4+2],t2=YB[i*4+3],q1=(v-y1)/t1,q2=(v-y2)/t2;if(q1*q1>9&&q2*q2>9&&!rip.length&&!tb&&((x-mx)*(x-mx)+(y-my)*(y-my))>40000)continue;
         var d=Math.exp(-Math.pow((v-y1)/t1,2))+.8*Math.exp(-Math.pow((v-y2)/t2,2));
         d*=.72+.28*Math.sin(x*.21+y*.13+t*1.6)*Math.sin(x*.05-t*.7+y*.02);
         /* pointer lifts the sea a little */
@@ -90,14 +95,14 @@
         for(var k=0;k<rip.length;k++){var p=rip[k],e=(now-p.t)/1000,R=e*p.v,dx=(x-p.x),dy=(y-p.y)*2.6,dd=Math.sqrt(dx*dx+dy*dy);
           d+=p.s*Math.exp(-Math.pow((dd-R)/34,2))*Math.max(0,1-e/p.life)}
         /* keep the headline and search clear */
-        var ex=(x-box.x)/box.rx,ey=(y-box.y)/box.ry,m=Math.sqrt(ex*ex+ey*ey);d*=m<1?0:m<1.5?(m-1)*2:1;
+        d*=m<1?0:m<1.5?(m-1)*2:1;
         if(tb){var sd=rr(x,y,tb);if(sd<clr)d*=sd<6?1-Math.max(ge,sp):1-sp;else{var an=Math.atan2((y-tb.cy)*1.6,x-tb.cx),
             hug=Math.exp(-Math.pow((sd-r0)/wd,2))*(.8+.35*Math.sin(an*9-t*2.4+sd*.05))+.55*Math.exp(-Math.pow((sd-r0-46)/(wd*1.6),2))*(.6+.4*Math.sin(an*5+t*1.3));
             d=d*(1-ge*.85)+hug*Math.min(1,ge*1.6)*(1-.45*sp)}}
         if(d<.2)continue;var g=cc-33;
-        var al=Math.min(.7,.1+d*.42);
-        if(sp<.98){cx.globalAlpha=al*(1-sp);cx.drawImage(atlas,g*cw*dpr,0,cw*dpr,ch*dpr,i*cw*dpr,j*ch*dpr,cw*dpr,ch*dpr)}
-        if(sp>.02){cx.globalAlpha=al*sp*.9;cx.drawImage(atlasW,g*cw*dpr,0,cw*dpr,ch*dpr,i*cw*dpr,j*ch*dpr,cw*dpr,ch*dpr)}}}
+        var al=Math.round(Math.min(.7,.1+d*.42)*20)/20;
+        if(sp<.98){var A=al*(1-sp);if(A!==lastA){cx.globalAlpha=A;lastA=A}cx.drawImage(atlas,g*cw*dpr,0,cw*dpr,ch*dpr,i*cw*dpr,j*ch*dpr,cw*dpr,ch*dpr)}
+        if(sp>.02){lastA=-1;cx.globalAlpha=al*sp*.9;cx.drawImage(atlasW,g*cw*dpr,0,cw*dpr,ch*dpr,i*cw*dpr,j*ch*dpr,cw*dpr,ch*dpr)}}}
     cx.globalAlpha=1}
   var run=false,last=0;
   function loop(t){if(!run)return;requestAnimationFrame(loop);if(t-last<33)return;last=t;frame(t)}
@@ -110,7 +115,8 @@
   /* ---------- ripples: rings on the surface that push through the glyph sea ---------- */
   function rings(x,y,sz,n){var o=window.HXSlime&&HXSlime.p>.5;for(var k=0;k<n;k++){(function(k){var r=document.createElement('i');r.className='hx-ring'+(o?' o':'');r.style.left=x+'px';r.style.top=y+'px';zq.appendChild(r);
       var s=sz*(1-k*.2);
-      r.animate([{width:'10px',height:'4px',opacity:.95},{width:s+'px',height:s*.3+'px',opacity:0}],{duration:1800+k*220,delay:k*180,easing:'cubic-bezier(.15,.6,.3,1)',fill:'both'}).onfinish=function(){r.remove()}})(k)}
+      r.style.width=s+'px';r.style.height=(s*.3)+'px';r.style.willChange='transform,opacity';
+      r.animate([{transform:'translate(-50%,-50%) scale('+(10/s).toFixed(3)+','+(4/(s*.3)).toFixed(3)+')',opacity:.95},{transform:'translate(-50%,-50%) scale(1)',opacity:0}],{duration:1800+k*220,delay:k*180,easing:'cubic-bezier(.15,.6,.3,1)',fill:'both'}).onfinish=function(){r.remove()}})(k)}
     rip.push({x:x,y:y,t:performance.now(),v:sz*.3,s:1.05,life:2.4})}
   form&&form.querySelector('.zq-go')&&form.querySelector('.zq-go').addEventListener('pointerdown',function(){if(rm)return;var r=zq.getBoundingClientRect(),b=this.getBoundingClientRect();rings(b.left+b.width/2-r.left,b.top+b.height/2-r.top,420,2)});
   /* every few seconds a ripple opens somewhere on the sea (never on the headline or search) */

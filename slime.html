@@ -6483,7 +6483,7 @@ span.hb.pxe-peek.up{transform:translateY(-12px)}
     peeks()}
   /* pointer-reactive starfield */
   function stars(){
-    var cx=sky.getContext('2d'),R=rnd(5),S=[],w=0,h=0,dp=Math.min(2,devicePixelRatio||1),mx=-999,my=-999,ox=0,oy=0,tox=0,toy=0,run=false,raf=0,shoot=null,last=0;
+    var cx=sky.getContext('2d'),R=rnd(5),S=[],w=0,h=0,dp=Math.min(1.5,devicePixelRatio||1),mx=-999,my=-999,ox=0,oy=0,tox=0,toy=0,run=false,raf=0,shoot=null,last=0;
     function size(){var r=fm.getBoundingClientRect();w=r.width;h=r.height;sky.width=Math.round(w*dp);sky.height=Math.round(h*dp);
       var n=Math.round(w*h/(mob()?5200:4200));S=[];for(var i=0;i<n;i++)S.push({x:R(),y:R(),z:.25+R()*.75,r:.4+R()*1.3,p:R()*6.3,s:.6+R()*1.6,c:R()<.12?'255,194,122':R()<.2?'200,185,255':'255,255,255'})}
     function draw(t){cx.setTransform(dp,0,0,dp,0,0);cx.clearRect(0,0,w,h);ox+=(tox-ox)*.06;oy+=(toy-oy)*.06;
@@ -7436,7 +7436,7 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
     a.font='600 '+(ch*.78)+'px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace';a.textAlign='center';a.textBaseline='middle';a.fillStyle=col;
     G.forEach(function(g,i){a.fillText(g,i*cw+cw/2,ch/2+1)});return c}
   function mkAtlas(){atlas=mk('#8A3A00');atlasW=mk('#E07B1E')}
-  function size(){W=zq.clientWidth;H=zq.clientHeight;dpr=Math.min(devicePixelRatio||1,2);var mob=W<640;cw=mob?7:8;ch=mob?13:15;
+  function size(){W=zq.clientWidth;H=zq.clientHeight;dpr=Math.min(devicePixelRatio||1,1.5);var mob=W<640;cw=mob?7:8;ch=mob?13:15;
     cv.width=W*dpr;cv.height=H*dpr;cols=Math.ceil(W/cw);rows=Math.ceil(H/ch);mkAtlas();mkRows();
     var r=zq.getBoundingClientRect(),h1=top.querySelector('.zq-h')||top,a=h1.getBoundingClientRect(),b=(form||h1).getBoundingClientRect();
     box={x:(Math.min(a.left,b.left)+Math.max(a.right,b.right))/2-r.left,y:(a.top+b.bottom)/2-r.top,rx:Math.max(a.width,b.width)*.5+(W<640?6:40),ry:(b.bottom-a.top)*.5+(W<640?24:46)}}
@@ -7454,11 +7454,16 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
     var S=window.HXSlime,sp=S&&typeof S.p==='number'?Math.max(0,Math.min(1,S.p)):0,rim=S&&S.rim?S.rim:0;
     var ge=gat*gat*(3-2*gat),tb=(ge>.003||sp>.003)&&form?target():null,far=Math.max(W,H)*.75,r0=10+rim*sp+(1-ge)*far,wd=16+(1-ge)*70,clr=6+rim*sp;
     var B1=W<640?.2:.36;
+    /* the two bands only depend on the column: work them out once per frame */
+    if(!frame.Y||frame.Y.length!==cols*4)frame.Y=new Float32Array(cols*4);var YB=frame.Y;
+    for(var c0=0;c0<cols;c0++){var u0=(c0*cw+cw/2)/W;YB[c0*4]=B1+.1*Math.sin(u0*5.2+t*.55)+.035*Math.sin(u0*13-t*.9);YB[c0*4+1]=.085+.035*Math.sin(u0*3.4+t*.4);
+      YB[c0*4+2]=.68+.08*Math.sin(u0*4.1-t*.45+1.7)+.03*Math.sin(u0*11+t*.7);YB[c0*4+3]=.065+.03*Math.sin(u0*2.6-t*.5+.6)}
+    var lastA=-1;
     for(var j=0;j<rows;j++){var y=j*ch+ch/2,v=y/H,RC=rowC[j];if(!RC)continue;
       for(var i=0;i<cols;i++){var cc=RC[i];if(cc===32)continue;var x=i*cw+cw/2,u=x/W;
         /* two drifting bands, like a slow sea */
-        var y1=B1+.1*Math.sin(u*5.2+t*.55)+.035*Math.sin(u*13-t*.9),t1=.085+.035*Math.sin(u*3.4+t*.4);
-        var y2=.68+.08*Math.sin(u*4.1-t*.45+1.7)+.03*Math.sin(u*11+t*.7),t2=.065+.03*Math.sin(u*2.6-t*.5+.6);
+        var ex=(x-box.x)/box.rx,ey=(y-box.y)/box.ry,m=ex*ex+ey*ey;if(m<1&&!tb)continue;m=Math.sqrt(m);
+        var y1=YB[i*4],t1=YB[i*4+1],y2=YB[i*4+2],t2=YB[i*4+3],q1=(v-y1)/t1,q2=(v-y2)/t2;if(q1*q1>9&&q2*q2>9&&!rip.length&&!tb&&((x-mx)*(x-mx)+(y-my)*(y-my))>40000)continue;
         var d=Math.exp(-Math.pow((v-y1)/t1,2))+.8*Math.exp(-Math.pow((v-y2)/t2,2));
         d*=.72+.28*Math.sin(x*.21+y*.13+t*1.6)*Math.sin(x*.05-t*.7+y*.02);
         /* pointer lifts the sea a little */
@@ -7467,14 +7472,14 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
         for(var k=0;k<rip.length;k++){var p=rip[k],e=(now-p.t)/1000,R=e*p.v,dx=(x-p.x),dy=(y-p.y)*2.6,dd=Math.sqrt(dx*dx+dy*dy);
           d+=p.s*Math.exp(-Math.pow((dd-R)/34,2))*Math.max(0,1-e/p.life)}
         /* keep the headline and search clear */
-        var ex=(x-box.x)/box.rx,ey=(y-box.y)/box.ry,m=Math.sqrt(ex*ex+ey*ey);d*=m<1?0:m<1.5?(m-1)*2:1;
+        d*=m<1?0:m<1.5?(m-1)*2:1;
         if(tb){var sd=rr(x,y,tb);if(sd<clr)d*=sd<6?1-Math.max(ge,sp):1-sp;else{var an=Math.atan2((y-tb.cy)*1.6,x-tb.cx),
             hug=Math.exp(-Math.pow((sd-r0)/wd,2))*(.8+.35*Math.sin(an*9-t*2.4+sd*.05))+.55*Math.exp(-Math.pow((sd-r0-46)/(wd*1.6),2))*(.6+.4*Math.sin(an*5+t*1.3));
             d=d*(1-ge*.85)+hug*Math.min(1,ge*1.6)*(1-.45*sp)}}
         if(d<.2)continue;var g=cc-33;
-        var al=Math.min(.7,.1+d*.42);
-        if(sp<.98){cx.globalAlpha=al*(1-sp);cx.drawImage(atlas,g*cw*dpr,0,cw*dpr,ch*dpr,i*cw*dpr,j*ch*dpr,cw*dpr,ch*dpr)}
-        if(sp>.02){cx.globalAlpha=al*sp*.9;cx.drawImage(atlasW,g*cw*dpr,0,cw*dpr,ch*dpr,i*cw*dpr,j*ch*dpr,cw*dpr,ch*dpr)}}}
+        var al=Math.round(Math.min(.7,.1+d*.42)*20)/20;
+        if(sp<.98){var A=al*(1-sp);if(A!==lastA){cx.globalAlpha=A;lastA=A}cx.drawImage(atlas,g*cw*dpr,0,cw*dpr,ch*dpr,i*cw*dpr,j*ch*dpr,cw*dpr,ch*dpr)}
+        if(sp>.02){lastA=-1;cx.globalAlpha=al*sp*.9;cx.drawImage(atlasW,g*cw*dpr,0,cw*dpr,ch*dpr,i*cw*dpr,j*ch*dpr,cw*dpr,ch*dpr)}}}
     cx.globalAlpha=1}
   var run=false,last=0;
   function loop(t){if(!run)return;requestAnimationFrame(loop);if(t-last<33)return;last=t;frame(t)}
@@ -7487,7 +7492,8 @@ html.pl-scrolled .nav{box-shadow:0 10px 30px -22px rgba(60,35,10,.45)}
   /* ---------- ripples: rings on the surface that push through the glyph sea ---------- */
   function rings(x,y,sz,n){var o=window.HXSlime&&HXSlime.p>.5;for(var k=0;k<n;k++){(function(k){var r=document.createElement('i');r.className='hx-ring'+(o?' o':'');r.style.left=x+'px';r.style.top=y+'px';zq.appendChild(r);
       var s=sz*(1-k*.2);
-      r.animate([{width:'10px',height:'4px',opacity:.95},{width:s+'px',height:s*.3+'px',opacity:0}],{duration:1800+k*220,delay:k*180,easing:'cubic-bezier(.15,.6,.3,1)',fill:'both'}).onfinish=function(){r.remove()}})(k)}
+      r.style.width=s+'px';r.style.height=(s*.3)+'px';r.style.willChange='transform,opacity';
+      r.animate([{transform:'translate(-50%,-50%) scale('+(10/s).toFixed(3)+','+(4/(s*.3)).toFixed(3)+')',opacity:.95},{transform:'translate(-50%,-50%) scale(1)',opacity:0}],{duration:1800+k*220,delay:k*180,easing:'cubic-bezier(.15,.6,.3,1)',fill:'both'}).onfinish=function(){r.remove()}})(k)}
     rip.push({x:x,y:y,t:performance.now(),v:sz*.3,s:1.05,life:2.4})}
   form&&form.querySelector('.zq-go')&&form.querySelector('.zq-go').addEventListener('pointerdown',function(){if(rm)return;var r=zq.getBoundingClientRect(),b=this.getBoundingClientRect();rings(b.left+b.width/2-r.left,b.top+b.height/2-r.top,420,2)});
   /* every few seconds a ripple opens somewhere on the sea (never on the headline or search) */
@@ -8523,7 +8529,7 @@ body .end-in .e1{background:var(--or)!important;color:#1D1712!important}
     if(!host||host.querySelector('.kn-sea'))return;var CODE=window.HXCODE;if(!CODE)return;
     var cv=document.createElement('canvas');cv.className='kn-sea';cv.setAttribute('aria-hidden','true');host.insertBefore(cv,host.firstChild);
     var cx=cv.getContext('2d'),at,cw,ch,dpr,W=0,H=0,cols,rows,rowC,mx=-1e4,my=-1e4,run=false,last=0;
-    function size(){W=host.clientWidth;H=host.clientHeight;if(!W)return;dpr=Math.min(devicePixelRatio||1,2);var mob=W<640;cw=mob?7:8;ch=mob?13:15;
+    function size(){W=host.clientWidth;H=host.clientHeight;if(!W)return;dpr=Math.min(devicePixelRatio||1,1.5);var mob=W<640;cw=mob?7:8;ch=mob?13:15;
       cv.width=W*dpr;cv.height=H*dpr;cols=Math.ceil(W/cw);rows=Math.ceil(H/ch);
       at=document.createElement('canvas');at.width=94*cw*dpr;at.height=ch*dpr;var a=at.getContext('2d');a.scale(dpr,dpr);
       a.font='600 '+(ch*.78)+'px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace';a.textAlign='center';a.textBaseline='middle';a.fillStyle=color;
@@ -9638,7 +9644,7 @@ html body [data-view="home"] .mc .mc-cap b{font-size:1.15rem}
     if(pad.querySelector('.fe-sea'))return;var L=CODE[view];if(!L)return;
     var cv=document.createElement('canvas');cv.className='fe-sea';cv.setAttribute('aria-hidden','true');var pin=pad.querySelector('.pz-pad-in');if(pin&&pin.nextSibling)pad.insertBefore(cv,pin.nextSibling);else pad.appendChild(cv);
     var cx=cv.getContext('2d'),at,cw,ch,dpr,W=0,H=0,cols,rows,rowC,run=false,last=0,mx=-1e4,my=-1e4,rip=[],hole=[];
-    function size(){W=pad.clientWidth;H=pad.clientHeight;if(!W||!H)return false;dpr=Math.min(devicePixelRatio||1,2);var mob=W<640;cw=mob?7:8;ch=mob?13:15;
+    function size(){W=pad.clientWidth;H=pad.clientHeight;if(!W||!H)return false;dpr=Math.min(devicePixelRatio||1,1.5);var mob=W<640;cw=mob?7:8;ch=mob?13:15;
       cv.width=W*dpr;cv.height=H*dpr;cols=Math.ceil(W/cw);rows=Math.ceil(H/ch);
       at=document.createElement('canvas');at.width=94*cw*dpr;at.height=ch*dpr;var a=at.getContext('2d');a.scale(dpr,dpr);
       a.font='600 '+(ch*.78)+'px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace';a.textAlign='center';a.textBaseline='middle';a.fillStyle='#8A3A00';
@@ -9812,9 +9818,9 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
 .tv *{box-sizing:border-box}
 /* screen texture shared by every part: fine scanlines, grain and a dark rim */
 .tv-fx{position:absolute;inset:0;pointer-events:none;z-index:3}
-.tv-fx::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0 2px,rgba(0,0,0,.22) 2px 3px);mix-blend-mode:multiply}
+.tv-fx::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0 2px,rgba(0,0,0,.18) 2px 3px)}
 .tv-fx::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 160px 40px rgba(0,0,0,.75)}
-.tv-grain{position:absolute;inset:0;pointer-events:none;z-index:4;opacity:.07;mix-blend-mode:screen;background-size:220px 220px;animation:tvGr .6s steps(5) infinite}
+.tv-grain{display:none!important;position:absolute;inset:0;pointer-events:none;z-index:4;opacity:.07;background-size:220px 220px;animation:tvGr .6s steps(5) infinite}
 @keyframes tvGr{20%{background-position:-60px 40px}40%{background-position:90px -70px}60%{background-position:-30px -110px}80%{background-position:120px 60px}}
 .tv-m{font:400 .74rem/1.5 var(--mono);letter-spacing:.04em;color:rgba(255,246,232,.62)}
 .tv-glow{color:var(--amb);text-shadow:0 0 18px rgba(255,160,70,.45),-1.5px 0 0 rgba(255,70,50,.55),1.5px 0 0 rgba(80,190,255,.35)}
@@ -10037,7 +10043,7 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
   '    float vg=smoothstep(-.0,-.12,bd);s*=mix(.55,1.,vg);s*=.88+.12*sin(fc.y*2.1);',
   '    s+=vec3(1.,.7,.4)*.05*(1.-vg);col=s*lit;}',
   '   else if(bd<.035){col=mix(vec3(.16,.12,.09),vec3(.07,.055,.045),bd/.035)*lit;}}}',
-  ' col+=(h(fc+T)-.5)*.06;float vgn=1.-.55*dot(uv*.7,uv*.7);col*=vgn;gl_FragColor=vec4(col,1.);}'].join('\n');
+  ' col+=(h(fc)-.5)*.05;float vgn=1.-.55*dot(uv*.7,uv*.7);col*=vgn;gl_FragColor=vec4(col,1.);}'].join('\n');
   /* Mr. City has no screenshot: draw its map card (same look the old page used) */
   function city(){var c=document.createElement('canvas');c.width=1280;c.height=760;var x=c.getContext('2d');
     x.fillStyle='#1F6249';x.fillRect(0,0,1280,760);x.strokeStyle='rgba(255,255,255,.09)';x.lineWidth=2;
@@ -10060,9 +10066,9 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
     var tex=[],asp=[],blank=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,blank);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,1,1,0,gl.RGBA,gl.UNSIGNED_BYTE,new Uint8Array([20,16,12,255]));
     W.forEach(function(w,i){tex[i]=blank;asp[i]=1.42;var im=w.draw?city():new Image();im.onload=function(){var t=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,t);
       gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,im);['TEXTURE_WRAP_S','TEXTURE_WRAP_T'].forEach(function(k){gl.texParameteri(gl.TEXTURE_2D,gl[k],gl.CLAMP_TO_EDGE)});
-      gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);tex[i]=t;asp[i]=im.width/im.height;dirty=1};if(w.draw)im.onload();else im.src=w.img});
+      gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);tex[i]=t;asp[i]=im.width/im.height;dirty=1;if(ws.__kick)ws.__kick()};if(w.draw)im.onload();else im.src=w.img});
     var dirty=1;
-    return {draw:function(t,p,g){var dpr=Math.min(devicePixelRatio||1,1.5),w=cv.clientWidth,h=cv.clientHeight;if(!w)return;
+    return {dirty:function(){return dirty},draw:function(t,p,g){dirty=0;var dpr=1,w=cv.clientWidth,h=cv.clientHeight;if(!w)return;
         if(cv.width!==Math.round(w*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr)}gl.viewport(0,0,cv.width,cv.height);
         var k=Math.round(p);[k-1,k,k+1].forEach(function(j,s){gl.activeTexture(gl.TEXTURE0+s);gl.bindTexture(gl.TEXTURE_2D,tex[j]||blank)});
         gl.uniform3f(U.AS,asp[k-1]||1.42,asp[k]||1.42,asp[k+1]||1.42);gl.uniform2f(U.R,cv.width,cv.height);gl.uniform1f(U.T,t);gl.uniform1f(U.P,p);gl.uniform1f(U.G,g);gl.uniform1f(U.K,k);
@@ -10081,8 +10087,8 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
     function frame(t){raf=0;if(!vis||!view.offsetParent)return;tgt=prog();cur+=(tgt-cur)*(rm?1:.12);if(Math.abs(tgt-cur)<.0005)cur=tgt;
       var k=Math.round(cur);if(k!==shown){shown=k;info(k);g=rm?0:1}g*=.9;
       bar.style.transform='scaleX('+(cur/(W.length-1))+')';
-      if(dr)dr.draw(t/1000,cur,g);raf=requestAnimationFrame(frame)}
-    function kick(){if(!raf&&vis)raf=requestAnimationFrame(frame)}
+      var mv=tgt!==cur||g>.01||(dr&&dr.dirty());if(dr&&mv)dr.draw(t/1000,cur,g);if(!mv){raf=0;return}raf=requestAnimationFrame(frame)}
+    function kick(){if(!raf&&vis)raf=requestAnimationFrame(frame)}ws.__kick=kick;
     new IntersectionObserver(function(es){vis=es[0].isIntersecting;kick()}).observe(ws);
     addEventListener('scroll',kick,{passive:true});addEventListener('resize',kick);
     lis.forEach(function(l,i){l.querySelector('button').addEventListener('click',function(){var top=ws.getBoundingClientRect().top+scrollY,sp=ws.offsetHeight-innerHeight;scrollTo({top:top+sp*i/(W.length-1)+2,behavior:rm?'auto':'smooth'})})});
@@ -10117,7 +10123,7 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
     function ringF(){rr=0;if(!rv||!view.offsetParent)return;if(!down){if(!rm)rot-=.035;rot+=vel;vel*=.94}
       ring.style.transform='translateZ('+Zr.toFixed(1)+'px) rotateY('+rot.toFixed(2)+'deg)';
       figs.forEach(function(f,i){var a=i*step,d=((rot-a)%360+540)%360-180,v=Math.abs(d)<78;f.style.visibility=v?'visible':'hidden';
-        if(v){f.style.transform='rotateY('+(-a)+'deg) translateZ('+(-Rr).toFixed(1)+'px)';f.style.filter='brightness('+(1-Math.min(.45,Math.abs(d)/170)).toFixed(2)+')'}});
+        if(v){f.style.transform='rotateY('+(-a)+'deg) translateZ('+(-Rr).toFixed(1)+'px)'}});
       rr=requestAnimationFrame(ringF)}
     lay();addEventListener('resize',lay);
     new IntersectionObserver(function(es){rv=es[0].isIntersecting;if(rv&&!rr)rr=requestAnimationFrame(ringF)}).observe(st);
@@ -10278,4 +10284,36 @@ html body section[aria-labelledby="ocH"] .oc-in>.oc-r:first-of-type{margin-top:c
   function go(){status();setInterval(status,5000)}
   if(document.readyState==='complete')go();else addEventListener('load',go);
 })();
+</script>
+
+<!-- layer: 99zzzzz-perf.html -->
+<style id="ly-perf">
+/* performance: decorative loops only run while they can be seen */
+.na-w i,.na-w::before{animation-play-state:paused!important}
+.nav-in>a.nv-w:hover .na-w i,.nav-in>a.nv-w:hover .na-w::before,.nav-in>a.nv-w:focus-visible .na-w i,.nav-in>a.nv-w:focus-visible .na-w::before{animation-play-state:running!important}
+.nav-in>a.nv-w:not(:hover):not(:focus-visible)>span>.na-w0{animation:none!important}
+.tv-fly i,.tv-rg-r figure{will-change:transform}
+.tv-fly i::after{display:none!important}.tv-fly i{box-shadow:0 18px 30px -18px rgba(0,0,0,.8)!important}
+.tv-in .tv-fx{display:none!important}
+@media (max-width:700px){.tv-fly i:nth-child(n+9){display:none!important}}
+html.pf-off *{animation-play-state:paused!important}
+</style>
+<script>
+(function(){
+  /* infinite CSS animations that are off screen are paused (sections far above/below the viewport) */
+  function sweep(){var vh=innerHeight;document.getAnimations().forEach(function(a){var e=a.effect&&a.effect.target;if(!e||!e.getBoundingClientRect)return;
+    var t=a.effect.getTiming&&a.effect.getTiming();if(!t||t.iterations!==Infinity)return;if(e.closest&&e.closest('.nav'))return;
+    var r=e.getBoundingClientRect(),on=r.width>0&&r.bottom>-200&&r.top<vh+200;
+    if(!on&&a.playState==='running'){a.pause();a.__pf=1}else if(on&&a.__pf&&a.playState==='paused'){a.play();a.__pf=0}})}
+  var q=0;function k(){if(!q)q=setTimeout(function(){q=0;sweep()},250)}
+  addEventListener('scroll',k,{passive:true});addEventListener('hashchange',function(){setTimeout(sweep,300)});addEventListener('resize',k);
+  if(document.readyState==='complete')setTimeout(sweep,800);else addEventListener('load',function(){setTimeout(sweep,800)});
+  setInterval(sweep,3000);
+})();
+</script>
+<script>
+(function(){/* the animated drip strip under the hero only plays while on screen */
+  function go(){var j=document.querySelectorAll('.je');if(!('IntersectionObserver' in window))return;var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.style.visibility=e.isIntersecting?'':'hidden'})},{rootMargin:'250px 0px'});
+    j.forEach(function(e){io.observe(e)})}
+  if(document.readyState==='complete')go();else addEventListener('load',go)})();
 </script>
