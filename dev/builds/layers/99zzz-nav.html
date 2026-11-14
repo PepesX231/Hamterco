@@ -18,19 +18,20 @@
 /* ผลงาน = the Hall of Fame: a soft gold aurora rises behind the word, the word turns to gold */
 .nav-in>a.nv-w>span{z-index:0}
 .nav-in>a.nv-w>span>.na-w0{display:inline-block;position:relative;transition:color .25s}
-/* light falls on the word: soft god-rays from above, masked to an oval so there is never an edge */
-.na-w{left:50%;top:50%;width:150px;height:80px;margin:-52px 0 0 -75px;z-index:-1;opacity:0;transition:opacity .4s;pointer-events:none;
-  -webkit-mask:radial-gradient(closest-side,#000 35%,transparent 100%);mask:radial-gradient(closest-side,#000 35%,transparent 100%)}
-.na-w::before{content:"";position:absolute;inset:-40% -20% 0;transform-origin:50% 0;
-  background:repeating-conic-gradient(from 135deg at 50% 0,rgba(255,196,70,0) 0deg,rgba(255,196,70,.55) 5deg,rgba(255,196,70,0) 11deg,rgba(255,196,70,0) 15deg);
-  animation:naSway 4s ease-in-out infinite alternate}
-.na-w::after{content:"";position:absolute;left:15%;right:15%;bottom:12%;height:42%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,214,120,.85),rgba(255,214,120,0));animation:naHalo 2.6s ease-in-out infinite alternate}
+/* a gold aurora flows all the way around the word */
+@property --naA{syntax:'<angle>';inherits:false;initial-value:0deg}
+.na-w{left:-14px;right:-14px;top:-7px;bottom:-7px;z-index:-1;opacity:0;transition:opacity .35s;pointer-events:none}
+.na-w::before{content:"";position:absolute;inset:-7px -9px;border-radius:999px;filter:blur(11px) saturate(1.4);
+  background:conic-gradient(from var(--naA),#FFC94A,#FFF3C8,#F59E2A,#FFE38C,#E9A13A,#FFF6DA,#FFC94A);animation:naAur 3.2s linear infinite}
+.na-w::after{content:"";position:absolute;inset:0;border-radius:999px;background:conic-gradient(from var(--naA),#FFC94A,#FFF3C8,#F59E2A,#FFE38C,#E9A13A,#FFF6DA,#FFC94A);animation:naAur 3.2s linear infinite;
+  -webkit-mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);padding:1.5px;
+  box-shadow:inset 0 0 0 100px rgba(255,251,240,.92)}
 .na-w i{display:none}
-@keyframes naSway{from{transform:rotate(-6deg)}to{transform:rotate(6deg)}}
-@keyframes naHalo{to{transform:scale(1.18);opacity:.7}}
+@keyframes naAur{to{--naA:360deg}}
 .nav-in>a.nv-w:hover .na-w,.nav-in>a.nv-w:focus-visible .na-w{opacity:1}
+.na-w b{position:absolute;inset:0;border-radius:999px;background:rgba(255,251,240,.94)}
 .nav-in>a.nv-w:hover>span>.na-w0,.nav-in>a.nv-w:focus-visible>span>.na-w0{color:transparent;font-weight:700;
-  background:linear-gradient(100deg,#6B420A 0%,#8A5A10 30%,#E9B44C 45%,#8A5A10 60%,#6B420A 100%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;animation:naFame 1.8s cubic-bezier(.4,0,.2,1) infinite;filter:drop-shadow(0 0 5px rgba(255,200,80,.7))}
+  background:linear-gradient(100deg,#7A4A08 0%,#9A6410 30%,#E0A030 45%,#9A6410 60%,#7A4A08 100%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;animation:naFame 1.8s cubic-bezier(.4,0,.2,1) infinite;filter:drop-shadow(0 0 5px rgba(255,200,80,.7))}
 @keyframes naFame{0%{background-position:100% 0}60%,100%{background-position:0 0}}
 
 /* เกี่ยวกับเรา = "this is us": a marker loop is drawn around the word by hand, with a hamster paw print at the end */
@@ -83,7 +84,7 @@ html body [data-view="home"] .mc .lk:active{transform:scale(.97)}
     var c=document.querySelector('.nav-in>a.nv-c>span');
     if(c&&!c.querySelector('.na-x')){var l=el('span','na-x na-c l','<'),r=el('span','na-x na-c r','/>');r.appendChild(el('i'));[l,r].forEach(function(x){x.setAttribute('aria-hidden','true')});c.appendChild(l);c.appendChild(r)}
     var w=document.querySelector('.nav-in>a.nv-w>span');
-    if(w&&!w.querySelector('.na-x')){var t=w.textContent;w.textContent='';w.appendChild(el('span','na-w0',t));var p=el('span','na-x na-w');p.setAttribute('aria-hidden','true');p.innerHTML='<i></i><i></i><i></i><i></i><i></i>';w.appendChild(p)}
+    if(w&&!w.querySelector('.na-x')){var t=w.textContent;w.textContent='';w.appendChild(el('span','na-w0',t));var p=el('span','na-x na-w');p.setAttribute('aria-hidden','true');p.innerHTML='<b></b>';w.appendChild(p)}
     var b=document.querySelector('.nav-in>a.nv-b>span');
     if(b&&!b.querySelector('.na-x')){var d=el('span','na-x na-b');d.setAttribute('aria-hidden','true');d.innerHTML='<svg viewBox="0 0 120 40" preserveAspectRatio="none"><path pathLength="1" d="M70 4C40 1 8 6 5 19c-3 14 40 19 72 17 30-2 42-11 38-21C111 4 86 1 56 4"/><g class="h"><ellipse cx="117" cy="5.5" rx="3.6" ry="3"/><circle cx="111.6" cy="1.2" r="1.5"/><circle cx="115.3" cy="-1.2" r="1.5"/><circle cx="119.4" cy="-1" r="1.5"/><circle cx="122.6" cy="1.6" r="1.5"/></g></svg>';b.appendChild(d)}}
   /* seniors caption */
