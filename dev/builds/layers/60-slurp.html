@@ -84,7 +84,7 @@
     if(ok)return true;if(broken||lostCtx)return false;
     try{
       cv=document.createElement('canvas');cv.className='sl-cv';cv.setAttribute('aria-hidden','true');
-      gl=cv.getContext('webgl',{alpha:false,antialias:false,depth:false,stencil:false,preserveDrawingBuffer:false,powerPreference:'default',failIfMajorPerformanceCaveat:false});
+      gl=cv.getContext('webgl',{alpha:false,antialias:false,depth:false,stencil:false,preserveDrawingBuffer:true,powerPreference:'default',failIfMajorPerformanceCaveat:false});
       if(!gl||gl.getParameter(gl.MAX_FRAGMENT_UNIFORM_VECTORS)<40||!build()){broken=true;cv=null;gl=null;return false}
       cv.addEventListener('webglcontextlost',function(e){e.preventDefault();lostCtx=true;ok=false;bail()});
       cv.addEventListener('webglcontextrestored',function(){lostCtx=false;try{if(build())ok=true}catch(e){}if(ok)check()});

@@ -146,7 +146,7 @@ html body [data-view="activity"] .avc:not(:has(a)){cursor:default}
   /* ---------- 3. flat fills for the few gradient chips built in page code ---------- */
   function flat(){
     $$('[data-view="about"] small,[data-view="about"] li,[data-view="works"] button,[data-view="activity"] h2 span,[data-view="activity"] h1 span').forEach(function(e){
-      if(e.classList.contains('cl2-flat')||e.closest('.h5f,.t-afo'))return;var bi=getComputedStyle(e).backgroundImage;
+      if(e.classList.contains('cl2-flat')||e.closest('.h5f,.t-afo,.yt-side'))return;var bi=getComputedStyle(e).backgroundImage;
       if(bi&&/linear-gradient|radial-gradient/.test(bi)&&!/url\(/.test(bi)){e.classList.add('cl2-flat');e.style.setProperty('background','#F7A23E','important')}})}
 
   /* ---------- 7. rails ---------- */

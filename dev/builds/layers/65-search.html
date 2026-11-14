@@ -158,7 +158,7 @@
     ['home',/การบ้าน|ทำรายงาน|เขียนเรียงความ|เฉลยข้อสอบ|เฉลย|ทำโจทย์|แก้โจทย์|\b(homework|essay|assignment|solve this)\b/i],
     ['off',/อากาศ|ฝนตก|ฝนจะตก|พยากรณ์|หวย|ลอตเตอรี่|ดูดวง|ดวงวันนี้|ข่าววันนี้|ฟุตบอล|ผลบอล|บอลวันนี้|ดูหนัง|หนังใหม่|ฟังเพลง|เนื้อเพลง|สูตรอาหาร|กินอะไรดี|ร้านอาหาร|ร้านกาแฟ|หาแฟน|จีบ|อกหัก|เรื่องตลก|มุกตลก|เล่านิทาน|แปลภาษา|แปลว่าอะไร|แปลให้|กี่โมงแล้ว|วันนี้วันอะไร|วันนี้วันที่|เมืองหลวง|นายก|การเมือง|เลือกตั้ง|หุ้น|คริปโต|บิทคอยน์|ราคาทอง|ราคาน้ำมัน|ตั๋วเครื่องบิน|โรงแรม|ที่เที่ยว|\b(weather|rain(ing)?|forecast|lottery|horoscope|news|football|soccer|nba|movies?|songs?|lyrics|music|recipes?|restaurants?|jokes?|girlfriend|boyfriend|translate|capital of|president|prime minister|election|stocks?|bitcoin|crypto|gold price|what time is it|what day is|flights?|hotels?)\b/i],
     ['contact',/ติดต่อ|เบอร์โทร|เบอร์|โทรศัพท์|โทรหา|โทรไป|ไลน์|แอดไลน์|เฟสบุ๊ก|เฟซบุ๊ก|เฟสบุค|เพจ|ไอจี|อินสตา|อีเมล|แอดมิน|คุยกับ(ทีม|คน|พี่|เจ้าหน้าที่|ครู)|ถามทีม|ทักแชท|แชทกับ|ช่องทาง|\b(contact|line|line id|phone|call|tel|e-?mail|facebook|fb|instagram|ig|admin|staff|talk to|message|chat|dm|support|tit ?t[o]r?|tid ?t[o]r?|ber ?th?o+r?)\b/i],
-    ['works',/ดูผลงาน|ผลงานน้อง|ผลงานนักเรียน|ตัวอย่างผลงาน|ตัวอย่างงาน|เกมที่น้อง|ฮอลล์ออฟเฟม|\b(hall of fame|student (works?|projects?|games?)|showcase|examples?|gallery)\b/i]
+    ['works',/ดูผลงาน|ผลงานน้อง|ผลงานนักเรียน|ตัวอย่างผลงาน|ตัวอย่างงาน|เกมที่น้อง|เกมของน้อง|ฮอลล์ออฟเฟม|ไลโน|รีวอยซ์|ไทม์คีปเปอร์|สเตรสสไตรค์|มิสเตอร์ซิตี้|แฮมสเตอร์เควส|\b(lyno|revoice|time ?keeper|z\.?o\.?o\.?|stress ?strike|mr\.? ?city|phc ?map|hamster ?quest)\b|lyno|revoice|timekeeper|stressstrike|mrcity|phcmap|hamsterquest|\b(hall of fame|student (works?|projects?|games?)|showcase|examples?|gallery)\b/i]
   ];
   var GREET=/^(สวัสดี(ครับ|ค่ะ|คะ|คับ|จ้า|ค่า|ตอน\S+)?|หวัดดี|ดีครับ|ดีค่ะ|ดีคับ|ดีจ้า|ดีค่า|ฮัลโหล|ฮัลโล|เฮลโล|ฮาย|ไฮ|ว่าไง|ไง|มีใครอยู่ไหม|มีคนอยู่ไหม|hi+|hello+|hey+|yo|hiya|sawa[sdt]+ ?d[ie]+ ?(k[rh]?[au]b|kh?a|krub)?|wa[sd]+up|whats ?up|sup|good (morning|afternoon|evening)|anyone (here|there)\??)/i;
   var THANK=/^(ขอบคุณ(มาก)?|ขอบใจ|แต๊งกิ้ว|แต๊ง|โอเค|โอเคร|เค|ได้เลย|รับทราบ|เข้าใจแล้ว|thanks?( you| a lot)?|thank ?u|thx|ty|tysm|ok(ay)?|kh?o[bp] ?kh?un( kh?a| k[rh]?[au]b)?|bye|บาย|ลาก่อน)/i;
@@ -167,6 +167,10 @@
     ['price',/値段|料金|いくら|价格|價格|多少钱|多少錢|学费|學費|가격|얼마|precios?|cuánto|cuanto cuesta|combien|prix|giá|học phí|bao nhiêu|цена|сколько|سعر|بكم|ລາຄາ|ເທົ່າໃດ/i],
     ['iot',/ロボット|机器人|機器人|로봇|robots?|робот|روبوت|ຫຸ່ນຍົນ/i],['port',/大学|大學|대학|universidad|université|đại học|университет|جامعة|ມະຫາວິທະຍາໄລ/i],
     ['beginner',/初心者|プログラミング|编程|編程|初学者|코딩|프로그래밍|programación|programar|lập trình|программирован|برمجة/i]];
+  var PRE=[[['วิศวะ','วิศวกร','วิศว','คอม','คอมพิวเตอร์','วิทยาการคอมพิวเตอร์','ไอที','cedt'],'อยากเข้าวิศวะคอม'],[['หมอ','แพทย์','พยาบาล'],'อยากเข้าแพทย์'],
+    [['จุฬา','จุฬาฯ'],'อยากเข้าจุฬา'],[['มหิดล','เกษตร','ลาดกระบัง','สจล','มหาลัย','มหาวิทยาลัย','ธรรมศาสตร์','บางมด','พระจอม'],'อยากเข้ามหาลัย'],[['เกม','นักพัฒนาเกม','เกมเมอร์'],'อยากทำเกมของตัวเอง'],
+    [['แอป','แอปพลิเคชัน','แอพ'],'อยากทำแอป'],[['เว็บ','เว็บไซต์'],'อยากทำเว็บ'],[['โปรแกรมเมอร์','โปรแกรม','เขียนโค้ด','โค้ด'],'อยากเขียนโปรแกรมเป็น'],
+    [['สตาร์ทอัพ','ธุรกิจ','เจ้าของธุรกิจ','ซีอีโอ'],'อยากทำสตาร์ทอัพ'],[['พอร์ต','พอร์ตโฟลิโอ'],'อยากมีพอร์ตยื่นมหาลัย']];
   var WANT=/^(อยาก(จะ)?(ได้|รู้|ทำ|เรียน|ลอง|ถาม)?|ต้องการ|สนใจ|ขอ(ถาม)?|หา|ถาม|มี(ไหม|มั้ย)?|เรียน|ช่วย|หน่อย|ครับ|คับ|ค่ะ|คะ|จ้า|นะ|ด้วย|อะไร(ดี|บ้าง)?|ไหม|มั้ย|บ้าง)+$/;
   var TH1=[['price',/ฟรี|ค่าเทอม|ค่าสมัคร|ค่าใช้จ่าย|จ่ายเงิน|แบ่งจ่าย/],['when',/ที่อยู่|แผนที่|ตั้งอยู่|อยู่ที่ไหน|อยู่แถวไหน|สถานที่|สาขา/]];
   var TH2=[['beginner',/ไม่รู้จะเริ่ม|เริ่มยังไง|เริ่มตรงไหน|เริ่มจากไหน|เริ่มจากอะไร|เริ่มอย่างไร|โง่|ไม่ฉลาด|เรียนไม่เก่ง|หัวไม่ดี|หัวช้า|ไม่มีความรู้|ตามไม่ทัน|ยากไหม|ยากมั้ย/],['m13',/อายุ(น้อย|เท่าไหร่|กี่)|กี่ขวบ|เด็กเล็ก/],['when',/ระยะเวลา|เรียนนาน|ใช้เวลา|เสาร์อาทิตย์|วันหยุด/],['port',/ผลงาน|รุ่นพี่|คณะ/]];
@@ -249,6 +253,8 @@
       if(o.en&&a){var e=el('p','sx-en',o.en);e.lang='en';a.parentNode.insertBefore(e,a.nextSibling)}
       if(o.alts&&o.alts.length&&!A.querySelector('.ia-alt:not(.ia-pick)')){var p=el('p','ia-alt');p.appendChild(el('span','','หรือน้องหมายถึง'));
         o.alts.forEach(function(k){var bb=el('button','',T[k][1]);bb.type='button';bb.dataset.q=T[k][0];p.appendChild(bb)});A.insertBefore(p,ia)}
+      var lis=[].slice.call(ia.querySelectorAll('.ia-p>li')),ended=lis.filter(function(l){return /จบแล้ว/.test(l.textContent)});
+      if(ended.length&&ended.length<lis.length)ended.forEach(function(l){l.remove()});
       var n=ia.querySelectorAll('.ia-p>li').length;
       say=(h?h.textContent:'')+(a?' '+a.textContent:'')+(n?' มีคอร์สและกิจกรรมแนะนำ '+n+' รายการ':'')+(r.kind==='pick'?' เลือกเรื่องที่ต้องการจากปุ่มข้างล่าง':'')}
     else if(r.kind==='list'){if(o.echo){RR.textContent='';RR.appendChild(document.createTextNode('ผลลัพธ์สำหรับ “'));RR.appendChild(el('bdi','',short(o.echo,56)));RR.appendChild(document.createTextNode('” '+r.n+' รายการ'))}
@@ -305,6 +311,8 @@
       var q=s;
       TV.forEach(function(w,i){if(TVD[i]!==w&&TVD[i].length>=4&&q.indexOf(w)<0&&q.indexOf(TVD[i])>-1)q=q.split(TVD[i]).join(w)});
       if(!nsp(q).replace(WANT,''))return card('want',{echo:echo});
+      if(!nsp(q).replace(/^อยาก(จะ)?(เป็น|เข้า|ทำ|เรียน|ได้|มี|ไป)?$/,''))return card('want',{echo:echo});
+      if(/เกมแจม|เกมเจม|แจมเกม|gamejam|game ?jam/.test(sn)){r=page('ค่าย');if(r.kind==='ia'||r.kind==='list')return dress(r,{echo:echo})}
       if(!isLong)for(var pi=0;pi<TH1.length;pi++)if(TH1[pi][1].test(sn)){r=page(T[TH1[pi][0]][0]);if(r.kind==='ia')return dress(r,{echo:echo})}
       if(isLong){var found=[],nn=nsp(s);TV.forEach(function(w){var at=nn.indexOf(w);if(at>-1&&w.length>=3&&!/^(ที่นี่|ทำอะไร|ข้อมูล|โปรแกรม|เกี่ยวกับ|อุปกรณ์|ที่ไหน|เริ่มต้น)$/.test(w))found.push([at,w])});found.sort(function(a,b){return a[0]-b[0]});
         if(found.length)q=found.slice(0,3).map(function(x){return x[1]}).join(' ');else q=short(s,60).replace('…','')}
@@ -317,8 +325,14 @@
           m=latin(se);if(m&&!m.ro){r=page(T[m.k][0]);if(r.kind==='ia')return dress(r,{echo:echo,fix:fixP(se),en:T[m.k][2]})}}}
       if(/คอร์ส|หลักสูตร|สอนอะไร|เรียนอะไร|มีอะไรบ้าง/.test(sn)){r=page('คอร์ส');if(r.kind==='list')return dress(r,{echo:echo})}
       for(var hi=0;hi<TH2.length;hi++)if(TH2[hi][1].test(sn)){r=page(T[TH2[hi][0]][0]);if(r.kind==='ia')return dress(r,{echo:echo})}
+      /* half-typed wishes: "อยากเป็นวิ" -> วิศวะ, "อยากเข้าจุ" -> จุฬา */
+      var rest=sn.replace(/^อยาก(จะ)?(เป็น|เข้า|ทำ|เรียน|ได้|มี|ไป)?/,'');
+      if(rest&&rest.length<=6){for(var pc=0;pc<PRE.length;pc++){if(PRE[pc][0].some(function(w){return w.indexOf(rest)===0})){r=page(PRE[pc][1]);if(r.kind==='ia'||r.kind==='list')return dress(r,{echo:echo,fix:fixP(PRE[pc][1],PRE[pc][1])})}}}
+      /* a wish we do not teach ("อยากเป็นยูทูบเบอร์"): offer the wishes we can help with instead of a dead end */
+      if(/^อยาก/.test(sn))return card('want',{echo:echo});
       return last()}
     /* 7. Latin letters */
+    if(/gamejam|gamej|game ?jam|ค่ายเกม/.test(sn)){r=page('ค่าย');if(r.kind==='ia'||r.kind==='list')return dress(r,{echo:echo})}
     if(titleHit(sn)){r=page(s);if(r.kind==='list'||r.kind==='ia')return dress(r,{echo:echo})}
     m=latin(s);
     if(m){r=page(T[m.k][0]);if(r.kind==='ia')return dress(r,{echo:echo,en:m.ro?null:T[m.k][2],alts:m.alts,fix:m.ro?fixP(T[m.k][1]):m.typo?fixP(m.typo):null})}
