@@ -38,8 +38,8 @@ html body [data-view="home"] .zq{margin-top:-6px!important}
     /* the empty bar shows the headline's wish as a question; ค้นหา on an empty bar asks it */
     var cur='',tm=0;
     function setQ(){var w=(typ&&typ.textContent||'').trim();if(!w||w===cur)return;cur=w;form.classList.add('ph-sw');
-      setTimeout(function(){form.classList.remove('ph-sw');if(window.__zqType)window.__zqType('ลองถาม: อยาก'+w);else inp.setAttribute('placeholder','ลองถาม: อยาก'+w)},250)}
-    if(typ){new MutationObserver(function(){/* while the headline swaps words the bar keeps its prefix instead of flashing back to the default text */if(!inp.value){if(window.__zqStop)window.__zqStop();if(inp.getAttribute('placeholder')!=='ลองถาม: อยาก')inp.setAttribute('placeholder','ลองถาม: อยาก')}clearTimeout(tm);tm=setTimeout(function(){var w=(typ.textContent||'').trim();if(w===cur){cur='';setQ()}else setQ()},450)}).observe(typ,{childList:true,characterData:true,subtree:true});setQ()}
+      setTimeout(function(){form.classList.remove('ph-sw');if(window.__zqType)window.__zqType('เช่น อยาก'+w);else inp.setAttribute('placeholder','เช่น อยาก'+w)},250)}
+    if(typ){new MutationObserver(function(){/* while the headline swaps words the bar keeps its prefix instead of flashing back to the default text */if(!inp.value){if(window.__zqStop)window.__zqStop();if(inp.getAttribute('placeholder')!=='เช่น อยาก')inp.setAttribute('placeholder','เช่น อยาก')}clearTimeout(tm);tm=setTimeout(function(){var w=(typ.textContent||'').trim();if(w===cur){cur='';setQ()}else setQ()},450)}).observe(typ,{childList:true,characterData:true,subtree:true});setQ()}
     form.addEventListener('submit',function(){if(!inp.value.trim()&&cur){inp.value='อยาก'+cur;inp.dispatchEvent(new Event('input',{bubbles:true}))}},true);
     go&&go.addEventListener('pointerdown',function(){if(!inp.value.trim()&&cur){inp.value='อยาก'+cur;inp.dispatchEvent(new Event('input',{bubbles:true}))}});
     var used=function(){form.classList.add('used')};inp.addEventListener('focus',used);form.addEventListener('submit',used);
@@ -136,12 +136,12 @@ html body [data-view="home"] .zq{margin-top:-6px!important}
     ch.addEventListener('click',function(){inp.focus()});
     ch.addEventListener('pointerenter',function(){SX.x=.94;hoverT=performance.now()+1200;wake()});
     /* typewriter placeholder */
-    /* the "ลองถาม:" prefix stays put; only the wish is typed, one whole Thai letter cluster at a time
+    /* the "เช่น" prefix stays put; only the wish is typed, one whole Thai letter cluster at a time
        (a leading vowel like โ waits for its consonant, tone marks ride with theirs), so it never shows half a letter */
     function clusters(x){var out=[],i=0;while(i<x.length){var c=x[i++];if(/[\u0E40-\u0E44]/.test(c)&&i<x.length)c+=x[i++];
         while(i<x.length&&/[\u0E31\u0E33-\u0E3A\u0E47-\u0E4E]/.test(x[i]))c+=x[i++];out.push(c)}return out}
     var tt=0;window.__zqStop=function(){clearTimeout(tt)};window.__zqType=function(t){clearTimeout(tt);if(rm||inp.value){inp.setAttribute('placeholder',t);return}
-      var m=t.match(/^(ลองถาม:\s*(?:อยาก)?)(.*)$/),pre=m?m[1]:'',parts=clusters(m?m[2]:t),i=0;
+      var m=t.match(/^(เช่น\s*(?:อยาก)?)(.*)$/),pre=m?m[1]:'',parts=clusters(m?m[2]:t),i=0;
       (function step(){i++;inp.setAttribute('placeholder',pre+parts.slice(0,i).join(''));if(i<parts.length)tt=setTimeout(step,55)})()};
     /* invitation: until the bar has been used, a light sweeps across it every few seconds */
     var used=false,iv=0;function inv(){if(used||document.activeElement===inp)return;form.classList.remove('inv');void form.offsetWidth;form.classList.add('inv')}

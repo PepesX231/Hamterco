@@ -353,7 +353,7 @@ span.hb.pxe-peek.up{transform:translateY(-12px)}
   /* ================= build / rebuild ================= */
   var built=false;
   function build(){if(!zq.offsetWidth)return;noGoo();buildScene();buildPet();sizePet();buildPortex();faces();
-    if(!built){built=true;entrance();if(window.Motion)Motion.cue(zq,{label:'เลื่อนลงดูคอร์ส',target:function(){return home.querySelector('.ft')}})}}
+    if(!built){built=true;entrance();if(window.Motion)Motion.cue(zq,{label:'เลื่อนลง',target:function(){return home.querySelector('.ft')}})}}
   function whenReady(){setTimeout(build,120)}
   if(document.readyState==='complete')whenReady();else addEventListener('load',whenReady);
   addEventListener('hashchange',function(){setTimeout(build,520)});

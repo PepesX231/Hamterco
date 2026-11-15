@@ -6537,7 +6537,7 @@ span.hb.pxe-peek.up{transform:translateY(-12px)}
   /* ================= build / rebuild ================= */
   var built=false;
   function build(){if(!zq.offsetWidth)return;noGoo();buildScene();buildPet();sizePet();buildPortex();faces();
-    if(!built){built=true;entrance();if(window.Motion)Motion.cue(zq,{label:'เลื่อนลงดูคอร์ส',target:function(){return home.querySelector('.ft')}})}}
+    if(!built){built=true;entrance();if(window.Motion)Motion.cue(zq,{label:'เลื่อนลง',target:function(){return home.querySelector('.ft')}})}}
   function whenReady(){setTimeout(build,120)}
   if(document.readyState==='complete')whenReady();else addEventListener('load',whenReady);
   addEventListener('hashchange',function(){setTimeout(build,520)});
@@ -10438,8 +10438,8 @@ html body [data-view="home"] .zq{margin-top:-6px!important}
     /* the empty bar shows the headline's wish as a question; ค้นหา on an empty bar asks it */
     var cur='',tm=0;
     function setQ(){var w=(typ&&typ.textContent||'').trim();if(!w||w===cur)return;cur=w;form.classList.add('ph-sw');
-      setTimeout(function(){form.classList.remove('ph-sw');if(window.__zqType)window.__zqType('ลองถาม: อยาก'+w);else inp.setAttribute('placeholder','ลองถาม: อยาก'+w)},250)}
-    if(typ){new MutationObserver(function(){/* while the headline swaps words the bar keeps its prefix instead of flashing back to the default text */if(!inp.value){if(window.__zqStop)window.__zqStop();if(inp.getAttribute('placeholder')!=='ลองถาม: อยาก')inp.setAttribute('placeholder','ลองถาม: อยาก')}clearTimeout(tm);tm=setTimeout(function(){var w=(typ.textContent||'').trim();if(w===cur){cur='';setQ()}else setQ()},450)}).observe(typ,{childList:true,characterData:true,subtree:true});setQ()}
+      setTimeout(function(){form.classList.remove('ph-sw');if(window.__zqType)window.__zqType('เช่น อยาก'+w);else inp.setAttribute('placeholder','เช่น อยาก'+w)},250)}
+    if(typ){new MutationObserver(function(){/* while the headline swaps words the bar keeps its prefix instead of flashing back to the default text */if(!inp.value){if(window.__zqStop)window.__zqStop();if(inp.getAttribute('placeholder')!=='เช่น อยาก')inp.setAttribute('placeholder','เช่น อยาก')}clearTimeout(tm);tm=setTimeout(function(){var w=(typ.textContent||'').trim();if(w===cur){cur='';setQ()}else setQ()},450)}).observe(typ,{childList:true,characterData:true,subtree:true});setQ()}
     form.addEventListener('submit',function(){if(!inp.value.trim()&&cur){inp.value='อยาก'+cur;inp.dispatchEvent(new Event('input',{bubbles:true}))}},true);
     go&&go.addEventListener('pointerdown',function(){if(!inp.value.trim()&&cur){inp.value='อยาก'+cur;inp.dispatchEvent(new Event('input',{bubbles:true}))}});
     var used=function(){form.classList.add('used')};inp.addEventListener('focus',used);form.addEventListener('submit',used);
@@ -10536,12 +10536,12 @@ html body [data-view="home"] .zq{margin-top:-6px!important}
     ch.addEventListener('click',function(){inp.focus()});
     ch.addEventListener('pointerenter',function(){SX.x=.94;hoverT=performance.now()+1200;wake()});
     /* typewriter placeholder */
-    /* the "ลองถาม:" prefix stays put; only the wish is typed, one whole Thai letter cluster at a time
+    /* the "เช่น" prefix stays put; only the wish is typed, one whole Thai letter cluster at a time
        (a leading vowel like โ waits for its consonant, tone marks ride with theirs), so it never shows half a letter */
     function clusters(x){var out=[],i=0;while(i<x.length){var c=x[i++];if(/[\u0E40-\u0E44]/.test(c)&&i<x.length)c+=x[i++];
         while(i<x.length&&/[\u0E31\u0E33-\u0E3A\u0E47-\u0E4E]/.test(x[i]))c+=x[i++];out.push(c)}return out}
     var tt=0;window.__zqStop=function(){clearTimeout(tt)};window.__zqType=function(t){clearTimeout(tt);if(rm||inp.value){inp.setAttribute('placeholder',t);return}
-      var m=t.match(/^(ลองถาม:\s*(?:อยาก)?)(.*)$/),pre=m?m[1]:'',parts=clusters(m?m[2]:t),i=0;
+      var m=t.match(/^(เช่น\s*(?:อยาก)?)(.*)$/),pre=m?m[1]:'',parts=clusters(m?m[2]:t),i=0;
       (function step(){i++;inp.setAttribute('placeholder',pre+parts.slice(0,i).join(''));if(i<parts.length)tt=setTimeout(step,55)})()};
     /* invitation: until the bar has been used, a light sweeps across it every few seconds */
     var used=false,iv=0;function inv(){if(used||document.activeElement===inp)return;form.classList.remove('inv');void form.offsetWidth;form.classList.add('inv')}
@@ -10591,6 +10591,8 @@ html body [data-view="home"] .zq .zq-h{cursor:default!important}
 @media (max-width:900px){.zq-crew .zqc-pen{width:110px;top:auto;bottom:90px}.zq-crew .zqc-hang{display:none}.zq-crew .zqc-peek{width:80px;bottom:80px}}
 /* the hero runs edge to edge: no inset card, so nothing peeking from the sides is cut by a rounded corner */
 html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:0!important;border-radius:0!important}
+#zqRes.zq-end::after,#zqRes.zq-top0::before{opacity:0!important}
+#zqRes::after,#zqRes::before{transition:opacity .2s}
 </style>
 <script>
 (function(){
@@ -10605,7 +10607,7 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
         blinkAt:2+i*1.3+Math.random()*2,blinkEnd:0}});
     C.forEach(function(c){c.e.style.transform=c.ax==='x'?'translate3d('+c.p+'px,0,0)':'translate3d(0,'+c.p+'px,0)'});
     var P=C[0];
-    var note=document.createElement('div');note.className='zq-note';note.textContent='ลองค้นหาตรงนี้!';
+    var note=document.createElement('div');note.className='zq-note';note.textContent='สงสัยอะไร ถามตรงนี้เลย';
     var NS='http://www.w3.org/2000/svg',svg=document.createElementNS(NS,'svg');svg.setAttribute('class','zq-arw');
     svg.innerHTML='<defs><filter id="zqPencil" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="1"/><feDisplacementMap in="SourceGraphic" scale="2.4"/></filter></defs><g filter="url(#zqPencil)"><path class="ps"/><path class="pm"/><path class="pm h1"/><path class="pm h2"/><circle r="0"/></g><g class="zq-pc" style="opacity:0"><g class="zq-pc-in"><path d="M0 0L-13 -5.5L-13 5.5Z" fill="#F6D9A8"/><path d="M0 0L-5 -2.1L-5 2.1Z" fill="#2A221D"/><rect x="-62" y="-6.5" width="49" height="13" fill="#FFCF3A"/><path d="M-62 -2.2H-13" stroke="#E8A91A" stroke-width="2"/><rect x="-69" y="-6.5" width="7" height="13" fill="#C9C2BC"/><path d="M-69 -6.5H-74A6.5 6.5 0 0 0 -74 6.5H-69Z" fill="#F48FA8"/><path d="M0 0L-13 -6.5H-74A6.5 6.5 0 0 0 -74 6.5H-13Z M-13 -6.5V6.5 M-62 -6.5V6.5 M-69 -6.5V6.5" fill="none" stroke="#1D1712" stroke-width="2.6" stroke-linejoin="round"/></g></g>';
     var turb=svg.querySelector('feTurbulence'),pS=svg.querySelector('.ps'),pM=svg.querySelector('.pm'),h1=svg.querySelector('.h1'),h2=svg.querySelector('.h2'),dot=svg.querySelector('circle'),pc=svg.querySelector('.zq-pc'),pcIn=svg.querySelector('.zq-pc-in'),held=false;
@@ -10695,10 +10697,19 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
     if('IntersectionObserver' in window)new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(vis)measure();wake()}).observe(zq);
     /* results panel: the hero grows to hold it, so the orange liquid wrapped round it is not cut off at the hero's bottom edge */
     /* the hero's content is centred, so growing it by 2x the overflow moves the panel down by 1x; measured once per open to avoid a feedback loop */
-    var res=document.getElementById('zqRes'),fitT=0,fitted=false;
-    function fit(){if(!res||fitted||!zq.classList.contains('ask'))return;var z=zq.getBoundingClientRect(),r=res.getBoundingClientRect();if(!r.height)return;
-      fitted=true;var o=r.bottom-z.bottom+40;if(o>0)zq.style.minHeight=Math.ceil(z.height+2*o)+'px'}
-    if(res)new MutationObserver(function(){clearTimeout(fitT);if(zq.classList.contains('ask'))fitT=setTimeout(fit,1100);else{fitted=false;zq.style.minHeight=''}}).observe(zq,{attributes:true,attributeFilter:['class']});
+    var res=document.getElementById('zqRes'),sw=res&&res.offsetParent,fitT=0;
+    /* the panel is 80px wider than the bar on both sides, measured from the bar itself (its wrapper is narrower than the bar) */
+    function place(){if(!res||!form)return;var f=form.getBoundingClientRect(),p=(res.offsetParent||sw).getBoundingClientRect();res.style.setProperty('left',(f.left-p.left-80)+'px','important');res.style.setProperty('right','auto','important');res.style.setProperty('width',(f.width+160)+'px','important');
+      /* short answers are shown whole instead of being cut a few px short with a fade over the last row */
+      var full=res.scrollHeight;if(full<=Math.max(560,innerHeight*.7))res.style.setProperty('max-height',(full+2)+'px','important')}
+    /* the hero's content is centred, so growing it by 2x the overflow moves the panel down by 1x; repeated until it fits */
+    function fit(){if(!res)return;if(!zq.classList.contains('ask')){zq.style.minHeight='';return}place();var z=zq.getBoundingClientRect(),r=res.getBoundingClientRect();if(!r.height)return;
+      var o=r.bottom-z.bottom+48;if(o>2||(o<-60&&zq.style.minHeight)){zq.style.minHeight=Math.max(0,Math.ceil(z.height+2*o))+'px';clearTimeout(fitT);fitT=setTimeout(fit,120)}}
+    function refit(){clearTimeout(fitT);fitT=setTimeout(fit,zq.classList.contains('ask')?350:0)}
+    /* fade hints at the panel's top and bottom only while there is more to scroll that way */
+    function ends(){if(!res)return;res.classList.toggle('zq-top0',res.scrollTop<4);res.classList.toggle('zq-end',res.scrollTop+res.clientHeight>=res.scrollHeight-40)}
+    if(res){new MutationObserver(refit).observe(zq,{attributes:true,attributeFilter:['class']});if(window.ResizeObserver)new ResizeObserver(function(){refit();ends()}).observe(res);
+      res.addEventListener('scroll',ends,{passive:true});new MutationObserver(ends).observe(res,{childList:true,subtree:true});addEventListener('resize',function(){place();refit()})}
     C.forEach(function(c){
       c.e.addEventListener('pointerenter',function(){c.hov=true;c.hovT=0;c.sq=.93;wake()});
       c.e.addEventListener('pointerleave',function(){c.hov=false;wake()});
@@ -10711,3 +10722,29 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
   if(document.readyState==='complete')go();else addEventListener('load',go);
 })();
 </script>
+
+<!-- layer: 99zzzzzzzz-courses.html -->
+<style id="ly-courses">
+/* course cards without the template kit: no "แนะนำ" pills on every card, no boxed stat chips, no 3D tilt/glare,
+   no soft drop shadows. Each card says one status in plain words and its facts read like a timetable line. */
+html body [data-view] section.ft.ft.ft .ow-rec,html body [data-view] section.ft.ft.ft .fe-rec,html body [data-view] section.ft.ft.ft .fe-glare{display:none!important}
+html body [data-view] section.ft.ft.ft .fx-main,html body [data-view] section.ft.ft.ft .fx-row .fx-s:nth-child(n),html body [data-view] section.ft.ft.ft .fx-row .fx-s:nth-child(n):hover{transform:none!important;box-shadow:none!important}
+html body [data-view] section.ft.ft.ft .fx-main{border-radius:20px!important}
+/* facts: one line, split by thin rules instead of three rounded boxes */
+html body [data-view] section.ft.ft.ft .fx-f{display:flex!important;gap:0!important;border-top:1px solid rgba(255,246,232,.18);border-bottom:1px solid rgba(255,246,232,.18);padding:14px 0!important}
+html body [data-view] section.ft.ft.ft .fx-f>span{flex:1;background:none!important;border:0!important;border-radius:0!important;padding:0 18px!important;border-left:1px solid rgba(255,246,232,.18)!important}
+html body [data-view] section.ft.ft.ft .fx-f>span:first-child{padding-left:0!important;border-left:0!important}
+html body [data-view] section.ft.ft.ft .fx-f>span b{font-size:1.15rem!important}
+/* the two smaller courses: flat paper panels with the poster flush on the left, proof line inside the body */
+html body [data-view] section.ft.ft.ft .fx-s:nth-child(n){border-radius:20px!important;border:1.5px solid rgba(29,23,18,.14)!important;background:#FFFDF8!important;overflow:hidden}
+html body [data-view] section.ft.ft.ft .fx-row .fx-s:nth-child(n):hover{border-color:rgba(29,23,18,.4)!important}
+html body [data-view] section.ft.ft.ft .fx-pr{background:none!important;border-top:1px dashed rgba(29,23,18,.18)!important}
+html body [data-view] section.ft.ft.ft .fx-row .fx-s .rc.rc-s.zc-st{display:inline-flex!important;align-items:center;gap:7px;background:none!important;color:#7A6A5C!important;padding:0!important;font:600 .82rem/1 var(--ui,inherit)!important;box-shadow:none!important;border:0!important}
+html body [data-view] section.ft.ft.ft .zc-x{display:inline-flex;align-items:center;gap:7px;font:600 .82rem/1 var(--ui,inherit);color:#7A6A5C;margin:0 0 10px}
+html body [data-view] section.ft.ft.ft .fx-row .fx-s .rc.rc-s.zc-st::before{content:""!important;display:block!important;position:static!important;width:8px;height:8px;border-radius:50%;border:1.5px solid #9A8A7C}
+html body [data-view] section.ft.ft.ft .fx-main .ft-live{box-shadow:none!important}
+</style>
+<script>(function(){function go(){[].forEach.call(document.querySelectorAll('section.ft .fx-s'),function(a){if(a.querySelector('.zc-st'))return;var rc=a.querySelector('.rc.rc-s');if(!rc)return;
+  /* the "แนะนำ" pill becomes an honest status: these two only take LINE sign-ups for the next round */
+  rc.classList.add('zc-st');rc.textContent='รอเปิดรอบถัดไป'})}
+  if(document.readyState==='complete')go();else addEventListener('load',go);setTimeout(go,1500)})();</script>
