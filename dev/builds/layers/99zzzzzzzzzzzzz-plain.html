@@ -26,4 +26,13 @@ html body [data-view] .fx-row .fx-s:hover .fx-go{text-decoration-color:#E07A1F}
 html body [data-view] .fx-row .fx-s .rc.rc-s.zc-st.zc-st{display:none!important}
 /* the big Port Express card keeps its poster but loses the soft drop shadow */
 html body [data-view] .fx-main{box-shadow:none!important}
+/* self-review: the floating ask button sat in the middle of the screen bottom, on top of photos and cards.
+   It now waits in the bottom-right corner, where nothing on the page needs to be read. */
+html body .zq-fab{left:auto!important;right:24px!important;transform:translateY(140%)!important}
+html body .zq-fab.on{transform:none!important}
 </style>
+<script>(function(){function go(){var top=document.querySelector('[data-view="home"] .nw2 .nw2-h'),l=document.querySelector('[data-view="home"] .mr-l h3');
+  /* self-review: one "กิจกรรมล่าสุด" heading above the banner; the card list under it is the earlier events */
+  if(top&&top.textContent.trim()!=='กิจกรรมล่าสุด')top.textContent='กิจกรรมล่าสุด';
+  if(l&&l.textContent.trim()==='กิจกรรมล่าสุด')l.textContent='งานที่ผ่านมา'}
+  if(document.readyState==='complete')go();else addEventListener('load',go);setTimeout(go,6500);setTimeout(go,12000)})();</script>
