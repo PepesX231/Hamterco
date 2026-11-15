@@ -18,7 +18,7 @@
 .zq-arw .pm{stroke-width:2.6;opacity:.92}.zq-arw .ps{stroke-width:1.2;opacity:.34}
 .zq-arw circle{fill:#2A221D}
 /* below ~1180px the note would sit on the headline, so only the hamsters stay */
-@media (max-width:1180px){.zq-note{font-size:1rem}.zq-crew .zqc-pen{width:clamp(120px,13vw,160px)}.zq-crew .zqc-hang{display:none}.zq-crew .zqc-peek{width:110px;top:auto;bottom:16%}}
+@media (max-width:1180px){.zq-note{display:none}.zq-crew .zqc-pen{width:clamp(120px,13vw,160px)}.zq-crew .zqc-hang{display:none}.zq-crew .zqc-peek{width:110px;top:auto;bottom:16%}}
 @media (max-width:900px){.zq-crew .zqc-pen{width:110px;top:auto;bottom:90px}.zq-crew .zqc-hang{display:none}.zq-crew .zqc-peek{width:80px;bottom:80px}}
 /* the hero runs edge to edge: no inset card, so nothing peeking from the sides is cut by a rounded corner */
 html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:0!important;border-radius:0!important}
@@ -40,7 +40,7 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
     var P=C[0],pImg=P.e.querySelector('img');pImg.src='img/crew27-l-e.webp';
     /* the paw is empty until it takes the pencil, then the art with the pencil in its fingers is shown */
     function hold(v){var want='img/crew27-l'+(v?'':'-e')+'.webp';if(pImg.getAttribute('src')!==want)pImg.setAttribute('src',want)}
-    var note=document.createElement('div');note.className='zq-note';note.textContent='ถามตรงนี้!';
+    var note=document.createElement('div');note.className='zq-note';note.textContent='ไม่รู้จะเริ่มตรงไหน? ลองถามดู';
     var NS='http://www.w3.org/2000/svg',svg=document.createElementNS(NS,'svg');svg.setAttribute('class','zq-arw');
     svg.innerHTML='<defs><filter id="zqPencil" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="1"/><feDisplacementMap in="SourceGraphic" scale="2.4"/></filter></defs><g filter="url(#zqPencil)"><path class="ps"/><path class="pm"/><path class="pm h1"/><path class="pm h2"/><circle r="0"/></g><g class="zq-pc" style="opacity:0"><g class="zq-pc-in"><path d="M0 0L-13 -5.5L-13 5.5Z" fill="#F6D9A8"/><path d="M0 0L-5 -2.1L-5 2.1Z" fill="#2A221D"/><rect x="-62" y="-6.5" width="49" height="13" fill="#FFCF3A"/><path d="M-62 -2.2H-13" stroke="#E8A91A" stroke-width="2"/><rect x="-69" y="-6.5" width="7" height="13" fill="#C9C2BC"/><path d="M-69 -6.5H-74A6.5 6.5 0 0 0 -74 6.5H-69Z" fill="#F48FA8"/><path d="M0 0L-13 -6.5H-74A6.5 6.5 0 0 0 -74 6.5H-13Z M-13 -6.5V6.5 M-62 -6.5V6.5 M-69 -6.5V6.5" fill="none" stroke="#1D1712" stroke-width="2.6" stroke-linejoin="round"/></g></g>';
     var turb=svg.querySelector('feTurbulence'),pS=svg.querySelector('.ps'),pM=svg.querySelector('.pm'),h1=svg.querySelector('.h1'),h2=svg.querySelector('.h2'),dot=svg.querySelector('circle'),pc=svg.querySelector('.zq-pc'),pcIn=svg.querySelector('.zq-pc-in'),held=false;
@@ -76,8 +76,10 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
       function head(da,len,k){if(k<=0)return '';var x=e[0]-len*Math.cos(ang+da),y=e[1]-len*Math.sin(ang+da);return 'M'+e[0].toFixed(1)+' '+e[1].toFixed(1)+'L'+(e[0]+(x-e[0])*k).toFixed(1)+' '+(e[1]+(y-e[1])*k).toFixed(1)}
       h1.setAttribute('d',head(-.5,15,Math.min(1,HK*2)));h2.setAttribute('d',head(.62,13,Math.max(0,HK*2-1)));
       /* hand-lettered note above the start of the swoop, written left to right after the hamster appears */
-      var tx=sx+30,ty=sy-G.nh-6;
-      note.style.transform='translate('+tx.toFixed(1)+'px,'+ty.toFixed(1)+'px) rotate(-4deg)';
+      /* centred over the middle of the curve, lifted just clear of the highest bit of line under it */
+      /* sits in the open space under the swoop, centred on its middle and just clear of the line */
+      var mid=pts[Math.round(N*.55)],tx=Math.max(14,mid[0]-G.nw*.8),bot=-1e9;for(var q2=0;q2<=N;q2++){var P2=pts[q2];if(P2[0]>=tx-6&&P2[0]<=tx+G.nw+6)bot=Math.max(bot,P2[1])}var ty=Math.min(bot+12,G.fy+G.fh/2+10);if(ty+G.nh>zq.clientHeight-20)ty=zq.clientHeight-20-G.nh;
+      note.style.transform='translate('+tx.toFixed(1)+'px,'+ty.toFixed(1)+'px) rotate(-3deg)';
       note.style.clipPath='inset(-20% '+((1-NK)*100).toFixed(1)+'% -20% -4%)'
       /* the pencil: it draws the line on its own, flies back to the wall, and the hamster pops out and takes it */
       var td=t-dS,PA=42.7,px,py,pa=PA,op=1,scale=G.pw*.74/80;
@@ -93,7 +95,7 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
       for(var i=0;i<=N;i++){var u=i/N,th=th0+u*Math.PI*2.18,w=1+Math.sin(u*7.3)*.012+u*.035;pts.push([cx+Math.cos(th)*rx*w,cy+Math.sin(th)*ry*(w+u*.04)]);sk.push([cx+Math.cos(th+.03)*(rx*w+2.5),cy+Math.sin(th+.03)*(ry*w+2)])}
       function poly(A,k){if(k<=0)return '';var n=Math.max(1,Math.round(k*N)),d='M'+A[0][0].toFixed(1)+' '+A[0][1].toFixed(1);for(var j=1;j<=n;j++)d+='L'+A[j][0].toFixed(1)+' '+A[j][1].toFixed(1);return d}
       pM.setAttribute('d',poly(pts,K));pS.setAttribute('d',poly(sk,Math.max(0,K*1.1-.1)));h1.setAttribute('d','');h2.setAttribute('d','');dot.setAttribute('r',0);
-      var tx=Math.min(G.fx+G.fw-G.nw-10,zq.clientWidth-G.nw-14),ty=G.fy-G.fh/2-G.nh-10;note.style.transform='translate('+tx.toFixed(1)+'px,'+ty.toFixed(1)+'px) rotate(-4deg)';note.style.clipPath='inset(-20% '+((1-NK)*100).toFixed(1)+'% -20% -4%)';
+      var tx=G.fx+G.fw/2-G.nw/2,ty=G.fy-ry-G.nh-10;note.style.transform='translate('+tx.toFixed(1)+'px,'+ty.toFixed(1)+'px) rotate(-4deg)';note.style.clipPath='inset(-20% '+((1-NK)*100).toFixed(1)+'% -20% -4%)';
       var td=t-dS,PA=42.7,px,py,pa=PA,op=1,scale=G.pw*.74/80,f=pts[Math.max(0,Math.min(N,Math.round(K*N)))],e=pts[N];
       if(held){op=0;px=sx;py=sy}else if(!drawing){op=0;px=sx;py=sy}
       else if(td<.3){px=pts[0][0];py=pts[0][1];op=td/.3}
