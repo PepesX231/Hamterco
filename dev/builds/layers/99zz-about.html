@@ -206,7 +206,7 @@
     tv.appendChild(ch);
     /* photo wall */
     var rg=el('section','tv-rg'),P=[['team-group','ทีม Hamster Hub'],['photo-class','ในห้องเรียน'],['photo-group','ค่าย'],['photo-desk','ช่วงทำผลงาน'],['s-showcase1','วันโชว์ผลงาน'],['photo-camp','ค่าย Game Jam']];
-    rg.innerHTML='<div class="tv-rg-h"><h2>บรรยากาศจริงในห้องเรียนและค่าย</h2><p>ลากเพื่อหมุนดู</p></div><div class="tv-rg-s"><div class="tv-rg-r">'+P.concat(P).map(function(p){return '<figure><img src="img/'+p[0]+'.webp" alt="'+p[1]+'" loading="lazy"><figcaption>'+p[1]+'</figcaption></figure>'}).join('')+'</div></div>';
+    rg.innerHTML='<div class="tv-rg-h"><h2>บรรยากาศจริงในห้องเรียนและค่าย</h2><p>ลากเพื่อหมุนดู</p></div><div class="tv-rg-s"><div class="tv-rg-r">'+P.concat(P).map(function(p){return '<figure><img src="img/'+p[0]+'.webp" alt="'+p[1]+'" decoding="async"><figcaption>'+p[1]+'</figcaption></figure>'}).join('')+'</div></div>';
     tv.appendChild(rg);
     var gr=el('div','tv-grain');gr.setAttribute('aria-hidden','true');tv.appendChild(gr);
     view.insertBefore(tv,view.firstChild);
@@ -318,7 +318,13 @@
         if(v){f.style.transform='rotateY('+(-a)+'deg) translateZ('+(-Rr).toFixed(1)+'px)'}});
       rr=requestAnimationFrame(ringF)}
     lay();addEventListener('resize',lay);
-    new IntersectionObserver(function(es){rv=es[0].isIntersecting;if(rv&&!rr)rr=requestAnimationFrame(ringF)}).observe(st);
+    /* place every photo once up front, so the ring is never an empty black box while waiting for its first frame */
+    figs.forEach(function(f,i){var a=i*step,d=((rot-a)%360+540)%360-180;f.style.visibility=Math.abs(d)<78?'visible':'hidden';f.style.transform='rotateY('+(-a)+'deg) translateZ('+(-Rr).toFixed(1)+'px)'});
+    ring.style.transform='translateZ('+Zr.toFixed(1)+'px) rotateY(0deg)';
+    /* the loop could stop for good if it ran once while the About view was still hidden; any later scroll or view change restarts it */
+    function kickR(){if(rv&&!rr)rr=requestAnimationFrame(ringF)}
+    new IntersectionObserver(function(es){rv=es[0].isIntersecting;kickR()},{rootMargin:'300px 0px'}).observe(st);
+    addEventListener('scroll',kickR,{passive:true});addEventListener('hashchange',function(){setTimeout(function(){lay();kickR()},60)});
     st.addEventListener('pointerdown',function(e){down=true;px=e.clientX;vel=0;st.classList.add('drag')});
     addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-px;px=e.clientX;rot-=dx*.09;vel=-dx*.09});
     addEventListener('pointerup',function(){down=false;st.classList.remove('drag')});

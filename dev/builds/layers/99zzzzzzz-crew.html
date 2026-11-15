@@ -24,6 +24,9 @@
 html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:0!important;border-radius:0!important}
 #zqRes.zq-end::after,#zqRes.zq-top0::before{opacity:0!important}
 #zqRes::after,#zqRes::before{transition:opacity .2s}
+/* owner: only the hand-drawn arrow and the handwriting stay on the left, no hamster and no pencil */
+.zq-crew .zqc-pen{visibility:hidden!important;pointer-events:none!important}
+.zq-arw .zq-pc{display:none!important}
 </style>
 <script>
 (function(){
@@ -67,9 +70,9 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
       for(var i=0;i<=N;i++){var u=i/N,w=1-u,x=w*w*w*sx+3*w*w*u*c1x+3*w*u*u*c2x+u*u*u*ex,y=w*w*w*sy+3*w*w*u*c1y+3*w*u*u*c2y+u*u*u*ey;
         pts.push([x,y+Math.sin(u*5.3+1)*1.1]);sk.push([x+1.8+Math.sin(u*8)*1.6,y-1.6+Math.cos(u*6)*1.8])}
       function poly(A,k){if(k<=0)return '';var n=Math.max(1,Math.round(k*N)),d='M'+A[0][0].toFixed(1)+' '+A[0][1].toFixed(1);for(var j=1;j<=n;j++)d+='L'+A[j][0].toFixed(1)+' '+A[j][1].toFixed(1);return d}
-      /* drawn from the search bar back toward the wall: arrowhead first, then the line ends where the hamster will appear */
+      /* line first, then the arrowhead, then the handwriting */
       function polyR(A,k){if(k<=0)return '';var n=Math.max(1,Math.round(k*N)),d='M'+A[N][0].toFixed(1)+' '+A[N][1].toFixed(1);for(var j=N-1;j>=N-n;j--)d+='L'+A[j][0].toFixed(1)+' '+A[j][1].toFixed(1);return d}
-      pM.setAttribute('d',polyR(pts,K));pS.setAttribute('d',polyR(sk,Math.max(0,K*1.1-.1)));
+      pM.setAttribute('d',poly(pts,K));pS.setAttribute('d',poly(sk,Math.max(0,K*1.1-.1)));
       /* graphite tip riding the front of the line while it is drawn */
       var f=pts[Math.max(0,Math.min(N,N-Math.round(K*N)))];dot.setAttribute('cx',f[0].toFixed(1));dot.setAttribute('cy',f[1].toFixed(1));dot.setAttribute('r',0);
       var e=pts[N],q=pts[N-5],ang=Math.atan2(e[1]-q[1],e[0]-q[0]);
@@ -81,7 +84,7 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
       if(!G.nh||G.nw<40){G.nw=note.offsetWidth;G.nh=note.offsetHeight}
       var a3=pts[Math.round(N*.3)],tx=a3[0]+10,top=1e9;for(var q2=0;q2<=N;q2++){var P2=pts[q2];if(P2[0]>=tx-4&&P2[0]<=tx+G.nw+4)top=Math.min(top,P2[1])}var ty=top-G.nh-8;
       note.style.transform='translate('+tx.toFixed(1)+'px,'+ty.toFixed(1)+'px) rotate(-3deg)';
-      note.style.clipPath='inset(-20% '+((1-NK)*100).toFixed(1)+'% -20% -4%)'
+      note.style.clipPath='inset(-20% '+((1-NK)*100).toFixed(1)+'% -20% '+(NK>0?'-4%':'0')+')';note.style.visibility=NK>0?'visible':'hidden'
       /* the pencil: it draws the line on its own, flies back to the wall, and the hamster pops out and takes it */
       var td=t-dS,PA=42.7,px,py,pa=PA,op=1,scale=G.pw/420;
       var hx=function(da,len){return [e[0]-len*Math.cos(ang+da),e[1]-len*Math.sin(ang+da)]};
@@ -96,7 +99,7 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
       for(var i=0;i<=N;i++){var u=i/N,th=th0+u*Math.PI*2.18,w=1+Math.sin(u*7.3)*.012+u*.035;pts.push([cx+Math.cos(th)*rx*w,cy+Math.sin(th)*ry*(w+u*.04)]);sk.push([cx+Math.cos(th+.03)*(rx*w+2.5),cy+Math.sin(th+.03)*(ry*w+2)])}
       function poly(A,k){if(k<=0)return '';var n=Math.max(1,Math.round(k*N)),d='M'+A[0][0].toFixed(1)+' '+A[0][1].toFixed(1);for(var j=1;j<=n;j++)d+='L'+A[j][0].toFixed(1)+' '+A[j][1].toFixed(1);return d}
       pM.setAttribute('d',poly(pts,K));pS.setAttribute('d',poly(sk,Math.max(0,K*1.1-.1)));h1.setAttribute('d','');h2.setAttribute('d','');dot.setAttribute('r',0);
-      var tx=G.fx+G.fw/2-G.nw/2,ty=G.fy-ry-G.nh-10;note.style.transform='translate('+tx.toFixed(1)+'px,'+ty.toFixed(1)+'px) rotate(-4deg)';note.style.clipPath='inset(-20% '+((1-NK)*100).toFixed(1)+'% -20% -4%)';
+      var tx=G.fx+G.fw/2-G.nw/2,ty=G.fy-ry-G.nh-10;note.style.transform='translate('+tx.toFixed(1)+'px,'+ty.toFixed(1)+'px) rotate(-4deg)';note.style.clipPath='inset(-20% '+((1-NK)*100).toFixed(1)+'% -20% '+(NK>0?'-4%':'0')+')';note.style.visibility=NK>0?'visible':'hidden';
       var td=t-dS,PA=42.7,px,py,pa=PA,op=1,scale=G.pw/420,f=pts[Math.max(0,Math.min(N,Math.round(K*N)))],e=pts[N];
       if(held){op=0;px=sx;py=sy}else if(!drawing){op=0;px=sx;py=sy}
       else if(td<.3){px=pts[0][0];py=pts[0][1];op=td/.3}
@@ -111,8 +114,8 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
       if(!want&&K<.02){penOut=false;held=false}
       if(want&&!drawing&&K<.001){drawing=true;dS=t}
       if(!want)drawing=false;
-      if(drawing){var e1=Math.max(0,Math.min(1,(t-dS-.3)/.9));K=e1<.5?2*e1*e1:1-Math.pow(-2*e1+2,2)/2;HK=Math.max(0,Math.min(1,(t-dS)/.3));
-        if(t-dS>(SM?1.62:1.3))penOut=true;if(penOut&&!held&&Math.abs(P.X+P.tuck)<2&&Math.abs(P.v)<40)held=true;if(held)NK=Math.max(NK,Math.min(1,(t-dS-1.7)/.7))}
+      if(drawing){var e1=Math.max(0,Math.min(1,(t-dS)/.9));K=e1<.5?2*e1*e1:1-Math.pow(-2*e1+2,2)/2;HK=Math.max(0,Math.min(1,(t-dS-.9)/.3));
+        if(t-dS>(SM?1.62:1.3))penOut=true;if(penOut&&!held&&Math.abs(P.X+P.tuck)<2&&Math.abs(P.v)<40)held=true;NK=Math.max(NK,Math.min(1,(t-dS-1.1)/.7))}
       else{var sp=dt*(want?2.6:5);HK=Math.max(0,HK-sp*2.2);if(HK<=0)K=Math.max(0,K-sp);if(!want)NK=Math.max(0,NK-sp*1.3)}
       if(rm&&started&&want){K=HK=NK=1;penOut=true;held=true}
       /* no arrow on small screens: the hamster comes out already holding its pencil */

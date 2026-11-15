@@ -10031,7 +10031,7 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
     tv.appendChild(ch);
     /* photo wall */
     var rg=el('section','tv-rg'),P=[['team-group','ทีม Hamster Hub'],['photo-class','ในห้องเรียน'],['photo-group','ค่าย'],['photo-desk','ช่วงทำผลงาน'],['s-showcase1','วันโชว์ผลงาน'],['photo-camp','ค่าย Game Jam']];
-    rg.innerHTML='<div class="tv-rg-h"><h2>บรรยากาศจริงในห้องเรียนและค่าย</h2><p>ลากเพื่อหมุนดู</p></div><div class="tv-rg-s"><div class="tv-rg-r">'+P.concat(P).map(function(p){return '<figure><img src="img/'+p[0]+'.webp" alt="'+p[1]+'" loading="lazy"><figcaption>'+p[1]+'</figcaption></figure>'}).join('')+'</div></div>';
+    rg.innerHTML='<div class="tv-rg-h"><h2>บรรยากาศจริงในห้องเรียนและค่าย</h2><p>ลากเพื่อหมุนดู</p></div><div class="tv-rg-s"><div class="tv-rg-r">'+P.concat(P).map(function(p){return '<figure><img src="img/'+p[0]+'.webp" alt="'+p[1]+'" decoding="async"><figcaption>'+p[1]+'</figcaption></figure>'}).join('')+'</div></div>';
     tv.appendChild(rg);
     var gr=el('div','tv-grain');gr.setAttribute('aria-hidden','true');tv.appendChild(gr);
     view.insertBefore(tv,view.firstChild);
@@ -10143,7 +10143,13 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
         if(v){f.style.transform='rotateY('+(-a)+'deg) translateZ('+(-Rr).toFixed(1)+'px)'}});
       rr=requestAnimationFrame(ringF)}
     lay();addEventListener('resize',lay);
-    new IntersectionObserver(function(es){rv=es[0].isIntersecting;if(rv&&!rr)rr=requestAnimationFrame(ringF)}).observe(st);
+    /* place every photo once up front, so the ring is never an empty black box while waiting for its first frame */
+    figs.forEach(function(f,i){var a=i*step,d=((rot-a)%360+540)%360-180;f.style.visibility=Math.abs(d)<78?'visible':'hidden';f.style.transform='rotateY('+(-a)+'deg) translateZ('+(-Rr).toFixed(1)+'px)'});
+    ring.style.transform='translateZ('+Zr.toFixed(1)+'px) rotateY(0deg)';
+    /* the loop could stop for good if it ran once while the About view was still hidden; any later scroll or view change restarts it */
+    function kickR(){if(rv&&!rr)rr=requestAnimationFrame(ringF)}
+    new IntersectionObserver(function(es){rv=es[0].isIntersecting;kickR()},{rootMargin:'300px 0px'}).observe(st);
+    addEventListener('scroll',kickR,{passive:true});addEventListener('hashchange',function(){setTimeout(function(){lay();kickR()},60)});
     st.addEventListener('pointerdown',function(e){down=true;px=e.clientX;vel=0;st.classList.add('drag')});
     addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-px;px=e.clientX;rot-=dx*.09;vel=-dx*.09});
     addEventListener('pointerup',function(){down=false;st.classList.remove('drag')});
@@ -10597,6 +10603,9 @@ html body [data-view="home"] .zq .zq-h{cursor:default!important}
 html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:0!important;border-radius:0!important}
 #zqRes.zq-end::after,#zqRes.zq-top0::before{opacity:0!important}
 #zqRes::after,#zqRes::before{transition:opacity .2s}
+/* owner: only the hand-drawn arrow and the handwriting stay on the left, no hamster and no pencil */
+.zq-crew .zqc-pen{visibility:hidden!important;pointer-events:none!important}
+.zq-arw .zq-pc{display:none!important}
 </style>
 <script>
 (function(){
@@ -10640,9 +10649,9 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
       for(var i=0;i<=N;i++){var u=i/N,w=1-u,x=w*w*w*sx+3*w*w*u*c1x+3*w*u*u*c2x+u*u*u*ex,y=w*w*w*sy+3*w*w*u*c1y+3*w*u*u*c2y+u*u*u*ey;
         pts.push([x,y+Math.sin(u*5.3+1)*1.1]);sk.push([x+1.8+Math.sin(u*8)*1.6,y-1.6+Math.cos(u*6)*1.8])}
       function poly(A,k){if(k<=0)return '';var n=Math.max(1,Math.round(k*N)),d='M'+A[0][0].toFixed(1)+' '+A[0][1].toFixed(1);for(var j=1;j<=n;j++)d+='L'+A[j][0].toFixed(1)+' '+A[j][1].toFixed(1);return d}
-      /* drawn from the search bar back toward the wall: arrowhead first, then the line ends where the hamster will appear */
+      /* line first, then the arrowhead, then the handwriting */
       function polyR(A,k){if(k<=0)return '';var n=Math.max(1,Math.round(k*N)),d='M'+A[N][0].toFixed(1)+' '+A[N][1].toFixed(1);for(var j=N-1;j>=N-n;j--)d+='L'+A[j][0].toFixed(1)+' '+A[j][1].toFixed(1);return d}
-      pM.setAttribute('d',polyR(pts,K));pS.setAttribute('d',polyR(sk,Math.max(0,K*1.1-.1)));
+      pM.setAttribute('d',poly(pts,K));pS.setAttribute('d',poly(sk,Math.max(0,K*1.1-.1)));
       /* graphite tip riding the front of the line while it is drawn */
       var f=pts[Math.max(0,Math.min(N,N-Math.round(K*N)))];dot.setAttribute('cx',f[0].toFixed(1));dot.setAttribute('cy',f[1].toFixed(1));dot.setAttribute('r',0);
       var e=pts[N],q=pts[N-5],ang=Math.atan2(e[1]-q[1],e[0]-q[0]);
@@ -10654,7 +10663,7 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
       if(!G.nh||G.nw<40){G.nw=note.offsetWidth;G.nh=note.offsetHeight}
       var a3=pts[Math.round(N*.3)],tx=a3[0]+10,top=1e9;for(var q2=0;q2<=N;q2++){var P2=pts[q2];if(P2[0]>=tx-4&&P2[0]<=tx+G.nw+4)top=Math.min(top,P2[1])}var ty=top-G.nh-8;
       note.style.transform='translate('+tx.toFixed(1)+'px,'+ty.toFixed(1)+'px) rotate(-3deg)';
-      note.style.clipPath='inset(-20% '+((1-NK)*100).toFixed(1)+'% -20% -4%)'
+      note.style.clipPath='inset(-20% '+((1-NK)*100).toFixed(1)+'% -20% '+(NK>0?'-4%':'0')+')';note.style.visibility=NK>0?'visible':'hidden'
       /* the pencil: it draws the line on its own, flies back to the wall, and the hamster pops out and takes it */
       var td=t-dS,PA=42.7,px,py,pa=PA,op=1,scale=G.pw/420;
       var hx=function(da,len){return [e[0]-len*Math.cos(ang+da),e[1]-len*Math.sin(ang+da)]};
@@ -10669,7 +10678,7 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
       for(var i=0;i<=N;i++){var u=i/N,th=th0+u*Math.PI*2.18,w=1+Math.sin(u*7.3)*.012+u*.035;pts.push([cx+Math.cos(th)*rx*w,cy+Math.sin(th)*ry*(w+u*.04)]);sk.push([cx+Math.cos(th+.03)*(rx*w+2.5),cy+Math.sin(th+.03)*(ry*w+2)])}
       function poly(A,k){if(k<=0)return '';var n=Math.max(1,Math.round(k*N)),d='M'+A[0][0].toFixed(1)+' '+A[0][1].toFixed(1);for(var j=1;j<=n;j++)d+='L'+A[j][0].toFixed(1)+' '+A[j][1].toFixed(1);return d}
       pM.setAttribute('d',poly(pts,K));pS.setAttribute('d',poly(sk,Math.max(0,K*1.1-.1)));h1.setAttribute('d','');h2.setAttribute('d','');dot.setAttribute('r',0);
-      var tx=G.fx+G.fw/2-G.nw/2,ty=G.fy-ry-G.nh-10;note.style.transform='translate('+tx.toFixed(1)+'px,'+ty.toFixed(1)+'px) rotate(-4deg)';note.style.clipPath='inset(-20% '+((1-NK)*100).toFixed(1)+'% -20% -4%)';
+      var tx=G.fx+G.fw/2-G.nw/2,ty=G.fy-ry-G.nh-10;note.style.transform='translate('+tx.toFixed(1)+'px,'+ty.toFixed(1)+'px) rotate(-4deg)';note.style.clipPath='inset(-20% '+((1-NK)*100).toFixed(1)+'% -20% '+(NK>0?'-4%':'0')+')';note.style.visibility=NK>0?'visible':'hidden';
       var td=t-dS,PA=42.7,px,py,pa=PA,op=1,scale=G.pw/420,f=pts[Math.max(0,Math.min(N,Math.round(K*N)))],e=pts[N];
       if(held){op=0;px=sx;py=sy}else if(!drawing){op=0;px=sx;py=sy}
       else if(td<.3){px=pts[0][0];py=pts[0][1];op=td/.3}
@@ -10684,8 +10693,8 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
       if(!want&&K<.02){penOut=false;held=false}
       if(want&&!drawing&&K<.001){drawing=true;dS=t}
       if(!want)drawing=false;
-      if(drawing){var e1=Math.max(0,Math.min(1,(t-dS-.3)/.9));K=e1<.5?2*e1*e1:1-Math.pow(-2*e1+2,2)/2;HK=Math.max(0,Math.min(1,(t-dS)/.3));
-        if(t-dS>(SM?1.62:1.3))penOut=true;if(penOut&&!held&&Math.abs(P.X+P.tuck)<2&&Math.abs(P.v)<40)held=true;if(held)NK=Math.max(NK,Math.min(1,(t-dS-1.7)/.7))}
+      if(drawing){var e1=Math.max(0,Math.min(1,(t-dS)/.9));K=e1<.5?2*e1*e1:1-Math.pow(-2*e1+2,2)/2;HK=Math.max(0,Math.min(1,(t-dS-.9)/.3));
+        if(t-dS>(SM?1.62:1.3))penOut=true;if(penOut&&!held&&Math.abs(P.X+P.tuck)<2&&Math.abs(P.v)<40)held=true;NK=Math.max(NK,Math.min(1,(t-dS-1.1)/.7))}
       else{var sp=dt*(want?2.6:5);HK=Math.max(0,HK-sp*2.2);if(HK<=0)K=Math.max(0,K-sp);if(!want)NK=Math.max(0,NK-sp*1.3)}
       if(rm&&started&&want){K=HK=NK=1;penOut=true;held=true}
       /* no arrow on small screens: the hamster comes out already holding its pencil */
@@ -10813,60 +10822,3 @@ html body #zqForm.zq-s{-webkit-backdrop-filter:none!important;backdrop-filter:no
     [].forEach.call(document.querySelectorAll('main *'),function(el){var s=getComputedStyle(el);if(s.animationName==='none'||s.animationIterationCount.indexOf('infinite')<0)return;
       var r=el.getBoundingClientRect();if(r.width*r.height<60000)return;var host=el.closest('section')||el;io.observe(host)})}
   if(document.readyState==='complete')setTimeout(go,1500);else addEventListener('load',function(){setTimeout(go,1500)})})();</script>
-
-<!-- layer: 99zzzzzzzzzzz-pop.html -->
-<style id="ly-pop">
-/* course cards, the "wow" pass: the poster becomes a stage and its hamster climbs out of the frame.
-   The flat poster image is swapped for a drawn backdrop plus a cut-out character that breaks the card's top edge,
-   springs up when the card scrolls into view, and floats on its own depth when the card tilts under the pointer. */
-html body [data-view] .fx-row .fx-s.pop-on:nth-child(n){overflow:visible!important;perspective:900px}
-html body [data-view] .fx-row .fx-s.pop-on .fx-si{position:relative;overflow:hidden;border-radius:19px 0 0 19px!important}
-html body [data-view] .fx-row .fx-s.pop-on .fx-si>img{opacity:0!important}
-.pop-bg{position:absolute;inset:-6%;transition:transform .5s cubic-bezier(.2,.8,.2,1);will-change:transform}
-.pop-start .pop-bg{background:radial-gradient(circle at 62% 78%,#FFE3B0 0 34%,transparent 34.5%),radial-gradient(rgba(176,110,24,.22) 1.4px,transparent 1.6px) 0 0/16px 16px,#FFCB7A}
-.pop-nat .pop-bg{background:radial-gradient(circle at 60% 72%,rgba(255,255,255,.12) 0 32%,transparent 32.5%),repeating-conic-gradient(from 0deg at 80% 18%,rgba(255,255,255,.09) 0 7deg,transparent 7deg 18deg),#2459D8}
-.pop-t{position:absolute;left:8%;top:8%;right:8%;font:800 clamp(1.15rem,1.9vw,1.7rem)/1.02 var(--display);letter-spacing:-.01em;pointer-events:none}
-.pop-start .pop-t{color:#2A1D10}.pop-nat .pop-t{color:#fff}
-.pop-t small{display:block;margin-bottom:6px;font:700 .62rem/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;opacity:.7}
-/* the character lives on the card (not inside the clipped poster) so its head can rise above the card */
-.fx-row .fx-s.pop-on>.pop-c{position:absolute!important;z-index:6!important;margin:0!important;grid-area:auto!important;pointer-events:none;transform-origin:50% 100%;
-  transform:translate3d(var(--px,0px),calc(var(--py,0px) + var(--rise,40%)),0) scale(var(--s,.86)) rotate(var(--pr,0deg));
-  opacity:var(--o,0);transition:transform .9s cubic-bezier(.34,1.56,.64,1),opacity .35s;will-change:transform}
-.pop-c img{display:block;width:100%;height:auto;filter:drop-shadow(0 14px 14px rgba(40,20,0,.18));animation:popBreath 3.4s ease-in-out infinite}
-.pop-in .pop-c{--rise:0%;--s:1;--o:1}
-.pop-act .pop-c{--s:1.07;transition:transform .18s linear,opacity .35s}
-@keyframes popBreath{50%{transform:translateY(-3px) scale(1.012,.99)}}
-/* feet sit on the poster's bottom edge (set from the poster's real box), the head rises past the poster title */
-.fx-row .fx-s.pop-start>.pop-c{left:calc(var(--popl,0px) + var(--popw,200px)*.12)!important;width:calc(var(--popw,200px)*.72)!important;top:auto;bottom:var(--popb,0px)}
-.fx-row .fx-s.pop-nat>.pop-c{left:calc(var(--popl,0px) + var(--popw,200px)*.4)!important;width:calc(var(--popw,200px)*.52)!important;top:auto;bottom:var(--popb,0px)}
-.fx-row .fx-s.pop-on .fe-rec,.fx-row .fx-s.pop-on .rc.rc-s:not(.zc-st){display:none!important}
-
-@media (max-width:700px){.pop-t{display:none}}
-@media (prefers-reduced-motion:reduce){.pop-c,.pop-bg{transition:none!important}.pop-c img{animation:none}}
-</style>
-<script>(function(){
-  var KIND=[[/hamstarter/i,'pop-start','pop-start','START HERE','Hamstarter'],[/national/i,'pop-nat','pop-nat','NATIONAL STAGE','National<br>Project']];
-  var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
-  function setup(card){if(card.classList.contains('pop-on'))return;var im=card.querySelector('.fx-si>img');if(!im)return;var src=im.getAttribute('src')||'',k=null;
-    KIND.forEach(function(x){if(x[0].test(src)||x[0].test(card.textContent.slice(0,200)))k=k||x});if(!k)return;
-    card.classList.add('pop-on',k[1]);var si=card.querySelector('.fx-si');
-    var bg=document.createElement('span');bg.className='pop-bg';bg.setAttribute('aria-hidden','true');si.appendChild(bg);
-    var t=document.createElement('span');t.className='pop-t';t.setAttribute('aria-hidden','true');t.innerHTML='<small>'+k[3]+'</small>'+k[4];si.appendChild(t);
-    var c=document.createElement('span');c.className='pop-c';c.setAttribute('aria-hidden','true');c.innerHTML='<img src="img/'+k[2]+'.webp" alt="" loading="lazy">';card.appendChild(c);
-    function fit(){var cr=card.getBoundingClientRect(),r=si.getBoundingClientRect(),k=cr.width/card.offsetWidth||1;card.style.setProperty('--popl',((r.left-cr.left)/k)+'px');card.style.setProperty('--popw',(r.width/k)+'px');card.style.setProperty('--popb',((cr.bottom-r.bottom)/k)+'px')}
-    fit();addEventListener('resize',fit);if(window.ResizeObserver)new ResizeObserver(fit).observe(card);
-    /* springs out when it scrolls into view (once) */
-    if('IntersectionObserver' in window&&!rm){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){setTimeout(function(){card.classList.add('pop-in')},140+[].indexOf.call(card.parentNode.children,card)*160);io.disconnect()}})},{threshold:.35});io.observe(card)}else card.classList.add('pop-in');
-    if(!fine||rm)return;
-    /* pointer: the card tilts a little, the backdrop slides back and the hamster leans forward on its own layer (60fps, only while hovered) */
-    var tx=0,ty=0,cx=0,cy=0,raf=0,on=false;
-    function step(){raf=0;cx+=(tx-cx)*.18;cy+=(ty-cy)*.18;
-      card.style.setProperty('transform','perspective(900px) rotateX('+(-cy*5).toFixed(2)+'deg) rotateY('+(cx*6).toFixed(2)+'deg) translateY(-4px)','important');
-      bg.style.transform='translate3d('+(-cx*10).toFixed(1)+'px,'+(-cy*8).toFixed(1)+'px,0)';
-      c.style.setProperty('--px',(cx*16).toFixed(1)+'px');c.style.setProperty('--py',(cy*8-14).toFixed(1)+'px');c.style.setProperty('--pr',(cx*5).toFixed(2)+'deg');
-      if(on||Math.abs(tx-cx)+Math.abs(ty-cy)>.002)raf=requestAnimationFrame(step);else{card.style.removeProperty('transform');card.classList.remove('pop-act')}}
-    card.addEventListener('pointerenter',function(){on=true;card.classList.add('pop-act');if(!raf)raf=requestAnimationFrame(step)});
-    card.addEventListener('pointermove',function(e){var r=card.getBoundingClientRect();tx=(e.clientX-r.left)/r.width-.5;ty=(e.clientY-r.top)/r.height-.5;if(!raf)raf=requestAnimationFrame(step)});
-    card.addEventListener('pointerleave',function(){on=false;tx=0;ty=0;c.style.setProperty('--py','0px');if(!raf)raf=requestAnimationFrame(step)})}
-  function go(){[].forEach.call(document.querySelectorAll('.fx-row .fx-s'),setup)}
-  if(document.readyState==='complete')go();else addEventListener('load',go);setTimeout(go,1500)})();</script>
