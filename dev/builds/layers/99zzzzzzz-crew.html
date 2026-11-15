@@ -162,8 +162,8 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
       /* short answers are shown whole instead of being cut a few px short with a fade over the last row */
       var full=res.scrollHeight;if(full<=Math.max(560,innerHeight*.7))res.style.setProperty('max-height',(full+2)+'px','important')}
     /* the hero's content is centred, so growing it by 2x the overflow moves the panel down by 1x; repeated until it fits */
-    function fit(){if(!res)return;if(!zq.classList.contains('ask')){zq.style.minHeight='';return}place();var z=zq.getBoundingClientRect(),r=res.getBoundingClientRect();if(!r.height)return;
-      var o=r.bottom-z.bottom+48;if(o>2||(o<-60&&zq.style.minHeight)){zq.style.minHeight=Math.max(0,Math.ceil(z.height+2*o))+'px';clearTimeout(fitT);fitT=setTimeout(fit,120)}}
+    function fit(){if(!res)return;if(!zq.classList.contains('ask')){if(zq.style.minHeight){zq.style.minHeight='';setTimeout(function(){dispatchEvent(new Event('resize'))},30)}return}place();var z=zq.getBoundingClientRect(),r=res.getBoundingClientRect();if(!r.height)return;
+      var o=r.bottom-z.bottom+120;if(o>2||(o<-60&&zq.style.minHeight)){zq.style.minHeight=Math.max(0,Math.ceil(z.height+2*o))+'px';/* the hero's canvases size themselves on resize: tell them, or the grown strip stays blank/black */setTimeout(function(){dispatchEvent(new Event('resize'))},30);clearTimeout(fitT);fitT=setTimeout(fit,120)}}
     function refit(){clearTimeout(fitT);fitT=setTimeout(fit,zq.classList.contains('ask')?350:0)}
     /* fade hints at the panel's top and bottom only while there is more to scroll that way */
     function ends(){if(!res)return;res.classList.toggle('zq-top0',res.scrollTop<4);res.classList.toggle('zq-end',res.scrollTop+res.clientHeight>=res.scrollHeight-40)}
