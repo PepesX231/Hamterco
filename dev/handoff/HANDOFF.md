@@ -15,7 +15,7 @@ A senior on the team (watchirapongth) reviewed the hero with the cheese backgrou
 
 > "ไม่เอาชีส / ไม่เกี่ยวกับ product"
 
-**Done (16 พ.ย.):** the owner chose to keep the cheese but tie it to the product. `dev/builds/layers/99zzzzzzzzzzzz-herobg.html` draws the cheese again, and six of its holes are windows showing real works: a game-jam game, the Mr. City app, REVOICE (NSC), two DEK69 portfolio results and PHC Map. Holes stay off the headline and search; two holes have separate phone positions so they don't sit under the example chips. (A Unity-grid version was tried in between and dropped.)
+**Done (16 พ.ย.):** the owner chose to keep the cheese but tie it to the product. `dev/builds/layers/99zzzzzzzzzzzz-herobg.html` draws the cheese again, and every hole is a window showing a real work: game-jam games, NSC projects (REVOICE, LYNO, Z.O.O., Timekeeper), the Mr. City app, PHC Map, Quest Town and DEK69 portfolio results. Holes stay off the headline and search; two holes have separate phone positions so they don't sit under the example chips. (A Unity-grid version was tried in between and dropped.)
 
 ---
 
@@ -53,7 +53,7 @@ A senior on the team (watchirapongth) reviewed the hero with the cheese backgrou
 | `99zzzzzzzzz-review.html` | Mobile header shows ทัก LINE, no dead countdown, courses/activity pages have no page-name banner |
 | `99zzzzzzzzzz-perf.html` | Performance: no big blurs, off-screen animations paused |
 | `99zzzzzzzzzzz-lists.html` | Courses page as a ruled list, poster-less events as a dated list, home "คอร์สทั้งหมด" carousel removed |
-| `99zzzzzzzzzzzz-herobg.html` | Hero background: cheese with some holes showing real works; also hides the code text |
+| `99zzzzzzzzzzzz-herobg.html` | Hero background: cheese, every hole shows a real work; also hides the code text |
 | `99zzzzzzzzzzzzz-plain.html` | De-templated the two home sections: flat pictures, rules between rows, underlined text links instead of orange pills |
 
 ---
@@ -92,7 +92,7 @@ A senior on the team (watchirapongth) reviewed the hero with the cheese backgrou
   - Desktop: on the left, a hand-drawn arrow is drawn toward the bar, then the note is written above the curve. There is no hamster or pencil on the left (the owner removed them).
   - Mobile: a pencil-loop drawing around the bar.
   - On the right edge, a grey hamster peeks down from the top and a peach hamster peeks round the side.
-  - The background is cheese; some holes show real works (games, startup app, NSC, portfolios).
+  - The background is cheese; every hole shows a real work (games, startup app, NSC, portfolios).
 - **Search results:** the panel is centred under the bar. The hero grows so the panel is never cut off, and its background turns the page's cream colour while the panel is open.
 - **"คอร์สที่เราแนะนำ":**
   - Port Express is the big card.

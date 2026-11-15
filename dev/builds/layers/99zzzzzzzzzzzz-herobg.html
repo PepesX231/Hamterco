@@ -1,4 +1,4 @@
-<style id="ly-herobg3">
+<style id="ly-herobg4">
 /* owner: the cheese comes back, but it should be about the product. Some holes in the cheese are windows: through them you see
    real works made here (game-jam games, the Mr. City startup app, REVOICE from NSC, DEK69 portfolio results). The hole's own
    inset shadow sits on top of the picture, so it reads as looking down into the cheese, not a sticker. Static, no animation. */
@@ -18,8 +18,8 @@ html body [data-view="home"] .zq>.hx-cv{display:none!important}
 </style>
 <script>(function(){function go(){var z=document.querySelector('[data-view="home"] .zq');if(!z||z.querySelector('.zq-ch2'))return;
   /* fixed layout so it never jumps: [x%, y%, size px at 1440, hide on phones?, picture] */
-  var H=[[3,20,150,0,'work-slash-speed'],[13,33,46],[6,64,118,0,'dek69-1',[8,76]],[17,86,70,1,'dek69-2'],[24,14,30,1],[30,74,40,1],[-1,92,150,0,'sc-revoice'],
-         [96,26,150,0,'g-mrcity'],[88,8,52,1],[86,48,40,1],[86,80,108,0,'work-hot-hot-hot',[60,77]],[71,90,70,1,'w-hmap'],[71,20,34,1],[40,90,30,1]];
+  var H=[[3,20,150,0,'work-slash-speed'],[13,34,66,0,'sc-lyno',[34,19]],[6,64,118,0,'dek69-1',[8,76]],[17,86,70,1,'dek69-2'],[24,14,58,1,'work-stressstrike'],[28,79,62,1,'dek69-5'],[-1,92,150,0,'sc-revoice'],
+         [96,26,150,0,'g-mrcity'],[87,9,60,1,'sc-zoo'],[85,47,58,1,'w-quest-town'],[86,80,108,0,'work-hot-hot-hot',[60,77]],[71,90,70,1,'w-hmap'],[72,19,56,1,'sc-timekeeper'],[41,90,56,1,'work-escape-rolling']];
   var w=document.createElement('div');w.className='zq-ch2';w.setAttribute('aria-hidden','true');
   H.forEach(function(h){var i=document.createElement('i'),s='calc('+h[2]+'px * var(--k))';
     i.style.cssText='left:'+h[0]+'%;top:'+h[1]+'%;width:'+s+';height:calc('+s+' * .9);--s:'+s+';transform:translate(-50%,-50%) rotate('+(h[0]*7%40-20)+'deg)';
