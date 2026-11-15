@@ -15,7 +15,7 @@ A senior on the team (watchirapongth) reviewed the hero with the cheese backgrou
 
 > "ไม่เอาชีส / ไม่เกี่ยวกับ product"
 
-**Done (16 พ.ย.):** the owner chose to keep the cheese but tie it to the product. `dev/builds/layers/99zzzzzzzzzzzz-herobg.html` draws the cheese again, and every hole is a window showing a real work: game-jam games, NSC projects (REVOICE, LYNO, Z.O.O., Timekeeper), the Mr. City app, PHC Map, Quest Town and DEK69 portfolio results. Holes stay off the headline and search; two holes have separate phone positions so they don't sit under the example chips. (A Unity-grid version was tried in between and dropped.)
+**Done (16 พ.ย.):** the owner chose to keep the cheese but tie it to the product. `dev/builds/layers/99zzzzzzzzzzzz-herobg.html` draws the cheese again, and every hole is a window showing a real work: game-jam games, NSC projects (REVOICE, LYNO, Z.O.O., Timekeeper), the Mr. City app, Hamster Quest (web and Python game) and DEK69 portfolio results. The pictures load after the page has loaded, so they don't slow the first paint. Pointing at a hole shows the work's name, and clicking it goes to #works. Holes stay off the headline and search; two holes have separate phone positions so they don't sit under the example chips. (A Unity-grid version was tried in between and dropped.)
 
 ---
 
