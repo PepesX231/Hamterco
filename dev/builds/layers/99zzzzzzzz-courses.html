@@ -17,8 +17,27 @@ html body [data-view] section.ft.ft.ft .fx-row .fx-s .rc.rc-s.zc-st{display:inli
 html body [data-view] section.ft.ft.ft .zc-x{display:inline-flex;align-items:center;gap:7px;font:600 .82rem/1 var(--ui,inherit);color:#7A6A5C;margin:0 0 10px}
 html body [data-view] section.ft.ft.ft .fx-row .fx-s .rc.rc-s.zc-st::before{content:""!important;display:block!important;position:static!important;width:8px;height:8px;border-radius:50%;border:1.5px solid #9A8A7C}
 html body [data-view] section.ft.ft.ft .fx-main .ft-live{box-shadow:none!important}
+/* same treatment on the courses page */
+/* course cards without the template kit: no "แนะนำ" pills on every card, no boxed stat chips, no 3D tilt/glare,
+   no soft drop shadows. Each card says one status in plain words and its facts read like a timetable line. */
+html body [data-view="courses"].x, html body [data-view="courses"] .ow-rec,html body [data-view="courses"].x, html body [data-view="courses"] .fe-rec,html body [data-view="courses"].x, html body [data-view="courses"] .fe-glare{display:none!important}
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-main,html body [data-view="courses"].x, html body [data-view="courses"] .fx-row .fx-s:nth-child(n),html body [data-view="courses"].x, html body [data-view="courses"] .fx-row .fx-s:nth-child(n):hover{transform:none!important;box-shadow:none!important}
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-main{border-radius:20px!important}
+/* facts: one line, split by thin rules instead of three rounded boxes */
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-f{display:flex!important;gap:0!important;border-top:1px solid rgba(255,246,232,.18);border-bottom:1px solid rgba(255,246,232,.18);padding:14px 0!important}
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-f>span{flex:1;background:none!important;border:0!important;border-radius:0!important;padding:0 18px!important;border-left:1px solid rgba(255,246,232,.18)!important}
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-f>span:first-child{padding-left:0!important;border-left:0!important}
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-f>span b{font-size:1.15rem!important}
+/* the two smaller courses: flat paper panels with the poster flush on the left, proof line inside the body */
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-s:nth-child(n){border-radius:20px!important;border:1.5px solid rgba(29,23,18,.14)!important;background:#FFFDF8!important;overflow:hidden}
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-row .fx-s:nth-child(n):hover{border-color:rgba(29,23,18,.4)!important}
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-pr{background:none!important;border-top:1px dashed rgba(29,23,18,.18)!important}
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-row .fx-s .rc.rc-s.zc-st{display:inline-flex!important;align-items:center;gap:7px;background:none!important;color:#7A6A5C!important;padding:0!important;font:600 .82rem/1 var(--ui,inherit)!important;box-shadow:none!important;border:0!important}
+html body [data-view="courses"].x, html body [data-view="courses"] .zc-x{display:inline-flex;align-items:center;gap:7px;font:600 .82rem/1 var(--ui,inherit);color:#7A6A5C;margin:0 0 10px}
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-row .fx-s .rc.rc-s.zc-st::before{content:""!important;display:block!important;position:static!important;width:8px;height:8px;border-radius:50%;border:1.5px solid #9A8A7C}
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-main .ft-live{box-shadow:none!important}
 </style>
-<script>(function(){function go(){[].forEach.call(document.querySelectorAll('section.ft .fx-s'),function(a){if(a.querySelector('.zc-st'))return;var rc=a.querySelector('.rc.rc-s');if(!rc)return;
+<script>(function(){function go(){[].forEach.call(document.querySelectorAll('.fx-row .fx-s'),function(a){if(a.querySelector('.zc-st'))return;var rc=a.querySelector('.rc.rc-s');if(!rc)return;
   /* the "แนะนำ" pill becomes an honest status: these two only take LINE sign-ups for the next round */
   rc.classList.add('zc-st');rc.textContent='รอเปิดรอบถัดไป'})}
   if(document.readyState==='complete')go();else addEventListener('load',go);setTimeout(go,1500)})();</script>

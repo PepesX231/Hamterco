@@ -43,6 +43,8 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
 .nav-in>a.v:hover .roll>span:first-child,.nav-in>a.v:focus-visible .roll>span:first-child{transform:translateY(-110%)}
 .nav-in>a.v:hover .roll .nx,.nav-in>a.v:focus-visible .roll .nx{transform:translate(-50%,0)}
 @media (prefers-reduced-motion:reduce){.nav-in>a.v .roll>span{transition:none}}
+/* result line reads as plain text next to the name, not a second coloured label */
+.ocl span i{color:#5A4A3E!important;font-weight:500!important}
 </style>
 <script>
 (function(){
@@ -51,15 +53,16 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
   function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.textContent=h;return e}
 
   /* ---- "สิ่งที่ Hamster Hub สร้าง": credits for each work, the matching picture lights up on hover ---- */
+  /* one short result line per work; the long descriptions were too much to read */
   var ROWS=[
-    {items:[{n:'Mr. City',w:'เกมเดินเที่ยวสงขลาแบบ Pokémon GO',r:'ขายให้สวนสัตว์สงขลาแล้ว'},
-            {n:'PHC Map',w:'เกมสอนเขียน Python',r:'ใช้สอนเด็กไปแล้วกว่า 1,000 คน',m:[0]},
-            {n:'Hamster Quest',w:'เว็บเรียนที่เล่นเหมือนเกม',r:'กำลังเตรียมใช้กับมหาวิทยาลัย',m:[1,2]}]},
-    {h3:'แอปฝึกพูดแบบเล่นเกม ที่น้องไอดินทำเองใน 4 เดือน',one:1,
-     items:[{n:'REVOICE',w:'ทำมาเพื่อคนที่มีปัญหาด้านการพูด น้องไอดินเขียนเองทั้งแอปด้วย Unity',r:'ชนะ NSC 2025 การแข่งขันเขียนโปรแกรมระดับประเทศ'}]},
-    {items:[{n:'LYNO',w:'เกมปริศนา 3 มิติ',r:'ของน้องดา',m:[0]},
-            {n:'Time Keeper',w:'เกมผจญภัยบน Roblox',r:'ของพี่มิคกี้',m:[1]},
-            {n:'Z.O.O.',w:'เกมสืบสวน',r:'ของพี่ไอซ์',m:[2]}],note:'ปีนี้มีเกมของน้องๆ 10 เกมใน Hall of Fame'}];
+    {items:[{n:'Mr. City',w:'',r:'ขายให้สวนสัตว์สงขลาแล้ว'},
+            {n:'PHC Map',w:'',r:'เด็กใช้เรียนแล้วกว่า 1,000 คน',m:[0]},
+            {n:'Hamster Quest',w:'',r:'กำลังจะใช้ในมหาวิทยาลัย',m:[1,2]}]},
+    {h3:'แอปฝึกพูดที่น้องไอดินทำเอง',one:1,
+     items:[{n:'REVOICE',w:'',r:'ชนะ NSC 2025 ระดับประเทศ'}]},
+    {items:[{n:'LYNO',w:'',r:'เกม 3 มิติของน้องดา',m:[0]},
+            {n:'Time Keeper',w:'',r:'เกม Roblox ของพี่มิคกี้',m:[1]},
+            {n:'Z.O.O.',w:'',r:'เกมสืบสวนของพี่ไอซ์',m:[2]}]}];
   function credits(){[].forEach.call(document.querySelectorAll('section .oc-in>.oc-r'),function(r,i){var d=ROWS[i],t=r.querySelector('.oc-t');if(!d||!t||t.querySelector('.ocl'))return;
     var m=r.querySelector('.oc-m'),h=t.querySelector('h3');if(d.h3&&h)h.textContent=d.h3;
     var ul=el('ul','ocl'+(d.one?' one':''));

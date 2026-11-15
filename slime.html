@@ -9751,6 +9751,8 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
 .nav-in>a.v:hover .roll>span:first-child,.nav-in>a.v:focus-visible .roll>span:first-child{transform:translateY(-110%)}
 .nav-in>a.v:hover .roll .nx,.nav-in>a.v:focus-visible .roll .nx{transform:translate(-50%,0)}
 @media (prefers-reduced-motion:reduce){.nav-in>a.v .roll>span{transition:none}}
+/* result line reads as plain text next to the name, not a second coloured label */
+.ocl span i{color:#5A4A3E!important;font-weight:500!important}
 </style>
 <script>
 (function(){
@@ -9759,15 +9761,16 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
   function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.textContent=h;return e}
 
   /* ---- "สิ่งที่ Hamster Hub สร้าง": credits for each work, the matching picture lights up on hover ---- */
+  /* one short result line per work; the long descriptions were too much to read */
   var ROWS=[
-    {items:[{n:'Mr. City',w:'เกมเดินเที่ยวสงขลาแบบ Pokémon GO',r:'ขายให้สวนสัตว์สงขลาแล้ว'},
-            {n:'PHC Map',w:'เกมสอนเขียน Python',r:'ใช้สอนเด็กไปแล้วกว่า 1,000 คน',m:[0]},
-            {n:'Hamster Quest',w:'เว็บเรียนที่เล่นเหมือนเกม',r:'กำลังเตรียมใช้กับมหาวิทยาลัย',m:[1,2]}]},
-    {h3:'แอปฝึกพูดแบบเล่นเกม ที่น้องไอดินทำเองใน 4 เดือน',one:1,
-     items:[{n:'REVOICE',w:'ทำมาเพื่อคนที่มีปัญหาด้านการพูด น้องไอดินเขียนเองทั้งแอปด้วย Unity',r:'ชนะ NSC 2025 การแข่งขันเขียนโปรแกรมระดับประเทศ'}]},
-    {items:[{n:'LYNO',w:'เกมปริศนา 3 มิติ',r:'ของน้องดา',m:[0]},
-            {n:'Time Keeper',w:'เกมผจญภัยบน Roblox',r:'ของพี่มิคกี้',m:[1]},
-            {n:'Z.O.O.',w:'เกมสืบสวน',r:'ของพี่ไอซ์',m:[2]}],note:'ปีนี้มีเกมของน้องๆ 10 เกมใน Hall of Fame'}];
+    {items:[{n:'Mr. City',w:'',r:'ขายให้สวนสัตว์สงขลาแล้ว'},
+            {n:'PHC Map',w:'',r:'เด็กใช้เรียนแล้วกว่า 1,000 คน',m:[0]},
+            {n:'Hamster Quest',w:'',r:'กำลังจะใช้ในมหาวิทยาลัย',m:[1,2]}]},
+    {h3:'แอปฝึกพูดที่น้องไอดินทำเอง',one:1,
+     items:[{n:'REVOICE',w:'',r:'ชนะ NSC 2025 ระดับประเทศ'}]},
+    {items:[{n:'LYNO',w:'',r:'เกม 3 มิติของน้องดา',m:[0]},
+            {n:'Time Keeper',w:'',r:'เกม Roblox ของพี่มิคกี้',m:[1]},
+            {n:'Z.O.O.',w:'',r:'เกมสืบสวนของพี่ไอซ์',m:[2]}]}];
   function credits(){[].forEach.call(document.querySelectorAll('section .oc-in>.oc-r'),function(r,i){var d=ROWS[i],t=r.querySelector('.oc-t');if(!d||!t||t.querySelector('.ocl'))return;
     var m=r.querySelector('.oc-m'),h=t.querySelector('h3');if(d.h3&&h)h.textContent=d.h3;
     var ul=el('ul','ocl'+(d.one?' one':''));
@@ -10137,7 +10140,9 @@ html body [data-view="home"] .mc .mc-c:not(.on):hover{filter:brightness(1)!impor
     var st=tv.querySelector('.tv-rg-s'),ring=st.querySelector('.tv-rg-r'),figs=[].slice.call(ring.children),N=figs.length,step=360/N,rot=0,vel=0,down=false,px=0,rv=false,rr=0,Rr=0,Zr=0;
     function lay(){var w=st.clientWidth,Wp=Math.min(520,w*(w<640?.66:.4)),Hp=Wp*.68;Rr=Wp/(2*Math.tan(Math.PI/N))*1.06;Zr=Rr-Math.max(120,Rr*.16);
       figs.forEach(function(f,i){f.style.width=Wp+'px';f.style.height=Hp+'px';f.style.left=-Wp/2+'px';f.style.top=-Hp/2+'px'})}
-    function ringF(){rr=0;if(!rv||!view.offsetParent)return;if(!down){if(!rm)rot-=.035;rot+=vel;vel*=.94}
+    var lw=0;
+    /* the About view can be built while hidden (width 0): re-measure the photos as soon as it has a real width */
+    function ringF(){rr=0;if(!rv||!view.offsetParent)return;if(st.clientWidth&&st.clientWidth!==lw){lw=st.clientWidth;lay()}if(!down){if(!rm)rot-=.035;rot+=vel;vel*=.94}
       ring.style.transform='translateZ('+Zr.toFixed(1)+'px) rotateY('+rot.toFixed(2)+'deg)';
       figs.forEach(function(f,i){var a=i*step,d=((rot-a)%360+540)%360-180,v=Math.abs(d)<78;f.style.visibility=v?'visible':'hidden';
         if(v){f.style.transform='rotateY('+(-a)+'deg) translateZ('+(-Rr).toFixed(1)+'px)'}});
@@ -10781,8 +10786,27 @@ html body [data-view] section.ft.ft.ft .fx-row .fx-s .rc.rc-s.zc-st{display:inli
 html body [data-view] section.ft.ft.ft .zc-x{display:inline-flex;align-items:center;gap:7px;font:600 .82rem/1 var(--ui,inherit);color:#7A6A5C;margin:0 0 10px}
 html body [data-view] section.ft.ft.ft .fx-row .fx-s .rc.rc-s.zc-st::before{content:""!important;display:block!important;position:static!important;width:8px;height:8px;border-radius:50%;border:1.5px solid #9A8A7C}
 html body [data-view] section.ft.ft.ft .fx-main .ft-live{box-shadow:none!important}
+/* same treatment on the courses page */
+/* course cards without the template kit: no "แนะนำ" pills on every card, no boxed stat chips, no 3D tilt/glare,
+   no soft drop shadows. Each card says one status in plain words and its facts read like a timetable line. */
+html body [data-view="courses"].x, html body [data-view="courses"] .ow-rec,html body [data-view="courses"].x, html body [data-view="courses"] .fe-rec,html body [data-view="courses"].x, html body [data-view="courses"] .fe-glare{display:none!important}
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-main,html body [data-view="courses"].x, html body [data-view="courses"] .fx-row .fx-s:nth-child(n),html body [data-view="courses"].x, html body [data-view="courses"] .fx-row .fx-s:nth-child(n):hover{transform:none!important;box-shadow:none!important}
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-main{border-radius:20px!important}
+/* facts: one line, split by thin rules instead of three rounded boxes */
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-f{display:flex!important;gap:0!important;border-top:1px solid rgba(255,246,232,.18);border-bottom:1px solid rgba(255,246,232,.18);padding:14px 0!important}
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-f>span{flex:1;background:none!important;border:0!important;border-radius:0!important;padding:0 18px!important;border-left:1px solid rgba(255,246,232,.18)!important}
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-f>span:first-child{padding-left:0!important;border-left:0!important}
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-f>span b{font-size:1.15rem!important}
+/* the two smaller courses: flat paper panels with the poster flush on the left, proof line inside the body */
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-s:nth-child(n){border-radius:20px!important;border:1.5px solid rgba(29,23,18,.14)!important;background:#FFFDF8!important;overflow:hidden}
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-row .fx-s:nth-child(n):hover{border-color:rgba(29,23,18,.4)!important}
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-pr{background:none!important;border-top:1px dashed rgba(29,23,18,.18)!important}
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-row .fx-s .rc.rc-s.zc-st{display:inline-flex!important;align-items:center;gap:7px;background:none!important;color:#7A6A5C!important;padding:0!important;font:600 .82rem/1 var(--ui,inherit)!important;box-shadow:none!important;border:0!important}
+html body [data-view="courses"].x, html body [data-view="courses"] .zc-x{display:inline-flex;align-items:center;gap:7px;font:600 .82rem/1 var(--ui,inherit);color:#7A6A5C;margin:0 0 10px}
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-row .fx-s .rc.rc-s.zc-st::before{content:""!important;display:block!important;position:static!important;width:8px;height:8px;border-radius:50%;border:1.5px solid #9A8A7C}
+html body [data-view="courses"].x, html body [data-view="courses"] .fx-main .ft-live{box-shadow:none!important}
 </style>
-<script>(function(){function go(){[].forEach.call(document.querySelectorAll('section.ft .fx-s'),function(a){if(a.querySelector('.zc-st'))return;var rc=a.querySelector('.rc.rc-s');if(!rc)return;
+<script>(function(){function go(){[].forEach.call(document.querySelectorAll('.fx-row .fx-s'),function(a){if(a.querySelector('.zc-st'))return;var rc=a.querySelector('.rc.rc-s');if(!rc)return;
   /* the "แนะนำ" pill becomes an honest status: these two only take LINE sign-ups for the next round */
   rc.classList.add('zc-st');rc.textContent='รอเปิดรอบถัดไป'})}
   if(document.readyState==='complete')go();else addEventListener('load',go);setTimeout(go,1500)})();</script>
@@ -10822,3 +10846,53 @@ html body #zqForm.zq-s{-webkit-backdrop-filter:none!important;backdrop-filter:no
     [].forEach.call(document.querySelectorAll('main *'),function(el){var s=getComputedStyle(el);if(s.animationName==='none'||s.animationIterationCount.indexOf('infinite')<0)return;
       var r=el.getBoundingClientRect();if(r.width*r.height<60000)return;var host=el.closest('section')||el;io.observe(host)})}
   if(document.readyState==='complete')setTimeout(go,1500);else addEventListener('load',function(){setTimeout(go,1500)})})();</script>
+
+<!-- layer: 99zzzzzzzzzzz-lists.html -->
+<style id="ly-lists">
+/* no more template tiles. Things without a real picture are shown as plain ruled lists, like a timetable,
+   instead of generated pattern/number thumbnails. */
+
+/* home: the "คอร์สทั้งหมด" carousel repeated the recommended cards right above it and the courses page; removed */
+html body [data-view="home"] section.zc2{display:none!important}
+
+/* courses page: every course is one line: name, what it is, status, arrow */
+html body [data-view="courses"] .zq-g.ctg{display:block!important;border-top:1.5px solid #1D1712;margin-top:18px}
+html body [data-view="courses"] .ctg>.qv{display:grid!important;grid-template-columns:minmax(150px,230px) 1fr auto 40px;align-items:center;gap:6px 28px;padding:20px 4px!important;margin:0!important;
+  background:none!important;border:0!important;border-bottom:1px solid rgba(29,23,18,.16)!important;border-radius:0!important;box-shadow:none!important;transform:none!important;min-height:0!important;height:auto!important;color:#1D1712;transition:background .2s,padding .25s}
+html body [data-view="courses"] .zq-g.ctg>a.qv.qv.on,html body [data-view="courses"] .zq-g.ctg>a.qv.qv{box-shadow:none!important}
+html body [data-view="courses"] .ctg>.qv:hover{background:rgba(242,166,94,.12)!important;padding-left:14px!important}
+html body [data-view="courses"] .ctg>.qv .qv-im{display:none!important}
+html body [data-view="courses"] .ctg>.qv,html body [data-view="courses"] .ctg>.qv::before,html body [data-view="courses"] .ctg>.qv::after{outline:0!important;box-shadow:none!important}
+html body [data-view="courses"] .ctg>.qv::before,html body [data-view="courses"] .ctg>.qv::after{content:none!important}
+html body [data-view="courses"] .ctg>.qv .qv-row,html body [data-view="courses"] .ctg>.qv .qv-tx{display:contents!important}
+html body [data-view="courses"] .ctg>.qv .qv-tx b{grid-column:1;font:800 clamp(1.15rem,1.7vw,1.4rem)/1.15 var(--display);margin:0!important}
+html body [data-view="courses"] .ctg>.qv .qv-d{grid-column:2;font-size:.98rem;color:#5A4A3E;margin:0!important;-webkit-line-clamp:unset!important;display:block!important}
+html body [data-view="courses"] .ctg>.qv .qv-meta{grid-column:3;grid-row:1;display:flex!important;gap:14px;margin:0!important;padding:0!important;border:0!important;font-size:.9rem;color:#7A6A5C;white-space:nowrap}
+html body [data-view="courses"] .ctg>.qv .qv-meta span{background:none!important;padding:0!important;border:0!important}
+html body [data-view="courses"] .ctg>.qv .qv-meta span:last-child:not(:has(em)){display:none}
+html body [data-view="courses"] .ctg>.qv .qv-meta em{font-style:normal;font-weight:700;color:#1D1712}
+html body [data-view="courses"] .ctg>.qv.on .qv-meta span:first-child{color:#0E8A3E;font-weight:700}
+html body [data-view="courses"] .ctg>.qv .qv-btn{grid-column:4;grid-row:1;justify-self:end;position:static!important;transform:none!important;box-shadow:none!important;background:transparent!important;border:1.5px solid rgba(29,23,18,.3)!important}
+html body [data-view="courses"] .ctg>.qv:hover .qv-btn{background:#1D1712!important;border-color:#1D1712!important;filter:invert(1)}
+@media (max-width:760px){html body [data-view="courses"] .ctg>.qv{grid-template-columns:1fr 36px;gap:4px 12px}
+  html body [data-view="courses"] .ctg>.qv .qv-tx b{grid-column:1;grid-row:1}html body [data-view="courses"] .ctg>.qv .qv-d{grid-column:1;grid-row:2}
+  html body [data-view="courses"] .ctg>.qv .qv-meta{grid-column:1;grid-row:3}html body [data-view="courses"] .ctg>.qv .qv-btn{grid-column:2;grid-row:1/4;align-self:center}}
+
+/* activity: events with a real poster stay as picture cards; the ones without one become a dated list after them */
+html body .avc:has(.avc-ty){grid-column:1/-1!important;order:2;display:grid!important;grid-template-columns:150px 1fr;gap:4px 28px;align-items:baseline;
+  background:none!important;box-shadow:none!important;border:0!important;border-top:1px solid rgba(29,23,18,.16)!important;border-radius:0!important;padding:16px 4px!important;margin:0!important;transform:none!important;min-height:0!important}
+html body .avc:has(.avc-ty) .avc-m{display:none!important}
+html body .avc:has(.avc-ty) .avc-t{display:contents!important}
+html body .avc:has(.avc-ty) .avc-d{grid-column:1;grid-row:1/4;margin:0!important;font-weight:700;color:#1D1712;display:flex;flex-direction:column;gap:4px}
+html body .avc:has(.avc-ty) .avc-d span{align-self:flex-start}
+html body .avc:has(.avc-ty) .avc-d{text-align:left!important;align-items:flex-start}
+html body .avc:has(.avc-ty) h3{grid-column:2;margin:0!important;font-size:1.12rem!important}
+html body .avc:has(.avc-ty) .avc-t>p:not(.avc-d){grid-column:2;margin:0!important;color:#5A4A3E}
+html body .avc:has(.avc-ty) .avc-g{font-size:.88rem}
+@media (max-width:640px){html body .avc:has(.avc-ty){grid-template-columns:1fr}html body .avc:has(.avc-ty) .avc-d{grid-row:auto;flex-direction:row;gap:10px}
+  html body .avc:has(.avc-ty) h3,html body .avc:has(.avc-ty) .avc-t>p:not(.avc-d){grid-column:1}}
+</style>
+<script>(function(){function go(){var hs=[].filter.call(document.querySelectorAll('[data-view="home"] h2'),function(h){return h.textContent.trim()==='กิจกรรมล่าสุด'});
+  /* two headings said "กิจกรรมล่าสุด" one after the other; the second one lists past events */
+  if(hs.length>1)hs[hs.length-1].textContent='งานที่ผ่านมา'}
+  if(document.readyState==='complete')go();else addEventListener('load',go);setTimeout(go,6000)})();</script>

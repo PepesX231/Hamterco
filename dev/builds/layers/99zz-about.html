@@ -312,7 +312,9 @@
     var st=tv.querySelector('.tv-rg-s'),ring=st.querySelector('.tv-rg-r'),figs=[].slice.call(ring.children),N=figs.length,step=360/N,rot=0,vel=0,down=false,px=0,rv=false,rr=0,Rr=0,Zr=0;
     function lay(){var w=st.clientWidth,Wp=Math.min(520,w*(w<640?.66:.4)),Hp=Wp*.68;Rr=Wp/(2*Math.tan(Math.PI/N))*1.06;Zr=Rr-Math.max(120,Rr*.16);
       figs.forEach(function(f,i){f.style.width=Wp+'px';f.style.height=Hp+'px';f.style.left=-Wp/2+'px';f.style.top=-Hp/2+'px'})}
-    function ringF(){rr=0;if(!rv||!view.offsetParent)return;if(!down){if(!rm)rot-=.035;rot+=vel;vel*=.94}
+    var lw=0;
+    /* the About view can be built while hidden (width 0): re-measure the photos as soon as it has a real width */
+    function ringF(){rr=0;if(!rv||!view.offsetParent)return;if(st.clientWidth&&st.clientWidth!==lw){lw=st.clientWidth;lay()}if(!down){if(!rm)rot-=.035;rot+=vel;vel*=.94}
       ring.style.transform='translateZ('+Zr.toFixed(1)+'px) rotateY('+rot.toFixed(2)+'deg)';
       figs.forEach(function(f,i){var a=i*step,d=((rot-a)%360+540)%360-180,v=Math.abs(d)<78;f.style.visibility=v?'visible':'hidden';
         if(v){f.style.transform='rotateY('+(-a)+'deg) translateZ('+(-Rr).toFixed(1)+'px)'}});

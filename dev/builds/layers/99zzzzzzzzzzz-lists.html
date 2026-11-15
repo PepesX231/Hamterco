@@ -1,0 +1,48 @@
+<style id="ly-lists">
+/* no more template tiles. Things without a real picture are shown as plain ruled lists, like a timetable,
+   instead of generated pattern/number thumbnails. */
+
+/* home: the "คอร์สทั้งหมด" carousel repeated the recommended cards right above it and the courses page; removed */
+html body [data-view="home"] section.zc2{display:none!important}
+
+/* courses page: every course is one line: name, what it is, status, arrow */
+html body [data-view="courses"] .zq-g.ctg{display:block!important;border-top:1.5px solid #1D1712;margin-top:18px}
+html body [data-view="courses"] .ctg>.qv{display:grid!important;grid-template-columns:minmax(150px,230px) 1fr auto 40px;align-items:center;gap:6px 28px;padding:20px 4px!important;margin:0!important;
+  background:none!important;border:0!important;border-bottom:1px solid rgba(29,23,18,.16)!important;border-radius:0!important;box-shadow:none!important;transform:none!important;min-height:0!important;height:auto!important;color:#1D1712;transition:background .2s,padding .25s}
+html body [data-view="courses"] .zq-g.ctg>a.qv.qv.on,html body [data-view="courses"] .zq-g.ctg>a.qv.qv{box-shadow:none!important}
+html body [data-view="courses"] .ctg>.qv:hover{background:rgba(242,166,94,.12)!important;padding-left:14px!important}
+html body [data-view="courses"] .ctg>.qv .qv-im{display:none!important}
+html body [data-view="courses"] .ctg>.qv,html body [data-view="courses"] .ctg>.qv::before,html body [data-view="courses"] .ctg>.qv::after{outline:0!important;box-shadow:none!important}
+html body [data-view="courses"] .ctg>.qv::before,html body [data-view="courses"] .ctg>.qv::after{content:none!important}
+html body [data-view="courses"] .ctg>.qv .qv-row,html body [data-view="courses"] .ctg>.qv .qv-tx{display:contents!important}
+html body [data-view="courses"] .ctg>.qv .qv-tx b{grid-column:1;font:800 clamp(1.15rem,1.7vw,1.4rem)/1.15 var(--display);margin:0!important}
+html body [data-view="courses"] .ctg>.qv .qv-d{grid-column:2;font-size:.98rem;color:#5A4A3E;margin:0!important;-webkit-line-clamp:unset!important;display:block!important}
+html body [data-view="courses"] .ctg>.qv .qv-meta{grid-column:3;grid-row:1;display:flex!important;gap:14px;margin:0!important;padding:0!important;border:0!important;font-size:.9rem;color:#7A6A5C;white-space:nowrap}
+html body [data-view="courses"] .ctg>.qv .qv-meta span{background:none!important;padding:0!important;border:0!important}
+html body [data-view="courses"] .ctg>.qv .qv-meta span:last-child:not(:has(em)){display:none}
+html body [data-view="courses"] .ctg>.qv .qv-meta em{font-style:normal;font-weight:700;color:#1D1712}
+html body [data-view="courses"] .ctg>.qv.on .qv-meta span:first-child{color:#0E8A3E;font-weight:700}
+html body [data-view="courses"] .ctg>.qv .qv-btn{grid-column:4;grid-row:1;justify-self:end;position:static!important;transform:none!important;box-shadow:none!important;background:transparent!important;border:1.5px solid rgba(29,23,18,.3)!important}
+html body [data-view="courses"] .ctg>.qv:hover .qv-btn{background:#1D1712!important;border-color:#1D1712!important;filter:invert(1)}
+@media (max-width:760px){html body [data-view="courses"] .ctg>.qv{grid-template-columns:1fr 36px;gap:4px 12px}
+  html body [data-view="courses"] .ctg>.qv .qv-tx b{grid-column:1;grid-row:1}html body [data-view="courses"] .ctg>.qv .qv-d{grid-column:1;grid-row:2}
+  html body [data-view="courses"] .ctg>.qv .qv-meta{grid-column:1;grid-row:3}html body [data-view="courses"] .ctg>.qv .qv-btn{grid-column:2;grid-row:1/4;align-self:center}}
+
+/* activity: events with a real poster stay as picture cards; the ones without one become a dated list after them */
+html body .avc:has(.avc-ty){grid-column:1/-1!important;order:2;display:grid!important;grid-template-columns:150px 1fr;gap:4px 28px;align-items:baseline;
+  background:none!important;box-shadow:none!important;border:0!important;border-top:1px solid rgba(29,23,18,.16)!important;border-radius:0!important;padding:16px 4px!important;margin:0!important;transform:none!important;min-height:0!important}
+html body .avc:has(.avc-ty) .avc-m{display:none!important}
+html body .avc:has(.avc-ty) .avc-t{display:contents!important}
+html body .avc:has(.avc-ty) .avc-d{grid-column:1;grid-row:1/4;margin:0!important;font-weight:700;color:#1D1712;display:flex;flex-direction:column;gap:4px}
+html body .avc:has(.avc-ty) .avc-d span{align-self:flex-start}
+html body .avc:has(.avc-ty) .avc-d{text-align:left!important;align-items:flex-start}
+html body .avc:has(.avc-ty) h3{grid-column:2;margin:0!important;font-size:1.12rem!important}
+html body .avc:has(.avc-ty) .avc-t>p:not(.avc-d){grid-column:2;margin:0!important;color:#5A4A3E}
+html body .avc:has(.avc-ty) .avc-g{font-size:.88rem}
+@media (max-width:640px){html body .avc:has(.avc-ty){grid-template-columns:1fr}html body .avc:has(.avc-ty) .avc-d{grid-row:auto;flex-direction:row;gap:10px}
+  html body .avc:has(.avc-ty) h3,html body .avc:has(.avc-ty) .avc-t>p:not(.avc-d){grid-column:1}}
+</style>
+<script>(function(){function go(){var hs=[].filter.call(document.querySelectorAll('[data-view="home"] h2'),function(h){return h.textContent.trim()==='กิจกรรมล่าสุด'});
+  /* two headings said "กิจกรรมล่าสุด" one after the other; the second one lists past events */
+  if(hs.length>1)hs[hs.length-1].textContent='งานที่ผ่านมา'}
+  if(document.readyState==='complete')go();else addEventListener('load',go);setTimeout(go,6000)})();</script>
