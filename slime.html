@@ -10895,31 +10895,35 @@ html body .avc:has(.avc-ty) .avc-g{font-size:.88rem}
 
 
 <!-- layer: 99zzzzzzzzzzzz-herobg.html -->
-<style id="ly-herobg2">
-/* team feedback: no cheese, the background should be about the product. The courses build games in Unity, so the hero
-   is a game-editor scene view: flat brand orange with a faint world grid (major lines every 4 cells), fading out in the
-   middle where the headline and search sit. Static, no animation. */
-html body [data-view="home"] .zq{background-color:#F2A65E!important;background-image:none!important}
-.zq-grid{position:absolute;inset:0;z-index:0;pointer-events:none;border-radius:inherit;
-  background-image:linear-gradient(rgba(122,56,8,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(122,56,8,.16) 1px,transparent 1px),
-    linear-gradient(rgba(122,56,8,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(122,56,8,.07) 1px,transparent 1px);
-  background-size:160px 160px,160px 160px,40px 40px,40px 40px;background-position:center -1px,-1px center,center -1px,-1px center;
-  -webkit-mask:radial-gradient(ellipse 42% 38% at 50% 52%,transparent 0,#000 100%);mask:radial-gradient(ellipse 42% 38% at 50% 52%,transparent 0,#000 100%)}
-html body [data-view="home"] .zq.ask .zq-grid{opacity:0}
-.zq-grid{transition:opacity .3s}
-@media (max-width:700px){.zq-grid{background-size:120px 120px,120px 120px,30px 30px,30px 30px;-webkit-mask:radial-gradient(ellipse 70% 30% at 50% 50%,transparent 0,#000 100%);mask:radial-gradient(ellipse 70% 30% at 50% 50%,transparent 0,#000 100%)}}
-/* answers open: the hero takes the page's own cream (no white slab ending in a hard line) and the code fades out before its bottom edge */
+<style id="ly-herobg3">
+/* owner: the cheese comes back, but it should be about the product. Some holes in the cheese are windows: through them you see
+   real works made here (game-jam games, the Mr. City startup app, REVOICE from NSC, DEK69 portfolio results). The hole's own
+   inset shadow sits on top of the picture, so it reads as looking down into the cheese, not a sticker. Static, no animation. */
+html body [data-view="home"] .zq{background:radial-gradient(120% 90% at 30% 10%,#FFC46B 0,#F6AE55 45%,#EE9C45 100%)!important}
+.zq-ch2{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;border-radius:inherit;transition:opacity .4s}
+.zq-ch2 i{position:absolute;border-radius:50%;
+  background:radial-gradient(circle at 62% 66%,#EC9640 0 46%,#E0852F 100%);
+  box-shadow:inset calc(var(--s)*.09) calc(var(--s)*.12) 0 rgba(150,70,8,.32),inset calc(var(--s)*-.03) calc(var(--s)*-.04) 0 rgba(255,214,150,.55),0 1px 0 rgba(255,222,165,.7)}
+/* a window hole: the work fills it; a soft dark crescent at the top-left and a cheese rim keep it inside the slab */
+.zq-ch2 i.w{background:var(--img) center/cover no-repeat,#E0852F;
+  box-shadow:inset calc(var(--s)*.07) calc(var(--s)*.09) calc(var(--s)*.06) rgba(110,48,4,.55),inset 0 0 0 calc(var(--s)*.035) #E58C38,inset calc(var(--s)*-.02) calc(var(--s)*-.03) 0 calc(var(--s)*.035) rgba(255,214,150,.7),0 1px 0 rgba(255,222,165,.7)}
 html body [data-view="home"] .zq.ask{background:#FFFAF3!important}
-html body [data-view="home"] .zq.ask>.hx-cv{-webkit-mask:linear-gradient(#000 55%,transparent 92%);mask:linear-gradient(#000 55%,transparent 92%)}
-/* while answers are open the hero turns into the liquid panel: no holes on it */
-html body [data-view="home"] .zq.ask .zq-ch2{opacity:0;transition:opacity .3s}
-.zq-ch2{transition:opacity .4s}
+html body [data-view="home"] .zq.ask .zq-ch2{opacity:0}
 @media (max-width:700px){.zq-ch2 i.sm-off{display:none}}
-/* owner: no scrolling code text on the cheese; hidden canvas also stops its drawing loop */
+/* no scrolling code text on the cheese; hidden canvas also stops its drawing loop */
 html body [data-view="home"] .zq>.hx-cv{display:none!important}
 </style>
-
-<script>(function(){function go(){var z=document.querySelector('[data-view="home"] .zq');if(!z||z.querySelector('.zq-grid'))return;var g=document.createElement('div');g.className='zq-grid';g.setAttribute('aria-hidden','true');z.insertBefore(g,z.firstChild)}
+<script>(function(){function go(){var z=document.querySelector('[data-view="home"] .zq');if(!z||z.querySelector('.zq-ch2'))return;
+  /* fixed layout so it never jumps: [x%, y%, size px at 1440, hide on phones?, picture] */
+  var H=[[3,20,150,0,'work-slash-speed'],[13,33,46],[6,64,118,0,'dek69-1',[8,76]],[17,86,70,1,'dek69-2'],[24,14,30,1],[30,74,40,1],[-1,92,150,0,'sc-revoice'],
+         [96,26,150,0,'g-mrcity'],[88,8,52,1],[86,48,40,1],[86,80,108,0,'work-hot-hot-hot',[60,77]],[71,90,70,1,'w-hmap'],[71,20,34,1],[40,90,30,1]];
+  var w=document.createElement('div');w.className='zq-ch2';w.setAttribute('aria-hidden','true');
+  H.forEach(function(h){var i=document.createElement('i'),s='calc('+h[2]+'px * var(--k))';
+    i.style.cssText='left:'+h[0]+'%;top:'+h[1]+'%;width:'+s+';height:calc('+s+' * .9);--s:'+s+';transform:translate(-50%,-50%) rotate('+(h[0]*7%40-20)+'deg)';
+    if(h[4]){i.className='w';i.style.setProperty('--img','url(img/'+h[4]+'.webp)');i.style.transform='translate(-50%,-50%)'}
+    if(h[3])i.classList.add('sm-off');if(h[5]){i.dataset.d=h[0]+','+h[1];i.dataset.m=h[5].join(',')}w.appendChild(i)});
+  function k(){var ph=innerWidth<=700;w.querySelectorAll('i[data-m]').forEach(function(i){var p=(ph?i.dataset.m:i.dataset.d).split(',');i.style.left=p[0]+'%';i.style.top=p[1]+'%'});w.style.setProperty('--k',Math.max(.55,Math.min(1.25,z.clientWidth/1440)).toFixed(3))}k();addEventListener('resize',k);
+  z.insertBefore(w,z.firstChild)}
   if(document.readyState==='loading')addEventListener('DOMContentLoaded',go);else go();setTimeout(go,800)})();</script>
 
 <!-- layer: 99zzzzzzzzzzzzz-plain.html -->
