@@ -10771,3 +10771,25 @@ html body .avn-cd[hidden],html body #avnCd[hidden]{display:none!important}
 /* example questions under the search bar: medium weight, near-black brown, one step below the search bar */
 html body [data-view="home"] .zq .zq-pop>button{font-weight:500!important;color:#3A2A1E!important}
 </style>
+<style id="ly-mbinvite">
+/* small screens have no hamster arrow, so the bar itself invites a tap: a blinking text cursor where typing would start,
+   and a soft ring that ripples out from the bar every few seconds. Both stop as soon as the visitor taps in. */
+.zq-caret,.zq-ring{display:none}
+@media (max-width:1180px){
+  #zqForm{position:relative}
+  #zqForm .zq-caret{display:block;position:absolute!important;z-index:3;width:2.5px;border-radius:2px;background:#E07A1F;pointer-events:none;animation:zqCaret 1.05s steps(1) infinite}
+  #zqForm .zq-ring{display:block;position:absolute!important;margin:0!important;inset:-2px;border-radius:999px;pointer-events:none;box-shadow:0 0 0 2.5px rgba(224,122,31,.75);opacity:0;animation:zqRing 3s cubic-bezier(.2,.7,.3,1) infinite 1.2s}
+  #zqForm.zq-used .zq-caret,#zqForm.zq-used .zq-ring{display:none}
+}
+@keyframes zqCaret{0%{opacity:1}50%{opacity:0}}
+@keyframes zqRing{0%{opacity:0;transform:scale(1)}8%{opacity:1}55%,100%{opacity:0;transform:scale(1.05,1.3)}}
+@media (prefers-reduced-motion:reduce){.zq-ring{display:none!important}.zq-caret{animation:none}}
+</style>
+<script>(function(){function go(){var f=document.getElementById('zqForm'),i=document.getElementById('zqIn');if(!f||!i||f.querySelector('.zq-caret'))return;
+  var c=document.createElement('span');c.className='zq-caret';c.setAttribute('aria-hidden','true');var r=document.createElement('span');r.className='zq-ring';r.setAttribute('aria-hidden','true');f.appendChild(r);f.appendChild(c);
+  /* layout offsets (not screen rects) so entrance transforms on the bar cannot push the cursor off */
+  function place(){var x=0,y=0,e=i;while(e&&e!==f){x+=e.offsetLeft;y+=e.offsetTop;e=e.offsetParent;if(e&&!f.contains(e)){x-=f.offsetLeft;y-=f.offsetTop;break}}
+    var cs=getComputedStyle(i),h=parseFloat(cs.fontSize)*1.25;c.style.left=(x+parseFloat(cs.paddingLeft)-6)+'px';c.style.top=(y+(i.offsetHeight-h)/2)+'px';c.style.height=h+'px'}
+  function upd(){var used=document.activeElement===i||!!i.value;f.classList.toggle('zq-used',used);if(!used)place()}
+  ['focus','blur','input'].forEach(function(e){i.addEventListener(e,upd)});addEventListener('resize',upd);upd();setTimeout(upd,800);if(document.fonts)document.fonts.ready.then(upd)}
+  if(document.readyState==='complete')go();else addEventListener('load',go)})();</script>
