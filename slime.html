@@ -10913,6 +10913,8 @@ html body [data-view="home"] .zq.ask>.hx-cv{-webkit-mask:linear-gradient(#000 55
 html body [data-view="home"] .zq.ask .zq-ch2{opacity:0;transition:opacity .3s}
 .zq-ch2{transition:opacity .4s}
 @media (max-width:700px){.zq-ch2 i.sm-off{display:none}}
+/* owner: no scrolling code text on the cheese; hidden canvas also stops its drawing loop */
+html body [data-view="home"] .zq>.hx-cv{display:none!important}
 </style>
 <script>(function(){function go(){var z=document.querySelector('[data-view="home"] .zq');if(!z||z.querySelector('.zq-ch2'))return;
   /* fixed layout so it never jumps: [x%, y%, size in px at 1440 wide, hide on phones?] */
