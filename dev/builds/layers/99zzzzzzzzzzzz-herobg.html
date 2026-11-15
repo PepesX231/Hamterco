@@ -1,4 +1,4 @@
-<style id="ly-herobg9">
+<style id="ly-herobg10">
 /* owner: the cheese comes back, but it should be about the product. Some holes in the cheese are windows: through them you see
    real works made here (game-jam games, the Mr. City startup app, REVOICE from NSC, DEK69 portfolio results). The hole's own
    inset shadow sits on top of the picture, so it reads as looking down into the cheese, not a sticker. Static, no animation. */
@@ -56,3 +56,8 @@ html body [data-view="home"] .zq>.hx-cv{display:none!important}
     if(r.left<q.left+10)d=q.left+10-r.left;else if(r.right>q.right-10)d=q.right-10-r.right;b.style.marginLeft=d+'px'});
   if(document.readyState==='complete')setTimeout(ld,300);else addEventListener('load',function(){setTimeout(ld,300)})}
   if(document.readyState==='loading')addEventListener('DOMContentLoaded',go);else go();setTimeout(go,800)})();</script>
+<style id="ly-center">
+/* owner: the search bar sat 65px right of centre on desktop. Its wrapper was 630px wide but the bar is 760px, so the bar spilled
+   out to the right. The wrapper now takes the bar's own width and is centred under the headline. */
+@media (min-width:900px){html body [data-view="home"] .zq .zq-top .zq-sw{width:fit-content!important;max-width:100%!important;margin-left:auto!important;margin-right:auto!important}}
+</style>
