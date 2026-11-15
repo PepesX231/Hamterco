@@ -59,7 +59,7 @@
     a.font='600 '+(ch*.78)+'px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace';a.textAlign='center';a.textBaseline='middle';a.fillStyle=col;
     G.forEach(function(g,i){a.fillText(g,i*cw+cw/2,ch/2+1)});return c}
   function mkAtlas(){atlas=mk('#8A3A00');atlasW=mk('#E07B1E')}
-  function size(){W=zq.clientWidth;H=zq.clientHeight;dpr=Math.min(devicePixelRatio||1,1.5);var mob=W<640;cw=mob?7:8;ch=mob?13:15;
+  function size(){W=zq.clientWidth;H=zq.clientHeight;dpr=Math.min(devicePixelRatio||1,W<640?1:1.5);var mob=W<640;cw=mob?7:8;ch=mob?13:15;
     cv.width=W*dpr;cv.height=H*dpr;cols=Math.ceil(W/cw);rows=Math.ceil(H/ch);mkAtlas();mkRows();
     var r=zq.getBoundingClientRect(),h1=top.querySelector('.zq-h')||top,a=h1.getBoundingClientRect(),b=(form||h1).getBoundingClientRect();
     box={x:(Math.min(a.left,b.left)+Math.max(a.right,b.right))/2-r.left,y:(a.top+b.bottom)/2-r.top,rx:Math.max(a.width,b.width)*.5+(W<640?6:40),ry:(b.bottom-a.top)*.5+(W<640?24:46)}}
@@ -105,7 +105,7 @@
         if(sp>.02){lastA=-1;cx.globalAlpha=al*sp*.9;cx.drawImage(atlasW,g*cw*dpr,0,cw*dpr,ch*dpr,i*cw*dpr,j*ch*dpr,cw*dpr,ch*dpr)}}}
     cx.globalAlpha=1}
   var run=false,last=0;
-  function loop(t){if(!run)return;requestAnimationFrame(loop);if(t-last<40||(window.__scr&&t-window.__scr<160))return;last=t;frame(t)}
+  function loop(t){if(!run)return;requestAnimationFrame(loop);if(t-last<66||document.hidden||(window.__scr&&t-window.__scr<160))return;last=t;frame(t)}
   function start(){size();cv.classList.add('on');if(rm){frame(0);return}
     new IntersectionObserver(function(es){var v=es[0].isIntersecting;if(v&&!run){run=true;requestAnimationFrame(loop)}else if(!v)run=false}).observe(zq)}
   addEventListener('resize',function(){size();if(rm)frame(0)});
