@@ -1,4 +1,4 @@
-<style id="ly-herobg8">
+<style id="ly-herobg9">
 /* owner: the cheese comes back, but it should be about the product. Some holes in the cheese are windows: through them you see
    real works made here (game-jam games, the Mr. City startup app, REVOICE from NSC, DEK69 portfolio results). The hole's own
    inset shadow sits on top of the picture, so it reads as looking down into the cheese, not a sticker. Static, no animation. */
@@ -35,10 +35,10 @@ html body [data-view="home"] .zq>.hx-cv{display:none!important}
   /* fixed layout so it never jumps: [x%, y%, size px at 1440, hide on phones?, picture] */
   var H=[[10,25,210,0,'work-stressstrike',[9,19]],[24,13,64,1,'sc-lyno'],[3,56,100,0,'dek69-1',[8,76]],[25,84,70,1,'dek69-2'],[44,12,56,1,'dek69-5'],
          [9,80,200,0,'sc-revoice',[8,93]],[89,28,200,0,'w-hmap',[92,25]],[76,10,64,1,'sc-zoo'],[83,64,64,1,'w-quest-town'],[87,83,180,0,'work-slash-speed',[62,77]],
-         [73,90,90,1,'work-hot-hot-hot'],[72,22,96,1,'g-mrcity'],[62,12,56,1,'sc-timekeeper'],[58,90,56,1,'work-escape-rolling']];
+         [73,90,90,1,'work-hot-hot-hot'],[72,22,104,1,'work-midnight-at-roadside'],[62,12,56,1,'sc-timekeeper'],[58,90,56,1,'work-escape-rolling']];
   /* works that have a real clip: it plays inside the hole (muted, only while the hero is on screen) */
   var V={'work-stressstrike':'img/hole-stressstrike.mp4','work-slash-speed':'img/hole-slash-speed2.mp4','w-hmap':'img/hole-hmap.mp4'};
-  var N={'work-slash-speed':'SLASH//SPEED','sc-lyno':'LYNO','dek69-1':'พอร์ต DEK69','dek69-2':'พอร์ต DEK69','dek69-5':'พอร์ต DEK69','work-stressstrike':'StressStrike','sc-revoice':'REVOICE','g-mrcity':'Mr. City','sc-zoo':'Z.O.O.','w-quest-town':'Hamster Quest','work-hot-hot-hot':'Hot Hot Hot','w-hmap':'Hamster Map','sc-timekeeper':'Time Keeper','work-escape-rolling':'Escape Rolling'};
+  var N={'work-slash-speed':'SLASH//SPEED','sc-lyno':'LYNO','dek69-1':'พอร์ต DEK69','dek69-2':'พอร์ต DEK69','dek69-5':'พอร์ต DEK69','work-stressstrike':'StressStrike','sc-revoice':'REVOICE','work-midnight-at-roadside':'Midnight at Roadside','sc-zoo':'Z.O.O.','w-quest-town':'Hamster Quest','work-hot-hot-hot':'Hot Hot Hot','w-hmap':'Hamster Map','sc-timekeeper':'Time Keeper','work-escape-rolling':'Escape Rolling'};
   var w=document.createElement('div');w.className='zq-ch2';
   H.forEach(function(h){var i=document.createElement('i'),s='calc('+h[2]+'px * var(--k))';
     i.style.cssText='left:'+h[0]+'%;top:'+h[1]+'%;width:'+s+';height:calc('+s+' * .9);--s:'+s+';transform:translate(-50%,-50%) rotate('+(h[0]*7%40-20)+'deg)';
