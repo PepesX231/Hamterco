@@ -130,7 +130,8 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
     /* the hero's content is centred, so growing it by 2x the overflow moves the panel down by 1x; measured once per open to avoid a feedback loop */
     var res=document.getElementById('zqRes'),sw=res&&res.offsetParent,fitT=0;
     /* the panel is 80px wider than the bar on both sides, measured from the bar itself (its wrapper is narrower than the bar) */
-    function place(){if(!res||!form)return;var f=form.getBoundingClientRect(),p=(res.offsetParent||sw).getBoundingClientRect();res.style.setProperty('left',(f.left-p.left-80)+'px','important');res.style.setProperty('right','auto','important');res.style.setProperty('width',(f.width+160)+'px','important');
+    function place(){if(!res||!form)return;/* never wider than the screen minus a 16px gutter on each side (phones) */
+      var op=res.offsetParent||sw||zq;if(!op)return;var f=form.getBoundingClientRect(),p=op.getBoundingClientRect(),W=Math.min(f.width+160,innerWidth-32),L=f.left+f.width/2-W/2;res.style.setProperty('left',(L-p.left)+'px','important');res.style.setProperty('right','auto','important');res.style.setProperty('width',W+'px','important');res.style.setProperty('box-sizing','border-box','important');
       /* short answers are shown whole instead of being cut a few px short with a fade over the last row */
       var full=res.scrollHeight;if(full<=Math.max(560,innerHeight*.7))res.style.setProperty('max-height',(full+2)+'px','important')}
     /* the hero's content is centred, so growing it by 2x the overflow moves the panel down by 1x; repeated until it fits */

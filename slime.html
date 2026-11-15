@@ -4596,7 +4596,7 @@ requestAnimationFrame(frame)})();
   </div>
 </section>
 </section>
-      <section class="yt-pane" data-p="sen"><div class="yt-pad"><h1>รุ่นพี่ DEK69 ที่ติดมหาลัย</h1><p>รุ่นพี่ติดแล้ว 48 คน ด้านล่างคือ 17 คนที่ลงโปสเตอร์แล้ว</p><div class="chips" id="senChips"></div><div class="sgrid" id="sgrid"></div></div></section>
+      <section class="yt-pane" data-p="sen"><div class="yt-pad"><h1>รุ่นพี่ DEK69 ที่ติดมหาลัย</h1><p>ตัวอย่างรุ่นพี่ 17 คน จากที่ติดทั้งหมด 48 คน</p><div class="chips" id="senChips"></div><div class="sgrid" id="sgrid"></div></div></section>
       <section class="yt-pane" data-p="nsc"><div class="yt-pad"><h1>ผลงานเข้ารอบชิง NSC</h1><p>NSC คือการแข่งขันพัฒนาโปรแกรมคอมพิวเตอร์แห่งประเทศไทย ผลงานของน้องๆ เข้ารอบชิง 12 ผลงาน</p>
         <div class="nsc"><div>Revoice</div><div>mrCity</div><div>Whiskered Odyssey</div><div>Noar</div><div>Veggie Dash</div><div>Time Keeper</div><div>Ayutthaya</div><div>Shadow Maze</div><div>Plant Create World</div><div>Salmon Crisis</div><div>Z.O.O</div><div>Lyno</div></div>
         <div class="nsc-img"><img src="img/s-showcase1.webp" alt="Revoice และ Lyno" loading="lazy"><img src="img/s-showcase2.webp" alt="Time Keeper และ Z.O.O" loading="lazy"></div></div></section>
@@ -4858,7 +4858,7 @@ requestAnimationFrame(frame)})();
     $('#zqC').innerHTML=IT.filter(function(x){return x.k==='course'}).map(cardH).join('');if($('#zqC2'))$('#zqC2').innerHTML=$('#zqC').innerHTML;
     $('#zqN').innerHTML=IT.filter(function(x){return x.k!=='course'}).slice(1,5).map(cardH).join('');
     var W2=['ยื่นพอร์ตเข้ามหาลัย','เข้าวิศวะคอม','สร้างเกมของตัวเอง','ทำแอปของตัวเอง','ติด CEDT จุฬาฯ','สร้างสตาร์ทอัพ','เขียนโปรแกรมเป็น','ทำเว็บของตัวเอง'],wi=0,ci=W2[0].length,del=true,el=$('#zqType');
-    if(!matchMedia('(prefers-reduced-motion:reduce)').matches)(function ty(){var w=W2[wi];if(del){ci--;if(ci<=0){del=false;wi=(wi+1)%W2.length}}else{ci++;if(ci>=W2[wi].length){del=true;el.textContent=W2[wi];setTimeout(ty,2200);return}}el.textContent=W2[wi].slice(0,Math.max(ci,0));setTimeout(ty,del?40:85)})();
+    if(!matchMedia('(prefers-reduced-motion:reduce)').matches)(function ty(){var zz=document.querySelector('[data-view="home"] .zq');if(zz&&(zz.classList.contains('ask')||document.activeElement===document.getElementById('zqIn'))){if(ci!==W2[wi].length){ci=W2[wi].length;del=true;el.textContent=W2[wi]}setTimeout(ty,600);return}var w=W2[wi];if(del){ci--;if(ci<=0){del=false;wi=(wi+1)%W2.length}}else{ci++;if(ci>=W2[wi].length){del=true;el.textContent=W2[wi];setTimeout(ty,2200);return}}el.textContent=W2[wi].slice(0,Math.max(ci,0));setTimeout(ty,del?40:85)})();
   })();
 
   /* search: loading dots while matching */
@@ -8224,7 +8224,7 @@ span.hb.cl-b.cl-in,.cl-p.cl-in{opacity:1;translate:0 0;transition:transform .55s
     if(dq){var b=el('button','','ใช้คำนี้ค้นหา');b.type='button';b.dataset.q=dq;p.appendChild(b)}return p}
   function noteP(txt){return el('p','ia-fix sx-fix sx-note',txt)}
   function card(kind,o){o=o||{};var d=C[kind],w=el('div','ia sx-card');w.dataset.sx=kind;
-    if(o.echo&&kind!=='crisis')w.appendChild(echoP('น้องพิมพ์',o.echo));else if(o.echoT)w.appendChild(el('p','ia-q',o.echoT));
+    if(o.echo&&kind!=='crisis')w.appendChild(echoP('พิมพ์ว่า',o.echo));else if(o.echoT)w.appendChild(el('p','ia-q',o.echoT));
     w.appendChild(el('h3','',d.h));w.appendChild(el('p','ia-a',d.a));
     if(d.e&&(o.en||d.fe)){var e=el('p','sx-en',d.e);e.lang='en';w.appendChild(e)}
     if(d.tel){var t=el('a','sx-tel','โทร 1323 สายด่วนสุขภาพจิต');t.href='tel:1323';w.appendChild(t)}
@@ -8255,9 +8255,9 @@ span.hb.cl-b.cl-in,.cl-p.cl-in{opacity:1;translate:0 0;transition:transform .55s
     if(pf){var b=pf.querySelector('b'),via=b?b.textContent:'';if(o.fix||!via)pf.remove();else pf.replaceWith(fixP(via,via))}
     if(o.fix&&!A.hidden)A.insertBefore(o.fix,A.firstChild);
     if(r.kind==='ia'||r.kind==='pick'){var ia=r.ia,q=ia.querySelector('.ia-q'),h=ia.querySelector('h3'),a=ia.querySelector('.ia-a');
-      if(q&&o.echo)q.replaceWith(echoP(r.kind==='pick'?'น้องพิมพ์':'คำตอบสำหรับ',o.echo));
+      if(q&&o.echo)q.replaceWith(echoP(r.kind==='pick'?'พิมพ์ว่า':'คำตอบสำหรับ',o.echo));
       if(o.en&&a){var e=el('p','sx-en',o.en);e.lang='en';a.parentNode.insertBefore(e,a.nextSibling)}
-      if(o.alts&&o.alts.length&&!A.querySelector('.ia-alt:not(.ia-pick)')){var p=el('p','ia-alt');p.appendChild(el('span','','หรือน้องหมายถึง'));
+      if(o.alts&&o.alts.length&&!A.querySelector('.ia-alt:not(.ia-pick)')){var p=el('p','ia-alt');p.appendChild(el('span','','เรื่องใกล้เคียง'));
         o.alts.forEach(function(k){var bb=el('button','',T[k][1]);bb.type='button';bb.dataset.q=T[k][0];p.appendChild(bb)});A.insertBefore(p,ia)}
       var lis=[].slice.call(ia.querySelectorAll('.ia-p>li')),ended=lis.filter(function(l){return /จบแล้ว/.test(l.textContent)});
       if(ended.length&&ended.length<lis.length)ended.forEach(function(l){l.remove()});
@@ -8275,12 +8275,12 @@ span.hb.cl-b.cl-in,.cl-p.cl-in{opacity:1;translate:0 0;transition:transform .55s
     var echo=c,isLong=c.length>90,t=c.toLowerCase(),o={echo:echo},k,r,m;
     /* 1. nothing to read: emoji, punctuation, digits */
     if(!/[\p{L}]/u.test(c)){
-      if(/\d/.test(c)&&/^[\d\s.,]+$/.test(c)){if(/^0\d[\d\s\-]{7,}$/.test(c)||c.replace(/\D/g,'').length>=9)return card('info',{echoT:'น้องพิมพ์เบอร์โทร'});
+      if(/\d/.test(c)&&/^[\d\s.,]+$/.test(c)){if(/^0\d[\d\s\-]{7,}$/.test(c)||c.replace(/\D/g,'').length>=9)return card('info',{echoT:'พิมพ์เบอร์โทร'});
         if(/^\s*[1-6]\s*$/.test(c)){r=page('ม.'+c.trim());if(r.kind==='ia')return dress(r,{echo:echo,fix:fixP('ม.'+c.trim())})}
         return card(/^5{3,}$/.test(c)?'shape':'num',o)}
       if(/^5{3,}$/.test(c))return card('shape',o);
       if(/\d/.test(c)&&/[+\-*\/x×÷=^%]/.test(c)&&/^[\d\s+\-*\/x×÷=().^%,]+$/.test(c))return card('off',o);
-      if(/^\+?[\d\s\-().]{9,}$/.test(c))return card('info',{echoT:'น้องพิมพ์เบอร์โทร'});
+      if(/^\+?[\d\s\-().]{9,}$/.test(c))return card('info',{echoT:'พิมพ์เบอร์โทร'});
       return card('shape',o)}
     /* 2. safety first */
     if(special(t)==='crisis'||special(nsp(t))==='crisis')return card('crisis',{en:!reThai.test(c)});
@@ -8295,8 +8295,8 @@ span.hb.cl-b.cl-in,.cl-p.cl-in{opacity:1;translate:0 0;transition:transform .55s
     if(f.inj)return card('code',{echo:echo,en:!reThai.test(c)});
     if(/(เว็บ|เวบ|เว็ป|เวป|ที่นี่|แอป|ระบบ|ช่องค้นหา|ค้นหา|คอร์ส|sites?|websites?|search|this)\s*(นี้|นี่|is|are)?\s*(โคตร|แม่ง)?\s*(ห่วย|กระจอก|เฮงซวย|แย่|กาก|sucks?|bad|trash|sh[i1]t)/i.test(t))return card('rude',{echo:echo,en:!reThai.test(c)});
     if(!sn||!/[\p{L}]/u.test(s)){k=f.code?'code':f.tel?'info':f.mail?'info':f.url?'info':f.rude?'rude':'shape';
-      return card(k,k==='info'?{echoT:f.tel?'น้องพิมพ์เบอร์โทร':f.mail?'น้องพิมพ์อีเมล':'น้องพิมพ์ลิงก์',en:!reThai.test(c)}:{echo:echo,en:!reThai.test(c)})}
-    function last(){if(f.code)return card('code',{echo:echo,en:en});if(f.tel||f.mail||f.url)return card('info',{echoT:f.tel?'น้องพิมพ์เบอร์โทร':f.mail?'น้องพิมพ์อีเมล':'น้องพิมพ์ลิงก์',en:en});
+      return card(k,k==='info'?{echoT:f.tel?'พิมพ์เบอร์โทร':f.mail?'พิมพ์อีเมล':'พิมพ์ลิงก์',en:!reThai.test(c)}:{echo:echo,en:!reThai.test(c)})}
+    function last(){if(f.code)return card('code',{echo:echo,en:en});if(f.tel||f.mail||f.url)return card('info',{echoT:f.tel?'พิมพ์เบอร์โทร':f.mail?'พิมพ์อีเมล':'พิมพ์ลิงก์',en:en});
       if(f.rude)return card('rude',{echo:echo,en:en});return card(en?'unknown':'unknown',{echo:echo,en:en})}
     /* 4. hello / thanks on their own */
     function soc(x){var g=x.replace(GREET,''),h;if(g!==x){if(!g.replace(TAIL,'').trim())return 'greet';x=g.replace(/^[\s,.!]+/,'')}
@@ -10428,6 +10428,8 @@ html body [data-view="home"] .zq{margin-top:-6px!important}
 .zq-fab:hover{background:#B85F14}
 .zq-fab:focus-visible{outline:2px solid #F2A65E;outline-offset:3px}
 @media (max-width:480px){.zq-fab small{display:none}}
+/* on phones it covered card titles and buttons; the search is one tap away at the top anyway */
+@media (max-width:700px){.zq-fab{display:none!important}}
 @media (prefers-reduced-motion:reduce){.zq-halo{animation:none}.zq-fab{transition:opacity .2s}}
 </style>
 <script>
@@ -10450,7 +10452,10 @@ html body [data-view="home"] .zq{margin-top:-6px!important}
     var zq=document.querySelector('[data-view="home"] .zq'),past=false,near=false;
     function upd(){var home=!location.hash||/^#(home)?$/.test(location.hash);fab.classList.toggle('on',home&&past&&!near&&!document.body.classList.contains('zq-open'))}
     if(zq)new IntersectionObserver(function(es){past=!es[0].isIntersecting&&es[0].boundingClientRect.top<0;upd()}).observe(zq);
-    var foot=document.querySelector('footer');if(foot)new IntersectionObserver(function(es){near=es[0].isIntersecting;upd()}).observe(foot);
+    /* hide it over the closing call-to-action and the footer, so it never sits on top of other buttons or text */
+    var nearSet=new Set(),foot=document.querySelector('footer'),cta=[].filter.call(document.querySelectorAll('[data-view="home"] section'),function(x){return /สร้างอนาคต|ทัก LINE/.test((x.querySelector('h2')||{}).textContent||'')});
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)nearSet.add(e.target);else nearSet.delete(e.target)});near=nearSet.size>0;upd()});
+    if(foot)io.observe(foot);cta.forEach(function(x){io.observe(x)});
     addEventListener('hashchange',upd);
     fab.addEventListener('click',function(){var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;scrollTo({top:0,behavior:rm?'auto':'smooth'});
       var t0=Date.now();(function w(){if(scrollY<10||Date.now()-t0>1200){inp.focus({preventScroll:true})}else requestAnimationFrame(w)})()})}
@@ -10699,7 +10704,8 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
     /* the hero's content is centred, so growing it by 2x the overflow moves the panel down by 1x; measured once per open to avoid a feedback loop */
     var res=document.getElementById('zqRes'),sw=res&&res.offsetParent,fitT=0;
     /* the panel is 80px wider than the bar on both sides, measured from the bar itself (its wrapper is narrower than the bar) */
-    function place(){if(!res||!form)return;var f=form.getBoundingClientRect(),p=(res.offsetParent||sw).getBoundingClientRect();res.style.setProperty('left',(f.left-p.left-80)+'px','important');res.style.setProperty('right','auto','important');res.style.setProperty('width',(f.width+160)+'px','important');
+    function place(){if(!res||!form)return;/* never wider than the screen minus a 16px gutter on each side (phones) */
+      var op=res.offsetParent||sw||zq;if(!op)return;var f=form.getBoundingClientRect(),p=op.getBoundingClientRect(),W=Math.min(f.width+160,innerWidth-32),L=f.left+f.width/2-W/2;res.style.setProperty('left',(L-p.left)+'px','important');res.style.setProperty('right','auto','important');res.style.setProperty('width',W+'px','important');res.style.setProperty('box-sizing','border-box','important');
       /* short answers are shown whole instead of being cut a few px short with a fade over the last row */
       var full=res.scrollHeight;if(full<=Math.max(560,innerHeight*.7))res.style.setProperty('max-height',(full+2)+'px','important')}
     /* the hero's content is centred, so growing it by 2x the overflow moves the panel down by 1x; repeated until it fits */
@@ -10748,3 +10754,14 @@ html body [data-view] section.ft.ft.ft .fx-main .ft-live{box-shadow:none!importa
   /* the "แนะนำ" pill becomes an honest status: these two only take LINE sign-ups for the next round */
   rc.classList.add('zc-st');rc.textContent='รอเปิดรอบถัดไป'})}
   if(document.readyState==='complete')go();else addEventListener('load',go);setTimeout(go,1500)})();</script>
+
+<!-- layer: 99zzzzzzzzz-review.html -->
+<style id="ly-review">
+/* phones: a first-time visitor needs a way to talk to us, not a login. LINE takes the header slot; login stays in the ☰ menu */
+@media (max-width:900px){
+  html body header.nav .nav-in>a.login{display:none!important}
+  html body header.nav .nav-in>a.lbtn{display:inline-flex!important;align-items:center;margin-left:auto}
+}
+/* a finished event has no countdown (the status script sets hidden, but the block style kept showing 0 วัน 0 ชั่วโมง) */
+html body .avn-cd[hidden],html body #avnCd[hidden]{display:none!important}
+</style>

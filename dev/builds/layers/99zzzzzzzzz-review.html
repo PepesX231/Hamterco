@@ -1,0 +1,9 @@
+<style id="ly-review">
+/* phones: a first-time visitor needs a way to talk to us, not a login. LINE takes the header slot; login stays in the ☰ menu */
+@media (max-width:900px){
+  html body header.nav .nav-in>a.login{display:none!important}
+  html body header.nav .nav-in>a.lbtn{display:inline-flex!important;align-items:center;margin-left:auto}
+}
+/* a finished event has no countdown (the status script sets hidden, but the block style kept showing 0 วัน 0 ชั่วโมง) */
+html body .avn-cd[hidden],html body #avnCd[hidden]{display:none!important}
+</style>

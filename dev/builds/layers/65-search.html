@@ -218,7 +218,7 @@
     if(dq){var b=el('button','','ใช้คำนี้ค้นหา');b.type='button';b.dataset.q=dq;p.appendChild(b)}return p}
   function noteP(txt){return el('p','ia-fix sx-fix sx-note',txt)}
   function card(kind,o){o=o||{};var d=C[kind],w=el('div','ia sx-card');w.dataset.sx=kind;
-    if(o.echo&&kind!=='crisis')w.appendChild(echoP('น้องพิมพ์',o.echo));else if(o.echoT)w.appendChild(el('p','ia-q',o.echoT));
+    if(o.echo&&kind!=='crisis')w.appendChild(echoP('พิมพ์ว่า',o.echo));else if(o.echoT)w.appendChild(el('p','ia-q',o.echoT));
     w.appendChild(el('h3','',d.h));w.appendChild(el('p','ia-a',d.a));
     if(d.e&&(o.en||d.fe)){var e=el('p','sx-en',d.e);e.lang='en';w.appendChild(e)}
     if(d.tel){var t=el('a','sx-tel','โทร 1323 สายด่วนสุขภาพจิต');t.href='tel:1323';w.appendChild(t)}
@@ -249,9 +249,9 @@
     if(pf){var b=pf.querySelector('b'),via=b?b.textContent:'';if(o.fix||!via)pf.remove();else pf.replaceWith(fixP(via,via))}
     if(o.fix&&!A.hidden)A.insertBefore(o.fix,A.firstChild);
     if(r.kind==='ia'||r.kind==='pick'){var ia=r.ia,q=ia.querySelector('.ia-q'),h=ia.querySelector('h3'),a=ia.querySelector('.ia-a');
-      if(q&&o.echo)q.replaceWith(echoP(r.kind==='pick'?'น้องพิมพ์':'คำตอบสำหรับ',o.echo));
+      if(q&&o.echo)q.replaceWith(echoP(r.kind==='pick'?'พิมพ์ว่า':'คำตอบสำหรับ',o.echo));
       if(o.en&&a){var e=el('p','sx-en',o.en);e.lang='en';a.parentNode.insertBefore(e,a.nextSibling)}
-      if(o.alts&&o.alts.length&&!A.querySelector('.ia-alt:not(.ia-pick)')){var p=el('p','ia-alt');p.appendChild(el('span','','หรือน้องหมายถึง'));
+      if(o.alts&&o.alts.length&&!A.querySelector('.ia-alt:not(.ia-pick)')){var p=el('p','ia-alt');p.appendChild(el('span','','เรื่องใกล้เคียง'));
         o.alts.forEach(function(k){var bb=el('button','',T[k][1]);bb.type='button';bb.dataset.q=T[k][0];p.appendChild(bb)});A.insertBefore(p,ia)}
       var lis=[].slice.call(ia.querySelectorAll('.ia-p>li')),ended=lis.filter(function(l){return /จบแล้ว/.test(l.textContent)});
       if(ended.length&&ended.length<lis.length)ended.forEach(function(l){l.remove()});
@@ -269,12 +269,12 @@
     var echo=c,isLong=c.length>90,t=c.toLowerCase(),o={echo:echo},k,r,m;
     /* 1. nothing to read: emoji, punctuation, digits */
     if(!/[\p{L}]/u.test(c)){
-      if(/\d/.test(c)&&/^[\d\s.,]+$/.test(c)){if(/^0\d[\d\s\-]{7,}$/.test(c)||c.replace(/\D/g,'').length>=9)return card('info',{echoT:'น้องพิมพ์เบอร์โทร'});
+      if(/\d/.test(c)&&/^[\d\s.,]+$/.test(c)){if(/^0\d[\d\s\-]{7,}$/.test(c)||c.replace(/\D/g,'').length>=9)return card('info',{echoT:'พิมพ์เบอร์โทร'});
         if(/^\s*[1-6]\s*$/.test(c)){r=page('ม.'+c.trim());if(r.kind==='ia')return dress(r,{echo:echo,fix:fixP('ม.'+c.trim())})}
         return card(/^5{3,}$/.test(c)?'shape':'num',o)}
       if(/^5{3,}$/.test(c))return card('shape',o);
       if(/\d/.test(c)&&/[+\-*\/x×÷=^%]/.test(c)&&/^[\d\s+\-*\/x×÷=().^%,]+$/.test(c))return card('off',o);
-      if(/^\+?[\d\s\-().]{9,}$/.test(c))return card('info',{echoT:'น้องพิมพ์เบอร์โทร'});
+      if(/^\+?[\d\s\-().]{9,}$/.test(c))return card('info',{echoT:'พิมพ์เบอร์โทร'});
       return card('shape',o)}
     /* 2. safety first */
     if(special(t)==='crisis'||special(nsp(t))==='crisis')return card('crisis',{en:!reThai.test(c)});
@@ -289,8 +289,8 @@
     if(f.inj)return card('code',{echo:echo,en:!reThai.test(c)});
     if(/(เว็บ|เวบ|เว็ป|เวป|ที่นี่|แอป|ระบบ|ช่องค้นหา|ค้นหา|คอร์ส|sites?|websites?|search|this)\s*(นี้|นี่|is|are)?\s*(โคตร|แม่ง)?\s*(ห่วย|กระจอก|เฮงซวย|แย่|กาก|sucks?|bad|trash|sh[i1]t)/i.test(t))return card('rude',{echo:echo,en:!reThai.test(c)});
     if(!sn||!/[\p{L}]/u.test(s)){k=f.code?'code':f.tel?'info':f.mail?'info':f.url?'info':f.rude?'rude':'shape';
-      return card(k,k==='info'?{echoT:f.tel?'น้องพิมพ์เบอร์โทร':f.mail?'น้องพิมพ์อีเมล':'น้องพิมพ์ลิงก์',en:!reThai.test(c)}:{echo:echo,en:!reThai.test(c)})}
-    function last(){if(f.code)return card('code',{echo:echo,en:en});if(f.tel||f.mail||f.url)return card('info',{echoT:f.tel?'น้องพิมพ์เบอร์โทร':f.mail?'น้องพิมพ์อีเมล':'น้องพิมพ์ลิงก์',en:en});
+      return card(k,k==='info'?{echoT:f.tel?'พิมพ์เบอร์โทร':f.mail?'พิมพ์อีเมล':'พิมพ์ลิงก์',en:!reThai.test(c)}:{echo:echo,en:!reThai.test(c)})}
+    function last(){if(f.code)return card('code',{echo:echo,en:en});if(f.tel||f.mail||f.url)return card('info',{echoT:f.tel?'พิมพ์เบอร์โทร':f.mail?'พิมพ์อีเมล':'พิมพ์ลิงก์',en:en});
       if(f.rude)return card('rude',{echo:echo,en:en});return card(en?'unknown':'unknown',{echo:echo,en:en})}
     /* 4. hello / thanks on their own */
     function soc(x){var g=x.replace(GREET,''),h;if(g!==x){if(!g.replace(TAIL,'').trim())return 'greet';x=g.replace(/^[\s,.!]+/,'')}
