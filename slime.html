@@ -4215,7 +4215,7 @@ requestAnimationFrame(frame)})();
   </div><div class="mr lt"><div class="mr-l"><h3>กิจกรรมล่าสุด</h3><p>ค่าย เวิร์กชอป และงานแข่งที่จัดไปแล้ว กดรับแจ้งเตือนงานหน้าได้</p><a class="mr-btn" href="#activity">ดูกิจกรรมทั้งหมด</a><div class="mr-ar"><button type="button" class="mr-p" aria-label="เลื่อนไปทางซ้าย"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="mr-n" aria-label="เลื่อนไปทางขวา"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div><div class="mr-r" id="zqN"></div></div></section>
   
   <section class="end"><div class="end-in">
-    <h2 class="rv">อยากให้น้องมีผลงานไว้ยื่นมหาลัย</h2>
+    <h2 class="rv">สร้างอนาคตไปด้วยกัน<br>จากผลงานแรกของน้อง สู่สิ่งที่เปลี่ยนโลก</h2>
     <p class="rv">บอกเราว่าน้องอยากสร้างอะไร ทีม Hamster Hub จะพาไปให้ถึง ทีละขั้น ด้วยกัน</p>
     <div class="end-b rv"><a class="e1" href="#courses">ดูคอร์สทั้งหมด</a><a class="e2" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">คุยกับทีมทาง LINE</a></div>
   </div></section>
@@ -10786,6 +10786,13 @@ html body [data-view] section.ft.ft.ft .fx-main .ft-live{box-shadow:none!importa
 html body .avn-cd[hidden],html body #avnCd[hidden]{display:none!important}
 /* example questions under the search bar: medium weight, near-black brown, one step below the search bar */
 html body [data-view="home"] .zq .zq-pop>button{font-weight:500!important;color:#3A2A1E!important}
+/* the nav already says which page this is: no big "คอร์ส" / "กิจกรรม" banner, the page opens straight on the content.
+   The h1 stays for screen readers. */
+html body [data-view="courses"] section.ct-h,html body [data-view="activity"] section.av-h{position:absolute!important;width:1px!important;height:1px!important;min-height:0!important;padding:0!important;margin:0!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;border:0!important}
+html body [data-view="courses"] section.ct-h *,html body [data-view="activity"] section.av-h *{animation:none!important}
+html body [data-view="courses"]>.pz-pad,html body [data-view="activity"]>.pz-pad{display:none!important}
+html body [data-view="courses"]>.wrap{padding-top:clamp(84px,9vw,110px)!important}
+html body [data-view="activity"]>section.av-h+*{margin-top:clamp(84px,9vw,110px)!important}
 </style>
 
 <!-- layer: 99zzzzzzzzzz-perf.html -->

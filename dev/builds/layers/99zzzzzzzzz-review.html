@@ -8,4 +8,11 @@
 html body .avn-cd[hidden],html body #avnCd[hidden]{display:none!important}
 /* example questions under the search bar: medium weight, near-black brown, one step below the search bar */
 html body [data-view="home"] .zq .zq-pop>button{font-weight:500!important;color:#3A2A1E!important}
+/* the nav already says which page this is: no big "คอร์ส" / "กิจกรรม" banner, the page opens straight on the content.
+   The h1 stays for screen readers. */
+html body [data-view="courses"] section.ct-h,html body [data-view="activity"] section.av-h{position:absolute!important;width:1px!important;height:1px!important;min-height:0!important;padding:0!important;margin:0!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;border:0!important}
+html body [data-view="courses"] section.ct-h *,html body [data-view="activity"] section.av-h *{animation:none!important}
+html body [data-view="courses"]>.pz-pad,html body [data-view="activity"]>.pz-pad{display:none!important}
+html body [data-view="courses"]>.wrap{padding-top:clamp(84px,9vw,110px)!important}
+html body [data-view="activity"]>section.av-h+*{margin-top:clamp(84px,9vw,110px)!important}
 </style>
