@@ -1,4 +1,4 @@
-<style id="ly-herobg7">
+<style id="ly-herobg8">
 /* owner: the cheese comes back, but it should be about the product. Some holes in the cheese are windows: through them you see
    real works made here (game-jam games, the Mr. City startup app, REVOICE from NSC, DEK69 portfolio results). The hole's own
    inset shadow sits on top of the picture, so it reads as looking down into the cheese, not a sticker. Static, no animation. */
@@ -11,7 +11,7 @@ html body [data-view="home"] .zq{background:radial-gradient(120% 90% at 30% 10%,
 .zq-ch2 i.w{background:var(--img) center/cover no-repeat,#E0852F;
   box-shadow:inset calc(var(--s)*.07) calc(var(--s)*.09) calc(var(--s)*.06) rgba(110,48,4,.55),inset 0 0 0 calc(var(--s)*.035) #E58C38,inset calc(var(--s)*-.02) calc(var(--s)*-.03) 0 calc(var(--s)*.035) rgba(255,214,150,.7),0 1px 0 rgba(255,222,165,.7)}
 html body [data-view="home"] .zq.ask{background:#FFFAF3!important}
-html body [data-view="home"] .zq.ask .zq-ch2{opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
+html body [data-view="home"] .zq.ask .zq-ch2,html body [data-view="home"] .zq.sl-on .zq-ch2,html body [data-view="home"] .zq.hx-white .zq-ch2,html body [data-view="home"] .zq:has(#zqIn:focus) .zq-ch2{opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
 @media (max-width:700px){.zq-ch2 i.sm-off{display:none}}
 /* no scrolling code text on the cheese; hidden canvas also stops its drawing loop */
 html body [data-view="home"] .zq>.hx-cv{display:none!important}
@@ -48,9 +48,9 @@ html body [data-view="home"] .zq>.hx-cv{display:none!important}
   z.insertBefore(w,z.firstChild);
   function ld(){w.querySelectorAll('i.w').forEach(function(i){var im=new Image();im.onload=function(){i.style.setProperty('--img','url('+i.dataset.src+')');i.classList.add('ld')};im.src=i.dataset.src});w.classList.add('on');
     var vs=[].slice.call(w.querySelectorAll('video'));var vis=true;
-    function run(){vs.forEach(function(v){var on=vis&&v.parentNode.offsetParent!==null&&!z.classList.contains('ask');if(on){if(!v.src){v.src=v.dataset.src;v.addEventListener('playing',function(){v.classList.add('pl')},{once:true})}var p=v.play();if(p&&p.catch)p.catch(function(){})}else if(v.src)v.pause()})}
+    function run(){vs.forEach(function(v){var on=vis&&v.parentNode.offsetParent!==null&&!/\b(ask|sl-on|hx-white)\b/.test(z.className)&&document.activeElement!==document.getElementById('zqIn');if(on){if(!v.src){v.src=v.dataset.src;v.addEventListener('playing',function(){v.classList.add('pl')},{once:true})}var p=v.play();if(p&&p.catch)p.catch(function(){})}else if(v.src)v.pause()})}
     if('IntersectionObserver' in window)new IntersectionObserver(function(e){vis=e[0].isIntersecting;run()}).observe(z);
-    new MutationObserver(run).observe(z,{attributes:true,attributeFilter:['class']});run()}
+    new MutationObserver(run).observe(z,{attributes:true,attributeFilter:['class']});var q=document.getElementById('zqIn');if(q){q.addEventListener('focus',function(){setTimeout(run,0)});q.addEventListener('blur',function(){setTimeout(run,0)})}run()}
   /* the name under a hole near the screen edge is pushed back inside instead of being cut off */
   w.addEventListener('mouseover',function(e){var i=e.target.closest&&e.target.closest('i.w');if(!i)return;var b=i.querySelector('b');b.style.marginLeft='0';var r=b.getBoundingClientRect(),q=z.getBoundingClientRect(),d=0;
     if(r.left<q.left+10)d=q.left+10-r.left;else if(r.right>q.right-10)d=q.right-10-r.right;b.style.marginLeft=d+'px'});
