@@ -19,6 +19,10 @@ A senior on the team (watchirapongth) reviewed the hero with the cheese backgrou
 
 ---
 
+## 1b. Moving to Next.js (started 16 พ.ย.)
+
+The owner asked to move the site to Next.js + React + TypeScript + Tailwind CSS + Motion. The new app is in `web/` (see `web/README.md`), and its static build is published at https://pepesx231.github.io/Hamterco/next/. So far the header and the home hero have been moved. Search answers and every other part still come from `slime.html`, which stays live during the move.
+
 ## 2. How the site is built (important)
 
 - **Source:** `new.html`. **Never edit it.** All changes go in as layers.

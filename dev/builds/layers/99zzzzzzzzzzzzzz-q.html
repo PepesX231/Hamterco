@@ -1,0 +1,6 @@
+<script id="ly-q">/* the Next.js preview (next/) sends questions here as ?q=... until search is moved over; answer them on arrival */
+(function(){var q=new URLSearchParams(location.search).get('q');if(!q)return;var n=0;
+  (function go(){var i=document.getElementById('zqIn'),f=document.getElementById('zqForm');
+    if(!i||!f||document.getElementById('hhL')){if(n++<80)setTimeout(go,150);return}
+    i.value=q;i.dispatchEvent(new Event('input',{bubbles:true}));setTimeout(function(){f.requestSubmit?f.requestSubmit():f.dispatchEvent(new Event('submit',{cancelable:true}))},250);
+    history.replaceState(null,'',location.pathname+location.hash)})()})();</script>
