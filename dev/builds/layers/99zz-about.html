@@ -6,7 +6,7 @@
 .tv{--amb:#FFB45E;--amb2:#F2A65E;--cr:#FFF6E8;--ink:#120E0B;--mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
   position:relative;background:var(--ink);color:var(--cr);overflow:clip;isolation:isolate}
 .tv *{box-sizing:border-box}
-/* screen texture shared by every part: fine scanlines, grain and a dark rim */
+/* screen texture shared by every part: fine scanlines, grain and a dark rim (glitch toned down so the works stay readable) */
 .tv-fx{position:absolute;inset:0;pointer-events:none;z-index:3}
 .tv-fx::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0 2px,rgba(0,0,0,.18) 2px 3px)}
 /* no dark rim: the stage must meet the sections above and below in the same colour, with no seam */
@@ -223,16 +223,16 @@
   'float box(vec2 p,vec2 b,float r){vec2 d=abs(p)-b+r;return length(max(d,0.))+min(max(d.x,d.y),0.)-r;}',
   'void main(){vec2 fc=gl_FragCoord.xy;vec2 uv=(fc-.5*R)/R.y;float mob=step(R.x/R.y,1.);uv.x-=mix(.2,0.,mob);uv.y+=mix(0.,.2,mob);float ra=mix(-.2,-.1,mob);uv=mat2(cos(ra),sin(ra),-sin(ra),cos(ra))*uv;',
   ' float D=6.3,Rd=2.2;vec3 d=normalize(vec3(uv.x,uv.y,-1.55));',
-  ' float gy=(h(vec2(floor(fc.y/5.),floor(T*24.)))-.5)*G*.08;d.x+=gy;',
+  ' float gy=(h(vec2(floor(fc.y/5.),floor(T*24.)))-.5)*G*.025;d.x+=gy;',
   ' vec2 q=vec2(0.,D),dq=d.yz;float a=dot(dq,dq),b=2.*dot(q,dq),c=dot(q,q)-Rd*Rd,dis=b*b-4.*a*c;',
   ' vec3 col=vec3(.07,.055,.045);',
   ' if(dis>0.){float t=(-b-sqrt(dis))/(2.*a);vec3 hp=d*t;float th=-atan(hp.y,hp.z+D);float S=mix(.86,.46,mob),H=mix(.7,.34,mob);float an=th+P*S;',
   '  float k=floor(an/S+.5);float v=.5-(an-k*S)/H;float Wd=mix(2.3,1.1,mob);float u=hp.x/Wd+.5;float sa=Wd/(Rd*H);',
   '  float lit=.35+.65*cos(th*1.6);',
   '  if(k>=0.&&k<N){vec2 sp=vec2(u-.5,v-.5)*vec2(sa,1.);float bd=box(sp,vec2(sa*.5,.5),.06);',
-  '   if(bd<0.){float ca=.003+.004*length(sp)+G*.01;vec3 s;vec2 tu=vec2(u,1.-v);',
+  '   if(bd<0.){float ca=.0015+.002*length(sp)+G*.003;vec3 s;vec2 tu=vec2(u,1.-v);',
   '    if(k==K-1.)s=tx(A,tu,AS.x,ca,sa);else if(k==K)s=tx(B,tu,AS.y,ca,sa);else if(k==K+1.)s=tx(C,tu,AS.z,ca,sa);else s=vec3(.1);',
-  '    float vg=smoothstep(-.0,-.12,bd);s*=mix(.55,1.,vg);s*=.88+.12*sin(fc.y*2.1);',
+  '    float vg=smoothstep(-.0,-.12,bd);s*=mix(.55,1.,vg);s*=.95+.05*sin(fc.y*2.1);',
   '    s+=vec3(1.,.7,.4)*.05*(1.-vg);col=s*lit;}',
   '   else if(bd<.035){col=mix(vec3(.16,.12,.09),vec3(.07,.055,.045),bd/.035)*lit;}}}',
   ' vec3 bg=vec3(.0706,.0549,.0431);float sc=step(.0001,distance(col,vec3(.07,.055,.045)));float vgn=1.-.55*dot(uv*.7,uv*.7);col=mix(bg,(col+(h(fc)-.5)*.05)*vgn,sc);float ef=smoothstep(0.,.14*R.y,fc.y)*smoothstep(0.,.14*R.y,R.y-fc.y);col=mix(bg,col,ef);gl_FragColor=vec4(col,1.);}'].join('\n');

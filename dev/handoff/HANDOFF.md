@@ -107,7 +107,7 @@ A senior on the team (watchirapongth) reviewed the hero with the cheese backgrou
 
 ## 5. Open items: facts only the owner can give
 
-1. **Port Express dates:** it still says "เปิดรับสมัคร เริ่ม 9 พ.ย. 2569", but that date has passed. What is the next round?
+1. **Port Express next round:** the page now says "เริ่มเรียนแล้ว 9 พ.ย." and asks people to message LINE about the next round. When is it, and what does it cost?
 2. **Information parents can't find:**
    - online or on site (where)
    - class times
@@ -116,14 +116,13 @@ A senior on the team (watchirapongth) reviewed the hero with the cheese backgrou
    - whether there is a certificate
 
    Search currently answers these with "ยังตอบไม่ได้".
-3. **Students' full legal names on the Works cards:** is there consent (PDPA)? If not, switch to nickname plus course.
+3. **Students' full legal names:** removed from the page and its source (PDPA). Cards now show "น้อง<nickname>" only. Put names back only if consent is confirmed.
 4. **LINE ID is @smart-school, not Hamster Hub:** should it be labelled "LINE ทางการของ Hamster Hub"?
 
 ## 6. Design work still to do
 
 - Get owner/team sign-off on the new grid background and the flatter course/works sections.
 - **Optional:**
-  - tone down the About page glitch effect
   - two activity cards share a poster
 
 ## 7. Testing

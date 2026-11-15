@@ -328,5 +328,130 @@
   "<div>Lyno</div>",
   "<div>LYNO</div>",
   1
+ ],
+ [
+  "class=\"tk-who\"><b>@Windy</b> <span>นายทัศน์ เล่าพัฒนาเกษม</span>",
+  "class=\"tk-who\"><b>@Windy</b>",
+  1
+ ],
+ [
+  "class=\"tk-who\"><b>@กัปตัน</b> <span>นายเพชรรัตน์ โกรเพ็ชร</span>",
+  "class=\"tk-who\"><b>@กัปตัน</b>",
+  1
+ ],
+ [
+  "class=\"tk-who\"><b>@ดินสอ</b> <span>นายชสาส เล่ามาขาว</span>",
+  "class=\"tk-who\"><b>@ดินสอ</b>",
+  1
+ ],
+ [
+  "class=\"tk-who\"><b>@นนท์</b> <span>นายธนดล นนสิทธิ์</span>",
+  "class=\"tk-who\"><b>@นนท์</b>",
+  1
+ ],
+ [
+  "class=\"tk-who\"><b>@ฟาร์</b> <span>นายรามิตร บุตรลักษณ์</span>",
+  "class=\"tk-who\"><b>@ฟาร์</b>",
+  1
+ ],
+ [
+  "class=\"tk-who\"><b>@วิน</b> <span>นายอัศวิน วิทูรย์ นิตยวรรธนะ</span>",
+  "class=\"tk-who\"><b>@วิน</b>",
+  1
+ ],
+ [
+  "class=\"tk-who\"><b>@เป๊ป</b> <span>นายคชพล จิรธรานนท์</span>",
+  "class=\"tk-who\"><b>@เป๊ป</b>",
+  1
+ ],
+ [
+  "class=\"tk-who\"><b>@เพชร</b> <span>นายสุวิจักษณ์ จันทร์รุ่งวิจิตต์</span>",
+  "class=\"tk-who\"><b>@เพชร</b>",
+  1
+ ],
+ [
+  "class=\"tk-who\"><b>@โอม</b> <span>นายวรวิช รุ่งปิน</span>",
+  "class=\"tk-who\"><b>@โอม</b>",
+  1
+ ],
+ [
+  "class=\"tk-who\"><b>@ไผ่</b> <span>นายณัฐภัทร์ ผลพิบูลสุนทร</span>",
+  "class=\"tk-who\"><b>@ไผ่</b>",
+  1
+ ],
+ [
+  "<span>@'+n[0]+' · '+n[1]+'</span>'",
+  "<span>น้อง'+n[0]+'</span>'",
+  1
+ ],
+ [
+  "'เปิดรับแล้ว เริ่มเรียน 9 พ.ย. 2569'",
+  "'รอบนี้เริ่มเรียนแล้ว 9 พ.ย. 2569 ทัก LINE จองรอบถัดไป'",
+  1
+ ],
+ [
+  "'เปิดรับ เริ่ม 9 พ.ย. 2569'",
+  "'เริ่มเรียนแล้ว 9 พ.ย. 2569'",
+  1
+ ],
+ [
+  "alt=\"ภาพจากเกม Apocalypis Building โดย นายรามิตร บุตรลักษณ์\"",
+  "alt=\"ภาพจากเกม Apocalypis Building\"",
+  1
+ ],
+ [
+  "alt=\"ภาพจากเกม Beyond the Board โดย นายเพชรรัตน์ โกรเพ็ชร\"",
+  "alt=\"ภาพจากเกม Beyond the Board\"",
+  1
+ ],
+ [
+  "alt=\"ภาพจากเกม Escape Rolling โดย นายคชพล จิรธรานนท์\"",
+  "alt=\"ภาพจากเกม Escape Rolling\"",
+  1
+ ],
+ [
+  "alt=\"ภาพจากเกม Eugation Strike โดย นายณัฐภัทร์ ผลพิบูลสุนทร\"",
+  "alt=\"ภาพจากเกม Eugation Strike\"",
+  1
+ ],
+ [
+  "alt=\"ภาพจากเกม Hot Hot Hot โดย นายวรวิช รุ่งปิน\"",
+  "alt=\"ภาพจากเกม Hot Hot Hot\"",
+  1
+ ],
+ [
+  "alt=\"ภาพจากเกม Micro Immersive Sim โดย นายสุวิจักษณ์ จันทร์รุ่งวิจิตต์\"",
+  "alt=\"ภาพจากเกม Micro Immersive Sim\"",
+  1
+ ],
+ [
+  "alt=\"ภาพจากเกม Midnight at Roadside โดย นายทัศน์ เล่าพัฒนาเกษม\"",
+  "alt=\"ภาพจากเกม Midnight at Roadside\"",
+  1
+ ],
+ [
+  "alt=\"ภาพจากเกม SLASH//SPEED โดย นายชสาส เล่ามาขาว\"",
+  "alt=\"ภาพจากเกม SLASH//SPEED\"",
+  1
+ ],
+ [
+  "alt=\"ภาพจากเกม StressStrike โดย นายอัศวิน วิทูรย์ นิตยวรรธนะ\"",
+  "alt=\"ภาพจากเกม StressStrike\"",
+  1
+ ],
+ [
+  "alt=\"ภาพจากเกม ผีกระหัง โดย นายธนดล นนสิทธิ์\"",
+  "alt=\"ภาพจากเกม ผีกระหัง\"",
+  1
+ ],
+ [
+  "<span class=\"ft-live\">เปิดรับสมัคร</span>",
+  "<span class=\"ft-live\">เริ่มเรียนแล้ว 9 พ.ย.</span>",
+  2
+ ],
+ [
+  "  var NK={stressstrike:['วิน','นายอัศวิน วิทูรย์ นิตยวรรธนะ'],'beyond-the-board':['กัปตัน','นายเพชรรัตน์ โกรเพ็ชร'],'eugation-strike':['ไผ่','นายณัฐภัทร์ ผลพิบูลสุนทร'],'slash-speed':['ดินสอ','นายชสาส เล่ามาขาว'],'micro-immersive-sim':['เพชร','นายสุวิจักษณ์ จันทร์รุ่งวิจิตต์'],'phi-krahang':['นนท์','นายธนดล นนสิทธิ์'],'midnight-at-roadside':['Windy','นายทัศน์ เล่าพัฒนาเกษม'],'hot-hot-hot':['โอม','นายวรวิช รุ่งปิน'],'apocalypis-building':['ฟาร์','นายรามิตร บุตรลักษณ์'],'escape-rolling':['เป๊ป','นายคชพล จิรธรานนท์']};",
+  "  var NK={stressstrike:['วิน',''],'beyond-the-board':['กัปตัน',''],'eugation-strike':['ไผ่',''],'slash-speed':['ดินสอ',''],'micro-immersive-sim':['เพชร',''],'phi-krahang':['นนท์',''],'midnight-at-roadside':['Windy',''],'hot-hot-hot':['โอม',''],'apocalypis-building':['ฟาร์',''],'escape-rolling':['เป๊ป','']};",
+  1
  ]
 ]
