@@ -15,9 +15,7 @@ A senior on the team (watchirapongth) reviewed the hero with the cheese backgrou
 
 > "ไม่เอาชีส / ไม่เกี่ยวกับ product"
 
-**Not acted on yet.** The cheese background is all in one file, `dev/builds/layers/99zzzzzzzzzzzz-cheese.html`. Deleting that file and rebuilding brings back the plain orange hero.
-
-Before replacing it, check with the owner what should go there instead. The background should say something about the product: coding, games, portfolio, getting into university.
+**Done:** the cheese was replaced. `dev/builds/layers/99zzzzzzzzzzzz-herobg.html` now draws a faint Unity-style scene grid on flat brand orange (the courses teach Unity game-making). It fades out behind the headline and search bar.
 
 ---
 
@@ -55,7 +53,8 @@ Before replacing it, check with the owner what should go there instead. The back
 | `99zzzzzzzzz-review.html` | Mobile header shows ทัก LINE, no dead countdown, courses/activity pages have no page-name banner |
 | `99zzzzzzzzzz-perf.html` | Performance: no big blurs, off-screen animations paused |
 | `99zzzzzzzzzzz-lists.html` | Courses page as a ruled list, poster-less events as a dated list, home "คอร์สทั้งหมด" carousel removed |
-| `99zzzzzzzzzzzz-cheese.html` | **Cheese hero background (rejected, see section 1)**, also hides the code text |
+| `99zzzzzzzzzzzz-herobg.html` | Hero background: faint game-editor grid (replaced the cheese); also hides the code text |
+| `99zzzzzzzzzzzzz-plain.html` | De-templated the two home sections: flat pictures, rules between rows, underlined text links instead of orange pills |
 
 ---
 
@@ -93,13 +92,13 @@ Before replacing it, check with the owner what should go there instead. The back
   - Desktop: on the left, a hand-drawn arrow is drawn toward the bar, then the note is written above the curve. There is no hamster or pencil on the left (the owner removed them).
   - Mobile: a pencil-loop drawing around the bar.
   - On the right edge, a grey hamster peeks down from the top and a peach hamster peeks round the side.
-  - The background is cheese (rejected).
+  - The background is a faint game-editor grid on orange.
 - **Search results:** the panel is centred under the bar. The hero grows so the panel is never cut off, and its background turns the page's cream colour while the panel is open.
 - **"คอร์สที่เราแนะนำ":**
   - Port Express is the big card.
   - Hamstarter and National Project show "รอเปิดรอบถัดไป".
-  - The owner called the current version AI slop. A rework into slim rows was tried and then reverted at his request.
-- **"สิ่งที่ Hamster Hub สร้าง":** three rows with less text. The owner still calls it AI slop and it has not been redone.
+  - The two smaller cards are now flat (no box, shadow or pill buttons), split by a rule. An earlier rework into slim rows was reverted at the owner's request.
+- **"สิ่งที่ Hamster Hub สร้าง":** three rows with less text, now flat: pictures without shadows, a rule above each row, plain text links.
 - **Activity page:** events with a poster are picture cards, the rest are a dated list. The All for One banner is marked as finished.
 - **About page:** a WebGL works drum (next screen rises from below, no dark rim) and a photo ring (fixed so it no longer shows black).
 - **Loader:** a walking hamster sprite. When loading finishes it says "โหลดเสร็จแล้ว!", ends on the both-paws-up frame, and is centred.
@@ -122,11 +121,9 @@ Before replacing it, check with the owner what should go there instead. The back
 
 ## 6. Design work still to do
 
-- **Hero background:** replace the cheese with something tied to the product (section 1).
-- **"คอร์สที่เราแนะนำ" and "สิ่งที่ Hamster Hub สร้าง":** need a version that does not look templated. Show the owner a screenshot before deploying, because he has rejected several directions.
+- Get owner/team sign-off on the new grid background and the flatter course/works sections.
 - **Optional:**
   - tone down the About page glitch effect
-  - spell work names the same everywhere (mrCity vs Mr. City, Revoice vs REVOICE)
   - two activity cards share a poster
 
 ## 7. Testing

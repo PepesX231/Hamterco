@@ -1,0 +1,26 @@
+<style id="ly-herobg2">
+/* team feedback: no cheese, the background should be about the product. The courses build games in Unity, so the hero
+   is a game-editor scene view: flat brand orange with a faint world grid (major lines every 4 cells), fading out in the
+   middle where the headline and search sit. Static, no animation. */
+html body [data-view="home"] .zq{background-color:#F2A65E!important;background-image:none!important}
+.zq-grid{position:absolute;inset:0;z-index:0;pointer-events:none;border-radius:inherit;
+  background-image:linear-gradient(rgba(122,56,8,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(122,56,8,.16) 1px,transparent 1px),
+    linear-gradient(rgba(122,56,8,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(122,56,8,.07) 1px,transparent 1px);
+  background-size:160px 160px,160px 160px,40px 40px,40px 40px;background-position:center -1px,-1px center,center -1px,-1px center;
+  -webkit-mask:radial-gradient(ellipse 42% 38% at 50% 52%,transparent 0,#000 100%);mask:radial-gradient(ellipse 42% 38% at 50% 52%,transparent 0,#000 100%)}
+html body [data-view="home"] .zq.ask .zq-grid{opacity:0}
+.zq-grid{transition:opacity .3s}
+@media (max-width:700px){.zq-grid{background-size:120px 120px,120px 120px,30px 30px,30px 30px;-webkit-mask:radial-gradient(ellipse 70% 30% at 50% 50%,transparent 0,#000 100%);mask:radial-gradient(ellipse 70% 30% at 50% 50%,transparent 0,#000 100%)}}
+/* answers open: the hero takes the page's own cream (no white slab ending in a hard line) and the code fades out before its bottom edge */
+html body [data-view="home"] .zq.ask{background:#FFFAF3!important}
+html body [data-view="home"] .zq.ask>.hx-cv{-webkit-mask:linear-gradient(#000 55%,transparent 92%);mask:linear-gradient(#000 55%,transparent 92%)}
+/* while answers are open the hero turns into the liquid panel: no holes on it */
+html body [data-view="home"] .zq.ask .zq-ch2{opacity:0;transition:opacity .3s}
+.zq-ch2{transition:opacity .4s}
+@media (max-width:700px){.zq-ch2 i.sm-off{display:none}}
+/* owner: no scrolling code text on the cheese; hidden canvas also stops its drawing loop */
+html body [data-view="home"] .zq>.hx-cv{display:none!important}
+</style>
+
+<script>(function(){function go(){var z=document.querySelector('[data-view="home"] .zq');if(!z||z.querySelector('.zq-grid'))return;var g=document.createElement('div');g.className='zq-grid';g.setAttribute('aria-hidden','true');z.insertBefore(g,z.firstChild)}
+  if(document.readyState==='loading')addEventListener('DOMContentLoaded',go);else go();setTimeout(go,800)})();</script>

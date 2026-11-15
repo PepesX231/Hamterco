@@ -298,5 +298,35 @@
   "(function ty(){var w=W2[wi];",
   "(function ty(){var zz=document.querySelector('[data-view=\"home\"] .zq');if(zz&&(zz.classList.contains('ask')||document.activeElement===document.getElementById('zqIn'))){if(ci!==W2[wi].length){ci=W2[wi].length;del=true;el.textContent=W2[wi]}setTimeout(ty,600);return}var w=W2[wi];",
   1
+ ],
+ [
+  "<li>Revoice</li><li>mrCity</li>",
+  "<li>REVOICE</li><li>Mr. City</li>",
+  1
+ ],
+ [
+  "<div>Revoice</div><div>mrCity</div>",
+  "<div>REVOICE</div><div>Mr. City</div>",
+  1
+ ],
+ [
+  "<li>Z.O.O</li>",
+  "<li>Z.O.O.</li>",
+  1
+ ],
+ [
+  "<div>Z.O.O</div>",
+  "<div>Z.O.O.</div>",
+  1
+ ],
+ [
+  "<li>Lyno</li>",
+  "<li>LYNO</li>",
+  1
+ ],
+ [
+  "<div>Lyno</div>",
+  "<div>LYNO</div>",
+  1
  ]
 ]
