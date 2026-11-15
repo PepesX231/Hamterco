@@ -58,7 +58,7 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
       /* start exactly at the pencil tip: at rest while it is still hidden, then riding the hamster's real transform */
       /* the pencil rests in the paw with its tip here (measured on the art); the line always starts at that resting point */
       var lx=G.pw*.884,ly=G.ph*.988-G.ph*.75,X0=-P.tuck,Y0=0,ra=0;
-      var sx=G.pl+X0+lx*Math.cos(ra)-ly*Math.sin(ra),sy=G.pt+G.ph*.75+Y0+lx*Math.sin(ra)+ly*Math.cos(ra),ex=G.fx-14+nudge,ey=G.fy,L=Math.hypot(ex-sx,ey-sy);
+      var sx=G.pl+X0+lx*Math.cos(ra)-ly*Math.sin(ra),sy=G.pt+G.ph*.75+Y0+lx*Math.sin(ra)+ly*Math.cos(ra),ex=G.fx-38+nudge,ey=G.fy,L=Math.hypot(ex-sx,ey-sy);
       var c1x=sx+L*.38,c1y=sy+L*.42,c2x=ex-L*.42,c2y=ey+L*.06,N=70,pts=[],sk=[];
       /* nothing changed since the last frame: skip all path work (the pencil filter is costly to repaint) */
       var key=[K.toFixed(3),HK.toFixed(3),NK.toFixed(3),nudge.toFixed(1),SM,G.v,held,drawing?Math.round((t-dS)*60):-1].join();if(key===lastKey)return;lastKey=key;

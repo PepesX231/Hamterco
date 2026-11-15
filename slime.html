@@ -10631,7 +10631,7 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
       /* start exactly at the pencil tip: at rest while it is still hidden, then riding the hamster's real transform */
       /* the pencil rests in the paw with its tip here (measured on the art); the line always starts at that resting point */
       var lx=G.pw*.884,ly=G.ph*.988-G.ph*.75,X0=-P.tuck,Y0=0,ra=0;
-      var sx=G.pl+X0+lx*Math.cos(ra)-ly*Math.sin(ra),sy=G.pt+G.ph*.75+Y0+lx*Math.sin(ra)+ly*Math.cos(ra),ex=G.fx-14+nudge,ey=G.fy,L=Math.hypot(ex-sx,ey-sy);
+      var sx=G.pl+X0+lx*Math.cos(ra)-ly*Math.sin(ra),sy=G.pt+G.ph*.75+Y0+lx*Math.sin(ra)+ly*Math.cos(ra),ex=G.fx-38+nudge,ey=G.fy,L=Math.hypot(ex-sx,ey-sy);
       var c1x=sx+L*.38,c1y=sy+L*.42,c2x=ex-L*.42,c2y=ey+L*.06,N=70,pts=[],sk=[];
       /* nothing changed since the last frame: skip all path work (the pencil filter is costly to repaint) */
       var key=[K.toFixed(3),HK.toFixed(3),NK.toFixed(3),nudge.toFixed(1),SM,G.v,held,drawing?Math.round((t-dS)*60):-1].join();if(key===lastKey)return;lastKey=key;
@@ -10810,3 +10810,60 @@ html body #zqForm.zq-s{-webkit-backdrop-filter:none!important;backdrop-filter:no
     [].forEach.call(document.querySelectorAll('main *'),function(el){var s=getComputedStyle(el);if(s.animationName==='none'||s.animationIterationCount.indexOf('infinite')<0)return;
       var r=el.getBoundingClientRect();if(r.width*r.height<60000)return;var host=el.closest('section')||el;io.observe(host)})}
   if(document.readyState==='complete')setTimeout(go,1500);else addEventListener('load',function(){setTimeout(go,1500)})})();</script>
+
+<!-- layer: 99zzzzzzzzzzz-pop.html -->
+<style id="ly-pop">
+/* course cards, the "wow" pass: the poster becomes a stage and its hamster climbs out of the frame.
+   The flat poster image is swapped for a drawn backdrop plus a cut-out character that breaks the card's top edge,
+   springs up when the card scrolls into view, and floats on its own depth when the card tilts under the pointer. */
+html body [data-view] .fx-row .fx-s.pop-on:nth-child(n){overflow:visible!important;perspective:900px}
+html body [data-view] .fx-row .fx-s.pop-on .fx-si{position:relative;overflow:hidden;border-radius:19px 0 0 19px!important}
+html body [data-view] .fx-row .fx-s.pop-on .fx-si>img{opacity:0!important}
+.pop-bg{position:absolute;inset:-6%;transition:transform .5s cubic-bezier(.2,.8,.2,1);will-change:transform}
+.pop-start .pop-bg{background:radial-gradient(circle at 62% 78%,#FFE3B0 0 34%,transparent 34.5%),radial-gradient(rgba(176,110,24,.22) 1.4px,transparent 1.6px) 0 0/16px 16px,#FFCB7A}
+.pop-nat .pop-bg{background:radial-gradient(circle at 60% 72%,rgba(255,255,255,.12) 0 32%,transparent 32.5%),repeating-conic-gradient(from 0deg at 80% 18%,rgba(255,255,255,.09) 0 7deg,transparent 7deg 18deg),#2459D8}
+.pop-t{position:absolute;left:8%;top:8%;right:8%;font:800 clamp(1.15rem,1.9vw,1.7rem)/1.02 var(--display);letter-spacing:-.01em;pointer-events:none}
+.pop-start .pop-t{color:#2A1D10}.pop-nat .pop-t{color:#fff}
+.pop-t small{display:block;margin-bottom:6px;font:700 .62rem/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;opacity:.7}
+/* the character lives on the card (not inside the clipped poster) so its head can rise above the card */
+.fx-row .fx-s.pop-on>.pop-c{position:absolute!important;z-index:6!important;margin:0!important;grid-area:auto!important;pointer-events:none;transform-origin:50% 100%;
+  transform:translate3d(var(--px,0px),calc(var(--py,0px) + var(--rise,40%)),0) scale(var(--s,.86)) rotate(var(--pr,0deg));
+  opacity:var(--o,0);transition:transform .9s cubic-bezier(.34,1.56,.64,1),opacity .35s;will-change:transform}
+.pop-c img{display:block;width:100%;height:auto;filter:drop-shadow(0 14px 14px rgba(40,20,0,.18));animation:popBreath 3.4s ease-in-out infinite}
+.pop-in .pop-c{--rise:0%;--s:1;--o:1}
+.pop-act .pop-c{--s:1.07;transition:transform .18s linear,opacity .35s}
+@keyframes popBreath{50%{transform:translateY(-3px) scale(1.012,.99)}}
+/* feet sit on the poster's bottom edge (set from the poster's real box), the head rises past the poster title */
+.fx-row .fx-s.pop-start>.pop-c{left:calc(var(--popl,0px) + var(--popw,200px)*.12)!important;width:calc(var(--popw,200px)*.72)!important;top:auto;bottom:var(--popb,0px)}
+.fx-row .fx-s.pop-nat>.pop-c{left:calc(var(--popl,0px) + var(--popw,200px)*.4)!important;width:calc(var(--popw,200px)*.52)!important;top:auto;bottom:var(--popb,0px)}
+.fx-row .fx-s.pop-on .fe-rec,.fx-row .fx-s.pop-on .rc.rc-s:not(.zc-st){display:none!important}
+
+@media (max-width:700px){.pop-t{display:none}}
+@media (prefers-reduced-motion:reduce){.pop-c,.pop-bg{transition:none!important}.pop-c img{animation:none}}
+</style>
+<script>(function(){
+  var KIND=[[/hamstarter/i,'pop-start','pop-start','START HERE','Hamstarter'],[/national/i,'pop-nat','pop-nat','NATIONAL STAGE','National<br>Project']];
+  var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+  function setup(card){if(card.classList.contains('pop-on'))return;var im=card.querySelector('.fx-si>img');if(!im)return;var src=im.getAttribute('src')||'',k=null;
+    KIND.forEach(function(x){if(x[0].test(src)||x[0].test(card.textContent.slice(0,200)))k=k||x});if(!k)return;
+    card.classList.add('pop-on',k[1]);var si=card.querySelector('.fx-si');
+    var bg=document.createElement('span');bg.className='pop-bg';bg.setAttribute('aria-hidden','true');si.appendChild(bg);
+    var t=document.createElement('span');t.className='pop-t';t.setAttribute('aria-hidden','true');t.innerHTML='<small>'+k[3]+'</small>'+k[4];si.appendChild(t);
+    var c=document.createElement('span');c.className='pop-c';c.setAttribute('aria-hidden','true');c.innerHTML='<img src="img/'+k[2]+'.webp" alt="" loading="lazy">';card.appendChild(c);
+    function fit(){var cr=card.getBoundingClientRect(),r=si.getBoundingClientRect(),k=cr.width/card.offsetWidth||1;card.style.setProperty('--popl',((r.left-cr.left)/k)+'px');card.style.setProperty('--popw',(r.width/k)+'px');card.style.setProperty('--popb',((cr.bottom-r.bottom)/k)+'px')}
+    fit();addEventListener('resize',fit);if(window.ResizeObserver)new ResizeObserver(fit).observe(card);
+    /* springs out when it scrolls into view (once) */
+    if('IntersectionObserver' in window&&!rm){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){setTimeout(function(){card.classList.add('pop-in')},140+[].indexOf.call(card.parentNode.children,card)*160);io.disconnect()}})},{threshold:.35});io.observe(card)}else card.classList.add('pop-in');
+    if(!fine||rm)return;
+    /* pointer: the card tilts a little, the backdrop slides back and the hamster leans forward on its own layer (60fps, only while hovered) */
+    var tx=0,ty=0,cx=0,cy=0,raf=0,on=false;
+    function step(){raf=0;cx+=(tx-cx)*.18;cy+=(ty-cy)*.18;
+      card.style.setProperty('transform','perspective(900px) rotateX('+(-cy*5).toFixed(2)+'deg) rotateY('+(cx*6).toFixed(2)+'deg) translateY(-4px)','important');
+      bg.style.transform='translate3d('+(-cx*10).toFixed(1)+'px,'+(-cy*8).toFixed(1)+'px,0)';
+      c.style.setProperty('--px',(cx*16).toFixed(1)+'px');c.style.setProperty('--py',(cy*8-14).toFixed(1)+'px');c.style.setProperty('--pr',(cx*5).toFixed(2)+'deg');
+      if(on||Math.abs(tx-cx)+Math.abs(ty-cy)>.002)raf=requestAnimationFrame(step);else{card.style.removeProperty('transform');card.classList.remove('pop-act')}}
+    card.addEventListener('pointerenter',function(){on=true;card.classList.add('pop-act');if(!raf)raf=requestAnimationFrame(step)});
+    card.addEventListener('pointermove',function(e){var r=card.getBoundingClientRect();tx=(e.clientX-r.left)/r.width-.5;ty=(e.clientY-r.top)/r.height-.5;if(!raf)raf=requestAnimationFrame(step)});
+    card.addEventListener('pointerleave',function(){on=false;tx=0;ty=0;c.style.setProperty('--py','0px');if(!raf)raf=requestAnimationFrame(step)})}
+  function go(){[].forEach.call(document.querySelectorAll('.fx-row .fx-s'),setup)}
+  if(document.readyState==='complete')go();else addEventListener('load',go);setTimeout(go,1500)})();</script>
