@@ -40,8 +40,8 @@ html body [data-view="home"] .zq{margin-top:-6px!important}
     /* the empty bar shows the headline's wish as a question; ค้นหา on an empty bar asks it */
     var cur='',tm=0;
     function setQ(){var w=(typ&&typ.textContent||'').trim();if(!w||w===cur)return;cur=w;form.classList.add('ph-sw');
-      setTimeout(function(){form.classList.remove('ph-sw');if(window.__zqType)window.__zqType('เช่น อยาก'+w);else inp.setAttribute('placeholder','เช่น อยาก'+w)},250)}
-    if(typ){new MutationObserver(function(){/* while the headline swaps words the bar keeps its prefix instead of flashing back to the default text */if(!inp.value){if(window.__zqStop)window.__zqStop();if(inp.getAttribute('placeholder')!=='เช่น อยาก')inp.setAttribute('placeholder','เช่น อยาก')}clearTimeout(tm);tm=setTimeout(function(){var w=(typ.textContent||'').trim();if(w===cur){cur='';setQ()}else setQ()},450)}).observe(typ,{childList:true,characterData:true,subtree:true});setQ()}
+      setTimeout(function(){form.classList.remove('ph-sw');inp.setAttribute('placeholder','พิมพ์คำถามได้เลย')},250)}
+    if(typ){new MutationObserver(function(){/* while the headline swaps words the bar keeps its prefix instead of flashing back to the default text */if(!inp.value){if(window.__zqStop)window.__zqStop();if(inp.getAttribute('placeholder')!=='พิมพ์คำถามได้เลย')inp.setAttribute('placeholder','พิมพ์คำถามได้เลย')}clearTimeout(tm);tm=setTimeout(function(){var w=(typ.textContent||'').trim();if(w===cur){cur='';setQ()}else setQ()},450)}).observe(typ,{childList:true,characterData:true,subtree:true});setQ()}
     form.addEventListener('submit',function(){if(!inp.value.trim()&&cur){inp.value='อยาก'+cur;inp.dispatchEvent(new Event('input',{bubbles:true}))}},true);
     go&&go.addEventListener('pointerdown',function(){if(!inp.value.trim()&&cur){inp.value='อยาก'+cur;inp.dispatchEvent(new Event('input',{bubbles:true}))}});
     var used=function(){form.classList.add('used')};inp.addEventListener('focus',used);form.addEventListener('submit',used);
