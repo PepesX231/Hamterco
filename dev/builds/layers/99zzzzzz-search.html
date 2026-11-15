@@ -46,7 +46,7 @@ html body [data-view="home"] .zq{margin-top:-6px!important}
     var used=function(){form.classList.add('used')};inp.addEventListener('focus',used);form.addEventListener('submit',used);
     /* bottom pill */
     var fab=document.createElement('button');fab.type='button';fab.className='zq-fab';
-    fab.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>ถามเราได้เลย<small>ช่วยหาคอร์สที่ใช่ให้น้อง</small>';
+    fab.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>ถามเราได้เลย<small>คอร์ส ค่าย พอร์ต มหาลัย ถามได้หมด</small>';
     document.body.appendChild(fab);
     var zq=document.querySelector('[data-view="home"] .zq'),past=false,near=false;
     function upd(){var home=!location.hash||/^#(home)?$/.test(location.hash);fab.classList.toggle('on',home&&past&&!near&&!document.body.classList.contains('zq-open'))}
