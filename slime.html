@@ -10615,7 +10615,7 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
     function hold(v){var want='img/crew27-l'+(v?'':'-e')+'.webp';if(pImg.getAttribute('src')!==want)pImg.setAttribute('src',want)}
     var note=document.createElement('div');note.className='zq-note';note.textContent='ไม่รู้จะเริ่มตรงไหน? ลองถามดู';
     var NS='http://www.w3.org/2000/svg',svg=document.createElementNS(NS,'svg');svg.setAttribute('class','zq-arw');
-    svg.innerHTML='<defs><filter id="zqPencil" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="1"/><feDisplacementMap in="SourceGraphic" scale="2.4"/></filter></defs><g filter="url(#zqPencil)"><path class="ps"/><path class="pm"/><path class="pm h1"/><path class="pm h2"/><circle r="0"/></g><g class="zq-pc" style="opacity:0"><g class="zq-pc-in"><path d="M0 0L-13 -5.5L-13 5.5Z" fill="#F6D9A8"/><path d="M0 0L-5 -2.1L-5 2.1Z" fill="#2A221D"/><rect x="-62" y="-6.5" width="49" height="13" fill="#FFCF3A"/><path d="M-62 -2.2H-13" stroke="#E8A91A" stroke-width="2"/><rect x="-69" y="-6.5" width="7" height="13" fill="#C9C2BC"/><path d="M-69 -6.5H-74A6.5 6.5 0 0 0 -74 6.5H-69Z" fill="#F48FA8"/><path d="M0 0L-13 -6.5H-74A6.5 6.5 0 0 0 -74 6.5H-13Z M-13 -6.5V6.5 M-62 -6.5V6.5 M-69 -6.5V6.5" fill="none" stroke="#1D1712" stroke-width="2.6" stroke-linejoin="round"/></g></g>';
+    svg.innerHTML='<defs><filter id="zqPencil" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="1"/><feDisplacementMap in="SourceGraphic" scale="2.4"/></filter></defs><g filter="url(#zqPencil)"><path class="ps"/><path class="pm"/><path class="pm h1"/><path class="pm h2"/><circle r="0"/></g><g class="zq-pc" style="opacity:0"><g class="zq-pc-in"><path d="M-15 -4.2L-12.5 -2.6L-10.8 -4.1L-8.6 -2.3L0 0L-8.6 2.3L-10.8 4.1L-12.5 2.6L-15 4.2Z" fill="#F7DDB0" stroke="#1D1712" stroke-width="1.6" stroke-linejoin="round"/><path d="M0 0L-4.2 -1.15L-4.2 1.15Z" fill="#1D1712"/><path d="M-15 -4.2H-65V4.2H-15" fill="#FFCB33" stroke="#1D1712" stroke-width="1.6" stroke-linejoin="round"/><path d="M-64 -1.2H-16" stroke="#E8A41A" stroke-width="1.6"/><rect x="-71" y="-4.2" width="6" height="8.4" fill="#BFC3C7" stroke="#1D1712" stroke-width="1.6"/><path d="M-71 -4.2H-75A4.2 4.2 0 0 0 -75 4.2H-71Z" fill="#F59AAE" stroke="#1D1712" stroke-width="1.6" stroke-linejoin="round"/></g></g>';
     var turb=svg.querySelector('feTurbulence'),pS=svg.querySelector('.ps'),pM=svg.querySelector('.pm'),h1=svg.querySelector('.h1'),h2=svg.querySelector('.h2'),dot=svg.querySelector('circle'),pc=svg.querySelector('.zq-pc'),pcIn=svg.querySelector('.zq-pc-in'),held=false;
     box.insertBefore(svg,box.firstChild);box.appendChild(note);zq.insertBefore(box,zq.querySelector('.zq-top'));
     var mx=0,my=0,raf=0,last=0,t0=0,vis=true,focus=false,started=false,nudge=0,vn=0,K=0,HK=0,NK=0,drawing=false,dS=-1,boilT=0,penOut=false;
@@ -10650,12 +10650,15 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
       h1.setAttribute('d',head(-.5,15,Math.min(1,HK*2)));h2.setAttribute('d',head(.62,13,Math.max(0,HK*2-1)));
       /* hand-lettered note above the start of the swoop, written left to right after the hamster appears */
       /* centred over the middle of the curve, lifted just clear of the highest bit of line under it */
-      /* sits in the open space under the swoop, centred on its middle and just clear of the line */
-      var mid=pts[Math.round(N*.55)],tx=Math.max(14,mid[0]-G.nw*.8),bot=-1e9;for(var q2=0;q2<=N;q2++){var P2=pts[q2];if(P2[0]>=tx-6&&P2[0]<=tx+G.nw+6)bot=Math.max(bot,P2[1])}var ty=Math.min(bot+12,G.fy+G.fh/2+10);if(ty+G.nh>zq.clientHeight-20)ty=zq.clientHeight-20-G.nh;
+      /* above the curve, a little right of the pencil (owner sketch): left edge at ~a third of the swoop, lifted clear of the line under it */
+      if(!G.nh||G.nw<40){G.nw=note.offsetWidth;G.nh=note.offsetHeight}
+      var a3=pts[Math.round(N*.32)],tx=Math.min(a3[0]+6,pts[Math.round(N*.8)][0]-G.nw),top=1e9;for(var q2=0;q2<=N;q2++){var P2=pts[q2];if(P2[0]>=tx-4&&P2[0]<=tx+G.nw+4)top=Math.min(top,P2[1])}var ty=top-G.nh-10;
+      /* short swoop (narrower screens): no room above without touching the hamster, so it tucks under the curve instead */
+      if(tx<G.pl+G.pw*.9){var mid=pts[Math.round(N*.55)],bot=-1e9;tx=Math.max(14,mid[0]-G.nw*.8);for(var q3=0;q3<=N;q3++){var P3=pts[q3];if(P3[0]>=tx-6&&P3[0]<=tx+G.nw+6)bot=Math.max(bot,P3[1])}ty=Math.min(bot+12,G.fy+G.fh/2+10)}
       note.style.transform='translate('+tx.toFixed(1)+'px,'+ty.toFixed(1)+'px) rotate(-3deg)';
       note.style.clipPath='inset(-20% '+((1-NK)*100).toFixed(1)+'% -20% -4%)'
       /* the pencil: it draws the line on its own, flies back to the wall, and the hamster pops out and takes it */
-      var td=t-dS,PA=42.7,px,py,pa=PA,op=1,scale=G.pw*.74/80;
+      var td=t-dS,PA=42.7,px,py,pa=PA,op=1,scale=G.pw*.636/79.2;
       var hx=function(da,len){return [e[0]-len*Math.cos(ang+da),e[1]-len*Math.sin(ang+da)]};
       if(held){op=0;var r2=P.r*Math.PI/180,X=P.X,Y=P.Y;px=G.pl+X+lx*Math.cos(r2)-ly*Math.sin(r2);py=G.pt+G.ph*.75+Y+lx*Math.sin(r2)+ly*Math.cos(r2);pa=PA+P.r}
       else if(!drawing){op=0;px=sx;py=sy}
@@ -10669,7 +10672,7 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
       function poly(A,k){if(k<=0)return '';var n=Math.max(1,Math.round(k*N)),d='M'+A[0][0].toFixed(1)+' '+A[0][1].toFixed(1);for(var j=1;j<=n;j++)d+='L'+A[j][0].toFixed(1)+' '+A[j][1].toFixed(1);return d}
       pM.setAttribute('d',poly(pts,K));pS.setAttribute('d',poly(sk,Math.max(0,K*1.1-.1)));h1.setAttribute('d','');h2.setAttribute('d','');dot.setAttribute('r',0);
       var tx=G.fx+G.fw/2-G.nw/2,ty=G.fy-ry-G.nh-10;note.style.transform='translate('+tx.toFixed(1)+'px,'+ty.toFixed(1)+'px) rotate(-4deg)';note.style.clipPath='inset(-20% '+((1-NK)*100).toFixed(1)+'% -20% -4%)';
-      var td=t-dS,PA=42.7,px,py,pa=PA,op=1,scale=G.pw*.74/80,f=pts[Math.max(0,Math.min(N,Math.round(K*N)))],e=pts[N];
+      var td=t-dS,PA=42.7,px,py,pa=PA,op=1,scale=G.pw*.636/79.2,f=pts[Math.max(0,Math.min(N,Math.round(K*N)))],e=pts[N];
       if(held){op=0;px=sx;py=sy}else if(!drawing){op=0;px=sx;py=sy}
       else if(td<.3){px=pts[0][0];py=pts[0][1];op=td/.3}
       else if(td<1.2){px=f[0];py=f[1];pa=PA-6+Math.sin(td*30)*4}
