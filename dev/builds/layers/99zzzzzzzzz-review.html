@@ -6,4 +6,7 @@
 }
 /* a finished event has no countdown (the status script sets hidden, but the block style kept showing 0 วัน 0 ชั่วโมง) */
 html body .avn-cd[hidden],html body #avnCd[hidden]{display:none!important}
+/* example questions under the search bar: quieter than the bar itself (no filled pills), still readable and tappable */
+html body [data-view="home"] .zq .zq-pop>button{background:rgba(244,170,100,.92)!important;box-shadow:inset 0 0 0 1.5px rgba(29,23,18,.22)!important;color:rgba(29,23,18,.72)!important;font-weight:500!important;transition:background .2s,color .2s,box-shadow .2s}
+html body [data-view="home"] .zq .zq-pop>button:hover,html body [data-view="home"] .zq .zq-pop>button:focus-visible{background:rgba(255,253,248,.55)!important;color:#1D1712!important;box-shadow:inset 0 0 0 1.5px rgba(29,23,18,.4)!important}
 </style>
