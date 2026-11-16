@@ -66,6 +66,7 @@ The owner asked to move the site to Next.js + React + TypeScript + Tailwind CSS 
 | `99zzzzzzzzzz-perf.html` | Performance: no big blurs, off-screen animations paused |
 | `99zzzzzzzzzzz-lists.html` | Poster-less events as a dated list. (The ruled courses list and the hidden home "คอร์สทั้งหมด" carousel were reverted on 16 พ.ย. at the owner's request.) |
 | `99zzzzzzzzzzzz-herobg.html` | Hero: real works as cards around the headline (Fastwork reference), who-we-are line, plain background, no slurp flood |
+| `99zzzzzzzzzzzzzzzzz-fx.html` | (1) Sections pour in like slime when scrolled to (wavy mask + settle). Started by IntersectionObserver and a plain scroll check, so it never sticks; sections already on screen and Hall of Fame are skipped. (2) Focusing search sucks the hero work cards into the bar (anticipation, curved whoosh with streaks, spark burst, square shockwave, bar bump); leaving search shoots them back out. Canvas + rAF, off with reduced motion |
 | `99zzzzzzzzzzzzzzzz-square.html` | Owner: no pills or rounded boxes anywhere. Sets every corner radius in the site's CSS to 0 at load, except true circles (50%) and the Hall of Fame |
 | `99zzzzzzzzzzzzzzz-noreveal.html` | Turns off the fade-in-on-scroll (`mo-goo`, `mo-rise`, `mo-kids`). On the owner's phone it never fired, so the course cards stayed invisible |
 | `99zzzzzzzzzzzzz-plain.html` | Only the floating ask button position and two heading fixes remain. The flattening of the courses and works sections (rules, no boxes) was reverted on 16 พ.ย.: the owner disliked the lines |
