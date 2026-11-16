@@ -17,8 +17,8 @@ html body [data-view="home"] .zq .zq-pop button:hover{background:#EBDAC3!importa
    Searching now just puts an orange rim round the bar and round the answers. */
 html body [data-view="home"] .zq .sl-cv{display:none!important}
 html body [data-view="home"] .zq #zqForm{transition:box-shadow .25s}
-html body [data-view="home"] .zq:has(#zqIn:focus) #zqForm,html body [data-view="home"] .zq.ask #zqForm,html body [data-view="home"] .zq.sl-on #zqForm{box-shadow:0 0 0 7px #F2A65E,0 18px 40px -18px rgba(110,45,0,.45)!important}
-html body [data-view="home"] .zq #zqRes{box-shadow:0 0 0 7px #F2A65E,0 30px 60px -30px rgba(110,45,0,.45)!important}
+
+
 /* while answers are open the content is pinned where it was, so growing the hero for the answers only adds room at the
    bottom. Before, the hero was centred: growing it moved the answers, which made it shrink again, over and over (it jittered). */
 html body [data-view="home"] .zq.zq-pin{justify-content:flex-start!important}
@@ -51,7 +51,9 @@ html body [data-view="home"] .zq.zq-pin{justify-content:flex-start!important}
 .hcw.in .hc{transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .6s;transition-delay:calc(var(--i)*70ms),calc(var(--i)*70ms)}
 .hcw.in.done .hc{transition-delay:0s}
 /* gone while the visitor searches */
-html body [data-view="home"] .zq.ask .hcw,html body [data-view="home"] .zq.sl-on .hcw,html body [data-view="home"] .zq.hx-white .hcw,html body [data-view="home"] .zq:has(#zqIn:focus) .hcw{opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
+/* the cards are taken into the search bar and given back by the fx layer; nothing else hides them */
+html body [data-view="home"] .zq.ask .hcw{pointer-events:none}
+@media (prefers-reduced-motion:reduce){html body [data-view="home"] .zq.ask .hcw,html body [data-view="home"] .zq:has(#zqIn:focus) .hcw{opacity:0;visibility:hidden}}
 
 /* narrower screens, Fastwork's phone layout: the text on top, then an open middle for the thumb to scroll, with the
    work cards leaning in from the two sides only. They run past the screen's side edges (as in Fastwork) but their

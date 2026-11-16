@@ -14,11 +14,26 @@ html.sv-js .sv.sv-go{--sv:calc(100% + 80px);--sx:-260px;transform:none;
   transition:--sv 1.05s cubic-bezier(.55,.05,.25,1),--sx 1.05s linear,transform 1.15s cubic-bezier(.2,1.35,.35,1)}
 @media (prefers-reduced-motion:reduce){html.sv-js .sv:not(.sv-done){-webkit-mask:none;mask:none;transform:none}}
 
-/* ---------- 2. search: the work cards are sucked into the bar ---------- */
-.sk-c{position:fixed;left:0;top:0;z-index:9998;pointer-events:none;margin:0!important;transform-origin:50% 50%;will-change:transform,opacity}
-#skCv{position:fixed;inset:0;width:100vw;height:100vh;z-index:9997;pointer-events:none}
-/* while the clones fly, the real cards are already gone (no fade, so nothing is seen twice) */
-html body [data-view="home"] .zq .hcw.sk-hold{opacity:0!important;visibility:hidden!important;transition:none!important}
+/* ---------- 2. search ----------
+   Focusing the bar: it lifts a little, a thin orange light starts running round its edge, and each work card is pulled
+   into the nearest point of that edge, flattening into the line as it lands (no particles). Leaving the bar plays the
+   same motion backwards, from wherever it is, so cards never pop or vanish. */
+@property --sa{syntax:'<angle>';inherits:false;initial-value:0deg}
+html body [data-view="home"] .zq #zqForm{outline:0!important;transition:transform .45s cubic-bezier(.2,.9,.2,1),box-shadow .45s!important}
+html body [data-view="home"] .zq #zqForm::after{content:"";position:absolute;inset:-2px;pointer-events:none;z-index:3;padding:3px;opacity:0;transition:opacity .35s;
+  background:conic-gradient(from var(--sa),rgba(242,166,94,0) 0deg,rgba(242,166,94,0) 150deg,#F2A65E 260deg,#FFE2BC 320deg,#FF7A1A 350deg,rgba(242,166,94,0) 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+  animation:skSpin 2.6s linear infinite paused}
+html body [data-view="home"] .zq:has(#zqIn:focus) #zqForm,html body [data-view="home"] .zq.ask #zqForm{transform:translateY(-3px) scale(1.012);
+  box-shadow:0 0 0 1.5px #1D1712,0 26px 50px -22px rgba(110,45,0,.5)!important}
+html body [data-view="home"] .zq:has(#zqIn:focus) #zqForm::after,html body [data-view="home"] .zq.ask #zqForm::after{opacity:1;animation-play-state:running}
+@keyframes skSpin{to{--sa:360deg}}
+html body [data-view="home"] .zq #zqRes{box-shadow:0 0 0 1.5px #1D1712,0 30px 60px -30px rgba(110,45,0,.45)!important}
+/* where a card lands, the edge flashes along its length */
+.sk-hit{position:fixed;z-index:60;pointer-events:none;background:#FF7A1A;box-shadow:0 0 12px 2px rgba(255,122,26,.65)}
+/* the example questions now live inside the bar (typed as its placeholder), so the chip row is gone */
+html body [data-view="home"] .zq .zq-pop{display:none!important}
+html body [data-view="home"] .zq #zqIn::placeholder{color:#8C7B6B;opacity:1}
 </style>
 <script id="ly-fx-js">(function(){
 var RM=matchMedia('(prefers-reduced-motion: reduce)');
@@ -39,70 +54,61 @@ var RM=matchMedia('(prefers-reduced-motion: reduce)');
   if(document.readyState==='loading')addEventListener('DOMContentLoaded',function(){setTimeout(scan,60)});else setTimeout(scan,60);
   setTimeout(scan,1500)})();
 
-/* ===== 2. cards sucked into the search bar ===== */
-(function(){var z,inp,form,w,cv,cx,parts=[],rings=[],flying=[],raf=0,state='out',dpr=Math.min(2,devicePixelRatio||1);
+/* ===== 2. cards pulled into the edge of the search bar ===== */
+(function(){var z,inp,form,w,state='out',anims=[];
   function setup(){z=document.querySelector('[data-view="home"] .zq');inp=document.getElementById('zqIn');form=document.getElementById('zqForm');w=z&&z.querySelector('.hcw');return z&&inp&&form&&w}
-  function canvas(){if(cv)return;cv=document.createElement('canvas');cv.id='skCv';document.body.appendChild(cv);cx=cv.getContext('2d');size();addEventListener('resize',size)}
-  function size(){if(!cv)return;cv.width=innerWidth*dpr;cv.height=innerHeight*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
-  var ORANGE='#F2A65E',INK='#1D1712',CREAM='#FFF6E8',HOT='#FF7A1A';
-  function burst(x,y,n,dir){for(var i=0;i<n;i++){var a=(dir||-Math.PI/2)+(Math.random()-.5)*Math.PI*1.5,v=3+Math.random()*7;
-    parts.push({x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:1,d:.018+Math.random()*.02,s:3+Math.random()*6,c:[ORANGE,INK,CREAM,HOT][i%4],rot:Math.random()*6,vr:(Math.random()-.5)*.5,k:i%3})}}
-  function ring(){var r=form.getBoundingClientRect();rings.push({x:r.left,y:r.top,w:r.width,h:r.height,t:0})}
-  function bump(){form.animate([{transform:'translate3d(0,0,0) scale(1)'},{transform:'translate3d(0,3px,0) scale(1.025,.97)'},{transform:'translate3d(0,-2px,0) scale(.995,1.01)'},{transform:'none'}],{duration:260,easing:'cubic-bezier(.3,1.6,.5,1)'})}
-  function bez(a,b,c,t){var u=1-t;return u*u*a+2*u*t*b+t*t*c}
-  function loop(now){cx.clearRect(0,0,innerWidth,innerHeight);var alive=false;
-    /* flying cards + speed streaks */
-    for(var i=0;i<flying.length;i++){var f=flying[i];var t=(now-f.t0)/f.dur;if(t<0){alive=true;continue}if(t>1)t=1;
-      var e,px,py,sc,rot,op=1;
-      if(f.mode==='in'){ /* anticipation (lean back + grow), then accelerate in */
-        if(t<.22){var q=t/.22,qe=Math.sin(q*Math.PI/2);px=f.x0-f.bx*qe*14;py=f.y0-f.by*qe*14;sc=1+.08*qe;rot=f.r0-f.spin*.08*qe;e=0}
-        else{var q2=(t-.22)/.78;e=Math.pow(q2,2.3);px=bez(f.x0,f.cx,f.x1,e);py=bez(f.y0,f.cy,f.y1,e);sc=1.08-1.0*e;rot=f.r0+f.spin*e;op=q2>.9?1-(q2-.9)/.1:1}}
-      else{ /* out: shot from the bar back to its place with an overshoot */
-        e=1-Math.pow(1-t,3);px=bez(f.x1,f.cx,f.x0,e);py=bez(f.y1,f.cy,f.y0,e);var ov=Math.sin(t*Math.PI)*.12;sc=.2+.8*e+ov;rot=f.r0+f.spin*(1-e);op=t<.08?t/.08:1}
-      f.el.style.transform='translate3d('+(px-f.w/2)+'px,'+(py-f.h/2)+'px,0) rotate('+rot+'deg) scale('+sc+')';f.el.style.opacity=op;
-      /* streak: a tapered ink+orange smear behind the card */
-      f.tr.push([px,py]);if(f.tr.length>9)f.tr.shift();
-      if(f.tr.length>2&&(f.mode==='in'?t>.25:t<.7)){cx.lineCap='butt';for(var k=1;k<f.tr.length;k++){var a=k/f.tr.length,p0=f.tr[k-1],p1=f.tr[k];if(Math.hypot(p1[0]-p0[0],p1[1]-p0[1])<6)continue;
-        cx.globalAlpha=a*.35;cx.strokeStyle=ORANGE;cx.lineWidth=a*f.h*sc*.42;cx.beginPath();cx.moveTo(p0[0],p0[1]);cx.lineTo(p1[0],p1[1]);cx.stroke();
-        cx.globalAlpha=a*.8;cx.strokeStyle=INK;cx.lineWidth=1.5;cx.beginPath();cx.moveTo(p0[0]+f.w*.3*sc,p0[1]);cx.lineTo(p1[0]+f.w*.3*sc,p1[1]);cx.moveTo(p0[0]-f.w*.3*sc,p0[1]);cx.lineTo(p1[0]-f.w*.3*sc,p1[1]);cx.stroke()}cx.globalAlpha=1}
-      if(t>=1){if(!f.hit){f.hit=1;if(f.mode==='in'){burst(f.x1,f.y1,16);ring();bump()}else{f.el.remove()}}}else alive=true}
-    flying=flying.filter(function(f){return !(f.hit&&f.mode==='out')});
-    /* sparks: squares, slashes and dots */
-    for(var j=parts.length-1;j>=0;j--){var p=parts[j];p.x+=p.vx;p.y+=p.vy;p.vy+=.32;p.vx*=.97;p.rot+=p.vr;p.life-=p.d;if(p.life<=0){parts.splice(j,1);continue}alive=true;
-      cx.globalAlpha=p.life;cx.fillStyle=cx.strokeStyle=p.c;cx.save();cx.translate(p.x,p.y);cx.rotate(p.rot);
-      if(p.k===0)cx.fillRect(-p.s/2,-p.s/2,p.s,p.s);else if(p.k===1){cx.lineWidth=2.5;cx.beginPath();cx.moveTo(-p.s,0);cx.lineTo(p.s,0);cx.stroke()}else{cx.beginPath();cx.arc(0,0,p.s/3,0,7);cx.fill()}cx.restore()}
-    /* square shockwave around the bar */
-    for(var m=rings.length-1;m>=0;m--){var g=rings[m];g.t+=.045;if(g.t>=1){rings.splice(m,1);continue}alive=true;var gr=g.t*26;
-      cx.globalAlpha=(1-g.t)*.9;cx.strokeStyle=m%2?INK:ORANGE;cx.lineWidth=4*(1-g.t)+1;cx.strokeRect(g.x-gr,g.y-gr,g.w+gr*2,g.h+gr*2)}
-    cx.globalAlpha=1;
-    if(alive)raf=requestAnimationFrame(loop);else{raf=0;cx.clearRect(0,0,innerWidth,innerHeight)}}
-  function kick(){if(!raf)raf=requestAnimationFrame(loop)}
-  function launch(mode){var fr=form.getBoundingClientRect(),cards=[].slice.call(w.querySelectorAll('.hc')),now=performance.now(),n=0;
-    cards.forEach(function(c){var r=c.getBoundingClientRect();if(!r.width||r.bottom<0||r.top>innerHeight||getComputedStyle(c).display==='none')return;
-      var cl=c.cloneNode(true);cl.classList.add('sk-c');cl.removeAttribute('href');cl.querySelectorAll('video').forEach(function(v){v.remove()});
-      cl.style.width=c.offsetWidth+'px';cl.style.setProperty('--r','0deg');cl.style.transition='none';document.body.appendChild(cl);
-      var x0=r.left+r.width/2,y0=r.top+r.height/2,side=x0<fr.left+fr.width/2?-1:1;
-      var x1=fr.left+fr.width/2+side*Math.min(fr.width*.18,90)*(.4+Math.random()*.6),y1=fr.top+fr.height/2;
-      var dx=x1-x0,dy=y1-y0,L=Math.hypot(dx,dy)||1;
-      var f={el:cl,mode:mode,w:c.offsetWidth,h:c.offsetHeight,x0:x0,y0:y0,x1:x1,y1:y1,
-        cx:(x0+x1)/2-dy/L*side*120,cy:Math.min(y0,y1)-90,bx:dx/L,by:dy/L,
-        r0:parseFloat(c.style.getPropertyValue('--r'))||0,spin:side*(200+Math.random()*160),
-        t0:now+n*(mode==='in'?75:55),dur:mode==='in'?560:520,tr:[],hit:0};
-      cl.style.transform='translate3d('+(x0-f.w/2)+'px,'+(y0-f.h/2)+'px,0) rotate('+f.r0+'deg)';if(mode==='out')cl.style.opacity=0;
-      flying.push(f);n++});
-    return n}
-  function suck(){if(state!=='out'||RM.matches)return;state='in';canvas();
-    /* clear any card still flying out */
-    flying.forEach(function(f){f.el.remove()});flying=[];
-    var n=launch('in');w.classList.add('sk-hold');if(n)kick();
-    setTimeout(function(){flying.forEach(function(f){f.el.remove()});flying=flying.filter(function(f){return f.mode!=='in'})},n*75+700)}
-  function spit(){if(state!=='in')return;state='out';if(RM.matches){w.classList.remove('sk-hold');return}canvas();
-    var fr=form.getBoundingClientRect();burst(fr.left+fr.width/2,fr.top,10);var n=launch('out');kick();
-    setTimeout(function(){w.classList.remove('sk-hold');flying.filter(function(f){return f.mode==='out'}).forEach(function(f){f.el.remove()});flying=flying.filter(function(f){return f.mode!=='out'})},n*55+560)}
+  /* nearest point on the bar's edge, and which edge it is */
+  function edge(cx,cy,r){var x=Math.max(r.left+12,Math.min(r.right-12,cx)),y=Math.max(r.top,Math.min(r.bottom,cy));
+    var d=[[Math.abs(cx-r.left)*(cy>r.top&&cy<r.bottom?1:3),'l'],[Math.abs(cx-r.right)*(cy>r.top&&cy<r.bottom?1:3),'r'],[Math.abs(cy-r.top),'t'],[Math.abs(cy-r.bottom),'b']].sort(function(a,b){return a[0]-b[0]})[0][1];
+    if(d==='l')return {x:r.left,y:Math.max(r.top+8,Math.min(r.bottom-8,cy)),e:d};if(d==='r')return {x:r.right,y:Math.max(r.top+8,Math.min(r.bottom-8,cy)),e:d};
+    return {x:x,y:d==='t'?r.top:r.bottom,e:d}}
+  function hit(p,delay){setTimeout(function(){var h=document.createElement('i');h.className='sk-hit';var v=p.e==='l'||p.e==='r',L=v?44:120;
+    h.style.cssText=v?'left:'+(p.x-1)+'px;top:'+(p.y-L/2)+'px;width:2px;height:'+L+'px':'left:'+(p.x-L/2)+'px;top:'+(p.y-1)+'px;width:'+L+'px;height:2px';document.body.appendChild(h);
+    h.animate([{transform:v?'scaleY(.1)':'scaleX(.1)',opacity:1},{transform:'none',opacity:1,offset:.35},{transform:v?'scaleY(1.6)':'scaleX(1.6)',opacity:0}],{duration:520,easing:'cubic-bezier(.2,.8,.2,1)'}).onfinish=function(){h.remove()}},delay)}
+  function suck(){if(state==='in')return;state='in';if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    if(anims.length&&anims[0].playbackRate<0){anims.forEach(function(a){a.playbackRate=1});return} /* reverse the way back mid-flight */
+    anims=[];var fr=form.getBoundingClientRect();fr={left:fr.left,right:fr.right,top:fr.top-3,bottom:fr.bottom-3};
+    var cards=[].slice.call(w.querySelectorAll('.hc')).filter(function(c){var r=c.getBoundingClientRect();return r.width&&getComputedStyle(c).display!=='none'&&r.bottom>0&&r.top<innerHeight});
+    cards.sort(function(a,b){return Math.abs(a.getBoundingClientRect().top-fr.top)-Math.abs(b.getBoundingClientRect().top-fr.top)});
+    w.style.pointerEvents='none';
+    cards.forEach(function(c,i){var r=c.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,p=edge(cx,cy,fr),dx=p.x-cx,dy=p.y-cy,v=p.e==='l'||p.e==='r';
+      var t0=getComputedStyle(c).transform;if(t0==='none')t0='rotate(0deg)';var d=i*55;
+      var a=c.animate([
+        {transform:t0,opacity:1,filter:'blur(0)'},
+        {transform:'translate('+dx*.55+'px,'+dy*.55+'px) rotate(0deg) scale(.62)',opacity:1,filter:'blur(1.5px)',offset:.55},
+        {transform:'translate('+dx*.96+'px,'+dy*.96+'px) rotate(0deg) scale('+(v?'.1,.32':'.42,.1')+')',opacity:1,filter:'blur(0)',offset:.9},
+        {transform:'translate('+dx+'px,'+dy+'px) rotate(0deg) scale('+(v?'0,.2':'.3,0')+')',opacity:0,filter:'blur(0)'}],
+        {duration:560,delay:d,easing:'cubic-bezier(.7,0,.25,1)',fill:'both'});
+      anims.push(a);hit(p,d+505)})}
+  function spit(){if(state==='out')return;state='out';
+    if(!anims.length){w.style.pointerEvents='';return}
+    var left=anims.length;anims.forEach(function(a){a.playbackRate=-1.15;if(a.playState==='finished')a.play();
+      a.finished.then(function(){if(state!=='out')return;if(--left===0){anims.forEach(function(x){x.cancel()});anims=[];w.style.pointerEvents=''}})})}
   function busy(){return z.classList.contains('ask')||document.activeElement===inp}
   function init(){if(!setup()){setTimeout(init,300);return}
     inp.addEventListener('focus',suck);
     inp.addEventListener('blur',function(){setTimeout(function(){if(!busy())spit()},120)});
-    new MutationObserver(function(){if(busy())suck();else if(state==='in')spit()}).observe(z,{attributes:true,attributeFilter:['class']})}
+    new MutationObserver(function(){if(busy())suck();else spit()}).observe(z,{attributes:true,attributeFilter:['class']})}
   if(document.readyState==='loading')addEventListener('DOMContentLoaded',function(){setTimeout(init,900)});else setTimeout(init,900)})();
+
+/* ===== 3. the bar's placeholder: an invitation, then example questions typed one by one ===== */
+(function(){var EX=['อยากเข้าวิศวะคอม','ม.6 ยังไม่มีพอร์ต','อยากทำเกมของตัวเอง','Hamster Hub คืออะไร','ค่าเรียนเท่าไหร่'];
+  var seg=function(t){return typeof Intl!=='undefined'&&Intl.Segmenter?Array.from(new Intl.Segmenter('th',{granularity:'grapheme'}).segment(t)).map(function(s){return s.segment}):t.split('')};
+  function init(){var inp=document.getElementById('zqIn'),form=document.getElementById('zqForm');if(!inp||!form){setTimeout(init,300);return}
+    var phone=matchMedia('(max-width:600px)');var INV=function(){return phone.matches?'อยากรู้อะไร ถามได้เลย':'อยากรู้อะไร พิมพ์ถามได้เลย เรามีคำตอบ'};
+    /* older layers rewrite the placeholder (headline words, width fitting); this one owns it now */
+    var sa=inp.setAttribute;inp.setAttribute=function(n,v){if(String(n).toLowerCase()==='placeholder')return;return sa.apply(this,arguments)};
+    var PRE=phone.matches?'':'ลองพิมพ์ “',k=0,cur='',hold=false;
+    function set(t){if(inp.placeholder!==t)inp.placeholder=t}
+    function wait(ms){return new Promise(function(r){setTimeout(r,ms)})}
+    async function type(full,from){var g=seg(full);for(var i=from;i<=g.length;i++){set(g.slice(0,i).join(''));await wait(70)}}
+    async function erase(full,to){var g=seg(full);for(var i=g.length;i>=to;i--){set(g.slice(0,i).join(''));await wait(32)}}
+    (async function run(){set(INV());await wait(3200);
+      for(;;){if(inp.value){await wait(600);continue}var ex=EX[k++%EX.length];cur='';var s=PRE+ex+(PRE?'”':''),base=seg(PRE).length;
+        await erase(inp.placeholder,0);await type(s,0);cur=ex;await wait(2300);cur='';await erase(s,base);
+        if(k%EX.length===0){await erase(inp.placeholder,0);await type(INV(),0);await wait(2800)}}})();
+    /* searching with an empty bar asks the example that is showing */
+    document.addEventListener('submit',function(e){if(e.target===form&&!inp.value.trim()&&cur){inp.value=cur;inp.dispatchEvent(new Event('input',{bubbles:true}))}},true);
+    form.addEventListener('click',function(e){if(e.target.closest('button')&&!inp.value.trim()&&cur){inp.value=cur;inp.dispatchEvent(new Event('input',{bubbles:true}))}},true)}
+  if(document.readyState==='loading')addEventListener('DOMContentLoaded',function(){setTimeout(init,600)});else setTimeout(init,600)})();
 })();</script>
