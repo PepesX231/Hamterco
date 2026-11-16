@@ -88,9 +88,9 @@ export function Hero() {
             />
             <button type="submit">ค้นหา</button>
           </motion.label>
+          {/* the arrow starts under the magnifier, the first thing on the bar */}
+          <HandNote hidden={focused} />
         </form>
-
-        <HandNote hidden={focused} />
       </div>
     </section>
   );

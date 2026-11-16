@@ -29,6 +29,8 @@ The previous cheese version is kept in git history (commit before "Hero: Fastwor
 
 ## 1b. Moving to Next.js (started 16 พ.ย.)
 
+**From 17 พ.ย. all work is done in Next.js only (`web/`).** The owner will hand the project to others as Next.js. `slime.html` is frozen as the reference for parts not yet moved.
+
 The owner asked to move the site to Next.js + React + TypeScript + Tailwind CSS + Motion. The new app is in `web/` (see `web/README.md`), and its static build is published at https://pepesx231.github.io/Hamterco/next/. So far the header, the home hero (same design as slime.html now) and คอร์สที่เราแนะนำ have been moved. Search answers and every other part still come from `slime.html`, which stays live during the move.
 
 ## 2. How the site is built (important)
