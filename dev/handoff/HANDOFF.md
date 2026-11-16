@@ -19,7 +19,7 @@ A senior on the team (watchirapongth) reviewed the hero with the cheese backgrou
 - sets the hero on the plain page colour
 - puts six real works around the headline as tilted cards, each with a picture and two lines (who/what, and the result): น้องไอดิน REVOICE (NSC 2025), น้องต้นกล้า (จุฬาฯ), StressStrike (OBEC, plays a clip), PHC Map (1,000+ kids), น้องปลื้ม (สจล.), SLASH//SPEED (plays a clip). Every line is taken from the site's own text.
 - adds one line under the headline saying who we are
-- below 1100px follows Fastwork's phone layout: text at the top, four cards peeking in from the two bottom corners (น้องไอดิน, StressStrike, น้องปลื้ม, SLASH//SPEED)
+- below 1100px: text at the top, then four cards in two staggered columns under the chips, inside the page flow so nothing is cut (the owner rejected cards bleeding off the hero edge)
 - removes the orange drip under the hero and the orange "slurp" flood; searching just puts an orange rim round the bar and the answers
 - hides the peeking hamsters and, at 1100px and wider, the pencil arrow and note (the cards sit where they were)
 
