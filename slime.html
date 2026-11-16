@@ -10901,18 +10901,19 @@ html body [data-view="home"] .zq.zq-pin{justify-content:flex-start!important}
 .hcw{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;transition:opacity .3s}
 .hcc{position:absolute;inset:0;will-change:transform}
 .hc{position:absolute;width:var(--w);left:var(--x);top:var(--y);pointer-events:auto;display:block;color:#1D1712;text-decoration:none;
-  background:#fff;border-radius:20px;padding:6px 6px 14px;border:1px solid rgba(60,35,10,.06);
-  box-shadow:0 2px 4px rgba(60,35,10,.04),0 24px 48px -24px rgba(60,35,10,.35);
-  transform:rotate(var(--r));transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
-.hc:hover,.hc:focus-visible{transform:rotate(0) translateY(-6px);box-shadow:0 2px 4px rgba(60,35,10,.05),0 32px 56px -24px rgba(60,35,10,.42)}
-.hc:focus-visible{outline:2px solid #1D1712;outline-offset:3px}
-.hc-m{display:block;position:relative;border-radius:14px;overflow:hidden;background:#EFE6DA}
+  background:#fff;border-radius:0;padding:6px 6px 12px;border:1.5px solid #1D1712;box-shadow:5px 5px 0 #1D1712;
+  transform:rotate(var(--r));transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,opacity .3s,filter .3s}
+/* pointing at one card brings it forward and lets the others step back */
+.hc:hover,.hc:focus-visible{z-index:40!important;transform:rotate(0) translate(-3px,-3px) scale(1.07);box-shadow:9px 9px 0 #1D1712}
+@media (hover:hover){.hcw:has(.hc:hover) .hc:not(:hover){opacity:.5;filter:saturate(.5)}}
+.hc:focus-visible{outline:2px solid #E07A1F;outline-offset:4px}
+.hc-m{display:block;position:relative;border-radius:0;overflow:hidden;background:#EFE6DA;outline:1.5px solid #1D1712}
 .hc-m img,.hc-m video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hc-m video{opacity:0;transition:opacity .4s}.hc-m video.pl{opacity:1}
 /* people get a round face, like a profile, overlapping the picture */
-.hc-av{display:block;position:relative;z-index:1;width:40px;height:40px;margin:-22px 0 0 10px;border-radius:50%;border:3px solid #fff;
-  background-color:#EFE6DA;background-size:300%;box-shadow:0 2px 6px rgba(60,35,10,.18)}
-.hc b{display:block;margin:10px 8px 0;font-size:15px;font-weight:700;line-height:1.3;letter-spacing:-.005em}
+.hc-av{display:block;position:relative;z-index:1;width:40px;height:40px;margin:-22px 0 0 10px;border-radius:0;border:1.5px solid #1D1712;
+  background-color:#EFE6DA;background-size:300%;box-shadow:3px 3px 0 #1D1712}
+.hc b{display:block;margin:10px 6px 0;font-size:15px;font-weight:700;line-height:1.3;letter-spacing:-.005em}
 .hc-av+b{margin-top:6px}
 .hc em{display:block;margin:3px 8px 0;font-style:normal;font-size:12.5px;line-height:1.4;color:#857565}
 /* one entrance: the cards slide in from their own side, once */
@@ -10923,30 +10924,30 @@ html body [data-view="home"] .zq.zq-pin{justify-content:flex-start!important}
 /* gone while the visitor searches */
 html body [data-view="home"] .zq.ask .hcw,html body [data-view="home"] .zq.sl-on .hcw,html body [data-view="home"] .zq.hx-white .hcw,html body [data-view="home"] .zq:has(#zqIn:focus) .hcw{opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
 
-/* narrower screens, as in Fastwork's phone layout: the hero is one screen tall, the text sits at the top, and four
-   picture cards lean in from the two bottom corners, past the screen's sides and bottom. A short fade into the page colour at
-   the hero's foot means scrolling never shows a hard cut line. */
+/* narrower screens (Fastwork's phone layout, kept whole): the text first, then a space under the chips where four picture
+   cards lean in from the two bottom corners. The space is part of the page, so the cards never cover the search or chips,
+   and every card stays fully inside it: no edge cuts across a tilted card. */
 @media (max-width:1099px){
-  html.nv-home body [data-view="home"] .zq,html body [data-view="home"] .zq{justify-content:flex-start!important;padding-top:calc(52px + 84px)!important;min-height:100svh!important}
-  html body [data-view="home"] .zq .zq-top{margin-top:0!important;position:relative;z-index:3}
-  .hcc{transform:none!important}
-  .hc{top:auto;left:var(--mx);bottom:var(--mb);width:var(--mw);--r:var(--mr);padding:4px;border-radius:14px}
+  html.nv-home body [data-view="home"] .zq,html body [data-view="home"] .zq{justify-content:flex-start!important;padding-top:calc(52px + 84px)!important;padding-bottom:0!important;min-height:100svh!important}
+  html body [data-view="home"] .zq .zq-top{margin-top:0!important;position:relative;z-index:3;flex:1;display:flex;flex-direction:column}
+  html body [data-view="home"] .zq .mo-cue{display:none!important}
+  .hcw{position:relative;inset:auto;flex:1;width:100%;max-width:620px;margin:20px auto 0;min-height:calc(min(100vw,620px) * .78);overflow:visible}
+  .hcc{position:absolute;inset:0;transform:none!important}
+  .hc{top:auto;left:var(--mx);bottom:var(--mb);width:var(--mw);--r:var(--mr);padding:4px;box-shadow:4px 4px 0 #1D1712}
   .hc.ph-off{display:none}
-  .hc-m{border-radius:10px}
   .hc b,.hc em,.hc .hc-av{display:none}
-  .hcw::after{content:"";position:absolute;left:0;right:0;bottom:0;height:56px;background:linear-gradient(rgba(255,250,243,0),#FFFAF3);z-index:20;pointer-events:none}
 }
 @media (prefers-reduced-motion:reduce){.hcw .hc{transition:none!important;opacity:1!important}}
 </style>
 <script>(function(){
   /* every line below is taken from the site's own text; [x, y, width at 1440, tilt, side, picture, aspect, name, line, clip] */
   var C=[
-    [1,9,232,-3,'l','w-revoice.webp','4/3','น้องไอดิน','REVOICE · ชนะ NSC 2025',0,[-9,-2,52,5],[28,30]],
-    [12.5,37,170,3,'l','dek69-6.webp','4/5','น้องต้นกล้า','ติดจุฬาฯ รอบ Portfolio',0,[83,178,27,6],[74,50]],
+    [1,9,232,-3,'l','w-revoice.webp','4/3','น้องไอดิน','REVOICE · ชนะ NSC 2025',0,[2,4,47,3],[28,30]],
+    [11,37,166,3,'l','dek69-6.webp','4/5','น้องต้นกล้า','ติดจุฬาฯ รอบ Portfolio',0,[67,47,26,5],[74,50]],
     [1.5,67,224,-2,'l','work-stressstrike.webp','16/9','StressStrike','ชนะเลิศ OBEC Roboplayground','hole-stressstrike.mp4',0],
     [83,9,232,3,'r','w-hmap.webp','16/10','PHC Map','สตาร์ทอัพ · ใช้สอนเด็กกว่า 1,000 คน',0,0],
-    [77,35,170,-3,'r','dek69-1.webp','4/5','น้องปลื้ม','ติดสถิติประยุกต์ฯ สจล.',0,[-6,166,28,-7],[68,46]],
-    [83.5,67,224,2,'r','work-slash-speed.webp','16/9','SLASH//SPEED','เกมที่น้องสร้างเองในคอร์ส','hole-slash-speed2.mp4',[58,-6,52,-5]]];
+    [78.5,35,166,-3,'r','dek69-1.webp','4/5','น้องปลื้ม','ติดสถิติประยุกต์ฯ สจล.',0,[7,46,26,-5],[68,46]],
+    [83.5,67,224,2,'r','work-slash-speed.webp','16/9','SLASH//SPEED','เกมที่น้องสร้างเองในคอร์ส','hole-slash-speed2.mp4',[51,6,47,-3]]];
   function go(){var z=document.querySelector('[data-view="home"] .zq');if(!z||z.querySelector('.hcw'))return;
     var h=z.querySelector('.zq-h');if(h&&!z.querySelector('.zq-who')){var p=document.createElement('p');p.className='zq-who';
       p.innerHTML=['ที่ Hamster Hub น้อง ม.ปลาย','สร้างผลงานจริงของตัวเอง','ใช้ยื่นเข้ามหาลัย','ต่อยอดเป็นสตาร์ทอัพ','และชนะรางวัลระดับประเทศ'].map(function(t){return '<span>'+t+'</span>'}).join(' ');h.insertAdjacentElement('afterend',p)}
@@ -10956,16 +10957,16 @@ html body [data-view="home"] .zq.ask .hcw,html body [data-view="home"] .zq.sl-on
     var L=document.createElement('div');L.className='hcc hcl';var R=document.createElement('div');R.className='hcc hcr';
     var S=document.createElement('div');S.className='hcs';
     C.forEach(function(c,i){var a=document.createElement('a');a.className='hc';a.href='#works';
-      a.style.cssText='--x:'+c[0]+'%;--y:'+c[1]+'%;--w:clamp('+Math.round(c[2]*.8)+'px,'+(c[2]/14.4).toFixed(2)+'vw,'+Math.round(c[2]*1.2)+'px);--r:'+c[3]+'deg;--a:'+c[6]+';--i:'+(c[4]==='l'?i:i-3)+';z-index:'+(10-i%3)+(c[10]?';--mx:'+(c[10][0]<50?'max('+c[10][0]+'vw,'+(c[10][0]*4)+'px)':'calc(100vw - min('+(100-c[10][0])+'vw,'+((100-c[10][0])*4.8)+'px))')+';--mb:'+c[10][1]+'px;--mw:min('+c[10][2]+'vw,'+(c[10][2]*4.8)+'px);--mr:'+c[10][3]+'deg':'');if(!c[10])a.classList.add('ph-off');
+      a.style.cssText='--x:'+c[0]+'%;--y:'+c[1]+'%;--w:clamp('+Math.round(c[2]*.8)+'px,'+(c[2]/14.4).toFixed(2)+'vw,'+Math.round(c[2]*1.2)+'px);--r:'+c[3]+'deg;--a:'+c[6]+';--i:'+(c[4]==='l'?i:i-3)+';z-index:'+(10-i%3)+(c[10]?';--mx:'+c[10][0]+'%;--mb:'+c[10][1]+'%;--mw:'+c[10][2]+'%;--mr:'+c[10][3]+'deg':'');if(!c[10])a.classList.add('ph-off');
       var ar=c[6].split('/');a.innerHTML='<span class="hc-m" style="aspect-ratio:auto;padding-top:'+(100*ar[1]/ar[0]).toFixed(2)+'%"><img src="img/'+c[5]+'" alt="" loading="lazy" decoding="async"></span><b></b><em></em>';
       if(c[11]){var av=document.createElement('span');av.className='hc-av';av.setAttribute('aria-hidden','true');av.style.backgroundImage='url(img/'+c[5]+')';av.style.backgroundPosition=c[11][0]+'% '+c[11][1]+'%';a.insertBefore(av,a.querySelector('b'))}a.querySelector('b').textContent=c[7];a.querySelector('em').textContent=c[8];
-      if(c[9]){var v=document.createElement('video');v.muted=true;v.loop=true;v.playsInline=true;v.setAttribute('playsinline','');v.setAttribute('muted','');v.preload='none';v.dataset.src='img/'+c[9];v.setAttribute('aria-hidden','true');a.querySelector('.hc-m').appendChild(v)}
+      if(c[9]){var v=document.createElement('video');v.muted=true;v.loop=true;v.playsInline=true;v.setAttribute('playsinline','');v.setAttribute('muted','');v.disablePictureInPicture=true;v.setAttribute('disablepictureinpicture','');v.setAttribute('controlslist','nodownload nofullscreen noremoteplayback');v.preload='none';v.dataset.src='img/'+c[9];v.setAttribute('aria-hidden','true');a.querySelector('.hc-m').appendChild(v)}
       a.dataset.side=c[4];(c[4]==='l'?L:R).appendChild(a)});
     w.appendChild(L);w.appendChild(R);
     /* layout switch: beside the headline on wide screens, a swipeable row under the chips on narrow ones */
     var top=z.querySelector('.zq-top')||z;var mq=matchMedia('(max-width:1099px)');
     function lay(){var cards=[].slice.call(w.querySelectorAll('.hc'));cards.sort(function(a,b){return a.style.getPropertyValue('--i')-b.style.getPropertyValue('--i')});
-      w.__all.forEach(function(c){(c.dataset.side==='l'?L:R).appendChild(c)});if(w.parentNode!==z)z.insertBefore(w,z.firstChild)}
+      w.__all.forEach(function(c){(c.dataset.side==='l'?L:R).appendChild(c)});if(mq.matches){if(w.parentNode!==top)top.appendChild(w)}else if(w.parentNode!==z)z.insertBefore(w,z.firstChild)}
     w.__all=[].slice.call(w.querySelectorAll('.hc'));lay();mq.addEventListener('change',lay);
     requestAnimationFrame(function(){requestAnimationFrame(function(){w.classList.add('in');setTimeout(function(){w.classList.add('done')},1400)})});
     /* the two columns drift apart a little as the visitor scrolls: an answer to scrolling, not motion on its own */
@@ -11019,4 +11020,21 @@ html.mo-js .mo-kids>*,html.mo-js .mo-kids:not(.mo-in)>*{opacity:1!important;tran
 <style id="ly-nolines">
 /* owner: the dashed line above each course's price row looked bad; removed */
 html body [data-view] section.ft.ft.ft .fx-pr,html body [data-view="courses"] .fx-pr{border-top:0!important}
+</style>
+
+<!-- layer: 99zzzzzzzzzzzzzzzz-square.html -->
+<script id="ly-square">/* owner: "เปลี่ยนเป็นสี่เหลี่ยมให้หมด" – every pill and rounded box on the site becomes a plain rectangle.
+   Rather than chase hundreds of selectors, this walks the site's own style rules once and sets every corner radius to 0.
+   Kept as they are: true circles (50%: dots, round icon buttons) and anything in the Hall of Fame (.h5f, off-limits). */
+(function(){var P=['border-radius','border-top-left-radius','border-top-right-radius','border-bottom-left-radius','border-bottom-right-radius'];
+  function walk(rules){for(var i=0;i<rules.length;i++){var r=rules[i];if(r.cssRules&&!r.style){walk(r.cssRules);continue}
+    if(!r.style||(r.selectorText||'').indexOf('h5f')>-1)continue;
+    for(var k=0;k<P.length;k++){var v=r.style.getPropertyValue(P[k]);if(!v)continue;v=v.trim();
+      if(v==='0'||v==='0px'||v.indexOf('50%')>-1||v==='inherit'||v.indexOf('var(')>-1&&v.indexOf('50%')>-1)continue;
+      r.style.setProperty(P[k],'0',r.style.getPropertyPriority(P[k]))}}}
+  function go(){for(var i=0;i<document.styleSheets.length;i++){var s=document.styleSheets[i],rs;try{rs=s.cssRules}catch(e){continue}if(rs)walk(rs)}}
+  if(document.readyState==='loading')addEventListener('DOMContentLoaded',go);else go();setTimeout(go,1200)})();</script>
+<style id="ly-square-css">
+/* radii set inline by scripts, and the few made with a CSS variable */
+html body [style*="border-radius"]:not(.h5f):not(.h5f *){border-radius:0!important}
 </style>

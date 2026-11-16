@@ -66,6 +66,7 @@ The owner asked to move the site to Next.js + React + TypeScript + Tailwind CSS 
 | `99zzzzzzzzzz-perf.html` | Performance: no big blurs, off-screen animations paused |
 | `99zzzzzzzzzzz-lists.html` | Poster-less events as a dated list. (The ruled courses list and the hidden home "คอร์สทั้งหมด" carousel were reverted on 16 พ.ย. at the owner's request.) |
 | `99zzzzzzzzzzzz-herobg.html` | Hero: real works as cards around the headline (Fastwork reference), who-we-are line, plain background, no slurp flood |
+| `99zzzzzzzzzzzzzzzz-square.html` | Owner: no pills or rounded boxes anywhere. Sets every corner radius in the site's CSS to 0 at load, except true circles (50%) and the Hall of Fame |
 | `99zzzzzzzzzzzzzzz-noreveal.html` | Turns off the fade-in-on-scroll (`mo-goo`, `mo-rise`, `mo-kids`). On the owner's phone it never fired, so the course cards stayed invisible |
 | `99zzzzzzzzzzzzz-plain.html` | Only the floating ask button position and two heading fixes remain. The flattening of the courses and works sections (rules, no boxes) was reverted on 16 พ.ย.: the owner disliked the lines |
 
@@ -113,6 +114,7 @@ The owner asked to move the site to Next.js + React + TypeScript + Tailwind CSS 
   - The two smaller cards are boxed cards again. The owner rejected both the flat ruled version and the slim rows.
 - **"คอร์สทั้งหมด" carousel** on home is back.
 - **"สิ่งที่ Hamster Hub สร้าง":** three rows with less text, with the original pictures and buttons (the flat version was reverted).
+- **Square corners everywhere** (16 พ.ย.): no pill buttons or rounded cards. Hero cards are square with an ink outline and a hard offset shadow; the pointed-at card grows and the others fade back.
 - **No lines:** the owner dislikes decorative rules and dashed lines ("ขีดๆ ทุเรศ"). Don't add them.
 - **Activity page:** events with a poster are picture cards, the rest are a dated list. The All for One banner is marked as finished.
 - **About page:** a WebGL works drum (next screen rises from below, no dark rim) and a photo ring (fixed so it no longer shows black).
