@@ -58,6 +58,7 @@ The owner asked to move the site to Next.js + React + TypeScript + Tailwind CSS 
 | `99zzzzzzzzzz-perf.html` | Performance: no big blurs, off-screen animations paused |
 | `99zzzzzzzzzzz-lists.html` | Courses page as a ruled list, poster-less events as a dated list, home "คอร์สทั้งหมด" carousel removed |
 | `99zzzzzzzzzzzz-herobg.html` | Hero background: cheese, every hole shows a real work; also hides the code text |
+| `99zzzzzzzzzzzzzzz-noreveal.html` | Turns off the fade-in-on-scroll (`mo-goo`, `mo-rise`, `mo-kids`). On the owner's phone it never fired, so the course cards stayed invisible |
 | `99zzzzzzzzzzzzz-plain.html` | De-templated the two home sections: flat pictures, rules between rows, underlined text links instead of orange pills |
 
 ---
