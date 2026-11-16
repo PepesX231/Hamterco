@@ -19,7 +19,7 @@ A senior on the team (watchirapongth) reviewed the hero with the cheese backgrou
 - sets the hero on the plain page colour
 - puts six real works around the headline as tilted cards, each with a picture and two lines (who/what, and the result): น้องไอดิน REVOICE (NSC 2025), น้องต้นกล้า (จุฬาฯ), StressStrike (OBEC, plays a clip), PHC Map (1,000+ kids), น้องปลื้ม (สจล.), SLASH//SPEED (plays a clip). Every line is taken from the site's own text.
 - adds one line under the headline saying who we are
-- below 1100px, as in Fastwork's phone layout (owner's choice): one screen tall, text at the top, an open middle for the thumb, four picture-only cards leaning in from the sides (past the side edges, bottoms inside the hero, no fade). A pencil draws an arrow up to the search and writes "ไม่รู้จะเริ่มตรงไหน? ลองพิมพ์ถามดู" in the middle once the loader is gone
+- below 1100px, as in Fastwork's phone layout (owner's choice): one screen tall, text at the top, an open middle for the thumb, four picture-only cards leaning in from the sides (past the side edges, bottoms inside the hero, no fade). Handwriting (no pencil, owner) draws an arrow up to the search and writes "ไม่รู้จะเริ่มตรงไหน? ลองพิมพ์ถามดู" in the middle once the loader is gone
 - removes the orange drip under the hero and the orange "slurp" flood; searching just puts an orange rim round the bar and the answers
 - hides the peeking hamsters and, at 1100px and wider, the pencil arrow and note (the cards sit where they were)
 

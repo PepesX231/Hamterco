@@ -71,7 +71,7 @@ html body [data-view="home"] .zq.ask .hcw,html body [data-view="home"] .zq.sl-on
   .zq-pn svg{position:absolute;left:0;top:0;width:230px;height:96px;overflow:visible}
   .zq-pn svg path{fill:none;stroke:#2A221D;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
   .zq-pn p{position:absolute;left:44px;top:34px;margin:0;font:700 19px/1.3 Mali,Anuphan,system-ui,sans-serif;color:#2A221D;white-space:nowrap;transform:rotate(-3deg);clip-path:inset(-20% 100% -20% 0)}
-  .zq-pn img{position:absolute;left:0;top:0;width:118px;height:auto;transform-origin:98.6% 49%;opacity:0;transition:opacity .25s}
+  .zq-pn img{display:none!important;position:absolute;left:0;top:0;width:118px;height:auto;transform-origin:98.6% 49%;opacity:0;transition:opacity .25s}
   html body [data-view="home"] .zq.ask .zq-pn,html body [data-view="home"] .zq:has(#zqIn:focus) .zq-pn{opacity:0;transition:opacity .2s}
 }
 @media (min-width:1100px){.zq-pn{display:none}}
@@ -107,7 +107,7 @@ html body [data-view="home"] .zq.ask .hcw,html body [data-view="home"] .zq.sl-on
       w.__all.forEach(function(c){(c.dataset.side==='l'?L:R).appendChild(c)});if(mq.matches){if(w.parentNode!==top){w.appendChild(pn);top.appendChild(w)}waitPlay()}else{if(pn.parentNode)pn.remove();if(w.parentNode!==z)z.insertBefore(w,z.firstChild)}}
     /* the pencil writes the invitation (phones and tablets) */
     var pn=document.createElement('div');pn.className='zq-pn';pn.setAttribute('aria-hidden','true');
-    pn.innerHTML='<svg viewBox="0 0 230 96"><path class="a" d="M30 70 C 10 52, 8 26, 26 6"/><path class="h" d="M17 15 L26 5 L33 17"/></svg><p>ไม่รู้จะเริ่มตรงไหน?<br>ลองพิมพ์ถามดู</p><img src="img/crew-pencil.webp" alt="">';
+    pn.innerHTML='<svg viewBox="0 0 230 96"><path class="a" d="M30 70 C 10 52, 8 26, 26 6"/><path class="h" d="M17 15 L26 5 L33 17"/></svg><p>ไม่รู้จะเริ่มตรงไหน?<br>ลองพิมพ์ถามดู</p><img alt="">';
     var pp=pn.querySelector('p'),pimg=pn.querySelector('img'),pa=pn.querySelector('path.a'),ph=pn.querySelector('path.h');
     [pa,ph].forEach(function(x){var L=x.getTotalLength?x.getTotalLength():100;x.style.strokeDasharray=L;x.style.strokeDashoffset=L;x.__L=L});
     function tip(x,y,r){pimg.style.transform='translate('+(x-116)+'px,'+(y-28)+'px) rotate('+(r||125)+'deg)'}
