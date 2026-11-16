@@ -1,0 +1,41 @@
+
+(function(){var L=document.getElementById('hhL');if(!L)return;var H=document.documentElement;H.classList.add('hl-on');
+var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,t0=performance.now(),fast=false;try{fast=sessionStorage.getItem('hhl')==='1';sessionStorage.setItem('hhl','1')}catch(e){}
+var cv=L.querySelector('canvas'),cx=cv.getContext('2d'),dots=L.querySelector('.hl-t i'),bar=L.querySelector('.hl-p b');
+/* hand-drawn sprite frames: 8 walking, 8 celebrating (each frame 340 wide) */
+var WK=new Image(),YY=new Image(),ok=0;WK.onload=YY.onload=function(){ok++};WK.src='/Hamterco/img/ld-ham2-walk.webp';YY.src='/Hamterco/img/ld-ham2-yay.webp';
+var FPS=12,FW=340,WH=280,YH=320,W=0,Hc=0,dpr=1;
+function size(){var r=cv.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,2);W=r.width;Hc=r.height;cv.width=W*dpr;cv.height=Hc*dpr}
+size();addEventListener('resize',size);
+/* the floor: tiny pencil marks and sunflower seeds that slide back while it walks */
+var marks=[];for(var i=0;i<14;i++)marks.push({x:Math.random(),k:Math.random()<.35?1:0,w:4+Math.random()*10,y:Math.random()*5});
+var MIN=fast?400:2200,tg=.08,cur=0,loaded=false,phase='walk',yayT=0,last=t0,dist=0;
+addEventListener('load',function(){loaded=true});setTimeout(function(){loaded=true},5000);document.addEventListener('DOMContentLoaded',function(){setTimeout(function(){loaded=true},2400)});
+L.addEventListener('click',function(){loaded=true;MIN=0});
+function target(){if(loaded)return 1;if(document.readyState==='loading')return .3;var im=document.images,n=0,c=0;for(var i=0;i<im.length;i++){if(im[i].loading==='lazy')continue;n++;if(im[i].complete)c++}return .45+.5*(n?c/n:1)}
+function frame(t){var dt=Math.min(50,t-last);last=t;
+  tg=Math.max(tg,target());var el=t-t0,cap=Math.min(tg,MIN?el/MIN:1);cur+=Math.max(0,cap-cur)*(1-Math.exp(-dt/240));if(cap-cur<.004)cur=cap;
+  bar.style.width=(cur*100).toFixed(1)+'%';if(phase==='walk')dots.textContent='...'.slice(0,1+Math.floor(t/400)%3);
+  cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,Hc);
+  var s=Math.min(W*.62/FW,Hc*.6/WH),gy=Hc-6,mid=W/2;
+  /* ground line + moving marks, drawn every frame (60fps) */
+  var speed=phase==='walk'&&!rm?.055:0;dist+=speed*dt;
+  cx.globalAlpha=1;
+  if(ok<2){requestAnimationFrame(frame);return}
+  if(phase==='walk'){var p=el/1000*FPS,f=Math.floor(p)%8,sub=p%1,bob=rm?0:Math.abs(Math.sin((f+sub)/8*Math.PI*4))*3;
+    /* soft shadow follows the bob */
+    cx.fillStyle='rgba(88,80,76,.12)';cx.beginPath();cx.ellipse(mid,gy-1,FW*s*.34*(1-bob*.02),5,0,0,7);cx.fill();
+    cx.drawImage(WK,(rm?0:f)*FW,0,FW,WH,mid-FW*s/2,gy-WH*s-bob+ (WH-262)*s,FW*s,WH*s);
+    if(cur>=.999&&loaded&&el>=MIN){phase='yay';yayT=t;dots.textContent='';L.querySelector('.hl-t span').firstChild.textContent='โหลดเสร็จแล้ว!'}}
+  else{/* the cheer ends on the frame with both paws up (frame 7 only waves one) */
+    var q=(t-yayT)/1000*FPS,f2=[0,1,2,3,4,5,6,4][Math.min(7,Math.floor(q))],lift=0;
+    /* the jump is a smooth 60fps arc over frames 3 to 6 */
+    var jt=(q-3)/3.2;if(jt>0&&jt<1)lift=Math.sin(jt*Math.PI)*Hc*.2;
+    cx.fillStyle='rgba(88,80,76,'+(.12*(1-lift/(Hc*.4)))+')';cx.beginPath();cx.ellipse(mid,gy-1,FW*s*.3*(1-lift/(Hc*.8)),5,0,0,7);cx.fill();
+    cx.drawImage(YY,f2*FW,0,FW,YH,mid-FW*s/2,gy-YH*s-lift+(YH-300)*s,FW*s,YH*s);
+    if(q>9.5){done();return}}
+  requestAnimationFrame(frame)}
+function done(){var r=cv.getBoundingClientRect(),cx0=r.left+r.width/2,cy0=r.top+r.height*.55,R=Math.hypot(Math.max(cx0,innerWidth-cx0),Math.max(cy0,innerHeight-cy0))+30,s0=performance.now(),D=rm?1:800;
+  (function iris(t){var k=Math.min(1,(t-s0)/D),e=k*k*(3-2*k),rad=e*R,m='radial-gradient(circle at '+cx0+'px '+cy0+'px, transparent '+rad+'px, #000 '+(rad+1)+'px)';
+    L.style.webkitMaskImage=m;L.style.maskImage=m;if(k<1)requestAnimationFrame(iris);else{L.remove();H.classList.remove('hl-on');dispatchEvent(new Event('hh:loaded'))}})(s0)}
+requestAnimationFrame(frame)})();

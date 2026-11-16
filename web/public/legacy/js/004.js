@@ -1,0 +1,17 @@
+
+/* when results open, move the search bar only as much as the results panel needs (often not at all) */
+(function(){var z=document.querySelector('[data-view="home"] .zq'),top=z&&z.querySelector('.zq-top'),sw=z&&z.querySelector('.zq-sw'),form=z&&z.querySelector('#zqForm'),res=z&&z.querySelector('#zqRes'),h1=z&&z.querySelector('.zq-h');if(!z||!top||!sw||!form)return;
+  var on=false;
+  function ty(){var m=getComputedStyle(top).transform;return m&&m!=='none'?new DOMMatrix(m).m42:0}
+  function fit(e){var ask=z.classList.contains('ask');if(!ask){if(!on)return;on=false;if(z.classList.contains('hx-keep'))z.classList.remove('hx-keep');if(res)res.style.removeProperty('max-height');return}
+    on=true;
+    var vh=innerHeight,cur=ty(),ft=form.getBoundingClientRect().top-cur,fh=form.offsetHeight,want=Math.min(380,vh*.45),
+        need=ft+fh+14+want+16-vh,d=Math.max(0,Math.min(need,ft-(innerWidth<700?76:88)));
+    top.style.setProperty('--ask',(-d)+'px');
+    var ht=h1?h1.getBoundingClientRect().top-cur:0;z.classList.toggle('hx-keep',ht-d>70);
+    if(res)res.style.setProperty('max-height',Math.max(240,vh-(ft-d+fh+14)-16)+'px','important')}
+  var raf=0;function later(){cancelAnimationFrame(raf);raf=requestAnimationFrame(function(){raf=requestAnimationFrame(function(){fit('r')})})}
+  new MutationObserver(function(){if(z.classList.contains('ask')){if(!on){on=true;top.style.setProperty('--ask','0px');z.classList.add('hx-keep');later()}}else fit()}).observe(z,{attributes:true,attributeFilter:['class']});
+  if(window.ResizeObserver)new ResizeObserver(function(){if(on)later()}).observe(top);
+  addEventListener('resize',function(){if(z.classList.contains('ask'))fit('r')});
+})();

@@ -1,23 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { LINE_URL, LOGIN_URL, NAV, OLD_SITE, img } from "@/lib/site";
+import { LINE_URL, LOGIN_URL, NAV, ROUTE, img } from "@/lib/site";
 
-export function Header() {
+export function Header({ tone = "clear", active }: { tone?: "clear" | "solid" | "dark"; active?: string }) {
   const [open, setOpen] = useState(false);
+  // over the home hero the bar is clear; once the page scrolls it becomes solid
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    if (tone !== "clear") return;
+    const on = () => setScrolled(scrollY > 40);
+    on();
+    addEventListener("scroll", on, { passive: true });
+    return () => removeEventListener("scroll", on);
+  }, [tone]);
+  const look = tone === "clear" && scrolled ? "solid" : tone;
 
   return (
-    <header className="absolute inset-x-0 top-0 z-30">
-      <div className="mx-auto flex h-[72px] max-w-[1120px] items-center gap-3 px-4">
-        <a href={`${OLD_SITE}#home`} className="mr-auto flex items-center gap-2 font-display text-[16px] font-bold">
+    <header className={`nx-head nx-head-${look} fixed inset-x-0 top-0 z-[60]`}>
+      <div className="mx-auto flex h-[60px] max-w-[1120px] items-center gap-3 px-4">
+        <a href={ROUTE.home} className="mr-auto flex items-center gap-2 font-display text-[16px] font-bold">
           <img src={img("logo.webp")} alt="" width={30} height={30} />
           Hamster Hub
         </a>
 
         <nav aria-label="เมนูหลัก" className="hidden bg-[#fff6e8]/40 px-2 md:flex">
           {NAV.map((n) => (
-            <a key={n.label} href={n.href} className="px-4 py-2 text-[15px] transition-colors hover:bg-white/60">
+            <a key={n.label} href={n.href} aria-current={active === n.label ? "page" : undefined} className="px-4 py-2 text-[15px] transition-colors hover:bg-white/60 aria-[current=page]:bg-white aria-[current=page]:font-semibold">
               {n.label}
             </a>
           ))}

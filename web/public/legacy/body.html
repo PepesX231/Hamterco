@@ -1,0 +1,785 @@
+
+
+<head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="hhL" role="status" aria-label="กำลังโหลด Hamster Hub"><div class="hl-in"><div class="hl-stage"><canvas></canvas></div><p class="hl-t"><span>กำลังโหลด<i></i></span></p><div class="hl-p"><b></b></div></div></div><a href="#main" style="position:absolute;left:-999px">ข้ามไปเนื้อหา</a>
+<header class="nav"><div class="nav-in">
+  <a class="brand" href="#home"><img src="/Hamterco/img/logo.webp" alt="" width="30" height="30">Hamster Hub</a>
+  <a class="v nv-c" href="#courses"><span>คอร์ส</span></a><a class="v nv-a" href="#activity"><span class="roll"><span>กิจกรรม</span><span class="nx" id="nvNext">ถัดไป 14 พ.ย.</span></span></a><a class="v nv-w" href="#works"><span>ผลงาน</span></a><a class="v nv-b" href="#about"><span>เกี่ยวกับเรา</span></a>
+  <a class="lbtn" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">ทัก LINE</a>
+  <a class="login" href="https://www.hamsterhub.co/login" target="_blank" rel="noopener"><span class="lg-t">เข้าสู่ระบบ</span><i class="lg-cm" aria-hidden="true"></i><i class="lg-in" aria-hidden="true"></i></a>
+  <button class="menu" id="menuBtn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="เปิดเมนู"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg></button>
+</div>
+<nav class="drawer" id="drawer" hidden aria-label="เมนู"><a href="#courses">คอร์ส</a><a href="#activity">กิจกรรม</a><a href="#works">ผลงาน</a><a href="#about">เกี่ยวกับเรา</a><a href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener" style="color:#06C755">ทัก LINE</a><a href="https://www.hamsterhub.co/login" target="_blank" rel="noopener">เข้าสู่ระบบ</a></nav>
+</header>
+
+<div class="pt" id="pt" aria-hidden="true"></div>
+<main id="main">
+<!-- ================= HOME ================= -->
+<div data-view="home">
+  <section class="zq" aria-label="ค้นหาคอร์สและกิจกรรม"><i class="zq-sky" aria-hidden="true"></i>
+    <div class="zq-top">
+      <p class="zq-q">น้องอยาก...</p>
+      <h1 class="zq-h" title="กดเพื่อเปลี่ยนสไตล์"><span id="zqType">ยื่นพอร์ตเข้ามหาลัย</span><i class="zq-cur" aria-hidden="true"></i></h1>
+      <div class="zq-sw"><span class="zq-ham" id="zqHam" aria-hidden="true"><span class="zq-hb" id="zqSpr"><img src="/Hamterco/img/ham-noeye.webp" alt=""><i class="ze l"><b></b></i><i class="ze r"><b></b></i><i class="zq-bur" aria-hidden="true"></i></span></span><form class="zq-s" id="zqForm" role="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="zqIn" type="search" placeholder="พิมพ์สิ่งที่น้องอยากได้ เช่น อยากเข้าวิศวะคอม" aria-label="ค้นหาคอร์สและกิจกรรม" autocomplete="off"><button type="submit" class="zq-go"><span>ค้นหา</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form><div class="zq-sug" id="zqSug" hidden><p>น้องพิมพ์แบบนี้ได้เลย</p><button type="button" data-q="อยากเข้าวิศวะคอม"><img src="/Hamterco/img/i3-cap.webp" alt="">อยากเข้าวิศวะคอม<small>ดูคอร์สที่รุ่นพี่วิศวะคอมฯ เรียน</small></button><button type="button" data-q="อยากเข้าแพทย์"><img src="/Hamterco/img/i3-cap.webp" alt="">อยากเข้าแพทย์<small>เราช่วยเรื่องไหนได้บ้าง</small></button><button type="button" data-q="อยากทำเกมของตัวเอง"><img src="/Hamterco/img/i3-pad.webp" alt="">อยากทำเกมของตัวเอง<small>คอร์สและค่ายสร้างเกม</small></button><button type="button" data-q="ไม่เคยเขียนโปรแกรมเลย"><img src="/Hamterco/img/i3-rocket.webp" alt="">ไม่เคยเขียนโปรแกรมเลย<small>เริ่มจากศูนย์ได้ไหม</small></button><button type="button" data-q="ผู้ปกครอง ลูกจะได้อะไร"><img src="/Hamterco/img/i3-bot.webp" alt="">ผู้ปกครอง ลูกจะได้อะไร<small>สิ่งที่ลูกได้จากที่นี่</small></button></div></div>
+      <p class="zq-pop"><span>ลองพิมพ์</span><button type="button" data-q="อยากเข้าวิศวะคอม">อยากเข้าวิศวะคอม</button><button type="button" data-q="ม.6 ยังไม่มีพอร์ต">ม.6 ยังไม่มีพอร์ต</button><button type="button" data-q="อยากทำเกมของตัวเอง">อยากทำเกมของตัวเอง</button><button type="button" data-q="Hamster Hub คืออะไร">Hamster Hub คืออะไร</button><button type="button" data-q="ค่าเรียนเท่าไหร่">ค่าเรียนเท่าไหร่</button></p>
+    </div>
+    <div class="zq-res" id="zqRes" hidden><p class="zq-r" id="zqR" aria-live="polite"></p><div class="ia-w" id="zqA" hidden></div><div class="zq-g" id="zqG"></div></div>
+  <button type="button" class="zq-more" id="zqMore" aria-label="เลื่อนลงดูต่อ"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></button></section>
+  <section class="ft"><div class="ft-in">
+  <div class="ft-hd"><h2>คอร์สที่เราแนะนำ</h2><p>คอร์สหลักของ Hamster Hub เลือกตามสิ่งที่น้องอยากได้</p></div>
+  <div class="fx">
+    <a class="fx-main" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">
+      <span class="fx-media"><video src="/Hamterco/img/portex-hero.mp4" poster="/Hamterco/img/portex-poster.webp" muted loop playsinline preload="none" aria-hidden="true"></video><span class="ft-live">เริ่มเรียนแล้ว 9 พ.ย.</span></span>
+      <span class="fx-body"><span class="rc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z" fill="currentColor"/></svg>คอร์สแนะนำอันดับ 1</span>
+        <small>สำหรับน้อง ม.6 ที่ยังไม่มีผลงาน</small>
+        <b class="fx-t">Port Express</b>
+        <span class="fx-d">เรียนเขียนโปรแกรมสร้างเกมของตัวเองด้วย Unity จบคอร์สได้เกมที่ทำเองไว้ใส่พอร์ต</span>
+        <span class="fx-f"><span><b>2 เดือน</b>จันทร์ พุธ ศุกร์</span><span><b>9 พ.ย. 2569</b>เริ่มเรียน</span><span><b>5,990 บาท</b>ทั้งคอร์ส</span></span>
+        <span class="fx-cta">ดูรายละเอียดคอร์ส</span>
+      </span>
+    </a>
+    <div class="fx-row">
+      <a class="fx-s" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener"><span class="fx-si"><img src="/Hamterco/img/dek69-1.webp" alt="" loading="lazy"></span><span class="fx-sb">
+          <span class="rc rc-s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z" fill="currentColor"/></svg>คอร์สแนะนำ</span><small>สำหรับน้องที่ยังไม่เคยเขียนโปรแกรม</small><b>Hamstarter</b><span class="fx-sp">เริ่มจากศูนย์ จนมีผลงานชิ้นแรกเป็น<span class="nw">ของตัวเอง</span></span>
+          <span class="fx-pr"><span class="ft-av"><img src="/Hamterco/img/dek69-1.webp" alt="" loading="lazy"></span>น้องปลื้มจากคอร์สนี้ ติดสถิติประยุกต์ฯ สจล.</span>
+          <span class="fx-go">รับแจ้งเตือนรอบถัดไป</span></span></a>
+      <a class="fx-s" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener"><span class="fx-si"><img src="/Hamterco/img/sc-lyno.webp" alt="" loading="lazy"></span><span class="fx-sb">
+          <span class="rc rc-s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z" fill="currentColor"/></svg>คอร์สแนะนำ</span><small>สำหรับน้องที่อยากมีรางวัลระดับประเทศในพอร์ต</small><b>National Project</b><span class="fx-sp">ทำโปรเจกต์ส่งเวทีระดับประเทศ เช่น NSC (การแข่งขันพัฒนาโปรแกรมคอมพิวเตอร์แห่งประเทศไทย)</span>
+          <span class="fx-pr"><span class="ft-av"><img src="/Hamterco/img/dek69-3.webp" alt="" loading="lazy"><img src="/Hamterco/img/dek69-6.webp" alt="" loading="lazy"><img src="/Hamterco/img/dek69-16.webp" alt="" loading="lazy"></span>รุ่นพี่ 5 คนจากคอร์สนี้ ติดวิศวะคอมฯ CEDT และวิทย์คอมฯ</span>
+          <span class="fx-go">รับแจ้งเตือนรอบถัดไป</span></span></a>
+    </div>
+  </div>
+</div></section>
+  <section class="zc2 dk"><div class="mr"><div class="mr-l"><h2>คอร์สทั้งหมด</h2><p>ทุกคอร์สจบแล้วน้องได้ผลงานจริงของตัวเอง คอร์สที่ยังไม่เปิดรอบ กดรับแจ้งเตือนได้</p><a class="mr-btn" href="#courses">ดูคอร์สทั้งหมด</a><div class="mr-ar"><button type="button" class="mr-p" aria-label="เลื่อนไปทางซ้าย"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="mr-n" aria-label="เลื่อนไปทางขวา"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div><div class="mr-r" id="zqC"></div></div></section>
+  <section class="hbx" aria-labelledby="ocH"><div class="oc-in">
+  <div class="oc-hd"><h2 id="ocH">สิ่งที่ Hamster Hub สร้าง</h2><p>ผลงานที่น้องมัธยมสร้างเอง บางชิ้นขายได้ บางชิ้นชนะระดับประเทศ บางชิ้นมีคนใช้กว่าพันคน</p></div>
+
+  <article class="oc-r oc-big">
+    <div class="oc-m oc-biz"><video src="/Hamterco/img/w-hmap.mp4" poster="/Hamterco/img/w-hmap.webp" muted loop playsinline autoplay preload="none" aria-label="คลิปเกมสอนเขียน Python ของน้อง"></video><img src="/Hamterco/img/w-quest-town.webp" alt="ภาพจากเว็บ Hamster Quest"><img src="/Hamterco/img/w-quest-app.webp" alt="หน้าเควสต์ใน Hamster Quest"></div>
+    <div class="oc-t"><span class="oc-k">สร้างสตาร์ทอัพ</span>
+      <h3>ผลงานของน้อง <span class="nw">ขายได้</span>และมีคนใช้จริง</h3>
+      <p>Mr. City เกมเดินเที่ยวสงขลาแบบเดียวกับ Pokémon GO ขายให้สวนสัตว์สงขลาแล้ว PHC Map เกมสอนเขียน Python ใช้สอนเด็กไปแล้วกว่า 1,000 คน และ Hamster Quest เว็บเรียนที่เล่นเหมือนเกม กำลังเตรียมใช้กับมหาวิทยาลัย</p>
+      <ol class="oc-st"><li>คิดไอเดีย</li><li>ทำผลงาน</li><li>พัฒนาเชิงลึก</li><li>เป็นสตาร์ทอัพ</li></ol>
+      <a class="oc-lk" href="#about">ดูผลงานที่มีคนใช้จริง</a>
+    </div>
+  </article>
+
+
+  <article class="oc-r rv2">
+    <div class="oc-m"><img src="/Hamterco/img/sc-revoice.webp" alt="น้องไอดิน กับแอป REVOICE ที่เขาสร้าง"></div>
+    <div class="oc-t"><span class="oc-k">ชนะระดับประเทศ</span>
+      <h3>REVOICE แอปฝึกพูด<span class="nw">แบบเล่นเกม</span> ที่<span class="nw">น้องไอดิน</span>ทำเองใน 4 เดือน</h3>
+      <p>ทำมาเพื่อคนที่มีปัญหาด้านการพูด ให้ฝึกพูดได้สนุกเหมือนเล่นเกม น้องไอดินเขียนเองด้วย Unity แล้วชนะ NSC 2025 ซึ่งเป็นการแข่งขันเขียนโปรแกรมระดับประเทศ</p>
+      <button type="button" class="oc-play" data-v="/Hamterco/img/story-nsc.mp4"><i aria-hidden="true"></i>ดูคลิปไอดินเล่า 27 วินาที</button>
+    </div>
+  </article>
+
+  <article class="oc-r">
+    <div class="oc-m oc-3"><img src="/Hamterco/img/sc-lyno.webp" alt="น้องดา กับเกม LYNO"><img src="/Hamterco/img/sc-timekeeper.webp" alt="พี่มิคกี้ กับเกม Time Keeper"><img src="/Hamterco/img/sc-zoo.webp" alt="พี่ไอซ์ กับเกม Z.O.O."></div>
+    <div class="oc-t"><span class="oc-k">เกมที่น้องทำเอง</span>
+      <h3>ทำเองทั้งเกม ตั้งแต่คิดไอเดียจนเล่นได้จริง</h3>
+      <p>LYNO เกมปริศนา 3 มิติของน้องดา Time Keeper เกมผจญภัยบน Roblox ของพี่มิคกี้ และ Z.O.O. เกมสืบสวนของพี่ไอซ์ ปีนี้มีเกมของน้องๆ 10 เกมใน Hall of Fame</p>
+      <a class="oc-lk" href="#works">ดูเกมของน้องๆ ทั้งหมด</a>
+    </div>
+  </article>
+</div>
+<dialog class="oc-dlg" id="ocDlg" aria-label="คลิปไอดิน"><video controls playsinline preload="none"></video><button type="button" class="oc-x" aria-label="ปิดคลิป">&times;</button></dialog>
+</section>
+
+  <div class="wkz wkz-rift" id="wkRift"><img class="wk" src="/Hamterco/img/n-gamer.webp" alt="น้องหนู ลากเล่นได้"></div>
+  <div class="rau t" aria-hidden="true"><div id="rauT"></div></div><div class="rsd t" aria-hidden="true"><i class="sd g" style="left:38.6%;top:2px;width:9px;height:11px;clip-path:polygon(24% 18%,78% 45%,37% 82%);--d:8.1s;--dl:-5.3s;--dx:-23px;--dy:-32px;--r:-81deg"></i><i class="sd g" style="left:96.7%;top:12px;width:17px;height:22px;clip-path:polygon(10% 8%,99% 47%,23% 73%);--d:6.7s;--dl:-2.3s;--dx:23px;--dy:-24px;--r:-123deg"></i><i class="sd k" style="left:71.7%;top:22px;width:17px;height:22px;clip-path:polygon(8% 17%,61% 17%,26% 99%);--d:7.8s;--dl:-7.8s;--dx:-21px;--dy:-26px;--r:2deg"></i><i class="sd k" style="left:23.6%;top:30px;width:6px;height:7px;clip-path:polygon(36% 5%,87% 13%,39% 82%);--d:5.4s;--dl:-0.7s;--dx:-23px;--dy:-39px;--r:92deg"></i><i class="sd w" style="left:84.5%;top:-7px;width:9px;height:11px;clip-path:polygon(5% 4%,64% 39%,66% 82%);--d:7.1s;--dl:-2.2s;--dx:-23px;--dy:-46px;--r:-153deg"></i><i class="sd g" style="left:64.9%;top:3px;width:11px;height:14px;clip-path:polygon(8% 25%,64% 12%,66% 97%);--d:8.9s;--dl:-5.6s;--dx:2px;--dy:-38px;--r:-117deg"></i><i class="sd w" style="left:60.5%;top:30px;width:12px;height:15px;clip-path:polygon(6% 30%,75% 24%,47% 81%);--d:7.7s;--dl:-3.3s;--dx:4px;--dy:-20px;--r:-19deg"></i><i class="sd k" style="left:54.0%;top:7px;width:16px;height:20px;clip-path:polygon(17% 12%,80% 49%,44% 95%);--d:8.0s;--dl:-5.9s;--dx:-11px;--dy:-35px;--r:-76deg"></i><i class="sd k" style="left:22.5%;top:3px;width:9px;height:11px;clip-path:polygon(30% 21%,75% 14%,35% 87%);--d:7.0s;--dl:-1.0s;--dx:0px;--dy:-39px;--r:-100deg"></i><i class="sd k" style="left:81.0%;top:30px;width:13px;height:16px;clip-path:polygon(12% 17%,91% 35%,42% 98%);--d:8.3s;--dl:-0.2s;--dx:13px;--dy:-40px;--r:-82deg"></i><i class="sd k" style="left:63.3%;top:25px;width:14px;height:18px;clip-path:polygon(11% 13%,64% 12%,52% 91%);--d:5.9s;--dl:-3.2s;--dx:-5px;--dy:-27px;--r:-83deg"></i><i class="sd w" style="left:26.9%;top:31px;width:12px;height:15px;clip-path:polygon(14% 26%,67% 27%,59% 88%);--d:6.2s;--dl:-6.4s;--dx:20px;--dy:-45px;--r:-38deg"></i><i class="sd g" style="left:11.4%;top:30px;width:13px;height:16px;clip-path:polygon(28% 7%,90% 21%,50% 79%);--d:6.0s;--dl:-3.8s;--dx:12px;--dy:-44px;--r:32deg"></i><i class="sd w" style="left:7.2%;top:37px;width:17px;height:22px;clip-path:polygon(34% 0%,100% 22%,46% 95%);--d:6.3s;--dl:-2.9s;--dx:-13px;--dy:-31px;--r:-152deg"></i><i class="sd g" style="left:23.3%;top:24px;width:15px;height:19px;clip-path:polygon(25% 4%,61% 47%,53% 82%);--d:5.9s;--dl:-6.8s;--dx:15px;--dy:-18px;--r:125deg"></i><i class="sd k" style="left:75.6%;top:7px;width:17px;height:22px;clip-path:polygon(24% 23%,71% 12%,53% 80%);--d:7.0s;--dl:-4.5s;--dx:22px;--dy:-19px;--r:-63deg"></i><i class="sd g" style="left:37.5%;top:23px;width:10px;height:13px;clip-path:polygon(5% 24%,88% 11%,65% 79%);--d:6.2s;--dl:-6.4s;--dx:10px;--dy:-44px;--r:3deg"></i><i class="sd w" style="left:66.3%;top:37px;width:18px;height:23px;clip-path:polygon(23% 16%,71% 15%,24% 81%);--d:6.4s;--dl:-6.9s;--dx:-13px;--dy:-26px;--r:-79deg"></i><i class="sd g" style="left:89.8%;top:-8px;width:7px;height:9px;clip-path:polygon(20% 9%,80% 30%,21% 76%);--d:8.6s;--dl:-7.8s;--dx:20px;--dy:-21px;--r:-152deg"></i><i class="sd w" style="left:89.8%;top:9px;width:17px;height:22px;clip-path:polygon(33% 27%,77% 32%,30% 94%);--d:8.1s;--dl:-6.2s;--dx:1px;--dy:-33px;--r:-31deg"></i><i class="sd k" style="left:66.3%;top:26px;width:15px;height:19px;clip-path:polygon(17% 18%,70% 25%,21% 94%);--d:7.1s;--dl:-1.5s;--dx:18px;--dy:-28px;--r:-16deg"></i><i class="sd k" style="left:29.2%;top:9px;width:10px;height:13px;clip-path:polygon(18% 2%,64% 26%,56% 79%);--d:6.6s;--dl:-4.4s;--dx:24px;--dy:-41px;--r:-154deg"></i></div><section class="h5f" aria-label="Hall of Fame"><canvas class="h5f-au" id="h5Au" aria-hidden="true"></canvas>
+<svg class="h5f-cap t" viewBox="0 0 1000 48" preserveAspectRatio="none" aria-hidden="true"><polygon points="0,0 0,22 27,5 86,23 135,28 190,26 220,16 259,32 281,18 342,33 365,10 392,35 440,5 494,44 543,26 568,17 592,41 637,15 698,17 743,40 788,40 828,24 886,9 938,15 990,41 1000,14 1000,0"/></svg><svg class="h5f-cap b" viewBox="0 0 1000 48" preserveAspectRatio="none" aria-hidden="true"><polygon points="0,48 0,33 33,10 75,11 109,7 138,39 166,17 190,8 229,8 268,7 311,38 356,26 412,25 463,9 498,28 529,38 590,37 643,29 686,10 717,7 745,20 777,16 801,41 863,18 910,43 942,30 964,30 989,10 1000,39 1000,48"/></svg><svg class="h5f-rt t" viewBox="0 0 1000 48" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,22 27,5 86,23 135,28 190,26 220,16 259,32 281,18 342,33 365,10 392,35 440,5 494,44 543,26 568,17 592,41 637,15 698,17 743,40 788,40 828,24 886,9 938,15 990,41 1000,14"/></svg>
+<svg class="h5f-rt b" viewBox="0 0 1000 48" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,33 33,10 75,11 109,7 138,39 166,17 190,8 229,8 268,7 311,38 356,26 412,25 463,9 498,28 529,38 590,37 643,29 686,10 717,7 745,20 777,16 801,41 863,18 910,43 942,30 964,30 989,10 1000,39"/></svg>
+<svg class="h5f-tear" viewBox="440 0 120 120" aria-hidden="true"><polyline class="g" points="500,0 521,22 524,47 475,77 523,105 515,126"/><polyline class="c" points="500,0 521,22 524,47 475,77 523,105 515,126"/></svg><div class="h5f-fx" aria-hidden="true"><span class="h5f-sp"></span><span class="h5f-du"><b style="left:59%;--s:4px;--t:9.7s;--dl:-10.3s"></b><b style="left:26%;--s:3px;--t:11.8s;--dl:-5.7s"></b><b style="left:80%;--s:3px;--t:7.6s;--dl:-3.6s"></b><b style="left:13%;--s:2px;--t:10.6s;--dl:-4.8s"></b><b style="left:59%;--s:3px;--t:10.7s;--dl:-10.0s"></b><b style="left:10%;--s:2px;--t:7.2s;--dl:-10.6s"></b><b style="left:78%;--s:2px;--t:11.7s;--dl:-3.9s"></b><b style="left:77%;--s:3px;--t:10.1s;--dl:-7.7s"></b><b style="left:65%;--s:2px;--t:11.0s;--dl:-5.5s"></b><b style="left:37%;--s:4px;--t:13.0s;--dl:-11.9s"></b><b style="left:12%;--s:3px;--t:8.9s;--dl:-2.8s"></b><b style="left:38%;--s:2px;--t:7.4s;--dl:-9.2s"></b><b style="left:53%;--s:2px;--t:12.1s;--dl:-4.6s"></b><b style="left:4%;--s:2px;--t:8.3s;--dl:-11.1s"></b><b style="left:8%;--s:4px;--t:9.3s;--dl:-8.5s"></b><b style="left:55%;--s:2px;--t:10.4s;--dl:-2.4s"></b><b style="left:88%;--s:3px;--t:9.0s;--dl:-3.7s"></b><b style="left:3%;--s:4px;--t:11.5s;--dl:-1.4s"></b><b style="left:33%;--s:2px;--t:7.1s;--dl:-5.6s"></b><b style="left:64%;--s:3px;--t:11.1s;--dl:-2.3s"></b><b style="left:67%;--s:3px;--t:12.9s;--dl:-9.2s"></b><b style="left:55%;--s:4px;--t:7.7s;--dl:-5.0s"></b><b style="left:29%;--s:2px;--t:8.6s;--dl:-11.7s"></b><b style="left:77%;--s:3px;--t:13.0s;--dl:-0.2s"></b><b style="left:25%;--s:4px;--t:13.0s;--dl:-7.2s"></b><b style="left:75%;--s:2px;--t:7.3s;--dl:-1.8s"></b><b style="left:58%;--s:3px;--t:7.1s;--dl:-7.3s"></b><b style="left:39%;--s:4px;--t:7.4s;--dl:-1.1s"></b></span></div><div class="h5f-fx" aria-hidden="true"><span class="h5f-sp"></span><span class="h5f-du"><b style="left:43%;--s:3px;--t:8.4s;--dl:-0.6s"></b><b style="left:70%;--s:2px;--t:8.2s;--dl:-0.7s"></b><b style="left:66%;--s:3px;--t:6.2s;--dl:-5.2s"></b><b style="left:10%;--s:3px;--t:6.5s;--dl:-5.1s"></b><b style="left:74%;--s:2px;--t:11.7s;--dl:-7.6s"></b><b style="left:76%;--s:2px;--t:9.5s;--dl:-4.8s"></b><b style="left:30%;--s:2px;--t:9.3s;--dl:-1.6s"></b><b style="left:55%;--s:3px;--t:9.2s;--dl:-6.9s"></b><b style="left:73%;--s:3px;--t:6.6s;--dl:-6.9s"></b><b style="left:26%;--s:3px;--t:6.6s;--dl:-8.5s"></b><b style="left:74%;--s:2px;--t:9.7s;--dl:-6.0s"></b><b style="left:70%;--s:4px;--t:10.7s;--dl:-5.6s"></b><b style="left:60%;--s:3px;--t:7.8s;--dl:-9.5s"></b><b style="left:91%;--s:3px;--t:6.5s;--dl:-3.6s"></b><b style="left:65%;--s:3px;--t:10.4s;--dl:-3.5s"></b><b style="left:11%;--s:2px;--t:9.1s;--dl:-2.0s"></b><b style="left:45%;--s:3px;--t:11.6s;--dl:-5.1s"></b><b style="left:87%;--s:2px;--t:10.6s;--dl:-6.9s"></b><b style="left:42%;--s:3px;--t:10.2s;--dl:-7.1s"></b><b style="left:76%;--s:4px;--t:6.4s;--dl:-1.1s"></b><b style="left:36%;--s:4px;--t:10.2s;--dl:-0.8s"></b><b style="left:95%;--s:3px;--t:9.9s;--dl:-11.9s"></b><b style="left:59%;--s:3px;--t:10.3s;--dl:-10.6s"></b><b style="left:46%;--s:2px;--t:11.6s;--dl:-4.3s"></b><b style="left:80%;--s:2px;--t:9.0s;--dl:-2.6s"></b><b style="left:38%;--s:3px;--t:10.4s;--dl:-4.8s"></b><b style="left:65%;--s:2px;--t:7.0s;--dl:-4.8s"></b><b style="left:37%;--s:3px;--t:10.9s;--dl:-10.4s"></b><b style="left:37%;--s:4px;--t:11.9s;--dl:-8.2s"></b><b style="left:50%;--s:3px;--t:6.9s;--dl:-2.1s"></b><b style="left:31%;--s:3px;--t:6.1s;--dl:-10.0s"></b><b style="left:25%;--s:3px;--t:7.7s;--dl:-1.7s"></b><b style="left:70%;--s:3px;--t:9.7s;--dl:-3.8s"></b><b style="left:18%;--s:5px;--t:11.7s;--dl:-7.9s"></b></span></div>
+    <p class="h5f-k">ผลงานเด่นของน้องๆ ปี 2569</p>
+    <h2 class="h5f-t">HALL OF FAME</h2>
+    <p class="h5f-s">ทุกเกมด้านล่าง น้องๆ เขียนโปรแกรมสร้างเองกับมือ</p>
+    <div class="h5f-r"><a class="h5f-c" href="#works" data-pane="hof"><span class="h5f-im"><img src="/Hamterco/img/work-stressstrike.webp" alt="" loading="lazy"></span><b class="h5f-nm"><span>StressStrike</span></b><em>ชนะเลิศ OBEC</em></a><a class="h5f-c" href="#works" data-pane="hof"><span class="h5f-im"><img src="/Hamterco/img/work-phi-krahang.webp" alt="" loading="lazy"></span><b class="h5f-nm"><span>ผีกระหัง</span></b></a><a class="h5f-c mid" href="#works" data-pane="hof"><span class="h5f-im"><img src="/Hamterco/img/work-eugation-strike.webp" alt="" loading="lazy"></span><b class="h5f-nm"><span>Eugation Strike</span></b></a><a class="h5f-c" href="#works" data-pane="hof"><span class="h5f-im"><img src="/Hamterco/img/work-slash-speed.webp" alt="" loading="lazy"></span><b class="h5f-nm"><span>SLASH//SPEED</span></b></a><a class="h5f-c" href="#works" data-pane="hof"><span class="h5f-im"><img src="/Hamterco/img/work-escape-rolling.webp" alt="" loading="lazy"></span><b class="h5f-nm"><span>Escape Rolling</span></b></a></div>
+    <a class="h5f-go" href="#works" data-pane="hof">ดูผลงานทั้งหมด</a>
+  </section><div class="rau b" aria-hidden="true"><div id="rauB"></div></div><div class="rsd b" aria-hidden="true"><i class="sd g" style="left:37.9%;top:-17px;width:9px;height:11px;clip-path:polygon(26% 19%,88% 36%,61% 77%);--d:8.3s;--dl:-0.5s;--dx:15px;--dy:29px;--r:-150deg"></i><i class="sd g" style="left:18.6%;top:4px;width:12px;height:15px;clip-path:polygon(5% 16%,96% 45%,50% 97%);--d:8.9s;--dl:-5.8s;--dx:16px;--dy:30px;--r:74deg"></i><i class="sd k" style="left:65.1%;top:6px;width:14px;height:18px;clip-path:polygon(5% 26%,61% 15%,63% 88%);--d:6.8s;--dl:-3.4s;--dx:-7px;--dy:46px;--r:-143deg"></i><i class="sd w" style="left:16.7%;top:-1px;width:18px;height:23px;clip-path:polygon(5% 29%,94% 35%,44% 81%);--d:5.8s;--dl:-5.9s;--dx:13px;--dy:20px;--r:106deg"></i><i class="sd k" style="left:68.8%;top:3px;width:8px;height:10px;clip-path:polygon(18% 6%,71% 50%,37% 95%);--d:6.9s;--dl:-5.9s;--dx:-9px;--dy:34px;--r:-46deg"></i><i class="sd k" style="left:17.4%;top:-35px;width:16px;height:20px;clip-path:polygon(5% 25%,77% 30%,35% 100%);--d:5.5s;--dl:-2.0s;--dx:-14px;--dy:29px;--r:138deg"></i><i class="sd k" style="left:2.7%;top:-35px;width:13px;height:16px;clip-path:polygon(5% 2%,95% 17%,70% 81%);--d:5.4s;--dl:-7.9s;--dx:-1px;--dy:25px;--r:-122deg"></i><i class="sd k" style="left:16.0%;top:-35px;width:10px;height:13px;clip-path:polygon(10% 23%,64% 21%,65% 84%);--d:7.2s;--dl:-2.0s;--dx:-11px;--dy:27px;--r:-118deg"></i><i class="sd k" style="left:35.4%;top:-9px;width:12px;height:15px;clip-path:polygon(22% 14%,90% 32%,70% 82%);--d:5.6s;--dl:-0.8s;--dx:4px;--dy:22px;--r:-12deg"></i><i class="sd g" style="left:43.6%;top:-31px;width:13px;height:16px;clip-path:polygon(30% 26%,80% 24%,25% 81%);--d:5.4s;--dl:-2.3s;--dx:-8px;--dy:45px;--r:-38deg"></i><i class="sd w" style="left:96.2%;top:-40px;width:9px;height:11px;clip-path:polygon(32% 20%,99% 43%,49% 93%);--d:8.7s;--dl:-4.8s;--dx:8px;--dy:32px;--r:-43deg"></i><i class="sd g" style="left:73.1%;top:-13px;width:15px;height:19px;clip-path:polygon(9% 12%,100% 18%,55% 100%);--d:5.1s;--dl:-3.5s;--dx:-9px;--dy:24px;--r:49deg"></i><i class="sd w" style="left:94.0%;top:-15px;width:11px;height:14px;clip-path:polygon(15% 22%,86% 39%,38% 78%);--d:5.1s;--dl:-6.0s;--dx:23px;--dy:27px;--r:-58deg"></i><i class="sd w" style="left:88.1%;top:3px;width:8px;height:10px;clip-path:polygon(38% 20%,70% 12%,70% 80%);--d:7.8s;--dl:-6.9s;--dx:-21px;--dy:35px;--r:146deg"></i><i class="sd w" style="left:47.1%;top:-23px;width:12px;height:15px;clip-path:polygon(10% 21%,94% 38%,28% 84%);--d:8.1s;--dl:-1.9s;--dx:6px;--dy:34px;--r:-150deg"></i><i class="sd k" style="left:10.7%;top:-21px;width:8px;height:10px;clip-path:polygon(3% 1%,82% 49%,53% 71%);--d:9.0s;--dl:-7.7s;--dx:-8px;--dy:28px;--r:30deg"></i><i class="sd g" style="left:83.3%;top:-4px;width:7px;height:9px;clip-path:polygon(13% 0%,60% 37%,54% 82%);--d:8.2s;--dl:-5.6s;--dx:5px;--dy:22px;--r:-157deg"></i><i class="sd g" style="left:53.1%;top:6px;width:15px;height:19px;clip-path:polygon(40% 16%,70% 41%,62% 82%);--d:7.1s;--dl:-0.8s;--dx:16px;--dy:22px;--r:78deg"></i></div>
+
+  <section class="mc"><div class="mc-in">
+    <p class="mc-bg" aria-hidden="true">CONGRATULATIONS</p>
+    <div class="mc-h">
+      <p class="mc-k rv">รุ่นปี 2569 รอบ Portfolio</p>
+      <h2 class="rv">รุ่นพี่ติดมหาลัยแล้ว <span>48 คน</span></h2>
+      <div class="mc-u rv" role="group" aria-label="ดูตามมหาวิทยาลัย">
+        <button type="button" data-u="" aria-pressed="true">ทั้งหมด</button>
+        <button type="button" data-u="k" aria-pressed="false">สจล. <b>24</b></button>
+        <button type="button" data-u="m" aria-pressed="false">มหิดล <b>9</b></button>
+        <button type="button" data-u="c" aria-pressed="false">จุฬาฯ <b>8</b></button>
+        <button type="button" data-u="u" aria-pressed="false">เกษตรศาสตร์ <b>7</b></button>
+      </div>
+    </div>
+    <div class="mc-st" id="mcSt" aria-live="polite"></div>
+    <div class="mc-cap"><p id="mcC"></p></div>
+    <a class="lk" href="#works" data-pane="sen">ดูรุ่นพี่ทั้งหมด</a>
+  </div></section>
+
+  
+  <section class="hp-grid nw2"><h2 class="nw2-h">งานที่กำลังจะมา</h2><div class="wrap hg st">
+    <div class="tile t-afo rv">
+      <p class="t-k" id="afoTag">กิจกรรมถัดไป 14 พ.ย. 2569</p><h3>All for One University<br>รอบชิงชนะเลิศ</h3>
+      <div class="afo-hd"><img class="afo-logo" src="/Hamterco/img/k-afo-logo.webp" alt="All for One University" loading="lazy"><img class="afo-ic i0" src="/Hamterco/img/afo-ic0.webp" alt="" aria-hidden="true"><img class="afo-ic i1" src="/Hamterco/img/afo-ic1.webp" alt="" aria-hidden="true"><img class="afo-ic i2" src="/Hamterco/img/afo-ic2.webp" alt="" aria-hidden="true"></div>
+      <p class="t-s">จัดที่ IoTE สจล. ทีมที่ผ่านรอบออนไลน์มานำเสนอผลงานต่อกรรมการ</p>
+      <div class="cd" id="afoCd" aria-label="นับถอยหลังถึงวันแข่ง"><div><b id="cdD">0</b><span>วัน</span></div><div><b id="cdH">0</b><span>ชั่วโมง</span></div><div><b id="cdM">0</b><span>นาที</span></div></div>
+      <div class="t-b"><a class="tb1" href="https://www.hamsterhub.co/allforone" target="_blank" rel="noopener">รายละเอียดงาน</a><a class="tb2" href="#activity">กิจกรรมทั้งหมด</a></div>
+    </div>
+
+  </div><div class="mr lt"><div class="mr-l"><h3>กิจกรรมล่าสุด</h3><p>ค่าย เวิร์กชอป และงานแข่งที่จัดไปแล้ว กดรับแจ้งเตือนงานหน้าได้</p><a class="mr-btn" href="#activity">ดูกิจกรรมทั้งหมด</a><div class="mr-ar"><button type="button" class="mr-p" aria-label="เลื่อนไปทางซ้าย"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="mr-n" aria-label="เลื่อนไปทางขวา"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div><div class="mr-r" id="zqN"></div></div></section>
+  
+  <section class="end"><div class="end-in">
+    <h2 class="rv">สร้างอนาคตไปด้วยกัน<br>จากผลงานแรกของน้อง สู่สิ่งที่เปลี่ยนโลก</h2>
+    <p class="rv">บอกเราว่าน้องอยากสร้างอะไร ทีม Hamster Hub จะพาไปให้ถึง ทีละขั้น ด้วยกัน</p>
+    <div class="end-b rv"><a class="e1" href="#courses">ดูคอร์สทั้งหมด</a><a class="e2" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">คุยกับทีมทาง LINE</a></div>
+  </div></section>
+
+  <section class="ptn"><div class="wrap"><p>จัดกิจกรรมร่วมกับ</p><div class="logos"><img src="/Hamterco/img/p-it.webp" alt="คณะเทคโนโลยีสารสนเทศ สจล." loading="lazy"><img src="/Hamterco/img/p-iote.webp" alt="IoTE สจล." loading="lazy"><img src="/Hamterco/img/p-eduverse.webp" alt="EDUverse" loading="lazy"></div></div></section>
+</div>
+
+<!-- ================= COURSES ================= -->
+<div data-view="courses">
+  <div class="wrap">
+    <section class="ct-h"><h1>คอร์ส</h1><p>ทุกคอร์สจบแล้วน้องได้ผลงานจริงของตัวเอง คอร์สที่ยังไม่เปิดรอบ กดรับแจ้งเตือนได้</p></section>
+    <div class="ft ft-c"><div class="ft-hd ct-rc"><h2><svg viewBox="0 0 24 24" class="ct-star" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z" fill="currentColor"/></svg>คอร์สที่เราแนะนำ</h2><p>3 คอร์สหลักของ Hamster Hub ถ้ายังไม่รู้จะเริ่มคอร์สไหน เริ่มจากตรงนี้</p></div><div class="fx">
+    <a class="fx-main" href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">
+      <span class="fx-media"><video src="/Hamterco/img/portex-hero.mp4" poster="/Hamterco/img/portex-poster.webp" muted loop playsinline preload="none" aria-hidden="true"></video><span class="ft-live">เริ่มเรียนแล้ว 9 พ.ย.</span></span>
+      <span class="fx-body"><span class="rc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z" fill="currentColor"/></svg>คอร์สแนะนำอันดับ 1</span>
+        <small>สำหรับน้อง ม.6 ที่ยังไม่มีผลงาน</small>
+        <b class="fx-t">Port Express</b>
+        <span class="fx-d">เรียนเขียนโปรแกรมสร้างเกมของตัวเองด้วย Unity จบคอร์สได้เกมที่ทำเองไว้ใส่พอร์ต</span>
+        <span class="fx-f"><span><b>2 เดือน</b>จันทร์ พุธ ศุกร์</span><span><b>9 พ.ย. 2569</b>เริ่มเรียน</span><span><b>5,990 บาท</b>ทั้งคอร์ส</span></span>
+        <span class="fx-cta">ดูรายละเอียดคอร์ส</span>
+      </span>
+    </a>
+    <div class="fx-row">
+      <a class="fx-s" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener"><span class="fx-si"><img src="/Hamterco/img/dek69-1.webp" alt="" loading="lazy"></span><span class="fx-sb">
+          <span class="rc rc-s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z" fill="currentColor"/></svg>คอร์สแนะนำ</span><small>สำหรับน้องที่ยังไม่เคยเขียนโปรแกรม</small><b>Hamstarter</b><span class="fx-sp">เริ่มจากศูนย์ จนมีผลงานชิ้นแรกเป็น<span class="nw">ของตัวเอง</span></span>
+          <span class="fx-pr"><span class="ft-av"><img src="/Hamterco/img/dek69-1.webp" alt="" loading="lazy"></span>น้องปลื้มจากคอร์สนี้ ติดสถิติประยุกต์ฯ สจล.</span>
+          <span class="fx-go">รับแจ้งเตือนรอบถัดไป</span></span></a>
+      <a class="fx-s" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener"><span class="fx-si"><img src="/Hamterco/img/sc-lyno.webp" alt="" loading="lazy"></span><span class="fx-sb">
+          <span class="rc rc-s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z" fill="currentColor"/></svg>คอร์สแนะนำ</span><small>สำหรับน้องที่อยากมีรางวัลระดับประเทศในพอร์ต</small><b>National Project</b><span class="fx-sp">ทำโปรเจกต์ส่งเวทีระดับประเทศ เช่น NSC (การแข่งขันพัฒนาโปรแกรมคอมพิวเตอร์แห่งประเทศไทย)</span>
+          <span class="fx-pr"><span class="ft-av"><img src="/Hamterco/img/dek69-3.webp" alt="" loading="lazy"><img src="/Hamterco/img/dek69-6.webp" alt="" loading="lazy"><img src="/Hamterco/img/dek69-16.webp" alt="" loading="lazy"></span>รุ่นพี่ 5 คนจากคอร์สนี้ ติดวิศวะคอมฯ CEDT และวิทย์คอมฯ</span>
+          <span class="fx-go">รับแจ้งเตือนรอบถัดไป</span></span></a>
+    </div>
+  </div></div><h2 class="ct-all">คอร์สทั้งหมด</h2><div class="zq-g ctg" id="zqC2"></div>
+    <div class="wkz"><img class="wk" src="/Hamterco/img/n-maker.webp" alt="น้องหนู ลากเล่นได้"></div>
+    <div class="ct-fit">  <section class="fit"><div class="fit-in">
+    <div class="fit-h"><p class="fit-k">ยังไม่แน่ใจว่าเริ่มคอร์สไหนดี</p><h2>ตอบ 3 ข้อ ดูว่าคอร์สไหนเหมาะกับน้อง</h2><p>ใช้เวลาไม่ถึง 10 วินาที ข้ามได้ ไม่ต้องกรอกชื่อหรือเบอร์</p></div>
+    <form class="fit-q" id="fitQ" onsubmit="return false">
+      <fieldset><legend>1. ตอนนี้น้องเรียนชั้นไหน</legend><label><input type="radio" name="g" value="m6">ม.6</label><label><input type="radio" name="g" value="m45">ม.4–5</label><label><input type="radio" name="g" value="o">อื่นๆ</label></fieldset>
+      <fieldset><legend>2. มีผลงานไว้ยื่นพอร์ตแล้วหรือยัง</legend><label><input type="radio" name="p" value="no">ยังไม่มี</label><label><input type="radio" name="p" value="some">มีบ้าง</label><label><input type="radio" name="p" value="yes">มีพร้อมแล้ว</label></fieldset>
+      <fieldset><legend>3. น้องสนใจสายไหน</legend><label><input type="radio" name="t" value="game">เกม</label><label><input type="radio" name="t" value="app">แอป / เว็บ</label><label><input type="radio" name="t" value="iot">IoT</label><label><input type="radio" name="t" value="any">ยังไม่รู้</label></fieldset>
+    </form>
+    <div class="fit-r" id="fitR" aria-live="polite"><p>เลือกคำตอบครบ 3 ข้อ แล้วผลจะขึ้นตรงนี้</p></div>
+  </div></section></div>
+    <section class="ct-help"><h2>ไม่แน่ใจว่าคอร์สไหนเหมาะ</h2><p>บอกทีมว่าน้องเรียนชั้นไหนและอยากไปทางไหน ทีมจะแนะนำให้</p><div class="btns"><a class="btn btn-line" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">คุยกับทีมทาง LINE</a></div></section>
+  </div>
+</div>
+
+<!-- ================= ACTIVITY ================= -->
+<div data-view="activity">
+  <section class="av-h"><div class="av-in">
+    <h1>กิจกรรม</h1>
+    <p>ค่าย เวิร์กชอป และการแข่งขันที่น้องได้ลงมือสร้างของจริงในไม่กี่วัน เหมาะกับน้องที่อยากลองก่อนเรียนคอร์สยาว</p>
+  </div></section>
+  <section class="av-next"><div class="av-in">
+    <div class="avn">
+      <div class="avn-m"><img src="/Hamterco/img/afo-hero.webp" alt="All for One University"><span class="avn-tag" id="avnTag">กิจกรรมถัดไป</span></div>
+      <div class="avn-t">
+        <p class="avn-d">วันเสาร์ที่ 14 พ.ย. 2569 ที่ IoTE สจล. ลาดกระบัง</p>
+        <h2>All for One University รอบชิงชนะเลิศ</h2>
+        <p>ทีมที่ผ่านรอบออนไลน์มานำเสนอผลงานจริงต่อกรรมการ</p>
+        <p class="avn-g"><b>น้องได้</b>ขึ้นเวทีนำเสนอผลงานจริง เอาไปเล่าในพอร์ตได้</p>
+        <div class="avn-cd" id="avnCd" aria-label="นับถอยหลังถึงวันงาน"><div><b>0</b><span>วัน</span></div><div><b>0</b><span>ชั่วโมง</span></div><div><b>0</b><span>นาที</span></div></div>
+        <div class="avn-b"><a class="b1" href="https://www.hamsterhub.co/allforone" target="_blank" rel="noopener">ดูรายละเอียดงาน</a><a class="b2" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">รับแจ้งเตือนทาง LINE</a></div>
+      </div>
+    </div>
+  </div></section>
+  <section class="av-all"><div class="av-in">
+    <div class="av-top"><h2>ปี 2569 เราจัดไปแล้ว <span id="avCount">17</span> งาน</h2>
+      <div class="av-f" id="avF" role="group" aria-label="เลือกประเภทกิจกรรม"></div></div>
+    <div class="av-g" id="avG"></div>
+  </div></section>
+  <section class="av-ph"><div class="av-in">
+    <h2>บรรยากาศจริงในกิจกรรม</h2>
+    <div class="av-pg"><img src="/Hamterco/img/team-group.webp" alt="รูปรวมน้องๆ และทีม" loading="lazy"><img src="/Hamterco/img/photo-camp.webp" alt="น้องๆ ในค่าย" loading="lazy"><img src="/Hamterco/img/photo-class.webp" alt="น้องๆ ในห้องเรียน" loading="lazy"><img src="/Hamterco/img/photo-desk.webp" alt="น้องๆ ทำงานที่โต๊ะคอม" loading="lazy"><img src="/Hamterco/img/photo-group.webp" alt="น้องๆ ถ่ายรูปรวม" loading="lazy"></div>
+  </div></section>
+  <section class="av-cta"><div class="av-in">
+    <img src="/Hamterco/img/hh-mascot.webp" alt="">
+    <div><h2>อยากรู้ก่อนใครเมื่อเปิดกิจกรรมใหม่</h2><p>ทัก LINE แล้วบอกว่าน้องเรียนชั้นไหน สนใจเรื่องอะไร ทีมจะแจ้งเมื่อมีกิจกรรมที่เหมาะ</p></div>
+    <a href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">รับแจ้งเตือนทาง LINE</a>
+  </div></section>
+</div>
+
+<!-- ================= WORKS ================= -->
+<div data-view="works">
+  <div class="yt">
+    <aside class="yt-side" aria-label="หมวดผลงาน">
+      <button type="button" data-pane="shorts" aria-current="true" data-first="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 9.5v5l4-2.5z" fill="currentColor"/></svg>ดูแบบเลื่อน</button>
+      <button type="button" data-pane="hof"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Hall of Fame</button><button type="button" data-pane="hof" data-jump="arc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>ผลงานน้องๆ ทั้งหมด</button>
+      <hr><small>สำรวจ</small>
+      <button type="button" data-pane="sen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg>รุ่นพี่ที่ติดมหาลัย</button>
+      <button type="button" data-pane="nsc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H4v1a4 4 0 0 0 4 4M16 6h4v1a4 4 0 0 1-4 4M12 13v4M8 20h8"/></svg>ผลงานเข้ารอบ NSC</button>
+      <button type="button" data-pane="real"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h18v13H3z"/><path d="M8 7V4h8v3"/></svg>ผลงานที่ใช้งานจริง</button>
+    <div class="wkz sm"><img class="wk" src="/Hamterco/img/n-walker.webp" alt="น้องหนู ลากเล่นได้"></div></aside>
+    <div class="yt-main">
+      <section class="yt-pane" data-p="hof"><div class="yt-pad"><h1>Hall of Fame 2569</h1><p>10 ผลงานเด่นของปี กดที่ผลงานเพื่อดูคลิป</p>
+        <div class="chips" id="hofChips"><button type="button" data-f="all" aria-pressed="true">ทั้งหมด</button><button type="button" data-f="vid" aria-pressed="false">มีคลิปผลงาน</button><button type="button" data-f="aw" aria-pressed="false">ได้รางวัล</button></div>
+        <div class="vgrid" id="vgrid"></div>
+        <div class="arx" id="arc"><h2>ผลงานน้องๆ ทั้งหมด <span id="arcN">37</span> ชิ้น</h2><p>ผลงานที่อาจยังไม่ได้เข้า Hall of Fame แต่น้องตั้งใจทำ จากค่าย การแข่งขัน และคอร์สเรียน กดดูคลิปได้ทุกชิ้น</p>
+        <div class="chips" id="arcChips"></div><div class="arc-g" id="arcG"></div></div></div></section>
+      <section class="yt-pane on" data-p="shorts"><section class="tk" aria-label="ผลงานจริงของน้องๆ Hamster Hub">
+  <aside class="tk-index" id="tk-index" aria-label="รายการผลงานทั้งหมด">
+    <div class="tk-index-head"><h3>ทั้งหมด 10 ผลงาน</h3><button type="button" class="tk-index-x" aria-label="ปิดรายการ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/></svg></button></div>
+    <ol class="tk-index-list">
+      <li><button type="button" class="tk-index-btn" data-tk-go="1"><img src="/Hamterco/img/work-stressstrike.webp" alt="" loading="lazy" decoding="async"><span><b>StressStrike</b><small>@วิน</small></span></button></li>
+      <li><button type="button" class="tk-index-btn" data-tk-go="2"><img src="/Hamterco/img/work-beyond-the-board.webp" alt="" loading="lazy" decoding="async"><span><b>Beyond the Board</b><small>@กัปตัน</small></span></button></li>
+      <li><button type="button" class="tk-index-btn" data-tk-go="3"><img src="/Hamterco/img/work-eugation-strike.webp" alt="" loading="lazy" decoding="async"><span><b>Eugation Strike</b><small>@ไผ่</small></span></button></li>
+      <li><button type="button" class="tk-index-btn" data-tk-go="4"><img src="/Hamterco/img/work-slash-speed.webp" alt="" loading="lazy" decoding="async"><span><b>SLASH//SPEED</b><small>@ดินสอ</small></span></button></li>
+      <li><button type="button" class="tk-index-btn" data-tk-go="5"><img src="/Hamterco/img/work-micro-immersive-sim.webp" alt="" loading="lazy" decoding="async"><span><b>Micro Immersive Sim</b><small>@เพชร</small></span></button></li>
+      <li><button type="button" class="tk-index-btn" data-tk-go="6"><img src="/Hamterco/img/work-phi-krahang.webp" alt="" loading="lazy" decoding="async"><span><b>ผีกระหัง</b><small>@นนท์</small></span></button></li>
+      <li><button type="button" class="tk-index-btn" data-tk-go="7"><img src="/Hamterco/img/work-midnight-at-roadside.webp" alt="" loading="lazy" decoding="async"><span><b>Midnight at Roadside</b><small>@Windy</small></span></button></li>
+      <li><button type="button" class="tk-index-btn" data-tk-go="8"><img src="/Hamterco/img/work-hot-hot-hot.webp" alt="" loading="lazy" decoding="async"><span><b>Hot Hot Hot</b><small>@โอม</small></span></button></li>
+      <li><button type="button" class="tk-index-btn" data-tk-go="9"><img src="/Hamterco/img/work-apocalypis-building.webp" alt="" loading="lazy" decoding="async"><span><b>Apocalypis Building</b><small>@ฟาร์</small></span></button></li>
+      <li><button type="button" class="tk-index-btn" data-tk-go="10"><img src="/Hamterco/img/work-escape-rolling.webp" alt="" loading="lazy" decoding="async"><span><b>Escape Rolling</b><small>@เป๊ป</small></span></button></li>
+    </ol>
+  </aside>
+  <div class="tk-scrim" aria-hidden="true"></div>
+  <div class="tk-main">
+  <div class="tk-hud">
+    <div class="tk-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="tk-count" aria-hidden="true"><b class="tk-count-n">0</b> / 10</div>
+    <button type="button" class="tk-all" aria-controls="tk-index" aria-expanded="false"><span class="tk-all-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h3M10 6h10M4 12h3M10 12h10M4 18h3M10 18h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/></svg></span>ทั้งหมด 10 ผลงาน</button>
+  </div>
+  <div class="tk-feed" tabindex="0" aria-label="ฟีดผลงาน เลื่อนขึ้นลงหรือใช้ปุ่มลูกศรเพื่อดูทีละชิ้น">
+    <article class="tk-item tk-intro" data-kind="intro">
+      <div class="tk-mosaic" aria-hidden="true"><img src="/Hamterco/img/work-stressstrike.webp" alt="" loading="lazy" decoding="async"><img src="/Hamterco/img/work-beyond-the-board.webp" alt="" loading="lazy" decoding="async"><img src="/Hamterco/img/work-eugation-strike.webp" alt="" loading="lazy" decoding="async"><img src="/Hamterco/img/work-slash-speed.webp" alt="" loading="lazy" decoding="async"><img src="/Hamterco/img/work-micro-immersive-sim.webp" alt="" loading="lazy" decoding="async"><img src="/Hamterco/img/work-phi-krahang.webp" alt="" loading="lazy" decoding="async"><img src="/Hamterco/img/work-midnight-at-roadside.webp" alt="" loading="lazy" decoding="async"><img src="/Hamterco/img/work-hot-hot-hot.webp" alt="" loading="lazy" decoding="async"><img src="/Hamterco/img/work-apocalypis-building.webp" alt="" loading="lazy" decoding="async"><img src="/Hamterco/img/work-escape-rolling.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="tk-card">
+        <p class="tk-kicker">ผลงานปี 2569</p>
+        <h2 class="tk-h">ผลงานจริงของน้องๆ Hamster Hub</h2>
+        <p class="tk-sub">10 เกมเด่นปี 2569 คัดจาก 37 ผลงานของผู้สร้าง 80 คน</p>
+        <p class="tk-note">ทุกชิ้นบอกชื่อน้องที่สร้าง และกดดูหน้าผลงานเต็มได้</p>
+        <button type="button" class="tk-go" data-tk-next>เลื่อนดูได้เลย <span class="tk-bounce"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15M5.5 12.5L12 19l6.5-6.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span></button>
+      </div>
+    </article>
+    <article class="tk-item tk-work has-video" data-kind="work" data-i="0" data-link="https://www.hamsterhub.co/go/hall-of-fame/stressstrike" aria-label="ผลงานที่ 1 จาก 10: StressStrike">
+      <img class="tk-bg" src="/Hamterco/img/work-stressstrike.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="tk-stage">
+        <div class="tk-frame">
+          <img class="tk-shot" src="/Hamterco/img/work-stressstrike.webp" alt="ภาพจากเกม StressStrike" loading="lazy" decoding="async">
+          <video class="tk-vid" data-src="https://www.hamsterhub.co/godang/hall-of-fame/videos/stressstrike.mp4" poster="/Hamterco/img/work-stressstrike.webp" muted loop playsinline preload="none" aria-label="คลิปจากเกม StressStrike"></video>
+          <button type="button" class="tk-play" aria-label="เล่นคลิป"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button>
+        </div>
+      </div>
+      <div class="tk-shade" aria-hidden="true"></div>
+      <p class="tk-hint"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V5M5.5 11.5L12 5l6.5 6.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>เลื่อนขึ้นเพื่อดูผลงานถัดไป</p>
+      <div class="tk-cap">
+        <p class="tk-who"><b>@วิน</b></p>
+        <h3 class="tk-title">StressStrike</h3>
+        <p class="tk-desc">เกมที่น้องสร้างเองในคอร์สของ Hamster Hub</p>
+        <p class="tk-chips"><span class="tk-chip tk-year">ผลงานปี 2569</span><span class="tk-chip tk-award" title="OBEC Roboplayground Winner"><em>ได้รางวัล</em> OBEC Roboplayground</span><span class="tk-chip tk-award" title="TICTA Finalist"><em>เข้ารอบสุดท้าย</em> TICTA</span></p>
+      <a class="tk-more" href="https://www.hamsterhub.co/go/hall-of-fame/stressstrike" target="_blank" rel="noopener">ดูรายละเอียดผลงาน</a>
+      </div>
+      <div class="tk-rail">
+        <button type="button" class="tk-act tk-mute" aria-pressed="false" aria-label="เปิดเสียง"><span class="tk-ic"><span class="tk-i-off"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M16 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span class="tk-i-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span></span><small>เปิดเสียง</small></button>
+        <a class="tk-act tk-open" href="https://www.hamsterhub.co/go/hall-of-fame/stressstrike" target="_blank" rel="noopener" aria-label="ดูหน้าผลงาน StressStrike แบบเต็ม (เปิดแท็บใหม่)"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><small>ดูเต็ม</small></a>
+        <button type="button" class="tk-act tk-share" aria-label="คัดลอกลิงก์ผลงาน StressStrike"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4.4l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2M14 10a4.5 4.5 0 0 0-6.4-.4l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><small>แชร์</small></button>
+        <button type="button" class="tk-act tk-like" aria-pressed="false" aria-label="ชอบผลงานนี้"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.7 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.2 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z" fill="currentColor"/></svg></span><small>ชอบ</small></button>
+      </div>
+    </article>
+    <article class="tk-item tk-work" data-kind="work" data-i="1" data-link="https://www.hamsterhub.co/go/hall-of-fame/beyond-the-board" aria-label="ผลงานที่ 2 จาก 10: Beyond the Board">
+      <img class="tk-bg" src="/Hamterco/img/work-beyond-the-board.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="tk-stage">
+        <div class="tk-frame">
+          <img class="tk-shot" src="/Hamterco/img/work-beyond-the-board.webp" alt="ภาพจากเกม Beyond the Board" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="tk-shade" aria-hidden="true"></div>
+      <div class="tk-cap">
+        <p class="tk-who"><b>@กัปตัน</b></p>
+        <h3 class="tk-title">Beyond the Board</h3>
+        <p class="tk-desc">เกมที่น้องสร้างเองในคอร์สของ Hamster Hub</p>
+        <p class="tk-chips"><span class="tk-chip tk-year">ผลงานปี 2569</span><span class="tk-chip tk-kind">ภาพจากในเกม</span></p>
+      <a class="tk-more" href="https://www.hamsterhub.co/go/hall-of-fame/beyond-the-board" target="_blank" rel="noopener">ดูรายละเอียดผลงาน</a>
+      </div>
+      <div class="tk-rail">
+        <a class="tk-act tk-open" href="https://www.hamsterhub.co/go/hall-of-fame/beyond-the-board" target="_blank" rel="noopener" aria-label="ดูหน้าผลงาน Beyond the Board แบบเต็ม (เปิดแท็บใหม่)"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><small>ดูเต็ม</small></a>
+        <button type="button" class="tk-act tk-share" aria-label="คัดลอกลิงก์ผลงาน Beyond the Board"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4.4l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2M14 10a4.5 4.5 0 0 0-6.4-.4l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><small>แชร์</small></button>
+        <button type="button" class="tk-act tk-like" aria-pressed="false" aria-label="ชอบผลงานนี้"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.7 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.2 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z" fill="currentColor"/></svg></span><small>ชอบ</small></button>
+      </div>
+    </article>
+    <article class="tk-item tk-work has-video" data-kind="work" data-i="2" data-link="https://www.hamsterhub.co/go/hall-of-fame/eugation-strike" aria-label="ผลงานที่ 3 จาก 10: Eugation Strike">
+      <img class="tk-bg" src="/Hamterco/img/work-eugation-strike.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="tk-stage">
+        <div class="tk-frame">
+          <img class="tk-shot" src="/Hamterco/img/work-eugation-strike.webp" alt="ภาพจากเกม Eugation Strike" loading="lazy" decoding="async">
+          <video class="tk-vid" data-src="https://www.hamsterhub.co/godang/hall-of-fame/videos/eugation-strike.mp4" poster="/Hamterco/img/work-eugation-strike.webp" muted loop playsinline preload="none" aria-label="คลิปจากเกม Eugation Strike"></video>
+          <button type="button" class="tk-play" aria-label="เล่นคลิป"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button>
+        </div>
+      </div>
+      <div class="tk-shade" aria-hidden="true"></div>
+      <div class="tk-cap">
+        <p class="tk-who"><b>@ไผ่</b></p>
+        <h3 class="tk-title">Eugation Strike</h3>
+        <p class="tk-desc">เกมที่น้องสร้างเองในคอร์สของ Hamster Hub</p>
+        <p class="tk-chips"><span class="tk-chip tk-year">ผลงานปี 2569</span></p>
+      <a class="tk-more" href="https://www.hamsterhub.co/go/hall-of-fame/eugation-strike" target="_blank" rel="noopener">ดูรายละเอียดผลงาน</a>
+      </div>
+      <div class="tk-rail">
+        <button type="button" class="tk-act tk-mute" aria-pressed="false" aria-label="เปิดเสียง"><span class="tk-ic"><span class="tk-i-off"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M16 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span class="tk-i-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span></span><small>เปิดเสียง</small></button>
+        <a class="tk-act tk-open" href="https://www.hamsterhub.co/go/hall-of-fame/eugation-strike" target="_blank" rel="noopener" aria-label="ดูหน้าผลงาน Eugation Strike แบบเต็ม (เปิดแท็บใหม่)"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><small>ดูเต็ม</small></a>
+        <button type="button" class="tk-act tk-share" aria-label="คัดลอกลิงก์ผลงาน Eugation Strike"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4.4l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2M14 10a4.5 4.5 0 0 0-6.4-.4l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><small>แชร์</small></button>
+        <button type="button" class="tk-act tk-like" aria-pressed="false" aria-label="ชอบผลงานนี้"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.7 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.2 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z" fill="currentColor"/></svg></span><small>ชอบ</small></button>
+      </div>
+    </article>
+    <article class="tk-item tk-work has-video" data-kind="work" data-i="3" data-link="https://www.hamsterhub.co/go/hall-of-fame/slash-speed" aria-label="ผลงานที่ 4 จาก 10: SLASH//SPEED">
+      <img class="tk-bg" src="/Hamterco/img/work-slash-speed.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="tk-stage">
+        <div class="tk-frame">
+          <img class="tk-shot" src="/Hamterco/img/work-slash-speed.webp" alt="ภาพจากเกม SLASH//SPEED" loading="lazy" decoding="async">
+          <video class="tk-vid" data-src="https://www.hamsterhub.co/godang/hall-of-fame/videos/slash-speed.mp4" poster="/Hamterco/img/work-slash-speed.webp" muted loop playsinline preload="none" aria-label="คลิปจากเกม SLASH//SPEED"></video>
+          <button type="button" class="tk-play" aria-label="เล่นคลิป"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button>
+        </div>
+      </div>
+      <div class="tk-shade" aria-hidden="true"></div>
+      <div class="tk-cap">
+        <p class="tk-who"><b>@ดินสอ</b></p>
+        <h3 class="tk-title">SLASH//SPEED</h3>
+        <p class="tk-desc">เกมที่น้องสร้างเองในคอร์สของ Hamster Hub</p>
+        <p class="tk-chips"><span class="tk-chip tk-year">ผลงานปี 2569</span></p>
+      <a class="tk-more" href="https://www.hamsterhub.co/go/hall-of-fame/slash-speed" target="_blank" rel="noopener">ดูรายละเอียดผลงาน</a>
+      </div>
+      <div class="tk-rail">
+        <button type="button" class="tk-act tk-mute" aria-pressed="false" aria-label="เปิดเสียง"><span class="tk-ic"><span class="tk-i-off"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M16 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span class="tk-i-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span></span><small>เปิดเสียง</small></button>
+        <a class="tk-act tk-open" href="https://www.hamsterhub.co/go/hall-of-fame/slash-speed" target="_blank" rel="noopener" aria-label="ดูหน้าผลงาน SLASH//SPEED แบบเต็ม (เปิดแท็บใหม่)"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><small>ดูเต็ม</small></a>
+        <button type="button" class="tk-act tk-share" aria-label="คัดลอกลิงก์ผลงาน SLASH//SPEED"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4.4l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2M14 10a4.5 4.5 0 0 0-6.4-.4l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><small>แชร์</small></button>
+        <button type="button" class="tk-act tk-like" aria-pressed="false" aria-label="ชอบผลงานนี้"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.7 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.2 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z" fill="currentColor"/></svg></span><small>ชอบ</small></button>
+      </div>
+    </article>
+    <article class="tk-item tk-work" data-kind="work" data-i="4" data-link="https://www.hamsterhub.co/go/hall-of-fame/micro-immersive-sim" aria-label="ผลงานที่ 5 จาก 10: Micro Immersive Sim">
+      <img class="tk-bg" src="/Hamterco/img/work-micro-immersive-sim.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="tk-stage">
+        <div class="tk-frame">
+          <img class="tk-shot" src="/Hamterco/img/work-micro-immersive-sim.webp" alt="ภาพจากเกม Micro Immersive Sim" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="tk-shade" aria-hidden="true"></div>
+      <div class="tk-cap">
+        <p class="tk-who"><b>@เพชร</b></p>
+        <h3 class="tk-title">Micro Immersive Sim</h3>
+        <p class="tk-desc">เกมที่น้องสร้างเองในคอร์สของ Hamster Hub</p>
+        <p class="tk-chips"><span class="tk-chip tk-year">ผลงานปี 2569</span><span class="tk-chip tk-kind">ภาพจากในเกม</span></p>
+      <a class="tk-more" href="https://www.hamsterhub.co/go/hall-of-fame/micro-immersive-sim" target="_blank" rel="noopener">ดูรายละเอียดผลงาน</a>
+      </div>
+      <div class="tk-rail">
+        <a class="tk-act tk-open" href="https://www.hamsterhub.co/go/hall-of-fame/micro-immersive-sim" target="_blank" rel="noopener" aria-label="ดูหน้าผลงาน Micro Immersive Sim แบบเต็ม (เปิดแท็บใหม่)"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><small>ดูเต็ม</small></a>
+        <button type="button" class="tk-act tk-share" aria-label="คัดลอกลิงก์ผลงาน Micro Immersive Sim"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4.4l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2M14 10a4.5 4.5 0 0 0-6.4-.4l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><small>แชร์</small></button>
+        <button type="button" class="tk-act tk-like" aria-pressed="false" aria-label="ชอบผลงานนี้"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.7 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.2 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z" fill="currentColor"/></svg></span><small>ชอบ</small></button>
+      </div>
+    </article>
+    <article class="tk-item tk-work" data-kind="work" data-i="5" data-link="https://www.hamsterhub.co/go/hall-of-fame/phi-krahang" aria-label="ผลงานที่ 6 จาก 10: ผีกระหัง">
+      <img class="tk-bg" src="/Hamterco/img/work-phi-krahang.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="tk-stage">
+        <div class="tk-frame">
+          <img class="tk-shot" src="/Hamterco/img/work-phi-krahang.webp" alt="ภาพจากเกม ผีกระหัง" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="tk-shade" aria-hidden="true"></div>
+      <div class="tk-cap">
+        <p class="tk-who"><b>@นนท์</b></p>
+        <h3 class="tk-title">ผีกระหัง</h3>
+        <p class="tk-desc">เกมที่หยิบ “ผีกระหัง” จากเรื่องเล่าผีไทยมาเป็นตัวเรื่อง</p>
+        <p class="tk-chips"><span class="tk-chip tk-year">ผลงานปี 2569</span><span class="tk-chip tk-kind">ภาพจากในเกม</span></p>
+      <a class="tk-more" href="https://www.hamsterhub.co/go/hall-of-fame/phi-krahang" target="_blank" rel="noopener">ดูรายละเอียดผลงาน</a>
+      </div>
+      <div class="tk-rail">
+        <a class="tk-act tk-open" href="https://www.hamsterhub.co/go/hall-of-fame/phi-krahang" target="_blank" rel="noopener" aria-label="ดูหน้าผลงาน ผีกระหัง แบบเต็ม (เปิดแท็บใหม่)"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><small>ดูเต็ม</small></a>
+        <button type="button" class="tk-act tk-share" aria-label="คัดลอกลิงก์ผลงาน ผีกระหัง"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4.4l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2M14 10a4.5 4.5 0 0 0-6.4-.4l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><small>แชร์</small></button>
+        <button type="button" class="tk-act tk-like" aria-pressed="false" aria-label="ชอบผลงานนี้"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.7 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.2 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z" fill="currentColor"/></svg></span><small>ชอบ</small></button>
+      </div>
+    </article>
+    <article class="tk-item tk-work" data-kind="work" data-i="6" data-link="https://www.hamsterhub.co/go/hall-of-fame/midnight-at-roadside" aria-label="ผลงานที่ 7 จาก 10: Midnight at Roadside">
+      <img class="tk-bg" src="/Hamterco/img/work-midnight-at-roadside.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="tk-stage">
+        <div class="tk-frame">
+          <img class="tk-shot" src="/Hamterco/img/work-midnight-at-roadside.webp" alt="ภาพจากเกม Midnight at Roadside" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="tk-shade" aria-hidden="true"></div>
+      <div class="tk-cap">
+        <p class="tk-who"><b>@Windy</b></p>
+        <h3 class="tk-title">Midnight at Roadside</h3>
+        <p class="tk-desc">เกมที่น้องสร้างเองในคอร์สของ Hamster Hub</p>
+        <p class="tk-chips"><span class="tk-chip tk-year">ผลงานปี 2569</span><span class="tk-chip tk-kind">ภาพจากในเกม</span></p>
+      <a class="tk-more" href="https://www.hamsterhub.co/go/hall-of-fame/midnight-at-roadside" target="_blank" rel="noopener">ดูรายละเอียดผลงาน</a>
+      </div>
+      <div class="tk-rail">
+        <a class="tk-act tk-open" href="https://www.hamsterhub.co/go/hall-of-fame/midnight-at-roadside" target="_blank" rel="noopener" aria-label="ดูหน้าผลงาน Midnight at Roadside แบบเต็ม (เปิดแท็บใหม่)"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><small>ดูเต็ม</small></a>
+        <button type="button" class="tk-act tk-share" aria-label="คัดลอกลิงก์ผลงาน Midnight at Roadside"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4.4l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2M14 10a4.5 4.5 0 0 0-6.4-.4l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><small>แชร์</small></button>
+        <button type="button" class="tk-act tk-like" aria-pressed="false" aria-label="ชอบผลงานนี้"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.7 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.2 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z" fill="currentColor"/></svg></span><small>ชอบ</small></button>
+      </div>
+    </article>
+    <article class="tk-item tk-work" data-kind="work" data-i="7" data-link="https://www.hamsterhub.co/go/hall-of-fame/hot-hot-hot" aria-label="ผลงานที่ 8 จาก 10: Hot Hot Hot">
+      <img class="tk-bg" src="/Hamterco/img/work-hot-hot-hot.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="tk-stage">
+        <div class="tk-frame">
+          <img class="tk-shot" src="/Hamterco/img/work-hot-hot-hot.webp" alt="ภาพจากเกม Hot Hot Hot" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="tk-shade" aria-hidden="true"></div>
+      <div class="tk-cap">
+        <p class="tk-who"><b>@โอม</b></p>
+        <h3 class="tk-title">Hot Hot Hot</h3>
+        <p class="tk-desc">เกมที่น้องสร้างเองในคอร์สของ Hamster Hub</p>
+        <p class="tk-chips"><span class="tk-chip tk-year">ผลงานปี 2569</span><span class="tk-chip tk-kind">ภาพจากในเกม</span></p>
+      <a class="tk-more" href="https://www.hamsterhub.co/go/hall-of-fame/hot-hot-hot" target="_blank" rel="noopener">ดูรายละเอียดผลงาน</a>
+      </div>
+      <div class="tk-rail">
+        <a class="tk-act tk-open" href="https://www.hamsterhub.co/go/hall-of-fame/hot-hot-hot" target="_blank" rel="noopener" aria-label="ดูหน้าผลงาน Hot Hot Hot แบบเต็ม (เปิดแท็บใหม่)"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><small>ดูเต็ม</small></a>
+        <button type="button" class="tk-act tk-share" aria-label="คัดลอกลิงก์ผลงาน Hot Hot Hot"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4.4l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2M14 10a4.5 4.5 0 0 0-6.4-.4l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><small>แชร์</small></button>
+        <button type="button" class="tk-act tk-like" aria-pressed="false" aria-label="ชอบผลงานนี้"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.7 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.2 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z" fill="currentColor"/></svg></span><small>ชอบ</small></button>
+      </div>
+    </article>
+    <article class="tk-item tk-work has-video" data-kind="work" data-i="8" data-link="https://www.hamsterhub.co/go/hall-of-fame/apocalypis-building" aria-label="ผลงานที่ 9 จาก 10: Apocalypis Building">
+      <img class="tk-bg" src="/Hamterco/img/work-apocalypis-building.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="tk-stage">
+        <div class="tk-frame">
+          <img class="tk-shot" src="/Hamterco/img/work-apocalypis-building.webp" alt="ภาพจากเกม Apocalypis Building" loading="lazy" decoding="async">
+          <video class="tk-vid" data-src="https://www.hamsterhub.co/godang/hall-of-fame/videos/apocalypis-building.mp4" poster="/Hamterco/img/work-apocalypis-building.webp" muted loop playsinline preload="none" aria-label="คลิปจากเกม Apocalypis Building"></video>
+          <button type="button" class="tk-play" aria-label="เล่นคลิป"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button>
+        </div>
+      </div>
+      <div class="tk-shade" aria-hidden="true"></div>
+      <div class="tk-cap">
+        <p class="tk-who"><b>@ฟาร์</b></p>
+        <h3 class="tk-title">Apocalypis Building</h3>
+        <p class="tk-desc">เกมที่น้องสร้างเองในคอร์สของ Hamster Hub</p>
+        <p class="tk-chips"><span class="tk-chip tk-year">ผลงานปี 2569</span></p>
+      <a class="tk-more" href="https://www.hamsterhub.co/go/hall-of-fame/apocalypis-building" target="_blank" rel="noopener">ดูรายละเอียดผลงาน</a>
+      </div>
+      <div class="tk-rail">
+        <button type="button" class="tk-act tk-mute" aria-pressed="false" aria-label="เปิดเสียง"><span class="tk-ic"><span class="tk-i-off"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M16 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span class="tk-i-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span></span><small>เปิดเสียง</small></button>
+        <a class="tk-act tk-open" href="https://www.hamsterhub.co/go/hall-of-fame/apocalypis-building" target="_blank" rel="noopener" aria-label="ดูหน้าผลงาน Apocalypis Building แบบเต็ม (เปิดแท็บใหม่)"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><small>ดูเต็ม</small></a>
+        <button type="button" class="tk-act tk-share" aria-label="คัดลอกลิงก์ผลงาน Apocalypis Building"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4.4l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2M14 10a4.5 4.5 0 0 0-6.4-.4l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><small>แชร์</small></button>
+        <button type="button" class="tk-act tk-like" aria-pressed="false" aria-label="ชอบผลงานนี้"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.7 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.2 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z" fill="currentColor"/></svg></span><small>ชอบ</small></button>
+      </div>
+    </article>
+    <article class="tk-item tk-work has-video" data-kind="work" data-i="9" data-link="https://www.hamsterhub.co/go/hall-of-fame/escape-rolling" aria-label="ผลงานที่ 10 จาก 10: Escape Rolling">
+      <img class="tk-bg" src="/Hamterco/img/work-escape-rolling.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="tk-stage">
+        <div class="tk-frame">
+          <img class="tk-shot" src="/Hamterco/img/work-escape-rolling.webp" alt="ภาพจากเกม Escape Rolling" loading="lazy" decoding="async">
+          <video class="tk-vid" data-src="https://www.hamsterhub.co/godang/hall-of-fame/videos/escape-rolling.mp4" poster="/Hamterco/img/work-escape-rolling.webp" muted loop playsinline preload="none" aria-label="คลิปจากเกม Escape Rolling"></video>
+          <button type="button" class="tk-play" aria-label="เล่นคลิป"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button>
+        </div>
+      </div>
+      <div class="tk-shade" aria-hidden="true"></div>
+      <div class="tk-cap">
+        <p class="tk-who"><b>@เป๊ป</b></p>
+        <h3 class="tk-title">Escape Rolling</h3>
+        <p class="tk-desc">เกมที่น้องสร้างเองในคอร์สของ Hamster Hub</p>
+        <p class="tk-chips"><span class="tk-chip tk-year">ผลงานปี 2569</span></p>
+      <a class="tk-more" href="https://www.hamsterhub.co/go/hall-of-fame/escape-rolling" target="_blank" rel="noopener">ดูรายละเอียดผลงาน</a>
+      </div>
+      <div class="tk-rail">
+        <button type="button" class="tk-act tk-mute" aria-pressed="false" aria-label="เปิดเสียง"><span class="tk-ic"><span class="tk-i-off"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M16 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><span class="tk-i-on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span></span><small>เปิดเสียง</small></button>
+        <a class="tk-act tk-open" href="https://www.hamsterhub.co/go/hall-of-fame/escape-rolling" target="_blank" rel="noopener" aria-label="ดูหน้าผลงาน Escape Rolling แบบเต็ม (เปิดแท็บใหม่)"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><small>ดูเต็ม</small></a>
+        <button type="button" class="tk-act tk-share" aria-label="คัดลอกลิงก์ผลงาน Escape Rolling"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4.4l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2M14 10a4.5 4.5 0 0 0-6.4-.4l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span><small>แชร์</small></button>
+        <button type="button" class="tk-act tk-like" aria-pressed="false" aria-label="ชอบผลงานนี้"><span class="tk-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.7 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.2 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z" fill="currentColor"/></svg></span><small>ชอบ</small></button>
+      </div>
+    </article>
+    <article class="tk-item tk-outro" data-kind="outro">
+      <div class="tk-card">
+        <p class="tk-kicker">ยังมีอีก</p>
+        <h2 class="tk-h">12 ผลงานที่เข้ารอบชิงชนะเลิศ NSC</h2>
+        <p class="tk-sub">NSC คือการแข่งขันพัฒนาโปรแกรมคอมพิวเตอร์แห่งประเทศไทย (National Software Contest)</p>
+        <ol class="tk-list"><li>REVOICE</li><li>Mr. City</li><li>Whiskered Odyssey</li><li>Noar</li><li>Veggie Dash</li><li>Time Keeper</li><li>Ayutthaya</li><li>Shadow Maze</li><li>Plant Create World</li><li>Salmon Crisis</li><li>Z.O.O.</li><li>LYNO</li></ol>
+        <div class="tk-btns">
+          <a class="tk-btn tk-btn-main" href="#about">รู้จัก Hamster Hub</a>
+          <button type="button" class="tk-btn" data-tk-top><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V5M5.5 11.5L12 5l6.5 6.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg> ดูตั้งแต่ชิ้นแรก</button>
+        </div>
+      </div>
+    </article>
+  </div>
+  <div class="tk-nav">
+    <button type="button" class="tk-arrow tk-prev" data-tk-step="-1" aria-label="ผลงานก่อนหน้า"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V5M5.5 11.5L12 5l6.5 6.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></button>
+    <button type="button" class="tk-arrow tk-next" data-tk-step="1" aria-label="ผลงานถัดไป"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15M5.5 12.5L12 19l6.5-6.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></button>
+  </div>
+  <div class="tk-toast" role="status" aria-live="polite"></div>
+  </div>
+</section>
+</section>
+      <section class="yt-pane" data-p="sen"><div class="yt-pad"><h1>รุ่นพี่ DEK69 ที่ติดมหาลัย</h1><p>ตัวอย่างรุ่นพี่ 17 คน จากที่ติดทั้งหมด 48 คน</p><div class="chips" id="senChips"></div><div class="sgrid" id="sgrid"></div></div></section>
+      <section class="yt-pane" data-p="nsc"><div class="yt-pad"><h1>ผลงานเข้ารอบชิง NSC</h1><p>NSC คือการแข่งขันพัฒนาโปรแกรมคอมพิวเตอร์แห่งประเทศไทย ผลงานของน้องๆ เข้ารอบชิง 12 ผลงาน</p>
+        <div class="nsc"><div>REVOICE</div><div>Mr. City</div><div>Whiskered Odyssey</div><div>Noar</div><div>Veggie Dash</div><div>Time Keeper</div><div>Ayutthaya</div><div>Shadow Maze</div><div>Plant Create World</div><div>Salmon Crisis</div><div>Z.O.O.</div><div>LYNO</div></div>
+        <div class="nsc-img"><img src="/Hamterco/img/s-showcase1.webp" alt="Revoice และ Lyno" loading="lazy"><img src="/Hamterco/img/s-showcase2.webp" alt="Time Keeper และ Z.O.O" loading="lazy"></div></div></section>
+      <section class="yt-pane" data-p="real"><div class="yt-pad"><h1>ผลงานที่ใช้งานจริง</h1><p>ผลงานเหล่านี้มีคนใช้จริง หรือมีคนซื้อไปแล้ว</p>
+        <div class="real"><div><b>Mr. City</b><p>เกมเดินเที่ยวสงขลา ขายให้สวนสัตว์สงขลาแล้ว</p></div><div><b>PHC Map</b><p>เกมสอนเขียน Python ใช้สอนเด็กไปแล้วกว่า 1,000 คน</p></div><div><b>Hamster Quest</b><p>เว็บเรียนที่เล่นเหมือนเกม กำลังเตรียมใช้กับมหาวิทยาลัย</p></div><div><b>โปรเจกต์สวนลุม</b><p>เปลี่ยนการออกกำลังกายตอนเย็นให้เป็นเกม</p></div></div></div></section>
+    </div>
+  </div>
+</div>
+<dialog class="arc-dlg" id="arcDlg" aria-label="คลิปผลงาน"><div class="arc-dv"><video controls playsinline preload="none"></video></div><div class="arc-dt"><b></b><p></p><a target="_blank" rel="noopener">ดูหน้าผลงานบน hamsterhub.co</a></div><button type="button" class="oc-x" aria-label="ปิด">&times;</button></dialog>
+
+<!-- ================= ABOUT ================= -->
+<div data-view="about">
+  <section class="ab-win"><div class="wrap"><p class="aw-k">ผลงานของน้องๆ Hamster Hub</p>
+    <div class="aw-g">
+      <figure><img src="/Hamterco/img/dek69-8.webp" alt=""><figcaption><b>48 คน</b><span>รุ่นพี่ DEK69 ติดมหาลัยรอบ Portfolio</span></figcaption></figure>
+      <figure><img src="/Hamterco/img/work-stressstrike.webp" alt=""><figcaption><b>ชนะเลิศ</b><span>OBEC Roboplayground ด้วยเกม StressStrike</span></figcaption></figure>
+      <figure><img src="/Hamterco/img/w-revoice.webp" alt="ReVoice ผลงานของน้องไอดิน"><figcaption><b>12 ผลงาน</b><span>เข้ารอบชิงชนะเลิศ NSC การแข่งขันพัฒนาโปรแกรมระดับประเทศ</span></figcaption></figure>
+      <figure class="nopic"><figcaption><b>ขายได้จริง</b><span>เกม Mr. City ขายให้สวนสัตว์สงขลา</span></figcaption></figure>
+    </div></div></section>
+  <section class="ab-h"><div class="wrap"><h1 class="rv">Hamster Hub คือทีม<br>ที่พาน้องมัธยมสร้างผลงานจริง</h1>
+    <p class="rv">ผลงานที่มีคนใช้จริง ขายได้จริง และพาน้องเข้ามหาลัยที่ตั้งใจไว้ เราสอน พาสร้าง และพาลงเวทีจริง ตั้งแต่เกม แอป จนถึง IoT</p></div>
+    <div class="wrap"><div class="ab-bento rv"><img class="b1" src="/Hamterco/img/team-group.webp" alt="น้องๆ Hamster Hub ในงานโชว์ผลงาน" loading="lazy"><img class="b2" src="/Hamterco/img/photo-group.webp" alt="น้องๆ ถ่ายรูปรวม" loading="lazy"><img class="b3" src="/Hamterco/img/photo-class.webp" alt="ห้องเรียน" loading="lazy"><img class="b4" src="/Hamterco/img/photo-desk.webp" alt="น้องกำลังทำผลงาน" loading="lazy"><img class="b5" src="/Hamterco/img/s-showcase1.webp" alt="ผลงานที่นำไปโชว์" loading="lazy"></div></div></section>
+  <section class="ab-do2"><div class="wrap"><h2 class="sec-h">เราทำอะไร</h2>
+    <a class="ad-big" href="#about-real"><span class="ad-im"><img src="/Hamterco/img/w-quest-town.webp" alt="" loading="lazy"><img src="/Hamterco/img/w-hmap.webp" alt="" loading="lazy"></span><span class="ad-tx"><small>สิ่งที่เราภูมิใจที่สุด</small><b>พาน้องสร้าง<span class="nw">สตาร์ทอัพ</span></b><span>เปลี่ยนไอเดียของน้องให้เป็นสินค้าจริงใน 4 ขั้น ตั้งแต่คิดไอเดีย ทำผลงานกับเพื่อนๆ พัฒนาเชิงลึก จนเป็นสตาร์ทอัพที่มีรายได้</span><ol class="oc-st"><li>คิดไอเดีย</li><li>ทำผลงาน</li><li>พัฒนาเชิงลึก</li><li>เป็นสตาร์ทอัพ</li></ol></span></a>
+    <div class="ad-two">
+      <a class="ad-s" href="#works" data-pane="sen"><span class="ad-si"><img src="/Hamterco/img/dek69-6.webp" alt="" loading="lazy"><img src="/Hamterco/img/dek69-3.webp" alt="" loading="lazy"><img src="/Hamterco/img/dek69-13.webp" alt="" loading="lazy"></span><b>พาเข้ามหาวิทยาลัย</b><span>คอร์สทำพอร์ต และซ้อมนำเสนอกับอาจารย์มหาวิทยาลัย ปี 2569 รุ่นพี่ติดรอบ Portfolio 48 คน</span><em>ดูรุ่นพี่ที่ติดแล้ว</em></a>
+      <a class="ad-s" href="#activity"><span class="ad-si one"><img src="/Hamterco/img/sc-revoice.webp" alt="" loading="lazy"></span><b>พาลงเวทีจริง</b><span>ค่าย Game Jam และการแข่งขันร่วมกับ สจล. 12 ผลงานเข้ารอบชิง NSC (การแข่งขันพัฒนาโปรแกรมคอมพิวเตอร์แห่งประเทศไทย)</span><em>ดูกิจกรรม</em></a>
+    </div></div></section>
+  <section class="ab-use" id="about-real"><div class="wrap"><h2 class="sec-h">ผลงานของน้องที่มีคนใช้จริง</h2><p class="ab-use-s">ไม่ใช่แค่งานส่งครู แต่ละชิ้นมีคนใช้งานจริงแบบนี้</p>
+    <article class="us"><div class="us-m us-city" aria-hidden="true"><i class="p1"></i><i class="p2"></i><i class="p3"></i><b>Mr. City</b><span>สงขลา</span></div><div class="us-t"><h3>Mr. City</h3><p>เกมเดินเที่ยวสงขลา แบบเดียวกับ Pokémon GO</p>
+      <dl><div><dt>ใครใช้</dt><dd>สวนสัตว์สงขลา</dd></div><div><dt>ใช้ยังไง</dt><dd>ให้นักท่องเที่ยวเดินไปตามที่เที่ยวจริงในสงขลา แล้วเล่นเกมที่จุดนั้น</dd></div><div><dt>ผลลัพธ์</dt><dd class="ok">ขายได้แล้ว</dd></div></dl></div></article>
+    <article class="us rv2"><div class="us-m"><video src="/Hamterco/img/w-hmap.mp4" poster="/Hamterco/img/w-hmap.webp" muted loop playsinline autoplay preload="none" aria-label="คลิปเกมสอนเขียน Python"></video></div><div class="us-t"><h3>PHC Map</h3><p>เกมสอนเขียนโปรแกรม Python</p>
+      <dl><div><dt>ใครใช้</dt><dd>เด็กที่เริ่มเรียนเขียนโปรแกรม</dd></div><div><dt>ใช้ยังไง</dt><dd>เล่นผ่านด่านบนแผนที่ แต่ละด่านคือบทเรียน Python</dd></div><div><dt>ผลลัพธ์</dt><dd class="ok">ใช้สอนเด็กไปแล้วกว่า 1,000 คน</dd></div></dl></div></article>
+    <article class="us"><div class="us-m"><img src="/Hamterco/img/w-quest-town.webp" alt="ภาพจากเว็บ Hamster Quest" loading="lazy"></div><div class="us-t"><h3>Hamster Quest</h3><p>เว็บเรียนที่เล่นเหมือนเกม</p>
+      <dl><div><dt>ใครใช้</dt><dd>น้องที่เรียนกับ Hamster Hub และมหาวิทยาลัยที่กำลังเตรียมนำไปใช้</dd></div><div><dt>ใช้ยังไง</dt><dd>ทำภารกิจ เก็บรางวัล และเรียนทีละขั้นเหมือนเล่นเกม</dd></div><div><dt>ผลลัพธ์</dt><dd class="ok">กำลังเตรียมใช้กับมหาวิทยาลัย</dd></div></dl></div></article>
+  </div></section>
+  <section class="ab-res"><div class="wrap"><h2 class="sec-h rv">2025 Success Story</h2><img class="rv" src="/Hamterco/img/s-success.webp" alt="สรุปผลลัพธ์ปี 2025 ของ Hamster Hub" loading="lazy"></div></section>
+  <section class="ptn"><div class="wrap"><p>จัดกิจกรรมร่วมกับ</p><div class="logos"><img src="/Hamterco/img/p-it.webp" alt="คณะเทคโนโลยีสารสนเทศ สจล." loading="lazy"><img src="/Hamterco/img/p-iote.webp" alt="IoTE สจล." loading="lazy"><img src="/Hamterco/img/p-eduverse.webp" alt="EDUverse" loading="lazy"></div></div></section>
+  <section class="ab-ct"><div class="wrap"><h2>คุยกับทีม Hamster Hub</h2><p>ถามเรื่องคอร์ส กิจกรรม หรือการร่วมงานได้ทาง LINE</p>
+    <div class="btns"><a class="btn btn-line" href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">LINE @smart-school</a><button type="button" class="cprow" data-copy="@smart-school">คัดลอก LINE ID <span></span></button></div>
+    <div class="btns" style="margin-top:14px"><a class="more" style="color:#FDF0DD" href="https://www.facebook.com/HamsterHubThailand" target="_blank" rel="noopener">Facebook</a><a class="more" style="color:#FDF0DD" href="https://www.instagram.com/hamsterhub_ig/" target="_blank" rel="noopener">Instagram</a></div></div></section>
+</div>
+</main>
+
+<footer><div class="wrap">
+  <div class="fcols">
+    <div><h4>คอร์ส</h4><ul><li><a href="https://www.hamsterhub.co/portex-site/index.html" target="_blank" rel="noopener">Port Express</a></li><li><a href="#courses">คอร์สทั้งหมด</a></li></ul></div>
+    <div><h4>กิจกรรม</h4><ul><li><a href="#activity">กิจกรรมทั้งหมด</a></li><li><a href="https://www.hamsterhub.co/allforone" target="_blank" rel="noopener">All for One University</a></li></ul></div>
+    <div><h4>ผลงาน</h4><ul><li><a href="#works">Hall of Fame</a></li><li><a href="#works" data-pane="sen">รุ่นพี่ DEK69</a></li></ul></div>
+    <div><h4>ติดต่อ</h4><ul><li><a href="https://page.line.me/jkm4247u?openQrModal=true" target="_blank" rel="noopener">LINE @smart-school</a></li><li><a href="https://www.facebook.com/HamsterHubThailand" target="_blank" rel="noopener">Facebook</a></li><li><a href="https://www.instagram.com/hamsterhub_ig/" target="_blank" rel="noopener">Instagram</a></li></ul></div>
+  </div>
+  <p class="flegal">© 2569 Hamster Hub ตัวเลขบนเว็บนี้อ้างอิงจากรายงาน 2025 Success Story</p>
+</div></footer>
+
+
+
+
+
+
+
+<!-- layer: 00-fixes.html -->
+
+
+
+
+<!-- layer: 05-hamblob.html -->
+
+
+
+<!-- layer: 10-home.html -->
+<!-- 10-home: home page art + feel (hero slime world, hamblob family, seed feeding, Port Express stage, peeks).
+     Uses 05-hamblob (window.Hamblob) and 15-motion (window.Motion, ready on 'load'). Hall of Fame (.h5f) untouched. -->
+
+
+
+<!-- layer: 15-motion.html -->
+<!--
+  15-motion: Hamster Hub motion system (generic, class based, no dependencies)
+  ---------------------------------------------------------------------------
+  Everything here is progressive enhancement. Nothing is hidden unless this script runs,
+  IntersectionObserver exists and the viewer has not asked for reduced motion
+  (the script then sets html.mo-js). Anything already on screen is revealed at once.
+  No scroll-jacking: scrolling is always native.
+
+  Reveal (add the class in HTML or from your layer's script, before or after load):
+    .mo-goo    block appears with a gooey slime edge pouring DOWN over it while it rises a little.
+               Best on cards, panels, media, banners (things with a filled background).
+    .mo-rise   block rises 28px and fades in (good for headings and text).
+    .mo-kids   container: its direct children rise one after another (70ms apart, max 10).
+    data-mo-delay="120"   optional extra delay in ms on any of the above.
+  Feel:
+    .mo-press  buttons / chips: hover lift 2px, press squash, jelly wobble on release.
+    .mo-lift   cards: hover lift 6px with a deeper shadow, slight press on click.
+  JS API (window.Motion, ready after this layer runs; layers before 15 can call it on 'load'):
+    Motion.scan(root?)              pick up new .mo-* elements (runs on load and on every hashchange).
+    Motion.reveal(el)               reveal now.
+    Motion.cue(parent, {label, target, dark})
+                                    add a scroll cue (a slime drop that drips down + label) at the
+                                    bottom centre of parent (parent must be positioned). It fades
+                                    away after the first scroll and smooth-scrolls to target on click.
+    Motion.tag(selector, 'press'|'lift'|'goo'|'rise'|'kids', root?)   add a class to every match.
+    Motion.scrollTo(el|y)           smooth scroll (instant when reduced motion).
+  Site-wide, automatic: a slime scroll-progress bar at the top (replaces the old .sp-bar).
+-->
+
+
+
+<!-- layer: 20-pages.html -->
+
+
+
+<!-- layer: 30-polish.html -->
+<!--
+  30-polish: independent critic pass (loads last, overrides only). Prefix: pl-
+  Fixes found in the audit; every rule is commented with the issue it closes.
+-->
+
+
+
+
+
+<!-- layer: 40-lead.html -->
+
+
+
+<!-- layer: 50-hero.html -->
+
+
+
+
+
+
+
+
+
+
+<!-- layer: 52-herobg.html -->
+<!-- hero clip background removed (owner: did not work) -->
+
+
+
+<!-- layer: 55-cling.html -->
+
+
+
+<!-- layer: 60-slurp.html -->
+
+
+
+<!-- layer: 65-search.html -->
+
+
+
+<!-- layer: 70-qa.html -->
+
+
+
+
+
+
+<!-- layer: 80-kno.html -->
+
+
+
+
+
+<!-- layer: 85-art.html -->
+
+
+
+<!-- layer: 90-review.html -->
+
+
+
+<!-- layer: 95-calls.html -->
+
+
+
+<!-- layer: 97-copy.html -->
+
+
+
+<!-- layer: 98-owner.html -->
+
+
+
+
+
+
+
+
+
+
+<!-- layer: 99-feel.html -->
+
+
+
+<!-- layer: 99z-round.html -->
+
+
+
+<!-- layer: 99zz-about.html -->
+
+
+
+
+<!-- layer: 99zzz-nav.html -->
+
+
+
+
+
+
+<!-- layer: 99zzzz-fix.html -->
+
+
+
+<!-- layer: 99zzzzz-perf.html -->
+
+
+
+
+
+<!-- layer: 99zzzzzz-search.html -->
+
+
+
+
+
+
+
+<!-- layer: 99zzzzzzzz-courses.html -->
+
+
+
+<!-- layer: 99zzzzzzzzz-review.html -->
+
+
+<!-- layer: 99zzzzzzzzzz-perf.html -->
+
+
+
+<!-- layer: 99zzzzzzzzzzz-lists.html -->
+
+
+
+<!-- layer: 99zzzzzzzzzzzzz-plain.html -->
+
+
+
+<!-- layer: 99zzzzzzzzzzzzzzz-noreveal.html -->
+
+
+
+
+<!-- layer: 99zzzzzzzzzzzzzzzz-square.html -->
+
+

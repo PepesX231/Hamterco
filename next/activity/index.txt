@@ -1,0 +1,35 @@
+1:"$Sreact.fragment"
+2:"/Hamterco/next/_next/static/chunks/1ua2kfq9s-me6.js"
+3:I[39756,["$2"],"default"]
+4:I[37457,["$2"],"default"]
+8:"/Hamterco/next/_next/static/chunks/3wyvnrzzh54yl.js"
+9:I[70119,["$2","$8"],"Header"]
+a:I[69668,["$2","$8"],"LegacyRuntime"]
+b:I[97367,["$2"],"OutletBoundary"]
+c:"$Sreact.suspense"
+e:"ViewportBoundary"
+f:I[97367,["$2"],"$e"]
+11:"MetadataBoundary"
+12:I[97367,["$2"],"$11"]
+14:I[68027,["$2"],"default",1]
+:HL["/Hamterco/next/_next/static/chunks/3w9gfk_hdhqne.css","style"]
+:HL["/Hamterco/next/_next/static/media/098adb8bb3c21377-s.p.09e83-4vqkr8v.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Hamterco/next/_next/static/media/0b317410534a54bf-s.p.0xwse1x-bzy3s.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Hamterco/next/_next/static/media/15ffd53c7769ab2e-s.p.045trq_3sylcd.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Hamterco/next/_next/static/media/3562b7b180c37f33-s.p.1jpt8e9q-b8sg.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Hamterco/next/_next/static/media/4918881fd0a076f5-s.p.06l_kmf12p5hu.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Hamterco/next/_next/static/media/4bef80830ed243d4-s.p.3octkzoya_hav.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Hamterco/next/_next/static/media/7a3b98edb52b34e8-s.p.3_xwflgq9fbqb.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Hamterco/next/_next/static/media/7c31128e26fc9cb0-s.p.2wx1mw4dt7_s5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Hamterco/next/_next/static/media/81b01dcd824434dd-s.p.3u0t_c_yzgtgw.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Hamterco/next/_next/static/media/a2a942dd4d28daae-s.p.2vx-usavuz-_v.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Hamterco/next/_next/static/media/a86bc8e8711b62bb-s.p.2t1pwrt0o-zp3.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Hamterco/next/_next/static/media/fe99e0d97b1bdacf-s.p.2chmmw5jncpj5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+6:X
+7:[["children",{"s":"__PAGE__","h":512,"d":{"r":["$","$1","c",{"children":[["$","main",null,{"children":[["$","$L9",null,{"tone":"solid","active":"กิจกรรม"}],["$","$La",null,{"view":"activity"}]]}],[["$","script","script-0",{"src":"/Hamterco/next/_next/static/chunks/3wyvnrzzh54yl.js","async":true,"nonce":"$undefined"}]],["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]]}],"p":false,"v":null}}]]
+5:[["children",{"s":"activity","h":512,"d":{"r":["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],"p":false,"v":"$6"},"c":"$Q7"}]]
+0:{"P":null,"c":["","activity",""],"q":"","i":false,"t":{"t":{"s":"","h":528,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/Hamterco/next/_next/static/chunks/3w9gfk_hdhqne.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/Hamterco/next/_next/static/chunks/1ua2kfq9s-me6.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"th","className":"Eerhnq_variable pOx_Ka_variable kVD14q_variable CQaiTq_variable","children":["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],"p":false,"v":null},"c":"$Q5"},"h":{"r":["$","$1","h",{"children":[null,["$","$Lf",null,{"children":"$L10"}],["$","$L12",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$c",null,{"name":"Next.Metadata","children":"$L13"}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":false,"v":null}},"m":"$undefined","G":["$14",[["$","link","0",{"rel":"stylesheet","href":"/Hamterco/next/_next/static/chunks/3w9gfk_hdhqne.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"r":"$undefined","s":"$undefined","a":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"Br6YXkU-O0SGNzgjvlRJx"}
+6:C
+10:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#F6AE55"}]]
+d:null
+13:[["$","title","0",{"children":"Hamster Hub"}],["$","meta","1",{"name":"description","content":"คอร์ส ค่าย และพอร์ตสำหรับน้อง ม.4–6 ที่อยากสร้างเกม แอป และสตาร์ทอัพของตัวเอง"}]]

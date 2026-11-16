@@ -6,15 +6,17 @@ The site is being moved from `slime.html` (built from `new.html` plus layers) to
 - Run locally: `npm install && npm run dev`, then open http://localhost:3000/Hamterco/next/. Pictures load from `/Hamterco/img/`, so serve the repo root under `/Hamterco/` to see them.
 - Publish: `npm run export`. This builds a static site into `../next/`. Then commit and push to `main` and `gh-pages`.
 
-## What has been moved
+## What is in the app
 
-| Part | Status |
+Every page is now a Next.js route: `/` (home), `/courses/`, `/activity/`, `/works/`, `/about/`.
+
+| Part | How |
 |---|---|
-| Header and phone menu | Done (square buttons) |
-| Home hero: work cards round the headline (Fastwork layout on phones), typed headline, short who-we-are line, example questions typed in the bar, running orange light on the bar, handwriting "ไม่รู้จะเริ่มตรงไหน? ลองพิมพ์ถามดู", cards dock round the bar (desktop) or are pulled into it (phones) while searching | Done |
-| คอร์สที่เราแนะนำ (Port Express + Hamstarter + National Project) | Done |
-| Search answers | Not yet. Questions go to `slime.html?q=...` |
-| Rest of home, courses, activity, works, about, loader | Not yet. Links go to `slime.html` |
+| Header, home hero, คอร์สที่เราแนะนำ | React components (`components/`) |
+| Search answers | The original search engine runs in the page; `Hero.tsx` sends the question to it and shows its answer panel under the bar |
+| Everything else (rest of home, courses, activity, works, about, footer) | `components/LegacyRuntime.tsx` runs the original markup, styles and scripts, built by `python3 ../dev/builds/legacy_next.py` into `public/legacy/`. Parts already rewritten in React are hidden there with `hide`. Next step: rewrite these one section at a time as components, then remove them from the legacy bundle |
+
+`npm run export` rebuilds the legacy bundle, builds the app and copies it to `../next/` for GitHub Pages.
 
 ## Where things are
 

@@ -20,7 +20,7 @@ const nearestEdge = (cx: number, cy: number, r: Box) => {
 export function gather(wrap: HTMLElement, bar: HTMLElement, desktop: boolean): Animation[] {
   const R = bar.getBoundingClientRect();
   const fr: Box = { left: R.left, right: R.right, top: R.top - 3, bottom: R.bottom - 3, width: R.width, height: R.height };
-  const cards = [...wrap.querySelectorAll<HTMLElement>(".hc")].filter((c) => {
+  const cards = [...wrap.querySelectorAll<HTMLElement>(".nx-card")].filter((c) => {
     const r = c.getBoundingClientRect();
     return r.width && getComputedStyle(c).display !== "none" && r.bottom > 0 && r.top < innerHeight;
   });

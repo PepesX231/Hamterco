@@ -1,0 +1,22 @@
+{
+ "home": {
+  "htmlCls": "mo-js nv-home sv-js nv-top",
+  "bodyCls": ""
+ },
+ "courses": {
+  "htmlCls": "mo-js sv-js",
+  "bodyCls": ""
+ },
+ "activity": {
+  "htmlCls": "mo-js sv-js",
+  "bodyCls": ""
+ },
+ "works": {
+  "htmlCls": "mo-js sv-js",
+  "bodyCls": ""
+ },
+ "about": {
+  "htmlCls": "mo-js sv-js nv-dk",
+  "bodyCls": ""
+ }
+}

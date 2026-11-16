@@ -1,0 +1,1 @@
+(function(){function f(){document.documentElement.classList.toggle('nv-dk',/^#about/.test(location.hash))}f();addEventListener('hashchange',f)})();

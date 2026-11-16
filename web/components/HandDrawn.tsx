@@ -7,7 +7,7 @@ const ink = { fill: "none", stroke: "#2A221D", strokeWidth: 2.2, strokeLinecap: 
 /** Handwriting under the search bar: an arrow drawn up to the bar, then the invitation written line by line. */
 export function HandNote({ hidden }: { hidden: boolean }) {
   return (
-    <motion.div aria-hidden className="hand-note" animate={{ opacity: hidden ? 0 : 1 }} transition={{ duration: 0.2 }}>
+    <motion.div aria-hidden className="nx-note" animate={{ opacity: hidden ? 0 : 1 }} transition={{ duration: 0.2 }}>
       <svg viewBox="0 0 230 96">
         <motion.path d="M34 66 C 12 50, 10 24, 30 4" {...ink} initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.75, delay: 1.2, ease: [0.5, 0, 0.3, 1] }} />
         <motion.path d="M19 12 L30 3 L35 16" {...ink} initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.3, delay: 1.95 }} />

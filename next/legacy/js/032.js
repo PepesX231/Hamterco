@@ -1,0 +1,2 @@
+(function(){var H=document.documentElement;function f(){var home=!location.hash||/^#(home)?$/.test(location.hash);H.classList.toggle('nv-home',home);H.classList.toggle('nv-top',home&&scrollY<30)}
+f();addEventListener('scroll',f,{passive:true});addEventListener('hashchange',f)})();

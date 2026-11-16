@@ -35,7 +35,7 @@ export function TypedWish({ paused }: { paused: boolean }) {
   return (
     <h1 className="font-headline text-[clamp(34px,4.9vw,72px)] font-black leading-[1.3] tracking-[-0.02em] text-[#1d1611]">
       <span className="sr-only">{WISHES.join(", ")}</span>
-      <span aria-hidden>{parts[wi].slice(0, n).join("")}</span>
+      <span aria-hidden>{(paused ? parts[wi] : parts[wi].slice(0, n)).join("")}</span>
       <i aria-hidden className="ml-1 inline-block h-[0.9em] w-[3px] translate-y-[0.12em] animate-[blink_1s_steps(1)_infinite] bg-[#c8631b]" />
     </h1>
   );

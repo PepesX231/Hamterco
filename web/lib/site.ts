@@ -4,11 +4,13 @@ export const OLD_SITE = "/Hamterco/slime.html";
 export const LINE_URL = "https://page.line.me/jkm4247u?openQrModal=true";
 export const LOGIN_URL = "https://www.hamsterhub.co/login";
 
+export const ROUTE = { home: "/Hamterco/next/", courses: "/Hamterco/next/courses/", activity: "/Hamterco/next/activity/", works: "/Hamterco/next/works/", about: "/Hamterco/next/about/" } as const;
+
 export const NAV = [
-  { label: "คอร์ส", href: `${OLD_SITE}#courses` },
-  { label: "กิจกรรม", href: `${OLD_SITE}#activity` },
-  { label: "ผลงาน", href: `${OLD_SITE}#works` },
-  { label: "เกี่ยวกับเรา", href: `${OLD_SITE}#about` },
+  { label: "คอร์ส", href: ROUTE.courses },
+  { label: "กิจกรรม", href: ROUTE.activity },
+  { label: "ผลงาน", href: ROUTE.works },
+  { label: "เกี่ยวกับเรา", href: ROUTE.about },
 ] as const;
 
 // The headline types "น้องอยาก… <wish>". Same list as the current site.
