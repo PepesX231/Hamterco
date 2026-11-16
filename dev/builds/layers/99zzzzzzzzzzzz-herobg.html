@@ -52,31 +52,30 @@ html body [data-view="home"] .zq.zq-pin{justify-content:flex-start!important}
 /* gone while the visitor searches */
 html body [data-view="home"] .zq.ask .hcw,html body [data-view="home"] .zq.sl-on .hcw,html body [data-view="home"] .zq.hx-white .hcw,html body [data-view="home"] .zq:has(#zqIn:focus) .hcw{opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
 
-/* narrower screens (Fastwork's phone layout): text first, then the four cards in their own space under the chips.
-   The space is part of the page flow, so the hero grows to hold it and no card is ever cut by the hero's edge or the screen. */
+/* narrower screens, as in Fastwork's phone layout: the hero is one screen tall, the text sits at the top, and four
+   picture cards lean in from the two bottom corners, past the screen's sides and bottom. A short fade into the page colour at
+   the hero's foot means scrolling never shows a hard cut line. */
 @media (max-width:1099px){
-  html.nv-home body [data-view="home"] .zq,html body [data-view="home"] .zq{justify-content:flex-start!important;padding-top:calc(52px + 92px)!important;padding-bottom:40px!important;min-height:0!important}
+  html.nv-home body [data-view="home"] .zq,html body [data-view="home"] .zq{justify-content:flex-start!important;padding-top:calc(52px + 84px)!important;min-height:100svh!important}
   html body [data-view="home"] .zq .zq-top{margin-top:0!important;position:relative;z-index:3}
-  html body [data-view="home"] .zq .mo-cue{display:none!important}
-  .hcw{position:relative;inset:auto;z-index:1;display:flex;gap:14px;width:100%;max-width:560px;margin:30px auto 0;overflow:visible;text-align:left}
-  .hcc{position:static;flex:1;min-width:0;display:flex;flex-direction:column;gap:16px;transform:none!important}
-  .hcr{margin-top:36px}
-  .hc{position:relative;left:auto;top:auto;width:100%;--r:var(--mr);padding:5px 5px 10px;border-radius:16px}
+  .hcc{transform:none!important}
+  .hc{top:auto;left:var(--mx);bottom:var(--mb);width:var(--mw);--r:var(--mr);padding:4px;border-radius:14px}
   .hc.ph-off{display:none}
-  .hc-m{border-radius:11px}.hc-av{width:32px;height:32px;margin:-18px 0 0 8px;border-width:2px}
-  .hc b{font-size:13.5px;margin:7px 6px 0}.hc em{font-size:11.5px;margin:2px 6px 0}
+  .hc-m{border-radius:10px}
+  .hc b,.hc em,.hc .hc-av{display:none}
+  .hcw::after{content:"";position:absolute;left:0;right:0;bottom:0;height:56px;background:linear-gradient(rgba(255,250,243,0),#FFFAF3);z-index:20;pointer-events:none}
 }
 @media (prefers-reduced-motion:reduce){.hcw .hc{transition:none!important;opacity:1!important}}
 </style>
 <script>(function(){
   /* every line below is taken from the site's own text; [x, y, width at 1440, tilt, side, picture, aspect, name, line, clip] */
   var C=[
-    [1,9,232,-3,'l','w-revoice.webp','4/3','น้องไอดิน','REVOICE · ชนะ NSC 2025',0,[0,0,0,-2],[28,30]],
-    [12.5,37,170,3,'l','dek69-6.webp','4/5','น้องต้นกล้า','ติดจุฬาฯ รอบ Portfolio',0,0,[74,50]],
-    [1.5,67,224,-2,'l','work-stressstrike.webp','16/9','StressStrike','ชนะเลิศ OBEC Roboplayground','hole-stressstrike.mp4',[0,0,0,1.5]],
+    [1,9,232,-3,'l','w-revoice.webp','4/3','น้องไอดิน','REVOICE · ชนะ NSC 2025',0,[-9,-2,52,5],[28,30]],
+    [12.5,37,170,3,'l','dek69-6.webp','4/5','น้องต้นกล้า','ติดจุฬาฯ รอบ Portfolio',0,[83,178,27,6],[74,50]],
+    [1.5,67,224,-2,'l','work-stressstrike.webp','16/9','StressStrike','ชนะเลิศ OBEC Roboplayground','hole-stressstrike.mp4',0],
     [83,9,232,3,'r','w-hmap.webp','16/10','PHC Map','สตาร์ทอัพ · ใช้สอนเด็กกว่า 1,000 คน',0,0],
-    [77,35,170,-3,'r','dek69-1.webp','4/5','น้องปลื้ม','ติดสถิติประยุกต์ฯ สจล.',0,[0,0,0,2],[68,46]],
-    [83.5,67,224,2,'r','work-slash-speed.webp','16/9','SLASH//SPEED','เกมที่น้องสร้างเองในคอร์ส','hole-slash-speed2.mp4',[0,0,0,-1.5]]];
+    [77,35,170,-3,'r','dek69-1.webp','4/5','น้องปลื้ม','ติดสถิติประยุกต์ฯ สจล.',0,[-6,166,28,-7],[68,46]],
+    [83.5,67,224,2,'r','work-slash-speed.webp','16/9','SLASH//SPEED','เกมที่น้องสร้างเองในคอร์ส','hole-slash-speed2.mp4',[58,-6,52,-5]]];
   function go(){var z=document.querySelector('[data-view="home"] .zq');if(!z||z.querySelector('.hcw'))return;
     var h=z.querySelector('.zq-h');if(h&&!z.querySelector('.zq-who')){var p=document.createElement('p');p.className='zq-who';
       p.innerHTML=['ที่ Hamster Hub น้อง ม.ปลาย','สร้างผลงานจริงของตัวเอง','ใช้ยื่นเข้ามหาลัย','ต่อยอดเป็นสตาร์ทอัพ','และชนะรางวัลระดับประเทศ'].map(function(t){return '<span>'+t+'</span>'}).join(' ');h.insertAdjacentElement('afterend',p)}
@@ -86,7 +85,7 @@ html body [data-view="home"] .zq.ask .hcw,html body [data-view="home"] .zq.sl-on
     var L=document.createElement('div');L.className='hcc hcl';var R=document.createElement('div');R.className='hcc hcr';
     var S=document.createElement('div');S.className='hcs';
     C.forEach(function(c,i){var a=document.createElement('a');a.className='hc';a.href='#works';
-      a.style.cssText='--x:'+c[0]+'%;--y:'+c[1]+'%;--w:clamp('+Math.round(c[2]*.8)+'px,'+(c[2]/14.4).toFixed(2)+'vw,'+Math.round(c[2]*1.2)+'px);--r:'+c[3]+'deg;--a:'+c[6]+';--i:'+(c[4]==='l'?i:i-3)+';z-index:'+(10-i%3)+(c[10]?';--mx:'+c[10][0]+'%;--my:'+c[10][1]+'%;--mw:'+c[10][2]+'%;--mr:'+c[10][3]+'deg':'');if(!c[10])a.classList.add('ph-off');
+      a.style.cssText='--x:'+c[0]+'%;--y:'+c[1]+'%;--w:clamp('+Math.round(c[2]*.8)+'px,'+(c[2]/14.4).toFixed(2)+'vw,'+Math.round(c[2]*1.2)+'px);--r:'+c[3]+'deg;--a:'+c[6]+';--i:'+(c[4]==='l'?i:i-3)+';z-index:'+(10-i%3)+(c[10]?';--mx:'+(c[10][0]<50?'max('+c[10][0]+'vw,'+(c[10][0]*4)+'px)':'calc(100vw - min('+(100-c[10][0])+'vw,'+((100-c[10][0])*4.8)+'px))')+';--mb:'+c[10][1]+'px;--mw:min('+c[10][2]+'vw,'+(c[10][2]*4.8)+'px);--mr:'+c[10][3]+'deg':'');if(!c[10])a.classList.add('ph-off');
       var ar=c[6].split('/');a.innerHTML='<span class="hc-m" style="aspect-ratio:auto;padding-top:'+(100*ar[1]/ar[0]).toFixed(2)+'%"><img src="img/'+c[5]+'" alt="" loading="lazy" decoding="async"></span><b></b><em></em>';
       if(c[11]){var av=document.createElement('span');av.className='hc-av';av.setAttribute('aria-hidden','true');av.style.backgroundImage='url(img/'+c[5]+')';av.style.backgroundPosition=c[11][0]+'% '+c[11][1]+'%';a.insertBefore(av,a.querySelector('b'))}a.querySelector('b').textContent=c[7];a.querySelector('em').textContent=c[8];
       if(c[9]){var v=document.createElement('video');v.muted=true;v.loop=true;v.playsInline=true;v.setAttribute('playsinline','');v.setAttribute('muted','');v.preload='none';v.dataset.src='img/'+c[9];v.setAttribute('aria-hidden','true');a.querySelector('.hc-m').appendChild(v)}
@@ -95,7 +94,7 @@ html body [data-view="home"] .zq.ask .hcw,html body [data-view="home"] .zq.sl-on
     /* layout switch: beside the headline on wide screens, a swipeable row under the chips on narrow ones */
     var top=z.querySelector('.zq-top')||z;var mq=matchMedia('(max-width:1099px)');
     function lay(){var cards=[].slice.call(w.querySelectorAll('.hc'));cards.sort(function(a,b){return a.style.getPropertyValue('--i')-b.style.getPropertyValue('--i')});
-      w.__all.forEach(function(c){(c.dataset.side==='l'?L:R).appendChild(c)});if(mq.matches)top.appendChild(w);else z.insertBefore(w,z.firstChild)}
+      w.__all.forEach(function(c){(c.dataset.side==='l'?L:R).appendChild(c)});if(w.parentNode!==z)z.insertBefore(w,z.firstChild)}
     w.__all=[].slice.call(w.querySelectorAll('.hc'));lay();mq.addEventListener('change',lay);
     requestAnimationFrame(function(){requestAnimationFrame(function(){w.classList.add('in');setTimeout(function(){w.classList.add('done')},1400)})});
     /* the two columns drift apart a little as the visitor scrolls: an answer to scrolling, not motion on its own */
