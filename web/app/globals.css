@@ -47,7 +47,8 @@ body { background: var(--color-cream); color: var(--color-ink); font-family: var
 
 /* work cards: square, ink outline, hard shadow */
 .nx-cards{position:absolute;inset:0;z-index:1}
-.nx-col{position:absolute;inset:0}
+.nx-col{position:absolute;inset:0;pointer-events:none}
+.nx-card{pointer-events:auto}
 .nx-card{position:absolute;left:var(--x);top:var(--y);width:var(--w);display:block;background:#fff;padding:6px 6px 12px;border:1.5px solid #1D1712;box-shadow:5px 5px 0 #1D1712;
   transform:rotate(var(--r));transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,opacity .3s,filter .3s}
 .nx-card:hover,.nx-card:focus-visible{z-index:40;transform:rotate(0) translate(-3px,-3px) scale(1.07);box-shadow:9px 9px 0 #1D1712}

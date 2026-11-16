@@ -1,7 +1,7 @@
 1:"$Sreact.fragment"
 b:"/Hamterco/next/_next/static/chunks/1ua2kfq9s-me6.js"
 c:I[68027,["$b"],"default",1]
-:HL["/Hamterco/next/_next/static/chunks/3w9gfk_hdhqne.css","style"]
+:HL["/Hamterco/next/_next/static/chunks/2ogq0gl98ooem.css","style"]
 :HL["/Hamterco/next/_next/static/media/098adb8bb3c21377-s.p.09e83-4vqkr8v.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/Hamterco/next/_next/static/media/0b317410534a54bf-s.p.0xwse1x-bzy3s.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/Hamterco/next/_next/static/media/15ffd53c7769ab2e-s.p.045trq_3sylcd.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
@@ -68,7 +68,7 @@ requestAnimationFrame(frame)})();
 7:X
 8:[["children",{"s":"__PAGE__","h":512,"d":{"r":"$L9","p":false,"v":null}}]]
 5:[["children",{"s":"works","h":512,"d":{"r":"$L6","p":false,"v":"$7"},"c":"$Q8"}]]
-0:{"P":null,"c":["","works",""],"q":"","i":false,"t":{"t":{"s":"","h":528,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/Hamterco/next/_next/static/chunks/3w9gfk_hdhqne.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/Hamterco/next/_next/static/chunks/1ua2kfq9s-me6.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"th","suppressHydrationWarning":true,"className":"Eerhnq_variable pOx_Ka_variable kVD14q_variable CQaiTq_variable","children":["$","body",null,{"children":[["$","div",null,{"id":"hhL","role":"status","aria-label":"กำลังโหลด Hamster Hub","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]}]]}],"p":false,"v":null},"c":"$Q5"},"h":{"r":"$La","p":false,"v":null}},"m":"$undefined","G":["$c",["$Ld"]],"S":true,"r":"$undefined","s":"$undefined","a":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"tOJNbEoxXyMyJAN-3PK9h"}
+0:{"P":null,"c":["","works",""],"q":"","i":false,"t":{"t":{"s":"","h":528,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/Hamterco/next/_next/static/chunks/2ogq0gl98ooem.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/Hamterco/next/_next/static/chunks/1ua2kfq9s-me6.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"th","suppressHydrationWarning":true,"className":"Eerhnq_variable pOx_Ka_variable kVD14q_variable CQaiTq_variable","children":["$","body",null,{"children":[["$","div",null,{"id":"hhL","role":"status","aria-label":"กำลังโหลด Hamster Hub","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]}]]}],"p":false,"v":null},"c":"$Q5"},"h":{"r":"$La","p":false,"v":null}},"m":"$undefined","G":["$c",["$Ld"]],"S":true,"r":"$undefined","s":"$undefined","a":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"gi7fM9f6NsujJaCCzuHR0"}
 e:I[39756,["$b"],"default"]
 f:I[37457,["$b"],"default"]
 10:"/Hamterco/next/_next/static/chunks/0gcwfsp58_4yu.js"
@@ -83,7 +83,7 @@ f:I[37457,["$b"],"default"]
 6:["$","$1","c",{"children":[null,["$","$Le",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$Lf",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
 9:["$","$1","c",{"children":[["$","main",null,{"children":["$","$L11",null,{"view":"works"}]}],[["$","script","script-0",{"src":"/Hamterco/next/_next/static/chunks/0gcwfsp58_4yu.js","async":true,"nonce":"$undefined"}]],["$","$L12",null,{"children":["$","$13",null,{"name":"Next.MetadataOutlet","children":"$@14"}]}]]}]
 a:["$","$1","h",{"children":[null,["$","$L16",null,{"children":"$L17"}],["$","$L19",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$13",null,{"name":"Next.Metadata","children":"$L1a"}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
-d:["$","link","0",{"rel":"stylesheet","href":"/Hamterco/next/_next/static/chunks/3w9gfk_hdhqne.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+d:["$","link","0",{"rel":"stylesheet","href":"/Hamterco/next/_next/static/chunks/2ogq0gl98ooem.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 7:C
 17:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#F6AE55"}]]
 14:null

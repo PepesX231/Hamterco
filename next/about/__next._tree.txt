@@ -1,4 +1,4 @@
-:HL["/Hamterco/next/_next/static/chunks/3w9gfk_hdhqne.css","style"]
+:HL["/Hamterco/next/_next/static/chunks/2ogq0gl98ooem.css","style"]
 :HL["/Hamterco/next/_next/static/media/098adb8bb3c21377-s.p.09e83-4vqkr8v.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/Hamterco/next/_next/static/media/0b317410534a54bf-s.p.0xwse1x-bzy3s.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/Hamterco/next/_next/static/media/15ffd53c7769ab2e-s.p.045trq_3sylcd.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
@@ -13,4 +13,4 @@
 :HL["/Hamterco/next/_next/static/media/fe99e0d97b1bdacf-s.p.2chmmw5jncpj5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"about","h":64,"c":"$Q2"}]]
-0:{"b":"tOJNbEoxXyMyJAN-3PK9h","t":{"t":{"s":"","h":16,"c":"$Q1"}}}
+0:{"b":"gi7fM9f6NsujJaCCzuHR0","t":{"t":{"s":"","h":16,"c":"$Q1"}}}
