@@ -10852,32 +10852,6 @@ html body #zqForm.zq-s{-webkit-backdrop-filter:none!important;backdrop-filter:no
 /* no more template tiles. Things without a real picture are shown as plain ruled lists, like a timetable,
    instead of generated pattern/number thumbnails. */
 
-/* home: the "คอร์สทั้งหมด" carousel repeated the recommended cards right above it and the courses page; removed */
-html body [data-view="home"] section.zc2{display:none!important}
-
-/* courses page: every course is one line: name, what it is, status, arrow */
-html body [data-view="courses"] .zq-g.ctg{display:block!important;border-top:1.5px solid #1D1712;margin-top:18px}
-html body [data-view="courses"] .ctg>.qv{display:grid!important;grid-template-columns:minmax(150px,230px) 1fr auto 40px;align-items:center;gap:6px 28px;padding:20px 4px!important;margin:0!important;
-  background:none!important;border:0!important;border-bottom:1px solid rgba(29,23,18,.16)!important;border-radius:0!important;box-shadow:none!important;transform:none!important;min-height:0!important;height:auto!important;color:#1D1712;transition:background .2s,padding .25s}
-html body [data-view="courses"] .zq-g.ctg>a.qv.qv.on,html body [data-view="courses"] .zq-g.ctg>a.qv.qv{box-shadow:none!important}
-html body [data-view="courses"] .ctg>.qv:hover{background:rgba(242,166,94,.12)!important;padding-left:14px!important}
-html body [data-view="courses"] .ctg>.qv .qv-im{display:none!important}
-html body [data-view="courses"] .ctg>.qv,html body [data-view="courses"] .ctg>.qv::before,html body [data-view="courses"] .ctg>.qv::after{outline:0!important;box-shadow:none!important}
-html body [data-view="courses"] .ctg>.qv::before,html body [data-view="courses"] .ctg>.qv::after{content:none!important}
-html body [data-view="courses"] .ctg>.qv .qv-row,html body [data-view="courses"] .ctg>.qv .qv-tx{display:contents!important}
-html body [data-view="courses"] .ctg>.qv .qv-tx b{grid-column:1;font:800 clamp(1.15rem,1.7vw,1.4rem)/1.15 var(--display);margin:0!important}
-html body [data-view="courses"] .ctg>.qv .qv-d{grid-column:2;font-size:.98rem;color:#5A4A3E;margin:0!important;-webkit-line-clamp:unset!important;display:block!important}
-html body [data-view="courses"] .ctg>.qv .qv-meta{grid-column:3;grid-row:1;display:flex!important;gap:14px;margin:0!important;padding:0!important;border:0!important;font-size:.9rem;color:#7A6A5C;white-space:nowrap}
-html body [data-view="courses"] .ctg>.qv .qv-meta span{background:none!important;padding:0!important;border:0!important}
-html body [data-view="courses"] .ctg>.qv .qv-meta span:last-child:not(:has(em)){display:none}
-html body [data-view="courses"] .ctg>.qv .qv-meta em{font-style:normal;font-weight:700;color:#1D1712}
-html body [data-view="courses"] .ctg>.qv.on .qv-meta span:first-child{color:#0E8A3E;font-weight:700}
-html body [data-view="courses"] .ctg>.qv .qv-btn{grid-column:4;grid-row:1;justify-self:end;position:static!important;transform:none!important;box-shadow:none!important;background:transparent!important;border:1.5px solid rgba(29,23,18,.3)!important}
-html body [data-view="courses"] .ctg>.qv:hover .qv-btn{background:#1D1712!important;border-color:#1D1712!important;filter:invert(1)}
-@media (max-width:760px){html body [data-view="courses"] .ctg>.qv{grid-template-columns:1fr 36px;gap:4px 12px}
-  html body [data-view="courses"] .ctg>.qv .qv-tx b{grid-column:1;grid-row:1}html body [data-view="courses"] .ctg>.qv .qv-d{grid-column:1;grid-row:2}
-  html body [data-view="courses"] .ctg>.qv .qv-meta{grid-column:1;grid-row:3}html body [data-view="courses"] .ctg>.qv .qv-btn{grid-column:2;grid-row:1/4;align-self:center}}
-
 /* activity: events with a real poster stay as picture cards; the ones without one become a dated list after them */
 html body .avc:has(.avc-ty){grid-column:1/-1!important;order:2;display:grid!important;grid-template-columns:150px 1fr;gap:4px 28px;align-items:baseline;
   background:none!important;box-shadow:none!important;border:0!important;border-top:1px solid rgba(29,23,18,.16)!important;border-radius:0!important;padding:16px 4px!important;margin:0!important;transform:none!important;min-height:0!important}
@@ -10964,30 +10938,6 @@ html body [data-view="home"] .zq>.hx-cv{display:none!important}
 /* "AI slop" pass on the two home sections: the template signals were floating shadowed boxes, orange pill buttons,
    pill labels and dashed footers. Pictures now sit flat on the page, actions are plain underlined text, rows are split
    by a single rule. Layout and content stay the same. */
-
-/* ---- สิ่งที่ Hamster Hub สร้าง ---- */
-html body section.hbx .oc-r{padding-top:clamp(28px,3.4vw,44px);border-top:1.5px solid #1D1712;margin-top:clamp(36px,4.5vw,64px)!important}
-html body section.hbx .oc-m,html body section.hbx .oc-m.oc-m{box-shadow:none!important;border-radius:6px!important;transform:none!important;filter:none!important}
-html body section.hbx .oc-m img,html body section.hbx .oc-m video{border-radius:6px!important;box-shadow:none!important}
-html body section.hbx .oc-k{background:none!important;padding:0!important;border:0!important;box-shadow:none!important;color:#7A6A5C!important;font:600 .92rem/1.2 var(--ui,inherit)!important;letter-spacing:0!important;text-transform:none!important}
-html body section.hbx .oc-k::before,html body section.hbx .oc-k::after{content:none!important}
-html body section.hbx .oc-lk,html body section.hbx .oc-play{background:none!important;color:#1D1712!important;box-shadow:none!important;border-radius:0!important;padding:0!important;margin-top:20px!important;
-  text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1.5px;text-decoration-color:rgba(29,23,18,.35);transform:none!important}
-html body section.hbx .oc-lk:hover,html body section.hbx .oc-play:hover{text-decoration-color:#E07A1F;background:none!important}
-html body section.hbx .oc-play i{border-left-color:#1D1712!important}
-html body section.hbx .ocl li{border-color:rgba(29,23,18,.16)!important}
-
-/* ---- คอร์สที่เราแนะนำ: the two courses that are not open yet ---- */
-html body [data-view] .fx-row .fx-s.fx-s.fx-s.fx-s:nth-child(n){background:none!important;border:0!important;border-top:1.5px solid #1D1712!important;border-radius:0!important;box-shadow:none!important;padding-top:18px!important;overflow:visible!important}
-html body [data-view] .fx-row .fx-s.fx-s.fx-s.fx-s:nth-child(n):hover{background:none!important;border-color:#1D1712!important}
-html body [data-view] .fx-row .fx-s .fx-si{border-radius:6px!important;overflow:hidden}
-html body [data-view] .fx-row .fx-s .fx-pr{background:none!important;border:0!important;padding-left:0!important;padding-right:0!important}
-html body [data-view] .fx-row .fx-s .fx-go{background:none!important;border:0!important;box-shadow:none!important;padding:0!important;border-radius:0!important;
-  text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1.5px;text-decoration-color:rgba(29,23,18,.35);color:#1D1712!important}
-html body [data-view] .fx-row .fx-s:hover .fx-go{text-decoration-color:#E07A1F}
-html body [data-view] .fx-row .fx-s .rc.rc-s.zc-st.zc-st{display:none!important}
-/* the big Port Express card keeps its poster but loses the soft drop shadow */
-html body [data-view] .fx-main{box-shadow:none!important}
 /* self-review: the floating ask button sat in the middle of the screen bottom, on top of photos and cards.
    It now waits in the bottom-right corner, where nothing on the page needs to be read. */
 html body .zq-fab{left:auto!important;right:24px!important;transform:translateY(140%)!important}
@@ -11013,4 +10963,8 @@ html body .zq-fab.on{transform:none!important}
    and on some phones it never did, so the content stayed at opacity 0. Content is now always shown; nothing waits on scrolling. */
 html.mo-js .mo-goo,html.mo-js .mo-goo:not(.mo-in),html.mo-js .mo-rise,html.mo-js .mo-rise:not(.mo-in),
 html.mo-js .mo-kids>*,html.mo-js .mo-kids:not(.mo-in)>*{opacity:1!important;transform:none!important;-webkit-mask:none!important;mask:none!important}
+</style>
+<style id="ly-nolines">
+/* owner: the dashed line above each course's price row looked bad; removed */
+html body [data-view] section.ft.ft.ft .fx-pr,html body [data-view="courses"] .fx-pr{border-top:0!important}
 </style>

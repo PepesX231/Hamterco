@@ -56,10 +56,10 @@ The owner asked to move the site to Next.js + React + TypeScript + Tailwind CSS 
 | `99zzzzzzzz-courses.html` | Course cards without the template look (no "แนะนำ" pills, tilt, glare) |
 | `99zzzzzzzzz-review.html` | Mobile header shows ทัก LINE, no dead countdown, courses/activity pages have no page-name banner |
 | `99zzzzzzzzzz-perf.html` | Performance: no big blurs, off-screen animations paused |
-| `99zzzzzzzzzzz-lists.html` | Courses page as a ruled list, poster-less events as a dated list, home "คอร์สทั้งหมด" carousel removed |
+| `99zzzzzzzzzzz-lists.html` | Poster-less events as a dated list. (The ruled courses list and the hidden home "คอร์สทั้งหมด" carousel were reverted on 16 พ.ย. at the owner's request.) |
 | `99zzzzzzzzzzzz-herobg.html` | Hero background: cheese, every hole shows a real work; also hides the code text |
 | `99zzzzzzzzzzzzzzz-noreveal.html` | Turns off the fade-in-on-scroll (`mo-goo`, `mo-rise`, `mo-kids`). On the owner's phone it never fired, so the course cards stayed invisible |
-| `99zzzzzzzzzzzzz-plain.html` | De-templated the two home sections: flat pictures, rules between rows, underlined text links instead of orange pills |
+| `99zzzzzzzzzzzzz-plain.html` | Only the floating ask button position and two heading fixes remain. The flattening of the courses and works sections (rules, no boxes) was reverted on 16 พ.ย.: the owner disliked the lines |
 
 ---
 
@@ -102,8 +102,10 @@ The owner asked to move the site to Next.js + React + TypeScript + Tailwind CSS 
 - **"คอร์สที่เราแนะนำ":**
   - Port Express is the big card.
   - Hamstarter and National Project show "รอเปิดรอบถัดไป".
-  - The two smaller cards are now flat (no box, shadow or pill buttons), split by a rule. An earlier rework into slim rows was reverted at the owner's request.
-- **"สิ่งที่ Hamster Hub สร้าง":** three rows with less text, now flat: pictures without shadows, a rule above each row, plain text links.
+  - The two smaller cards are boxed cards again. The owner rejected both the flat ruled version and the slim rows.
+- **"คอร์สทั้งหมด" carousel** on home is back.
+- **"สิ่งที่ Hamster Hub สร้าง":** three rows with less text, with the original pictures and buttons (the flat version was reverted).
+- **No lines:** the owner dislikes decorative rules and dashed lines ("ขีดๆ ทุเรศ"). Don't add them.
 - **Activity page:** events with a poster are picture cards, the rest are a dated list. The All for One banner is marked as finished.
 - **About page:** a WebGL works drum (next screen rises from below, no dark rim) and a photo ring (fixed so it no longer shows black).
 - **Loader:** a walking hamster sprite. When loading finishes it says "โหลดเสร็จแล้ว!", ends on the both-paws-up frame, and is centred.
