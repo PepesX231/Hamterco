@@ -10747,7 +10747,7 @@ html body [data-view="home"] section.zq.zq{margin-left:0!important;margin-right:
       var full=res.scrollHeight;if(full<=Math.max(560,innerHeight*.7))res.style.setProperty('max-height',(full+2)+'px','important')}
     /* the hero's content is centred, so growing it by 2x the overflow moves the panel down by 1x; repeated until it fits */
     function fit(){if(!res)return;if(!zq.classList.contains('ask')){if(zq.style.minHeight){zq.style.minHeight='';setTimeout(function(){dispatchEvent(new Event('resize'))},30)}return}place();var z=zq.getBoundingClientRect(),r=res.getBoundingClientRect();if(!r.height)return;
-      var o=r.bottom-z.bottom+120;if(o>2||(o<-60&&zq.style.minHeight)){zq.style.minHeight=Math.max(0,Math.ceil(z.height+2*o))+'px';/* the hero's canvases size themselves on resize: tell them, or the grown strip stays blank/black */setTimeout(function(){dispatchEvent(new Event('resize'))},30);clearTimeout(fitT);fitT=setTimeout(fit,120)}}
+      var o=r.bottom-z.bottom+120;if(o>2||(o<-60&&zq.style.minHeight)){zq.style.minHeight=Math.max(0,Math.ceil(z.height+o))+'px';/* the hero's canvases size themselves on resize: tell them, or the grown strip stays blank/black */setTimeout(function(){dispatchEvent(new Event('resize'))},30);clearTimeout(fitT);fitT=setTimeout(fit,120)}}
     function refit(){clearTimeout(fitT);fitT=setTimeout(fit,zq.classList.contains('ask')?350:0)}
     /* fade hints at the panel's top and bottom only while there is more to scroll that way */
     function ends(){if(!res)return;res.classList.toggle('zq-top0',res.scrollTop<4);res.classList.toggle('zq-end',res.scrollTop+res.clientHeight>=res.scrollHeight-40)}
@@ -10890,22 +10890,31 @@ html body [data-view="home"] .zq .sl-cv{display:none!important}
 html body [data-view="home"] .zq #zqForm{transition:box-shadow .25s}
 html body [data-view="home"] .zq:has(#zqIn:focus) #zqForm,html body [data-view="home"] .zq.ask #zqForm,html body [data-view="home"] .zq.sl-on #zqForm{box-shadow:0 0 0 7px #F2A65E,0 18px 40px -18px rgba(110,45,0,.45)!important}
 html body [data-view="home"] .zq #zqRes{box-shadow:0 0 0 7px #F2A65E,0 30px 60px -30px rgba(110,45,0,.45)!important}
+/* while answers are open the content is pinned where it was, so growing the hero for the answers only adds room at the
+   bottom. Before, the hero was centred: growing it moved the answers, which made it shrink again, over and over (it jittered). */
+html body [data-view="home"] .zq.zq-pin{justify-content:flex-start!important}
 /* who we are, under the headline */
-.zq-who{margin:6px auto 0;max-width:34em;font-size:clamp(16px,1.25vw,19px);line-height:1.6;color:#5A4A3C;text-wrap:balance}
+.zq-who span{display:inline-block}
+.zq-who{margin:6px auto 0;max-width:31em;font-size:clamp(16px,1.25vw,19px);line-height:1.6;color:#5A4A3C;text-wrap:balance}
 
 /* the cards */
 .hcw{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;transition:opacity .3s}
 .hcc{position:absolute;inset:0;will-change:transform}
 .hc{position:absolute;width:var(--w);left:var(--x);top:var(--y);pointer-events:auto;display:block;color:#1D1712;text-decoration:none;
-  background:#fff;border-radius:16px;padding:8px 8px 12px;box-shadow:0 1px 0 rgba(60,35,10,.06),0 18px 40px -22px rgba(60,35,10,.45);
-  transform:rotate(var(--r));transition:transform .35s cubic-bezier(.2,.8,.2,1)}
-.hc:hover,.hc:focus-visible{transform:rotate(0) translateY(-4px)}
+  background:#fff;border-radius:20px;padding:6px 6px 14px;border:1px solid rgba(60,35,10,.06);
+  box-shadow:0 2px 4px rgba(60,35,10,.04),0 24px 48px -24px rgba(60,35,10,.35);
+  transform:rotate(var(--r));transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.hc:hover,.hc:focus-visible{transform:rotate(0) translateY(-6px);box-shadow:0 2px 4px rgba(60,35,10,.05),0 32px 56px -24px rgba(60,35,10,.42)}
 .hc:focus-visible{outline:2px solid #1D1712;outline-offset:3px}
-.hc-m{display:block;position:relative;border-radius:10px;overflow:hidden;aspect-ratio:var(--a,4/3);background:#EFE6DA}
+.hc-m{display:block;position:relative;border-radius:14px;overflow:hidden;background:#EFE6DA}
 .hc-m img,.hc-m video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hc-m video{opacity:0;transition:opacity .4s}.hc-m video.pl{opacity:1}
-.hc b{display:block;margin:10px 4px 0;font-size:15px;font-weight:700;line-height:1.3}
-.hc em{display:block;margin:2px 4px 0;font-style:normal;font-size:13px;line-height:1.4;color:#7A6A5C}
+/* people get a round face, like a profile, overlapping the picture */
+.hc-av{display:block;position:relative;z-index:1;width:40px;height:40px;margin:-22px 0 0 10px;border-radius:50%;border:3px solid #fff;
+  background-color:#EFE6DA;background-size:300%;box-shadow:0 2px 6px rgba(60,35,10,.18)}
+.hc b{display:block;margin:10px 8px 0;font-size:15px;font-weight:700;line-height:1.3;letter-spacing:-.005em}
+.hc-av+b{margin-top:6px}
+.hc em{display:block;margin:3px 8px 0;font-style:normal;font-size:12.5px;line-height:1.4;color:#857565}
 /* one entrance: the cards slide in from their own side, once */
 .hcw:not(.in) .hcl .hc{opacity:0;transform:translateX(-40px) rotate(var(--r))}
 .hcw:not(.in) .hcr .hc{opacity:0;transform:translateX(40px) rotate(var(--r))}
@@ -10922,9 +10931,10 @@ html body [data-view="home"] .zq.ask .hcw,html body [data-view="home"] .zq.sl-on
   html body [data-view="home"] .zq .zq-top{margin-top:0!important}
   html body [data-view="home"] .zq .zq-top{position:relative;z-index:3}
   .hcc{transform:none!important}
-  .hc{left:var(--mx);top:var(--my);width:var(--mw);--r:var(--mr);padding:6px 6px 10px;border-radius:14px}
+  .hc{left:var(--mx);top:var(--my);width:var(--mw);--r:var(--mr);padding:5px 5px 10px;border-radius:16px}
+  .hc-m{border-radius:11px}.hc-av{width:32px;height:32px;margin:-18px 0 0 8px;border-width:2px}
   .hc.ph-off{display:none}
-  .hc b{font-size:13px;margin-top:7px}.hc em{font-size:11.5px}
+  .hc b{font-size:13px;margin:7px 6px 0}.hc em{font-size:11px;margin:2px 6px 0}
 }
 /* tablets: same corners, but the cards move in from the edge so their names are not cut off */
 @media (min-width:700px) and (max-width:1099px){.hcl .hc{margin-left:5vw}.hcr .hc{margin-left:-3vw}}
@@ -10933,22 +10943,24 @@ html body [data-view="home"] .zq.ask .hcw,html body [data-view="home"] .zq.sl-on
 <script>(function(){
   /* every line below is taken from the site's own text; [x, y, width at 1440, tilt, side, picture, aspect, name, line, clip] */
   var C=[
-    [1,9,220,-4,'l','w-revoice.webp','4/3','น้องไอดิน','REVOICE ชนะ NSC 2025 ระดับประเทศ',0,[-3,60,164,-6]],
-    [12.5,36,164,4,'l','dek69-6.webp','4/5','น้องต้นกล้า','ติดจุฬาฯ รอบ Portfolio',0,0],
-    [1.5,67,212,-3,'l','work-stressstrike.webp','16/9','StressStrike','ชนะเลิศ OBEC Roboplayground','hole-stressstrike.mp4',[-1.5,81,168,4]],
-    [83.5,9,220,4,'r','w-hmap.webp','16/10','PHC Map','ใช้สอนเด็กไปแล้วกว่า 1,000 คน',0,0],
-    [77.5,35,164,-4,'r','dek69-1.webp','4/5','น้องปลื้ม','ติดสถิติประยุกต์ฯ สจล.',0,[70,58,124,5]],
-    [84,67,212,3,'r','work-slash-speed.webp','16/9','SLASH//SPEED','เกมที่น้องสร้างเองในคอร์ส','hole-slash-speed2.mp4',[59,80,176,-4]]];
+    [1,9,232,-3,'l','w-revoice.webp','4/3','น้องไอดิน','REVOICE · ชนะ NSC 2025',0,[-3,63,160,-5],[28,30]],
+    [12.5,37,170,3,'l','dek69-6.webp','4/5','น้องต้นกล้า','ติดจุฬาฯ รอบ Portfolio',0,0,[74,50]],
+    [1.5,67,224,-2,'l','work-stressstrike.webp','16/9','StressStrike','ชนะเลิศ OBEC Roboplayground','hole-stressstrike.mp4',[-1.5,83,164,3]],
+    [83,9,232,3,'r','w-hmap.webp','16/10','PHC Map','สตาร์ทอัพ · ใช้สอนเด็กกว่า 1,000 คน',0,0],
+    [77,35,170,-3,'r','dek69-1.webp','4/5','น้องปลื้ม','ติดสถิติประยุกต์ฯ สจล.',0,[70,62,120,4],[68,46]],
+    [83.5,67,224,2,'r','work-slash-speed.webp','16/9','SLASH//SPEED','เกมที่น้องสร้างเองในคอร์ส','hole-slash-speed2.mp4',[59,82,172,-3]]];
   function go(){var z=document.querySelector('[data-view="home"] .zq');if(!z||z.querySelector('.hcw'))return;
     var h=z.querySelector('.zq-h');if(h&&!z.querySelector('.zq-who')){var p=document.createElement('p');p.className='zq-who';
-      p.textContent='ที่ Hamster Hub น้อง ม.ปลาย สร้างเกมและแอปของตัวเอง จนติดมหาลัยและชนะระดับประเทศ';h.insertAdjacentElement('afterend',p)}
+      p.innerHTML=['ที่ Hamster Hub น้อง ม.ปลาย','สร้างผลงานจริงของตัวเอง','ใช้ยื่นเข้ามหาลัย','ต่อยอดเป็นสตาร์ทอัพ','และชนะรางวัลระดับประเทศ'].map(function(t){return '<span>'+t+'</span>'}).join(' ');h.insertAdjacentElement('afterend',p)}
+    /* pin the content while answering (see the CSS note) */
+    var tp=z.querySelector('.zq-top');new MutationObserver(function(){var a=z.classList.contains('ask');if(a&&!z.classList.contains('zq-pin')&&tp){var y=tp.getBoundingClientRect().top-z.getBoundingClientRect().top-parseFloat(getComputedStyle(tp).marginTop);z.style.setProperty('padding-top',y+'px','important');z.classList.add('zq-pin')}else if(!a&&z.classList.contains('zq-pin')){z.classList.remove('zq-pin');z.style.removeProperty('padding-top')}}).observe(z,{attributes:true,attributeFilter:['class']});
     var w=document.createElement('div');w.className='hcw';w.setAttribute('aria-label','ผลงานจริงของน้องๆ');
     var L=document.createElement('div');L.className='hcc hcl';var R=document.createElement('div');R.className='hcc hcr';
     var S=document.createElement('div');S.className='hcs';
     C.forEach(function(c,i){var a=document.createElement('a');a.className='hc';a.href='#works';
       a.style.cssText='--x:'+c[0]+'%;--y:'+c[1]+'%;--w:clamp('+Math.round(c[2]*.8)+'px,'+(c[2]/14.4).toFixed(2)+'vw,'+Math.round(c[2]*1.2)+'px);--r:'+c[3]+'deg;--a:'+c[6]+';--i:'+(c[4]==='l'?i:i-3)+';z-index:'+(10-i%3)+(c[10]?';--mx:'+c[10][0]+'%;--my:'+c[10][1]+'%;--mw:min('+c[10][2]+'px,'+(c[10][2]/3.9).toFixed(1)+'vw);--mr:'+c[10][3]+'deg':'');if(!c[10])a.classList.add('ph-off');
       var ar=c[6].split('/');a.innerHTML='<span class="hc-m" style="aspect-ratio:auto;padding-top:'+(100*ar[1]/ar[0]).toFixed(2)+'%"><img src="img/'+c[5]+'" alt="" loading="lazy" decoding="async"></span><b></b><em></em>';
-      a.querySelector('b').textContent=c[7];a.querySelector('em').textContent=c[8];
+      if(c[11]){var av=document.createElement('span');av.className='hc-av';av.setAttribute('aria-hidden','true');av.style.backgroundImage='url(img/'+c[5]+')';av.style.backgroundPosition=c[11][0]+'% '+c[11][1]+'%';a.insertBefore(av,a.querySelector('b'))}a.querySelector('b').textContent=c[7];a.querySelector('em').textContent=c[8];
       if(c[9]){var v=document.createElement('video');v.muted=true;v.loop=true;v.playsInline=true;v.setAttribute('playsinline','');v.setAttribute('muted','');v.preload='none';v.dataset.src='img/'+c[9];v.setAttribute('aria-hidden','true');a.querySelector('.hc-m').appendChild(v)}
       a.dataset.side=c[4];(c[4]==='l'?L:R).appendChild(a)});
     w.appendChild(L);w.appendChild(R);
