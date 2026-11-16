@@ -1,7 +1,6 @@
 {
  "fonts": [
   "https://fonts.googleapis.com/css2?family=Anuphan:wght@500;600;700&family=Press+Start+2P&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap",
-  "https://fonts.googleapis.com/css2?family=Mali:wght@500;600&display=swap",
   "https://fonts.googleapis.com/css2?family=Kanit:wght@800;900&family=Mitr:wght@700&family=Chakra+Petch:wght@700&family=Sriracha&family=Srisakdi:wght@700&family=Itim&family=Pattaya&family=Charmonman:wght@700&family=Chonburi&family=Mali:wght@700&family=Sarabun:wght@800&display=swap",
   "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap",
   "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@600&display=swap"
@@ -49,7 +48,6 @@
   "js/039.js",
   "js/040.js",
   "js/041.js",
-  "js/042.js",
-  "js/043.js"
+  "js/042.js"
  ]
 }

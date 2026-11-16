@@ -31,6 +31,10 @@ finally:
     for n in moved:
         shutil.move(os.path.join(tmp, n), os.path.join(lay, n))
 
+# the loader is rendered by the Next.js layout itself (so it shows from the first paint); drop the old copy
+ld = open(os.path.join(ROOT, 'dev', 'builds', 'parts', 'loader.html')).read()
+s = re.sub(r'<div id="hhL".*?</script></div>', '', s, count=1, flags=re.S)
+
 def fix(t):
     return re.sub(r'''(["'(\s=])img/''', r'\1/Hamterco/img/', t)
 

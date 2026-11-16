@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Anuphan, IBM_Plex_Sans_Thai, Kanit, Mali } from "next/font/google";
 import "./globals.css";
+import { LOADER_HTML, LOADER_JS } from "@/lib/loader";
 
 const plex = IBM_Plex_Sans_Thai({ subsets: ["thai", "latin"], weight: ["400", "500", "600"], variable: "--font-plex", display: "swap" });
 const anuphan = Anuphan({ subsets: ["thai", "latin"], variable: "--font-anuphan", display: "swap" });
@@ -16,8 +17,12 @@ export const viewport: Viewport = { themeColor: "#F6AE55" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="th" className={`${plex.variable} ${anuphan.variable} ${mali.variable} ${kanit.variable}`}>
-      <body>{children}</body>
+    <html lang="th" suppressHydrationWarning className={`${plex.variable} ${anuphan.variable} ${mali.variable} ${kanit.variable}`}>
+      <body>
+        <div id="hhL" role="status" aria-label="กำลังโหลด Hamster Hub" dangerouslySetInnerHTML={{ __html: LOADER_HTML }} />
+        <script dangerouslySetInnerHTML={{ __html: LOADER_JS }} />
+        {children}
+      </body>
     </html>
   );
 }

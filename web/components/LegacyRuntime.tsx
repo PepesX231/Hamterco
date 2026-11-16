@@ -79,7 +79,7 @@ export function LegacyRuntime({ view, hide = [] }: { view: keyof typeof ROUTES; 
 
   return (
     <>
-      <style>{`#hhL,.pt,.lg-box header.nav{display:none!important}${hide.map((h) => `.lg-box ${h}{display:none!important}`).join("")}`}</style>
+      <style>{`.lg-box #hhL,.pt,.lg-box header.nav{display:none!important}${hide.map((h) => `.lg-box ${h}{display:none!important}`).join("")}`}</style>
       <div ref={box} className="lg-box" />
     </>
   );

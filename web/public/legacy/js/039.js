@@ -1,9 +1,4 @@
-
-(function(){
-  function quiet(e){var t=e.target;if(!t||!t.closest)return;var zq=t.closest('[data-view="home"] .zq');if(!zq)return;
-    if(t.closest('form,input,button,a,label,select,textarea,.zq-ch,.zq-pop,#zqRes,#zqSug,[role="button"]'))return;
-    e.stopImmediatePropagation();if(e.type==='click')e.preventDefault()}
-  ['pointerdown','mousedown','click','touchstart','dblclick'].forEach(function(k){window.addEventListener(k,quiet,{capture:true,passive:k!=='click'})});
-  function go(){var h=document.querySelector('.zq-h');if(h){h.removeAttribute('title');h.setAttribute('data-f','kanit');h.removeAttribute('tabindex');h.removeAttribute('role')}}
-  if(document.readyState==='complete')go();else addEventListener('load',go);
-})();
+(function(){function go(){[].forEach.call(document.querySelectorAll('.fx-row .fx-s'),function(a){if(a.querySelector('.zc-st'))return;var rc=a.querySelector('.rc.rc-s');if(!rc)return;
+  /* the "แนะนำ" pill becomes an honest status: these two only take LINE sign-ups for the next round */
+  rc.classList.add('zc-st');rc.textContent='รอเปิดรอบถัดไป'})}
+  if(document.readyState==='complete')go();else addEventListener('load',go);setTimeout(go,1500)})();

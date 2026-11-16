@@ -1,150 +1,88 @@
 
 (function(){
-  var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e}
+  var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
+  var raf=window.requestAnimationFrame||function(f){return setTimeout(f,16)};
 
-  /* ---------- 1. startup stage ---------- */
-  function stage(){
-    var big=document.querySelector('.hbx .oc-r.oc-big');if(!big||big.getAttribute('data-ar'))return;big.setAttribute('data-ar','1');
-    var m=big.querySelector('.oc-m'),ol=big.querySelector('.oc-st'),t=big.querySelector('.oc-t');
-    if(m){[['c1','PHC Map เกมสอนเขียน Python'],['c2','Hamster Quest'],['c3','หน้าเควสต์']].forEach(function(c){var s=el('span','ar-cap '+c[0]);s.textContent=c[1];s.setAttribute('aria-hidden','true');m.appendChild(s)})}
-    if(ol&&t){
-      /* one plain line under each step: what the student does there */
-      var SX=['น้องคิดว่าจะทำอะไร ให้ใครใช้','น้องลงมือเขียนโปรแกรมเอง','ให้คนจริงลองใช้ แล้วน้องแก้ให้ดีขึ้น','มีคนซื้อหรือใช้ผลงานของน้องจริง'];
-      [].forEach.call(ol.querySelectorAll('li'),function(li,i){if(SX[i]&&!li.querySelector('.ar-sx')){var x=el('span','ar-sx');x.textContent=SX[i];li.appendChild(x)}});
-      var led=el('ul','ar-led',
-        '<li class="ar-led-h">ผลงานของน้องที่มีคนใช้จริงแล้ว</li>'+
-        '<li><small>Mr. City</small><b>สวนสัตว์สงขลา</b><span>ซื้อไปใช้แล้ว</span></li>'+
-        '<li><small>PHC Map</small><b>1,000+ คน</b><span>เรียนเขียน Python จากเกมนี้แล้ว</span></li>'+
-        '<li><small>Hamster Quest</small><b>มหาวิทยาลัย</b><span>กำลังเตรียมนำไปใช้</span></li>');
-      ol.parentNode.insertBefore(led,ol.nextSibling);
-      /* the climbing path */
-      var NS='http://www.w3.org/2000/svg',svg=document.createElementNS(NS,'svg');svg.setAttribute('class','ar-path');svg.setAttribute('aria-hidden','true');
-      var pb=document.createElementNS(NS,'path'),pf=document.createElementNS(NS,'path');pb.setAttribute('class','b');pf.setAttribute('class','f');pf.setAttribute('pathLength','1');
-      svg.appendChild(pb);svg.appendChild(pf);ol.insertBefore(svg,ol.firstChild);
-      var lastD='';
-      function draw(){
-        var lis=ol.querySelectorAll('li');if(lis.length<2||!ol.clientWidth)return;
-        var d='',prev=null;
-        [].forEach.call(lis,function(li){var x=li.offsetLeft+17,y=li.offsetTop+17;
-          if(!prev)d='M'+x+' '+y;else{var h=(x-prev.x)*.5;d+=' C'+(prev.x+h)+' '+prev.y+' '+(x-h)+' '+y+' '+x+' '+y}prev={x:x,y:y}});
-        if(d!==lastD){lastD=d;pb.setAttribute('d',d);pf.setAttribute('d',d)}
-      }
-      draw();
-      if('ResizeObserver' in window)new ResizeObserver(draw).observe(ol);else addEventListener('resize',draw);
-      if(document.fonts&&document.fonts.ready)document.fonts.ready.then(draw);
-    }
-    /* no reveal: the steps and the ledger are always readable */
+  /* ---------- 1. search panel fades ---------- */
+  var res=$('#zqRes');
+  if(res){
+    var q=0;
+    var edge=function(){q=0;var more=res.scrollHeight-res.clientHeight>4,b=more&&res.scrollTop+res.clientHeight<res.scrollHeight-6,t=more&&res.scrollTop>6;
+      if(res.classList.contains('rv-fb')!==b)res.classList.toggle('rv-fb',b);if(res.classList.contains('rv-ft')!==t)res.classList.toggle('rv-ft',t)};
+    var later=function(){if(!q)q=raf(edge)};
+    res.addEventListener('scroll',later,{passive:true});
+    new MutationObserver(later).observe(res,{childList:true,subtree:true});
+    if(window.ResizeObserver)new ResizeObserver(later).observe(res);
+    var z=$('[data-view="home"] .zq');if(z)new MutationObserver(function(){setTimeout(later,60);setTimeout(later,500)}).observe(z,{attributes:true,attributeFilter:['class']});
   }
 
-  /* ---------- 2a. rank lockup ---------- */
-  function rank(){
-    [].forEach.call(document.querySelectorAll('.fx-main .rc:not(.ar-rk)'),function(rc){
-      [].slice.call(rc.childNodes).forEach(function(n){if(n.nodeType===3)rc.removeChild(n)});
-      rc.setAttribute('role','img');rc.setAttribute('aria-label','คอร์สแนะนำอันดับ 1');
-      rc.appendChild(el('span','ar-rk-t','คอร์สแนะนำ<br>อันดับ'));rc.appendChild(el('span','ar-rk-n','1'));
-      rc.classList.add('ar-rk');
-    });
-  }
+  /* ---------- 2 + 4. focus: reveal anything hidden, pick ring colour from the surface ---------- */
+  function rgb(c){var m=c&&c.match(/[\d.]+/g);return m?{r:+m[0],g:+m[1],b:+m[2],a:m[3]==null?1:+m[3]}:null}
+  function dark(el){var n=el;while(n&&n.nodeType===1){var s=getComputedStyle(n),c=rgb(s.backgroundColor);
+      if(s.backgroundImage&&s.backgroundImage!=='none'&&/gradient/.test(s.backgroundImage)){var g=rgb(s.backgroundImage);if(g)c=g}
+      if(c&&c.a>.5){return (.2126*c.r+.7152*c.g+.0722*c.b)<110}n=n.parentElement}
+    return false}
+  document.addEventListener('focusin',function(e){var t=e.target;if(!t||!t.closest)return;
+    for(var n=t;n&&n!==document.body;n=n.parentElement){var c=n.classList;if(!c)continue;
+      if((c.contains('mo-goo')||c.contains('mo-rise')||c.contains('mo-kids'))&&!c.contains('mo-in')){c.add('mo-in');c.add('mo-done')}
+      if(c.contains('rv')&&!c.contains('in'))c.add('in')}
+    var d=dark(t.parentElement||t);if(t.classList.contains('rv-on-dk')!==d)t.classList.toggle('rv-on-dk',d)},true);
 
-  /* ---------- 2c. closing wall ---------- */
-  var COVERS=['ar-melody-duel','work-phi-krahang','ar-heat-thieves','ar-a-picturesque-breakfast','ar-the-collector','ar-nampun','work-eugation-strike','ar-night-fear','ar-gamejam-x','ar-bidet-blaster','ar-woven-citadel',
-    'work-stressstrike','ar-ecoeats-mas','work-midnight-at-roadside','ar-endlessly','ar-ghostly-prisoner-demo','work-hot-hot-hot','ar-together-forever'];
-  function wall(){
-    var host=document.querySelector('[data-view="home"] .end-in');if(!host||host.querySelector('.ar-wall'))return;
-    var w=el('div','ar-wall');w.setAttribute('role','group');w.setAttribute('aria-label','เกมที่น้องๆ สร้าง กดเพื่อดูผลงาน');
-    var tiles=[],shown=[];
-    for(var i=0;i<12;i++){var t=el('a','ar-tile','<img class="on" alt="" loading="lazy" decoding="async" src="/Hamterco/img/'+COVERS[i]+'.webp"><img alt="" decoding="async">');
-      t.href='#works';t.setAttribute('data-pane','hof');t.setAttribute('data-cover',COVERS[i]);label(t,COVERS[i]);w.appendChild(t);tiles.push(t);shown.push(COVERS[i])}
-    /* a cover opens that game in the works page: Hall of Fame games play in the feed, the others open their clip */
-    w.addEventListener('click',function(e){var t=e.target.closest('.ar-tile');if(!t)return;var c=t.getAttribute('data-cover');
-      setTimeout(function open(){var v=document.querySelector('[data-view="works"]');if(!v||!v.offsetParent)return;
-        var im=document.querySelector('#vgrid img[src$="'+c+'.webp"],#arcG img[src$="'+c+'.webp"]'),b=im&&im.closest('.vc,.ac');
-        if(b){b.scrollIntoView({block:'center'});b.click()}},700)});
-    function label(t,c){var im=document.querySelector('#vgrid img[src$="'+c+'.webp"],#arcG img[src$="'+c+'.webp"]'),card=im&&im.closest('.vc,.ac'),nm=card&&card.querySelector('b,h3');
-      t.setAttribute('aria-label','ดูผลงาน '+(nm?nm.textContent.trim():'ของน้อง'))}
-    var mine=el('div','ar-mine','<svg aria-hidden="true"><rect x="1" y="1" rx="9" ry="9" style="width:calc(100% - 2px);height:calc(100% - 2px)"/></svg><span>ที่ว่างนี้<br>รอผลงานของน้อง</span>');
-    host.appendChild(w);
-    if(rm)return;
-    var timer=0,last=-1;
-    function swap(){
-      var vis=tiles.filter(function(t){return t.offsetParent!==null});if(!vis.length)return;
-      var k;do{k=Math.floor(Math.random()*vis.length)}while(vis.length>1&&k===last);last=k;
-      var t=vis[k],ti=tiles.indexOf(t),free=COVERS.filter(function(c){return shown.indexOf(c)<0});if(!free.length)return;
-      var next=free[Math.floor(Math.random()*free.length)],im=t.querySelectorAll('img'),a=im[0].classList.contains('on')?im[0]:im[1],b=a===im[0]?im[1]:im[0];
-      b.onload=function(){b.onload=null;b.classList.add('on');a.classList.remove('on');shown[ti]=next;t.setAttribute('data-cover',next);label(t,next)};
-      b.src='/Hamterco/img/'+next+'.webp';
-    }
-    new IntersectionObserver(function(es){var on=es[0].isIntersecting;
-      if(on&&!timer){timer=setInterval(function(){if(!document.hidden)swap()},2600);w.classList.add('run')}
-      else if(!on&&timer){clearInterval(timer);timer=0;w.classList.remove('run')}
-    },{threshold:.2}).observe(w);
-  }
+  /* ---------- 5. LINE green buttons: ink text ---------- */
+  function line(){$$('a,button').forEach(function(e){if(e.classList.contains('rv-ln'))return;var c=rgb(getComputedStyle(e).backgroundColor);
+    if(c&&c.a>.9&&c.g>150&&c.r<90&&c.b<140)e.classList.add('rv-ln')})}
 
-  /* ---------- 2d. activity posters ---------- */
+  /* ---------- 7. course covers ---------- */
+  function f1(n){return Math.round(n*10)/10}
   function rng(seed){var s=seed>>>0||1;return function(){s^=s<<13;s>>>=0;s^=s>>>17;s^=s<<5;s>>>=0;return s/4294967296}}
   function hash(str){var h=2166136261;for(var i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
-  function f1(n){return Math.round(n*10)/10}
-  function contours(r){   /* camp: terrain lines around a peak */
-    var cx=70+r()*70,cy=50+r()*40,p1=r()*6.28,p2=r()*6.28,a=.1+r()*.08,b=.05+r()*.05,o='';
-    for(var k=0;k<9;k++){var R=10+k*20+k*k*.9,pts=[];
-      for(var i=0;i<36;i++){var th=i/36*6.2832,rr=R*(1+a*Math.sin(3*th+p1+k*.22)+b*Math.sin(5*th+p2-k*.3));pts.push([cx+rr*Math.cos(th)*1.25,cy+rr*Math.sin(th)*.82])}
-      var d='';for(i=0;i<pts.length;i++){var q=pts[i],n=pts[(i+1)%pts.length],mx=(q[0]+n[0])/2,my=(q[1]+n[1])/2;d+=(i?' Q'+f1(q[0])+' '+f1(q[1])+' ':'M'+f1((pts[pts.length-1][0]+q[0])/2)+' '+f1((pts[pts.length-1][1]+q[1])/2)+' Q'+f1(q[0])+' '+f1(q[1])+' ')+f1(mx)+' '+f1(my)}
-      o+='<path d="'+d+'Z"/>'}
-    return o+'<path class="a" d="M'+f1(cx-4)+' '+f1(cy)+'h8M'+f1(cx)+' '+f1(cy-4)+'v8"/>';
-  }
-  function drafting(r){   /* workshop: drafting grid with construction lines */
-    var o='',ox=r()*20,oy=r()*20;
-    for(var x=ox;x<320;x+=20)o+='<path d="M'+f1(x)+' 0V180"/>';
-    for(var y=oy;y<180;y+=20)o+='<path d="M0 '+f1(y)+'H320"/>';
-    var ax=ox+20*(2+Math.floor(r()*3)),ay=oy+20*(1+Math.floor(r()*2)),R=60+Math.floor(r()*3)*20;
-    o+='<path class="a" d="M'+f1(ax)+' '+f1(ay+R)+'A'+R+' '+R+' 0 0 0 '+f1(ax+R)+' '+f1(ay)+'"/>';
-    o+='<path class="a" d="M'+f1(ax)+' '+f1(ay)+'L'+f1(ax+R*.707)+' '+f1(ay+R*.707)+'"/>';
-    o+='<path class="a" d="M'+f1(ax-5)+' '+f1(ay)+'h10M'+f1(ax)+' '+f1(ay-5)+'v10"/>';
-    return o;
-  }
-  function orbits(r){   /* project: long arcs of one orbit system */
-    var cx=40+r()*60,cy=-30+r()*40,rot=-22+r()*12,o='<g transform="rotate('+f1(rot)+' '+f1(cx)+' '+f1(cy)+')">';
-    for(var k=0;k<6;k++){var rx=70+k*52,ry=rx*.52;o+='<ellipse cx="'+f1(cx)+'" cy="'+f1(cy)+'" rx="'+rx+'" ry="'+f1(ry)+'"/>';
-      if(k===1||k===3||k===4){var th=.5+r()*1.4;o+='<circle class="d" r="'+(k===3?4.2:2.8)+'" cx="'+f1(cx+rx*Math.cos(th))+'" cy="'+f1(cy+ry*Math.sin(th))+'"/>'}}
-    return o+'</g>';
-  }
-  function ridges(r){   /* camp: hills one behind another */
-    var o='';for(var k=0;k<7;k++){var y0=40+k*20,ph=r()*6.28,amp=8+r()*10,d='M0 '+f1(y0);
-      for(var x=0;x<=320;x+=16)d+=' L'+x+' '+f1(y0+amp*Math.sin(x/(38+k*4)+ph)+.4*amp*Math.sin(x/13+ph*2));o+='<path'+(k===3?' class="a"':'')+' d="'+d+'"/>'}
-    return o;
-  }
-  function sundots(r){   /* camp: a halftone sun */
-    var cx=200+r()*80,cy=40+r()*40,o='';
-    for(var y=8;y<180;y+=14)for(var x=8;x<320;x+=14){var dd=Math.hypot(x-cx,y-cy),rr=Math.max(0,3.4-dd/60);if(rr>.5)o+='<circle class="dl" cx="'+x+'" cy="'+y+'" r="'+f1(rr)+'"/>'}
-    return o+'<circle class="a" cx="'+f1(cx)+'" cy="'+f1(cy)+'" r="'+f1(26+r()*10)+'"/>';
-  }
-  var PAL={camp:['sand','mint','sky','lilac','pink'],work:['ink','navy'],proj:['orange','peach']},
-      PAT={camp:[contours,ridges,sundots],work:[drafting,sundots],proj:[orbits,ridges]};
-  function posters(root){
-    var n={camp:0,work:0,proj:0};
-    [].forEach.call((root||document).querySelectorAll('[data-view="activity"] .avc-ty:not(.ar-po)'),function(ty){
-      var card=ty.closest('.avc'),b=ty.querySelector('b');if(!card||!b)return;
-      var dEl=card.querySelector('.avc-d'),sp=dEl&&dEl.querySelector('span'),kind=sp?sp.textContent:'',date=dEl?dEl.textContent.replace(kind,'').trim():'';
-      var type=/เวิร์ก/.test(kind)?'work':/โครงการ|โชว์|แข่ง/.test(kind)?'proj':'camp',i=n[type]++;
-      var r=rng(hash(b.textContent+date)),g=PAT[type][i%PAT[type].length](r),pal=PAL[type][i%PAL[type].length];
-      var day=(date.match(/\d+/)||[''])[0],mon=(date.match(/[ก-๙]+\.[ก-๙]+\./)||[''])[0];
-      var svg='<svg class="ar-po-g" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'+g+'</svg>';
-      ty.insertAdjacentHTML('afterbegin',svg);
-      if(day)ty.insertAdjacentHTML('beforeend','<span class="ar-po-d" aria-hidden="true"><i>'+day+'</i><u>'+mon+'</u></span>');
-      ty.classList.add('ar-po','t-'+type,'p-'+pal);
-    });
-    /* "น้องได้" lines: a line shared by many cards says nothing, keep it only on the first card */
-    var gs=[].slice.call(document.querySelectorAll('[data-view="activity"] .avc .avc-g')),cnt={},seen={};
-    gs.forEach(function(g){var k=g.textContent.trim();cnt[k]=(cnt[k]||0)+1});
-    gs.forEach(function(g){var k=g.textContent.trim();var hide=cnt[k]>3&&seen[k];seen[k]=1;if(g.hidden!==!!hide)g.hidden=!!hide});
-  }
+  var PAT={
+    grid:function(r){var o='',ox=r()*18,oy=r()*18;for(var x=ox;x<320;x+=18)o+='<path d="M'+f1(x)+' 0V240"/>';for(var y=oy;y<240;y+=18)o+='<path d="M0 '+f1(y)+'H320"/>';
+      var ax=ox+18*(9+Math.floor(r()*4)),ay=oy+18*2,R=72;return o+'<path class="a" d="M'+f1(ax)+' '+f1(ay+R)+'A'+R+' '+R+' 0 0 0 '+f1(ax+R)+' '+f1(ay)+'"/>'},
+    speed:function(r){var o='';for(var k=0;k<16;k++){var y=k*15+r()*6,x0=120+r()*90,len=60+r()*140;o+='<path'+(k===5?' class="a"':'')+' d="M'+f1(x0)+' '+f1(y)+'h'+f1(len)+'"/>'}return o},
+    orbit:function(r){var cx=250+r()*40,cy=20+r()*30,o='<g transform="rotate(-18 '+f1(cx)+' '+f1(cy)+')">';for(var k=0;k<6;k++){var rx=40+k*42;o+='<ellipse cx="'+f1(cx)+'" cy="'+f1(cy)+'" rx="'+rx+'" ry="'+f1(rx*.5)+'"'+(k===2?' class="a"':'')+'/>'}return o+'</g>'},
+    steps:function(r){var o='',x=150,y=210;for(var k=0;k<6;k++){var w=26,h=18+r()*8;o+='<path'+(k===5?' class="a"':'')+' d="M'+f1(x)+' '+f1(y)+'v'+f1(-h)+'h'+w+'"/>';x+=w;y-=h}
+      for(var j=0;j<8;j++)o+='<path d="M0 '+(30+j*26)+'H320"/>';return o},
+    dots:function(r){var o='',cx=250+r()*30,cy=40+r()*30;for(var y=8;y<240;y+=13)for(var x=8;x<320;x+=13){var d=Math.hypot(x-cx,y-cy),rr=Math.max(0,3.2-d/62);if(rr>.45)o+='<circle class="d" cx="'+x+'" cy="'+y+'" r="'+f1(rr)+'"/>'}return o},
+    contour:function(r){var cx=240+r()*40,cy=60+r()*30,o='';for(var k=0;k<9;k++){var rx=14+k*22,ry=rx*.66;o+='<ellipse cx="'+f1(cx)+'" cy="'+f1(cy)+'" rx="'+rx+'" ry="'+f1(ry)+'" transform="rotate('+f1(-12+k*2.4)+' '+f1(cx)+' '+f1(cy)+')"'+(k===3?' class="a"':'')+'/>'}return o}
+  };
+  /* tagline: a few words taken from the card's own line */
+  var COURSE={
+    'Port70':['ink','grid','คอร์สทำพอร์ต DEK70'],
+    'Project Express':['orange','speed','ทำโปรเจกต์ให้เสร็จไว'],
+    'National Project':['sky','orbit','ส่งเวทีระดับประเทศ'],
+    'Business Project':['mint','steps','ต่อยอดเป็นธุรกิจ'],
+    'Python Pro Pack':['lilac','dots','เรียนเขียน Python'],
+    'Hamstarter':['sand','contour','คอร์สเริ่มต้น']
+  },CYC=[['pink','contour'],['sky','dots'],['mint','grid'],['lilac','orbit']];
+  function covers(){var k=0;
+    $$('.qv').forEach(function(q){var im=q.querySelector('.qv-im'),img=im&&im.querySelector('img');if(!img||im.classList.contains('rv-has'))return;
+      if(!/dek69-/.test(img.getAttribute('src')||''))return;
+      var nm=(q.querySelector('.qv-tx b')||{}).textContent||'',d=(q.querySelector('.qv-d')||{}).textContent||'';nm=nm.trim();
+      var c=COURSE[nm]||(function(){var x=CYC[k++%CYC.length];return [x[0],x[1],d.trim().split(/\s+/).slice(0,3).join(' ')]})();
+      var cv=document.createElement('span');cv.className='rv-cv c-'+c[0];cv.setAttribute('aria-hidden','true');
+      cv.innerHTML='<svg viewBox="0 0 320 240" preserveAspectRatio="xMidYMid slice">'+PAT[c[1]](rng(hash(nm)))+'</svg><b></b><span></span>';
+      cv.querySelector('b').textContent=nm;cv.querySelector('span').textContent=c[2];
+      im.insertBefore(cv,im.firstChild);im.classList.add('rv-has')})}
 
-  function go(){
-    rank();posters();
-    var act=document.querySelector('[data-view="activity"]');
-    if(act&&'MutationObserver' in window){var q=0;new MutationObserver(function(){if(q)return;q=requestAnimationFrame(function(){q=0;if(act.querySelector('.avc-ty:not(.ar-po)'))posters()})}).observe(act,{childList:true,subtree:true})}
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
-  addEventListener('load',function(){rank();posters()});
+  /* ---------- 10. about: the card with no picture ---------- */
+  function about(){var f=$('.aw-g figure.nopic');if(!f||f.querySelector('.rv-ph'))return;
+    var ph=document.createElement('span');ph.className='rv-ph';ph.setAttribute('aria-hidden','true');
+    var o='';for(var x=-20;x<340;x+=34)o+='<path d="M'+x+' 0L'+(x+60)+' 240"/>';for(var y=10;y<240;y+=30)o+='<path d="M0 '+y+'L320 '+(y-26)+'"/>';
+    o+='<path class="a" d="M30 190C90 170 110 120 160 110S250 70 290 40"/><circle class="d" cx="290" cy="40" r="6"/><circle class="d" cx="30" cy="190" r="4"/>';
+    ph.innerHTML='<svg viewBox="0 0 320 240" preserveAspectRatio="xMidYMid slice">'+o+'</svg><small>เกมเดินเที่ยวสงขลา</small><b>Mr. City</b>';
+    var pz=f.querySelector('.pz-sold');if(pz)pz.remove();
+    f.classList.remove('nopic');f.insertBefore(ph,f.firstChild)}
+
+  /* ---------- 12. highlighter on the first heading of each page only ---------- */
+  function heads(){$$('[data-view]').forEach(function(v){
+    $$('.ft-hd h2,.mr-l h2,.mr-l h3,.oc-hd h2,.nw2-h,.ct-h h1',v).forEach(function(h,i){var off=i>0;if(h.classList.contains('rv-nohl')!==off)h.classList.toggle('rv-nohl',off)})})}
+
+  function all(){line();covers();about();heads()}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',all);else all();
+  addEventListener('load',function(){all();setTimeout(all,800)});
+  addEventListener('hashchange',function(){setTimeout(all,300);setTimeout(all,1200)});
+  /* rails and search results are built by script: watch only their lists */
+  ['#zqC','#zqN','#zqRes'].forEach(function(s){var el=$(s);if(!el)return;var p=0;new MutationObserver(function(){if(p)return;p=raf(function(){p=0;line();covers()})}).observe(el,{childList:true,subtree:true})});
+  $$('[data-view="courses"] .mr-r,[data-view="courses"] .ctg').forEach(function(el){var p=0;new MutationObserver(function(){if(p)return;p=raf(function(){p=0;covers()})}).observe(el,{childList:true})});
 })();

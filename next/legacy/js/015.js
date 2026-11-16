@@ -1,343 +1,375 @@
 
+/* 65-search: every input gets a sensible answer.
+   The page's own search(q) lives in a closure; we reach it through its public [data-q] click handler
+   (a hidden trigger button), after cleaning / translating the query. The page's own debounce is skipped
+   so there is exactly one render per query. User text is only ever written with textContent. */
 (function(){
-  'use strict';
-  /* public state for the glyph layer */
-  var S=window.HXSlime={p:0,rim:0,active:false,drip:0,box:null,panel:null};
-  var zq=document.querySelector('[data-view="home"] .zq');if(!zq)return;
-  var inp=zq.querySelector('#zqIn'),form=zq.querySelector('#zqForm');if(!inp||!form)return;
-  var mq=matchMedia('(prefers-reduced-motion: reduce)'),RM=mq.matches;
-  if(mq.addEventListener)mq.addEventListener('change',function(e){RM=e.matches});
+  var inp=document.getElementById('zqIn'),form=document.getElementById('zqForm'),R=document.getElementById('zqRes'),
+      A=document.getElementById('zqA'),G=document.getElementById('zqG'),RR=document.getElementById('zqR');
+  if(!inp||!form||!R||!A||!G||!RR)return;
+  var la=document.querySelector('a[href*="line.me"]'),LINE=la?la.getAttribute('href'):'https://page.line.me/jkm4247u?openQrModal=true';
+  var fa=document.querySelector('a[href*="facebook.com"]'),ig=document.querySelector('a[href*="instagram.com"]');
+  var st=window.setTimeout.bind(window),ct=window.clearTimeout.bind(window);
+  var coarse=matchMedia('(pointer:coarse)').matches;
 
-  /* ---------------- WebGL ---------------- */
-  var VS='attribute vec2 a;uniform vec4 uV;void main(){gl_Position=vec4(mix(uV.xy,uV.zw,a),0.,1.);}';
-  var FS=[
-    'precision highp float;',
-    'uniform vec4 uU;uniform vec4 uS;uniform vec4 uS2;uniform vec4 uB;uniform vec4 uB2;uniform vec4 uR;uniform vec4 uF;uniform vec4 uF2;uniform vec3 uC;',
-    'uniform vec4 uP[12];uniform vec4 uQ[12];uniform vec4 uD[3];uniform vec4 uJ[4];',
-    'float smin(float a,float b,float k){float h=max(k-abs(a-b),0.)/k;return min(a,b)-h*h*k*.25;}',
-    'float box(vec2 p,vec4 b,float r){vec2 q=abs(p-b.xy)-b.zw+r;return length(max(q,0.))+min(max(q.x,q.y),0.)-r;}',
-    'float cap(vec2 p,vec2 a,vec2 b,float ra,float rb){vec2 pa=p-a,ba=b-a;float h=clamp(dot(pa,ba)/max(dot(ba,ba),.001),0.,1.);return length(pa-ba*h)-mix(ra,rb,h);}',
-    'float nz(vec2 p,float t){return .55*sin(p.x*.011+t*1.3+1.6*sin(p.y*.009-t*.7))+.45*sin(p.y*.013-t*1.1+1.4*sin(p.x*.008+t*.5));}',
-    'float g2(float x){return exp(-x*x);}',
-    'float field(vec2 p){float t=uU.w;',
-    '  float d=box(p,uS,uS2.x)+uS2.y*nz(p,t);',
-    '  float j=0.;',
-    '  for(int i=0;i<4;i++){vec4 J=uJ[i];float e=t-J.y;if(e>0.&&e<1.6){float w=20.+46.*e,v=520.*e,a=J.z*exp(-e*2.8);',
-    '    j+=a*.75*(g2((p.x-J.x-v)/w)+g2((p.x-J.x+v)/w))+J.z*exp(-e*10.)*g2((p.x-J.x)/26.);}}',
-    '  float db=box(p,uB,uB2.x)-j+uB2.y*nz(p*2.3+vec2(37.,11.),t*.8);',
-    '  d=smin(d,db,uB2.z);',
-    /* the pour under the bar: a liquid sheet whose front edge ripples while it runs down */
-    '  if(uF.z>1.){float w=smoothstep(uF.y,uF.y+uF.w,p.y)*uF2.z;float df=box(p,uF,uF2.x)+w*(.6*sin(p.x*.034+t*7.)+.4*sin(p.x*.071-t*5.3));d=smin(d,df,uF2.y);}',
-    '  for(int i=0;i<12;i++){vec4 P=uP[i];if(P.z>.3){vec4 Q=uQ[i];vec2 m=(P.xy+Q.xy)*.5;if(length(p-m)-length(P.xy-Q.xy)*.5-P.z>d+P.w)continue;float e=length(p-P.xy)-P.z;if(Q.z>.2)e=smin(e,cap(p,Q.xy,P.xy,Q.z,Q.w),6.+P.z*.3);d=smin(d,e,P.w);}}',
-    '  for(int i=0;i<3;i++){vec4 D=uD[i];if(D.z>.5){if(length(p-vec2(D.x,D.y+D.z*.5))-D.z*.6-D.w*3.3>d)continue;vec2 a=vec2(D.x,D.y),b=vec2(D.x+sin(t*1.3+D.x)*.06*D.z,D.y+D.z);d=smin(d,cap(p,a,b,D.w*.62,D.w),D.w*2.2);}}',
-    '  if(uR.z>.3)d=smin(d,length(p-uR.xy)-uR.z,uR.w);',
-    '  return d;}',
-    /* flat 2D liquid: exactly the hero orange, no outline or shading, 1px antialiased edge */
-    'void main(){float dpr=uU.z;vec2 p=vec2(gl_FragCoord.x,uU.y*dpr-gl_FragCoord.y)/dpr;',
-    '  float d=field(p);',
-    '  gl_FragColor=vec4(mix(vec3(1.),uC,clamp(.5-d*dpr,0.,1.)),1.);}'
-  ].join('\n');
+  /* ---------- field attributes (mobile keyboards, a11y) ---------- */
+  inp.setAttribute('enterkeyhint','search');inp.setAttribute('inputmode','search');inp.setAttribute('autocapitalize','off');
+  inp.setAttribute('autocorrect','off');inp.setAttribute('spellcheck','false');inp.setAttribute('maxlength','200');inp.setAttribute('dir','auto');
+  inp.setAttribute('aria-controls','zqRes');inp.setAttribute('aria-describedby','sxHint');
+  var hint=document.createElement('span');hint.id='sxHint';hint.className='sx-vh';hint.textContent='พิมพ์คำถามแล้วคำตอบจะขึ้นข้างล่าง กด Esc เพื่อล้างคำค้น';form.appendChild(hint);
+  var live=document.createElement('div');live.id='sxLive';live.className='sx-vh';live.setAttribute('role','status');live.setAttribute('aria-live','polite');live.setAttribute('aria-atomic','true');document.body.appendChild(live);
+  RR.removeAttribute('aria-live');/* one live region only, so screen readers never read a result twice */
+  /* placeholder: the longest wording that fits the field, so it is never cut mid-word */
+  var PH=inp.getAttribute('placeholder')||'',PHS=[PH,'พิมพ์ถามได้เลย เช่น อยากทำเกม','ถามได้เลย เช่น ทำเกม','เช่น อยากทำเกม'],mc=document.createElement('canvas').getContext('2d');
+  function ph(){var w=inp.clientWidth;if(!w)return;var cs=getComputedStyle(inp);mc.font=cs.font;w-=parseFloat(cs.paddingLeft)+parseFloat(cs.paddingRight)+6;
+    var pick=PHS[PHS.length-1];for(var i=0;i<PHS.length;i++){if(mc.measureText(PHS[i]).width<=w){pick=PHS[i];break}}
+    if(inp.getAttribute('placeholder')!==pick)inp.setAttribute('placeholder',pick)}
+  ph();if(window.ResizeObserver)new ResizeObserver(ph).observe(inp);else addEventListener('resize',ph);
+  addEventListener('load',ph);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(ph);addEventListener('hashchange',function(){st(ph,400)});
 
-  var cv=null,gl=null,pr=null,U={},buf=null,ok=false,broken=false,lostCtx=false;
-  function sh(t,src){var o=gl.createShader(t);gl.shaderSource(o,src);gl.compileShader(o);
-    if(!gl.getShaderParameter(o,gl.COMPILE_STATUS)&&!gl.isContextLost()){gl.deleteShader(o);return null}return o}
-  function build(){
-    var v=sh(gl.VERTEX_SHADER,VS),f=sh(gl.FRAGMENT_SHADER,FS);
-    if(!v||!f)return false;
-    pr=gl.createProgram();gl.attachShader(pr,v);gl.attachShader(pr,f);gl.bindAttribLocation(pr,0,'a');gl.linkProgram(pr);
-    if(!gl.getProgramParameter(pr,gl.LINK_STATUS))return false;
-    gl.useProgram(pr);
-    ['uV','uU','uS','uS2','uB','uB2','uR','uF','uF2','uC','uP','uQ','uD','uJ'].forEach(function(n){U[n]=gl.getUniformLocation(pr,n)});
-    buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([0,0,1,0,0,1,1,1]),gl.STATIC_DRAW);
-    gl.enableVertexAttribArray(0);gl.vertexAttribPointer(0,2,gl.FLOAT,false,0,0);
-    gl.disable(gl.DEPTH_TEST);gl.disable(gl.BLEND);gl.clearColor(1,1,1,1);
-    return true}
-  function init(){
-    if(ok)return true;if(broken||lostCtx)return false;
-    try{
-      cv=document.createElement('canvas');cv.className='sl-cv';cv.setAttribute('aria-hidden','true');
-      gl=cv.getContext('webgl',{alpha:false,antialias:false,depth:false,stencil:false,preserveDrawingBuffer:true,powerPreference:'default',failIfMajorPerformanceCaveat:false});
-      if(!gl||gl.getParameter(gl.MAX_FRAGMENT_UNIFORM_VECTORS)<40||!build()){broken=true;cv=null;gl=null;return false}
-      cv.addEventListener('webglcontextlost',function(e){e.preventDefault();lostCtx=true;ok=false;bail()});
-      cv.addEventListener('webglcontextrestored',function(){lostCtx=false;try{if(build())ok=true}catch(e){}if(ok)check()});
-      zq.insertBefore(cv,zq.firstChild);ok=true;return true
-    }catch(e){broken=true;cv=null;gl=null;return false}}
+  /* ---------- text helpers ---------- */
+  var EN="`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:\"ZXCVBNM<>?",
+      TH="_ๅ/-ภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ%+๑๒๓๔ู฿๕๖๗๘๙๐\"ฎฑธํ๊ณฯญฐ,ฅฤฆฏโฌ็๋ษศซ.()ฉฮฺ์?ฒฬฦ";
+  function swapKb(t,toTh){var a=toTh?EN:TH,b=toTh?TH:EN,o='';for(var i=0;i<t.length;i++){var k=a.indexOf(t[i]);o+=k>-1?b[k]:t[i]}return o}
+  function base(raw){var s=String(raw==null?'':raw).slice(0,600);try{s=s.normalize('NFC')}catch(e){}
+    s=s.replace(/[！-～]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-0xFEE0)}).replace(/　/g,' ');
+    s=s.replace(/[​-‏‪-‮⁠-⁩﻿­]/g,'').replace(/[\u0000-\u001F\u007F]+/g,' ');
+    return s.replace(/\s+/g,' ').trim()}
+  function clean(raw){var s=base(raw);
+    s=s.replace(/เเ/g,'แ').replace(/ํา/g,'ำ').replace(/([่-๋])([ัิ-ู])/g,'$2$1').replace(/([ัิ-ู็-์])\1+/g,'$1');
+    s=s.replace(/([^\d\s.])\1{2,}/g,'$1');/* อยากกกก > อยาก , gameeee > game */
+    return s.replace(/\s+/g,' ').trim()}
+  function nsp(t){return t.toLowerCase().replace(/[\s"'“”‘’!?.,()\-_\/ๆ]+/g,'')}
+  function detone(t){return t.replace(/[่-๋์็]/g,'')}
+  function short(t,n){var a=Array.from(t);return a.length>n?a.slice(0,n).join('').replace(/\s+$/,'')+'…':t}
+  function lev(a,b){if(a===b)return 0;var m=a.length,n=b.length;if(!m)return n;if(!n)return m;var d=[],i,j;for(i=0;i<=m;i++)d[i]=[i];for(j=0;j<=n;j++)d[0][j]=j;
+    for(i=1;i<=m;i++)for(j=1;j<=n;j++){var c=a[i-1]===b[j-1]?0:1;d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+c);if(i>1&&j>1&&a[i-1]===b[j-2]&&a[i-2]===b[j-1])d[i][j]=Math.min(d[i][j],d[i-2][j-2]+1)}return d[m][n]}
+  var segW=window.Intl&&Intl.Segmenter?new Intl.Segmenter('th',{granularity:'word'}):null;
+  function words(t){return segW?Array.from(segW.segment(t),function(x){return x.segment}).filter(function(x){return /[ก-๙a-z]/i.test(x)}):t.split(/\s+/)}
+  var reThai=/[ก-๛]/,reLat=/[a-z]/i,
+      reForeign=/[຀-໿぀-ヿ㐀-鿿豈-﫿가-힯ᄀ-ᇿ֐-ࣿЀ-ԯͰ-Ͽऀ-෿က-႟ក-៿À-ɏḀ-ỿ¿¡]/;
 
-  /* ---------------- geometry / state ---------------- */
-  var W=0,H=0,DPR=1,R=14,needSize=true;
-  function size(){var w=zq.clientWidth,h=zq.clientHeight;if(!w||!h)return false;var d=Math.min(window.devicePixelRatio||1,2,Math.sqrt(3.2e6/(w*h)));d=Math.max(d,Math.min(1,window.devicePixelRatio||1));var bw=Math.round(w*d),bh=Math.round(h*d);
-    if(cv.width!==bw||cv.height!==bh){cv.width=bw;cv.height=bh}W=w;H=h;DPR=bw/w;R=Math.max(10,Math.min(16,w*.011));needSize=false;return true}
-  function cl(x,a,b){return x<a?a:x>b?b:x}
-  function lerp(a,b,t){return a+(b-a)*t}
-  function eio(x){return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2}
-  function eoc(x){return 1-Math.pow(1-x,3)}
-  function csOf(g,x){return g?.88*eio(x)+.12*eoc(x):1-eoc(1-x)}
-  function inv(g,c){var a=0,b=1;for(var i=0;i<24;i++){var m=(a+b)/2;if(csOf(g,m)<c)a=m;else b=m}return (a+b)/2}
-  function ss(a,b,x){x=cl((x-a)/(b-a),0,1);return x*x*(3-2*x)}
-  /* spring: {x,v} toward target with stiffness k and damping ratio z (sub-stepped) */
-  function spr(s,t,k,z,dt){var c=2*z*Math.sqrt(k),n=Math.ceil(dt/.008)||1,h=dt/n;for(var i=0;i<n;i++){s.v+=(k*(t-s.x)-c*s.v)*h;s.x+=s.v*h}}
-  function sp(x){return{x:x,v:0}}
+  /* ---------- what the page knows (canonical Thai query per topic, label, one English line) ---------- */
+  var T={
+    kmitl:['สจล','สจล.','Seniors who got into KMITL, and the courses they took, are listed below.'],
+    chula:['จุฬา','จุฬาฯ','Seniors who got into Chulalongkorn University, and the courses they took, are listed below.'],
+    mahidol:['มหิดล','มหิดล','Seniors who got into Mahidol University, and the courses they took, are listed below.'],
+    ku:['เกษตรศาสตร์','เกษตรศาสตร์','Seniors who got into Kasetsart University, and the courses they took, are listed below.'],
+    med:['แพทย์','อยากเข้าแพทย์','We teach technology, not medical entrance exams. We can help you build a health-tech project for your portfolio.'],
+    eng:['วิศวะคอม','อยากเข้าวิศวะคอม','For computer engineering or CEDT, a project you coded yourself makes the portfolio stronger. See the courses below.'],
+    cs:['วิทย์คอม','อยากเข้าวิทย์คอม','For computer science or IT, projects that real people use make a portfolio stand out. See the courses below.'],
+    sci:['วิทยาศาสตร์','คณะสายวิทยาศาสตร์','Tech projects also help portfolios for science faculties. See the courses below.'],
+    about:['Hamster Hub คืออะไร','Hamster Hub คืออะไร','Hamster Hub teaches Thai high-school students to build games, web apps and IoT projects, for university portfolios, competitions or startups.'],
+    price:['ค่าเรียน','ค่าเรียนเท่าไหร่','Port Express (2 months) costs 5,990 baht. Other courses announce prices when they open.'],
+    when:['สมัครยังไง','เรียนวันไหน สมัครยังไง','Port Express runs Mon, Wed and Fri for 2 months, starting 9 Nov 2026. Ask the team on LINE about place and time.'],
+    parent:['ผู้ปกครอง','ผู้ปกครอง ลูกจะได้อะไร','Your child builds real projects for a university portfolio, with mentors looking after them closely.'],
+    m6:['ม.6','น้อง ม.6','Courses that fit grade 12 (M.6) are listed below. Details are in Thai.'],
+    m45:['ม.4','น้อง ม.4–5','Courses that fit grades 10–11 (M.4–5) are listed below. Details are in Thai.'],
+    m13:['ม.ต้น','น้อง ม.ต้น','Courses and camps that fit younger students are listed below. Details are in Thai.'],
+    beginner:['มือใหม่','เริ่มจากศูนย์ได้ไหม','No experience needed. Starter courses take you to your first finished project.'],
+    game:['เกม','อยากทำเกม','You code your own game here, from idea to playable. Courses and camps are listed below.'],
+    web:['เว็บ','อยากทำเว็บหรือแอป','You build a real web or mobile app. Courses and camps are listed below.'],
+    iot:['iot','อยากทำ IoT หรือหุ่นยนต์','You build devices that work with your own code, such as IoT and robots. See the courses below.'],
+    ai:['ai','อยากใช้ AI สร้างผลงาน','Use AI to build games, websites and business projects in a few days. See the camps below.'],
+    biz:['ธุรกิจ','อยากทำธุรกิจหรือสตาร์ทอัพ','Student projects can grow into real businesses. See the courses below.'],
+    compete:['แข่งขัน','อยากส่งผลงานแข่ง','Build a project for national competitions such as NSC. Awards go straight into your portfolio.'],
+    camp:['ค่าย','ค่ายและกิจกรรม','Short camps and workshops let you try building something real before a long course.'],
+    port:['พอร์ต','อยากมีพอร์ตยื่นมหาลัย','A strong portfolio shows work you built yourself. In 2026, 48 Hamster Hub students got into university in the Portfolio round.']
+  };
+  /* Latin rules: [topic, English, romanised Thai] - order = priority when several match */
+  var L=[
+    ['kmitl',/\b(kmitl|lad ?krabang|lat ?krabang)\b/],['chula',/\b(chula|chulalongkorn|cu)\b/],['mahidol',/\b(mahidol|mu)\b/],['ku',/\b(kasetsart|kaset|ku)\b/],
+    ['med',/\b(medicine|medical|med ?school|med|doctors?|dentist(ry)?|pharmac(y|ist)|nurs(e|ing)|vet|veterinary|health)\b/,/\b(mor(?! ?\d)|phaet|paet|phayaban|payaban|khana ?phaet)\b/],
+    ['eng',/\b(engineering|engineers?|cedt|comp(uter)? ?eng|com ?eng|cpe)\b/,/\b(wi[st]?sa[wv]a|wissawa|wit ?sa ?wa|wi ?sa ?wa|visawa|wishawa|wisawakam|witsawakam)\b/],
+    ['price',/\b(prices?|pricing|costs?|fees?|tuition|how much|expensive|cheap|discounts?|installments?|pay|payment|baht|thb|free)\b/,/\b(ra ?ka|kh?a ?rian|kh?a ?course|kh?a ?term|th?ao ?rai|th?ao ?r[ia]i|taorai|thaorai|g[ei]e? ?ba(h)?t|k[ei]e? ?ba(h)?t|ph?aeng)\b/],
+    ['when',/\b(schedule|timetable|when|what time|where|location|address|map|online|onsite|on-site|register|registration|sign ?up|enrol+(ment)?|join|start date|how long|duration|class times?)\b/,/\b(samak|sa ?mak|wan ?nai|th?[ie]e? ?nai|m[eu]e?a ?rai|rian ?yang ?ngai|rian ?wan ?nai|g[ei]e? ?mong|k[ei]e? ?mong)\b/],
+    ['parent',/\b(parents?|my (son|daughter|kids?|child|children)|mom|mum|dad|mother|father|guardian)\b/,/\b(ph?[ou]o? ?pok ?kh?rong|luk ?(chai|sao)|khun ?mae|khun ?ph?o|ph?o ?mae|por ?mae)\b/],
+    ['m6',/\b(grade ?12|12th grade|m\.? ?6|mor ?6|senior year|final year|dek ?70)\b/],
+    ['m45',/\b(grade ?1[01]|1[01]th grade|m\.? ?[45]|mor ?[45]|dek ?7[12])\b/],
+    ['m13',/\b(grade ?[4-9]|m\.? ?[123]|mor ?[123]|junior high|middle school|primary|elementary|young(er)? (kids?|students?))\b/,/\b(mor ?ton|m\.? ?ton|prathom|pratom)\b/],
+    ['game',/\b(games?|gaming|game ?dev\w*|unity|roblox|godot|minecraft)\b/,/\b(gem|kem|th?am ?gem|sang ?gem)\b/],
+    ['web',/\b(web|websites?|web ?apps?|apps?|applications?|html|css|javascript|js|react|front ?end|sites?)\b/,/\b(wep|wep ?sai)\b/],
+    ['iot',/\b(iot|robots?|robotics?|arduino|esp32|sensors?|hardware|electronics?|embedded|micro:?bit|raspberry)\b/,/\b(hun ?yon)\b/],
+    ['ai',/\b(ai|a\.i\.?|artificial intelligence|chat ?gpt|gpt|machine learning|ml|llm|gemini|claude)\b/],
+    ['biz',/\b(business|start-?ups?|entrepreneurs?|sell(ing)?|marketing|make money)\b/,/\b(thurakit|turakit|kh?ai ?khong)\b/],
+    ['compete',/\b(competitions?|compete|contests?|awards?|prizes?|nsc|hackathons?|game ?jam|olympiad)\b/,/\b(kh?aeng|kh?aeng ?kh?an|pra ?kuat|rang ?wan)\b/],
+    ['camp',/\b(camps?|workshops?|events?|activit(y|ies)|summer|holidays?|school break)\b/,/\b(kh?ai|pi[dt] ?th?[eo]e?r?m|kit ?ja ?kam|kitchakam)\b/],
+    ['cs',/\b(computer science|comp ?sci|cs|ict|it (faculty|major|program|course|school|student)|(study|studying|faculty of|major in) it|information technology|software|data science|digital|computers?)\b/,/\b(wit ?com|wit ?khom|witth?aya ?kan ?com\w*)\b/],
+    ['port',/\b(portfolios?|port|tcas|universit(y|ies)|college|uni|admissions?|interviews?|get into)\b/,/\b(maha ?lai|mahawitth?ayalai|maha ?wit\w*|yuen ?port|fam ?port|ph?ot|tid ?maha ?lai|tit ?maha ?lai)\b/],
+    ['beginner',/\b(beginners?|newbie|noob|never (coded|code|programmed)|no experience|from zero|from scratch|basics?|learn (to )?(code|coding|program|programming)|coding|code|programming|python|c#|java|c\+\+|scratch|start(ing)?)\b/,/\b(m[uea]{1,3} ?mai|mai ?kh?[eo]e?i|mai ?keng|kh?ian ?pro ?gr[ae]m|r[oe]{1,2}m ?ton|rerm ?ton)\b/],
+    ['sci',/\b(science|statistics|physics|chemistry|biology|maths?|mathematics|data)\b/,/\b(wit(th?aya)?sat)\b/],
+    ['about',/\b(hamster ?hub|hamsterhub|hamster|hamter|about( us)?|who (are|r) (you|u) guys|trust(ed)?|legit|reviews?|scam|what is this|what do you (do|teach)|what (is|are) (you|this place))\b/,/\b(kh?[eu]e? ?a ?rai|th?am ?a ?rai|thi ?ni)\b/]
+  ];
+  /* typo-tolerant vocabulary for single Latin words */
+  var V={game:'game',games:'game',port:'port',camp:'camp',code:'beginner',website:'web',portfolio:'port',python:'beginner',programming:'beginner',beginner:'beginner',coding:'beginner',robot:'iot',robotics:'iot',arduino:'iot',price:'price',tuition:'price',
+    engineering:'eng',engineer:'eng',medicine:'med',doctor:'med',parent:'parent',parents:'parent',competition:'compete',hackathon:'compete',university:'port',admission:'port',business:'biz',startup:'biz',
+    computer:'cs',software:'cs',science:'sci',hamster:'about',hamsterhub:'about',roblox:'game',unity:'game',workshop:'camp',schedule:'when',register:'when',chulalongkorn:'chula',kasetsart:'ku',mahidol:'mahidol'};
+  var STOP=/\b(the|is|are|am|was|what|how|why|who|where|when|do|does|did|you|your|me|my|we|our|they|can|could|will|would|should|want|wanna|need|like|love|have|has|had|to|for|of|in|on|at|and|or|not|no|yes|with|this|that|it|its|a|an|be|there|here|please|help|tell|give|show|make|learn|teach|study|class|classes|course|courses|kid|kids|student|students|school|good|best|new|any|some|about|from|more|much|many|get|go|know|think|im|i)\b/;
+  function latin(t){var hits=[],i,j;
+    for(i=0;i<L.length;i++){var en=L[i][1].test(t),ro=!en&&L[i][2]&&L[i][2].test(t);if(en||ro)hits.push({k:L[i][0],ro:!!ro})}
+    if(/^(it|i\.t\.?)$/.test(t))hits.push({k:'cs',ro:false});
+    if(!hits.length){var ws=t.split(/[^a-z0-9#+]+/).filter(Boolean);
+      for(i=0;i<ws.length&&!hits.length;i++){var w=ws[i];if(w.length<4)continue;var tol=w.length>=8?2:1;
+        for(j in V){if(w.length===4&&(j.length!==4||w.split('').sort().join('')!==j.split('').sort().join('')))continue;if(Math.abs(j.length-w.length)<=tol&&j[0]===w[0]&&lev(w,j)<=tol){hits.push({k:V[j],ro:false,typo:j});break}}}}
+    if(!hits.length)return null;
+    /* "what is ..." style words only win when nothing more specific matched */
+    return {k:hits[0].k,ro:hits[0].ro,typo:hits[0].typo,alts:hits.slice(1,4).map(function(h){return h.k})}}
 
-  var goal=0,pl=0,cs=0,running=false,raf=0,lastT=0,lastDraw=0,drawn=0,visible=true,lastAct=0,arrived=false,t0=performance.now(),relT=0,pop=-1;
-  var bx=sp(0),by=sp(0),bw=sp(0),bh=sp(0),sA=sp(0),sB=sp(0),grow=sp(0);
-  var rx=sp(0),ry=sp(0),rr=sp(0),ptr=null;
-  var jig=[[0,-99,0],[0,-99,0],[0,-99,0],[0,-99,0]],ji=0;
-  /* droplets left behind / flung out: anchor (fraction of hero), size, delay, path bend */
-  /* [x,y (fraction of hero), size, release point (progress), path bend, 1 = stuck to the wall by a strand / 0 = free droplet] */
-  var PD=[[.04,.07,1,.3,.2,1],[.95,.05,.9,.4,-.25,1],[.03,.93,1,.48,-.2,1],[.97,.9,1.1,.36,.22,1],[.58,.015,.75,.44,.1,1],[.3,.985,.8,.54,-.15,1],
-          [.005,.4,.85,.58,.12,1],[.995,.62,.8,.5,-.1,1],[.2,.24,.6,.24,.3,0],[.82,.3,.55,.3,-.3,0],[.7,.82,.6,.4,.25,0],[.12,.7,.5,.34,-.2,0]];
-  var PS=PD.map(function(){return sp(1)});
-  /* drips under the bar: x along the straight part of the pill, length and size in rim units, sway speed */
-  var DD=[[-.7,.85,.5,.8,0],[.2,.55,.42,1.25,2.1],[.72,1.15,.52,.65,4.2]];
-  var aP=new Float32Array(48),aQ=new Float32Array(48),aD=new Float32Array(12),aJ=new Float32Array(16);
-  var pill={x:0,y:0,w:0,h:0};
-  /* liquid colour = the hero's own orange, so the moving slime is the same paint as the background it came from */
-  var COL=[.9686,.6353,.2431];
-  function readCol(){try{var v=getComputedStyle(zq).getPropertyValue('--or').trim(),m;
-    if((m=/^#([0-9a-f]{6})$/i.exec(v)))COL=[0,2,4].map(function(i){return parseInt(m[1].substr(i,2),16)/255});
-    else if((m=/^#([0-9a-f]{3})$/i.exec(v)))COL=[0,1,2].map(function(i){return parseInt(m[1][i]+m[1][i],16)/255});
-    else if((m=/rgba?\(\s*([\d.]+)[ ,]+([\d.]+)[ ,]+([\d.]+)/.exec(v)))COL=[+m[1]/255,+m[2]/255,+m[3]/255]}catch(e){}}
+  /* Thai vocabulary: a page answer is trusted only when the query really contains (or nearly spells) one of these */
+  var TV=('สจล ลาดกระบัง พระจอมเกล้า จุฬา มหิดล เกษตร ศรีราชา แพทย์ แพทย หมอ เภสัช พยาบาล ทันต สัตวแพทย์ กายภาพ สาธารณสุข สุขภาพ วิศว วิดวะ วิสวะ วิศะ วิดสะวะ คอมเอ็น วิทย์คอม วิทยาการคอม ไอที สารสนเทศ คอมพิว คอม ดิจิทัล ซอฟต์แวร์ ซอฟแวร์ '+
+    'วิทยาศาสตร์ วิทย์ สถิติ สิ่งแวดล้อม ฟิสิกส์ เคมี ชีวะ ชีววิทยา คณิต ข้อมูล แฮมสเตอร์ แฮมเตอร์ แฮมสเตอ แฮม ฮับ คืออะไร ที่นี่ เกี่ยวกับ เป็นใคร ทำอะไร สอนอะไร บริษัท สถาบัน น่าเชื่อ รีวิว ราคา เท่าไหร่ เท่าไร เท่าไห่ กี่บาท ค่าเรียน ค่าคอร์ส ค่าเทอม ค่าสมัคร บาท แพง ผ่อน ส่วนลด ฟรี จ่าย '+
+    'วันไหน กี่โมง ตาราง ออนไลน์ ที่ไหน เรียนยังไง เวลาเรียน เปิดเมื่อ เมื่อไหร่ เมื่อไร สมัคร ลงทะเบียน เริ่มเรียน กี่วัน กี่เดือน นานไหม เปิดรับ ผู้ปกครอง ลูก พ่อแม่ คุณแม่ คุณพ่อ ผปค หลาน ม6 ม.6 มหก เด็ก70 ปีสุดท้าย ม4 ม5 ม.4 ม.5 ม1 ม2 ม3 ม.1 ม.2 ม.3 มต้น ม.ต้น มปลาย ม.ปลาย ประถม ป6 ป5 ป.6 ป.5 ป.4 '+
+    'มือใหม่ ไม่เคย ไม่เก่ง ไม่มีพื้น ศูนย์ เริ่มต้น พื้นฐาน ไพธอน ไพทอน โค้ด เขียนโปรแกรม โปรแกรม เกม ยูนิตี้ โรบล็อกซ์ เว็บ เวป เว็ป เวบ แอป แอพ ไอโอที หุ่นยนต์ หุ่นยน อาดูโน่ บอร์ด อุปกรณ์ เซนเซอร์ เซ็นเซอร์ ไฟฟ้า อิเล็ก เอไอ ปัญญาประดิษฐ์ แชทจีพีที '+
+    'ธุรกิจ สตาร์ทอัพ สตาร์ตอัป สตาทอัพ ขาย หาเงิน บริหาร การตลาด ผู้ประกอบการ บัญชี แข่ง รางวัล ประกวด เกมแจม โอลิมปิก เวที แฮกกาธอน ค่าย แคมป์ ปิดเทอม เวิร์กชอป เวิร์คช็อป กิจกรรม อีเวนต์ พอร์ต พอต พอท มหาลัย มหาวิทยาลัย ทีแคส ยื่น สัมภาษณ์ แฟ้ม รอบ1 ติดมหา เข้ามหา').split(' ');
+  var TVL=TV.filter(function(x){return x.length>=4}),TVD=TV.map(detone);
+  function hasEv(q){var n=nsp(q);if(/[a-z]{2,}/.test(n))return true;/* the page knows many English aliases itself */
+    var i,d=detone(n);for(i=0;i<TV.length;i++){if(n.indexOf(TV[i])>-1)return true;if(TVD[i].length>=3&&d.indexOf(TVD[i])>-1)return true}
+    var ws=words(q.toLowerCase()),cand=[];for(i=0;i<ws.length;i++){if(ws[i].length>=4)cand.push(ws[i]);if(ws[i+1]&&(ws[i]+ws[i+1]).length>=4)cand.push(ws[i]+ws[i+1])}
+    for(i=0;i<cand.length;i++){var w=cand[i],tol=w.length>=7?2:1;for(var j=0;j<TVL.length;j++){var a=TVL[j];if(Math.abs(a.length-w.length)<=tol&&lev(w,a)<=tol)return true}}
+    return false}
 
-  /* ---------------- results pour: liquid runs down out of the bar and the panel rides behind its front ---------------- */
-  var res=zq.querySelector('#zqRes');
-  /* phase 0 none, 1 pouring, 2 holding under the panel, 3 pulling back into the rim */
-  var F={ph:0,len:0,v:0,full:0,clip:false,items:[],top:0,pr:{x:0,y:0,w:0,h:0,r:22},g:null,wob:sp(0)};
-  function resOpen(){return !!res&&!res.hidden&&res.offsetHeight>0}
-  /* b: px hidden from the bottom; l/r: px hidden from the sides (the panel never shows wider than the liquid under it) */
-  function clipRes(b,l,r,rad){if(!res)return;if(b==null){if(F.clip){res.style.removeProperty('clip-path');F.clip=false}return}
-    l=l>0?l.toFixed(1)+'px':'-60px';r=r>0?r.toFixed(1)+'px':'-60px';
-    res.style.setProperty('clip-path','inset(-60px '+r+' '+Math.max(0,b).toFixed(1)+'px '+l+(rad?' round 0 0 '+rad.toFixed(1)+'px '+rad.toFixed(1)+'px':'')+')');F.clip=true}
-  function landAll(){F.items.forEach(function(o){land(o.el)});F.items=[]}
-  function land(el){el.classList.remove('sl-w');el.classList.add('sl-l');setTimeout(function(){el.classList.remove('sl-l')},700)}
-  function startPour(){F.ph=1;F.v=W<640?380:460;F.len=Math.max(F.len,0);cls('sl-pour',1);
-    var pt=res.getBoundingClientRect().top;F.items=[];
-    [].slice.call(res.querySelectorAll('.zq-r,.ia-w>*,.zq-g>*')).slice(0,14).forEach(function(el){var r=el.getBoundingClientRect();
-      if(r.height){el.classList.remove('sl-l');el.classList.add('sl-w');F.items.push({el:el,y:r.top-pt+14})}})}
-  function pourStep(dt){
-    if(!res)return;
-    var open=resOpen()&&goal===1,zr=zq.getBoundingClientRect(),m=W<640?6:9,top=pill.y+pill.h-6;
-    if(open){var r=res.getBoundingClientRect();F.pr.x=r.left-zr.left;F.pr.y=r.top-zr.top;F.pr.w=r.width;F.pr.h=r.height;
-      F.pr.r=parseFloat(getComputedStyle(res).borderTopLeftRadius)||22;
-      /* stay inside the hero: a frame running past its bottom edge would be cut off */
-      F.full=Math.max(0,Math.min(F.pr.y+F.pr.h+m,H-5)-top)}
-    if(open&&(F.ph===0||F.ph===3)){
-      if(RM||cs<.85){F.ph=2;F.len=F.full;F.v=0;clipRes(null);landAll()}
-      else if(F.ph===0||F.len<12){F.len=Math.min(F.len,12);startPour()}
-      else clipRes(F.pr.h)}
-    if(!open&&(F.ph===1||F.ph===2)){F.ph=3;clipRes(null);landAll()}
-    if(F.ph===1){F.v+=(W<640?3600:4200)*dt;F.len+=F.v*dt;
-      if(F.len>=F.full){F.len=F.full;F.ph=2;F.v*=.2}}
-    else if(F.ph===2){if(RM){F.len=F.full;F.v=0}else{var o={x:F.len,v:F.v};spr(o,F.full,340,.3,dt);F.len=o.x;F.v=o.v}}
-    else if(F.ph===3){/* pulled back up into the rim: quick, so an empty slab never lingers */F.len=Math.max(0,F.len-(F.len*16+(W<640?1400:2000))*dt);F.v=0;if(F.len<3){F.ph=0;F.len=0;cls('sl-pour',0)}}
-    if(RM)F.wob=sp(0);else spr(F.wob,0,260,.25,dt);
-    /* reveal: the panel shows down to just behind the liquid front */
-    var reveal=open&&F.ph===1||F.ph===2&&F.clip,front=top+F.len-16-F.pr.y;
-    if(F.ph===2&&F.clip&&Math.abs(F.len-F.full)<2&&Math.abs(F.v)<40){clipRes(null);landAll();cls('sl-pour',0);reveal=false}
-    if(reveal)for(var i=F.items.length-1;i>=0;i--)if(front>F.items[i].y){land(F.items[i].el);F.items.splice(i,1)}
-    /* geometry for the shader */
-    if(F.ph===0||F.len<1){F.g=null;if(reveal)clipRes(F.pr.h);return}
-    var fu=Math.max(F.full,1),sp2=ss(0,.75,F.len/fu),pw=F.pr.w/2+m,pcx=F.pr.x+F.pr.w/2,
-        hw=lerp(pill.w*.45,pw,sp2)+F.wob.x*.5,cx=lerp(pill.x,pcx,sp2),hh=(F.len+F.wob.x)/2;
-    hw=Math.min(hw,Math.min(cx,W-cx)-5);
-    F.g={cx:cx,cy:top+hh,hw:Math.max(hw,1),hh:Math.max(hh,1),r:Math.max(0,Math.min(lerp(Math.min(hw,70),F.pr.r+m,sp2),hw,hh)),
-      amp:F.ph===1?(W<640?5:8)*ss(0,.25,F.len/fu):F.ph===2?Math.min(8,Math.abs(F.v)*.03+Math.abs(F.wob.x)*.4):0};
-    if(reveal){var G=F.g,inL=G.cx-G.hw+m-F.pr.x,inR=F.pr.x+F.pr.w-(G.cx+G.hw-m);clipRes(F.pr.h-front,inL,inR,Math.max(0,G.r-m))}}
-  if(res)new MutationObserver(function(ms){
-    /* a fresh panel must not flash before the liquid reaches it */
-    var vis=resOpen();if(vis&&running&&goal===1&&!RM&&cs>=.85&&(F.ph===0||F.ph===3))clipRes(res.offsetHeight);
-    /* new results while the panel is open: a small slosh instead of a new pour */
-    if(F.ph===2&&ms.some(function(m){return m.type==='childList'})){F.wob.v+=W<640?160:220;lastAct=performance.now()}
-    lastAct=performance.now();kickLoop()}).observe(res,{attributes:true,attributeFilter:['hidden'],childList:true});
+  /* ---------- special kinds ---------- */
+  var RUDE=/ควย|เหี้ย|เหี้ย|เชี่ย|สัส|สัตว์นรก|ไอ้สัตว์|อีสัตว์|เย็ด|แม่ง|อีดอก|ไอ้เวร|ระยำ|ส้นตีน|ตอแหล|เฮงซวย|ห่วยแตก|ห่วย|กระจอก|มึง|(^|\s)กู(?=\s|$)|\b(f+u+c+k+\w*|sh[i1]t+\w*|b[i1]tch\w*|assholes?|bastards?|cunts?|wtf|stfu|motherf\w*|kuy|kuay|kwai)\b/gi;
+  var S=[
+    ['crisis',/อยากตาย|ฆ่าตัวตาย|ไม่อยากอยู่แล้ว|ไม่อยากมีชีวิต|ทำร้ายตัวเอง|กรีดแขน|suicid\w*|kill myself|want to die|end my life|self.?harm/i],
+    ['harm',/ทำระเบิด|วางระเบิด|ยาเสพติด|ยาบ้า|ยาไอซ์|กัญชา|ปืน|อาวุธ|แฮก(เฟส|ไอจี|บัญชี|ไลน์|เว็บ|ระบบ|ไวไฟ|wifi)|โกงข้อสอบ|โกงเกม|การพนัน|พนัน|บาคาร่า|สล็อต|หนังโป๊|คลิปหลุด|\b(bombs?|weapons?|guns?|drugs?|cocaine|meth|porn\w*|xxx|nudes?|sex|gambling|casino|slots?|cheat(s|ing)?|hack (into |a |my |her |his )?(facebook|instagram|account|wifi|website|line))\b/i],
+    ['who',/เป็น(บอท|ai|เอไอ|คนจริง|คน|หุ่นยนต์|แชทบอท)(ไหม|มั้ย|มั๊ย|หรือ|รึ|ป่าว|เปล่า|ปะ)|(คุณ|เธอ|นาย|แก)(คือ|เป็น)ใคร|นี่ใคร|ใครตอบ|มีคนตอบ|\b(are (you|u) (a |an )?(bot|ai|human|robot|real|person)|who (are|r) (you|u)\??$|who is this|is this (a )?(bot|ai|chatbot))\b/i],
+    ['home',/การบ้าน|ทำรายงาน|เขียนเรียงความ|เฉลยข้อสอบ|เฉลย|ทำโจทย์|แก้โจทย์|\b(homework|essay|assignment|solve this)\b/i],
+    ['off',/อากาศ|ฝนตก|ฝนจะตก|พยากรณ์|หวย|ลอตเตอรี่|ดูดวง|ดวงวันนี้|ข่าววันนี้|ฟุตบอล|ผลบอล|บอลวันนี้|ดูหนัง|หนังใหม่|ฟังเพลง|เนื้อเพลง|สูตรอาหาร|กินอะไรดี|ร้านอาหาร|ร้านกาแฟ|หาแฟน|จีบ|อกหัก|เรื่องตลก|มุกตลก|เล่านิทาน|แปลภาษา|แปลว่าอะไร|แปลให้|กี่โมงแล้ว|วันนี้วันอะไร|วันนี้วันที่|เมืองหลวง|นายก|การเมือง|เลือกตั้ง|หุ้น|คริปโต|บิทคอยน์|ราคาทอง|ราคาน้ำมัน|ตั๋วเครื่องบิน|โรงแรม|ที่เที่ยว|\b(weather|rain(ing)?|forecast|lottery|horoscope|news|football|soccer|nba|movies?|songs?|lyrics|music|recipes?|restaurants?|jokes?|girlfriend|boyfriend|translate|capital of|president|prime minister|election|stocks?|bitcoin|crypto|gold price|what time is it|what day is|flights?|hotels?)\b/i],
+    ['contact',/ติดต่อ|เบอร์โทร|เบอร์|โทรศัพท์|โทรหา|โทรไป|ไลน์|แอดไลน์|เฟสบุ๊ก|เฟซบุ๊ก|เฟสบุค|เพจ|ไอจี|อินสตา|อีเมล|แอดมิน|คุยกับ(ทีม|คน|พี่|เจ้าหน้าที่|ครู)|ถามทีม|ทักแชท|แชทกับ|ช่องทาง|\b(contact|line|line id|phone|call|tel|e-?mail|facebook|fb|instagram|ig|admin|staff|talk to|message|chat|dm|support|tit ?t[o]r?|tid ?t[o]r?|ber ?th?o+r?)\b/i],
+    ['works',/ดูผลงาน|ผลงานน้อง|ผลงานนักเรียน|ตัวอย่างผลงาน|ตัวอย่างงาน|เกมที่น้อง|เกมของน้อง|ฮอลล์ออฟเฟม|ไลโน|รีวอยซ์|ไทม์คีปเปอร์|สเตรสสไตรค์|มิสเตอร์ซิตี้|แฮมสเตอร์เควส|\b(lyno|revoice|time ?keeper|z\.?o\.?o\.?|stress ?strike|mr\.? ?city|phc ?map|hamster ?quest)\b|lyno|revoice|timekeeper|stressstrike|mrcity|phcmap|hamsterquest|\b(hall of fame|student (works?|projects?|games?)|showcase|examples?|gallery)\b/i]
+  ];
+  var GREET=/^(สวัสดี(ครับ|ค่ะ|คะ|คับ|จ้า|ค่า|ตอน\S+)?|หวัดดี|ดีครับ|ดีค่ะ|ดีคับ|ดีจ้า|ดีค่า|ฮัลโหล|ฮัลโล|เฮลโล|ฮาย|ไฮ|ว่าไง|ไง|มีใครอยู่ไหม|มีคนอยู่ไหม|hi+|hello+|hey+|yo|hiya|sawa[sdt]+ ?d[ie]+ ?(k[rh]?[au]b|kh?a|krub)?|wa[sd]+up|whats ?up|sup|good (morning|afternoon|evening)|anyone (here|there)\??)/i;
+  var THANK=/^(ขอบคุณ(มาก)?|ขอบใจ|แต๊งกิ้ว|แต๊ง|โอเค|โอเคร|เค|ได้เลย|รับทราบ|เข้าใจแล้ว|thanks?( you| a lot)?|thank ?u|thx|ty|tysm|ok(ay)?|kh?o[bp] ?kh?un( kh?a| k[rh]?[au]b)?|bye|บาย|ลาก่อน)/i;
+  var TAIL=/^(ครับ|คับ|ค้าบ|ค่ะ|คะ|ค่า|จ้า|จ้ะ|จ๊ะ|นะ|น้า|เลย|มาก|ผม|หนู|พี่|น้อง|ทีม|แอดมิน|kh?a|k[rh]?[au]b|krub|na|there|team|admin|guys|everyone|[\s!?.,~^_:;)(\-]|5+|ๆ)+/i;
+  var FK=[['game',/ゲーム|游戏|遊戲|게임|juegos?|jeux?|spiele?|trò chơi|игр|لعب|ເກມ/i],['web',/ウェブ|サイト|アプリ|网站|網站|应用|웹|앱|sitio web|página web|trang web|ứng dụng|сайт|веб|موقع|ເວັບ/i],
+    ['price',/値段|料金|いくら|价格|價格|多少钱|多少錢|学费|學費|가격|얼마|precios?|cuánto|cuanto cuesta|combien|prix|giá|học phí|bao nhiêu|цена|сколько|سعر|بكم|ລາຄາ|ເທົ່າໃດ/i],
+    ['iot',/ロボット|机器人|機器人|로봇|robots?|робот|روبوت|ຫຸ່ນຍົນ/i],['port',/大学|大學|대학|universidad|université|đại học|университет|جامعة|ມະຫາວິທະຍາໄລ/i],
+    ['beginner',/初心者|プログラミング|编程|編程|初学者|코딩|프로그래밍|programación|programar|lập trình|программирован|برمجة/i]];
+  var PRE=[[['วิศวะ','วิศวกร','วิศว','คอม','คอมพิวเตอร์','วิทยาการคอมพิวเตอร์','ไอที','cedt'],'อยากเข้าวิศวะคอม'],[['หมอ','แพทย์','พยาบาล'],'อยากเข้าแพทย์'],
+    [['จุฬา','จุฬาฯ'],'อยากเข้าจุฬา'],[['มหิดล','เกษตร','ลาดกระบัง','สจล','มหาลัย','มหาวิทยาลัย','ธรรมศาสตร์','บางมด','พระจอม'],'อยากเข้ามหาลัย'],[['เกม','นักพัฒนาเกม','เกมเมอร์'],'อยากทำเกมของตัวเอง'],
+    [['แอป','แอปพลิเคชัน','แอพ'],'อยากทำแอป'],[['เว็บ','เว็บไซต์'],'อยากทำเว็บ'],[['โปรแกรมเมอร์','โปรแกรม','เขียนโค้ด','โค้ด'],'อยากเขียนโปรแกรมเป็น'],
+    [['สตาร์ทอัพ','ธุรกิจ','เจ้าของธุรกิจ','ซีอีโอ'],'อยากทำสตาร์ทอัพ'],[['พอร์ต','พอร์ตโฟลิโอ'],'อยากมีพอร์ตยื่นมหาลัย']];
+  var WANT=/^(อยาก(จะ)?(ได้|รู้|ทำ|เรียน|ลอง|ถาม)?|ต้องการ|สนใจ|ขอ(ถาม)?|หา|ถาม|มี(ไหม|มั้ย)?|เรียน|ช่วย|หน่อย|ครับ|คับ|ค่ะ|คะ|จ้า|นะ|ด้วย|อะไร(ดี|บ้าง)?|ไหม|มั้ย|บ้าง)+$/;
+  var TH1=[['price',/ฟรี|ค่าเทอม|ค่าสมัคร|ค่าใช้จ่าย|จ่ายเงิน|แบ่งจ่าย/],['when',/ที่อยู่|แผนที่|ตั้งอยู่|อยู่ที่ไหน|อยู่แถวไหน|สถานที่|สาขา/]];
+  var TH2=[['beginner',/ไม่รู้จะเริ่ม|เริ่มยังไง|เริ่มตรงไหน|เริ่มจากไหน|เริ่มจากอะไร|เริ่มอย่างไร|โง่|ไม่ฉลาด|เรียนไม่เก่ง|หัวไม่ดี|หัวช้า|ไม่มีความรู้|ตามไม่ทัน|ยากไหม|ยากมั้ย/],['m13',/อายุ(น้อย|เท่าไหร่|กี่)|กี่ขวบ|เด็กเล็ก/],['when',/ระยะเวลา|เรียนนาน|ใช้เวลา|เสาร์อาทิตย์|วันหยุด/],['port',/ผลงาน|รุ่นพี่|คณะ/]];
+  var FWORDS=/\b(hola|gracias|quiero|como|cómo|qué|que tal|buenos|buenas|por favor|hacer|aprender|clases?|cursos?|bonjour|merci|salut|je veux|comment|apprendre|hallo|danke|guten|ich|lernen|xin chao|cam on|toi muon|hoc|ciao|grazie|voglio|ola|obrigad[oa]|konnichiwa|arigato|ni ?hao|xie ?xie|annyeong|kamsahamnida|privet|spasibo|salam|terima kasih|apa kabar|selamat|saya|mau|belajar|kumusta|salamat|sabaidee|khop chai)\b/i;
 
-  function readPill(){var z=zq.getBoundingClientRect(),f=form.getBoundingClientRect();pill.x=f.left-z.left+f.width/2;pill.y=f.top-z.top+f.height/2;pill.w=f.width/2;pill.h=f.height/2;return z}
-  function snap(){readPill();bx=sp(pill.x);by=sp(pill.y);bw=sp(pill.w);bh=sp(pill.h);sA=sp(0);sB=sp(0);grow=sp(0);rr=sp(0);rx=sp(pill.x);ry=sp(pill.y-pill.h);
-    PS.forEach(function(s){s.x=1;s.v=0});jig.forEach(function(j){j[1]=-99});arrived=false}
-  /* nearest point on the body (stadium around the pill), inset by k */
-  function onBody(x,y,k,o){var hw=bw.x,hh=bh.x,sx=cl(x,bx.x-hw+hh,bx.x+hw-hh),dx=x-sx,dy=y-by.x,l=Math.hypot(dx,dy)||1,rad=hh+R-k;o[0]=sx+dx/l*rad;o[1]=by.x+dy/l*rad;o[2]=dx/l;o[3]=dy/l;o[4]=l-(hh+R);return o}
-  var tmp=[0,0,0,0,0];
+  /* ---------- rendering ---------- */
+  var CH={port:['อยากมีพอร์ตยื่นมหาลัย','พอร์ตยื่นมหาลัย'],game:['อยากทำเกมของตัวเอง','อยากทำเกมของตัวเอง'],zero:['เริ่มจากศูนย์ได้ไหม','เริ่มจากศูนย์ได้ไหม'],price:['ค่าเรียนเท่าไหร่','ค่าเรียนเท่าไหร่'],
+    parent:['ผู้ปกครอง ลูกจะได้อะไร','ผู้ปกครอง ลูกจะได้อะไร'],about:['Hamster Hub คืออะไร','Hamster Hub คืออะไร'],when:['เรียนวันไหน สมัครยังไง','เรียนวันไหน'],camp:['ค่ายและกิจกรรม','ค่าย'],
+    m6:['น้อง ม.6','ม.6'],m45:['น้อง ม.4–5','ม.4'],m13:['น้อง ม.ต้น','ม.ต้น'],web:['อยากทำเว็บหรือแอป','อยากทำเว็บหรือแอป'],iot:['อยากทำ IoT หรือหุ่นยนต์','อยากทำ IoT']};
+  var MAIN=['port','game','zero','price'];
+  var C={
+    unknown:{h:'ยังตอบเรื่องนี้ไม่ได้',a:'ช่องค้นหานี้ตอบได้เฉพาะเรื่องคอร์ส ค่าย ค่าเรียน และการทำพอร์ตยื่นมหาลัย ลองเลือกเรื่องที่ใกล้ที่สุดข้างล่าง หรือทัก LINE ถามทีมได้เลย',
+      e:'Sorry, we can’t answer this one yet. This search covers our courses, camps, fees and university portfolios. Pick a topic below or message the team on LINE.',c:['port','game','zero','price'],lk:1},
+    foreign:{h:'ตอนนี้ช่องค้นหาเข้าใจภาษาไทย และภาษาอังกฤษแบบง่ายๆ',a:'Hamster Hub สอนน้องมัธยมสร้างเกม เว็บ และ IoT จนมีผลงานจริงของตัวเอง เลือกเรื่องที่สนใจข้างล่าง หรือทัก LINE ถามทีมได้เลย',
+      e:'Sorry, this search understands Thai and simple English only. Hamster Hub teaches Thai high-school students to build games, web apps and IoT projects. Pick a topic below or message the team on LINE.',c:['about','game','port','price'],lk:1,fe:1},
+    greet:{h:'สวัสดี อยากรู้เรื่องไหน พิมพ์ถามได้เลย',a:'พิมพ์เป็นคำสั้นๆ ก็ได้ เช่น ทำเกม พอร์ต หรือค่าเรียน หรือเลือกจากข้างล่าง',e:'Hi! Type what you want to know, for example “game”, “portfolio” or “price”, or pick a topic below.',c:['port','game','zero','price','parent']},
+    want:{h:'น้องอยากทำอะไร เลือกได้เลย',a:'พิมพ์ต่ออีกนิด เช่น อยากทำเกม อยากมีพอร์ต หรืออยากรู้ค่าเรียน หรือเลือกจากข้างล่าง',c:['port','game','web','iot','zero']},
+    thanks:{h:'ยินดีเลย',a:'ถ้าอยากรู้เรื่องไหนเพิ่ม พิมพ์ถามต่อได้ หรือทัก LINE ถามทีมก็ได้',e:'You’re welcome. Ask anything else here, or message the team on LINE.',c:['port','game','price']},
+    shape:{h:'พิมพ์เป็นคำสั้นๆ ได้เลย',a:'เช่น ทำเกม พอร์ต หรือค่าเรียน แล้วเราจะหาคอร์สที่ตรงให้ หรือเลือกจากข้างล่าง',e:'Type a word or two, for example “game”, “portfolio” or “price”.',c:['port','game','zero','price']},
+    num:{h:'ตัวเลขนี้หมายถึงเรื่องไหน',a:'ถ้าเป็นชั้นเรียนของน้อง เลือกจากข้างล่างได้เลย ถ้าอยากรู้ราคา กดที่ค่าเรียน',c:['m6','m45','m13','price']},
+    info:{h:'ช่องนี้ใช้ค้นหาคอร์สและกิจกรรมเท่านั้น',a:'ข้อความในช่องนี้ไม่ได้ส่งถึงทีม ถ้าอยากฝากลิงก์ อีเมล หรือเบอร์โทรให้ทีมติดต่อกลับ ส่งทาง LINE ได้เลย',
+      e:'This box only searches our courses and activities. Nothing typed here is sent to the team. To share a link, email or phone number, message us on LINE.',c:['about','price','when']},
+    code:{h:'ช่องนี้เป็นช่องค้นหา ไม่ได้รันโค้ดหรือทำตามคำสั่ง',a:'พิมพ์เป็นคำถามธรรมดาได้เลย เช่น อยากทำเกม หรือค่าเรียนเท่าไหร่ ถ้าน้องชอบเขียนโค้ดอยู่แล้ว ลองดูคอร์สข้างล่าง',
+      e:'This is a search box. It does not run code or follow instructions. Ask a plain question, for example “make a game” or “price”.',c:['game','web','zero','about']},
+    off:{h:'เรื่องนี้ช่องค้นหาตอบไม่ได้',a:'ช่องนี้ตอบเฉพาะเรื่องเรียนที่ Hamster Hub เช่น คอร์ส ค่าย ค่าเรียน และการทำพอร์ตยื่นมหาลัย ลองเลือกเรื่องข้างล่างดู',
+      e:'This search only answers questions about learning at Hamster Hub: courses, camps, fees and university portfolios.',c:['about','port','game','price']},
+    home:{h:'ทำการบ้านแทนไม่ได้ แต่สอนให้น้องเขียนโปรแกรมเองได้',a:'Hamster Hub สอนน้องมัธยมเขียนโปรแกรมจนมีผลงานของตัวเอง ถ้าน้องอยากเริ่ม ลองดูเรื่องข้างล่าง',
+      e:'We can’t do homework for you, but we teach students to code and build their own projects.',c:['zero','game','about']},
+    who:{h:'ช่องนี้เป็นช่องค้นหา ไม่ใช่แชตกับคน',a:'คำตอบมาจากข้อมูลคอร์สและกิจกรรมบนเว็บนี้ ถ้าอยากคุยกับทีม Hamster Hub ทัก LINE ได้เลย',
+      e:'This is a search box, not a live chat. Answers come from the course information on this site. To talk to the team, message us on LINE.',c:['about','price','port']},
+    rude:{h:'ขอโทษถ้าเว็บทำให้หงุดหงิด',a:'บอกได้เลยว่าน้องกำลังหาอะไร พิมพ์เป็นคำสั้นๆ เช่น ทำเกม หรือค่าเรียน หรือทัก LINE ให้ทีมช่วยหาก็ได้',
+      e:'Sorry if the site was frustrating. Tell us what you are looking for in a word or two, or message the team on LINE.',c:['port','game','price']},
+    harm:{h:'เรื่องนี้เราช่วยไม่ได้',a:'Hamster Hub สอนน้องมัธยมสร้างเกม เว็บ และ IoT ถ้าน้องสนใจเทคโนโลยี ลองดูเรื่องข้างล่าง',
+      e:'We can’t help with this. Hamster Hub teaches students to build games, web apps and IoT projects.',c:['game','web','iot','about']},
+    crisis:{h:'ถ้าตอนนี้รู้สึกแย่มาก น้องไม่ต้องอยู่กับมันคนเดียว',a:'โทรสายด่วนสุขภาพจิต 1323 ได้ตลอด 24 ชั่วโมง ไม่เสียค่าโทร หรือเล่าให้ผู้ใหญ่ที่น้องไว้ใจฟัง ช่องค้นหานี้ช่วยเรื่องนี้ไม่ได้ แต่อยากให้น้องได้คุยกับคนที่ช่วยได้จริง',
+      e:'If you are feeling very low, you don’t have to face it alone. In Thailand, call the Mental Health Hotline 1323 (free, 24 hours), or talk to an adult you trust.',c:[],tel:1,noline:1},
+    contact:{h:'ติดต่อทีม Hamster Hub',a:'ถามเรื่องคอร์ส ค่าเรียน หรือวันเรียน ได้ทาง LINE กดปุ่มสีเขียวข้างล่างแล้วพิมพ์ถามทีมได้เลย',
+      e:'Message the Hamster Hub team on LINE (green button below) to ask about courses, fees or schedules.',c:['price','when','about'],soc:1},
+    works:{h:'ผลงานของน้องๆ',a:'ปีนี้มีเกมของน้องๆ 10 เกมใน Hall of Fame เปิดดูได้ที่หน้าผลงาน',e:'This year 10 student games are in our Hall of Fame. See them on the Works page.',c:['game','port'],wk:1}
+  };
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  function chip(k){var c=CH[k],b=el('button','',c[0]);b.type='button';b.dataset.q=c[1];return b}
+  function echoP(pre,q){var p=el('p','ia-q');p.appendChild(document.createTextNode(pre+' “'));var b=el('bdi','',short(q,56));p.appendChild(b);p.appendChild(document.createTextNode('”'));return p}
+  function fixP(txt,dq){var p=el('p','ia-fix sx-fix'),s=el('span');s.appendChild(document.createTextNode('หมายถึง “'));s.appendChild(el('b','',short(txt,40)));s.appendChild(document.createTextNode('” ใช่ไหม'));p.appendChild(s);
+    if(dq){var b=el('button','','ใช้คำนี้ค้นหา');b.type='button';b.dataset.q=dq;p.appendChild(b)}return p}
+  function noteP(txt){return el('p','ia-fix sx-fix sx-note',txt)}
+  function card(kind,o){o=o||{};var d=C[kind],w=el('div','ia sx-card');w.dataset.sx=kind;
+    if(o.echo&&kind!=='crisis')w.appendChild(echoP('พิมพ์ว่า',o.echo));else if(o.echoT)w.appendChild(el('p','ia-q',o.echoT));
+    w.appendChild(el('h3','',d.h));w.appendChild(el('p','ia-a',d.a));
+    if(d.e&&(o.en||d.fe)){var e=el('p','sx-en',d.e);e.lang='en';w.appendChild(e)}
+    if(d.tel){var t=el('a','sx-tel','โทร 1323 สายด่วนสุขภาพจิต');t.href='tel:1323';w.appendChild(t)}
+    if(d.c&&d.c.length){w.appendChild(el('p','ia-k','เรื่องที่คนถามบ่อย'));var p=el('p','ia-alt ia-pick sx-ch');d.c.forEach(function(k){p.appendChild(chip(k))});w.appendChild(p)}
+    var x=el('div','ia-x'),a;
+    if(d.lk){a=el('a','ia-lk','ดูคอร์สทั้งหมด');a.href='#courses';x.appendChild(a)}
+    if(d.wk){a=el('a','ia-lk','ดูเกมที่น้องๆ ทำ');a.href='#works';x.appendChild(a)}
+    if(d.soc){if(fa){a=el('a','ia-lk','Facebook');a.href=fa.getAttribute('href');a.target='_blank';a.rel='noopener';x.appendChild(a)}
+      if(ig){a=el('a','ia-lk','Instagram');a.href=ig.getAttribute('href');a.target='_blank';a.rel='noopener';x.appendChild(a)}}
+    if(!d.noline){a=el('a','ia-line','ทัก LINE ถามทีม');a.href=LINE;a.target='_blank';a.rel='noopener';x.appendChild(a)}
+    if(x.children.length)w.appendChild(x);
+    RR.textContent='';G.innerHTML='';A.innerHTML='';if(o.fix)A.appendChild(o.fix);A.appendChild(w);A.hidden=false;R.hidden=false;R.scrollTop=0;
+    return {kind:'card:'+kind,say:d.h+' '+d.a}}
 
-  function step(dt,now){
-    var t=(now-t0)/1000;
-    /* progress */
-    if(RM){pl=goal}else{var dur=goal?(W<640?1:1.15):(W<640?.8:.9);pl=cl(pl+(goal?1:-1)*dt/dur,0,1)}
-    var pc=cs;cs=csOf(goal,pl);
-    var z=readPill();
-    if(RM){bx=sp(pill.x);by=sp(pill.y);bw=sp(pill.w);bh=sp(pill.h)}
-    else{spr(bx,pill.x,240,.42,dt);spr(by,pill.y,240,.42,dt);spr(bw,pill.w,300,.5,dt);spr(bh,pill.h,300,.5,dt)}
-    /* arrival: squash and stretch */
-    if(goal&&cs>.965&&pc<=.965&&!RM){sA.v+=5.5;sB.v+=6;arrived=true;relT=t;lastAct=now}
-    if(goal&&RM&&!arrived){arrived=true;relT=t}
-    if(!goal)arrived=false;
-    if(pop>0&&now>=pop){pop=-1;if(!RM){sA.v-=10;sB.v-=3;kick(pill.x,R*.5,t);lastAct=now}}
-    if(RM){sA=sp(0);sB=sp(0)}else{spr(sA,0,150,.2,dt);spr(sB,0,120,.22,dt)}
-    sA.x=Math.max(sA.x,-.82);
-    var gt=goal&&cs>.9?1:0;if(RM)grow=sp(gt);else spr(grow,gt,gt?55:220,gt?.32:1,dt);
-    /* pointer reach */
-    var rt=0,tx=rx.x,ty=ry.x;
-    if(ptr&&goal&&cs>.95&&!RM&&now-ptr.t<4000){onBody(ptr.x-z.left,ptr.y-z.top,0,tmp);var dd=tmp[4];
-      if(dd>2&&dd<150){var s=Math.pow(1-dd/150,2);rt=6+R*.7*s;tx=tmp[0]+tmp[2]*(s*R*1.05-3);ty=tmp[1]+tmp[3]*(s*R*1.05-3)}}
-    if(RM)rr=sp(0);else{spr(rr,rt,180,.7,dt);spr(rx,tx,200,.6,dt);spr(ry,ty,200,.6,dt)}
-    /* droplets */
-    var tpl=pl;
-    for(var i=0;i<PD.length;i++){var d=PD[i],ot;
-      if(RM)ot=goal?0:1;
-      else if(goal){var c=cl((tpl-d[3])/(Math.min(.86,d[3]+.3)-d[3]),0,1);ot=1-Math.pow(c,1.5)}
-      else{var q=1-tpl,c2=cl((q-d[3]*.15)/.32,0,1);ot=eoc(c2)}
-      if(RM)PS[i]=sp(ot);else spr(PS[i],ot,goal?240:220,goal?.6:.45,dt)}
-    pourStep(dt);
-    return t}
+  /* ---------- calling the page's own search(q) ---------- */
+  var trig=document.createElement('button');trig.type='button';trig.hidden=true;trig.tabIndex=-1;trig.setAttribute('aria-hidden','true');trig.className='sx-trig';document.body.appendChild(trig);
+  var VD=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value'),own=false;
+  function shadow(v){Object.defineProperty(inp,'value',{configurable:true,get:function(){return v==null?VD.get.call(inp):v},set:function(){}})}
+  function unshadow(){delete inp.value}
+  function page(q){own=true;shadow(null);try{trig.dataset.q=q;trig.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true}))}finally{unshadow();own=false}
+    var ia=!A.hidden&&A.querySelector('.ia');
+    if(ia)return {kind:ia.querySelector('.ia-pick')&&!ia.querySelector('.ia-a')?'pick':'ia',ia:ia};
+    if(G.querySelector('.zq-e'))return {kind:'empty'};
+    var n=G.querySelectorAll('.qv').length;return {kind:n?'list':'empty',n:n}}
+  /* after a page render: show what the visitor really typed, add notes / the English line */
+  function dress(r,o){o=o||{};var say='';
+    var pf=A.querySelector('.ia-fix:not(.sx-fix)');
+    if(pf){var b=pf.querySelector('b'),via=b?b.textContent:'';if(o.fix||!via)pf.remove();else pf.replaceWith(fixP(via,via))}
+    if(o.fix&&!A.hidden)A.insertBefore(o.fix,A.firstChild);
+    if(r.kind==='ia'||r.kind==='pick'){var ia=r.ia,q=ia.querySelector('.ia-q'),h=ia.querySelector('h3'),a=ia.querySelector('.ia-a');
+      if(q&&o.echo)q.replaceWith(echoP(r.kind==='pick'?'พิมพ์ว่า':'คำตอบสำหรับ',o.echo));
+      if(o.en&&a){var e=el('p','sx-en',o.en);e.lang='en';a.parentNode.insertBefore(e,a.nextSibling)}
+      if(o.alts&&o.alts.length&&!A.querySelector('.ia-alt:not(.ia-pick)')){var p=el('p','ia-alt');p.appendChild(el('span','','เรื่องใกล้เคียง'));
+        o.alts.forEach(function(k){var bb=el('button','',T[k][1]);bb.type='button';bb.dataset.q=T[k][0];p.appendChild(bb)});A.insertBefore(p,ia)}
+      var lis=[].slice.call(ia.querySelectorAll('.ia-p>li')),ended=lis.filter(function(l){return /จบแล้ว/.test(l.textContent)});
+      if(ended.length&&ended.length<lis.length)ended.forEach(function(l){l.remove()});
+      var n=ia.querySelectorAll('.ia-p>li').length;
+      say=(h?h.textContent:'')+(a?' '+a.textContent:'')+(n?' มีคอร์สและกิจกรรมแนะนำ '+n+' รายการ':'')+(r.kind==='pick'?' เลือกเรื่องที่ต้องการจากปุ่มข้างล่าง':'')}
+    else if(r.kind==='list'){if(o.echo){RR.textContent='';RR.appendChild(document.createTextNode('ผลลัพธ์สำหรับ “'));RR.appendChild(el('bdi','',short(o.echo,56)));RR.appendChild(document.createTextNode('” '+r.n+' รายการ'))}
+      say='พบคอร์สและกิจกรรม '+r.n+' รายการ'}
+    r.say=say;return r}
 
-  function kick(x,a,t){var j=jig[ji];ji=(ji+1)%4;j[0]=x;j[1]=t;j[2]=a}
+  /* ---------- the decision ---------- */
+  function titleHit(n){if(n.length<4)return false;var ok=false;document.querySelectorAll('#zqC .qv b,#zqN .qv b').forEach(function(b){var t=nsp(b.textContent);if(t.indexOf(n)===0||n.indexOf(t)>-1)ok=true});return ok}
+  function special(t){for(var i=0;i<S.length;i++)if(S[i][1].test(t))return S[i][0];return null}
+  function solve(raw){
+    var b0=base(raw),c=clean(raw);if(!c)return null;
+    var echo=c,isLong=c.length>90,t=c.toLowerCase(),o={echo:echo},k,r,m;
+    /* 1. nothing to read: emoji, punctuation, digits */
+    if(!/[\p{L}]/u.test(c)){
+      if(/\d/.test(c)&&/^[\d\s.,]+$/.test(c)){if(/^0\d[\d\s\-]{7,}$/.test(c)||c.replace(/\D/g,'').length>=9)return card('info',{echoT:'พิมพ์เบอร์โทร'});
+        if(/^\s*[1-6]\s*$/.test(c)){r=page('ม.'+c.trim());if(r.kind==='ia')return dress(r,{echo:echo,fix:fixP('ม.'+c.trim())})}
+        return card(/^5{3,}$/.test(c)?'shape':'num',o)}
+      if(/^5{3,}$/.test(c))return card('shape',o);
+      if(/\d/.test(c)&&/[+\-*\/x×÷=^%]/.test(c)&&/^[\d\s+\-*\/x×÷=().^%,]+$/.test(c))return card('off',o);
+      if(/^\+?[\d\s\-().]{9,}$/.test(c))return card('info',{echoT:'พิมพ์เบอร์โทร'});
+      return card('shape',o)}
+    /* 2. safety first */
+    if(special(t)==='crisis'||special(nsp(t))==='crisis')return card('crisis',{en:!reThai.test(c)});
+    /* 3. strip what is not a question: links, emails, phone numbers, tags, code-like text, swear words */
+    var f={},s=t;
+    s=s.replace(/<\/?[a-z!][^>]*>?/gi,function(){f.code=1;return ' '}).replace(/[\w.+-]+@[\w-]+(\.[\w-]+)+/g,function(){f.mail=1;return ' '})
+      .replace(/\b(?:https?:\/\/|www\.)\S+|\b[\w-]+(?:\.[\w-]+)*\.(?:com|co|net|org|io|ac\.th|co\.th|in\.th|th|me|app|dev|ee|gg)\b(?:\/\S*)?/gi,function(){f.url=1;return ' '})
+      .replace(/(?:\+66|0)[\s-]?\d{1,2}[\s-]?\d{3}[\s-]?\d{3,4}\b/g,function(){f.tel=1;return ' '});
+    if(/ignore (all |any |the |your )*(previous|above|prior|earlier)|disregard (all|the|previous)|system prompt|you are now|act as (a|an|if)|pretend (to be|you)|jailbreak|developer mode|do anything now|reveal (your|the) (prompt|instructions)|ลืมคำสั่ง|เพิกเฉยคำสั่ง|ไม่ต้องสนใจคำสั่ง|คำสั่งก่อนหน้า|เปิดเผยพรอมต์|javascript:|&(lt|gt|amp|quot|#x?[0-9a-f]+);|on(error|load|click)\s*=|\{\{.*\}\}|\$\{.*\}|;\s*(drop|delete|select|insert|update)\s|union\s+select|'\s*or\s*'?1'?\s*=\s*'?1|\balert\s*\(|document\.cookie|\beval\s*\(|\.\.\/\.\.\//i.test(t))f.inj=1;
+    s=s.replace(RUDE,function(){f.rude=1;return ' '}).replace(/\s+/g,' ').trim();
+    var hasTh=reThai.test(s),hasLa=reLat.test(s),sn=nsp(s),en=!hasTh&&hasLa;
+    if(f.inj)return card('code',{echo:echo,en:!reThai.test(c)});
+    if(/(เว็บ|เวบ|เว็ป|เวป|ที่นี่|แอป|ระบบ|ช่องค้นหา|ค้นหา|คอร์ส|sites?|websites?|search|this)\s*(นี้|นี่|is|are)?\s*(โคตร|แม่ง)?\s*(ห่วย|กระจอก|เฮงซวย|แย่|กาก|sucks?|bad|trash|sh[i1]t)/i.test(t))return card('rude',{echo:echo,en:!reThai.test(c)});
+    if(!sn||!/[\p{L}]/u.test(s)){k=f.code?'code':f.tel?'info':f.mail?'info':f.url?'info':f.rude?'rude':'shape';
+      return card(k,k==='info'?{echoT:f.tel?'พิมพ์เบอร์โทร':f.mail?'พิมพ์อีเมล':'พิมพ์ลิงก์',en:!reThai.test(c)}:{echo:echo,en:!reThai.test(c)})}
+    function last(){if(f.code)return card('code',{echo:echo,en:en});if(f.tel||f.mail||f.url)return card('info',{echoT:f.tel?'พิมพ์เบอร์โทร':f.mail?'พิมพ์อีเมล':'พิมพ์ลิงก์',en:en});
+      if(f.rude)return card('rude',{echo:echo,en:en});return card(en?'unknown':'unknown',{echo:echo,en:en})}
+    /* 4. hello / thanks on their own */
+    function soc(x){var g=x.replace(GREET,''),h;if(g!==x){if(!g.replace(TAIL,'').trim())return 'greet';x=g.replace(/^[\s,.!]+/,'')}
+      h=x.replace(THANK,'');if(h!==x&&!h.replace(TAIL,'').trim())return 'thanks';return null}
+    function sp(x){var k=soc(x);if(k)return k;if(/^(it|i\.t\.?)$/.test(x))return null;x=x.replace(/ออนไลน์/g,' ');k=special(x)||special(nsp(x));if(!k)return null;
+      if((k==='off'||k==='home'||k==='works')&&reThai.test(x)&&/ค่าเรียน|ราคา|คอร์ส|ค่าย|สมัคร|พอร์ต/.test(x)&&k!=='works')return null;
+      if(k==='contact'&&/ออนไลน์|online/.test(x)&&!/ติดต่อ|contact|เบอร์|ไลน์|\bline\b/.test(x))return null;return k}
+    k=sp(s);if(k)return card(k,{echo:echo,en:en&&!/^(sawa|wasd)|kh?o[bp] ?kh?un|\b(k[rh]?[au]b|krub|kha)\b/.test(s)});
+    if(en&&sn.replace(/[^a-z]/g,'').length<2&&!/\d/.test(sn))return card('shape',{echo:echo});
+    /* 5. other languages */
+    if(!hasTh&&(reForeign.test(s)||(hasLa&&FWORDS.test(s)&&!latin(s)))){
+      for(var i=0;i<FK.length;i++)if(FK[i][1].test(s)){r=page(T[FK[i][0]][0]);if(r.kind==='ia')return dress(r,{echo:echo,en:'Sorry, answers are in Thai only. '+T[FK[i][0]][2]})}
+      m=hasLa&&!reForeign.test(s.replace(/[À-ɏḀ-ỿ¿¡]/g,''))?latin(s.normalize?s.normalize('NFD').replace(/[̀-ͯ]/g,''):s):null;
+      if(m){r=page(T[m.k][0]);if(r.kind==='ia')return dress(r,{echo:echo,en:'Sorry, answers are in Thai only. '+T[m.k][2]})}
+      return card('foreign',{echo:echo,en:1})}
+    /* 6. Thai (or mixed) text: the page's own knowledge base is good at this */
+    if(hasTh){
+      var q=s;
+      TV.forEach(function(w,i){if(TVD[i]!==w&&TVD[i].length>=4&&q.indexOf(w)<0&&q.indexOf(TVD[i])>-1)q=q.split(TVD[i]).join(w)});
+      if(!nsp(q).replace(WANT,''))return card('want',{echo:echo});
+      if(!nsp(q).replace(/^อยาก(จะ)?(เป็น|เข้า|ทำ|เรียน|ได้|มี|ไป)?$/,''))return card('want',{echo:echo});
+      if(/เกมแจม|เกมเจม|แจมเกม|gamejam|game ?jam/.test(sn)){r=page('ค่าย');if(r.kind==='ia'||r.kind==='list')return dress(r,{echo:echo})}
+      if(!isLong)for(var pi=0;pi<TH1.length;pi++)if(TH1[pi][1].test(sn)){r=page(T[TH1[pi][0]][0]);if(r.kind==='ia')return dress(r,{echo:echo})}
+      if(isLong){var found=[],nn=nsp(s);TV.forEach(function(w){var at=nn.indexOf(w);if(at>-1&&w.length>=3&&!/^(ที่นี่|ทำอะไร|ข้อมูล|โปรแกรม|เกี่ยวกับ|อุปกรณ์|ที่ไหน|เริ่มต้น)$/.test(w))found.push([at,w])});found.sort(function(a,b){return a[0]-b[0]});
+        if(found.length)q=found.slice(0,3).map(function(x){return x[1]}).join(' ');else q=short(s,60).replace('…','')}
+      r=page(q);
+      if(r.kind==='list'||r.kind==='pick'||(r.kind==='ia'&&hasEv(q)))return dress(r,{echo:echo,fix:isLong?noteP('ข้อความยาว เราตอบจากคำสำคัญที่เจอในข้อความ'):null});
+      if(hasLa){m=latin(s.replace(/[^\x00-\x7f]+/g,' '));if(m){r=page(T[m.k][0]);if(r.kind==='ia')return dress(r,{echo:echo})}}
+      /* Thai letters that are really English typed on the Thai layout */
+      if(!hasLa){var se=clean(swapKb(b0,false)).toLowerCase();
+        if(/^[a-z0-9 .,'?!-]+$/.test(se)&&/[a-z]{2}/.test(se)){k=sp(se);if(k)return card(k,{echo:echo,fix:fixP(se)});
+          m=latin(se);if(m&&!m.ro){r=page(T[m.k][0]);if(r.kind==='ia')return dress(r,{echo:echo,fix:fixP(se),en:T[m.k][2]})}}}
+      if(/คอร์ส|หลักสูตร|สอนอะไร|เรียนอะไร|มีอะไรบ้าง/.test(sn)){r=page('คอร์ส');if(r.kind==='list')return dress(r,{echo:echo})}
+      for(var hi=0;hi<TH2.length;hi++)if(TH2[hi][1].test(sn)){r=page(T[TH2[hi][0]][0]);if(r.kind==='ia')return dress(r,{echo:echo})}
+      /* half-typed wishes: "อยากเป็นวิ" -> วิศวะ, "อยากเข้าจุ" -> จุฬา */
+      var rest=sn.replace(/^อยาก(จะ)?(เป็น|เข้า|ทำ|เรียน|ได้|มี|ไป)?/,'');
+      if(rest&&rest.length<=6){for(var pc=0;pc<PRE.length;pc++){if(PRE[pc][0].some(function(w){return w.indexOf(rest)===0})){r=page(PRE[pc][1]);if(r.kind==='ia'||r.kind==='list')return dress(r,{echo:echo,fix:fixP(PRE[pc][1],PRE[pc][1])})}}}
+      /* a wish we do not teach ("อยากเป็นยูทูบเบอร์"): offer the wishes we can help with instead of a dead end */
+      if(/^อยาก/.test(sn))return card('want',{echo:echo});
+      return last()}
+    /* 7. Latin letters */
+    if(/gamejam|gamej|game ?jam|ค่ายเกม/.test(sn)){r=page('ค่าย');if(r.kind==='ia'||r.kind==='list')return dress(r,{echo:echo})}
+    if(titleHit(sn)){r=page(s);if(r.kind==='list'||r.kind==='ia')return dress(r,{echo:echo})}
+    m=latin(s);
+    if(m){r=page(T[m.k][0]);if(r.kind==='ia')return dress(r,{echo:echo,en:m.ro?null:T[m.k][2],alts:m.alts,fix:m.ro?fixP(T[m.k][1]):m.typo?fixP(m.typo):null})}
+    /* Thai typed with the keyboard left on English (vpkd = อยาก) */
+    var b1=/[a-z]/.test(b0)?b0:b0.toLowerCase().replace(/</g,',').replace(/>/g,'.').replace(/\?/g,'/').replace(/:/g,';').replace(/"/g,"'").replace(/\{/g,'[').replace(/\}/g,']');
+    var sw=clean(swapKb(b1,true)),thN=(sw.match(/[ก-ฮ]/g)||[]).length,lt=(sw.match(/[a-z]/gi)||[]).length;
+    if(thN>=2&&lt<=1&&!/^[ะ-ฺ็-๎]/.test(sw)&&!(STOP.test(s)&&/^[a-z\s?!.,']+$/.test(s))){
+      k=sp(sw.toLowerCase());if(k)return card(k,{echo:echo,fix:fixP(sw,null)});
+      if(!nsp(sw).replace(WANT,''))return card('want',{echo:echo,fix:fixP(sw,null)});
+      r=page(sw);if((r.kind==='ia'&&hasEvTh(sw))||r.kind==='pick'&&sw.length<=2)return dress(r,{echo:echo,fix:fixP(sw,sw)})}
+    var kw=s.split(/[^a-z0-9#+]+/).filter(function(w){return w.length>=3&&!new RegExp('^'+STOP.source.slice(2,-2)+'$').test(w)}).join(' ');
+    if(kw){r=page(kw);if(r.kind==='list')return dress(r,{echo:echo})}
+    return last()}
+  function hasEvTh(q){var n=nsp(q).replace(/[a-z]+/g,'');return !!n&&hasEv(n)}
 
-  function pathAt(i,o,out){var d=PD[i],ax=d[0]*W,ay=d[1]*H;onBody(ax,ay,R*.45,tmp);var tx=tmp[0],ty=tmp[1],dx=ax-tx,dy=ay-ty,b=d[4]*Math.sin(Math.PI*cl(o,0,1))*.28;
-    out[0]=tx+dx*o-dy*b;out[1]=ty+dy*o+dx*b;return out}
-  var hp=[0,0],tp=[0,0];
+  /* ---------- run + announce ---------- */
+  var lastC=null,sayT;
+  function announce(txt){ct(sayT);sayT=st(function(){live.textContent='';st(function(){live.textContent=short(txt.replace(/\s+/g,' ').trim(),220)},40)},350)}
+  function run(raw,force){var c=clean(raw);
+    if(!c){lastC=null;if(!R.hidden)R.hidden=true;return}
+    if(!force&&c===lastC&&!R.hidden)return;
+    var r;try{r=solve(raw)}catch(err){try{r=dress(page(c),{})}catch(e2){}}
+    lastC=c;if(r&&r.say)announce(r.say)}
 
-  function draw(t){
-    if(!ok||gl.isContextLost())return false;
-    var rb=Math.max(13,Math.min(30,Math.min(W,H)*.036));
-    /* sheet: hero rect contracting into the bar */
-    var pad=30,T={l:pill.x-pill.w-R*.35,t:pill.y-pill.h-R*.35,r:pill.x+pill.w+R*.35,b:pill.y+pill.h+R*.35},c=cl(cs,0,1);
-    var L=lerp(-pad,T.l,Math.pow(c,.95)),Tt=lerp(-pad,T.t,Math.pow(c,.8)),Rr=lerp(W+pad,T.r,Math.pow(c,1.05)),B=lerp(H+pad,T.b,Math.pow(c,1.2));
-    var shw=(Rr-L)/2,shh=(B-Tt)/2,scr=Math.min(shw,shh)*ss(0,.45,c),amp=RM?0:(10+.018*Math.max(W,H))*Math.sin(Math.PI*c)*(goal?1:1.15);
-    if(c>=.999){shw=0;shh=0}
-    var t2=RM?0:t;
-    /* body */
-    var rim=R*(1+sA.x),hw=bw.x+rim+R*.4*sB.x,hh=bh.x+rim-R*.55*sB.x;
-    /* never let the rim touch the hero's side edges (narrow phones): it would be cut off */
-    hw=Math.min(hw,Math.min(bx.x,W-bx.x)-7);
-    gl.uniform4f(U.uU,W,H,DPR,t2);gl.uniform3f(U.uC,COL[0],COL[1],COL[2]);
-    var G=F.g;
-    if(G){gl.uniform4f(U.uF,G.cx,G.cy,G.hw,G.hh);gl.uniform4f(U.uF2,G.r,10+R*.6,RM?0:G.amp,0)}else gl.uniform4f(U.uF,-1e4,-1e4,0,0);
-    gl.uniform4f(U.uS,(L+Rr)/2,(Tt+B)/2,Math.max(shw,0),Math.max(shh,0));
-    gl.uniform4f(U.uS2,c>=.999?0:scr,c>=.999?0:amp,0,0);
-    if(c>=.999)gl.uniform4f(U.uS,-1e4,-1e4,1,1);
-    /* gravity: the rim sags a little, thicker under the bar than over it */
-    var sag=R*.16;
-    gl.uniform4f(U.uB,bx.x,by.x+sag,Math.max(hw,1),Math.max(hh,1));
-    gl.uniform4f(U.uB2,Math.max(hh,1),RM?0:1.1,(30+R)*(1-ss(.8,1,c))+1,0);
-    /* bounds of everything that can differ from flat white, for a smaller draw quad */
-    var x0=bx.x-hw-40,y0=by.x-hh-40,x1=bx.x+hw+40,y1=by.x+hh+40;
-    function grow2(a,b,c2,d){if(a<x0)x0=a;if(b<y0)y0=b;if(c2>x1)x1=c2;if(d>y1)y1=d}
-    if(c<.999)grow2(L-amp-40,Tt-amp-40,Rr+amp+40,B+amp+40);
-    for(var i=0;i<12;i++){var o=PS[i].x,k=i*4;
-      if(o<=.002){aP[k+2]=0;continue}
-      var r=rb*PD[i][2]*(.45+.55*cl(o,0,1))*ss(0,.14,o);
-      if(r<.4){aP[k+2]=0;continue}
-      pathAt(i,o,hp);
-      /* stuck blobs hang on by a strand that thins as it stretches and snaps at the release point; free droplets leave a short trail */
-      var sn=PD[i][5]?(goal?1-ss(PD[i][3]-.02,PD[i][3]+.04,pl):1):0;
-      if(sn>.01){pathAt(i,0,tp);var ln=Math.hypot(hp[0]-tp[0],hp[1]-tp[1]),rn=Math.max(1.1,r*.34*Math.pow(cl(90/(ln+1),.05,1),.55))*sn;aQ[k+2]=rn;aQ[k+3]=rn*1.5}
-      else{pathAt(i,cl(o-PS[i].v*.04,-.05,1.25),tp);var tx=tp[0]-hp[0],ty=tp[1]-hp[1],tl=Math.hypot(tx,ty),mx=0;/* round droplets: no slanted tail */
-        if(tl>mx){tp[0]=hp[0]+tx/tl*mx;tp[1]=hp[1]+ty/tl*mx}aQ[k+2]=r*.38;aQ[k+3]=r*.8}
-      aP[k]=hp[0];aP[k+1]=hp[1];aP[k+2]=r;aP[k+3]=12+r*.55;aQ[k]=tp[0];aQ[k+1]=tp[1];
-      grow2(Math.min(hp[0],tp[0])-r-60,Math.min(hp[1],tp[1])-r-60,Math.max(hp[0],tp[0])+r+60,Math.max(hp[1],tp[1])+r+60)}
-    /* drips */
-    /* drips hang from the lowest liquid: the rim, or the pour under the results while it is open */
-    var dmax=0,g=Math.max(grow.x,0),since=arrived?(t-relT):0,low=G&&G.cy+G.hh>by.x+sag+hh,baseY=low?G.cy+G.hh:by.x+sag+hh,baseX=low?G.cx:bx.x,baseW=low?Math.max(G.hw-G.r,0):Math.max(bw.x-bh.x,0);
-    if(G){grow2(G.cx-G.hw-40,G.cy-G.hh-40,G.cx+G.hw+40,G.cy+G.hh+G.amp+40)}
-    var room=H-4-baseY;
-    for(i=0;i<3;i++){var D=DD[i],k2=i*4,dr=R*D[2],len=D[1]*R*g*(1+.16*Math.sin(t2*D[3]+D[4]))*(1+.22*ss(0,7,since))*(low?.7:1);
-      if(len+dr>room)len=Math.max(0,room-dr-2);if(G&&F.ph!==2&&low)len=0;
-      aD[k2]=baseX+D[0]*baseW+(RM?0:1.4*Math.sin(t2*1.1+D[4]));aD[k2+1]=baseY-dr*1.15;aD[k2+2]=len>.6?len:0;aD[k2+3]=dr;
-      if(len>dmax)dmax=len}
-    grow2(0,0,0,baseY+dmax+40);
-    for(i=0;i<4;i++){aJ[i*4]=jig[i][0];aJ[i*4+1]=jig[i][1];aJ[i*4+2]=RM?0:jig[i][2];aJ[i*4+3]=0}
-    gl.uniform4fv(U.uP,aP);gl.uniform4fv(U.uQ,aQ);gl.uniform4fv(U.uD,aD);gl.uniform4fv(U.uJ,aJ);
-    gl.uniform4f(U.uR,rx.x,ry.x,rr.x>.3?rr.x:0,22);
-    if(rr.x>.3)grow2(rx.x-rr.x-40,ry.x-rr.x-40,rx.x+rr.x+40,ry.x+rr.x+40);
-    x0=cl(x0,0,W);x1=cl(x1,0,W);y0=cl(y0,0,H);y1=cl(y1,0,H);
-    gl.viewport(0,0,cv.width,cv.height);gl.clear(gl.COLOR_BUFFER_BIT);
-    if(x1>x0&&y1>y0){gl.uniform4f(U.uV,x0/W*2-1,1-y1/H*2,x1/W*2-1,1-y0/H*2);gl.drawArrays(gl.TRIANGLE_STRIP,0,4)}
-    /* publish */
-    S.p=Math.round(c*1000)/1000;S.active=!!goal;S.rim=Math.round((rim+sag+Math.abs(R*.4*sB.x)+2)*10)/10;S.drip=Math.round(dmax+R*.6);
-    var bl=bx.x-hw,bt=by.x+sag-hh,br=bx.x+hw,bb=by.x+sag+hh;if(G){bl=Math.min(bl,G.cx-G.hw);br=Math.max(br,G.cx+G.hw);bb=Math.max(bb,G.cy+G.hh)}
-    S.box={x:Math.round(bl),y:Math.round(bt),w:Math.round(br-bl),h:Math.round(bb-bt+dmax)};
-    S.panel=G?{x:Math.round(G.cx-G.hw),y:Math.round(G.cy-G.hh),w:Math.round(G.hw*2),h:Math.round(G.hh*2)}:null;
-    return true}
-
-  /* ---------------- loop ---------------- */
-  function settled(){if(F.ph===1||F.ph===3||Math.abs(F.v)>2||Math.abs(F.wob.v)>2)return false;if(Math.abs(sA.v)>.02||Math.abs(sB.v)>.02||Math.abs(grow.v)>.02||Math.abs(rr.v)>.05||Math.abs(bx.v)+Math.abs(by.v)>.3)return false;
-    for(var i=0;i<PS.length;i++)if(Math.abs(PS[i].v)>.01)return false;return true}
-  function tick(now){raf=0;if(!running)return;
-    if(!visible||!zq.offsetWidth){lastT=now;if(!goal){finish();return}
-      /* hero hidden mid-pour (route change): finish the reveal now so nothing stays clipped or offset */
-      if(F.ph===1){F.ph=2;F.len=F.full;F.v=0}if(F.clip||F.items.length){clipRes(null);landAll();cls('sl-pour',0)}return}
-    if(needSize&&!size()){lastT=now;raf=requestAnimationFrame(tick);return}
-    var dt=Math.min(.05,Math.max(0,(now-lastT)/1000));lastT=now;
-    var t=step(dt,now);
-    var idle=pl===goal&&settled()&&now-lastAct>2500,gap=RM?(idle?1e9:0):idle?(now-lastAct>15000?66:33):0;
-    /* reduced motion: on the way out keep the last frame while the canvas fades away */
-    if(!(RM&&!goal)&&(now-lastDraw>=gap||!idle)){if(!draw(t))return;lastDraw=now;drawn++}
-    /* white background only once our canvas has drawn */
-    if(goal&&drawn>=2&&!RM)cls('sl-on',1);
-    cls('hx-white',cs>.35&&(!RM||goal));
-    if(!goal&&pl===0&&!RM&&settledOut()){finish();return}
-    if(RM&&idle){return}
-    raf=requestAnimationFrame(tick)}
-  function settledOut(){if(RM)return true;for(var i=0;i<PS.length;i++)if(PS[i].x<.985)return false;return grow.x<.02}
-  function cls(c,on){if(zq.classList.contains(c)!==!!on)zq.classList.toggle(c,!!on)}
-  function kickLoop(){if(running&&!raf&&visible){lastT=performance.now();raf=requestAnimationFrame(tick)}}
-  function start(){
-    if(!init())return false;
-    if(zq.firstChild!==cv)zq.insertBefore(cv,zq.firstChild);
-    readCol();
-    if(!running){needSize=true;cv.classList.add('on');if(!size()){cv.classList.remove('on');return false}
-      if(pl===0)snap();running=true;drawn=0;lastDraw=0;
-      cv.classList.toggle('rm',RM);cv.classList.remove('vis')}
-    kickLoop();return true}
-  var rmT=0;
-  var cutT=0;
-  function finish(){running=false;if(raf)cancelAnimationFrame(raf);raf=0;
-    cls('sl-cut',1);clearTimeout(cutT);cutT=setTimeout(function(){cls('sl-cut',0)},120);
-    cls('sl-on',0);cls('hx-white',0);cls('sl-dry',0);
-    if(cv){cv.classList.remove('vis');cv.classList.remove('on')}
-    pl=0;cs=0;S.p=0;S.rim=0;S.drip=0;S.box=null;S.panel=null;S.active=false;resetPour()}
-  function resetPour(){F.ph=0;F.len=0;F.v=0;F.g=null;F.wob=sp(0);clipRes(null);landAll();cls('sl-pour',0)}
-  function bail(){running=false;if(raf)cancelAnimationFrame(raf);raf=0;cls('sl-cut',1);setTimeout(function(){cls('sl-cut',0)},120);cls('sl-on',0);cls('hx-white',0);cls('sl-dry',0);if(cv)cv.classList.remove('on');
-    goal=0;pl=0;cs=0;S.p=0;S.rim=0;S.drip=0;S.box=null;S.panel=null;S.active=false;resetPour()}
-
-  function setGoal(g){
-    if(g===goal)return;
-    if(g&&!start())return;
-    if(!g&&!running){goal=0;return}
-    pl=inv(g,cs);goal=g;lastAct=performance.now();
-    /* hero hidden (another page) while going out: nothing to animate, end cleanly now */
-    if(!g&&(!visible||!zq.offsetWidth)){try{window.dispatchEvent(new CustomEvent('hx-slime',{detail:{active:false}}))}catch(e){}finish();return}
-    S.active=!!g;
-    try{window.dispatchEvent(new CustomEvent('hx-slime',{detail:{active:!!g}}))}catch(e){}
-    if(g)cls('sl-dry',1);
-    if(RM){clearTimeout(rmT);
-      if(g){requestAnimationFrame(function(){requestAnimationFrame(function(){if(goal&&cv)cv.classList.add('vis')})});rmT=setTimeout(function(){if(goal)cls('sl-on',1)},300)}
-      else{S.p=0;S.rim=0;S.drip=0;S.box=null;cls('sl-cut',1);cls('sl-on',0);cls('hx-white',0);if(cv)cv.classList.remove('vis');rmT=setTimeout(function(){if(!goal){cls('sl-dry',0);finish()}},300)}}
-    kickLoop()}
-
-  function want(){return document.activeElement===inp||zq.classList.contains('ask')}
-  var relTimer=0;
-  function check(){clearTimeout(relTimer);relTimer=0;if(want())setGoal(1);else setGoal(0)}
-  function later(){clearTimeout(relTimer);relTimer=setTimeout(check,250)}
-
-  inp.addEventListener('focus',function(){clearTimeout(relTimer);setGoal(1)});
-  inp.addEventListener('blur',later);
-  var mc=null;
-  function caretX(){try{if(!mc)mc=document.createElement('canvas').getContext('2d');var c=getComputedStyle(inp);mc.font=c.font||(c.fontWeight+' '+c.fontSize+' '+c.fontFamily);
-    var i=inp.selectionStart==null?inp.value.length:inp.selectionStart,w=mc.measureText(inp.value.slice(0,i)).width,r=inp.getBoundingClientRect(),z=zq.getBoundingClientRect();
-    return cl(r.left+parseFloat(c.paddingLeft||0)+parseFloat(c.borderLeftWidth||0)+w-inp.scrollLeft,r.left,r.right)-z.left}catch(e){return pill.x}}
-  inp.addEventListener('input',function(){if(!running||RM||!goal)return;var t=(performance.now()-t0)/1000;kick(caretX(),R*.36,t);sA.v+=.9;lastAct=performance.now()});
-  form.addEventListener('submit',function(){if(!RM&&running)pop=performance.now()+30;lastAct=performance.now()});
-  var wasAsk=zq.classList.contains('ask');
-  new MutationObserver(function(){var a=zq.classList.contains('ask');if(a===wasAsk)return;wasAsk=a;
-    if(a){clearTimeout(relTimer);var pre=goal;setGoal(1);if(pre&&running&&!RM&&pop<0)pop=performance.now()+30}else later()}).observe(zq,{attributes:true,attributeFilter:['class']});
-  addEventListener('pointermove',function(e){if(!running||e.pointerType==='touch')return;ptr={x:e.clientX,y:e.clientY,t:performance.now()};if(goal)lastAct=ptr.t;kickLoop()},{passive:true});
-  addEventListener('resize',function(){needSize=true;lastAct=performance.now();kickLoop()});
-  if(window.ResizeObserver)new ResizeObserver(function(){needSize=true;if(running){lastAct=performance.now();kickLoop()}}).observe(zq);
-  if(window.IntersectionObserver)new IntersectionObserver(function(es){visible=es[es.length-1].isIntersecting;
-    if(!visible&&running&&!goal)finish();
-    if(visible){if(running)kickLoop();else if(want())setGoal(1)}}).observe(zq);
-  addEventListener('hashchange',function(){if(F.clip||F.items.length){clipRes(null);landAll();cls('sl-pour',0);if(F.ph===1){F.ph=2;F.len=F.full;F.v=0}}
-    setTimeout(function(){needSize=true;check();if(running){lastAct=performance.now();kickLoop()}},60)});
-  /* warm up the shader shortly after load so the first focus does not stall */
-  function warm(){if(!init())return;try{if(zq.firstChild!==cv)zq.insertBefore(cv,zq.firstChild);needSize=true}catch(e){}}
-  if(document.readyState==='complete')setTimeout(warm,900);else addEventListener('load',function(){setTimeout(warm,900)});
-  if(want())setTimeout(check,0);
+  /* ---------- events ---------- */
+  var deb,comp=false,compT,skip=false,skipAt=0;
+  /* the page's own "search 250ms after typing" timer is replaced by ours (same delay) so a query renders once */
+  window.setTimeout=function(fn,ms){if(skip&&ms===250&&performance.now()-skipAt<40&&typeof fn==='function'&&/search\(/.test(Function.prototype.toString.call(fn)))return 0;return st.apply(null,arguments)};
+  inp.addEventListener('compositionstart',function(){comp=true;ct(deb);ct(compT)});
+  inp.addEventListener('compositionend',function(){comp=false;ct(compT);ct(deb);deb=st(function(){run(VD.get.call(inp))},80)});
+  window.addEventListener('input',function(e){if(e.target!==inp)return;
+    if(e.isComposing||comp){e.stopImmediatePropagation();ct(deb);ct(compT);
+      /* phone keyboards keep ordinary Thai/English words "composing"; after a pause, answer what is there */
+      if(coarse)compT=st(function(){var v=VD.get.call(inp);if(!/[぀-ヿ㐀-鿿가-힯ᄀ-ᇿ]/.test(v))run(v)},700);return}
+    skip=true;skipAt=performance.now();ct(deb);
+    var v=inp.value;if(!v.trim()||!clean(v)){lastC=null;if(!R.hidden)R.hidden=true;return}
+    deb=st(function(){run(inp.value)},250)},true);
+  window.addEventListener('input',function(e){if(e.target===inp)skip=false});
+  window.addEventListener('submit',function(e){if(e.target!==form)return;var v=inp.value;ct(deb);
+    if(!v.trim())return;/* 50-hero handles the empty case */
+    if(!clean(v)){e.preventDefault();e.stopImmediatePropagation();inp.value='';inp.focus();if(!R.hidden)R.hidden=true;return}
+    if(comp||e.isComposing)return;
+    shadow('เกม');st(unshadow,0);
+    st(function(){if(inp.hasOwnProperty('value'))unshadow()},0)},true);
+  window.addEventListener('submit',function(e){if(e.target!==form)return;if(inp.hasOwnProperty('value')){unshadow();run(inp.value,true);
+    /* keyboard users: move to the answer so the next Tab is inside it */
+    }});
+  /* chips inside the page call the page's search directly: tidy up after it */
+  document.addEventListener('click',function(e){if(own)return;var b=e.target.closest&&e.target.closest('[data-q]');if(!b)return;
+    ct(deb);lastC=clean(b.dataset.q);
+    var r={kind:'ia',ia:!A.hidden&&A.querySelector('.ia')};if(r.ia){if(r.ia.querySelector('.ia-pick')&&!r.ia.querySelector('.ia-a'))r.kind='pick';dress(r,{});if(r.say)announce(r.say)}
+    else{var n=G.querySelectorAll('.qv').length;announce(n?'พบคอร์สและกิจกรรม '+n+' รายการ':'ยังไม่เจอคำตอบสำหรับคำนี้')}
+    /* the chip that was pressed is gone after the re-render: keep keyboard focus inside the answer */
+    if(R.contains(b)||!document.contains(b)){var ia=A.querySelector('.ia');if(ia&&(!document.activeElement||document.activeElement===document.body||!document.contains(document.activeElement))){ia.tabIndex=-1;try{ia.focus({preventScroll:true})}catch(x){}}}});
+  /* closing the panel: forget the last query, hand focus back to the field (not on touch: it would reopen the keyboard) */
+  new MutationObserver(function(){if(R.hidden){lastC=null;ct(sayT);live.textContent='';var a=document.activeElement;if(a&&a!==inp&&R.contains(a)&&!coarse)inp.focus({preventScroll:true})}}).observe(R,{attributes:true,attributeFilter:['hidden']});
+  R.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.zq-x')&&!coarse)inp.focus({preventScroll:true})});
+  /* the native clear (x) of a search field fires "search" in Chromium/WebKit: make sure the panel closes and focus stays */
+  inp.addEventListener('search',function(){if(!inp.value){lastC=null;if(!R.hidden)R.hidden=true;inp.focus()}});
+  window.SXSearch={run:run,clean:clean,solve:solve};
 })();
