@@ -56,30 +56,45 @@ export function LegacyRuntime({ view, hide = [] }: { view: keyof typeof ROUTES; 
       if (cancelled) return;
       history.replaceState(history.state, "", location.pathname + location.search + "#" + view);
       el.innerHTML = html;
+      const nav = el.querySelector("header.nav");
+      if (nav) document.body.insertBefore(nav, document.body.firstChild);
+      const pt = el.querySelector("#pt");
+      if (pt) document.body.insertBefore(pt, nav ? nav.nextSibling : document.body.firstChild);
+      const home = el.querySelector('[data-view="home"]');
+      const mark = () => { document.documentElement.dataset.nxView = home && home.classList.contains("on") ? "home" : "other"; };
+      if (home) new MutationObserver(mark).observe(home, { attributes: true, attributeFilter: ["class", "hidden", "style"] });
       patch(document);
       patch(window);
       for (const s of manifest.scripts) await load("script", s.startsWith("http") ? s : `${BASE}/legacy/${s}`);
       el.dataset.ready = "1";
+      if (home) setTimeout(() => { const m = () => { document.documentElement.dataset.nxView = home.classList.contains("on") ? "home" : "other"; }; m(); }, 0);
     })();
 
-    // "#works" and friends open the Next.js page for that view
+    // Moving between views works as on the original site: the old header and its page transition swap views in place.
+    // Only the home view lives in React, so "#home" from another page loads the home route.
     const onClick = (e: MouseEvent) => {
       const a = (e.target as Element).closest?.("a[href^='#']") as HTMLAnchorElement | null;
       if (!a) return;
       const v = a.getAttribute("href")!.slice(1).split(/[?&]/)[0];
-      if (ROUTES[v] && v !== view) {
+      if (v === "home" && view !== "home") {
         e.preventDefault();
         e.stopImmediatePropagation();
-        location.href = BASE + ROUTES[v];
+        location.href = BASE + "/";
       }
     };
     document.addEventListener("click", onClick, true);
-    return () => { cancelled = true; document.removeEventListener("click", onClick, true); };
+    // keep the address bar on the route of the view that is showing, so a reload opens the same page
+    const onHash = () => {
+      const v = location.hash.slice(1).split(/[?&]/)[0];
+      if (ROUTES[v]) history.replaceState(history.state, "", BASE + ROUTES[v] + location.search + location.hash);
+    };
+    addEventListener("hashchange", onHash);
+    return () => { cancelled = true; document.removeEventListener("click", onClick, true); removeEventListener("hashchange", onHash); };
   }, [view]);
 
   return (
     <>
-      <style>{`.lg-box #hhL,.pt,.lg-box header.nav{display:none!important}${hide.map((h) => `.lg-box ${h}{display:none!important}`).join("")}`}</style>
+      <style>{`.lg-box #hhL{display:none!important}html[data-nx-view=other] .nx-home{display:none!important}${hide.map((h) => `.lg-box ${h}{display:none!important}`).join("")}`}</style>
       <div ref={box} className="lg-box" />
     </>
   );

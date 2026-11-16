@@ -68,24 +68,23 @@ requestAnimationFrame(frame)})();
 7:X
 8:[["children",{"s":"__PAGE__","h":512,"d":{"r":"$L9","p":false,"v":null}}]]
 5:[["children",{"s":"about","h":512,"d":{"r":"$L6","p":false,"v":"$7"},"c":"$Q8"}]]
-0:{"P":null,"c":["","about",""],"q":"","i":false,"t":{"t":{"s":"","h":528,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/Hamterco/next/_next/static/chunks/3w9gfk_hdhqne.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/Hamterco/next/_next/static/chunks/1ua2kfq9s-me6.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"th","suppressHydrationWarning":true,"className":"Eerhnq_variable pOx_Ka_variable kVD14q_variable CQaiTq_variable","children":["$","body",null,{"children":[["$","div",null,{"id":"hhL","role":"status","aria-label":"กำลังโหลด Hamster Hub","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]}]]}],"p":false,"v":null},"c":"$Q5"},"h":{"r":"$La","p":false,"v":null}},"m":"$undefined","G":["$c",["$Ld"]],"S":true,"r":"$undefined","s":"$undefined","a":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"9pw7pmOMou7798njFzqVD"}
+0:{"P":null,"c":["","about",""],"q":"","i":false,"t":{"t":{"s":"","h":528,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/Hamterco/next/_next/static/chunks/3w9gfk_hdhqne.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/Hamterco/next/_next/static/chunks/1ua2kfq9s-me6.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"th","suppressHydrationWarning":true,"className":"Eerhnq_variable pOx_Ka_variable kVD14q_variable CQaiTq_variable","children":["$","body",null,{"children":[["$","div",null,{"id":"hhL","role":"status","aria-label":"กำลังโหลด Hamster Hub","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]}]]}],"p":false,"v":null},"c":"$Q5"},"h":{"r":"$La","p":false,"v":null}},"m":"$undefined","G":["$c",["$Ld"]],"S":true,"r":"$undefined","s":"$undefined","a":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"Ow1tmJaf3uj4n-t1QLaFy"}
 e:I[39756,["$b"],"default"]
 f:I[37457,["$b"],"default"]
-10:"/Hamterco/next/_next/static/chunks/1fjlhiri-xl46.js"
-11:I[70119,["$b","$10"],"Header"]
-12:I[69668,["$b","$10"],"LegacyRuntime"]
-13:I[97367,["$b"],"OutletBoundary"]
-14:"$Sreact.suspense"
-16:"ViewportBoundary"
-17:I[97367,["$b"],"$16"]
-19:"MetadataBoundary"
-1a:I[97367,["$b"],"$19"]
+10:"/Hamterco/next/_next/static/chunks/0gcwfsp58_4yu.js"
+11:I[69668,["$b","$10"],"LegacyRuntime"]
+12:I[97367,["$b"],"OutletBoundary"]
+13:"$Sreact.suspense"
+15:"ViewportBoundary"
+16:I[97367,["$b"],"$15"]
+18:"MetadataBoundary"
+19:I[97367,["$b"],"$18"]
 4:["$","$Le",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$Lf",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]
 6:["$","$1","c",{"children":[null,["$","$Le",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$Lf",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
-9:["$","$1","c",{"children":[["$","main",null,{"children":[["$","$L11",null,{"tone":"dark","active":"เกี่ยวกับเรา"}],["$","$L12",null,{"view":"about"}]]}],[["$","script","script-0",{"src":"/Hamterco/next/_next/static/chunks/1fjlhiri-xl46.js","async":true,"nonce":"$undefined"}]],["$","$L13",null,{"children":["$","$14",null,{"name":"Next.MetadataOutlet","children":"$@15"}]}]]}]
-a:["$","$1","h",{"children":[null,["$","$L17",null,{"children":"$L18"}],["$","$L1a",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$14",null,{"name":"Next.Metadata","children":"$L1b"}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
+9:["$","$1","c",{"children":[["$","main",null,{"children":["$","$L11",null,{"view":"about"}]}],[["$","script","script-0",{"src":"/Hamterco/next/_next/static/chunks/0gcwfsp58_4yu.js","async":true,"nonce":"$undefined"}]],["$","$L12",null,{"children":["$","$13",null,{"name":"Next.MetadataOutlet","children":"$@14"}]}]]}]
+a:["$","$1","h",{"children":[null,["$","$L16",null,{"children":"$L17"}],["$","$L19",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$13",null,{"name":"Next.Metadata","children":"$L1a"}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
 d:["$","link","0",{"rel":"stylesheet","href":"/Hamterco/next/_next/static/chunks/3w9gfk_hdhqne.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 7:C
-18:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#F6AE55"}]]
-15:null
-1b:[["$","title","0",{"children":"Hamster Hub"}],["$","meta","1",{"name":"description","content":"คอร์ส ค่าย และพอร์ตสำหรับน้อง ม.4–6 ที่อยากสร้างเกม แอป และสตาร์ทอัพของตัวเอง"}]]
+17:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#F6AE55"}]]
+14:null
+1a:[["$","title","0",{"children":"Hamster Hub"}],["$","meta","1",{"name":"description","content":"คอร์ส ค่าย และพอร์ตสำหรับน้อง ม.4–6 ที่อยากสร้างเกม แอป และสตาร์ทอัพของตัวเอง"}]]

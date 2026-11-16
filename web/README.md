@@ -12,7 +12,8 @@ Every page is now a Next.js route: `/` (home), `/courses/`, `/activity/`, `/work
 
 | Part | How |
 |---|---|
-| Header, home hero, คอร์สที่เราแนะนำ | React components (`components/`) |
+| Home hero, คอร์สที่เราแนะนำ, loading screen | React components (`components/`, `lib/loader.ts`) |
+| Header and page transitions | The original header (tab animations, "เพิ่งจบ 14 พ.ย." roll) and its page wipe; views switch in place like the original, and the address bar follows the route. `components/Header.tsx` is a React version not used yet |
 | Search answers | The original search engine runs in the page; `Hero.tsx` sends the question to it and shows its answer panel under the bar |
 | Everything else (rest of home, courses, activity, works, about, footer) | `components/LegacyRuntime.tsx` runs the original markup, styles and scripts, built by `python3 ../dev/builds/legacy_next.py` into `public/legacy/`. Parts already rewritten in React are hidden there with `hide`. Next step: rewrite these one section at a time as components, then remove them from the legacy bundle |
 
