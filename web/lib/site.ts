@@ -23,33 +23,28 @@ export const WISHES = [
   "ทำเว็บของตัวเอง",
 ];
 
-export const CHIPS = ["อยากเข้าวิศวะคอม", "ม.6 ยังไม่มีพอร์ต", "อยากทำเกมของตัวเอง", "Hamster Hub คืออะไร", "ค่าเรียนเท่าไหร่"];
+// Example questions, typed one by one inside the search bar.
+export const EXAMPLES = ["อยากเข้าวิศวะคอม", "ม.6 ยังไม่มีพอร์ต", "อยากทำเกมของตัวเอง", "Hamster Hub คืออะไร", "ค่าเรียนเท่าไหร่"];
 
-// Holes in the cheese. Each one is a window onto a real work made here.
-// x, y: percent of the hero. size: px at a 1440px-wide screen. phone: hidden on phones, or its own spot there.
-export type Hole = {
-  x: number;
-  y: number;
-  size: number;
+// Real works around the headline. Every line comes from the site's own text.
+// desk: [x %, y %, width px at 1440, tilt]. phone: [offset from own side %, bottom %, width %, tilt] or null (hidden on phones).
+export type WorkCard = {
+  side: "l" | "r";
   img: string;
+  ratio: number; // height / width of the picture
   name: string;
+  line: string;
   clip?: string;
-  phone?: false | [number, number];
+  face?: [number, number]; // where the face sits in the picture, for the small square avatar
+  desk: [number, number, number, number];
+  phone: [number, number, number, number] | null;
 };
 
-export const HOLES: Hole[] = [
-  { x: 10, y: 25, size: 210, img: "work-stressstrike.webp", clip: "hole-stressstrike.mp4", name: "StressStrike", phone: [9, 19] },
-  { x: 9, y: 80, size: 200, img: "sc-revoice.webp", name: "REVOICE", phone: [8, 93] },
-  { x: 89, y: 28, size: 200, img: "w-hmap.webp", clip: "hole-hmap.mp4", name: "Hamster Map", phone: [92, 25] },
-  { x: 87, y: 83, size: 180, img: "work-slash-speed.webp", clip: "hole-slash-speed2.mp4", name: "SLASH//SPEED", phone: [62, 77] },
-  { x: 3, y: 56, size: 100, img: "dek69-1.webp", name: "พอร์ต DEK69", phone: [8, 76] },
-  { x: 72, y: 22, size: 104, img: "work-midnight-at-roadside.webp", name: "Midnight at Roadside", phone: false },
-  { x: 73, y: 90, size: 90, img: "work-hot-hot-hot.webp", name: "Hot Hot Hot", phone: false },
-  { x: 24, y: 13, size: 64, img: "sc-lyno.webp", name: "LYNO", phone: false },
-  { x: 44, y: 12, size: 56, img: "dek69-5.webp", name: "พอร์ต DEK69", phone: false },
-  { x: 62, y: 12, size: 56, img: "sc-timekeeper.webp", name: "Time Keeper", phone: false },
-  { x: 76, y: 10, size: 64, img: "sc-zoo.webp", name: "Z.O.O.", phone: false },
-  { x: 83, y: 64, size: 64, img: "w-quest-town.webp", name: "Hamster Quest", phone: false },
-  { x: 25, y: 84, size: 70, img: "dek69-2.webp", name: "พอร์ต DEK69", phone: false },
-  { x: 58, y: 90, size: 56, img: "work-escape-rolling.webp", name: "Escape Rolling", phone: false },
+export const CARDS: WorkCard[] = [
+  { side: "l", img: "w-revoice.webp", ratio: 3 / 4, name: "น้องไอดิน", line: "REVOICE · ชนะ NSC 2025", face: [28, 30], desk: [1, 9, 232, -3], phone: [-9, 3, 44, 5] },
+  { side: "l", img: "dek69-6.webp", ratio: 5 / 4, name: "น้องต้นกล้า", line: "ติดจุฬาฯ รอบ Portfolio", face: [74, 50], desk: [11, 37, 166, 3], phone: [-4, 0, 27, -6] },
+  { side: "l", img: "work-stressstrike.webp", ratio: 9 / 16, name: "StressStrike", line: "ชนะเลิศ OBEC Roboplayground", clip: "hole-stressstrike.mp4", desk: [1.5, 67, 224, -2], phone: null },
+  { side: "r", img: "w-hmap.webp", ratio: 10 / 16, name: "PHC Map", line: "สตาร์ทอัพ · ใช้สอนเด็กกว่า 1,000 คน", desk: [83, 9, 232, 3], phone: null },
+  { side: "r", img: "dek69-1.webp", ratio: 5 / 4, name: "น้องปลื้ม", line: "ติดสถิติประยุกต์ฯ สจล.", face: [68, 46], desk: [78.5, 35, 166, -3], phone: [-3, 0, 27, 6] },
+  { side: "r", img: "work-slash-speed.webp", ratio: 9 / 16, name: "SLASH//SPEED", line: "เข้ารอบ Final TGS", clip: "hole-slash-speed2.mp4", desk: [83.5, 67, 224, 2], phone: [-9, 5, 44, -5] },
 ];

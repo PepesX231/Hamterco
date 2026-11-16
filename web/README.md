@@ -10,15 +10,18 @@ The site is being moved from `slime.html` (built from `new.html` plus layers) to
 
 | Part | Status |
 |---|---|
-| Header and phone menu | Done |
-| Home hero: cheese with works in the holes (clips play), typed headline, search bar, example chips, pencil arrow and note, pencil loop on phones, peeking hamsters | Done |
-| Search answers | Not yet. Questions are sent to `slime.html?q=...`, which answers them (layer `99zzzzzzzzzzzzzz-q.html`) |
-| Rest of the home page, courses, activity, works, about, loader | Not yet. Links go to `slime.html` |
+| Header and phone menu | Done (square buttons) |
+| Home hero: work cards round the headline (Fastwork layout on phones), typed headline, short who-we-are line, example questions typed in the bar, running orange light on the bar, handwriting "ไม่รู้จะเริ่มตรงไหน? ลองพิมพ์ถามดู", cards dock round the bar (desktop) or are pulled into it (phones) while searching | Done |
+| คอร์สที่เราแนะนำ (Port Express + Hamstarter + National Project) | Done |
+| Search answers | Not yet. Questions go to `slime.html?q=...` |
+| Rest of home, courses, activity, works, about, loader | Not yet. Links go to `slime.html` |
 
 ## Where things are
 
-- `lib/site.ts`: links, nav, headline wishes, example chips, and the list of holes (position, size, picture, clip, name)
+- `lib/site.ts`: links, nav, headline wishes, example chips, and the example questions, and the work cards (picture, name, result line, desktop and phone spots)
 - `components/Hero.tsx`: the hero
-- `components/CheeseHoles.tsx`: the holes; pictures load after the page, clips play only while the hero is on screen and nobody is searching
-- `components/HandDrawn.tsx`: pencil arrow + note (desktop), pencil loop (phones)
+- `components/WorkCards.tsx`: the work cards; `lib/cardMotion.ts`: their search motion
+- `components/Courses.tsx`: คอร์สที่เราแนะนำ
+- `lib/useExamples.ts`: the typed example questions in the bar
+- `components/HandDrawn.tsx`: the handwriting under the bar
 - `components/TypedWish.tsx`: "น้องอยาก… <wish>"

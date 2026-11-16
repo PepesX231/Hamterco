@@ -15,18 +15,18 @@ export function Header() {
           Hamster Hub
         </a>
 
-        <nav aria-label="เมนูหลัก" className="hidden rounded-full bg-[#fff6e8]/40 px-2 md:flex">
+        <nav aria-label="เมนูหลัก" className="hidden bg-[#fff6e8]/40 px-2 md:flex">
           {NAV.map((n) => (
-            <a key={n.label} href={n.href} className="rounded-full px-4 py-2 text-[15px] transition-colors hover:bg-white/60">
+            <a key={n.label} href={n.href} className="px-4 py-2 text-[15px] transition-colors hover:bg-white/60">
               {n.label}
             </a>
           ))}
         </nav>
 
-        <a href={LINE_URL} target="_blank" rel="noopener" className="rounded-full bg-line px-4 py-2 text-[15px] font-semibold text-ink">
+        <a href={LINE_URL} target="_blank" rel="noopener" className="bg-line px-4 py-2 text-[15px] font-semibold text-ink">
           ทัก LINE
         </a>
-        <a href={LOGIN_URL} target="_blank" rel="noopener" className="hidden rounded-full bg-ink px-5 py-2 text-[15px] font-semibold text-white md:inline-block">
+        <a href={LOGIN_URL} target="_blank" rel="noopener" className="hidden bg-ink px-5 py-2 text-[15px] font-semibold text-white md:inline-block">
           เข้าสู่ระบบ
         </a>
 
@@ -53,14 +53,14 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.18 }}
-            className="mx-4 flex flex-col rounded-2xl bg-cream p-2 text-[17px] md:hidden"
+            className="mx-4 flex flex-col bg-cream p-2 text-[17px] md:hidden"
           >
             {NAV.map((n) => (
-              <a key={n.label} href={n.href} className="rounded-xl px-4 py-3">
+              <a key={n.label} href={n.href} className="px-4 py-3">
                 {n.label}
               </a>
             ))}
-            <a href={LOGIN_URL} target="_blank" rel="noopener" className="rounded-xl px-4 py-3">
+            <a href={LOGIN_URL} target="_blank" rel="noopener" className="px-4 py-3">
               เข้าสู่ระบบ
             </a>
           </motion.nav>
