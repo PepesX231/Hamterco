@@ -10914,26 +10914,31 @@ html body [data-view="home"] .zq #zqRes{box-shadow:0 0 0 7px #F2A65E,0 30px 60px
 /* gone while the visitor searches */
 html body [data-view="home"] .zq.ask .hcw,html body [data-view="home"] .zq.sl-on .hcw,html body [data-view="home"] .zq.hx-white .hcw,html body [data-view="home"] .zq:has(#zqIn:focus) .hcw{opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
 
-/* narrower screens: no room beside the headline, so the same cards become a row the visitor can swipe, under the chips */
+/* narrower screens (Fastwork's phone layout): the text keeps the full width, and four cards peek in from the two
+   bottom corners, under the chips, tilted, partly past the screen edge */
 @media (max-width:1099px){
-  .hcw{position:static;overflow:visible;margin:28px -16px 0;padding:0 16px}
-  .hcc{position:static;display:contents;transform:none!important}
-  .hcs{display:flex;align-items:flex-start;text-align:left;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 16px 18px;margin:0 -16px;scrollbar-width:none}
-  .hcs::-webkit-scrollbar{display:none}
-  .hc{position:relative;left:auto;top:auto;flex:0 0 156px;width:156px;scroll-snap-align:start;transform:none!important;opacity:1!important}
-  .hc b{font-size:14px}.hc em{font-size:12px}
+  html body [data-view="home"] .zq{min-height:max(100svh,760px)}
+  html.nv-home body [data-view="home"] .zq,html body [data-view="home"] .zq{justify-content:flex-start!important;padding-top:calc(52px + 92px)!important}
+  html body [data-view="home"] .zq .zq-top{margin-top:0!important}
+  html body [data-view="home"] .zq .zq-top{position:relative;z-index:3}
+  .hcc{transform:none!important}
+  .hc{left:var(--mx);top:var(--my);width:var(--mw);--r:var(--mr);padding:6px 6px 10px;border-radius:14px}
+  .hc.ph-off{display:none}
+  .hc b{font-size:13px;margin-top:7px}.hc em{font-size:11.5px}
 }
+/* tablets: same corners, but the cards move in from the edge so their names are not cut off */
+@media (min-width:700px) and (max-width:1099px){.hcl .hc{margin-left:5vw}.hcr .hc{margin-left:-3vw}}
 @media (prefers-reduced-motion:reduce){.hcw .hc{transition:none!important;opacity:1!important}}
 </style>
 <script>(function(){
   /* every line below is taken from the site's own text; [x, y, width at 1440, tilt, side, picture, aspect, name, line, clip] */
   var C=[
-    [1,9,220,-4,'l','w-revoice.webp','4/3','น้องไอดิน','REVOICE ชนะ NSC 2025 ระดับประเทศ'],
-    [12.5,36,164,4,'l','dek69-6.webp','4/5','น้องต้นกล้า','ติดจุฬาฯ รอบ Portfolio'],
-    [1.5,67,212,-3,'l','work-stressstrike.webp','16/9','StressStrike','ชนะเลิศ OBEC Roboplayground','hole-stressstrike.mp4'],
-    [83.5,9,220,4,'r','w-hmap.webp','16/10','PHC Map','ใช้สอนเด็กไปแล้วกว่า 1,000 คน'],
-    [77.5,35,164,-4,'r','dek69-1.webp','4/5','น้องปลื้ม','ติดสถิติประยุกต์ฯ สจล.'],
-    [84,67,212,3,'r','work-slash-speed.webp','16/9','SLASH//SPEED','เกมที่น้องสร้างเองในคอร์ส','hole-slash-speed2.mp4']];
+    [1,9,220,-4,'l','w-revoice.webp','4/3','น้องไอดิน','REVOICE ชนะ NSC 2025 ระดับประเทศ',0,[-3,60,164,-6]],
+    [12.5,36,164,4,'l','dek69-6.webp','4/5','น้องต้นกล้า','ติดจุฬาฯ รอบ Portfolio',0,0],
+    [1.5,67,212,-3,'l','work-stressstrike.webp','16/9','StressStrike','ชนะเลิศ OBEC Roboplayground','hole-stressstrike.mp4',[-1.5,81,168,4]],
+    [83.5,9,220,4,'r','w-hmap.webp','16/10','PHC Map','ใช้สอนเด็กไปแล้วกว่า 1,000 คน',0,0],
+    [77.5,35,164,-4,'r','dek69-1.webp','4/5','น้องปลื้ม','ติดสถิติประยุกต์ฯ สจล.',0,[70,58,124,5]],
+    [84,67,212,3,'r','work-slash-speed.webp','16/9','SLASH//SPEED','เกมที่น้องสร้างเองในคอร์ส','hole-slash-speed2.mp4',[59,80,176,-4]]];
   function go(){var z=document.querySelector('[data-view="home"] .zq');if(!z||z.querySelector('.hcw'))return;
     var h=z.querySelector('.zq-h');if(h&&!z.querySelector('.zq-who')){var p=document.createElement('p');p.className='zq-who';
       p.textContent='ที่ Hamster Hub น้อง ม.ปลาย สร้างเกมและแอปของตัวเอง จนติดมหาลัยและชนะระดับประเทศ';h.insertAdjacentElement('afterend',p)}
@@ -10941,7 +10946,7 @@ html body [data-view="home"] .zq.ask .hcw,html body [data-view="home"] .zq.sl-on
     var L=document.createElement('div');L.className='hcc hcl';var R=document.createElement('div');R.className='hcc hcr';
     var S=document.createElement('div');S.className='hcs';
     C.forEach(function(c,i){var a=document.createElement('a');a.className='hc';a.href='#works';
-      a.style.cssText='--x:'+c[0]+'%;--y:'+c[1]+'%;--w:clamp('+Math.round(c[2]*.8)+'px,'+(c[2]/14.4).toFixed(2)+'vw,'+Math.round(c[2]*1.2)+'px);--r:'+c[3]+'deg;--a:'+c[6]+';--i:'+(c[4]==='l'?i:i-3)+';z-index:'+(10-i%3);
+      a.style.cssText='--x:'+c[0]+'%;--y:'+c[1]+'%;--w:clamp('+Math.round(c[2]*.8)+'px,'+(c[2]/14.4).toFixed(2)+'vw,'+Math.round(c[2]*1.2)+'px);--r:'+c[3]+'deg;--a:'+c[6]+';--i:'+(c[4]==='l'?i:i-3)+';z-index:'+(10-i%3)+(c[10]?';--mx:'+c[10][0]+'%;--my:'+c[10][1]+'%;--mw:min('+c[10][2]+'px,'+(c[10][2]/3.9).toFixed(1)+'vw);--mr:'+c[10][3]+'deg':'');if(!c[10])a.classList.add('ph-off');
       var ar=c[6].split('/');a.innerHTML='<span class="hc-m" style="aspect-ratio:auto;padding-top:'+(100*ar[1]/ar[0]).toFixed(2)+'%"><img src="img/'+c[5]+'" alt="" loading="lazy" decoding="async"></span><b></b><em></em>';
       a.querySelector('b').textContent=c[7];a.querySelector('em').textContent=c[8];
       if(c[9]){var v=document.createElement('video');v.muted=true;v.loop=true;v.playsInline=true;v.setAttribute('playsinline','');v.setAttribute('muted','');v.preload='none';v.dataset.src='img/'+c[9];v.setAttribute('aria-hidden','true');a.querySelector('.hc-m').appendChild(v)}
@@ -10950,12 +10955,11 @@ html body [data-view="home"] .zq.ask .hcw,html body [data-view="home"] .zq.sl-on
     /* layout switch: beside the headline on wide screens, a swipeable row under the chips on narrow ones */
     var top=z.querySelector('.zq-top')||z;var mq=matchMedia('(max-width:1099px)');
     function lay(){var cards=[].slice.call(w.querySelectorAll('.hc'));cards.sort(function(a,b){return a.style.getPropertyValue('--i')-b.style.getPropertyValue('--i')});
-      if(mq.matches){/* alternate works and people in the row */var order=[0,3,1,4,2,5].map(function(k){return w.__all[k]});order.forEach(function(c){S.appendChild(c)});w.appendChild(S);top.appendChild(w)}
-      else{w.__all.forEach(function(c){(c.dataset.side==='l'?L:R).appendChild(c)});if(S.parentNode)S.remove();z.insertBefore(w,z.firstChild)}}
+      w.__all.forEach(function(c){(c.dataset.side==='l'?L:R).appendChild(c)});if(!w.parentNode)z.insertBefore(w,z.firstChild)}
     w.__all=[].slice.call(w.querySelectorAll('.hc'));lay();mq.addEventListener('change',lay);
     requestAnimationFrame(function(){requestAnimationFrame(function(){w.classList.add('in');setTimeout(function(){w.classList.add('done')},1400)})});
     /* the two columns drift apart a little as the visitor scrolls: an answer to scrolling, not motion on its own */
-    var tk=0;addEventListener('scroll',function(){if(tk||mq.matches)return;tk=requestAnimationFrame(function(){tk=0;var y=Math.min(scrollY,900);L.style.transform='translate3d(0,'+(-y*.12)+'px,0)';R.style.transform='translate3d(0,'+(y*.06)+'px,0)'})},{passive:true});
+    var tk=0;addEventListener('scroll',function(){if(tk)return;if(mq.matches){L.style.transform=R.style.transform='';return}tk=requestAnimationFrame(function(){tk=0;var y=Math.min(scrollY,900);L.style.transform='translate3d(0,'+(-y*.12)+'px,0)';R.style.transform='translate3d(0,'+(y*.06)+'px,0)'})},{passive:true});
     /* clips play only while the hero is on screen and nobody is searching; they load after the page */
     var vs=[].slice.call(w.querySelectorAll('video')),vis=true,ready=false;
     function run(){var q=document.getElementById('zqIn');vs.forEach(function(v){var on=ready&&vis&&!/\b(ask|sl-on|hx-white)\b/.test(z.className)&&document.activeElement!==q;
