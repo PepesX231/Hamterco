@@ -15,7 +15,15 @@ A senior on the team (watchirapongth) reviewed the hero with the cheese backgrou
 
 > "ไม่เอาชีส / ไม่เกี่ยวกับ product"
 
-**Done (16 พ.ย.):** the owner chose to keep the cheese but tie it to the product. `dev/builds/layers/99zzzzzzzzzzzz-herobg.html` draws the cheese again, and every hole is a window showing a real work: game-jam games, NSC projects (REVOICE, LYNO, Z.O.O., Timekeeper), Midnight at Roadside, Hamster Quest, Hamster Map and DEK69 portfolio results. The standout works get the biggest holes: StressStrike, SLASH//SPEED, REVOICE and Hamster Map. Three of them play a short muted clip (`img/hole-stressstrike.mp4`, `img/hole-slash-speed2.mp4`, `img/hole-hmap.mp4`, cut down to 175–420KB from the full Hall of Fame videos). The clips play only while the hero is on screen and pause while answers are open. The pictures load after the page has loaded, so they don't slow the first paint. Pointing at a hole shows the work's name, and clicking it goes to #works. Holes stay off the headline and search; two holes have separate phone positions so they don't sit under the example chips. (A Unity-grid version was tried in between and dropped.)
+**Done (16 พ.ย., final):** the owner then rejected the cheese with works in its holes too ("ไม่เกี่ยวกับ product", the clips in circles "ไม่สื่อ") and gave Fastwork's hero as the reference. `99zzzzzzzzzzzz-herobg.html` now:
+- sets the hero on the plain page colour
+- puts six real works around the headline as tilted cards, each with a picture and two lines (who/what, and the result): น้องไอดิน REVOICE (NSC 2025), น้องต้นกล้า (จุฬาฯ), StressStrike (OBEC, plays a clip), PHC Map (1,000+ kids), น้องปลื้ม (สจล.), SLASH//SPEED (plays a clip). Every line is taken from the site's own text.
+- adds one line under the headline saying who we are
+- turns the cards into a swipeable row under the chips below 1100px
+- removes the orange drip under the hero and the orange "slurp" flood; searching just puts an orange rim round the bar and the answers
+- hides the peeking hamsters and, at 1100px and wider, the pencil arrow and note (the cards sit where they were)
+
+The previous cheese version is kept in git history (commit before "Hero: Fastwork-style work cards").
 
 ---
 
@@ -57,7 +65,7 @@ The owner asked to move the site to Next.js + React + TypeScript + Tailwind CSS 
 | `99zzzzzzzzz-review.html` | Mobile header shows ทัก LINE, no dead countdown, courses/activity pages have no page-name banner |
 | `99zzzzzzzzzz-perf.html` | Performance: no big blurs, off-screen animations paused |
 | `99zzzzzzzzzzz-lists.html` | Poster-less events as a dated list. (The ruled courses list and the hidden home "คอร์สทั้งหมด" carousel were reverted on 16 พ.ย. at the owner's request.) |
-| `99zzzzzzzzzzzz-herobg.html` | Hero background: cheese, every hole shows a real work; also hides the code text |
+| `99zzzzzzzzzzzz-herobg.html` | Hero: real works as cards around the headline (Fastwork reference), who-we-are line, plain background, no slurp flood |
 | `99zzzzzzzzzzzzzzz-noreveal.html` | Turns off the fade-in-on-scroll (`mo-goo`, `mo-rise`, `mo-kids`). On the owner's phone it never fired, so the course cards stayed invisible |
 | `99zzzzzzzzzzzzz-plain.html` | Only the floating ask button position and two heading fixes remain. The flattening of the courses and works sections (rules, no boxes) was reverted on 16 พ.ย.: the owner disliked the lines |
 
