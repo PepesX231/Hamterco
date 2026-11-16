@@ -66,11 +66,11 @@ function done(){var r=cv.getBoundingClientRect(),cx0=r.left+r.width/2,cy0=r.top+
     L.style.webkitMaskImage=m;L.style.maskImage=m;if(k<1)requestAnimationFrame(iris);else{L.remove();H.classList.remove('hl-on');dispatchEvent(new Event('hh:loaded'))}})(s0)}
 requestAnimationFrame(frame)})();
 5:[["children",{"s":"__PAGE__","h":512,"d":{"r":"$L6","p":false,"v":null}}]]
-0:{"P":null,"c":["",""],"q":"","i":false,"t":{"t":{"s":"","h":528,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/Hamterco/next/_next/static/chunks/3w9gfk_hdhqne.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/Hamterco/next/_next/static/chunks/1ua2kfq9s-me6.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"th","suppressHydrationWarning":true,"className":"Eerhnq_variable pOx_Ka_variable kVD14q_variable CQaiTq_variable","children":["$","body",null,{"children":[["$","div",null,{"id":"hhL","role":"status","aria-label":"กำลังโหลด Hamster Hub","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]}]]}],"p":false,"v":null},"c":"$Q5"},"h":{"r":"$L7","p":false,"v":null}},"m":"$undefined","G":["$9",["$La"]],"S":true,"r":"$undefined","s":"$undefined","a":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"Ow1tmJaf3uj4n-t1QLaFy"}
+0:{"P":null,"c":["",""],"q":"","i":false,"t":{"t":{"s":"","h":528,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/Hamterco/next/_next/static/chunks/3w9gfk_hdhqne.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/Hamterco/next/_next/static/chunks/1ua2kfq9s-me6.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"th","suppressHydrationWarning":true,"className":"Eerhnq_variable pOx_Ka_variable kVD14q_variable CQaiTq_variable","children":["$","body",null,{"children":[["$","div",null,{"id":"hhL","role":"status","aria-label":"กำลังโหลด Hamster Hub","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]}]]}],"p":false,"v":null},"c":"$Q5"},"h":{"r":"$L7","p":false,"v":null}},"m":"$undefined","G":["$9",["$La"]],"S":true,"r":"$undefined","s":"$undefined","a":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"tOJNbEoxXyMyJAN-3PK9h"}
 b:I[39756,["$8"],"default"]
 c:I[37457,["$8"],"default"]
 d:"/Hamterco/next/_next/static/chunks/0gcwfsp58_4yu.js"
-e:"/Hamterco/next/_next/static/chunks/44mu8k65xranc.js"
+e:"/Hamterco/next/_next/static/chunks/0avpxdotgzj-e.js"
 f:I[92349,["$8","$d","$e"],"Hero"]
 17:"ViewportBoundary"
 18:I[97367,["$8"],"$17"]
@@ -88,7 +88,7 @@ a:["$","link","0",{"rel":"stylesheet","href":"/Hamterco/next/_next/static/chunks
 12:["$","p",null,{"className":"mt-4 text-[13px] text-ink/70","children":"รุ่นพี่ 5 คนจากคอร์สนี้ ติดวิศวะคอมฯ CEDT และวิทย์คอมฯ"}]
 13:["$","$L1e",null,{"view":"home","hide":["[data-view=\"home\"] > .zq","[data-view=\"home\"] > .je","[data-view=\"home\"] > section.ft"]}]
 14:["$","script","script-0",{"src":"/Hamterco/next/_next/static/chunks/0gcwfsp58_4yu.js","async":true,"nonce":"$undefined"}]
-15:["$","script","script-1",{"src":"/Hamterco/next/_next/static/chunks/44mu8k65xranc.js","async":true,"nonce":"$undefined"}]
+15:["$","script","script-1",{"src":"/Hamterco/next/_next/static/chunks/0avpxdotgzj-e.js","async":true,"nonce":"$undefined"}]
 16:["$","$L1f",null,{"children":["$","$1c",null,{"name":"Next.MetadataOutlet","children":"$@20"}]}]
 19:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#F6AE55"}]]
 1d:[["$","title","0",{"children":"Hamster Hub"}],["$","meta","1",{"name":"description","content":"คอร์ส ค่าย และพอร์ตสำหรับน้อง ม.4–6 ที่อยากสร้างเกม แอป และสตาร์ทอัพของตัวเอง"}]]
