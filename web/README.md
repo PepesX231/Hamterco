@@ -6,6 +6,17 @@ The site is being moved from `slime.html` (built from `new.html` plus layers) to
 - Run locally: `npm install && npm run dev`, then open http://localhost:3000/Hamterco/next/. Pictures load from `/Hamterco/img/`, so serve the repo root under `/Hamterco/` to see them.
 - Publish: `npm run export`. This builds a static site into `../next/`. Then commit and push to `main` and `gh-pages`.
 
+## Hams Route (22 พ.ย.)
+
+"คอร์ส" is now **Hams Route**: single skills (Route) and sets of three Routes for one goal (Package).
+
+- Data: `lib/routes.ts` (6 kinds, 24 Routes, 4 goal Packages, 2 full programs, goal search, apply steps). Route and Package prices are SAMPLE prices from the design files and are labelled "ราคาตัวอย่าง" everywhere; fields still to confirm show "รอทีมยืนยัน".
+- Pages: `/routes/` (store), `/routes/<kind>/`, `/routes/r/<route>/`, `/routes/p/<package>/`. `/courses/` redirects to `/routes/`.
+- Home: `components/HomeStore.tsx` (packages by goal + Route shelf) replaces the old course sections; the hero search also lists matching Routes and Packages.
+- Look: `app/store.css`. Apple Store's way of selling (two-tone shelf titles, pictures filling the card, price read last, a buy bar on detail pages) with square corners.
+- Art: `public/route-art/` from the handoff's route-store tiles and package sheets (concept pictures, not student work).
+- Pages made only of React use `<LegacyRuntime view="shell" />` for the shared header, footer and loader.
+
 ## What is in the app
 
 Every page is now a Next.js route: `/` (home), `/courses/`, `/activity/`, `/works/`, `/about/`.

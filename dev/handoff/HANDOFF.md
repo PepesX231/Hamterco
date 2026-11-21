@@ -27,6 +27,10 @@ The previous cheese version is kept in git history (commit before "Hero: Fastwor
 
 ---
 
+## 1a. Hams Route (22 พ.ย.)
+
+Courses became Hams Route (Routes + Packages by goal) per the 22 พ.ย. brief; Home shows packages by goal and a Route shelf. See `web/README.md` › Hams Route. Prices are samples until the team confirms.
+
 ## 1b. Moving to Next.js (started 16 พ.ย.)
 
 **From 17 พ.ย. all work is done in Next.js only (`web/`).** The owner will hand the project to others as Next.js. `slime.html` is frozen as the reference for parts not yet moved.

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Anuphan, IBM_Plex_Sans_Thai, Kanit, Mali } from "next/font/google";
 import "./globals.css";
+import "./store.css";
 import { LOADER_HTML, LOADER_JS } from "@/lib/loader";
 
 const plex = IBM_Plex_Sans_Thai({ subsets: ["thai", "latin"], weight: ["400", "500", "600"], variable: "--font-plex", display: "swap" });

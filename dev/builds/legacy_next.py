@@ -64,6 +64,17 @@ def square(css):
     return re.sub(r'([^{}]+)\{([^{}]*)\}', block, css)
 css = square(css)
 
+# "คอร์ส" became Hams Route (22 พ.ย.): every link to the old courses view now opens the Hams Route pages
+R = '/Hamterco/next/routes/'
+body = body.replace('<a class="v nv-c" href="#courses"><span>คอร์ส</span></a>', '<a class="v nv-c" href="' + R + '"><span>Hams Route</span></a>')
+body = body.replace('<a href="#courses">คอร์ส</a>', '<a href="' + R + '">Hams Route</a>')
+body = body.replace('href="#courses">ดูคอร์สทั้งหมด', 'href="' + R + '">ดู Hams Route ทั้งหมด')
+body = body.replace('href="#courses">คอร์สทั้งหมด', 'href="' + R + '">Hams Route ทั้งหมด')
+body = body.replace('href="#courses"', 'href="' + R + '"')
+fi = body.find('<footer')
+if fi > -1:
+    body = body[:fi] + body[fi:].replace('>คอร์ส<', '>Hams Route<')
+
 shutil.rmtree(OUT, ignore_errors=True)
 os.makedirs(os.path.join(OUT, 'js'))
 open(os.path.join(OUT, 'legacy.css'), 'w').write(fix(css))

@@ -8,11 +8,13 @@ import { useEffect, useRef } from "react";
  * Hash links between views ("#works") become Next.js routes. Each part moved to React is hidden here via `hide`.
  */
 const BASE = "/Hamterco/next";
-const ROUTES: Record<string, string> = { home: "/", courses: "/courses/", activity: "/activity/", works: "/works/", about: "/about/" };
+const ROUTES: Record<string, string> = { home: "/", courses: "/routes/", activity: "/activity/", works: "/works/", about: "/about/" };
+// "shell": a page made only of React content (Hams Route). The legacy part gives it the shared header, footer and loader.
 
 let started = false;
 
-export function LegacyRuntime({ view, hide = [] }: { view: keyof typeof ROUTES; hide?: string[] }) {
+export function LegacyRuntime({ view, hide = [] }: { view: keyof typeof ROUTES | "shell"; hide?: string[] }) {
+  const shell = view === "shell";
   const box = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -54,7 +56,7 @@ export function LegacyRuntime({ view, hide = [] }: { view: keyof typeof ROUTES; 
       });
       const html = await (await fetch(`${BASE}/legacy/body.html`)).text();
       if (cancelled) return;
-      history.replaceState(history.state, "", location.pathname + location.search + "#" + view);
+      if (!shell) history.replaceState(history.state, "", location.pathname + location.search + "#" + view);
       el.innerHTML = html;
       const nav = el.querySelector("header.nav");
       if (nav) document.body.insertBefore(nav, document.body.firstChild);
@@ -67,6 +69,11 @@ export function LegacyRuntime({ view, hide = [] }: { view: keyof typeof ROUTES; 
       patch(window);
       for (const s of manifest.scripts) await load("script", s.startsWith("http") ? s : `${BASE}/legacy/${s}`);
       el.dataset.ready = "1";
+      if (shell && nav) {
+        const c = nav.querySelector<HTMLAnchorElement>("a.nv-c");
+        c?.setAttribute("aria-current", "page");
+        nav.querySelectorAll<HTMLAnchorElement>("a.v:not(.nv-c)").forEach((a) => a.removeAttribute("aria-current"));
+      }
       if (home) setTimeout(() => { const m = () => { document.documentElement.dataset.nxView = home.classList.contains("on") ? "home" : "other"; }; m(); }, 0);
     })();
 
@@ -76,6 +83,12 @@ export function LegacyRuntime({ view, hide = [] }: { view: keyof typeof ROUTES; 
       const a = (e.target as Element).closest?.("a[href^='#']") as HTMLAnchorElement | null;
       if (!a) return;
       const v = a.getAttribute("href")!.slice(1).split(/[?&]/)[0];
+      if (shell && ROUTES[v]) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        location.href = BASE + ROUTES[v];
+        return;
+      }
       if (v === "home" && view !== "home") {
         e.preventDefault();
         e.stopImmediatePropagation();
@@ -83,18 +96,24 @@ export function LegacyRuntime({ view, hide = [] }: { view: keyof typeof ROUTES; 
       }
     };
     document.addEventListener("click", onClick, true);
+    // links to the Hams Route pages are ordinary page loads; keep the old router's hands off them
+    const onRoute = (e: MouseEvent) => {
+      const a = (e.target as Element).closest?.(`a[href^='${BASE}/routes']`) as HTMLAnchorElement | null;
+      if (a && !e.defaultPrevented) e.stopImmediatePropagation();
+    };
+    document.addEventListener("click", onRoute, true);
     // keep the address bar on the route of the view that is showing, so a reload opens the same page
     const onHash = () => {
       const v = location.hash.slice(1).split(/[?&]/)[0];
-      if (ROUTES[v]) history.replaceState(history.state, "", BASE + ROUTES[v] + location.search + location.hash);
+      if (ROUTES[v] && !shell) history.replaceState(history.state, "", BASE + ROUTES[v] + location.search + location.hash);
     };
     addEventListener("hashchange", onHash);
-    return () => { cancelled = true; document.removeEventListener("click", onClick, true); removeEventListener("hashchange", onHash); };
+    return () => { cancelled = true; document.removeEventListener("click", onClick, true); document.removeEventListener("click", onRoute, true); removeEventListener("hashchange", onHash); };
   }, [view]);
 
   return (
     <>
-      <style>{`.lg-box #hhL{display:none!important}html[data-nx-view=other] .nx-home{display:none!important}${hide.map((h) => `.lg-box ${h}{display:none!important}`).join("")}`}</style>
+      <style>{`.lg-box #hhL{display:none!important}html[data-nx-view=other] .nx-home{display:none!important}${shell ? ".lg-box #main{display:none!important}" : ""}${hide.map((h) => `.lg-box ${h}{display:none!important}`).join("")}`}</style>
       <div ref={box} className="lg-box" />
     </>
   );
