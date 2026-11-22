@@ -57,7 +57,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
           </section>
         )}
         <section className="st-shelf" aria-label="Route ถัดไป">
-          <div className="st-shelf-h"><h2 className="st-shelf-t"><i>ไปต่อในหมวดเดียวกัน.</i> <span>{d.name}</span></h2><a className="st-link" href={LINK.store}>กลับไปดูทั้งหมด</a></div>
+          <div className="st-shelf-h"><h2 className="st-shelf-t"><i>ไปต่อในหมวดเดียวกัน.</i> <span>{d.name}</span></h2></div>
           <div className="st-row">{next.map((x) => <RouteCard key={x.id} r={x} />)}</div>
         </section>
         <FaqAndSteps />

@@ -285,6 +285,23 @@ html { overflow-x: clip; }
 @media (min-width: 1100px) { .st, .hm-store { --edge: max(40px, calc((100vw - 1240px) / 2 + 40px)); } }
 .st .st-row, .hm-store .st-row { margin-left: calc(-1 * var(--edge)); margin-right: calc(-1 * var(--edge)); padding-left: var(--edge); padding-right: var(--edge); scroll-padding-left: var(--edge); }
 /* Hams Route page: each kind is one long row that runs off the right edge, like the package row */
-.st-kind .st-card { width: clamp(270px, 26vw, 340px); height: auto; }
-.st-kind .st-card img { height: auto; aspect-ratio: 4 / 3; }
-.st-kind .st-card-t { padding-bottom: 58px; }
+
+/* 23 พ.ย.: Route cards like Apple Store's shelf cards: white, the picture sits inside with room around it,
+   label, name and price at the bottom, the arrow in the corner */
+.st-card { width: 284px; height: 430px; padding: 20px 20px 0; }
+.st-card img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
+.st-card:hover img { transform: none; }
+.st-card-t { padding: 18px 2px 0; }
+.st-card .st-plus { right: 18px; bottom: 18px; }
+@media (max-width: 600px) { .st-card { width: 236px; height: 372px; padding: 16px 16px 0; } }
+
+/* the header, Apple Store style: name on the left, mascot in the middle, the question on the right */
+.st-head { grid-template-columns: 1fr auto 1fr; align-items: center; gap: 32px; }
+.st-head .st-display { font-size: clamp(44px, 5vw, 76px); justify-self: start; }
+.st-head .st-mascot { width: 104px; height: 104px; margin: 0; justify-self: center; }
+.st-head p { justify-self: end; text-align: right; font-size: clamp(18px, 1.6vw, 24px); }
+@media (max-width: 860px) { .st-head { grid-template-columns: auto 1fr; } .st-head .st-mascot { width: 64px; height: 64px; justify-self: end; } .st-head p { text-align: left; justify-self: start; } }
+
+/* package pictures sit a little lower in the block */
+.st-pk img { top: 9%; bottom: auto; }
+.st-grid .st-card, .st-grid .st-card img { height: auto !important; } .st-grid .st-card { padding-bottom: 64px; }

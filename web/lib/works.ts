@@ -1,28 +1,6 @@
 // What Hamster Hub students built and won. Source: the team's sheet (Google Sheet "Hamster Hub", tab 1), 22 Nov 2026.
 // Copied as written there; only spelling of names was kept. Rows with no link stay without one.
 
-const IMG = "/Hamterco/img/";
-
-export type Made = { name: string; by: string; what: string; tag: string; href?: string; img?: string };
-
-// Things in use or earning money
-export const MADE: Made[] = [
-  { name: "Mr. City", by: "แพททริค", what: "เกมเดินเที่ยวสงขลา ขายให้สวนสัตว์สงขลาแล้ว", tag: "สตาร์ทอัพ", href: "https://www.facebook.com/reel/2101813246917551", img: IMG + "g-mrcity.webp" },
-  { name: "Hamster Quest", by: "แพททริค", what: "เว็บเรียนที่เล่นเหมือนเกม", tag: "ใช้งานจริง", href: "https://village.hamsterquest.com/", img: IMG + "g-quest.webp" },
-  { name: "Hamster Map", by: "หวาย", what: "แผนที่เกมใน Hamster Quest", tag: "ใช้งานจริง", href: "https://village.hamsterquest.com/hamstermap/", img: IMG + "w-hmap.webp" },
-  { name: "Hamster Town", by: "เก้น", what: "เมืองของ Hamster Hub", tag: "ใช้งานจริง", href: "https://www.facebook.com/reel/1446789482644154", img: IMG + "town.webp" },
-  { name: "Pangboyz", by: "อีฟ", what: "เกม Roblox ที่สร้างรายได้", tag: "ทำเงินได้" },
-  { name: "Dune", by: "แทน", what: "น้องอายุ 9 ขวบทำเอง", tag: "ทำเงินได้", href: "https://www.facebook.com/reel/376677475412855" },
-  { name: "For Fun V1", by: "เก้น", what: "เกม Roblox ของ Hamster Hub", tag: "Roblox", href: "https://www.roblox.com/games/16315176860/unnamed" },
-  { name: "Find The Exit", by: "ฮิว", what: "เกม Roblox (For Fun V2)", tag: "Roblox", href: "https://www.roblox.com/games/93360979939170/Find-The-Exit" },
-  { name: "For Fun V3", by: "โดม", what: "เรียนและทำเสร็จใน 3 วัน", tag: "Roblox", href: "https://www.roblox.com/games/79255526514683/need5624s-Place-10182026-1" },
-  { name: "Eat the Biggest Cake", by: "อาร์ม", what: "เกม Roblox ปี 2026", tag: "Roblox", href: "https://www.roblox.com/games/72376258283310/Eat-the-Biggest-Cake-in-the-World" },
-  { name: "Pets VS Zombies", by: "โจเซฟ", what: "เกม Roblox ปี 2026", tag: "Roblox", href: "https://www.roblox.com/games/139341435865115/Pets-VS-Zombies" },
-  { name: "Lost In Memory", by: "เฟื่อง", what: "เกม Roblox ปี 2026", tag: "Roblox", href: "https://www.roblox.com/games/135631255652175/Lost-In-Memory" },
-  { name: "Bronopoly", by: "ออม", what: "เกม Roblox ส่ง NSC", tag: "Roblox", href: "https://www.roblox.com/games/90502594690133/Bronopoly" },
-  { name: "Command Select", by: "J", what: "เกมบน itch.io ปี 2026", tag: "itch.io", href: "https://pepess1.itch.io/comand-select" },
-];
-
 export type Win = { rank: string; name: string; by: string; href?: string };
 export type Stage = { stage: string; full?: string; wins: Win[] };
 

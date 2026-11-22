@@ -2,10 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { MADE, WINS, winCount } from "@/lib/works";
+import { WINS, winCount } from "@/lib/works";
 
-// The team's sheet of projects and awards, placed inside two legacy sections once they exist:
-// the made-and-used shelf at the end of "สิ่งที่ Hamster Hub สร้าง", the full awards list inside Hall of Fame.
+// The team's sheet of awards, placed at the end of the Hall of Fame tab on the works page once it exists.
 function useSlot(host: string, before: string | null, cls: string) {
   const [el, setEl] = useState<HTMLElement | null>(null);
   useEffect(() => {
@@ -26,37 +25,8 @@ function useSlot(host: string, before: string | null, cls: string) {
 }
 
 export function SheetWorks() {
-  const made = useSlot(".lg-box section.hbx .oc-in", null, "sw-made");
-  const wins = useSlot(".lg-box section.h5f", ".h5f-go", "sw-wins");
-  return (
-    <>
-      {made && createPortal(<Made />, made)}
-      {wins && createPortal(<Wins />, wins)}
-    </>
-  );
-}
-
-function Made() {
-  return (
-    <div className="sw-m">
-      <h3>ใช้งานจริง ขายได้ และเปิดให้คนเล่นแล้ว</h3>
-      <ul className="sw-row">
-        {MADE.map((m) => {
-          const body = (
-            <>
-              <span className="sw-im" data-plain={m.img ? undefined : ""}>
-                {m.img ? <img src={m.img} alt="" loading="lazy" decoding="async" /> : <b>{m.name}</b>}
-              </span>
-              <small>{m.tag}</small>
-              <b>{m.name}</b>
-              <span>{m.what} · น้อง{m.by}</span>
-            </>
-          );
-          return <li key={m.name}>{m.href ? <a href={m.href} target="_blank" rel="noopener">{body}</a> : <div>{body}</div>}</li>;
-        })}
-      </ul>
-    </div>
-  );
+  const wins = useSlot('.lg-box .yt-pane[data-p="hof"] .yt-pad', null, "sw-wins");
+  return wins ? createPortal(<Wins />, wins) : null;
 }
 
 function Wins() {

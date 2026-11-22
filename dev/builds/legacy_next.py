@@ -84,6 +84,11 @@ body = body.replace('<a href="#courses">คอร์ส</a>', '<a href="' + R + 
 body = body.replace('href="#courses">ดูคอร์สทั้งหมด', 'href="' + R + '">ดู Hams Route ทั้งหมด')
 body = body.replace('href="#courses">คอร์สทั้งหมด', 'href="' + R + '">Hams Route ทั้งหมด')
 body = body.replace('href="#courses"', 'href="' + R + '"')
+# 23 พ.ย.: cleaner pictures in "สิ่งที่ Hamster Hub สร้าง" (product shots; game screens without the posters), no clip button
+body = body.replace('<video src="img/w-hmap.mp4" poster="img/w-hmap.webp" muted loop playsinline autoplay preload="none" aria-label="คลิปเกมสอนเขียน Python ของน้อง"></video><img src="img/w-quest-town.webp" alt="ภาพจากเว็บ Hamster Quest"><img src="img/w-quest-app.webp" alt="หน้าเควสต์ใน Hamster Quest">',
+    '<img src="img/g-mrcity.webp" alt="Mr. City บนมือถือ"><img src="img/g-phc.webp" alt="PHC Map บนโน้ตบุ๊ก"><img src="img/g-quest.webp" alt="Hamster Quest บนแท็บเล็ต">')
+body = body.replace('<img src="img/sc-lyno.webp" alt="น้องดา กับเกม LYNO"><img src="img/sc-timekeeper.webp" alt="พี่มิคกี้ กับเกม Time Keeper"><img src="img/sc-zoo.webp" alt="พี่ไอซ์ กับเกม Z.O.O.">',
+    '<img src="img/gp-lyno.webp" alt="ฉากในเกม LYNO"><img src="img/gp-timekeeper.webp" alt="ฉากในเกม Time Keeper"><img src="img/gp-zoo.webp" alt="ฉากในเกม Z.O.O.">')
 fi = body.find('<footer')
 if fi > -1:
     body = body[:fi] + body[fi:].replace('>คอร์ส<', '>Hams Route<')

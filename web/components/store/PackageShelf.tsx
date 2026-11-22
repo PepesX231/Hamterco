@@ -6,7 +6,7 @@ import { Shelf } from "./Shelf";
 export function PackageShelf() {
   return (
     <div id="packages">
-      <Shelf label="แพ็กเกจตามเป้าหมาย" title="จบแพ็กเกจ น้องมีผลงานจริงติดมือ" sub="เลือกตามเป้าหมายของน้อง">
+      <Shelf label="แพ็กเกจตามเป้าหมาย" title="แพ็กเกจ" sub="ตัวเลือกเป้าหมายของน้อง">
         {PACKAGES.map((p) => <PackageCard key={p.id} p={p} />)}
       </Shelf>
     </div>

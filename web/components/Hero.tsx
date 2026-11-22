@@ -230,7 +230,7 @@ function RouteMatches({ q, match }: { q: string; match: string }) {
   ].slice(0, 6);
   return (
     <div className="hm-found nx-found">
-      <h3>Hams Route ที่ตรงกับ “{q}” <a className="st-link" style={{ marginLeft: 10, fontSize: 14 }} href={`${LINK.store}?q=${encodeURIComponent(q)}`}>ดูทั้งหมด</a></h3>
+      <h3>Hams Route ที่ตรงกับ “{q}”</h3>
       <ul>{items.map((i) => <li key={i.k}><a href={i.href}><img src={i.img} alt="" /><span><b>{i.name}</b><span>{i.sub}{i.k[0] === "g" ? "" : " · ราคาตัวอย่าง"}</span></span></a></li>)}</ul>
     </div>
   );

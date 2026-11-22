@@ -40,6 +40,7 @@ Every page is now a Next.js route: `/` (home), `/courses/`, `/activity/`, `/work
 - `components/HandDrawn.tsx`: the handwriting under the bar
 - `components/TypedWish.tsx`: "น้องอยาก… <wish>"
 - `lib/understand.ts`: reads a search question however it was typed (typos, slang, no spaces, wrong keyboard layout) and names the topic. The original engine answers first; when it gives up, `solveQuery` in `Hero.tsx` asks it again in its own words, or shows the matching Routes. Test with `node /home/claude/work/gen.js && node harness.js` style scripts: 5,814 generated questions, 0.4% left without an answer (most are mixed-language strings)
-- `lib/works.ts`: the team's sheet of projects and awards (22 พ.ย.); `components/SheetWorks.tsx` puts them at the end of "สิ่งที่ Hamster Hub สร้าง" and inside Hall of Fame
-- Home: a small search bar follows the visitor once the big one scrolls away (`FollowBar` in `Hero.tsx`)
+- `lib/works.ts`: the team's sheet of awards (22 พ.ย.); `components/SheetWorks.tsx` puts the full list at the end of the Hall of Fame tab on the works page
+- Home: a small search bar sits at the bottom of the screen once the big one scrolls away (`FollowBar` in `Hero.tsx`)
 - Package art: `public/route-art/pk2-*.webp` (generated concept pictures, not student work)
+- Route art: `public/route-art/t-<route id>.webp`, flat poster style (generated, 23 พ.ย.); game screens in "สิ่งที่ Hamster Hub สร้าง" are cropped from the real posters (`img/gp-*.webp`)

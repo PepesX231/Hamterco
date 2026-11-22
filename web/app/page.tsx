@@ -1,7 +1,6 @@
 import { Hero } from "@/components/Hero";
 import { HomeStore } from "@/components/HomeStore";
 import { LegacyRuntime } from "@/components/LegacyRuntime";
-import { SheetWorks } from "@/components/SheetWorks";
 
 export default function Home() {
   return (
@@ -11,7 +10,6 @@ export default function Home() {
         <HomeStore />
       </div>
       {/* the rest of the home page still runs from the original code; parts already moved to React are hidden there */}
-      <SheetWorks />
       <LegacyRuntime view="home" hide={['[data-view="home"] > .zq', '[data-view="home"] > .je', '[data-view="home"] > section.ft', '[data-view="home"] > section.zc2']} />
     </main>
   );

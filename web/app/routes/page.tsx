@@ -24,7 +24,7 @@ export default function Page() {
         <PackageShelf />
 
         {DISCIPLINES.map((d) => (
-          <div key={d.id} className="st-kind"><Shelf label={d.name} title={d.name} sub={d.line} more={<a className="st-link" href={LINK.disc(d.id)}>ดูทั้งหมด</a>}>
+          <div key={d.id} className="st-kind"><Shelf label={d.name} title={d.name} sub={d.line}>
             {routesIn(d.id).map((r) => <RouteCard key={r.id} r={r} />)}
           </Shelf></div>
         ))}

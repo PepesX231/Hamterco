@@ -9,10 +9,10 @@ export function HomeStore() {
   return (
     <section className="hm-store" aria-label="แพ็กเกจและ Route">
       <div className="st-wrap">
-        <Shelf label="แพ็กเกจตามเป้าหมาย" title="จบแพ็กเกจ น้องมีผลงานจริงติดมือ" sub="เลือกตามเป้าหมายของน้อง" more={<a className="st-link" href={LINK.store}>ดูทั้งหมด</a>}>
+        <Shelf label="แพ็กเกจตามเป้าหมาย" title="แพ็กเกจ" sub="ตัวเลือกเป้าหมายของน้อง">
           {PACKAGES.map((p) => <PackageCard key={p.id} p={p} />)}
         </Shelf>
-        <Shelf label="Route" title="Route" sub="ฝึกทีละทักษะ" more={<a className="st-link" href={LINK.store}>ดูทั้งหมด</a>}>
+        <Shelf label="Route" title="Route" sub="ฝึกทีละทักษะ">
           {SHELF.map((id) => <RouteCard key={id} r={ROUTES.find((r) => r.id === id)!} showDisc />)}
         </Shelf>
       </div>
