@@ -145,14 +145,50 @@ body { background: var(--color-cream); color: var(--color-ink); font-family: var
 
 /* in the theme layer: an !important there outranks the legacy layer's own !important rules */
 @layer theme {
-/* สิ่งที่ Hamster Hub สร้าง: one big picture, two under it, square, no clip button */
-.hbx .oc-m.oc-biz,.hbx .oc-m.oc-3{display:grid!important;grid-template-columns:1fr 1fr!important;grid-template-rows:auto auto!important;gap:12px!important;aspect-ratio:auto!important;background:none!important;box-shadow:none!important;overflow:visible!important}
-.hbx .oc-m.oc-biz img,.hbx .oc-m.oc-3 img{width:100%!important;height:auto!important;max-height:none!important;object-fit:cover!important;transform:none!important;border-radius:0!important;box-shadow:0 24px 44px -30px rgba(40,25,10,.55)!important;grid-row:auto!important;grid-column:auto!important;position:static!important;margin:0!important}
-.hbx .oc-m.oc-biz img:first-child,.hbx .oc-m.oc-3 img:first-child{grid-column:1/-1!important;aspect-ratio:16/9}
-.hbx .oc-m.oc-biz img:not(:first-child),.hbx .oc-m.oc-3 img:not(:first-child){aspect-ratio:4/3}
+/* สิ่งที่ Hamster Hub สร้าง: real pictures only. PHC Map clip on top, two Hamster Quest screens under it;
+   the three games side by side at their own size (so they stay sharp), each opening its clip */
+.hbx .oc-m.oc-biz{display:grid!important;grid-template-columns:1fr 1fr!important;grid-template-rows:auto auto!important;gap:12px!important;aspect-ratio:auto!important;background:none!important;box-shadow:none!important;overflow:visible!important;border-radius:0!important}
+.hbx .oc-m.oc-biz video{grid-column:1/-1!important;grid-row:1!important;width:100%!important;height:auto!important;aspect-ratio:960/608!important;object-fit:cover!important;border-radius:0!important;box-shadow:0 24px 44px -30px rgba(40,25,10,.55)!important}
+.hbx .oc-m.oc-biz img{grid-row:2!important;grid-column:auto!important;width:100%!important;height:auto!important;aspect-ratio:4/5!important;object-fit:cover!important;object-position:50% 0!important;transform:none!important;border-radius:0!important;position:static!important;margin:0!important;box-shadow:0 24px 44px -30px rgba(40,25,10,.55)!important}
+.hbx .oc-m.oc-3{display:grid!important;grid-template-columns:repeat(3,1fr)!important;grid-template-rows:auto!important;gap:12px!important;aspect-ratio:auto!important;background:none!important;box-shadow:none!important;overflow:visible!important;border-radius:0!important}
+.hbx .oc-g{position:relative;display:block;text-decoration:none;color:#1D1712}
+.hbx .oc-m.oc-3 .oc-g img{width:100%!important;height:auto!important;aspect-ratio:4/3!important;object-fit:cover!important;transform:none!important;border-radius:0!important;position:static!important;margin:0!important;grid-row:auto!important;box-shadow:0 20px 36px -26px rgba(40,25,10,.55)!important;transition:transform .5s cubic-bezier(.2,.8,.2,1)!important}
+.hbx a.oc-g:hover img{transform:scale(1.03)!important}
+.hbx .oc-g b{display:block;margin-top:10px;font-family:var(--font-display);font-size:16px;font-weight:700}
+.hbx .oc-g i{position:absolute;right:8px;top:8px;font-style:normal;font-size:12px;font-weight:700;background:rgba(20,14,8,.78);color:#fff;padding:4px 8px}
+.hbx .oc-g i::before{content:"▶ "}
 .hbx .oc-play{display:none!important}
-.hbx .oc-m.oc-biz img:first-child{object-fit:contain!important;background:#FBF1E2}
+@media (max-width:600px){.hbx .oc-m.oc-3{grid-template-columns:1fr 1fr!important}.hbx .oc-m.oc-3 .oc-g:first-child{grid-column:1/-1}}
 }
+
 .yt-pad .sw-w{margin-left:0;margin-right:0}
 /* the old cheese drip strip: legacy code re-adds it under any .zq, including the answer panel moved into the hero */
 .je{display:none!important}
+
+/* works page, Hall of Fame tab: three big cards a row, no letter avatars, award line in gold */
+@layer theme {
+.yt-pane[data-p="hof"] .vgrid{grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr))!important;gap:44px 24px!important;margin-top:28px!important}
+.yt-pane[data-p="hof"] .vc .av{display:none!important}
+.yt-pane[data-p="hof"] .vc .by{display:block!important;margin-top:4px}
+.yt-pane[data-p="hof"] .vc .th{aspect-ratio:16/9;background:#1b1b1b!important}
+.yt-pane[data-p="hof"] .vc img{width:100%;height:100%;aspect-ratio:16/9!important;object-fit:cover}
+.yt-pane[data-p="hof"] .vc b{font-size:20px!important;line-height:1.3!important}
+.yt-pane[data-p="hof"] .vc span span{display:block;font-size:15px!important;color:#aaa!important}
+.yt-pane[data-p="hof"] .vc .aw{background:none!important;color:#FFD27A!important;padding:0!important;margin-top:2px;box-shadow:none!important}
+.yt-pane[data-p="hof"] .vc .badge{font-size:13px!important;padding:4px 10px!important}
+}
+
+/* less to read (Apple reads shorter): past events show name and date only; the closing section keeps its headline */
+@layer theme {
+.hp-grid .qv-d,.hp-grid .qv-meta span+span{display:none!important}
+section.end .end-in>p{display:none!important}
+}
+@layer theme{.hp-grid .tb2{display:none!important}}
+@layer theme{
+.hbx .ocl li span{display:none!important}
+.hp-grid .mr:has(a[href="#activity"].mr-btn){display:none!important}
+.mc .mc-u,#mcC small{display:none!important}
+.h5f .h5f-nm{display:none!important}
+}
+@layer theme{.mc .mc-k,.h5f .h5f-k,#auK{display:none!important}}
+@layer theme{.yt-pane[data-p="hof"] .vc b{color:#fff!important}}

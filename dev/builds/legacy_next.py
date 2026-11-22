@@ -86,9 +86,13 @@ body = body.replace('href="#courses">คอร์สทั้งหมด', 'hre
 body = body.replace('href="#courses"', 'href="' + R + '"')
 # 23 พ.ย.: cleaner pictures in "สิ่งที่ Hamster Hub สร้าง" (product shots; game screens without the posters), no clip button
 body = body.replace('<video src="img/w-hmap.mp4" poster="img/w-hmap.webp" muted loop playsinline autoplay preload="none" aria-label="คลิปเกมสอนเขียน Python ของน้อง"></video><img src="img/w-quest-town.webp" alt="ภาพจากเว็บ Hamster Quest"><img src="img/w-quest-app.webp" alt="หน้าเควสต์ใน Hamster Quest">',
-    '<img src="img/g-mrcity.webp" alt="Mr. City บนมือถือ"><img src="img/g-phc.webp" alt="PHC Map บนโน้ตบุ๊ก"><img src="img/g-quest.webp" alt="Hamster Quest บนแท็บเล็ต">')
+    '<video src="img/w-hmap.mp4" poster="img/w-hmap.webp" muted loop playsinline autoplay preload="metadata" aria-label="คลิปจากเกม PHC Map"></video><img src="img/rl-mrcity.webp" alt="ฉากเมืองใน Hamster Quest"><img src="img/rl-quest.webp" alt="หน้าเควสต์ใน Hamster Quest">')
 body = body.replace('<img src="img/sc-lyno.webp" alt="น้องดา กับเกม LYNO"><img src="img/sc-timekeeper.webp" alt="พี่มิคกี้ กับเกม Time Keeper"><img src="img/sc-zoo.webp" alt="พี่ไอซ์ กับเกม Z.O.O.">',
-    '<img src="img/gp-lyno.webp" alt="ฉากในเกม LYNO"><img src="img/gp-timekeeper.webp" alt="ฉากในเกม Time Keeper"><img src="img/gp-zoo.webp" alt="ฉากในเกม Z.O.O.">')
+    '<span class="oc-g"><img src="img/gp-lyno.webp" alt="ฉากในเกม LYNO"></span><a class="oc-g" href="https://www.facebook.com/100000550526763/videos/oa.1528925231792269/1108706890674978" target="_blank" rel="noopener"><img src="img/gp-timekeeper.webp" alt="ฉากในเกม Time Keeper"><i>ดูคลิป</i></a><a class="oc-g" href="https://www.facebook.com/100000550526763/videos/oa.1528925231792269/1464192271292821" target="_blank" rel="noopener"><img src="img/gp-zoo.webp" alt="ฉากในเกม Z.O.O."><i>ดูคลิป</i></a>')
+# less to read on the home page (Apple's home has about half our text)
+body = body.replace('สร้างอนาคตไปด้วยกัน<br>จากผลงานแรกของน้อง สู่สิ่งที่เปลี่ยนโลก', 'สร้างอนาคตไปด้วยกัน')
+body = body.replace('>ดูผลงานที่มีคนใช้จริง<', '>ดูผลงาน<').replace('>ดูเกมของน้องๆ ทั้งหมด<', '>ดูเกม<')
+body = body.replace('ดู Hams Route ทั้งหมด<', 'ดู Hams Route<').replace('>คุยกับทีมทาง LINE<', '>ทัก LINE<').replace('>ดูรุ่นพี่ทั้งหมด<', '>ดูรุ่นพี่<').replace('>ดูผลงานทั้งหมด<', '>ดูผลงาน<').replace('rel="noopener">รายละเอียดงาน<', 'rel="noopener">ดูงาน<')
 fi = body.find('<footer')
 if fi > -1:
     body = body[:fi] + body[fi:].replace('>คอร์ส<', '>Hams Route<')

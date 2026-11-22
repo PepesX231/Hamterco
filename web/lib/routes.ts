@@ -72,22 +72,22 @@ export const GOALS = [
 
 export const PACKAGES: Package[] = [
   {
-    id: "first-program", name: "First Build", hook: "โปรแกรมชิ้นแรกที่น้องเขียนเอง", goal: "first", forWho: "ม.5 ที่ยังไม่เคยทำโปรเจกต์",
+    id: "first-program", name: "First Build", hook: "โค้ดชิ้นแรกของน้อง", goal: "first", forWho: "ม.5 ที่ยังไม่เคยทำโปรเจกต์",
     line: "ลองเขียนโค้ดจากพื้นฐาน แล้วทำโปรแกรม Python ชิ้นเล็กที่เปิดใช้เองได้",
     makes: "โปรแกรม Python ที่เขียนเอง", routes: ["programming", "python", "build"], price: 2390, img: "pk2-first.webp", dark: true, bg: "#160600",
   },
   {
-    id: "first-web", name: "Port Ready", hook: "เว็บของน้องเอง พร้อมใส่พอร์ต", goal: "port", forWho: "ม.6 ที่ยังไม่มีผลงาน",
+    id: "first-web", name: "Port Ready", hook: "เว็บพร้อมใส่พอร์ต", goal: "port", forWho: "ม.6 ที่ยังไม่มีผลงาน",
     line: "ทำเว็บที่เปิดใช้และเชื่อมข้อมูลได้ เก็บขั้นตอนตั้งแต่ร่างหน้าจอจนเป็นเว็บจริงไว้เล่าในพอร์ต",
     makes: "เว็บไซต์ที่เชื่อมข้อมูลได้", routes: ["ux", "web", "backend"], price: 3490, img: "pk2-web.webp", dark: true, bg: "#11011c",
   },
   {
-    id: "compete", name: "Arena", hook: "พาโปรเจกต์ขึ้นเวทีแข่ง", goal: "compete", forWho: "ทีมที่เตรียมลงแข่ง",
+    id: "compete", name: "Arena", hook: "โปรเจกต์ขึ้นเวทีแข่ง", goal: "compete", forWho: "ทีมที่เตรียมลงแข่ง",
     line: "เลือกปัญหาที่อยากแก้ ทำต้นแบบ แล้วซ้อมเดโมสำหรับวันแข่ง",
     makes: "ต้นแบบพร้อมเดโมสำหรับวันแข่ง", routes: ["problem", "app", "pitch"], price: 4290, img: "pk2-compete.webp", dark: true, bg: "#010825",
   },
   {
-    id: "prototype", name: "Launch Lab", hook: "ไอเดียกลายเป็นแอปที่คนลองใช้จริง", goal: "idea", forWho: "คนที่มีไอเดียอยู่แล้ว",
+    id: "prototype", name: "Launch Lab", hook: "ไอเดียสู่แอปจริง", goal: "idea", forWho: "คนที่มีไอเดียอยู่แล้ว",
     line: "ทำต้นแบบจากไอเดียของตัวเอง ให้คนลองใช้ แล้วดูว่าควรแก้ตรงไหน",
     makes: "ต้นแบบแอปที่มีคนลองใช้แล้ว", routes: ["validate", "app", "demo"], price: 3990, img: "pk2-proto.webp", dark: true, bg: "#001109",
   },

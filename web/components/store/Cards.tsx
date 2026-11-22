@@ -11,12 +11,11 @@ export function PackageCard({ p }: { p: Package }) {
   return (
     <a className="st-pk" href={LINK.pkg(p.id)} style={{ background: p.bg }} aria-label={`${p.name} ${baht(p.price)}`}>
       <span className="st-pk-t">
-        <small>สำหรับ {p.forWho}</small>
         <b>{p.name}</b>
         <em>{p.hook}</em>
         <i>{baht(p.price)}</i>
       </span>
-      <img src={art(p.img)} alt="" loading="lazy" decoding="async" />
+      <img src={art(p.img)} alt="" decoding="async" />
       <Plus />
     </a>
   );
@@ -31,7 +30,7 @@ export function RouteCard({ r, showDisc = false }: { r: Route; showDisc?: boolea
         <b>{r.name}</b>
         <span className="st-price">{baht(r.price)}</span>
       </span>
-      <img src={tile(r.tile)} alt="" loading="lazy" decoding="async" />
+      <img src={tile(r.tile)} alt="" decoding="async" />
       <Plus />
     </a>
   );
@@ -40,7 +39,7 @@ export function RouteCard({ r, showDisc = false }: { r: Route; showDisc?: boolea
 export function ProgramCard({ p }: { p: Program }) {
   return (
     <a className="st-prog" href={p.href} target="_blank" rel="noopener">
-      <img src={p.img} alt="" loading="lazy" decoding="async" />
+      <img src={p.img} alt="" decoding="async" />
       <div>
         <small>สำหรับ {p.forWho}</small>
         <b>{p.name}</b>

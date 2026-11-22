@@ -26,6 +26,11 @@ function useSlot(host: string, before: string | null, cls: string) {
 
 export function SheetWorks() {
   const wins = useSlot('.lg-box .yt-pane[data-p="hof"] .yt-pad', null, "sw-wins");
+  // the Hall of Fame pictures load straight away, not only when scrolled near (the tab starts hidden)
+  useEffect(() => {
+    if (!wins) return;
+    document.querySelectorAll<HTMLImageElement>('.yt-pane[data-p="hof"] img[loading="lazy"]').forEach((i) => { i.loading = "eager"; });
+  }, [wins]);
   return wins ? createPortal(<Wins />, wins) : null;
 }
 
