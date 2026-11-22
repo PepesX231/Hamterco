@@ -8,7 +8,7 @@ const FB26 = "https://www.facebook.com/100000550526763/videos/oa.180260926759878
 const FB25 = "https://www.facebook.com/100000550526763/videos/oa.1528925231792269/";
 
 export const WINS: Stage[] = [
-  { stage: "depa 2026", wins: [{ rank: "ชนะ 200,000 บาท", name: "สร้างตึก", by: "ฟาร์", href: "https://www.youtube.com/watch?v=dKM2loG0bMA" }] },
+  { stage: "depa 2026", wins: [{ rank: "ชนะ 200,000 บาท", name: "Apocalypis Building", by: "ฟาร์", href: "https://www.youtube.com/watch?v=dKM2loG0bMA" }] },
   { stage: "OBEC Robotics Playground", wins: [{ rank: "ชนะเลิศ", name: "ต่อยมวย", by: "วิน" }] },
   { stage: "GGJ 2026", full: "Global Game Jam", wins: [{ rank: "อันดับ 1", name: "Windy", by: "วินดี้" }] },
   { stage: "MIT 2025", wins: [{ rank: "อันดับ 1", name: "", by: "ขนมปัง" }] },

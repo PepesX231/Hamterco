@@ -13,7 +13,7 @@
     {h3:'แอปฝึกพูดที่น้องไอดินทำเอง',one:1,
      items:[{n:'REVOICE',w:'',r:'ชนะ NSC 2025 ระดับประเทศ'}]},
     {items:[{n:'SLASH//SPEED',w:'',r:'เกมของน้องดินสอ',m:[0]},
-            {n:'Apocalypis Building',w:'',r:'เกมของน้องฟาร์',m:[1]},
+            {n:'Apocalypis Building',w:'',r:'ชนะ depa 2026 รางวัล 200,000 บาท',m:[1]},
             {n:'Eugation Strike',w:'',r:'เกมของน้องไผ่',m:[2]}]}];
   function credits(){[].forEach.call(document.querySelectorAll('section .oc-in>.oc-r'),function(r,i){var d=ROWS[i],t=r.querySelector('.oc-t');if(!d||!t||t.querySelector('.ocl'))return;
     var m=r.querySelector('.oc-m'),h=t.querySelector('h3');if(d.h3&&h)h.textContent=d.h3;

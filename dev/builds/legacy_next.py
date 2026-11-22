@@ -93,7 +93,7 @@ body = body.replace('<img src="img/sc-lyno.webp" alt="น้องดา กั�
 body = body.replace('สร้างอนาคตไปด้วยกัน<br>จากผลงานแรกของน้อง สู่สิ่งที่เปลี่ยนโลก', 'สร้างอนาคตไปด้วยกัน')
 body = body.replace('>ดูผลงานที่มีคนใช้จริง<', '>ดูผลงาน<').replace('>ดูเกมของน้องๆ ทั้งหมด<', '>ดูเกม<')
 body = body.replace('ดู Hams Route ทั้งหมด<', 'ดู Hams Route<').replace('>คุยกับทีมทาง LINE<', '>ทัก LINE<').replace('>ดูรุ่นพี่ทั้งหมด<', '>ดูรุ่นพี่<').replace('>ดูผลงานทั้งหมด<', '>ดูผลงาน<').replace('rel="noopener">รายละเอียดงาน<', 'rel="noopener">ดูงาน<')
-body = body.replace('LYNO เกมปริศนา 3 มิติของน้องดา Time Keeper เกมผจญภัยบน Roblox ของพี่มิคกี้ และ Z.O.O. เกมสืบสวนของพี่ไอซ์', 'SLASH//SPEED เกมฟันดาบของน้องดินสอ Apocalypis Building เกมสร้างตึกของน้องฟาร์ และ Eugation Strike เกมฝึกสมการของน้องไผ่')
+body = body.replace('LYNO เกมปริศนา 3 มิติของน้องดา Time Keeper เกมผจญภัยบน Roblox ของพี่มิคกี้ และ Z.O.O. เกมสืบสวนของพี่ไอซ์', 'SLASH//SPEED เกมฟันดาบของน้องดินสอ Apocalypis Building เกมสร้างตึกของน้องฟาร์ ชนะ depa 2026 รางวัล 200,000 บาท และ Eugation Strike เกมฝึกสมการของน้องไผ่')
 fi = body.find('<footer')
 if fi > -1:
     body = body[:fi] + body[fi:].replace('>คอร์ส<', '>Hams Route<')
@@ -111,7 +111,7 @@ for sc in scripts:
     # the search answers' "all courses" link opens Hams Route now
     if 'code' in sc:
         sc['code'] = sc['code'].replace("{n:'Mr. City',w:'',r:'ขายให้สวนสัตว์สงขลาแล้ว'}", "{n:'Mr. City',w:'',r:'ขายให้สวนสัตว์สงขลาแล้ว',m:[1]}").replace("{n:'Hamster Quest',w:'',r:'กำลังจะใช้ในมหาวิทยาลัย',m:[1,2]}", "{n:'Hamster Quest',w:'',r:'กำลังจะใช้ในมหาวิทยาลัย',m:[2]}")
-        sc['code'] = sc['code'].replace("{n:'LYNO',w:'',r:'เกม 3 มิติของน้องดา',m:[0]}", "{n:'SLASH//SPEED',w:'',r:'เกมของน้องดินสอ',m:[0]}").replace("{n:'Time Keeper',w:'',r:'เกม Roblox ของพี่มิคกี้',m:[1]}", "{n:'Apocalypis Building',w:'',r:'เกมของน้องฟาร์',m:[1]}").replace("{n:'Z.O.O.',w:'',r:'เกมสืบสวนของพี่ไอซ์',m:[2]}", "{n:'Eugation Strike',w:'',r:'เกมของน้องไผ่',m:[2]}")
+        sc['code'] = sc['code'].replace("{n:'LYNO',w:'',r:'เกม 3 มิติของน้องดา',m:[0]}", "{n:'SLASH//SPEED',w:'',r:'เกมของน้องดินสอ',m:[0]}").replace("{n:'Time Keeper',w:'',r:'เกม Roblox ของพี่มิคกี้',m:[1]}", "{n:'Apocalypis Building',w:'',r:'ชนะ depa 2026 รางวัล 200,000 บาท',m:[1]}").replace("{n:'Z.O.O.',w:'',r:'เกมสืบสวนของพี่ไอซ์',m:[2]}", "{n:'Eugation Strike',w:'',r:'เกมของน้องไผ่',m:[2]}")
         sc['code'] = sc['code'].replace("a=el('a','ia-lk','ดูคอร์สทั้งหมด');a.href='#courses'", "a=el('a','ia-lk','ดู Hams Route');a.href='" + R + "'")
 
 names = []

@@ -16,4 +16,4 @@
 :HL["/Hamterco/next/legacy/manifest.json","fetch",{"crossOrigin":"anonymous"}]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"courses","h":64,"c":"$Q2"}]]
-0:{"b":"BuWvxy7kqiT8xmuxJw66J","t":{"t":{"s":"","h":16,"c":"$Q1"}}}
+0:{"b":"CJxhiIW6P2O-nA_9FKaNF","t":{"t":{"s":"","h":16,"c":"$Q1"}}}
