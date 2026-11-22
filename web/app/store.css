@@ -309,3 +309,6 @@ html { overflow-x: clip; }
 /* Hams Route pages run edge to edge like the Apple Store: content starts close to the left of the screen */
 .st { --edge: clamp(20px, 2.8vw, 64px) !important; }
 .st .st-wrap { max-width: none; padding-left: var(--edge); padding-right: var(--edge); }
+/* room under each row for the card shadow, so the scroll box never cuts it off in a hard line */
+.st-row { padding-top: 16px !important; padding-bottom: 64px !important; margin-top: -6px; margin-bottom: -30px; }
+.st-pk:hover { box-shadow: 0 18px 36px -20px rgba(40,25,10,.45); }
