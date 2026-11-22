@@ -1,5 +1,5 @@
 1:"$Sreact.fragment"
-:HL["/Hamterco/next/_next/static/chunks/1zgke8do5hyq2.css","style"]
+:HL["/Hamterco/next/_next/static/chunks/3nzg28wi5wmx3.css","style"]
 2:T48c,<link href="https://fonts.googleapis.com/css2?family=Mali:wght@500;600&display=swap" rel="stylesheet"><style>
 html.hl-on{overflow:hidden}
 #hhL{position:fixed;inset:0;z-index:2147483000;background:rgb(247,243,240);display:grid;place-items:center;cursor:pointer;overflow:hidden}
@@ -10,7 +10,7 @@ html.hl-on{overflow:hidden}
 #hhL .hl-t{position:relative}#hhL .hl-t span{position:relative}#hhL .hl-t i{position:absolute;left:100%;top:0;width:1.2em;text-align:left;font-style:normal}
 #hhL .hl-p{margin:8px auto 0;width:120px;height:4px;border-radius:4px;background:rgb(232,224,216);overflow:hidden}
 #hhL .hl-p b{display:block;height:100%;width:0;border-radius:4px;background:rgb(242,166,94)}
-</style><div class="hl-in"><div class="hl-stage"><canvas></canvas></div><p class="hl-t"><span>กำลังโหลด<i></i></span></p><div class="hl-p"><b></b></div></div>3:T102f,
+</style><div class="hl-in"><div class="hl-stage"><canvas></canvas></div><p class="hl-t"><span>กำลังโหลด<i></i></span></p><div class="hl-p"><b></b></div></div>3:T115c,(function(){try{if(sessionStorage.getItem('hh-pt')){var l=document.getElementById('hhL');if(l)l.style.display='none';document.documentElement.classList.add('hh-pc');setTimeout(function(){document.documentElement.classList.remove('hh-pc')},8000);window.__hhSkip=1}}catch(e){}})();if(!window.__hhSkip){
 (function(){var L=document.getElementById('hhL');if(!L)return;var H=document.documentElement;H.classList.add('hl-on');
 var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,t0=performance.now(),fast=false;try{fast=sessionStorage.getItem('hhl')==='1';sessionStorage.setItem('hhl','1')}catch(e){}
 var cv=L.querySelector('canvas'),cx=cv.getContext('2d'),dots=L.querySelector('.hl-t i'),bar=L.querySelector('.hl-p b');
@@ -51,8 +51,8 @@ function done(){var r=cv.getBoundingClientRect(),cx0=r.left+r.width/2,cy0=r.top+
   (function iris(t){var k=Math.min(1,(t-s0)/D),e=k*k*(3-2*k),rad=e*R,m='radial-gradient(circle at '+cx0+'px '+cy0+'px, transparent '+rad+'px, #000 '+(rad+1)+'px)';
     L.style.webkitMaskImage=m;L.style.maskImage=m;if(k<1)requestAnimationFrame(iris);else{L.remove();H.classList.remove('hl-on');dispatchEvent(new Event('hh:loaded'))}})(s0)}
 requestAnimationFrame(frame)})();
-6:X
-0:{"t":{"t":{"s":"","h":131088,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/Hamterco/next/_next/static/chunks/1zgke8do5hyq2.css","precedence":"next"}],["$","script","script-0",{"src":"/Hamterco/next/_next/static/chunks/1ua2kfq9s-me6.js","async":true}]],["$","html",null,{"lang":"th","suppressHydrationWarning":true,"className":"Eerhnq_variable pOx_Ka_variable kVD14q_variable CQaiTq_variable","children":["$","body",null,{"children":[["$","div",null,{"id":"hhL","role":"status","aria-label":"กำลังโหลด Hamster Hub","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]}]]}],"p":"$@5","v":null,"s":"$6"}}},"a":"$@7","u":"$@8","b":"v8x_wtG01XUkjXecLhhEI"}
+}6:X
+0:{"t":{"t":{"s":"","h":131088,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/Hamterco/next/_next/static/chunks/3nzg28wi5wmx3.css","precedence":"next"}],["$","script","script-0",{"src":"/Hamterco/next/_next/static/chunks/1ua2kfq9s-me6.js","async":true}]],["$","html",null,{"lang":"th","suppressHydrationWarning":true,"className":"Eerhnq_variable pOx_Ka_variable kVD14q_variable CQaiTq_variable","children":["$","body",null,{"children":[["$","div",null,{"id":"hhL","role":"status","aria-label":"กำลังโหลด Hamster Hub","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]}]]}],"p":"$@5","v":null,"s":"$6"}}},"a":"$@7","u":"$@8","b":"q4qUWtgQNHQX4SdVS9LVt"}
 9:"/Hamterco/next/_next/static/chunks/1ua2kfq9s-me6.js"
 a:I[39756,["$9"],"default"]
 b:I[37457,["$9"],"default"]

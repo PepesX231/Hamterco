@@ -79,6 +79,13 @@ shutil.rmtree(OUT, ignore_errors=True)
 os.makedirs(os.path.join(OUT, 'js'))
 open(os.path.join(OUT, 'legacy.css'), 'w').write(fix(css))
 open(os.path.join(OUT, 'body.html'), 'w').write(fix(body))
+# let the Next.js pages run the old page transition when moving between pages (LegacyRuntime)
+PT_OLD = "pt.className='pt v-'+v;pt.innerHTML=h;void pt.offsetWidth;pt.classList.add('in')}"
+PT_NEW = PT_OLD + "window.HH_pt={build:ptBuild,out:function(){pt.classList.add('out');clearTimeout(ptT);ptT=setTimeout(function(){pt.className='pt';pt.innerHTML=''},1150)}};"
+for sc in scripts:
+    if 'code' in sc and PT_OLD in sc['code']:
+        sc['code'] = sc['code'].replace(PT_OLD, PT_NEW).replace('<b class="cv-t">คอร์ส</b>', '<b class="cv-t">Hams Route</b>')
+
 names = []
 for i, sc in enumerate(scripts):
     if 'src' in sc:

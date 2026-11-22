@@ -13,9 +13,9 @@ export function PackageShelf() {
     <div id="packages">
       <Shelf
         label="แพ็กเกจตามเป้าหมาย"
-        title="แพ็กเกจตามเป้าหมาย."
-        sub="3 Route ต่อกันจนได้ชิ้นงาน"
-        more={<a className="st-link" href="#compare">เปรียบเทียบ</a>}
+        title="แพ็กเกจตามเป้าหมาย"
+        sub="เลือกจากผลงานที่น้องอยากมี"
+        more={<span className="st-more"><small>ราคาตัวอย่าง</small><a className="st-link" href="#compare">เปรียบเทียบ</a></span>}
         top={
           <div className="st-chips" role="group" aria-label="เลือกเป้าหมาย">
             {GOALS.map((g) => (

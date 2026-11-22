@@ -40,7 +40,6 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
               <a className="st-btn st-btn-line" href={LINE_URL} target="_blank" rel="noopener">ทัก LINE สมัคร Route นี้</a>
               <a className="st-btn st-btn-ghost" href={LINK.disc(d.id)}>ดู Route อื่นในหมวด</a>
             </div>
-            <p className="st-note" style={{ marginTop: 14 }}>ราคาจริงและรอบที่เปิด เช็กใน LINE ก่อนสมัคร</p>
           </div>
         </header>
 

@@ -693,7 +693,7 @@
   var pt=document.getElementById('pt'),ptT=0;
   var PTC={courses:1,portex:1,activity:1,works:1,about:1};
   function ptBuild(v){var h='';
-    if(v==='courses'){h='<span class="cv a"></span><span class="cv b"></span><b class="cv-t">คอร์ส</b>'}
+    if(v==='courses'){h='<span class="cv a"></span><span class="cv b"></span><b class="cv-t">Hams Route</b>'}
     else if(v==='portex'){var c=14,r=8;for(var y=0;y<r;y++)for(var x=0;x<c;x++)h+='<i style="left:'+(x*100/c)+'%;top:'+(y*100/r)+'%;width:'+(100/c+.2)+'%;height:'+(100/r+.2)+'%;--dl:'+(Math.random()*.32).toFixed(2)+'s"></i>';h+='<b class="pt-px">LOADING...</b>'}
     else if(v==='activity'){var nx=document.getElementById('nvNext'),x0=lastXY[0],y0=lastXY[1],ST=['ev-st0','ev-st1','ev-st2','ev-st3','ev-st4','ev-st5','ev-st1','ev-st4','ev-st0','ev-st5'];h='<span class="ev-w"><span class="ev-c a" style="--x:'+x0+'px;--y:'+y0+'px"></span><span class="ev-c b" style="--x:'+x0+'px;--y:'+y0+'px"></span>';
       for(var k=0;k<6;k++){var an=k/6*6.283+.5+Math.random()*.4,d=34+Math.random()*10;h+='<img class="ev-s" src="/Hamterco/img/'+ST[k]+'.webp" alt="" style="--tx:'+(Math.cos(an)*d).toFixed(1)+'vmin;--ty:'+(Math.sin(an)*d*.8).toFixed(1)+'vmin;--rot:'+(Math.random()*40-20).toFixed(0)+'deg;--dl:'+(.3+k*.025).toFixed(3)+'s">'}
@@ -701,7 +701,7 @@
     else if(v==='works'){h='<span class="t5-cu l"></span><span class="t5-cu r"></span><span class="t5-sp"></span>';for(var k=0;k<22;k++)h+='<span class="t5-d" style="left:'+(25+Math.random()*50).toFixed(1)+'%;top:'+(20+Math.random()*60).toFixed(1)+'%;--dl:'+(Math.random()*.6).toFixed(2)+'s;--s:'+(2+Math.random()*4).toFixed(1)+'px"></span>';h+='<span class="t5-fl"></span><img class="t5-tr" src="/Hamterco/img/n-win.webp" alt=""><b class="t5-hof"><small>HAMSTER HUB · CLASS OF 2026</small><span>HALL OF FAME</span></b>'}
     else if(v==='about'){h='<span class="pt-band"></span><img class="pt-run" src="/Hamterco/img/n-walker.webp" alt="">'}
     else{h='<span class="ph-p a"></span><span class="ph-p b"></span><span class="ph-p c"></span><span class="ph-c"><img src="/Hamterco/img/logo.webp" alt=""><b><span class="ph-l" style="--k:0">H</span><span class="ph-l" style="--k:1">a</span><span class="ph-l" style="--k:2">m</span><span class="ph-l" style="--k:3">s</span><span class="ph-l" style="--k:4">t</span><span class="ph-l" style="--k:5">e</span><span class="ph-l" style="--k:6">r</span><span class="ph-l" style="--k:7">&nbsp;</span><span class="ph-l" style="--k:8">H</span><span class="ph-l" style="--k:9">u</span><span class="ph-l" style="--k:10">b</span></b></span>'}
-    pt.className='pt v-'+v;pt.innerHTML=h;void pt.offsetWidth;pt.classList.add('in')}
+    pt.className='pt v-'+v;pt.innerHTML=h;void pt.offsetWidth;pt.classList.add('in')}window.HH_pt={build:ptBuild,out:function(){pt.classList.add('out');clearTimeout(ptT);ptT=setTimeout(function(){pt.className='pt';pt.innerHTML=''},1150)}};
   var first=true;function route(){var v=(location.hash||'#home').slice(1);if(views.indexOf(v)<0)v='home';
     if(first||reduce){first=false;show();return}
     clearTimeout(ptT);ptBuild(v);var hold={home:1150,courses:750,portex:760,activity:850,works:1050,about:700}[v]||620;ptT=setTimeout(function(){show();var vw=document.querySelector('[data-view].on');if(vw&&PTC[v]){vw.classList.remove('pg-in');void vw.offsetWidth;vw.classList.add('pg-in')}pt.classList.add('out');ptT=setTimeout(function(){pt.className='pt';pt.innerHTML=''},1150)},hold)}

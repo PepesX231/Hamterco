@@ -69,6 +69,15 @@ export function LegacyRuntime({ view, hide = [] }: { view: keyof typeof ROUTES |
       patch(window);
       for (const s of manifest.scripts) await load("script", s.startsWith("http") ? s : `${BASE}/legacy/${s}`);
       el.dataset.ready = "1";
+      // arrived from another page's transition: cover is up (see lib/loader.ts); play the wipe and open the page
+      let arrived = "";
+      try { arrived = sessionStorage.getItem("hh-pt") || ""; sessionStorage.removeItem("hh-pt"); } catch {}
+      const ptApi = (window as unknown as { HH_pt?: { build: (v: string) => void; out: () => void } }).HH_pt;
+      if (arrived && ptApi) {
+        ptApi.build(arrived);
+        setTimeout(() => { document.documentElement.classList.remove("hh-pc"); document.getElementById("hhL")?.remove(); }, 380);
+        setTimeout(() => ptApi.out(), 650);
+      } else if ((window as unknown as { __hhSkip?: number }).__hhSkip) { document.documentElement.classList.remove("hh-pc"); document.getElementById("hhL")?.remove(); }
       if (shell && nav) {
         const c = nav.querySelector<HTMLAnchorElement>("a.nv-c");
         c?.setAttribute("aria-current", "page");
@@ -76,6 +85,42 @@ export function LegacyRuntime({ view, hide = [] }: { view: keyof typeof ROUTES |
       }
       if (home) setTimeout(() => { const m = () => { document.documentElement.dataset.nxView = home.classList.contains("on") ? "home" : "other"; }; m(); }, 0);
     })();
+
+    // Moving to another page plays the old page transition first, and the next page finishes it instead of showing the loader.
+    const HOLD: Record<string, number> = { home: 1150, courses: 750, activity: 850, works: 1050, about: 700 };
+    const viewOfPath = (p: string) => {
+      const rest = p.replace(BASE, "").replace(/\/+$/, "/");
+      if (rest === "/" || rest === "") return "home";
+      if (rest.startsWith("/routes")) return "courses";
+      const m = rest.match(/^\/(activity|works|about)\//);
+      return m ? m[1] : "";
+    };
+    const onLeave = (e: MouseEvent) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+      const a = (e.target as Element).closest?.("header.nav a[href], #drawer a[href], footer a[href]") as HTMLAnchorElement | null;
+      if (!a || a.target === "_blank") return;
+      const raw = a.getAttribute("href")!;
+      let dest = "";
+      if (raw.startsWith("#")) {
+        const v = raw.slice(1).split(/[?&]/)[0];
+        if (!ROUTES[v]) return;
+        if (!shell && v !== "home") return; // the old router swaps views in place on these pages
+        if (!shell && view === "home") return;
+        dest = BASE + ROUTES[v];
+      } else if (raw.startsWith(BASE)) dest = raw;
+      else return;
+      const u = new URL(dest, location.href);
+      if (u.pathname === location.pathname) return;
+      const v = viewOfPath(u.pathname);
+      const pt = (window as unknown as { HH_pt?: { build: (v: string) => void } }).HH_pt;
+      if (!v || !pt || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      try { sessionStorage.setItem("hh-pt", v); } catch {}
+      pt.build(v);
+      setTimeout(() => { location.href = u.href; }, HOLD[v] || 700);
+    };
+    document.addEventListener("click", onLeave, true);
 
     // Moving between views works as on the original site: the old header and its page transition swap views in place.
     // Only the home view lives in React, so "#home" from another page loads the home route.
@@ -102,13 +147,14 @@ export function LegacyRuntime({ view, hide = [] }: { view: keyof typeof ROUTES |
       if (a && !e.defaultPrevented) e.stopImmediatePropagation();
     };
     document.addEventListener("click", onRoute, true);
+
     // keep the address bar on the route of the view that is showing, so a reload opens the same page
     const onHash = () => {
       const v = location.hash.slice(1).split(/[?&]/)[0];
       if (ROUTES[v] && !shell) history.replaceState(history.state, "", BASE + ROUTES[v] + location.search + location.hash);
     };
     addEventListener("hashchange", onHash);
-    return () => { cancelled = true; document.removeEventListener("click", onClick, true); document.removeEventListener("click", onRoute, true); removeEventListener("hashchange", onHash); };
+    return () => { cancelled = true; document.removeEventListener("click", onClick, true); document.removeEventListener("click", onRoute, true); document.removeEventListener("click", onLeave, true); removeEventListener("hashchange", onHash); };
   }, [view]);
 
   return (

@@ -1,4 +1,4 @@
-import { DISCIPLINES, LINK, PRICE_NOTE, art, baht, disc, route, tile, type Package, type Program, type Route } from "@/lib/routes";
+import { DISCIPLINES, LINK, art, baht, disc, route, tile, type Package, type Program, type Route } from "@/lib/routes";
 
 const Plus = () => (
   <span className="st-plus" aria-hidden>
@@ -6,31 +6,30 @@ const Plus = () => (
   </span>
 );
 
-/** A package: the picture is the card. Who it's for, its name, what you get, then the price. */
+/** A package, Apple-shelf style: one block of colour; the picture grows out of the same colour below the words. */
 export function PackageCard({ p }: { p: Package }) {
   return (
-    <a className="st-pk" href={LINK.pkg(p.id)} aria-label={`${p.name} ${baht(p.price)} ${PRICE_NOTE}`}>
-      <img src={art(p.img)} alt="" loading="lazy" decoding="async" />
+    <a className="st-pk" href={LINK.pkg(p.id)} style={{ background: p.bg }} aria-label={`${p.name} ${baht(p.price)}`}>
       <span className="st-pk-t">
         <small>สำหรับ {p.forWho}</small>
         <b>{p.name}</b>
-        <i>
-          {baht(p.price)} · รวม {p.routes.length} Route <span className="st-tag st-tag-dark">{PRICE_NOTE}</span>
-        </i>
+        <i>{baht(p.price)}</i>
       </span>
+      <img src={art(p.img)} alt="" loading="lazy" decoding="async" />
       <Plus />
     </a>
   );
 }
 
-/** A single Route: name, price, and the clay piece that stands for what you make. */
+/** A single Route: its own white box, the piece on top, name and price under it. */
 export function RouteCard({ r, showDisc = false }: { r: Route; showDisc?: boolean }) {
   return (
-    <a className="st-card" href={LINK.route(r.id)} aria-label={`${r.name} ${baht(r.price)} ${PRICE_NOTE}`}>
-      {showDisc && <small>{disc(r.d).name}</small>}
-      <b>{r.name}</b>
-      <em>{r.line}</em>
-      <span className="st-price"><b>{baht(r.price)}</b> <span className="st-tag">{PRICE_NOTE}</span></span>
+    <a className="st-card" href={LINK.route(r.id)} aria-label={`${r.name} ${baht(r.price)}`}>
+      <span className="st-card-t">
+        {showDisc && <small>{disc(r.d).name}</small>}
+        <b>{r.name}</b>
+        <span className="st-price">{baht(r.price)}</span>
+      </span>
       <img src={tile(r.tile)} alt="" loading="lazy" decoding="async" />
       <Plus />
     </a>

@@ -6,7 +6,7 @@ import { LINE_URL } from "@/lib/site";
 import { PackageCard, ProgramCard, RouteCard } from "./Cards";
 
 /** Ask from your goal ("อยากทำเกมไว้ยื่นพอร์ต") and see the Packages and Routes that lead there. */
-export function GoalSearch() {
+export function GoalSearch({ onlyWhenAsked = false }: { onlyWhenAsked?: boolean }) {
   const [q, setQ] = useState("");
   // ?q= from Home or a shared link
   useEffect(() => {
@@ -15,6 +15,10 @@ export function GoalSearch() {
   }, []);
   const found = useMemo(() => findForGoal(q), [q]);
   const asked = q.trim().length > 0;
+  // on the store page the box appears only for a question sent from Home's search
+  const [came, setCame] = useState(false);
+  useEffect(() => { setCame(!!new URLSearchParams(location.search).get("q")); }, []);
+  if (onlyWhenAsked && !came) return null;
   return (
     <div className="st-search">
       <form role="search" onSubmit={(e) => e.preventDefault()}>

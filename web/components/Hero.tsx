@@ -86,11 +86,6 @@ export function Hero() {
       <div className="nx-hero-top">
         <p className="font-display text-[clamp(18px,1.5vw,22px)] font-semibold text-ink/75">น้องอยาก...</p>
         <TypedWish paused={focused} />
-        <p className="nx-hero-who">
-          {["สร้างผลงานจริง", "ใช้ยื่นมหาลัย", "ต่อยอดสตาร์ทอัพ", "คว้ารางวัลระดับประเทศ"].map((t, i) => (
-            <span key={t}>{i ? " " : ""}<span>{t}</span></span>
-          ))}
-        </p>
 
         <form
           role="search"
