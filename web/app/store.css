@@ -310,7 +310,7 @@ html { overflow-x: clip; }
 .st { --edge: clamp(20px, 2.8vw, 64px) !important; }
 .st .st-wrap { max-width: none; padding-left: var(--edge); padding-right: var(--edge); }
 /* each kind's row reaches the right edge of the screen: the cards grow with the screen, the last one runs off the edge */
-.st-kind .st-card { width: clamp(236px, calc((100vw - var(--edge) - 66px) / 3.7), 470px); height: auto; padding-bottom: 72px; }
+.st-kind .st-card { width: clamp(236px, calc((100vw - var(--edge) - 66px) / 4.3), 400px); height: auto; padding-bottom: 72px; }
 @media (max-width: 600px) { .st-kind .st-card { width: 236px; } }
-.st .st-pk { width: clamp(300px, calc((100vw - var(--edge) - 66px) / 3.7), 470px); height: auto; aspect-ratio: 4 / 5; }
+.st .st-pk { width: clamp(280px, calc((100vw - var(--edge) - 66px) / 4.3), 400px); height: auto; aspect-ratio: 4 / 5; }
 @media (max-width: 600px) { .st .st-pk { width: 300px; } }
