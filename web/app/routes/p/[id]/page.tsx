@@ -29,6 +29,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
           <nav className="st-crumb" aria-label="ตำแหน่ง"><a href={LINK.store}>Hams Route</a><span aria-hidden>/</span><a href={LINK.store + "#packages"}>แพ็กเกจ</a><span aria-hidden>/</span><span>{p.name}</span></nav>
           <p style={{ marginTop: 18, fontWeight: 600, color: "#f6b26b" }}>สำหรับ {p.forWho}</p>
           <h1 className="st-display" style={{ maxWidth: "11em" }}>{p.name}</h1>
+          <p style={{ marginTop: 10, fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(22px,2.4vw,30px)", lineHeight: 1.25 }}>{p.hook}</p>
           <p className="st-lead" style={{ maxWidth: "32em", fontSize: "clamp(18px,1.6vw,22px)", lineHeight: 1.5, color: "rgba(255,255,255,.88)", marginTop: 14 }}>{p.line}</p>
           <div className="st-buy" id="buy">
             <span className="st-amount">{baht(p.price)}</span><span className="st-tag st-tag-dark">{PRICE_NOTE}</span>

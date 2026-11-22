@@ -95,3 +95,50 @@ body { background: var(--color-cream); color: var(--color-ink); font-family: var
 /* while an answer is open the cards step out of the way */
 .nx-cards{transition:opacity .25s}
 .nx-cards[data-answering]{opacity:0;pointer-events:none}
+
+/* the search that follows the visitor down the home page */
+.nx-follow{position:fixed;left:50%;top:14px;z-index:59;width:min(620px,calc(100vw - 32px));transform:translate(-50%,-18px);opacity:0;pointer-events:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .25s}
+.nx-follow[data-show]{transform:translate(-50%,0);opacity:1;pointer-events:auto}
+.nx-follow label{display:flex;height:54px;align-items:center;gap:10px;padding:0 6px 0 18px;background:#FFFDF8;box-shadow:0 0 0 1px rgba(29,23,18,.12),0 16px 36px -16px rgba(110,45,0,.45)}
+.nx-follow input{min-width:0;flex:1;background:transparent!important;border:0!important;outline:none!important;box-shadow:none!important;font-size:16px;font-weight:500}
+.nx-follow input::placeholder{color:#8C7B6B}
+.nx-follow button{height:42px;flex-shrink:0;background:var(--color-ink);padding:0 20px;font-family:var(--font-display);font-size:15px;font-weight:700;color:#fff}
+.nx-follow label:focus-within{box-shadow:0 0 0 1.5px #1D1712,0 16px 36px -16px rgba(110,45,0,.5)}
+@media (prefers-reduced-motion:reduce){.nx-follow{transition:none}}
+
+/* the team's sheet: made-and-used shelf (white section) */
+.sw-m{margin-top:clamp(56px,7vw,96px)}
+.sw-m h3{font-family:var(--font-display);font-weight:700;font-size:clamp(24px,2.6vw,34px);line-height:1.2;color:#1D1712;text-align:left}
+.sw-row{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(220px,22vw,270px);gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;list-style:none;margin:22px calc(-1*max(16px,(100vw - 1240px)/2)) 0;padding:6px max(16px,(100vw - 1240px)/2) 18px}
+.sw-row::-webkit-scrollbar{display:none}
+.sw-row li{scroll-snap-align:start}
+.sw-row a,.sw-row div{display:grid;gap:4px;text-decoration:none;color:#1D1712;text-align:left}
+.sw-im{display:block;aspect-ratio:4/3;overflow:hidden;background:#1D1611;margin-bottom:10px}
+.sw-im img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.sw-row a:hover .sw-im img{transform:scale(1.04)}
+.sw-im[data-plain]{display:grid;place-items:end start;padding:18px;background:#E8DCCB}
+.sw-im[data-plain] b{font-family:var(--font-display);font-size:28px;line-height:1.05;color:#1D1712}
+.sw-row li:nth-child(3n) .sw-im[data-plain]{background:#1D1611}.sw-row li:nth-child(3n) .sw-im[data-plain] b{color:#FFD9A8}
+.sw-row li:nth-child(3n+1) .sw-im[data-plain]{background:#CF6D17}.sw-row li:nth-child(3n+1) .sw-im[data-plain] b{color:#fff}
+.sw-row small{font-size:13px;font-weight:600;color:#9A5A16}
+.sw-row b{font-family:var(--font-display);font-weight:700;font-size:19px;line-height:1.25}
+.sw-row span:not(.sw-im){font-size:14px;line-height:1.45;color:#6E6259}
+
+/* the team's sheet: every award, inside Hall of Fame (dark) */
+.sw-w{max-width:1120px;margin:clamp(48px,6vw,80px) auto 28px;text-align:left;color:#fff}
+.sw-w h3{font-family:var(--font-display);font-weight:700;font-size:clamp(24px,2.6vw,34px);line-height:1.2}
+.sw-w h3 span{display:block;margin-top:6px;font-size:16px;font-weight:500;color:rgba(255,236,205,.65)}
+.sw-g{columns:3 300px;column-gap:40px;margin-top:28px}
+.sw-g section{break-inside:avoid;margin-bottom:28px}
+.sw-g h4{font-family:var(--font-display);font-weight:700;font-size:17px;color:#FFD27A;margin-bottom:6px}
+.sw-g h4 small{display:block;font-size:12px;font-weight:500;color:rgba(255,236,205,.55)}
+.sw-g ul{list-style:none;padding:0;margin:0}
+.sw-g li a,.sw-g li div{display:grid;grid-template-columns:118px minmax(0,1fr) auto;align-items:baseline;gap:10px;padding:6px 0;color:#fff;text-decoration:none;line-height:1.35}
+.sw-g li a:hover b{text-decoration:underline;text-underline-offset:3px}
+.sw-g em{font-style:normal;font-size:13px;font-weight:600;color:rgba(255,236,205,.6)}
+.sw-g em[data-top]{color:#FFD27A}
+.sw-g b{display:block;font-weight:600;font-size:15px;line-height:1.35}
+.sw-g b span{display:inline;margin-left:6px;font-size:13px;font-weight:400;color:rgba(255,236,205,.6)}
+.sw-g i{font-style:normal;font-size:13px;font-weight:600;color:#FFD27A;white-space:nowrap}
+.sw-g li a i::after{content:" ›"}
+@media (max-width:600px){.sw-w{padding:0 6px}.sw-g{columns:1}.sw-g li a,.sw-g li div{grid-template-columns:100px minmax(0,1fr) auto;gap:8px}}

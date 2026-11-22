@@ -4,6 +4,7 @@ import { RouteCard } from "@/components/store/Cards";
 import { GoalSearch } from "@/components/store/GoalSearch";
 import { FaqAndSteps } from "@/components/store/Info";
 import { PackageShelf } from "@/components/store/PackageShelf";
+import { Shelf } from "@/components/store/Shelf";
 import { DISCIPLINES, LINK, art, routesIn } from "@/lib/routes";
 
 export const metadata: Metadata = { title: "Hams Route | Hamster Hub", description: "เลือกแพ็กเกจตามผลงานที่น้องอยากมี หรือฝึกทีละทักษะ" };
@@ -23,10 +24,9 @@ export default function Page() {
         <PackageShelf />
 
         {DISCIPLINES.map((d) => (
-          <section key={d.id} className="st-shelf" aria-label={d.name}>
-            <h2 className="st-cat-t"><a href={LINK.disc(d.id)}>{d.name}</a></h2>
-            <div className="st-grid">{routesIn(d.id).map((r) => <RouteCard key={r.id} r={r} />)}</div>
-          </section>
+          <div key={d.id} className="st-kind"><Shelf label={d.name} title={d.name} sub={d.line} more={<a className="st-link" href={LINK.disc(d.id)}>ดูทั้งหมด</a>}>
+            {routesIn(d.id).map((r) => <RouteCard key={r.id} r={r} />)}
+          </Shelf></div>
         ))}
         <FaqAndSteps />
       </div>

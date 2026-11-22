@@ -21,7 +21,7 @@ export function Shelf({ title, sub, more, children, label, top }: { title: strin
       <div className="st-shelf-h">
         <h2 className="st-shelf-t">
           <i>{title}</i>
-          {sub && <span> {sub}</span>}
+          {sub && <>{" "}<span>{sub}</span></>}
         </h2>
         {more}
       </div>

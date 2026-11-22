@@ -1,3 +1,4 @@
+import { understand } from "./understand";
 // Hams Route: skills you can learn one at a time (Route), and sets of Routes for one goal (Package).
 // Source: Hamster_Hub_Claude_Handoff/01-design/routes (Routes HTML + route-store-v2 data), 22 Nov 2026.
 // Every Route and Package price here is a SAMPLE price from the design files and must be shown as such
@@ -13,6 +14,7 @@ export type Route = { id: string; name: string; d: string; line: string; price: 
 export type Package = {
   id: string;
   name: string;
+  hook: string; // one plain line under the name: what the student walks away with
   goal: string; // goal chip it belongs to
   forWho: string;
   line: string;
@@ -70,24 +72,24 @@ export const GOALS = [
 
 export const PACKAGES: Package[] = [
   {
-    id: "first-program", name: "โปรแกรมชิ้นแรก", goal: "first", forWho: "ม.5 ที่ยังไม่เคยทำโปรเจกต์",
+    id: "first-program", name: "First Build", hook: "โปรแกรมชิ้นแรกที่น้องเขียนเอง", goal: "first", forWho: "ม.5 ที่ยังไม่เคยทำโปรเจกต์",
     line: "ลองเขียนโค้ดจากพื้นฐาน แล้วทำโปรแกรม Python ชิ้นเล็กที่เปิดใช้เองได้",
-    makes: "โปรแกรม Python ที่เขียนเอง", routes: ["programming", "python", "build"], price: 2390, img: "pk-first.webp", dark: true, bg: "#1c0802",
+    makes: "โปรแกรม Python ที่เขียนเอง", routes: ["programming", "python", "build"], price: 2390, img: "pk2-first.webp", dark: true, bg: "#160600",
   },
   {
-    id: "first-web", name: "เว็บแรกใส่พอร์ต", goal: "port", forWho: "ม.6 ที่ยังไม่มีผลงาน",
+    id: "first-web", name: "Port Ready", hook: "เว็บของน้องเอง พร้อมใส่พอร์ต", goal: "port", forWho: "ม.6 ที่ยังไม่มีผลงาน",
     line: "ทำเว็บที่เปิดใช้และเชื่อมข้อมูลได้ เก็บขั้นตอนตั้งแต่ร่างหน้าจอจนเป็นเว็บจริงไว้เล่าในพอร์ต",
-    makes: "เว็บไซต์ที่เชื่อมข้อมูลได้", routes: ["ux", "web", "backend"], price: 3490, img: "pk-web.webp", dark: true, bg: "#12021f",
+    makes: "เว็บไซต์ที่เชื่อมข้อมูลได้", routes: ["ux", "web", "backend"], price: 3490, img: "pk2-web.webp", dark: true, bg: "#11011c",
   },
   {
-    id: "compete", name: "โปรเจกต์ส่งแข่ง", goal: "compete", forWho: "ทีมที่เตรียมลงแข่ง",
+    id: "compete", name: "Arena", hook: "พาโปรเจกต์ขึ้นเวทีแข่ง", goal: "compete", forWho: "ทีมที่เตรียมลงแข่ง",
     line: "เลือกปัญหาที่อยากแก้ ทำต้นแบบ แล้วซ้อมเดโมสำหรับวันแข่ง",
-    makes: "ต้นแบบพร้อมเดโมสำหรับวันแข่ง", routes: ["problem", "app", "pitch"], price: 4290, img: "pk-compete.webp", dark: true, bg: "#020a33",
+    makes: "ต้นแบบพร้อมเดโมสำหรับวันแข่ง", routes: ["problem", "app", "pitch"], price: 4290, img: "pk2-compete.webp", dark: true, bg: "#010825",
   },
   {
-    id: "prototype", name: "ต้นแบบให้คนลองใช้", goal: "idea", forWho: "คนที่มีไอเดียอยู่แล้ว",
+    id: "prototype", name: "Launch Lab", hook: "ไอเดียกลายเป็นแอปที่คนลองใช้จริง", goal: "idea", forWho: "คนที่มีไอเดียอยู่แล้ว",
     line: "ทำต้นแบบจากไอเดียของตัวเอง ให้คนลองใช้ แล้วดูว่าควรแก้ตรงไหน",
-    makes: "ต้นแบบแอปที่มีคนลองใช้แล้ว", routes: ["validate", "app", "demo"], price: 3990, img: "pk-proto.webp", dark: true, bg: "#071a10",
+    makes: "ต้นแบบแอปที่มีคนลองใช้แล้ว", routes: ["validate", "app", "demo"], price: 3990, img: "pk2-proto.webp", dark: true, bg: "#001109",
   },
 ];
 
@@ -142,11 +144,19 @@ export type Found = { routes: Route[]; packages: Package[]; programs: Program[];
 const PROGRAM_WORDS: Record<string, string[]> = { "port-express": ["เกม", "game", "unity", "ยูนิตี้", "พอร์ต", "portfolio", "ม.6", "ยื่น"], "build-skill": ["12 เดือน", "ทั้งปี", "build skill", "โปรเจกต์หลัก", "ระยะยาว"] };
 
 export function findForGoal(q: string): Found {
+  const first = matchGoal(q);
+  if (first.understood || !q.trim()) return first;
+  // typos, slang, no spaces, wrong keyboard layout: name the topic first, then match again
+  const r = understand(q);
+  return r.intent ? matchGoal([r.intent.routes, ...r.others.map((o) => o.routes), r.text].filter(Boolean).join(" ")) : first;
+}
+
+function matchGoal(q: string): Found {
   const t = q.toLowerCase().replace(/\s+/g, " ").trim();
   const r = new Set<string>(), p = new Set<string>(), d = new Set<string>();
   if (t) {
     for (const x of ROUTES) if (t.includes(x.name.toLowerCase()) || x.name.toLowerCase().includes(t)) r.add(x.id);
-    for (const x of PACKAGES) if (t.includes(x.name) || x.name.includes(t)) p.add(x.id);
+    for (const x of PACKAGES) if (t.includes(x.name.toLowerCase()) || x.name.toLowerCase().includes(t)) p.add(x.id);
     for (const tp of TOPICS) {
       if (!tp.words.some((w) => t.includes(w))) continue;
       tp.d?.forEach((id) => { d.add(id); routesIn(id).forEach((x) => r.add(x.id)); });

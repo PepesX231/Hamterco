@@ -98,6 +98,9 @@ PT_NEW = PT_OLD + "window.HH_pt={build:ptBuild,out:function(){pt.classList.add('
 for sc in scripts:
     if 'code' in sc and PT_OLD in sc['code']:
         sc['code'] = sc['code'].replace(PT_OLD, PT_NEW).replace('<b class="cv-t">คอร์ส</b>', '<b class="cv-t">Hams Route</b>')
+    # the search answers' "all courses" link opens Hams Route now
+    if 'code' in sc:
+        sc['code'] = sc['code'].replace("a=el('a','ia-lk','ดูคอร์สทั้งหมด');a.href='#courses'", "a=el('a','ia-lk','ดู Hams Route');a.href='" + R + "'")
 
 names = []
 for i, sc in enumerate(scripts):

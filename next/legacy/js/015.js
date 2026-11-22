@@ -203,7 +203,7 @@
     if(d.tel){var t=el('a','sx-tel','โทร 1323 สายด่วนสุขภาพจิต');t.href='tel:1323';w.appendChild(t)}
     if(d.c&&d.c.length){w.appendChild(el('p','ia-k','เรื่องที่คนถามบ่อย'));var p=el('p','ia-alt ia-pick sx-ch');d.c.forEach(function(k){p.appendChild(chip(k))});w.appendChild(p)}
     var x=el('div','ia-x'),a;
-    if(d.lk){a=el('a','ia-lk','ดูคอร์สทั้งหมด');a.href='#courses';x.appendChild(a)}
+    if(d.lk){a=el('a','ia-lk','ดู Hams Route');a.href='/Hamterco/next/routes/';x.appendChild(a)}
     if(d.wk){a=el('a','ia-lk','ดูเกมที่น้องๆ ทำ');a.href='#works';x.appendChild(a)}
     if(d.soc){if(fa){a=el('a','ia-lk','Facebook');a.href=fa.getAttribute('href');a.target='_blank';a.rel='noopener';x.appendChild(a)}
       if(ig){a=el('a','ia-lk','Instagram');a.href=ig.getAttribute('href');a.target='_blank';a.rel='noopener';x.appendChild(a)}}

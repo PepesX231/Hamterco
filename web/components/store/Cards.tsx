@@ -13,6 +13,7 @@ export function PackageCard({ p }: { p: Package }) {
       <span className="st-pk-t">
         <small>สำหรับ {p.forWho}</small>
         <b>{p.name}</b>
+        <em>{p.hook}</em>
         <i>{baht(p.price)}</i>
       </span>
       <img src={art(p.img)} alt="" loading="lazy" decoding="async" />

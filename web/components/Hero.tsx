@@ -9,15 +9,61 @@ import { TypedWish } from "./TypedWish";
 import { HandNote } from "./HandDrawn";
 import { WorkCards } from "./WorkCards";
 import { LINK, baht, findForGoal, tile, art } from "@/lib/routes";
+import { understand } from "@/lib/understand";
 
 // Answers come from the original search engine, which runs in the legacy part of the page (LegacyRuntime) and
 // knows every course, event and price. Its answer panel is moved under this bar, inside wrappers its styles expect.
-function ask(q: string, slot: HTMLElement | null, onOpen: () => void) {
-  q = q.trim();
+// When it cannot read a question, lib/understand names the topic and the engine is asked again in its own words.
+function runLegacy(q: string) {
   const legacyIn = document.querySelector<HTMLInputElement>(".lg-box #zqIn");
   const legacyForm = document.querySelector<HTMLFormElement>(".lg-box #zqForm");
   const res = document.getElementById("zqRes");
-  if (!q || !legacyIn || !legacyForm || !res || !slot) return;
+  if (!legacyIn || !legacyForm || !res) return null;
+  legacyIn.value = q;
+  legacyIn.dispatchEvent(new Event("input", { bubbles: true }));
+  legacyForm.requestSubmit();
+  return (res.querySelector<HTMLElement>(".sx-card")?.dataset.sx) || "answer";
+}
+
+const GAVE_UP = new Set(["unknown", "foreign", "shape", "want", "num"]);
+
+/** Answers q in the legacy panel. Returns the words to match Hams Route with, and what happened (for tests). */
+export function solveQuery(raw: string): { match: string; kind: string } {
+  const res = document.getElementById("zqRes");
+  let kind = runLegacy(raw);
+  if (!kind || !res) return { match: raw, kind: "none" };
+  if (!GAVE_UP.has(kind)) return { match: raw, kind };
+  const r = understand(raw);
+  const it = r.intent;
+  if (it?.ask) {
+    kind = runLegacy(it.ask) || kind;
+    // keep what the visitor typed in the "answer for" line
+    const echo = res.querySelector(".ia-q bdi");
+    if (echo) echo.textContent = raw.length > 56 ? raw.slice(0, 55) + "…" : raw;
+    return { match: [it.routes, r.text].filter(Boolean).join(" "), kind: "re:" + it.id + ":" + kind };
+  }
+  const card = res.querySelector<HTMLElement>(".sx-card");
+  const h = card?.querySelector("h3"), a = card?.querySelector(".ia-a");
+  if (it && h && a) {
+    // things only Hams Route teaches (3D, the 12-month programme): the Routes show right under this card
+    h.textContent = "เรื่องนี้เรียนได้ใน Hams Route";
+    a.textContent = "Route ที่ตรงกับคำถามอยู่ข้างล่าง กดดูชิ้นงานที่จะได้ทำและราคาได้เลย";
+    card!.querySelectorAll(".ia-k, .sx-ch").forEach((x) => x.remove());
+    return { match: [it.routes, r.text].filter(Boolean).join(" "), kind: "route:" + it.id };
+  }
+  if (kind === "unknown" && h && a) {
+    h.textContent = r.mash ? "แป้นพิมพ์อาจเป็นอีกภาษาอยู่" : "ยังไม่เข้าใจคำนี้";
+    a.textContent = r.mash
+      ? "ลองสลับภาษาแป้นพิมพ์แล้วพิมพ์ใหม่ หรือเลือกเรื่องที่ใกล้ที่สุดข้างล่าง"
+      : "ลองพิมพ์สิ่งที่น้องอยากทำ เช่น อยากทำเกม หรือค่าเรียนเท่าไหร่ หรือเลือกเรื่องที่ใกล้ที่สุดข้างล่าง";
+  }
+  return { match: raw, kind };
+}
+
+function ask(q: string, slot: HTMLElement | null, onOpen: () => void) {
+  q = q.trim();
+  const res = document.getElementById("zqRes");
+  if (!q || !res || !slot) return q;
   if (!slot.firstChild) {
     const view = document.createElement("div");
     view.setAttribute("data-view", "home");
@@ -30,11 +76,12 @@ function ask(q: string, slot: HTMLElement | null, onOpen: () => void) {
     view.appendChild(zq);
     slot.appendChild(view);
   }
-  legacyIn.value = q;
-  legacyIn.dispatchEvent(new Event("input", { bubbles: true }));
-  legacyForm.requestSubmit();
+  const out = solveQuery(q);
   onOpen();
+  return out.match;
 }
+
+if (typeof window !== "undefined") (window as unknown as { __hhSolve: typeof solveQuery }).__hhSolve = solveQuery;
 
 export function Hero() {
   const section = useRef<HTMLElement>(null);
@@ -50,7 +97,28 @@ export function Hero() {
   const [q, setQ] = useState("");
   const [answering, setAnswering] = useState(false);
   const [askedQ, setAskedQ] = useState("");
+  const [matchQ, setMatchQ] = useState("");
   const slot = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [follow, setFollow] = useState(false);
+  // once the big bar scrolls away, a small one follows at the top of the screen
+  useEffect(() => {
+    const f = formRef.current;
+    if (!f) return;
+    const io = new IntersectionObserver(([e]) => setFollow(!e.isIntersecting && e.boundingClientRect.top < 0), { rootMargin: "-60px 0px 0px 0px" });
+    io.observe(f);
+    return () => io.disconnect();
+  }, []);
+  const askFromTop = (v: string) => {
+    v = v.trim();
+    if (!v) return;
+    setQ(v);
+    const m = ask(v, slot.current, () => setAnswering(true));
+    setAskedQ(v); setMatchQ(m);
+    const top = (formRef.current?.getBoundingClientRect().top || 0) + scrollY - 90;
+    scrollTo({ top, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  };
   // the panel's own close button hides it; follow that
   useEffect(() => {
     if (!answering) return;
@@ -88,11 +156,12 @@ export function Hero() {
         <TypedWish paused={focused} />
 
         <form
+          ref={formRef}
           role="search"
           className="nx-hero-form"
           onSubmit={(e) => {
             e.preventDefault();
-            { const v = q || current.current; setAskedQ(v); ask(v, slot.current, () => setAnswering(true)); }
+            { const v = q || current.current; const m = ask(v, slot.current, () => setAnswering(true)); setAskedQ(v); setMatchQ(m); }
           }}
         >
           <motion.label
@@ -108,6 +177,7 @@ export function Hero() {
             </svg>
             <span className="sr-only">ถามเรื่องคอร์ส ค่าย พอร์ต หรือมหาลัย</span>
             <input
+              ref={inputRef}
               value={q}
               onChange={(e) => setQ(e.target.value)}
               onFocus={() => setFocused(true)}
@@ -121,15 +191,37 @@ export function Hero() {
           <HandNote hidden={gathered} />
         </form>
         <div ref={slot} className="nx-answer" />
-        {answering && <RouteMatches q={askedQ} />}
+        {answering && <RouteMatches q={askedQ} match={matchQ} />}
       </div>
+      <FollowBar show={follow} placeholder={placeholder} onAsk={askFromTop} />
     </section>
   );
 }
 
+/** The search bar that follows the visitor down the home page. Asking scrolls back up to the answer. */
+function FollowBar({ show, placeholder, onAsk }: { show: boolean; placeholder: string; onAsk: (v: string) => void }) {
+  const [v, setV] = useState("");
+  return (
+    <form
+      role="search"
+      className="nx-follow"
+      data-show={show || undefined}
+      aria-hidden={!show}
+      onSubmit={(e) => { e.preventDefault(); onAsk(v); setV(""); (document.activeElement as HTMLElement | null)?.blur(); }}
+    >
+      <label>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" strokeLinecap="round" /></svg>
+        <span className="sr-only">ถามเรื่องคอร์ส ค่าย พอร์ต หรือมหาลัย</span>
+        <input value={v} onChange={(e) => setV(e.target.value)} placeholder={placeholder} enterKeyHint="search" tabIndex={show ? 0 : -1} />
+        <button type="submit" tabIndex={show ? 0 : -1}>ค้นหา</button>
+      </label>
+    </form>
+  );
+}
+
 /** Above the answer: the Hams Route packages and Routes that match the question, if any. */
-function RouteMatches({ q }: { q: string }) {
-  const f = findForGoal(q);
+function RouteMatches({ q, match }: { q: string; match: string }) {
+  const f = findForGoal(match || q);
   if (!f.understood) return null;
   const items = [
     ...f.programs.map((p) => ({ k: "g" + p.id, href: p.href, img: p.img, name: p.name, sub: `โปรแกรมเต็ม · ${p.price}` })),
