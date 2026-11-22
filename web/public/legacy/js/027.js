@@ -7,14 +7,14 @@
   /* ---- "สิ่งที่ Hamster Hub สร้าง": credits for each work, the matching picture lights up on hover ---- */
   /* one short result line per work; the long descriptions were too much to read */
   var ROWS=[
-    {items:[{n:'Mr. City',w:'',r:'ขายให้สวนสัตว์สงขลาแล้ว'},
+    {items:[{n:'Mr. City',w:'',r:'ขายให้สวนสัตว์สงขลาแล้ว',m:[1]},
             {n:'PHC Map',w:'',r:'เด็กใช้เรียนแล้วกว่า 1,000 คน',m:[0]},
-            {n:'Hamster Quest',w:'',r:'กำลังจะใช้ในมหาวิทยาลัย',m:[1,2]}]},
+            {n:'Hamster Quest',w:'',r:'กำลังจะใช้ในมหาวิทยาลัย',m:[2]}]},
     {h3:'แอปฝึกพูดที่น้องไอดินทำเอง',one:1,
      items:[{n:'REVOICE',w:'',r:'ชนะ NSC 2025 ระดับประเทศ'}]},
-    {items:[{n:'LYNO',w:'',r:'เกม 3 มิติของน้องดา',m:[0]},
-            {n:'Time Keeper',w:'',r:'เกม Roblox ของพี่มิคกี้',m:[1]},
-            {n:'Z.O.O.',w:'',r:'เกมสืบสวนของพี่ไอซ์',m:[2]}]}];
+    {items:[{n:'SLASH//SPEED',w:'',r:'เกมของน้องดินสอ',m:[0]},
+            {n:'Apocalypis Building',w:'',r:'เกมของน้องฟาร์',m:[1]},
+            {n:'Eugation Strike',w:'',r:'เกมของน้องไผ่',m:[2]}]}];
   function credits(){[].forEach.call(document.querySelectorAll('section .oc-in>.oc-r'),function(r,i){var d=ROWS[i],t=r.querySelector('.oc-t');if(!d||!t||t.querySelector('.ocl'))return;
     var m=r.querySelector('.oc-m'),h=t.querySelector('h3');if(d.h3&&h)h.textContent=d.h3;
     var ul=el('ul','ocl'+(d.one?' one':''));
