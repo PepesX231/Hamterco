@@ -148,6 +148,11 @@ body { background: var(--color-cream); color: var(--color-ink); font-family: var
 /* สิ่งที่ Hamster Hub สร้าง: real pictures only. PHC Map clip on top, two Hamster Quest screens under it;
    the three games side by side at their own size (so they stay sharp), each opening its clip */
 .hbx .oc-m.oc-biz{display:grid!important;grid-template-columns:1fr 1fr!important;grid-template-rows:auto auto!important;gap:12px!important;aspect-ratio:auto!important;background:none!important;box-shadow:none!important;overflow:visible!important;border-radius:0!important}
+.hbx .oc-m.oc-3{display:grid!important;grid-template-columns:1fr 1fr!important;grid-template-rows:auto!important;gap:12px!important;aspect-ratio:auto!important;background:none!important;box-shadow:none!important;overflow:visible!important;border-radius:0!important}
+.hbx .oc-m.oc-3 img{display:block;width:100%!important;height:auto!important;aspect-ratio:16/10!important;object-fit:cover!important;transform:none!important;border-radius:0!important;position:static!important;margin:0!important;grid-row:auto!important;box-shadow:0 22px 40px -28px rgba(40,25,10,.55)!important}
+.hbx .oc-m.oc-3 .oc-wide img{aspect-ratio:2/1!important}
+.hbx .oc-clip i{position:absolute!important;left:12px!important;top:12px!important;display:flex!important;align-items:center;gap:6px;font-style:normal!important;font-size:13px!important;font-weight:700!important;background:#fff!important;color:#1D1712!important;padding:7px 11px!important;margin:0!important}
+.hbx .oc-clip:hover img{filter:brightness(1.06)}
 .hbx .oc-f{position:relative;display:block;margin:0;text-decoration:none;color:#1D1712;min-width:0}
 .hbx .oc-f.oc-wide{grid-column:1/-1}
 .hbx .oc-m.oc-biz video,.hbx .oc-m.oc-biz img,.hbx .oc-mrb{display:block;width:100%!important;height:auto!important;aspect-ratio:4/3!important;object-fit:cover!important;object-position:50% 50%!important;transform:none!important;border-radius:0!important;position:static!important;margin:0!important;grid-row:auto!important;box-shadow:0 22px 40px -28px rgba(40,25,10,.55)!important}
@@ -158,15 +163,7 @@ body { background: var(--color-cream); color: var(--color-ink); font-family: var
 .hbx .oc-mrb i{display:grid!important;place-items:center!important;width:76px!important;height:76px!important;background:#fff!important;font-size:0!important;color:transparent!important;padding:0!important;margin:0!important;transition:transform .3s}
 .hbx .oc-mrb i::before{content:none!important}.hbx .oc-mrb svg{margin-left:6px}
 .hbx a.oc-mr:hover .oc-mrb i{transform:scale(1.06)}
-.hbx .oc-m.oc-3{display:grid!important;grid-template-columns:repeat(3,1fr)!important;grid-template-rows:auto!important;gap:12px!important;aspect-ratio:auto!important;background:none!important;box-shadow:none!important;overflow:visible!important;border-radius:0!important}
-.hbx .oc-g{position:relative;display:block;text-decoration:none;color:#1D1712}
-.hbx .oc-m.oc-3 .oc-g img{width:100%!important;height:auto!important;aspect-ratio:4/3!important;object-fit:cover!important;transform:none!important;border-radius:0!important;position:static!important;margin:0!important;grid-row:auto!important;box-shadow:0 20px 36px -26px rgba(40,25,10,.55)!important;transition:transform .5s cubic-bezier(.2,.8,.2,1)!important}
-.hbx a.oc-g:hover img{transform:scale(1.03)!important}
-.hbx .oc-g b{display:block;margin-top:10px;font-family:var(--font-display);font-size:16px;font-weight:700}
-.hbx .oc-g i{position:absolute;right:8px;top:8px;font-style:normal;font-size:12px;font-weight:700;background:rgba(20,14,8,.78);color:#fff;padding:4px 8px}
-.hbx .oc-g i::before{content:"▶ "}
 .hbx .oc-play{display:none!important}
-@media (max-width:600px){.hbx .oc-m.oc-3{grid-template-columns:1fr 1fr!important}.hbx .oc-m.oc-3 .oc-g:first-child{grid-column:1/-1}}
 }
 
 .yt-pad .sw-w{margin-left:0;margin-right:0}
