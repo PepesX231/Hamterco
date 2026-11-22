@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
-/** A horizontal shelf: scroll, swipe, or use the two buttons. Nothing moves on its own. */
+/** A horizontal shelf: scroll, swipe, or use the two buttons (always shown, like the Apple Store; greyed out when there is nowhere to go). Nothing moves on its own. */
 export function Shelf({ title, sub, more, children, label, top }: { title: string; sub?: string; more?: ReactNode; children: ReactNode; label: string; top?: ReactNode }) {
   const row = useRef<HTMLDivElement>(null);
   const [edge, setEdge] = useState({ start: true, end: false });
@@ -27,7 +27,7 @@ export function Shelf({ title, sub, more, children, label, top }: { title: strin
       </div>
       {top}
       <div className="st-row" ref={row}>{children}</div>
-      {!(edge.start && edge.end) && (
+      {(
         <div className="st-arrows">
           <button className="st-arrow" type="button" aria-label="เลื่อนไปทางซ้าย" disabled={edge.start} onClick={() => go(-1)}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M15 5l-7 7 7 7" /></svg>
