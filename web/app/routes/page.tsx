@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { LegacyRuntime } from "@/components/LegacyRuntime";
-import { ProgramCard, RouteCard } from "@/components/store/Cards";
+import { RouteCard } from "@/components/store/Cards";
 import { GoalSearch } from "@/components/store/GoalSearch";
-import { Compare, FaqAndSteps } from "@/components/store/Info";
+import { FaqAndSteps } from "@/components/store/Info";
 import { PackageShelf } from "@/components/store/PackageShelf";
-import { DISCIPLINES, LINK, PROGRAMS, art, routesIn } from "@/lib/routes";
+import { DISCIPLINES, LINK, art, routesIn } from "@/lib/routes";
 
 export const metadata: Metadata = { title: "Hams Route | Hamster Hub", description: "เลือกแพ็กเกจตามผลงานที่น้องอยากมี หรือฝึกทีละทักษะ" };
 
@@ -28,16 +28,6 @@ export default function Page() {
             <div className="st-grid">{routesIn(d.id).map((r) => <RouteCard key={r.id} r={r} />)}</div>
           </section>
         ))}
-
-        <section className="st-shelf" aria-label="โปรแกรมเต็ม">
-          <div className="st-shelf-h"><h2 className="st-shelf-t"><i>โปรแกรมเต็ม</i> <span>เรียนยาวจนจบโปรเจกต์</span></h2></div>
-          <div className="st-row">{PROGRAMS.map((p) => <ProgramCard key={p.id} p={p} />)}</div>
-        </section>
-
-        <section className="st-block" id="compare" aria-label="เปรียบเทียบแพ็กเกจ">
-          <h2 className="st-shelf-t" style={{ marginBottom: 18 }}><i>เทียบแพ็กเกจ</i></h2>
-          <Compare />
-        </section>
         <FaqAndSteps />
       </div>
       <LegacyRuntime view="shell" />

@@ -37,7 +37,7 @@ export default async function Page({ params }: { params: Promise<{ d: string }> 
         </section>
         {pk.length > 0 && (
           <section className="st-shelf" aria-label="แพ็กเกจที่ใช้ Route หมวดนี้">
-            <div className="st-shelf-h"><h2 className="st-shelf-t"><i>แพ็กเกจที่ใช้หมวดนี้.</i> <span>ไปให้ถึงชิ้นงาน</span></h2><a className="st-link" href={LINK.store + "#compare"}>เปรียบเทียบ</a></div>
+            <div className="st-shelf-h"><h2 className="st-shelf-t"><i>แพ็กเกจที่ใช้หมวดนี้.</i> <span>ไปให้ถึงชิ้นงาน</span></h2></div>
             <div className="st-row">{pk.map((p) => <PackageCard key={p.id} p={p} />)}</div>
           </section>
         )}

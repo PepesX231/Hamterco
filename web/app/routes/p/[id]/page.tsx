@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LegacyRuntime } from "@/components/LegacyRuntime";
 import { PackageCard, RouteCard } from "@/components/store/Cards";
-import { Compare, FaqAndSteps } from "@/components/store/Info";
+import { FaqAndSteps } from "@/components/store/Info";
 import { BuyBar } from "@/components/store/BuyBar";
 import { LINK, PACKAGES, PENDING, PRICE_NOTE, art, baht, route, sumOf } from "@/lib/routes";
 import { LINE_URL } from "@/lib/site";
@@ -55,7 +55,6 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
           <div className="st-shelf-h"><h2 className="st-shelf-t"><i>แพ็กเกจอื่น.</i> <span>เป้าหมายต่างกัน</span></h2></div>
           <div className="st-row">{others.map((x) => <PackageCard key={x.id} p={x} />)}</div>
         </section>
-        <section className="st-block" aria-label="เปรียบเทียบแพ็กเกจ"><Compare /></section>
         <FaqAndSteps />
       </div>
       <BuyBar name={p.name} price={`${baht(p.price)} · ${PRICE_NOTE}`} watch="buy" />
