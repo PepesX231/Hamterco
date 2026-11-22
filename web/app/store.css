@@ -4,7 +4,7 @@
    of the site; depth comes from a soft lift on hover instead of rounded cards. */
 
 :root {
-  --st-bg: #f5f1eb;      /* the shop floor: a warm grey so white cards stand off it */
+  --st-bg: #fffaf3;      /* the same colour as the rest of the site, so sections run on without a cut */
   --st-card: #ffffff;
   --st-ink: #1d1712;
   --st-sub: #6e6259;     /* 5.6:1 on white, 5.0:1 on --st-bg */
@@ -272,3 +272,14 @@ html.hh-pc body::after { content: ""; position: fixed; inset: 0; z-index: 214748
 .st-cat-t a { color: inherit; text-decoration: none; }
 .st-cat-t a::after { content: " ›"; color: var(--st-sub); }
 .st-cat-t a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* shelves run to both edges of the screen (Apple Store); the first card still lines up with the heading */
+html { overflow-x: clip; }
+.st-row { margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding-left: calc(50vw - 50%); padding-right: calc(50vw - 50%); scroll-padding-left: calc(50vw - 50%); }
+.hm-store { background: var(--st-bg); }
+.st-card { box-shadow: 0 1px 2px rgba(40,25,10,.06), 0 10px 26px -18px rgba(40,25,10,.3); }
+/* the gap from the screen edge to the content column, written without % so snapping lines up with the heading */
+.st { --edge: max(22px, calc((100vw - 1240px) / 2 + 22px)); }
+.hm-store { --edge: max(22px, calc((100vw - 1240px) / 2 + 22px)); }
+@media (min-width: 1100px) { .st, .hm-store { --edge: max(40px, calc((100vw - 1240px) / 2 + 40px)); } }
+.st .st-row, .hm-store .st-row { margin-left: calc(-1 * var(--edge)); margin-right: calc(-1 * var(--edge)); padding-left: var(--edge); padding-right: var(--edge); scroll-padding-left: var(--edge); }

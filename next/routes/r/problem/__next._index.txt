@@ -1,5 +1,5 @@
 1:"$Sreact.fragment"
-:HL["/Hamterco/next/_next/static/chunks/2kag79ospu1th.css","style"]
+:HL["/Hamterco/next/_next/static/chunks/05ockkszcsa1i.css","style"]
 :HL["/Hamterco/next/legacy/legacy.css","style"]
 :HL["/Hamterco/next/legacy/body.html","fetch",{"crossOrigin":"anonymous"}]
 :HL["/Hamterco/next/legacy/manifest.json","fetch",{"crossOrigin":"anonymous"}]
@@ -55,7 +55,7 @@ function done(){var r=cv.getBoundingClientRect(),cx0=r.left+r.width/2,cy0=r.top+
     L.style.webkitMaskImage=m;L.style.maskImage=m;if(k<1)requestAnimationFrame(iris);else{L.remove();H.classList.remove('hl-on');dispatchEvent(new Event('hh:loaded'))}})(s0)}
 requestAnimationFrame(frame)})();
 }6:X
-0:{"t":{"t":{"s":"","h":131088,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/Hamterco/next/_next/static/chunks/2kag79ospu1th.css","precedence":"next"}],["$","script","script-0",{"src":"/Hamterco/next/_next/static/chunks/1ua2kfq9s-me6.js","async":true}]],["$","html",null,{"lang":"th","suppressHydrationWarning":true,"className":"Eerhnq_variable pOx_Ka_variable kVD14q_variable CQaiTq_variable","children":[["$","head",null,{"children":[["$","link",null,{"rel":"preload","href":"/Hamterco/next/legacy/legacy.css","as":"style"}],["$","link",null,{"rel":"preload","href":"/Hamterco/next/legacy/body.html","as":"fetch","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preload","href":"/Hamterco/next/legacy/manifest.json","as":"fetch","crossOrigin":"anonymous"}]]}],["$","body",null,{"children":[["$","div",null,{"id":"hhL","role":"status","aria-label":"กำลังโหลด Hamster Hub","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]]}]]}],"p":"$@5","v":null,"s":"$6"}}},"a":"$@7","u":"$@8","b":"9lGKv7ZghbZDWESX1GhzX"}
+0:{"t":{"t":{"s":"","h":131088,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/Hamterco/next/_next/static/chunks/05ockkszcsa1i.css","precedence":"next"}],["$","script","script-0",{"src":"/Hamterco/next/_next/static/chunks/1ua2kfq9s-me6.js","async":true}]],["$","html",null,{"lang":"th","suppressHydrationWarning":true,"className":"Eerhnq_variable pOx_Ka_variable kVD14q_variable CQaiTq_variable","children":[["$","head",null,{"children":[["$","link",null,{"rel":"preload","href":"/Hamterco/next/legacy/legacy.css","as":"style"}],["$","link",null,{"rel":"preload","href":"/Hamterco/next/legacy/body.html","as":"fetch","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preload","href":"/Hamterco/next/legacy/manifest.json","as":"fetch","crossOrigin":"anonymous"}]]}],["$","body",null,{"children":[["$","div",null,{"id":"hhL","role":"status","aria-label":"กำลังโหลด Hamster Hub","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]]}]]}],"p":"$@5","v":null,"s":"$6"}}},"a":"$@7","u":"$@8","b":"mmOIcSOinf8qUG66EX99E"}
 9:"/Hamterco/next/_next/static/chunks/1ua2kfq9s-me6.js"
 a:I[39756,["$9"],"default"]
 b:I[37457,["$9"],"default"]

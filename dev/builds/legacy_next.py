@@ -62,6 +62,12 @@ def square(css):
                       lambda d: d.group(0) if ('50%' in d.group(2) or d.group(2).strip() in ('0', '0px', 'inherit')) else d.group(1) + '0' + (' !important' if 'important' in d.group(2) else ''), body)
         return sel + '{' + body + '}'
     return re.sub(r'([^{}]+)\{([^{}]*)\}', block, css)
+# owner, 22 พ.ย.: drop the small explaining lines under headings (he pointed at each one), and the rules between rows
+css += '''
+html body section.hbx .oc-hd p,html body section.hbx .oc-k,html body section.hbx .oc-t>h3,html body .h5f .h5f-s,html body .mr.lt .mr-l p,html body .t-s{display:none!important}
+html body section.hbx .ocl,html body section.hbx .ocl li,html body section.hbx .oc-r,html body section.hbx .oc-t,html body section.hbx .oc-tx{border:0!important;box-shadow:none!important}
+html body section.hbx .ocl li{padding-top:.35em!important;padding-bottom:.35em!important}
+'''
 css = square(css)
 
 def mini(c):
