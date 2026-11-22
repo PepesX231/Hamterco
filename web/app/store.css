@@ -305,3 +305,7 @@ html { overflow-x: clip; }
 /* package pictures sit a little lower in the block */
 .st-pk img { top: 9%; bottom: auto; }
 .st-grid .st-card, .st-grid .st-card img { height: auto !important; } .st-grid .st-card { padding-bottom: 64px; }
+
+/* Hams Route pages run edge to edge like the Apple Store: content starts close to the left of the screen */
+.st { --edge: clamp(20px, 2.8vw, 64px) !important; }
+.st .st-wrap { max-width: none; padding-left: var(--edge); padding-right: var(--edge); }
