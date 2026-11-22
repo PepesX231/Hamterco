@@ -64,6 +64,13 @@ def square(css):
     return re.sub(r'([^{}]+)\{([^{}]*)\}', block, css)
 css = square(css)
 
+def mini(c):
+    c = re.sub(r'/\*.*?\*/', '', c, flags=re.S)
+    c = re.sub(r'\s+', ' ', c)
+    c = re.sub(r'\s*([{};,>])\s*', r'\1', c)
+    return c.replace(';}', '}')
+css = mini(css)
+
 # "คอร์ส" became Hams Route (22 พ.ย.): every link to the old courses view now opens the Hams Route pages
 R = '/Hamterco/next/routes/'
 body = body.replace('<a class="v nv-c" href="#courses"><span>คอร์ส</span></a>', '<a class="v nv-c" href="' + R + '"><span>Hams Route</span></a>')

@@ -11,6 +11,9 @@
 :HL["/Hamterco/next/_next/static/media/a2a942dd4d28daae-s.p.2vx-usavuz-_v.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/Hamterco/next/_next/static/media/a86bc8e8711b62bb-s.p.2t1pwrt0o-zp3.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/Hamterco/next/_next/static/media/fe99e0d97b1bdacf-s.p.2chmmw5jncpj5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Hamterco/next/legacy/legacy.css","style"]
+:HL["/Hamterco/next/legacy/body.html","fetch",{"crossOrigin":"anonymous"}]
+:HL["/Hamterco/next/legacy/manifest.json","fetch",{"crossOrigin":"anonymous"}]
 :HL["/Hamterco/next/route-art/A8.webp","image"]
 :HL["/Hamterco/next/route-art/A0.webp","image"]
 :HL["/Hamterco/next/route-art/A3.webp","image"]
@@ -20,4 +23,4 @@
 3:[["children",{"s":"__PAGE__","h":160}]]
 2:[["children",{"s":{"n":"d","t":"d","k":"portfolio","s":["p","r"]},"h":65632,"c":"$Q3"}]]
 1:[["children",{"s":"routes","h":131136,"c":"$Q2"}]]
-0:{"b":"YsJojmaFRowWYuhWW4yGJ","t":{"t":{"s":"","h":131088,"c":"$Q1"}}}
+0:{"b":"9lGKv7ZghbZDWESX1GhzX","t":{"t":{"s":"","h":131088,"c":"$Q1"}}}

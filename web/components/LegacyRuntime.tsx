@@ -45,6 +45,7 @@ export function LegacyRuntime({ view, hide = [] }: { view: keyof typeof ROUTES |
       });
 
     (async () => {
+      const bodyP = fetch(`${BASE}/legacy/body.html`).then((r) => r.text());
       const manifest: { fonts: string[]; scripts: string[] } = await (await fetch(`${BASE}/legacy/manifest.json`)).json();
       manifest.fonts.forEach((f) => load("link", f));
       await new Promise<void>((done) => {
@@ -54,7 +55,7 @@ export function LegacyRuntime({ view, hide = [] }: { view: keyof typeof ROUTES |
         document.head.appendChild(st);
         setTimeout(done, 4000);
       });
-      const html = await (await fetch(`${BASE}/legacy/body.html`)).text();
+      const html = await bodyP;
       if (cancelled) return;
       if (!shell) history.replaceState(history.state, "", location.pathname + location.search + "#" + view);
       el.innerHTML = html;
@@ -67,7 +68,8 @@ export function LegacyRuntime({ view, hide = [] }: { view: keyof typeof ROUTES |
       if (home) new MutationObserver(mark).observe(home, { attributes: true, attributeFilter: ["class", "hidden", "style"] });
       patch(document);
       patch(window);
-      for (const s of manifest.scripts) await load("script", s.startsWith("http") ? s : `${BASE}/legacy/${s}`);
+      // all scripts download at once and still run in order (async = false); waiting for each in turn took ~10 s
+      await Promise.all(manifest.scripts.map((s) => load("script", s.startsWith("http") ? s : `${BASE}/legacy/${s}`)));
       el.dataset.ready = "1";
       // arrived from another page's transition: cover is up (see lib/loader.ts); play the wipe and open the page
       let arrived = "";

@@ -19,6 +19,11 @@ export const viewport: Viewport = { themeColor: "#F6AE55" };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="th" suppressHydrationWarning className={`${plex.variable} ${anuphan.variable} ${mali.variable} ${kanit.variable}`}>
+      <head>
+        <link rel="preload" href="/Hamterco/next/legacy/legacy.css" as="style" />
+        <link rel="preload" href="/Hamterco/next/legacy/body.html" as="fetch" crossOrigin="anonymous" />
+        <link rel="preload" href="/Hamterco/next/legacy/manifest.json" as="fetch" crossOrigin="anonymous" />
+      </head>
       <body>
         <div id="hhL" role="status" aria-label="กำลังโหลด Hamster Hub" dangerouslySetInnerHTML={{ __html: LOADER_HTML }} />
         <script dangerouslySetInnerHTML={{ __html: LOADER_JS }} />
