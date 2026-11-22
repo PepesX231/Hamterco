@@ -1,7 +1,7 @@
 1:"$Sreact.fragment"
 d:"/Hamterco/next/_next/static/chunks/1ua2kfq9s-me6.js"
 e:I[68027,["$d"],"default",1]
-:HL["/Hamterco/next/_next/static/chunks/0qrk11yb_6lhc.css","style"]
+:HL["/Hamterco/next/_next/static/chunks/32wcir9250qfj.css","style"]
 :HL["/Hamterco/next/_next/static/media/098adb8bb3c21377-s.p.09e83-4vqkr8v.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/Hamterco/next/_next/static/media/0b317410534a54bf-s.p.0xwse1x-bzy3s.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/Hamterco/next/_next/static/media/15ffd53c7769ab2e-s.p.045trq_3sylcd.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
@@ -72,7 +72,7 @@ requestAnimationFrame(frame)})();
 a:[["children",{"s":"__PAGE__","h":512,"d":{"r":"$Lb","p":false,"v":null}}]]
 8:[["children",{"s":{"n":"d","t":"d","k":"motion","s":["p","r"]},"h":66048,"d":{"r":"$L9","p":false,"v":"$7"},"c":"$Qa"}]]
 5:[["children",{"s":"routes","h":131584,"d":{"r":"$L6","p":false,"v":"$7"},"c":"$Q8"}]]
-0:{"P":null,"c":["","routes","motion",""],"q":"","i":false,"t":{"t":{"s":"","h":131600,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/Hamterco/next/_next/static/chunks/0qrk11yb_6lhc.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/Hamterco/next/_next/static/chunks/1ua2kfq9s-me6.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"th","suppressHydrationWarning":true,"className":"Eerhnq_variable pOx_Ka_variable kVD14q_variable CQaiTq_variable","children":[["$","head",null,{"children":[["$","link",null,{"rel":"preload","href":"/Hamterco/next/legacy/legacy.css","as":"style"}],["$","link",null,{"rel":"preload","href":"/Hamterco/next/legacy/body.html","as":"fetch","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preload","href":"/Hamterco/next/legacy/manifest.json","as":"fetch","crossOrigin":"anonymous"}]]}],["$","body",null,{"children":[["$","div",null,{"id":"hhL","role":"status","aria-label":"กำลังโหลด Hamster Hub","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]]}]]}],"p":false,"v":null},"c":"$Q5"},"h":{"r":"$Lc","p":false,"v":null}},"m":"$undefined","G":["$e",["$Lf"]],"S":true,"r":"$undefined","s":"$undefined","a":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"I34hk7Jo-AiqGYZ4gpErk"}
+0:{"P":null,"c":["","routes","motion",""],"q":"","i":false,"t":{"t":{"s":"","h":131600,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/Hamterco/next/_next/static/chunks/32wcir9250qfj.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/Hamterco/next/_next/static/chunks/1ua2kfq9s-me6.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"th","suppressHydrationWarning":true,"className":"Eerhnq_variable pOx_Ka_variable kVD14q_variable CQaiTq_variable","children":[["$","head",null,{"children":[["$","link",null,{"rel":"preload","href":"/Hamterco/next/legacy/legacy.css","as":"style"}],["$","link",null,{"rel":"preload","href":"/Hamterco/next/legacy/body.html","as":"fetch","crossOrigin":"anonymous"}],["$","link",null,{"rel":"preload","href":"/Hamterco/next/legacy/manifest.json","as":"fetch","crossOrigin":"anonymous"}]]}],["$","body",null,{"children":[["$","div",null,{"id":"hhL","role":"status","aria-label":"กำลังโหลด Hamster Hub","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]]}]]}],"p":false,"v":null},"c":"$Q5"},"h":{"r":"$Lc","p":false,"v":null}},"m":"$undefined","G":["$e",["$Lf"]],"S":true,"r":"$undefined","s":"$undefined","a":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"Omo1IT2EDIvMmAgkesQLg"}
 10:I[39756,["$d"],"default"]
 11:I[37457,["$d"],"default"]
 13:I[97367,["$d"],"OutletBoundary"]
@@ -86,7 +86,7 @@ a:[["children",{"s":"__PAGE__","h":512,"d":{"r":"$Lb","p":false,"v":null}}]]
 9:["$","$1","c",{"children":[null,["$","$L10",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L11",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
 b:["$","$1","c",{"children":["$L12",[["$","script","script-0",{"src":"/Hamterco/next/_next/static/chunks/1keyx9px22kuw.js","async":true,"nonce":"$undefined"}]],["$","$L13",null,{"children":["$","$14",null,{"name":"Next.MetadataOutlet","children":"$@15"}]}]]}]
 c:["$","$1","h",{"children":[null,["$","$L17",null,{"children":"$L18"}],["$","$L1a",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$14",null,{"name":"Next.Metadata","children":"$L1b"}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
-f:["$","link","0",{"rel":"stylesheet","href":"/Hamterco/next/_next/static/chunks/0qrk11yb_6lhc.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+f:["$","link","0",{"rel":"stylesheet","href":"/Hamterco/next/_next/static/chunks/32wcir9250qfj.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 :HL["/Hamterco/next/route-art/t-blender.webp","image"]
 :HL["/Hamterco/next/route-art/t-unity.webp","image"]
 :HL["/Hamterco/next/route-art/t-web.webp","image"]
