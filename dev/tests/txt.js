@@ -1,0 +1,5 @@
+const {chromium}=require('playwright');(async()=>{const b=await chromium.launch();const p=await b.newPage({viewport:{width:1440,height:900}});
+for(const u of process.argv.slice(2)){await p.goto(u);await p.waitForTimeout(4000);
+console.log(u,await p.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();const cs=getComputedStyle(e);return r.width>0&&r.height>0&&cs.visibility!=='hidden'&&cs.display!=='none'&&cs.opacity!=='0'};
+let n=0;const by={};const root=document.querySelector('main')||document.body;const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let t;while(t=w.nextNode()){const e=t.parentElement;if(!e||!vis(e)||e.closest('footer,[aria-hidden=true],.sr-only,.visuallyhidden'))continue;const r=e.getBoundingClientRect();if(r.right<0||r.left>innerWidth)continue;const l=t.textContent.replace(/\s+/g,' ').trim().length;n+=l;const s=e.closest('section,.nx-hero,.hm-store,.hp-grid');const k=s?(s.className||s.tagName).toString().split(' ')[0]:'?';by[k]=(by[k]||0)+l}return n+' '+JSON.stringify(by)}))}
+await b.close()})()
